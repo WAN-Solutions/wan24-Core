@@ -33,13 +33,45 @@ namespace wan24.Core
         ], isLoopBack: true, isLan: false);
 
         /// <summary>
-        /// Get the first LAN adapter
+        /// Get the first ethernet or WiFi adapter
         /// </summary>
         /// <returns>Adapter</returns>
-        public static NetworkInterface? GetLanAdapter()
+        public static NetworkInterface? GetAdapter()
             => (from adapter in GetOnlineLanEthernetAdapters()
                 where adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
                     adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first ethernet adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetEthernetAdapter()
+            => (from adapter in GetOnlineLanEthernetAdapters()
+                where adapter.NetworkInterfaceType == NetworkInterfaceType.Ethernet
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first cellular adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetCellularAdapter()
+            => (from adapter in GetOnlineLanEthernetAdapters()
+                where adapter.NetworkInterfaceType == NetworkInterfaceType.Wman ||
+                    adapter.NetworkInterfaceType == NetworkInterfaceType.Wwanpp ||
+                    adapter.NetworkInterfaceType == NetworkInterfaceType.Wwanpp2
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first WiFi adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetWiFiAdapter()
+            => (from adapter in GetOnlineLanEthernetAdapters()
+                where adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211
                 select adapter)
                 .FirstOrDefault();
 
@@ -50,6 +82,33 @@ namespace wan24.Core
         public static NetworkInterface? GetDefaultGatewayAdapter()
             => (from adapter in GetOnlineEthernetAdapters()
                 where adapter.GetIPProperties().GatewayAddresses.Any(a => a.Address is not null)
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first default gateway WiFi adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetDefaultGatewayWiFiAdapter()
+            => (from adapter in GetOnlineEthernetAdapters()
+                where adapter.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 && 
+                    adapter.GetIPProperties().GatewayAddresses.Any(a => a.Address is not null)
+                select adapter)
+                .FirstOrDefault();
+
+        /// <summary>
+        /// Get the first default gateway cellular adapter
+        /// </summary>
+        /// <returns>Adapter</returns>
+        public static NetworkInterface? GetDefaultGatewayCellularAdapter()
+            => (from adapter in GetOnlineEthernetAdapters()
+                where 
+                    (
+                        adapter.NetworkInterfaceType == NetworkInterfaceType.Wman || 
+                        adapter.NetworkInterfaceType == NetworkInterfaceType.Wwanpp ||
+                        adapter.NetworkInterfaceType == NetworkInterfaceType.Wwanpp2
+                    ) && 
+                    adapter.GetIPProperties().GatewayAddresses.Any(a => a.Address is not null)
                 select adapter)
                 .FirstOrDefault();
 
@@ -480,5 +539,29 @@ namespace wan24.Core
                 listener.Stop();
             }
         }
+
+        /// <summary>
+        /// If the interface is an ethernet adapter
+        /// </summary>
+        /// <param name="ni">Interface</param>
+        /// <returns>If the interface is an ethernet adapter</returns>
+        public static bool IsEthernetAdapter(this NetworkInterface ni) => ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet;
+
+        /// <summary>
+        /// If the interface is an ethernet adapter
+        /// </summary>
+        /// <param name="ni">Interface</param>
+        /// <returns>If the interface is an ethernet adapter</returns>
+        public static bool IsWiFiAdapter(this NetworkInterface ni) => ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211;
+
+        /// <summary>
+        /// If the interface is an ethernet adapter
+        /// </summary>
+        /// <param name="ni">Interface</param>
+        /// <returns>If the interface is an ethernet adapter</returns>
+        public static bool IsCellularAdapter(this NetworkInterface ni)
+            => ni.NetworkInterfaceType == NetworkInterfaceType.Wman ||
+                ni.NetworkInterfaceType == NetworkInterfaceType.Wwanpp ||
+                ni.NetworkInterfaceType == NetworkInterfaceType.Wwanpp2;
     }
 }

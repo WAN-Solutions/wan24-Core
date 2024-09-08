@@ -55,7 +55,7 @@ namespace wan24.Core
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Property.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Property type
@@ -140,12 +140,12 @@ namespace wan24.Core
         /// <summary>
         /// If the property is init-only
         /// </summary>
-        public bool IsInitOnly => _IsInitOnly ??= Property.IsInitOnly();
+        public bool IsInitOnly => GetIsInitOnly();
 
         /// <summary>
         /// If the property is nullable
         /// </summary>
-        public bool IsNullable => _IsNullable ??= Property.IsNullable();
+        public bool IsNullable => GetIsNullable();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -230,6 +230,36 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Get the bindings
+        /// </summary>
+        /// <returns>Bindings</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private BindingFlags GetBindings() => _Bindings ??= Property.GetBindingFlags();
+
+        /// <summary>
+        /// Get if nullable
+        /// </summary>
+        /// <returns>If nullable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private bool GetIsNullable() => _IsNullable ??= Property.IsNullable();
+
+        /// <summary>
+        /// Get if init-only
+        /// </summary>
+        /// <returns>If init-only</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private bool GetIsInitOnly() => _IsInitOnly ??= Property.IsInitOnly();
+
+        /// <summary>
         /// Cast as <see cref="PropertyInfo"/>
         /// </summary>
         /// <param name="pi"><see cref="PropertyInfoExt"/></param>
@@ -266,11 +296,18 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static PropertyInfoExt From(in PropertyInfo pi)
         {
-            int hc = pi.GetHashCode();
-            if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
-            res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
-            Cache.TryAdd(hc, res);
-            return res;
+            try
+            {
+                int hc = pi.GetHashCode();
+                if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
+                res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
+                Cache.TryAdd(hc, res);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to create {typeof(PropertyInfoExt)} for {pi.DeclaringType}.{pi.Name}", ex);
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         DisposeItem(entry.Item);
@@ -61,7 +61,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         await DisposeItemAsync(entry.Item).DynamicContext();
@@ -81,7 +81,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         DisposeItem(entry.Item); ;
@@ -106,7 +106,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         await DisposeItemAsync(entry.Item).DynamicContext();
@@ -124,7 +124,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     DisposeItem(entry.Item);
             }
         }
@@ -137,7 +137,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }
@@ -150,7 +150,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     DisposeItem(entry.Item);
             }
         }
@@ -163,7 +163,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }
@@ -178,7 +178,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         DisposeItem(entry.Item);
@@ -203,7 +203,7 @@ namespace wan24.Core
             {
                 EnsureUndisposed();
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry))
+                if (RemoveInt(entry, CacheEventReasons.Tidy))
                 {
                     if (IsItemDisposable)
                         await DisposeItemAsync(entry.Item).DynamicContext();
@@ -227,7 +227,7 @@ namespace wan24.Core
                 if (!strategy.IsConditionMet)
                     return;
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     DisposeItem(entry.Item);
             }
         }
@@ -246,7 +246,7 @@ namespace wan24.Core
                 if (!strategy.IsConditionMet)
                     return;
                 cancellationToken.ThrowIfCancellationRequested();
-                if (Remove(entry) && IsItemDisposable)
+                if (RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
                     await DisposeItemAsync(entry.Item).DynamicContext();
             }
         }

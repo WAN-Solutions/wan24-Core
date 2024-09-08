@@ -53,6 +53,34 @@
             }
         }
 
+        /// <inheritdoc/>
+        protected virtual InMemoryCacheEntry<T>? TryRemoveInt(in string key, in CacheEventReasons reason)
+        {
+            if (!Cache.TryRemove(key, out InMemoryCacheEntry<T>? res))
+                return null;
+            _Count--;
+            res.OnRemoved();
+            HandleEntryRemoved(res);
+            RaiseOnEntryRemoved(res, reason);
+            return res;
+        }
+
+        /// <inheritdoc/>
+        protected virtual bool RemoveInt(in InMemoryCacheEntry<T> entry, in CacheEventReasons reason)
+        {
+            if (entry.Cache != this)
+                throw new ArgumentException("Foreign cache entry", nameof(entry));
+            if (Cache.Remove(new KeyValuePair<string, InMemoryCacheEntry<T>>(entry.Key, entry)))
+            {
+                _Count--;
+                entry.OnRemoved();
+                HandleEntryRemoved(entry);
+                RaiseOnEntryRemoved(entry, reason);
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Dispose an item
         /// </summary>

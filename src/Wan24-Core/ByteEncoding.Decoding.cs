@@ -93,91 +93,90 @@ namespace wan24.Core
                 fixed (char* cm = charMap)
                 fixed (char* s = str)
                 fixed (byte* r = res)
+                {
 #endif
-                    unchecked
-                    {
-                        int i = 0;
+                    int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support ARM
-                        int l = len;
-                        if (UseCpuCmd)
+                    //TODO Support ARM
+                    int l = len;
+                    if (UseCpuCmd)
+                    {
+                        if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
                         {
-                            if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
-                            {
-                                int il = l & ~63;
-                                DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += il;
-                                l &= 63;
-                            }
-                            if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
-                            {
-                                int il = l & ~31;
-                                DecodeAvx2(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += il;
-                                l &= 31;
-                            }
+                            int il = l & ~63;
+                            DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 63;
                         }
-#endif
-                        for (int bitOffset = 0; i < len; i++)
+                        if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
                         {
-#if NO_UNSAFE
-                            bits = charMap.IndexOf(str[i]);
-                            if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
-#else
-                            for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
-                            if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
+                            int il = l & ~31;
+                            DecodeAvx2(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 31;
+                        }
+                    }
 #endif
-                            switch (bitOffset)
-                            {
-                                case 0:
+                    for (int bitOffset = 0; i < len; i++)
+                    {
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)bits;
+                        bits = charMap.IndexOf(str[i]);
+                        if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                                    r[resOffset] = (byte)bits;
+                        for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
+                        if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
-                                    bitOffset = 6;
-                                    break;
-                                case 2:
+                        switch (bitOffset)
+                        {
+                            case 0:
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 2);
+                                res[resOffset] = (byte)bits;
 #else
-                                    r[resOffset] |= (byte)(bits << 2);
+                                r[resOffset] = (byte)bits;
 #endif
-                                    resOffset++;
-                                    bitOffset = 0;
-                                    break;
-                                case 4:
+                                bitOffset = 6;
+                                break;
+                            case 2:
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 4);
+                                res[resOffset] |= (byte)(bits << 2);
 #else
-                                    r[resOffset] |= (byte)(bits << 4);
+                                r[resOffset] |= (byte)(bits << 2);
 #endif
-                                    if (++resOffset == resLen) break;
+                                resOffset++;
+                                bitOffset = 0;
+                                break;
+                            case 4:
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)(bits >> 4);
+                                res[resOffset] |= (byte)(bits << 4);
 #else
-                                    r[resOffset] = (byte)(bits >> 4);
+                                r[resOffset] |= (byte)(bits << 4);
 #endif
-                                    bitOffset = 2;
-                                    break;
-                                case 6:
+                                if (++resOffset == resLen) break;
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 6);
+                                res[resOffset] = (byte)(bits >> 4);
 #else
-                                    r[resOffset] |= (byte)(bits << 6);
+                                r[resOffset] = (byte)(bits >> 4);
 #endif
-                                    if (++resOffset == resLen) break;
+                                bitOffset = 2;
+                                break;
+                            case 6:
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)(bits >> 2);
+                                res[resOffset] |= (byte)(bits << 6);
 #else
-                                    r[resOffset] = (byte)(bits >> 2);
+                                r[resOffset] |= (byte)(bits << 6);
 #endif
-                                    bitOffset = 4;
-                                    break;
-                            }
+                                if (++resOffset == resLen) break;
+#if NO_UNSAFE
+                                res[resOffset] = (byte)(bits >> 2);
+#else
+                                r[resOffset] = (byte)(bits >> 2);
+#endif
+                                bitOffset = 4;
+                                break;
                         }
                     }
 #if !NO_UNSAFE
+                }
             }
 #endif
             return res;
@@ -221,91 +220,90 @@ namespace wan24.Core
                 fixed (char* cm = charMap)
                 fixed (char* s = str)
                 fixed (byte* r = res)
+                {
 #endif
-                    unchecked
-                    {
-                        int i = 0;
+                    int i = 0;
 #if !NO_UNSAFE
-                        //TODO Support ARM
-                        int l = len;
-                        if (UseCpuCmd)
+                    //TODO Support ARM
+                    int l = len;
+                    if (UseCpuCmd)
+                    {
+                        if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
                         {
-                            if (false && l >= 64 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
-                            {
-                                int il = l & ~63;
-                                DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += il;
-                                l &= 63;
-                            }
-                            if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
-                            {
-                                int il = l & ~31;
-                                DecodeAvx2(len, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += il;
-                                l &= 31;
-                            }
+                            int il = l & ~63;
+                            DecodeAvx512(l, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 63;
                         }
-#endif
-                        for (int bitOffset = 0; i < len; i++)
+                        if (l >= 32 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
                         {
-#if NO_UNSAFE
-                            bits = charMap.IndexOf(str[i]);
-                            if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
-#else
-                            for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
-                            if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
+                            int il = l & ~31;
+                            DecodeAvx2(len, il, cm, s + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += il;
+                            l &= 31;
+                        }
+                    }
 #endif
-                            switch (bitOffset)
-                            {
-                                case 0:
+                    for (int bitOffset = 0; i < len; i++)
+                    {
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)bits;
+                        bits = charMap.IndexOf(str[i]);
+                        if (bits == -1) throw new InvalidDataException($"Invalid character at offset #{i}");
 #else
-                                    r[resOffset] = (byte)bits;
+                        for (bits = 0; bits < 64 && cm[bits] != s[i]; bits++) ;
+                        if (bits == 64) throw new InvalidDataException($"Invalid character at offset #{i}");
 #endif
-                                    bitOffset = 6;
-                                    break;
-                                case 2:
+                        switch (bitOffset)
+                        {
+                            case 0:
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 2);
+                                res[resOffset] = (byte)bits;
 #else
-                                    r[resOffset] |= (byte)(bits << 2);
+                                r[resOffset] = (byte)bits;
 #endif
-                                    resOffset++;
-                                    bitOffset = 0;
-                                    break;
-                                case 4:
+                                bitOffset = 6;
+                                break;
+                            case 2:
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 4);
+                                res[resOffset] |= (byte)(bits << 2);
 #else
-                                    r[resOffset] |= (byte)(bits << 4);
+                                r[resOffset] |= (byte)(bits << 2);
 #endif
-                                    if (++resOffset == resLen) break;
+                                resOffset++;
+                                bitOffset = 0;
+                                break;
+                            case 4:
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)(bits >> 4);
+                                res[resOffset] |= (byte)(bits << 4);
 #else
-                                    r[resOffset] = (byte)(bits >> 4);
+                                r[resOffset] |= (byte)(bits << 4);
 #endif
-                                    bitOffset = 2;
-                                    break;
-                                case 6:
+                                if (++resOffset == resLen) break;
 #if NO_UNSAFE
-                                    res[resOffset] |= (byte)(bits << 6);
+                                res[resOffset] = (byte)(bits >> 4);
 #else
-                                    r[resOffset] |= (byte)(bits << 6);
+                                r[resOffset] = (byte)(bits >> 4);
 #endif
-                                    if (++resOffset == resLen) break;
+                                bitOffset = 2;
+                                break;
+                            case 6:
 #if NO_UNSAFE
-                                    res[resOffset] = (byte)(bits >> 2);
+                                res[resOffset] |= (byte)(bits << 6);
 #else
-                                    r[resOffset] = (byte)(bits >> 2);
+                                r[resOffset] |= (byte)(bits << 6);
 #endif
-                                    bitOffset = 4;
-                                    break;
-                            }
+                                if (++resOffset == resLen) break;
+#if NO_UNSAFE
+                                res[resOffset] = (byte)(bits >> 2);
+#else
+                                r[resOffset] = (byte)(bits >> 2);
+#endif
+                                bitOffset = 4;
+                                break;
                         }
                     }
 #if !NO_UNSAFE
+                }
             }
 #endif
         }

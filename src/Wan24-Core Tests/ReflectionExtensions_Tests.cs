@@ -198,8 +198,8 @@ namespace Wan24_Core_Tests
             Type type = typeof(ReflectionTestClass);
             PropertyInfoExt initOnly = type.GetPropertyCached(nameof(ReflectionTestClass.InitOnlyProperty)) ?? throw new InvalidProgramException(),
                 getterSetter = type.GetPropertyCached(nameof(ReflectionTestClass.GetterSetterProperty)) ?? throw new InvalidProgramException();
-            Assert.IsTrue(initOnly.IsInitOnly());
-            Assert.IsFalse(getterSetter.IsInitOnly());
+            Assert.IsTrue(initOnly.IsInitOnly);
+            Assert.IsFalse(getterSetter.IsInitOnly);
         }
 
         [TestMethod]
@@ -511,7 +511,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void GetDelegates_Tests()
         {
-            Type[] delegates = typeof(DiffInterfaceType).GetDelegatesCached();
+            Type[] delegates = [..typeof(DiffInterfaceType).GetDelegatesCached()];
             Assert.AreEqual(1, delegates.Length);
         }
 
@@ -519,6 +519,13 @@ namespace Wan24_Core_Tests
         public void GetDelegate_Tests()
         {
             Assert.IsNotNull(typeof(DiffInterfaceType).GetDelegateCached(nameof(DiffInterfaceType.EventDelegate)));
+        }
+
+        [TestMethod]
+        public void MethodInfoExt_string_GetPinnableReference_Test()
+        {
+            // by-ref(-like) return types failed until the bugfix
+            typeof(string).GetMethodsCached();
         }
 
         private static bool StaticTestField = true;

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
@@ -30,11 +31,11 @@ namespace wan24.Core
         /// <summary>
         /// Parameters
         /// </summary>
-        private ParameterInfo[]? _Parameters = null;
+        private ImmutableArray<ParameterInfo>? _Parameters = null;
         /// <summary>
         /// Generic arguments
         /// </summary>
-        private Type[]? _GenericArguments = null;
+        private ImmutableArray<Type>? _GenericArguments = null;
         /// <summary>
         /// If the method returns a task
         /// </summary>
@@ -65,6 +66,34 @@ namespace wan24.Core
         private EventInfo? _AccessedEvent = null;
 
         /// <summary>
+        /// Get the parameter at the specified index
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <returns>Parameter</returns>
+        public ParameterInfo this[in int index]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => GetParameters()[index];
+        }
+
+        /// <summary>
+        /// Get the parameter of the specified name
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <returns>Parameter</returns>
+        public ParameterInfo? this[string name]
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => GetParameters().FirstOrDefault(p => p.Name == name);
+        }
+
+        /// <summary>
         /// Method
         /// </summary>
         public MethodInfo Method { get; } = Method;
@@ -84,7 +113,7 @@ namespace wan24.Core
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Method.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Method name
@@ -178,27 +207,32 @@ namespace wan24.Core
         /// <summary>
         /// Parameters
         /// </summary>
-        public ParameterInfo[] Parameters => [.. _Parameters ??= Method.GetParametersCached()];
+        public ParameterInfo[] Parameters => [.. GetParameters()];
+
+        /// <summary>
+        /// Parameter names
+        /// </summary>
+        public IEnumerable<string> ParameterNames => GetParameters().Select(p => p.Name!);
 
         /// <summary>
         /// Number of parameters
         /// </summary>
-        public int ParameterCount => (_Parameters ??= Method.GetParametersCached()).Length;
+        public int ParameterCount => GetParameters().Length;
 
         /// <summary>
         /// Generic arguments
         /// </summary>
-        public Type[] GenericArguments => [.. _GenericArguments ??= Method.IsGenericMethod ? Method.GetGenericArgumentsCached() : []];
+        public Type[] GenericArguments => [.. GetGenericArguments()];
 
         /// <summary>
         /// Number of generic arguments
         /// </summary>
-        public int GenericArgumentCount => (_GenericArguments ??= Method.IsGenericMethod ? Method.GetGenericArgumentsCached() : []).Length;
+        public int GenericArgumentCount => GetGenericArguments().Length;
 
         /// <summary>
         /// First generic argument
         /// </summary>
-        public Type? FirstGenericArgument => Method.IsGenericMethod ? (_GenericArguments ??= Method.GetGenericArgumentsCached())[0] : null;
+        public Type? FirstGenericArgument => Method.IsGenericMethod ? GetGenericArguments()[0] : null;
 
         /// <summary>
         /// If the method return value is nullable
@@ -246,9 +280,9 @@ namespace wan24.Core
         public MethodInfoExt MakeGenericMethod(params Type[] genericArguments)
         {
             if (!Method.IsGenericMethodDefinition) throw new InvalidOperationException();
-            if (genericArguments.Length != GenericArguments.Length)
-                throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArguments.Length} generic arguments required");
-            GenericMethodKey key = new(this.GetHashCode(), genericArguments);
+            if (genericArguments.Length != GenericArgumentCount)
+                throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArgumentCount} generic arguments required");
+            GenericMethodKey key = new(GetHashCode(), genericArguments);
             if (GenericMethods.TryGetValue(key, out MethodInfoExt? res)) return res;
             MethodInfo mi = Method.MakeGenericMethod(genericArguments);
             res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null)
@@ -258,6 +292,26 @@ namespace wan24.Core
             GenericMethods.TryAdd(key, res);
             return res;
         }
+
+        /// <summary>
+        /// Get the parameters
+        /// </summary>
+        /// <returns>Parameters</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public ImmutableArray<ParameterInfo> GetParameters() => _Parameters ??= ReflectionExtensions.GetCachedParameters(Method);
+
+        /// <summary>
+        /// Get the generic arguments
+        /// </summary>
+        /// <returns>Arguments</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public ImmutableArray<Type> GetGenericArguments() => _GenericArguments ??= Method.IsGenericMethod ? ReflectionExtensions.GetCachedGenericArguments(Method) : [];
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -281,10 +335,20 @@ namespace wan24.Core
         public bool IsDefined(Type attributeType, bool inherit) => Method.IsDefined(attributeType, inherit);
 
         /// <inheritdoc/>
-        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)(_Parameters ??= Method.GetParametersCached())).GetEnumerator();
+        public IEnumerator<ParameterInfo> GetEnumerator() => ((IEnumerable<ParameterInfo>)GetParameters()).GetEnumerator();
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// Get the bindings
+        /// </summary>
+        /// <returns>Bindings</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private BindingFlags GetBindings() => _Bindings ??= Method.GetBindingFlags();
 
         /// <summary>
         /// Cast as <see cref="MethodInfo"/>
@@ -323,11 +387,18 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static MethodInfoExt From(in MethodInfo mi)
         {
-            int hc = mi.GetHashCode();
-            if(Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
-            res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
-            Cache.TryAdd(hc, res);
-            return res;
+            try
+            {
+                int hc = mi.GetHashCode();
+                if (Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
+                res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
+                Cache.TryAdd(hc, res);
+                return res;
+            }
+            catch(Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to create {typeof(MethodInfoExt)} for {mi.DeclaringType}.{mi.Name}", ex);
+            }
         }
 
         /// <summary>

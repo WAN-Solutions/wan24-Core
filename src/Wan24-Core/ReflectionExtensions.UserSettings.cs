@@ -25,7 +25,7 @@ namespace wan24.Core
                 ? fi.FieldType
                 : fi.FieldType.GetBaseTypes().FirstOrDefault(t => InstanceTables.IsValidTableType(t))
                     ?? throw new InvalidProgramException($"Invalid instance table field type {fi.FieldType} for {obj.GetType()}"),
-                valueType = fieldType.GetGenericArgumentsCached()[1];
+                valueType = fieldType.GetGenericArgumentCached(index: 1);
             if (!valueType.IsAssignableFromExt(obj.GetType()))
                 throw new InvalidProgramException($"{obj.GetType()} can not be hosted by {provider.Value}.{fi.Name} ({valueType})");
             // Find user setting properties

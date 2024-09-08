@@ -17,7 +17,7 @@
         /// <summary>
         /// Raise the <see cref="OnBeforeCommit"/> event
         /// </summary>
-        protected virtual void RaiseOnBeforeCommit() => OnBeforeCommit?.Invoke(this, new());
+        protected virtual void RaiseOnBeforeCommit() => OnBeforeCommit?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised after committed
@@ -26,7 +26,7 @@
         /// <summary>
         /// Raise the <see cref="OnAfterCommit"/> event
         /// </summary>
-        protected virtual void RaiseOnAfterCommit() => OnAfterCommit?.Invoke(this, new());
+        protected virtual void RaiseOnAfterCommit() => OnAfterCommit?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised before rolling back
@@ -35,7 +35,7 @@
         /// <summary>
         /// Raise the <see cref="OnBeforeRollback"/> event
         /// </summary>
-        protected virtual void RaiseOnBeforeRollback() => OnBeforeRollback?.Invoke(this, new());
+        protected virtual void RaiseOnBeforeRollback() => OnBeforeRollback?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised after rolled back
@@ -44,7 +44,7 @@
         /// <summary>
         /// Raise the <see cref="OnAfterRollback"/> event
         /// </summary>
-        protected virtual void RaiseOnAfterRollback() => OnAfterRollback?.Invoke(this, new());
+        protected virtual void RaiseOnAfterRollback() => OnAfterRollback?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when a commit is required (only when <see cref="AutoCommit"/> is <see langword="false"/>, and only once until committed)
@@ -53,6 +53,6 @@
         /// <summary>
         /// Raise the <see cref="OnNeedCommit"/> event
         /// </summary>
-        protected virtual void RaiseOnNeedCommit() => OnNeedCommit?.Invoke(this, new());
+        protected virtual void RaiseOnNeedCommit() => OnNeedCommit?.Invoke(this, EventArgs.Empty);
     }
 }

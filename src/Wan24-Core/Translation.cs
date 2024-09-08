@@ -30,7 +30,7 @@ namespace wan24.Core
             {
                 if (value == _Current) return;
                 _Current = value;
-                OnLocaleChanged?.Invoke(value, new());
+                OnLocaleChanged?.Invoke(value, EventArgs.Empty);
             }
         }
 

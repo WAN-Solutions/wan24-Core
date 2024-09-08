@@ -1,0 +1,853 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class CacheExtensions | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class CacheExtensions | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.CacheExtensions">
+
+
+
+  <h1 id="wan24_Core_CacheExtensions" data-uid="wan24.Core.CacheExtensions" class="text-break">Class CacheExtensions</h1>
+  <div class="markdown level0 summary"><p><a class="xref" href="wan24.Core.ICache-1.html">ICache&lt;T&gt;</a> extensions</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">CacheExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_CacheExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class CacheExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_ApplyAutoItemMoving__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___wan24_Core_SemaphoreSync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.ApplyAutoItemMoving%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2Cwan24.Core.SemaphoreSync%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L215">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_ApplyAutoItemMoving_" data-uid="wan24.Core.CacheExtensions.ApplyAutoItemMoving*"></a>
+  <h4 id="wan24_Core_CacheExtensions_ApplyAutoItemMoving__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___wan24_Core_SemaphoreSync_System_Boolean_" data-uid="wan24.Core.CacheExtensions.ApplyAutoItemMoving``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},wan24.Core.SemaphoreSync,System.Boolean)">ApplyAutoItemMoving&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, SemaphoreSync, bool)</h4>
+  <div class="markdown level1 summary"><p>Apply automatic down-moving of cache items which were removed during a cache tidy action</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ApplyAutoItemMoving&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, SemaphoreSync cachesSync, bool disposeRemoved = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
+        <td><span class="parametername">cachesSync</span></td>
+        <td><p>Caches synchronization</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposeRemoved</span></td>
+        <td><p>If to dispose finally removed items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_ClearAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.ClearAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L133">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_ClearAsync_" data-uid="wan24.Core.CacheExtensions.ClearAsync*"></a>
+  <h4 id="wan24_Core_CacheExtensions_ClearAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___" data-uid="wan24.Core.CacheExtensions.ClearAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}})">ClearAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Clear the cache (items will be disposed)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task ClearAsync&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_Clear__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.Clear%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L123">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_Clear_" data-uid="wan24.Core.CacheExtensions.Clear*"></a>
+  <h4 id="wan24_Core_CacheExtensions_Clear__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___" data-uid="wan24.Core.CacheExtensions.Clear``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}})">Clear&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Clear the cache (items will be disposed)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Clear&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_GetAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String_wan24_Core_SemaphoreSync_wan24_Core_ICache___0__CacheEntryFactory_Delegate_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.GetAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.SemaphoreSync%2Cwan24.Core.ICache%7B%60%600%7D.CacheEntryFactory_Delegate%2Cwan24.Core.ICacheEntryOptions%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L65">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_GetAsync_" data-uid="wan24.Core.CacheExtensions.GetAsync*"></a>
+  <h4 id="wan24_Core_CacheExtensions_GetAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String_wan24_Core_SemaphoreSync_wan24_Core_ICache___0__CacheEntryFactory_Delegate_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.CacheExtensions.GetAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String,wan24.Core.SemaphoreSync,wan24.Core.ICache{``0}.CacheEntryFactory_Delegate,wan24.Core.ICacheEntryOptions,System.Boolean,System.Boolean,System.Threading.CancellationToken)">GetAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, string, SemaphoreSync, CacheEntryFactory_Delegate?, ICacheEntryOptions?, bool, bool, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Get a cache entry</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;ICacheEntry&lt;T&gt;?&gt; GetAsync&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, string key, SemaphoreSync cachesSync, ICache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, ICacheEntryOptions? options = null, bool removeExisting = true, bool disposeUnused = true, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Unique cache entry key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
+        <td><span class="parametername">cachesSync</span></td>
+        <td><p>Caches synchronization</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><span class="parametername">entryFactory</span></td>
+        <td><p>Cache entry factory (used to create a new item from the given <code>key</code>, if no existing item was found)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">removeExisting</span></td>
+        <td><p>Remove an existing entry?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposeUnused</span></td>
+        <td><p>Dispose a found item, if a newer item was found?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt;&gt;</td>
+        <td><p>Cache entry</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_Get__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__wan24_Core_SemaphoreSync__wan24_Core_ICache___0__CacheEntryFactory_Delegate__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.Get%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%40%2Cwan24.Core.SemaphoreSync%40%2Cwan24.Core.ICache%7B%60%600%7D.CacheEntryFactory_Delegate%40%2Cwan24.Core.ICacheEntryOptions%40%2CSystem.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L22">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_Get_" data-uid="wan24.Core.CacheExtensions.Get*"></a>
+  <h4 id="wan24_Core_CacheExtensions_Get__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__wan24_Core_SemaphoreSync__wan24_Core_ICache___0__CacheEntryFactory_Delegate__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__" data-uid="wan24.Core.CacheExtensions.Get``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String@,wan24.Core.SemaphoreSync@,wan24.Core.ICache{``0}.CacheEntryFactory_Delegate@,wan24.Core.ICacheEntryOptions@,System.Boolean@,System.Boolean@)">Get&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in string, in SemaphoreSync, in CacheEntryFactory_Delegate?, in ICacheEntryOptions?, in bool, in bool)</h4>
+  <div class="markdown level1 summary"><p>Get a cache entry</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ICacheEntry&lt;T&gt;? Get&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, in string key, in SemaphoreSync cachesSync, in ICache&lt;T&gt;.CacheEntryFactory_Delegate? entryFactory = null, in ICacheEntryOptions? options = null, in bool removeExisting = true, in bool disposeUnused = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Unique cache entry key</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.SemaphoreSync.html">SemaphoreSync</a></td>
+        <td><span class="parametername">cachesSync</span></td>
+        <td><p>Caches synchronization</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;.<a class="xref" href="wan24.Core.ICache-1.CacheEntryFactory_Delegate.html">CacheEntryFactory_Delegate</a></td>
+        <td><span class="parametername">entryFactory</span></td>
+        <td><p>Cache entry factory (used to create a new item from the given <code>key</code>, if no existing item was found)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">removeExisting</span></td>
+        <td><p>Remove an existing entry?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposeUnused</span></td>
+        <td><p>Dispose a found item, if a newer item was found?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt;</td>
+        <td><p>Cache entry</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryRemove__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryRemove%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_TryRemove_" data-uid="wan24.Core.CacheExtensions.TryRemove*"></a>
+  <h4 id="wan24_Core_CacheExtensions_TryRemove__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__" data-uid="wan24.Core.CacheExtensions.TryRemove``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String@)">TryRemove&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in string)</h4>
+  <div class="markdown level1 summary"><p>Try removing an entry by its key (items will be disposed)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TryRemove&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, in string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Unique cache entry key</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of removed entries</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryStoreAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32_System_String___0_System_Int32_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryStoreAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.Int32%2CSystem.String%2C%60%600%2CSystem.Int32%2Cwan24.Core.ICacheEntryOptions%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L187">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_TryStoreAsync_" data-uid="wan24.Core.CacheExtensions.TryStoreAsync*"></a>
+  <h4 id="wan24_Core_CacheExtensions_TryStoreAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32_System_String___0_System_Int32_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Int32_" data-uid="wan24.Core.CacheExtensions.TryStoreAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.Int32,System.String,``0,System.Int32,wan24.Core.ICacheEntryOptions,System.Boolean,System.Boolean,System.Int32)">TryStoreAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, int, string, T, int, ICacheEntryOptions?, bool, bool, int)</h4>
+  <div class="markdown level1 summary"><p>Try to store the item in the first suitable cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;(int CacheIndex, ICacheEntry&lt;T&gt;? Entry)&gt; TryStoreAsync&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, int stopIndex, string key, T item, int size, ICacheEntryOptions? options = null, bool removeExisting = true, bool disposeUnused = true, int startIndex = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">stopIndex</span></td>
+        <td><p>Cache index to stop before</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Item key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Item size</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">removeExisting</span></td>
+        <td><p>Remove an existing entry?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposeUnused</span></td>
+        <td><p>Dispose the given <code>item</code>, if a newer item was found?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Cache index to start at</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,wan24.core.icacheentry---0--.cacheindex">CacheIndex</a>, <a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,wan24.core.icacheentry---0--.entry">Entry</a>)&gt;</td>
+        <td><p>Index of the cache which has this item now (or <code>-1</code>, if not cached), and the cache entry</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryStore__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32__System_String____0__System_Int32__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryStore%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.Int32%40%2CSystem.String%40%2C%60%600%40%2CSystem.Int32%40%2Cwan24.Core.ICacheEntryOptions%40%2CSystem.Boolean%40%2CSystem.Boolean%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L152">View Source</a>
+  </span>
+  <a id="wan24_Core_CacheExtensions_TryStore_" data-uid="wan24.Core.CacheExtensions.TryStore*"></a>
+  <h4 id="wan24_Core_CacheExtensions_TryStore__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32__System_String____0__System_Int32__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__System_Int32__" data-uid="wan24.Core.CacheExtensions.TryStore``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.Int32@,System.String@,``0@,System.Int32@,wan24.Core.ICacheEntryOptions@,System.Boolean@,System.Boolean@,System.Int32@)">TryStore&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in int, in string, in T, in int, in ICacheEntryOptions?, in bool, in bool, in int)</h4>
+  <div class="markdown level1 summary"><p>Try to store the item in the first suitable cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (int CacheIndex, ICacheEntry&lt;T&gt;? Entry) TryStore&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches, in int stopIndex, in string key, in T item, in int size, in ICacheEntryOptions? options = null, in bool removeExisting = true, in bool disposeUnused = true, in int startIndex = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="wan24.Core.ICache-1.html">ICache</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">caches</span></td>
+        <td><p>Caches (should be synchronized)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">stopIndex</span></td>
+        <td><p>Cache index to stop before</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>Item key</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Item size</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Options</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">removeExisting</span></td>
+        <td><p>Remove an existing entry?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposeUnused</span></td>
+        <td><p>Dispose the given <code>item</code>, if a newer item was found?</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Cache index to start at</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,wan24.core.icacheentry---0--.cacheindex">CacheIndex</a>, <a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,wan24.core.icacheentry---0--.entry">Entry</a>)</td>
+        <td><p>Index of the cache which has this item now (or <code>-1</code>, if not cached), and the cache entry</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

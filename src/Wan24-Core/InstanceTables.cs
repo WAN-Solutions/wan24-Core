@@ -54,13 +54,13 @@ namespace wan24.Core
                 fieldType.IsGenericType &&
                 !fieldType.IsGenericTypeDefinition &&
                 fieldType.GetGenericTypeDefinition() == typeof(ConcurrentDictionary<,>) &&
-                fieldType.GetGenericArgumentsCached()[0] == typeof(string)
+                fieldType.GetGenericArgumentCached(index: 0) == typeof(string)
                 )
                 return true;
             return checkBaseTypes && fieldType.GetBaseTypes().Any(
                 t => t.IsGenericType &&
                     t.GetGenericTypeDefinition() == typeof(ConcurrentDictionary<,>) &&
-                    t.GetGenericArgumentsCached()[0] == typeof(string)
+                    t.GetGenericArgumentCached(index: 0) == typeof(string)
                 );
         }
 
@@ -100,7 +100,7 @@ namespace wan24.Core
                 ? tableField.FieldType
                 : tableField.FieldType.GetBaseTypes().FirstOrDefault(t => IsValidTableType(t))
                     ?? throw new ArgumentException($"Invalid instance table field type {tableField.FieldType}", nameof(tableField)),
-                valueType = fieldType.GetGenericArgumentsCached()[1];
+                valueType = fieldType.GetGenericArgumentCached(index: 1);
             MethodInfoExt getValueMethod = typeof(ConcurrentDictionary<,>).MakeGenericType(typeof(string), valueType)
                 .GetMethodCached(nameof(ConcurrentDictionary<string, object>.TryGetValue), BindingFlags.Public | BindingFlags.Instance)
                     ?? throw new InvalidProgramException($"Failed to get the instance table {tableField.Name} get value method");

@@ -179,13 +179,13 @@
         /// <summary>
         /// Raise the <see cref="OnError"/> event
         /// </summary>
-        protected virtual void RaiseOnError() => OnError?.Invoke(this, new());
+        protected virtual void RaiseOnError() => OnError?.Invoke(this, EventArgs.Empty);
 
         /// <inheritdoc/>
         public event ICopyStream.CopyStream_Delegate? OnComplete;
         /// <summary>
         /// Raise the <see cref="OnComplete"/> event
         /// </summary>
-        protected virtual void RaiseOnComplete() => OnComplete?.Invoke(this, new());
+        protected virtual void RaiseOnComplete() => OnComplete?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -111,6 +111,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.InMemoryCacheEntryOptions.html">InMemoryCacheEntryOptions</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
@@ -141,7 +142,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_InMemoryCacheEntryOptions_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record InMemoryCacheEntryOptions : IEquatable&lt;InMemoryCacheEntryOptions&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public record InMemoryCacheEntryOptions : ICacheEntryOptions, IEquatable&lt;InMemoryCacheEntryOptions&gt;</code></pre>
   </div>
   <h5 id="wan24_Core_InMemoryCacheEntryOptions_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -357,6 +358,9 @@
   </table>
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
@@ -365,6 +369,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CastType__1_System_Object_">ObjectExtensions.CastType&lt;T&gt;(object)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
@@ -461,6 +468,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__">ObjectMappingExtensions.CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>

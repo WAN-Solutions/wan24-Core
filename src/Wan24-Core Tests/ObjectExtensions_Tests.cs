@@ -16,7 +16,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void TypeConversion_Tests()
         {
-            Assert.AreEqual(1, ((ushort)1).ConvertType<int>());
+            Assert.AreEqual(1, ((ushort)1).CastType<int>());
         }
 
         [TestMethod]

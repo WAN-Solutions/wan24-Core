@@ -179,7 +179,7 @@ namespace wan24.Core
         /// Raise the <see cref="OnPeerReadClosed"/> event
         /// </summary>
         /// <param name="e">Arguments</param>
-        protected virtual void RaiseOnPeerClosedAny(EventArgs? e = null) => OnPeerClosedAny?.Invoke(this, e ?? new());
+        protected virtual void RaiseOnPeerClosedAny(EventArgs? e = null) => OnPeerClosedAny?.Invoke(this, e ?? EventArgs.Empty);
 
         /// <summary>
         /// Raise the <see cref="OnPeerReadClosed"/> event
@@ -187,7 +187,7 @@ namespace wan24.Core
         /// <param name="e">Arguments</param>
         protected virtual void RaiseOnPeerReadClosed(EventArgs? e = null)
         {
-            e ??= new();
+            e ??= EventArgs.Empty;
             OnPeerReadClosed?.Invoke(this, e);
             RaiseOnPeerClosedAny(e);
             if (IsSilent) RaiseOnSilent(e);
@@ -199,7 +199,7 @@ namespace wan24.Core
         /// <param name="e">Arguments</param>
         protected virtual void RaiseOnPeerWriteClosed(EventArgs? e = null)
         {
-            e ??= new();
+            e ??= EventArgs.Empty;
             OnPeerWriteClosed?.Invoke(this, e);
             RaiseOnPeerClosedAny(e);
             if (IsSilent) RaiseOnSilent(e);
@@ -212,7 +212,7 @@ namespace wan24.Core
         protected virtual void RaiseOnSilent(EventArgs? e = null)
         {
             SilentEvent.Set();
-            OnSilent?.Invoke(this, e ?? new());
+            OnSilent?.Invoke(this, e ?? EventArgs.Empty);
             if (IsDisposing || !AutoDispose) return;
             if (Logging.Trace)
                 Logging.WriteTrace($"{this} auto disposing after all channels are closed");

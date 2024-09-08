@@ -31,6 +31,12 @@
         public delegate Task AsyncMapper_Delegate<tSource, tTarget>(tSource source, tTarget target, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Object validator delegate (should throw on error)
+        /// </summary>
+        /// <param name="value">Value to validate</param>
+        public delegate void Validate_Delegate(object value);
+
+        /// <summary>
         /// Delegate for a mapper method
         /// </summary>
         /// <param name="source">Source object</param>
