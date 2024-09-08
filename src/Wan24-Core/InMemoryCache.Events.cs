@@ -60,7 +60,12 @@
         /// Raise the <see cref="OnEntryAdded"/> event
         /// </summary>
         /// <param name="entry">Cache entry</param>
-        protected virtual void RaiseOnEntryAdded(in InMemoryCacheEntry<T> entry) => OnEntryAdded?.Invoke(this, new(entry));
+        /// <param name="reason">Reason</param>
+        protected virtual void RaiseOnEntryAdded(in InMemoryCacheEntry<T> entry, in CacheEventReasons reason = CacheEventReasons.UserAction)
+        {
+            OnEntryAdded?.Invoke(this, new(entry, reason));
+            OnCacheEntryAdded?.Invoke(this, new(entry, reason));
+        }
 
         /// <summary>
         /// Raised when an entry was removed
@@ -70,7 +75,12 @@
         /// Raise the <see cref="OnEntryRemoved"/> event
         /// </summary>
         /// <param name="entry">Cache entry</param>
-        protected virtual void RaiseOnEntryRemoved(in InMemoryCacheEntry<T> entry) => OnEntryRemoved?.Invoke(this, new(entry));
+        /// <param name="reason">Reason</param>
+        protected virtual void RaiseOnEntryRemoved(in InMemoryCacheEntry<T> entry, in CacheEventReasons reason = CacheEventReasons.UserAction)
+        {
+            OnEntryRemoved?.Invoke(this, new(entry, reason));
+            OnCacheEntryRemoved?.Invoke(this, new(entry, reason));
+        }
 
         /// <summary>
         /// Cache entry event arguments
@@ -79,12 +89,18 @@
         /// Constructor
         /// </remarks>
         /// <param name="entry">Cache entry</param>
-        public class EntryEventArgs(in InMemoryCacheEntry<T> entry) : EventArgs()
+        /// <param name="reason">Reason</param>
+        public class EntryEventArgs(in InMemoryCacheEntry<T> entry, in CacheEventReasons reason) : EventArgs()
         {
             /// <summary>
             /// Cache entry
             /// </summary>
-            public T Entry { get; } = entry;
+            public InMemoryCacheEntry<T> Entry { get; } = entry;
+
+            /// <summary>
+            /// Reason
+            /// </summary>
+            public CacheEventReasons Reason { get; } = reason;
         }
     }
 }

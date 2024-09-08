@@ -116,7 +116,8 @@ namespace wan24.Core
             IObservable<ConcurrentChangeTokenDictionary<string, InMemoryCacheEntry<T>>>, 
             IEnumerable<KeyValuePair<string, InMemoryCacheEntry<T>>>, 
             IEnumerable<T>,
-            IDictionary<string, InMemoryCacheEntry<T>>
+            IDictionary<string, InMemoryCacheEntry<T>>,
+        ICache<T>
     {
         /// <summary>
         /// Create a cache entry
@@ -193,7 +194,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Unique cache entry key</param>
         /// <returns>Removed entry (item is not yet disposed!)</returns>
-        InMemoryCacheEntry<T>? TryRemove(in string key);
+        new InMemoryCacheEntry<T>? TryRemove(in string key);
         /// <summary>
         /// Remove an entry
         /// </summary>
@@ -205,26 +206,12 @@ namespace wan24.Core
         /// </summary>
         /// <param name="disposeItems">Dispose the items?</param>
         /// <returns>Removed cache entries</returns>
-        InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false);
+        new InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false);
         /// <summary>
         /// Clear the cache
         /// </summary>
         /// <param name="disposeItems">Dispose the items?</param>
         /// <returns>Removed cache entries</returns>
-        Task<InMemoryCacheEntry<T>[]> ClearAsync(bool disposeItems = false);
-        /// <summary>
-        /// Delegate for a cache entry factory
-        /// </summary>
-        /// <param name="cache">Cache</param>
-        /// <param name="key">Unique cache entry key</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Cache entry (or <see langword="null"/>, if no item could be created for the given key)</returns>
-        public delegate Task<InMemoryCacheEntry<T>?> CacheEntryFactory_Delegate(
-            InMemoryCache<T> cache,
-            string key,
-            InMemoryCacheEntryOptions? options,
-            CancellationToken cancellationToken
-            );
+        new Task<InMemoryCacheEntry<T>[]> ClearAsync(bool disposeItems = false);
     }
 }

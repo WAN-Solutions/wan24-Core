@@ -204,7 +204,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnTimeout"/> event
         /// </summary>
-        protected virtual void RaiseOnTimeout() => OnTimeout?.Invoke(this, new());
+        protected virtual void RaiseOnTimeout() => OnTimeout?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Remaining time until the next timeout

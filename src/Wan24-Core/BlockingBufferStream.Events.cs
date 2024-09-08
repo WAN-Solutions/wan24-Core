@@ -17,7 +17,7 @@
         /// <summary>
         /// Raise the <see cref="OnDataAvailable"/> event
         /// </summary>
-        protected virtual void RaiseOnDataAvailable() => OnDataAvailable?.Invoke(this, new());
+        protected virtual void RaiseOnDataAvailable() => OnDataAvailable?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when reading is blocking (buffer access is locked)
@@ -26,7 +26,7 @@
         /// <summary>
         /// Raise the <see cref="OnNeedData"/> event
         /// </summary>
-        protected virtual void RaiseOnNeedData() => OnNeedData?.Invoke(this, new());
+        protected virtual void RaiseOnNeedData() => OnNeedData?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when space for writing is available (buffer access is locked)
@@ -35,7 +35,7 @@
         /// <summary>
         /// Raise the <see cref="OnSpaceAvailable"/> event
         /// </summary>
-        protected virtual void RaiseOnSpaceAvailable() => OnSpaceAvailable?.Invoke(this, new());
+        protected virtual void RaiseOnSpaceAvailable() => OnSpaceAvailable?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when writing is blocking (buffer access is locked)
@@ -44,6 +44,6 @@
         /// <summary>
         /// Raise the <see cref="OnNeedSpace"/> event
         /// </summary>
-        protected virtual void RaiseOnNeedSpace() => OnNeedSpace?.Invoke(this, new());
+        protected virtual void RaiseOnNeedSpace() => OnNeedSpace?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -81,7 +81,7 @@ namespace wan24.Core
         static EnumerationBase()
         {
             if (!typeof(T).IsSealed) throw new InvalidProgramException($"{typeof(T)} must be sealed");
-            if (typeof(T).GetConstructorsCached(BindingFlags.Public).Length != 0) throw new InvalidProgramException($"{typeof(T)} must use private construction");
+            if (typeof(T).GetConstructorsCached(BindingFlags.Public).Any()) throw new InvalidProgramException($"{typeof(T)} must use private construction");
         }
 
         /// <summary>

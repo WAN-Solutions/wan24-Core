@@ -401,7 +401,7 @@ namespace wan24.Core
         {
             if (OnRan is null) return;
             await Task.Yield();
-            OnRan?.Invoke(this, new());
+            OnRan?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

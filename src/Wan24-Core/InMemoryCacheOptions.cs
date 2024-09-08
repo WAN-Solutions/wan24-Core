@@ -3,7 +3,7 @@
     /// <summary>
     /// In-memory cache options
     /// </summary>
-    public record class InMemoryCacheOptions()
+    public record class InMemoryCacheOptions() : ICacheOptions
     {
         /// <summary>
         /// Default cache entry type
@@ -60,9 +60,7 @@
         /// </summary>
         public long HardSizeLimit { get; init; }
 
-        /// <summary>
-        /// Max. cacheable item size
-        /// </summary>
+        /// <inheritdoc/>
         public int MaxItemSize { get; init; }
 
         /// <summary>

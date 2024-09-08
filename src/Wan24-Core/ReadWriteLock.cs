@@ -197,7 +197,7 @@
         /// <summary>
         /// Raise the <see cref="OnWriteRequested"/> event
         /// </summary>
-        protected virtual void RaiseOnWriteRequested() => OnWriteRequested?.Invoke(this, new());
+        protected virtual void RaiseOnWriteRequested() => OnWriteRequested?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Read/write lock context

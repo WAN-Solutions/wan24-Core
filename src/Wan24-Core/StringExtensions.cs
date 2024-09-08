@@ -341,20 +341,17 @@ namespace wan24.Core
 #endif
         public static bool IsAscii(this ReadOnlySpan<char> str)
         {
-            unchecked
-            {
-                int i = -1,
-                    len = str.Length;
+            int i = -1,
+                len = str.Length;
 #if NO_UNSAFE
-                while (++i != len && str[i] < '\x007f') ;
+            while (++i != len && str[i] < '\x007f') ;
 #else
-                unsafe
-                {
-                    fixed (char* chrPtr = str) while (++i != len && chrPtr[i] < '\x007f') ;
-                }
-#endif
-                return i == len;
+            unsafe
+            {
+                fixed (char* chrPtr = str) while (++i != len && chrPtr[i] < '\x007f') ;
             }
+#endif
+            return i == len;
         }
 
         /// <summary>
@@ -432,20 +429,15 @@ namespace wan24.Core
             unsafe
             {
                 fixed (char* c = str)
-                {
-                    unchecked
-                    {
-                        for (int i = 0, len = str.Length; i < len; i++)
-                            if (LiteralReplacements.TryGetValue(c[i], out string? replace))
-                            {
-                                sb.Append(replace);
-                            }
-                            else
-                            {
-                                sb.Append(c[i]);
-                            }
-                    }
-                }
+                    for (int i = 0, len = str.Length; i < len; i++)
+                        if (LiteralReplacements.TryGetValue(c[i], out string? replace))
+                        {
+                            sb.Append(replace);
+                        }
+                        else
+                        {
+                            sb.Append(c[i]);
+                        }
             }
 #endif
             if (withinDoubleQuotes) sb.Append('\"');
@@ -473,13 +465,8 @@ namespace wan24.Core
             unsafe
             {
                 fixed (char* c = str)
-                {
-                    unchecked
-                    {
-                        for (int i = 0, len = str.Length; i < len; i++)
-                            sb.Append(characters.TryGetValue(c[i], out char replace) ? replace : c[i]);
-                    }
-                }
+                    for (int i = 0, len = str.Length; i < len; i++)
+                        sb.Append(characters.TryGetValue(c[i], out char replace) ? replace : c[i]);
             }
 #endif
             return sb.ToString();
@@ -513,20 +500,15 @@ namespace wan24.Core
             unsafe
             {
                 fixed (char* c = str)
-                {
-                    unchecked
-                    {
-                        for (int i = 0, len = str.Length; i < len; i++)
-                            if (characters.TryGetValue(c[i], out string? replace))
-                            {
-                                sb.Append(replace);
-                            }
-                            else
-                            {
-                                sb.Append(c[i]);
-                            }
-                    }
-                }
+                    for (int i = 0, len = str.Length; i < len; i++)
+                        if (characters.TryGetValue(c[i], out string? replace))
+                        {
+                            sb.Append(replace);
+                        }
+                        else
+                        {
+                            sb.Append(c[i]);
+                        }
             }
 #endif
             return sb.ToString();

@@ -159,7 +159,7 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If equal</returns>
-        public static bool operator ==(in UnixTime ut, in DateTime dateTime) => (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds) == ut.EpochSeconds;
+        public static bool operator ==(in UnixTime ut, in DateTime dateTime) => (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds) == ut.EpochSeconds;
 
         /// <summary>
         /// Not equals
@@ -167,7 +167,7 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If nt equal</returns>
-        public static bool operator !=(in UnixTime ut, in DateTime dateTime) => (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds) != ut.EpochSeconds;
+        public static bool operator !=(in UnixTime ut, in DateTime dateTime) => (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds) != ut.EpochSeconds;
 
         /// <summary>
         /// Lower than
@@ -175,7 +175,7 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If lower</returns>
-        public static bool operator <(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds < (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds);
+        public static bool operator <(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds < (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds);
 
         /// <summary>
         /// Greater than
@@ -183,7 +183,7 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If greater</returns>
-        public static bool operator >(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds > (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds);
+        public static bool operator >(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds > (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds);
 
         /// <summary>
         /// Lower than or equal
@@ -191,7 +191,7 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If lower or equal</returns>
-        public static bool operator <=(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds <= (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds);
+        public static bool operator <=(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds <= (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds);
 
         /// <summary>
         /// Greater than or equal
@@ -199,6 +199,6 @@
         /// <param name="ut"><see cref="UnixTime"/></param>
         /// <param name="dateTime"><see cref="DateTime"/></param>
         /// <returns>If greater or equal</returns>
-        public static bool operator >=(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds >= (int)Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds);
+        public static bool operator >=(in UnixTime ut, in DateTime dateTime) => ut.EpochSeconds >= (int)Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds);
     }
 }
