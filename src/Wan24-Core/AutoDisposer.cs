@@ -35,6 +35,11 @@
         public bool IsInUse => _UsageCount > 0;
 
         /// <summary>
+        /// Active contexts
+        /// </summary>
+        public ConcurrentList<Context> ActiveContexts { get; } = [];
+
+        /// <summary>
         /// If the <see cref="Object"/> should be disposed after use (can only be set to <see langword="true"/>!)
         /// </summary>
         public virtual bool ShouldDispose
@@ -69,9 +74,10 @@
         /// <summary>
         /// Use the <see cref="Object"/>
         /// </summary>
+        /// <param name="usage">Usage</param>
         /// <returns>Usage context (don't forget to dispose to release the <see cref="Object"/> after use!)</returns>
         /// <exception cref="InvalidOperationException">Should be disposed</exception>
-        public virtual Context UseObject()
+        public virtual Context UseObject(in string? usage = null)
         {
             EnsureUndisposed();
             if (_ShouldDispose)
@@ -80,7 +86,9 @@
             if (_ShouldDispose && --_UsageCount < 1)
                 Dispose();
             EnsureUndisposed();
-            return new(this);
+            Context res = new(this, usage);
+            ActiveContexts.Add(res);
+            return res;
         }
 
         /// <summary>
@@ -88,7 +96,7 @@
         /// </summary>
         /// <returns>Usage context (don't forget to dispose to release the <see cref="Object"/> after use!)</returns>
         /// <exception cref="InvalidOperationException">Should be disposed</exception>
-        public virtual async Task<Context> UseObjectAsync()
+        public virtual async Task<Context> UseObjectAsync(string? usage = null)
         {
             EnsureUndisposed();
             if (_ShouldDispose)
@@ -97,7 +105,9 @@
             if (_ShouldDispose && --_UsageCount < 1)
                 await DisposeAsync().DynamicContext();
             EnsureUndisposed();
-            return new(this);
+            Context res = new(this, usage);
+            ActiveContexts.Add(res);
+            return res;
         }
 
         /// <inheritdoc/>
@@ -119,7 +129,8 @@
         /// Constructor
         /// </remarks>
         /// <param name="disposer">Disposer</param>
-        public class Context(in AutoDisposer<T> disposer) : DisposableBase()
+        /// <param name="usage">Usage</param>
+        public class Context(in AutoDisposer<T> disposer, in string? usage) : DisposableBase()
         {
             /// <summary>
             /// Disposer
@@ -131,9 +142,15 @@
             /// </summary>
             public T Object => Disposer.Object;
 
+            /// <summary>
+            /// Usage
+            /// </summary>
+            public string? Usage { get; set; } = usage;
+
             /// <inheritdoc/>
             protected override void Dispose(bool disposing)
             {
+                Disposer.ActiveContexts.Remove(this);
                 if (--Disposer._UsageCount < 1 && Disposer._ShouldDispose)
                     Disposer.Dispose();
             }
@@ -141,6 +158,7 @@
             /// <inheritdoc/>
             protected override async Task DisposeCore()
             {
+                Disposer.ActiveContexts.Remove(this);
                 if (--Disposer._UsageCount < 1 && Disposer._ShouldDispose)
                     await Disposer.DisposeAsync().DynamicContext();
             }

@@ -43,7 +43,7 @@ namespace wan24.Core
                     CurrentCount = 0;
                 }
                 Throttle.Set();
-                OnThrottleEnd?.Invoke(this, new());
+                OnThrottleEnd?.Invoke(this, EventArgs.Empty);
             };
             SetLimit(limit, timeout);
         }
@@ -200,7 +200,7 @@ namespace wan24.Core
                     Timer.Start();
                 }
             }
-            if (throttling) OnThrottleStart?.Invoke(this, new());
+            if (throttling) OnThrottleStart?.Invoke(this, EventArgs.Empty);
             return canProcess;
         }
 
@@ -224,7 +224,7 @@ namespace wan24.Core
                     Timer.Start();
                 }
             }
-            if (throttling) OnThrottleStart?.Invoke(this, new());
+            if (throttling) OnThrottleStart?.Invoke(this, EventArgs.Empty);
             return canProcess;
         }
 

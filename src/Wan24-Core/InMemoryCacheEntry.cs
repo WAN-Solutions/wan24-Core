@@ -10,7 +10,7 @@
     /// <param name="key">Cache entry key (must be unique)</param>
     /// <param name="item">Cached item</param>
     /// <param name="size">Item size (should be at last <c>1</c>; may be any number which indicates the <c>item</c> size, if you work with sizes, which is optional)</param>
-    public class InMemoryCacheEntry<T>(in string key, in T item, in int size = 1)
+    public class InMemoryCacheEntry<T>(in string key, in T item, in int size = 1) : ICacheEntry<T>
     {
         /// <summary>
         /// An object for thread synchronization
@@ -29,14 +29,10 @@
         /// </summary>
         protected bool WasRemoved = false;
 
-        /// <summary>
-        /// Hosting cache
-        /// </summary>
+        /// <inheritdoc/>
         public required InMemoryCache<T> Cache { get; init; }
 
-        /// <summary>
-        /// If the item can be used
-        /// </summary>
+        /// <inheritdoc/>
         public virtual bool CanUse
         {
             get
@@ -75,9 +71,7 @@
             => (AbsoluteTimeout.HasValue && AbsoluteTimeout.Value <= DateTime.Now) ||
                 (Type == InMemoryCacheEntryTypes.Timeout && (IsSlidingTimeout ? Idle > Timeout : Age > Timeout));
 
-        /// <summary>
-        /// Created time
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime Created { get; protected set; } = DateTime.Now;
 
         /// <summary>
@@ -100,25 +94,25 @@
         /// </summary>
         public long AccessCount { get; protected set; }
 
-        /// <summary>
-        /// Unique cache entry key
-        /// </summary>
+        /// <inheritdoc/>
         public string Key { get; } = key;
 
-        /// <summary>
-        /// Item
-        /// </summary>
+        /// <inheritdoc/>
         public virtual T Item { get; } = item;
 
-        /// <summary>
-        /// Item size
-        /// </summary>
+        /// <inheritdoc/>
         public virtual int Size => (Item as IInMemoryCacheItem)?.Size ?? _Size;
 
         /// <summary>
         /// Observe item disposing (works only for <see cref="IDisposableObject"/> types; disposing items will be removed from the cache automatic)
         /// </summary>
         public bool ObserveDisposing { get; init; }
+
+        /// <inheritdoc/>
+        ICache<T> ICacheEntry<T>.Cache => Cache;
+
+        /// <inheritdoc/>
+        ICacheEntryOptions ICacheEntry<T>.Options => CreateOptions();
 
         /// <summary>
         /// Initialize after this was added to the cache
@@ -154,7 +148,7 @@
         }
 
         /// <summary>
-        /// Refresh the entry (postporne timeouts; won't refresh if not usable already)
+        /// Refresh the entry (postpone timeouts; won't refresh if not usable already)
         /// </summary>
         /// <param name="resetAccessCounter">If to reset the <see cref="AccessCount"/> to zero</param>
         /// <returns>If refreshed</returns>

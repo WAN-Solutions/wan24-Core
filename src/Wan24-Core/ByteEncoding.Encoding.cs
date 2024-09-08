@@ -83,67 +83,64 @@ namespace wan24.Core
                 fixed (int* br = BitRotation)
                 fixed (byte* d = data)
                 fixed (char* r = res)
+                {
 #endif
-                    unchecked
+                    int i = 0;
+#if !NO_UNSAFE
+                    //TODO Support ARM
+                    int l = len;
+                    if (UseCpuCmd)
                     {
-                        int i = 0;
-#if !NO_UNSAFE
-                        //TODO Support ARM
-                        int l = len;
-                        if (UseCpuCmd)
+                        if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
                         {
-                            if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
-                            {
-                                int chunkLen = l - (l % 48);
-                                if (len - chunkLen < 8) chunkLen -= 48;
-                                EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += chunkLen;
-                                l -= chunkLen;
-                            }
-                            if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
-                            {
-                                int chunkLen = l - (l % 24);
-                                if (len - chunkLen < 4) chunkLen -= 24;
-                                EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += chunkLen;
-                                l -= chunkLen;
-                            }
+                            int chunkLen = l - (l % 48);
+                            if (len - chunkLen < 8) chunkLen -= 48;
+                            EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += chunkLen;
+                            l -= chunkLen;
                         }
-#endif
-                        for (int bits; i < len; i++)
+                        if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
                         {
-#if NO_UNSAFE
-                            bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
-                            res[++resOffset] = charMap[bits & 63];
-#else
-                            bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
-                            r[++resOffset] = cm[bits & 63];
-#endif
-                            switch (bitOffset)
-                            {
-                                case 0:
-                                    bitOffset = 6;
-                                    break;
-                                case 4:
-#if NO_UNSAFE
-                                    res[++resOffset] = charMap[data[i] >> 2];
-#else
-                                    r[++resOffset] = cm[d[i] >> 2];
-#endif
-                                    bitOffset = 0;
-                                    break;
-                                case 6:
-                                    bitOffset = 4;
-                                    break;
-                            }
+                            int chunkLen = l - (l % 24);
+                            if (len - chunkLen < 4) chunkLen -= 24;
+                            EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += chunkLen;
+                            l -= chunkLen;
                         }
-#if NO_UNSAFE
-                        if (bitOffset != 0) res[++resOffset] = charMap[data[^1] >> bitOffset];
-#else
-                        if (bitOffset != 0) r[++resOffset] = cm[d[len - 1] >> bitOffset];
-#endif
                     }
-#if !NO_UNSAFE
+#endif
+                    for (int bits; i < len; i++)
+                    {
+#if NO_UNSAFE
+                        bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
+                        res[++resOffset] = charMap[bits & 63];
+#else
+                        bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
+                        r[++resOffset] = cm[bits & 63];
+#endif
+                        switch (bitOffset)
+                        {
+                            case 0:
+                                bitOffset = 6;
+                                break;
+                            case 4:
+#if NO_UNSAFE
+                                res[++resOffset] = charMap[data[i] >> 2];
+#else
+                                r[++resOffset] = cm[d[i] >> 2];
+#endif
+                                bitOffset = 0;
+                                break;
+                            case 6:
+                                bitOffset = 4;
+                                break;
+                        }
+                    }
+#if NO_UNSAFE
+                    if (bitOffset != 0) res[++resOffset] = charMap[data[^1] >> bitOffset];
+#else
+                    if (bitOffset != 0) r[++resOffset] = cm[d[len - 1] >> bitOffset];
+                }
             }
 #endif
             return res;
@@ -187,68 +184,65 @@ namespace wan24.Core
                 fixed (int* br = BitRotation)
                 fixed (byte* d = data)
                 fixed (char* r = res)
+                {
 #endif
-                    unchecked
+                    int i = 0;
+#if !NO_UNSAFE
+                    //TODO Support ARM
+                    int l = len;
+                    if (UseCpuCmd)
                     {
-                        int i = 0;
-#if !NO_UNSAFE
-                        //TODO Support ARM
-                        int l = len;
-                        if (UseCpuCmd)
+                        if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
                         {
-                            if (false && l >= 56 && (UseAvx & AvxCmd.Avx512) == AvxCmd.Avx512 && Avx512BW.IsSupported)
-                            {
-                                int chunkLen = l - (l % 48);
-                                if (len - chunkLen < 8) chunkLen -= 48;
-                                EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += chunkLen;
-                                l -= chunkLen;
-                            }
-                            if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
-                            {
-                                int chunkLen = l - (l % 24);
-                                if (len - chunkLen < 4) chunkLen -= 24;
-                                EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
-                                i += chunkLen;
-                                l -= chunkLen;
-                            }
+                            int chunkLen = l - (l % 48);
+                            if (len - chunkLen < 8) chunkLen -= 48;
+                            EncodeAvx512(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += chunkLen;
+                            l -= chunkLen;
                         }
-#endif
-                        for (int bits; i < len; i++)
+                        if (l >= 28 && (UseAvx & AvxCmd.Avx2) == AvxCmd.Avx2 && Avx2.IsSupported)
                         {
-#if NO_UNSAFE
-                            b = data[i];
-                            bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
-                            res[++resOffset] = charMap[bits & 63];
-#else
-                            bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
-                            r[++resOffset] = cm[bits & 63];
-#endif
-                            switch (bitOffset)
-                            {
-                                case 0:
-                                    bitOffset = 6;
-                                    break;
-                                case 4:
-#if NO_UNSAFE
-                                    res[++resOffset] = charMap[data[i] >> 2];
-#else
-                                    r[++resOffset] = cm[d[i] >> 2];
-#endif
-                                    bitOffset = 0;
-                                    break;
-                                case 6:
-                                    bitOffset = 4;
-                                    break;
-                            }
+                            int chunkLen = l - (l % 24);
+                            if (len - chunkLen < 4) chunkLen -= 24;
+                            EncodeAvx2(chunkLen, cm, d + i, r + (resOffset == -1 ? 0 : resOffset), ref resOffset);
+                            i += chunkLen;
+                            l -= chunkLen;
                         }
-#if NO_UNSAFE
-                        if (bitOffset != 0) res[++resOffset] = charMap[data[^1] >> bitOffset];
-#else
-                        if (bitOffset != 0) r[++resOffset] = cm[d[len - 1] >> bitOffset];
-#endif
                     }
-#if !NO_UNSAFE
+#endif
+                    for (int bits; i < len; i++)
+                    {
+#if NO_UNSAFE
+                        b = data[i];
+                        bits = bitOffset == 0 ? data[i] : (data[i] << BitRotation[bitOffset]) | (data[i - 1] >> bitOffset);
+                        res[++resOffset] = charMap[bits & 63];
+#else
+                        bits = bitOffset == 0 ? d[i] : (d[i] << br[bitOffset]) | (d[i - 1] >> bitOffset);
+                        r[++resOffset] = cm[bits & 63];
+#endif
+                        switch (bitOffset)
+                        {
+                            case 0:
+                                bitOffset = 6;
+                                break;
+                            case 4:
+#if NO_UNSAFE
+                                res[++resOffset] = charMap[data[i] >> 2];
+#else
+                                r[++resOffset] = cm[d[i] >> 2];
+#endif
+                                bitOffset = 0;
+                                break;
+                            case 6:
+                                bitOffset = 4;
+                                break;
+                        }
+                    }
+#if NO_UNSAFE
+                    if (bitOffset != 0) res[++resOffset] = charMap[data[^1] >> bitOffset];
+#else
+                    if (bitOffset != 0) r[++resOffset] = cm[d[len - 1] >> bitOffset];
+                }
             }
 #endif
         }

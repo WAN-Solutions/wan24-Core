@@ -147,6 +147,9 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
+        ICacheOptions ICache<T>.Options => Options;
+
+        /// <inheritdoc/>
         public virtual InMemoryCacheEntryOptions EnsureEntryOptions(InMemoryCacheEntryOptions? options)
         {
             EnsureUndisposed();
@@ -173,37 +176,21 @@ namespace wan24.Core
         public virtual InMemoryCacheEntry<T>? TryRemove(in string key)
         {
             EnsureUndisposed(allowDisposing: true);
-            if (!Cache.TryRemove(key, out InMemoryCacheEntry<T>? res))
-                return null;
-            _Count--;
-            res.OnRemoved();
-            HandleEntryRemoved(res);
-            RaiseOnEntryRemoved(res);
-            return res;
+            return TryRemoveInt(key, CacheEventReasons.UserAction);
         }
 
         /// <inheritdoc/>
         public virtual bool Remove(in InMemoryCacheEntry<T> entry)
         {
             EnsureUndisposed(allowDisposing: true);
-            if (entry.Cache != this)
-                throw new ArgumentException("Foreign cache entry", nameof(entry));
-            if (Cache.Remove(new KeyValuePair<string, InMemoryCacheEntry<T>>(entry.Key, entry)))
-            {
-                _Count--;
-                entry.OnRemoved();
-                HandleEntryRemoved(entry);
-                RaiseOnEntryRemoved(entry);
-                return true;
-            }
-            return false;
+            return RemoveInt(entry, CacheEventReasons.UserAction);
         }
 
         /// <inheritdoc/>
         public virtual InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false)
         {
             EnsureUndisposed(allowDisposing: true);
-            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).Where(e => e is not null)];
             if (disposeItems)
                 foreach (InMemoryCacheEntry<T> entry in res)
                     DisposeItem(entry.Item);
@@ -218,7 +205,7 @@ namespace wan24.Core
             )
         {
             EnsureUndisposed(allowDisposing: true);
-            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemove(e.Key)).Where(e => e is not null)];
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).Where(e => e is not null)];
             if (disposeItems)
                 foreach (InMemoryCacheEntry<T> entry in res)
                     await DisposeItemAsync(entry.Item).DynamicContext();

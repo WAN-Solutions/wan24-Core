@@ -6,7 +6,7 @@
     /// <remarks>
     /// Constructor
     /// </remarks>
-    public record class InMemoryCacheEntryOptions()
+    public record class InMemoryCacheEntryOptions() : ICacheEntryOptions
     {
         /// <summary>
         /// Item size (should be at last <c>1</c>)

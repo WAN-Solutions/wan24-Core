@@ -248,7 +248,7 @@ namespace wan24.Core
             while (true)
             {
                 if (!type.IsGenericType || !type.IsTask()) return res;
-                res = type = type.GetGenericArgumentsCached()[0];
+                res = type = type.GetGenericArgumentCached(index: 0);
             }
         }
     }

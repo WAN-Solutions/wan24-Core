@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <returns>Information</returns>
 #pragma warning disable IDE0060 // Remove unused parameter
         [TargetedPatchingOptOut("Tiny method")]
-        public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => new();
+        public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.Instance;
 #pragma warning restore IDE0060 // Remove unused parameter
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static EnumInfo<T> GetInfo<T>() where T : struct, Enum, IConvertible => new();
+        public static EnumInfo<T> GetInfo<T>() where T : struct, Enum, IConvertible => EnumInfo<T>.Instance;
 
         /// <summary>
         /// Get enumeration information
@@ -32,7 +32,9 @@ namespace wan24.Core
         /// <param name="type">Enumeration type</param>
         /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static IEnumInfo GetEnumInfo(this Type type) => (Activator.CreateInstance(typeof(EnumInfo<>).MakeGenericType(type)) as IEnumInfo)!;
+        public static IEnumInfo GetEnumInfo(this Type type)
+            => (TypeInfoExt.From(typeof(EnumInfo<>)).MakeGenericType(type)[nameof(EnumInfo<OptInOut>.Instance)] as PropertyInfoExt ?? throw new InvalidProgramException())
+                .Getter?.Invoke(null) as IEnumInfo ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Determine if an enumeration value contains all of the given flags
@@ -47,14 +49,14 @@ namespace wan24.Core
             if (!info.HasFlags) return false;
             if (info.IsUnsignedNumeric)
             {
-                ulong numericValue = CastType<ulong>(value),
-                    numericFlags = CastType<ulong>(flags);
+                ulong numericValue = ObjectExtensions.CastType<ulong>(value),
+                    numericFlags = ObjectExtensions.CastType<ulong>(flags);
                 return (numericValue & numericFlags) == numericFlags;
             }
             else
             {
-                long numericValue = CastType<long>(value),
-                    numericFlags = CastType<long>(flags);
+                long numericValue = ObjectExtensions.CastType<long>(value),
+                    numericFlags = ObjectExtensions.CastType<long>(flags);
                 return (numericValue & numericFlags) == numericFlags;
             }
         }
@@ -73,16 +75,16 @@ namespace wan24.Core
             if (!info.HasFlags) return false;
             if (info.IsUnsignedNumeric)
             {
-                ulong numericValue = CastType<ulong>(value),
-                    numericFlags = CastType<ulong>(flags[0]);
-                for (int i = 1; i < flags.Length; numericFlags |= CastType<ulong>(flags[i]), i++) ;
+                ulong numericValue = ObjectExtensions.CastType<ulong>(value),
+                    numericFlags = ObjectExtensions.CastType<ulong>(flags[0]);
+                for (int i = 1; i < flags.Length; numericFlags |= ObjectExtensions.CastType<ulong>(flags[i]), i++) ;
                 return (numericValue & numericFlags) != 0;
             }
             else
             {
-                long numericValue = CastType<long>(value),
-                    numericFlags = CastType<long>(flags[0]);
-                for (int i = 1; i < flags.Length; numericFlags |= CastType<long>(flags[i]), i++) ;
+                long numericValue = ObjectExtensions.CastType<long>(value),
+                    numericFlags = ObjectExtensions.CastType<long>(flags[0]);
+                for (int i = 1; i < flags.Length; numericFlags |= ObjectExtensions.CastType<long>(flags[i]), i++) ;
                 return (numericValue & numericFlags) != 0;
             }
         }
@@ -101,21 +103,21 @@ namespace wan24.Core
             if (!info.HasFlags) yield break;
             if (info.IsUnsignedNumeric)
             {
-                ulong numericValue = CastType<ulong>(value),
+                ulong numericValue = ObjectExtensions.CastType<ulong>(value),
                     numericFlag;
                 foreach (T flag in flags)
                 {
-                    numericFlag = CastType<ulong>(flag);
+                    numericFlag = ObjectExtensions.CastType<ulong>(flag);
                     if ((numericValue & numericFlag) == numericFlag) yield return flag;
                 }
             }
             else
             {
-                long numericValue = CastType<long>(value),
+                long numericValue = ObjectExtensions.CastType<long>(value),
                     numericFlag;
                 foreach (T flag in flags)
                 {
-                    numericFlag = CastType<long>(flag);
+                    numericFlag = ObjectExtensions.CastType<long>(flag);
                     if ((numericValue & numericFlag) == numericFlag) yield return flag;
                 }
             }
@@ -129,9 +131,9 @@ namespace wan24.Core
         /// <returns>Value without flags</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static T RemoveFlags<T>(this T value) where T : struct, Enum, IConvertible
-            => CastType<T>(EnumInfo<T>.IsUnsigned
-                ? CastType<ulong>(value) & ~EnumInfo<T>.AllULongFlags
-                : CastType<long>(value) & ~EnumInfo<T>.AllLongFlags);
+            => ObjectExtensions.CastType<T>(EnumInfo<T>.IsUnsigned
+                ? ObjectExtensions.CastType<ulong>(value) & ~EnumInfo<T>.AllULongFlags
+                : ObjectExtensions.CastType<long>(value) & ~EnumInfo<T>.AllLongFlags);
 
         /// <summary>
         /// Get only the flags from a mixed enumeration flags value
@@ -141,9 +143,9 @@ namespace wan24.Core
         /// <returns>Only flags</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static T OnlyFlags<T>(this T value) where T : struct, Enum, IConvertible
-            => CastType<T>(EnumInfo<T>.IsUnsigned
-                ? CastType<ulong>(value) & EnumInfo<T>.AllULongFlags
-                : CastType<long>(value) & EnumInfo<T>.AllLongFlags);
+            => ObjectExtensions.CastType<T>(EnumInfo<T>.IsUnsigned
+                ? ObjectExtensions.CastType<ulong>(value) & EnumInfo<T>.AllULongFlags
+                : ObjectExtensions.CastType<long>(value) & EnumInfo<T>.AllLongFlags);
 
         /// <summary>
         /// Determine if a mixed enumeration value is a flag
@@ -187,15 +189,6 @@ namespace wan24.Core
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
         public static bool IsValidEnumerationValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
-
-        /// <summary>
-        /// Cast a type
-        /// </summary>
-        /// <typeparam name="T">Numeric result type</typeparam>
-        /// <param name="value">Enumeration value</param>
-        /// <returns>Numeric value</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T CastType<T>(object value) where T : struct, IConvertible => typeof(T).IsEnum ? (T)Enum.ToObject(typeof(T), value) : (T)Convert.ChangeType(value, typeof(T));
 
         /// <summary>
         /// Get the enumeration value as string

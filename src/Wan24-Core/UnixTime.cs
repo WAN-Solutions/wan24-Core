@@ -34,17 +34,13 @@ namespace wan24.Core
         public const int ONE_DAY = ONE_HOUR * 24;
 
         /// <summary>
-        /// Min. value (equals <see cref="UnixEpoch"/>)
+        /// Min. value (equals <see cref="DateTime.UnixEpoch"/>)
         /// </summary>
         public static readonly UnixTime MinValue = new();
         /// <summary>
         /// Max. value
         /// </summary>
         public static readonly UnixTime MaxValue = new(int.MaxValue);
-        /// <summary>
-        /// Unix epoch date and time (UTC)
-        /// </summary>
-        public static readonly DateTime UnixEpoch = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// Epoch seconds (seconds since 1970-01-01 UTC)
@@ -83,7 +79,7 @@ namespace wan24.Core
         /// <param name="dateTime">Date and time</param>
         public UnixTime(in DateTime dateTime)
         {
-            double epochSeconds = Math.Round((dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds);
+            double epochSeconds = Math.Round((dateTime.ToUniversalTime() - DateTime.UnixEpoch).TotalSeconds);
             if (epochSeconds < 0 || epochSeconds > long.MaxValue)
                 throw new ArgumentOutOfRangeException(nameof(dateTime));
             EpochSeconds = (long)epochSeconds;
@@ -147,12 +143,12 @@ namespace wan24.Core
         /// <summary>
         /// Get as <see cref="DateTime"/>
         /// </summary>
-        public DateTime AsDateTime => UnixEpoch.AddSeconds(EpochSeconds).ToLocalTime();
+        public DateTime AsDateTime => DateTime.UnixEpoch.AddSeconds(EpochSeconds).ToLocalTime();
 
         /// <summary>
         /// Get as UTC <see cref="DateTime"/>
         /// </summary>
-        public DateTime AsUtcDateTime => UnixEpoch.AddSeconds(EpochSeconds);
+        public DateTime AsUtcDateTime => DateTime.UnixEpoch.AddSeconds(EpochSeconds);
 
         /// <summary>
         /// Get as <see cref="DateOnly"/>

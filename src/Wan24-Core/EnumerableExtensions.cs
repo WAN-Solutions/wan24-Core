@@ -7,7 +7,7 @@ namespace wan24.Core
     /// <summary>
     /// Enumerable extensions
     /// </summary>
-    public static class EnumerableExtensions
+    public static partial class EnumerableExtensions
     {
         /// <summary>
         /// Combine enumerables
@@ -456,6 +456,59 @@ namespace wan24.Core
                     baseTypes.Remove(incompatible);
             }
             return baseTypes.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Discard all items
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="dispose">Dispose disposables?</param>
+        /// <returns>Number of discarded items</returns>
+        public static int DiscardAll<T>(this IEnumerable<T> enumerable, bool dispose = true)
+        {
+            int res = 0;
+            foreach (T item in enumerable)
+            {
+                res++;
+                if (dispose)
+                    if (item is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+                    else if (item is IAsyncDisposable asyncDisposable)
+                    {
+                        asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
+                    }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Discard all items
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="dispose">Dispose disposables?</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of discarded items</returns>
+        public static async Task<int> DiscardAllAsync<T>(this IAsyncEnumerable<T> enumerable, bool dispose = true, CancellationToken cancellationToken = default)
+        {
+            int res = 0;
+            await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+            {
+                res++;
+                if (dispose)
+                    if (item is IAsyncDisposable asyncDisposable)
+                    {
+                        await asyncDisposable.DisposeAsync().DynamicContext();
+                    }
+                    else if (item is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+            }
+            return res;
         }
     }
 }

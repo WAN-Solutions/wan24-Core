@@ -55,7 +55,7 @@ namespace wan24.Core
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Property.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Property type
@@ -140,12 +140,12 @@ namespace wan24.Core
         /// <summary>
         /// If the property is init-only
         /// </summary>
-        public bool IsInitOnly => _IsInitOnly ??= Property.IsInitOnly();
+        public bool IsInitOnly => GetIsInitOnly();
 
         /// <summary>
         /// If the property is nullable
         /// </summary>
-        public bool IsNullable => _IsNullable ??= Property.IsNullable();
+        public bool IsNullable => GetIsNullable();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -228,6 +228,36 @@ namespace wan24.Core
                 throw new InvalidOperationException($"Missing {nameof(ValueConverterAttribute)}");
             }
         }
+
+        /// <summary>
+        /// Get the bindings
+        /// </summary>
+        /// <returns>Bindings</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private BindingFlags GetBindings() => _Bindings ??= Property.GetBindingFlags();
+
+        /// <summary>
+        /// Get if nullable
+        /// </summary>
+        /// <returns>If nullable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private bool GetIsNullable() => _IsNullable ??= Property.IsNullable();
+
+        /// <summary>
+        /// Get if init-only
+        /// </summary>
+        /// <returns>If init-only</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private bool GetIsInitOnly() => _IsInitOnly ??= Property.IsInitOnly();
 
         /// <summary>
         /// Cast as <see cref="PropertyInfo"/>

@@ -18,11 +18,11 @@ namespace Wan24_Core_Benchmark_Tests
         static ObjectMapping_Tests()
         {
             // Initialize wan24.Core.ObjectMapping
-            ObjectMapping = ObjectMapping<SourceObject, TargetObject>.Create();
+            ObjectMapping = ObjectMapping<SourceObject, TargetObject>.Create(autoCompile: false);
             ObjectMapping.AddAutoMappings();
             ObjectMapping.ApplyMappings(Source, Target);
             Contract.Assert(Target.Test);
-            ObjectMapping<SourceObject, TargetObject>  objectMappingCompiled = ObjectMapping<SourceObject, TargetObject>.Create();
+            ObjectMapping<SourceObject, TargetObject>  objectMappingCompiled = ObjectMapping<SourceObject, TargetObject>.Create(autoCompile: false);
             objectMappingCompiled.AddAutoMappings();
             objectMappingCompiled.CompileMapping();
             ObjectMappingCompiled = objectMappingCompiled.CompiledMapping ?? throw new InvalidProgramException();
@@ -37,12 +37,12 @@ namespace Wan24_Core_Benchmark_Tests
         }
 
         [Benchmark]
-        public void Wan24Create() => ObjectMapping<SourceObject, TargetObject>.Create().AddAutoMappings();
+        public void Wan24Create() => ObjectMapping<SourceObject, TargetObject>.Create(autoCompile: false).AddAutoMappings();
 
         [Benchmark]
         public void Wan24CreateCompiled()
         {
-            ObjectMapping<SourceObject, TargetObject>  mapping = ObjectMapping<SourceObject, TargetObject>.Create();
+            ObjectMapping<SourceObject, TargetObject>  mapping = ObjectMapping<SourceObject, TargetObject>.Create(autoCompile: false);
             mapping.AddAutoMappings();
             mapping.CompileMapping();
         }

@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -201,5 +203,97 @@ namespace wan24.Core
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
         }
+
+        /// <summary>
+        /// Determine if a constructor invoker can be created
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <returns>If a constructor invoker can be created</returns>
+        public static bool CanCreateConstructorInvoker(this ConstructorInfo ci)
+            => ci.DeclaringType is not null &&
+                !ci.IsStatic &&
+                ci.DeclaringType.CanConstruct() &&
+                (
+                    !ci.IsGenericMethod ||
+                    (
+                        ci.IsConstructedGenericMethod &&
+                        !ci.ContainsGenericParameters
+                    )
+                ) &&
+                !ci.GetParameters().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer);
+
+        /// <summary>
+        /// Create a delegate for type constructor invocation
+        /// </summary>
+        /// <param name="ci">Constructor</param>
+        /// <returns>Invocation delegate (parameter is the constructor parameters (all are required!))</returns>
+        public static Func<object?[], object> CreateConstructorInvoker(this ConstructorInfo ci)
+        {
+            if (ci.DeclaringType is null) throw new ArgumentException("Missing declaring type", nameof(ci));
+            if (ci.IsGenericMethod && !ci.IsConstructedGenericMethod) throw new ArgumentException("Constructed generic constructor required", nameof(ci));
+            int hc = ci.GetHashCode();
+            if (ConstructorInvokeDelegateCache.TryGetValue(hc, out Func<object?[], object>? res)) return res;
+            ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
+            ParameterInfo[] pis = [..ci.GetParametersCached()];
+            Expression[] parameters = new Expression[pis.Length];
+            for (int i = 0; i < pis.Length; i++)
+                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType);
+            res = Expression.Lambda<Func<object?[], object>>(Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object)), paramsArg).CompileExt();
+            ConstructorInvokeDelegateCache.TryAdd(hc, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Get a constructor which matches the given filter parameters
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="bindingFlags">Binding flags (used to select methods of the type)</param>
+        /// <param name="filter">Additional filter function (needs to return <see langword="true"/> to accept the given method as return value)</param>
+        /// <param name="exactTypes">Require exact types?</param>
+        /// <param name="parameterTypes">Parameter types (or <see langword="null"/> to skip parameter type checks; a single <see langword="null"/> parameter type would allow any parameter 
+        /// type)</param>
+        /// <returns>Matching constructor</returns>
+        public static ConstructorInfoExt? GetConstructor(
+            this Type type,
+            in BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic,
+            in Func<ConstructorInfoExt, bool>? filter = null,
+            in bool exactTypes = true,
+            params Type?[]? parameterTypes
+            )
+        {
+            Type[] pt;
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(bindingFlags))
+            {
+                // Check parameters
+                if (parameterTypes is not null)
+                {
+                    pt = ci.Constructor.GetParametersCached().Select(p => p.ParameterType).ToArray();
+                    if (pt.Length != parameterTypes.Length) continue;
+                    bool isMatch = true;
+                    for (int i = 0; i < parameterTypes.Length; i++)
+                    {
+                        if (parameterTypes[i] is null || MatchParameterType(pt[i], parameterTypes[i]!, exactTypes)) continue;
+                        isMatch = false;
+                        break;
+                    }
+                    if (!isMatch) continue;
+                }
+                // Run additional filter
+                if (!(filter?.Invoke(ci) ?? true)) continue;
+                return ci;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Determine if a type can be constructed (instanced)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If constructable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool CanConstruct(this Type type) => !type.IsAbstract && !type.IsGenericTypeDefinition && !type.IsInterface;
     }
 }

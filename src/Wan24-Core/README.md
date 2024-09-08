@@ -2001,6 +2001,52 @@ and on which `ObjectMapping.ApplyMapping(Async)` method is processing (the
 synchronous method prefers the synchronous handlers, the asynchronous method 
 prefers the asynchronous handlers).
 
+### Mapping of enumeration values
+
+To map an enumeration value to a target property with another enumeration 
+value type, you may want to use `EnumMapping<tSource, tTarget>`:
+
+```cs
+new EnumMapping<SourceType, TargetType>(new Dictionary<SourceType, TargetType>()
+{
+    { SourcType.ValueA, TargetType.ValueA },
+    ...
+}).Register();
+```
+
+This example code registers an enumeration mapping, which can be used by the 
+`ObjectMapping` by setting the `ApplyEnumMapping` property of a 
+`MapAttribute` to `true`:
+
+```cs
+[Map(ApplyEnumMapping = true)]
+public SourceType SourceProperty { get; set; }
+```
+
+The `EnumMapping` constructor offers some more options:
+
+- `discardedValues`: This is a list of source value bits which should be 
+discarded (not mapped)
+- `throwOnUnmappedBits`: By setting this to `true`, an exception would be 
+thrown, if the source value contained unmapable bits (otherwise those bits 
+would be discarded from the target value)
+
+The mapping will be compiled once, and `Register` stores it as default for the 
+given source and target value types. If you need to access a registered 
+mapping from your code:
+
+```cs
+EnumMapping<SourceType, TargetType> mapping = EnumMapping<SourceType, TargetType>.Get()
+    ?? throw new InvalidProgramException("Enumeration mapping not found");
+```
+
+Because the mapping was compiled, it's immutable, but you may still 
+investigate the construction information from the objects properties. The 
+`Map` method is available for an `object` and `SourceType` source value.
+
+It's also possible to create a custom mapping by giving a map method to the 
+second constructor.
+
 ### Compiled object mapping
 
 Creating a compiled object mapping requires more time for creating and a bit 
@@ -2017,3 +2063,17 @@ The usage of a compiled mapping is the same, but the performance outperforms
 everything else I know (except manual mapping code).
 
 **NOTE**: Compiled mappings won't work with `ApplyMappingsAsync`!
+
+#### Mapping expressions
+
+When you compile a mapping, you may add mapping expressions using the 
+`AddMappingExpression` methods, also:
+
+```cs
+ObjectMapping<SourceType, TargetType> mapping = new();
+mapping.AddMappingExpression("Mapping expression", [EXPRESSION]);
+mapping.Compile();
+```
+
+**WARNING**: As soon as any mapping expression was added, asynchronous 
+mappings will be executed synchronous (using `.GetAwaiter().GetResult()`).

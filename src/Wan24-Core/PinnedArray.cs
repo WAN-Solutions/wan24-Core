@@ -11,7 +11,7 @@ namespace wan24.Core
     /// Pinned array
     /// </summary>
     /// <typeparam name="T">Pointer type</typeparam>
-    public unsafe readonly struct PinnedArray<T> : IDisposable, IList<T> where T : struct
+    public unsafe readonly struct PinnedArray<T> : IDisposable, IList<T>
     {
         /// <summary>
         /// Array pin

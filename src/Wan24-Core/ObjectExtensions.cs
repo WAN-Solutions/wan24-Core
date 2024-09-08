@@ -41,8 +41,8 @@ namespace wan24.Core
         /// <typeparam name="T">Target type</typeparam>
         /// <param name="obj">Object</param>
         /// <returns>Converted object</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T ConvertType<T>(this object obj) => (T)Convert.ChangeType(obj, typeof(T));
+        [Obsolete("Use CastType instead")]//TODO Remove in v3
+        public static T ConvertType<T>(this object obj) => CastType<T>(obj);
 
         /// <summary>
         /// Ensure a valid object state
@@ -70,7 +70,7 @@ namespace wan24.Core
         {
             Contract.Assert(value is not null);
             if (
-                value is ICustomAttributeProvider attributeProvider && 
+                value is ICustomAttributeProvider attributeProvider &&
                 (
                     attributeProvider.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
                     attributeProvider.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName
@@ -379,5 +379,23 @@ namespace wan24.Core
             Type type = obj.GetType();
             return type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ValueTask<>);
         }
+
+        /// <summary>
+        /// Cast a type
+        /// </summary>
+        /// <typeparam name="T">Numeric result type</typeparam>
+        /// <param name="value">Enumeration value</param>
+        /// <returns>Numeric value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static T CastType<T>(this object value)
+            => value is T res
+                ? res
+                : typeof(T).IsEnum
+                    ? value switch
+                    {
+                        string str => (T)EnumHelper.ParseEnum(typeof(T), str),
+                        _ => (T)Enum.ToObject(typeof(T), value)
+                    }
+                    : (T)Convert.ChangeType(value, typeof(T));
     }
 }

@@ -4,8 +4,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-//TODO Improve enumeration performance using expressions for reflection
-
 namespace wan24.Core
 {
     /// <summary>
@@ -46,131 +44,97 @@ namespace wan24.Core
         {
             if (!typeof(T).IsEnum) throw new ArgumentException("Enumeration type required", nameof(T));
             Default = default;
-            string[] names = Enum.GetNames(typeof(T));
-            T[] values = (T[])Enum.GetValues(typeof(T));
+            string[] names = Enum.GetNames<T>();
             HasFlagsAttribute = typeof(T).GetCustomAttributeCached<FlagsAttribute>() is not null;
-            IsUnsigned = typeof(T).IsUnsigned();
+            UnderlyingNumericType = typeof(T).GetEnumUnderlyingType() ?? throw new InvalidProgramException();
+            IsUnsigned = UnderlyingNumericType.IsUnsigned();
             IsMixedEnum = HasFlagsAttribute && names.Contains(FLAGS_NAME);
             Names = IsMixedEnum
                 ? (from name in names
                    where name != FLAGS_NAME
-                   orderby name
                    select name).ToFrozenSet()
                 : names.ToFrozenSet();
+            T[] values = [.. Enum.GetValues<T>().Where(v => !IsMixedEnum || v.ToString() != FLAGS_NAME).Distinct()];
+            NumericValues = new Dictionary<string, object>(from name in Names
+                                                           where !IsMixedEnum || name != FLAGS_NAME
+                                                           select new KeyValuePair<string, object>(
+                                                               name,
+                                                               Convert.ChangeType(Enum.Parse<T>(name), typeof(T).GetEnumUnderlyingType())
+                                                               )
+                      ).ToFrozenDictionary();
+            KeyValues = new Dictionary<string, T>(from name in Names
+                                                  where !IsMixedEnum || name != FLAGS_NAME
+                                                  select new KeyValuePair<string, T>(name, Enum.Parse<T>(name))
+                      ).ToFrozenDictionary();
+            DisplayTexts = new Dictionary<string, string>(
+                from name in Names
+                where name != FLAGS_NAME
+                select new KeyValuePair<string, string>(
+                    name,
+                    typeof(T).GetFieldCached(
+                        name,
+                        BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
+                        ) is FieldInfoExt field
+                        ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
+                            field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
+                            field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
+                            name
+                        : name
+                    )
+                ).ToFrozenDictionary();
             if (IsUnsigned)
             {
-                Flags = IsMixedEnum ? EnumExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                Flags = IsMixedEnum ? ObjectExtensions.CastType<ulong>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 AllULongFlags = (ulong)Flags;
                 AllLongFlags = 0;
-                NumericValues = new OrderedDictionary<string, object>(from value in values
-                                                                      orderby EnumExtensions.CastType<ulong>(value)
-                                                                      select new KeyValuePair<string, object>(
-                                                                          value.ToString()!,
-                                                                          Convert.ChangeType(value, typeof(T).GetEnumUnderlyingType())
-                                                                          )
-                          ).ToFrozenDictionary();
-                AllULongValues = (ulong)NumericValues.Values.Aggregate((a, b) => (ulong)Convert.ChangeType(a, typeof(ulong)) | (ulong)Convert.ChangeType(b, typeof(ulong)))!;
+                AllULongValues = NumericValues.Values.Select(v => (ulong)Convert.ChangeType(v, typeof(ulong))).Aggregate((a, b) => a | b)!; ;
                 AllLongValues = 0;
-                KeyValues = new OrderedDictionary<string, T>(from value in values
-                                                             orderby EnumExtensions.CastType<ulong>(value)
-                                                             select new KeyValuePair<string, T>(value.ToString()!, value)
-                          ).ToFrozenDictionary();
-                DisplayTexts = new OrderedDictionary<string, string>(
-                    from value in values
-                    orderby EnumExtensions.CastType<ulong>(value)
-                    select new KeyValuePair<string, string>(
-                        value.ToString()!,
-                        typeof(T).GetFieldCached(
-                            value.ToString(),
-                            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
-                            ) is FieldInfoExt field
-                            ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
-                                field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
-                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
-                                value.ToString()
-                            : value.ToString()
-                        )
-                    ).ToFrozenDictionary();
                 if (IsMixedEnum)
                 {
                     ulong flags = (ulong)Flags;
-                    Values = (from value in values
-                              where value.ToString() != FLAGS_NAME &&
-                              (EnumExtensions.CastType<ulong>(value) & flags) == 0
-                              orderby EnumExtensions.CastType<ulong>(value)
-                              select value).ToFrozenSet();
-                    FlagValues = (from value in values
-                                  where value.ToString() != FLAGS_NAME &&
-                                  (EnumExtensions.CastType<ulong>(value) & flags) != 0
-                                  orderby EnumExtensions.CastType<ulong>(value)
-                                  select value).ToFrozenSet();
+                    Values = (from name in Names
+                              where (!IsMixedEnum || name != FLAGS_NAME) &&
+                                (ObjectExtensions.CastType<ulong>(Enum.Parse<T>(name)) & flags) == 0
+                              select Enum.Parse<T>(name)).ToFrozenSet();
+                    FlagValues = (from name in Names
+                                  where (!IsMixedEnum || name != FLAGS_NAME) && 
+                                (ObjectExtensions.CastType<ulong>(Enum.Parse<T>(name)) & flags) != 0
+                              select Enum.Parse<T>(name)).ToFrozenSet();
                 }
                 else
                 {
-                    Values = (from value in values
-                              orderby EnumExtensions.CastType<ulong>(value)
-                              select value).ToFrozenSet();
+                    Values = values.ToFrozenSet();
                     FlagValues = Array.Empty<T>().ToFrozenSet();
                 }
             }
             else
             {
-                Flags = IsMixedEnum ? EnumExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
+                Flags = IsMixedEnum ? ObjectExtensions.CastType<long>(Enum.Parse<T>(FLAGS_NAME)) : 0;
                 AllLongFlags = (long)Flags;
                 AllULongFlags = 0;
-                NumericValues = new OrderedDictionary<string, object>(from value in values
-                                                                      orderby EnumExtensions.CastType<long>(value)
-                                                                      select new KeyValuePair<string, object>(
-                                                                          value.ToString()!, 
-                                                                          Convert.ChangeType(value, typeof(T).GetEnumUnderlyingType())
-                                                                          )
-                          ).ToFrozenDictionary();
-                AllLongValues = (long)NumericValues.Values.Aggregate((a, b) => (long)Convert.ChangeType(a, typeof(long)) | (long)Convert.ChangeType(b, typeof(long)))!;
+                AllLongValues = NumericValues.Values.Select(v => (long)Convert.ChangeType(v, typeof(long))).Aggregate((a, b) => a | b)!;
                 AllULongValues = 0;
-                KeyValues = new OrderedDictionary<string, T>(from value in values
-                                                             orderby EnumExtensions.CastType<long>(value)
-                                                             select new KeyValuePair<string, T>(value.ToString()!, value)
-                          ).ToFrozenDictionary();
-                DisplayTexts = new OrderedDictionary<string, string>(
-                    from value in values
-                    orderby EnumExtensions.CastType<long>(value)
-                    select new KeyValuePair<string, string>(
-                        value.ToString()!,
-                        typeof(T).GetFieldCached(
-                            value.ToString(),
-                            BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
-                            ) is FieldInfoExt field
-                            ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
-                                field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
-                                field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
-                                value.ToString()
-                            : value.ToString()
-                        )
-                    ).ToFrozenDictionary();
                 if (IsMixedEnum)
                 {
                     long flags = (long)Flags;
-                    Values = (from value in values
-                              where (EnumExtensions.CastType<long>(value) & flags) == 0
-                              orderby EnumExtensions.CastType<long>(value)
-                              select value).ToFrozenSet();
-                    FlagValues = (from value in values
-                                  where (EnumExtensions.CastType<long>(value) & flags) != 0
-                                  orderby EnumExtensions.CastType<long>(value)
-                                  select value).ToFrozenSet();
+                    Values = (from name in Names
+                              where (!IsMixedEnum || name != FLAGS_NAME) &&
+                                (ObjectExtensions.CastType<long>(Enum.Parse<T>(name)) & flags) == 0
+                              select Enum.Parse<T>(name)).ToFrozenSet();
+                    FlagValues = (from name in Names
+                                  where (!IsMixedEnum || name != FLAGS_NAME) &&
+                                    (ObjectExtensions.CastType<long>(Enum.Parse<T>(name)) & flags) != 0
+                                  select Enum.Parse<T>(name)).ToFrozenSet();
                 }
                 else
                 {
-                    Values = (from value in values
-                              orderby EnumExtensions.CastType<long>(value)
-                              select value).ToFrozenSet();
+                    Values = values.ToFrozenSet();
                     FlagValues = Array.Empty<T>().ToFrozenSet();
                 }
             }
-            // Value lookup table
             EnumValueLookup = KeyValues
-                .Select(kvp => new KeyValuePair<int, EnumValue>(kvp.Value.GetHashCode(), new(kvp.Value)))
-                .DistinctBy(kvp => kvp.Key)
+                .DistinctBy(kvp => kvp.Value)
+                .Select(kvp => new KeyValuePair<T, EnumValue>(kvp.Value, new(kvp.Value, kvp.Key)))
                 .ToFrozenDictionary();
             // AsString expression
             {
@@ -182,27 +146,24 @@ namespace wan24.Core
                         Expression.Condition(
                             Expression.Call(
                                 Expression.Constant(EnumValueLookup),
-                                typeof(FrozenDictionary<int, EnumValue>)
+                                typeof(FrozenDictionary<T, EnumValue>)
                                     .GetMethodsCached()
-                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<int, EnumValue>.TryGetValue) && m.ParameterCount == 2)
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<T, EnumValue>.TryGetValue) && m.ParameterCount == 2)?.Method
                                     ?? throw new InvalidProgramException(),
-                                Expression.Call(
-                                    valueParam,
-                                    typeof(T).GetMethodCached(nameof(object.GetHashCode)) ?? throw new InvalidProgramException()
-                                    ),
+                                valueParam,
                                 resultVar
                                 ),
                             Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
                             Expression.Call(
                                 valueParam,
-                                typeof(T).GetMethodsCached().FirstOrDefault(m => m.Name == nameof(ToString) && m.ParameterCount == 0)
+                                typeof(T).GetMethodsCached().FirstOrDefault(m => m.Name == nameof(ToString) && m.ParameterCount == 0)?.Method
                                     ?? throw new InvalidProgramException()
                                 )
                             )
                         ),
                     valueParam
                     )
-                    .Compile();
+                    .CompileExt();
             }
             // AsNameExpression
             {
@@ -214,14 +175,11 @@ namespace wan24.Core
                         Expression.Condition(
                             Expression.Call(
                                 Expression.Constant(EnumValueLookup),
-                                typeof(FrozenDictionary<int, EnumValue>)
+                                typeof(FrozenDictionary<T, EnumValue>)
                                     .GetMethodsCached()
-                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<int, EnumValue>.TryGetValue) && m.ParameterCount == 2)
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<T, EnumValue>.TryGetValue) && m.ParameterCount == 2)?.Method
                                     ?? throw new InvalidProgramException(),
-                                Expression.Call(
-                                    valueParam,
-                                    typeof(T).GetMethodCached(nameof(object.GetHashCode)) ?? throw new InvalidProgramException()
-                                    ),
+                                valueParam,
                                 resultVar
                                 ),
                             Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
@@ -230,7 +188,7 @@ namespace wan24.Core
                         ),
                     valueParam
                     )
-                    .Compile();
+                    .CompileExt();
             }
             // AsNumericValueExpression
             {
@@ -239,7 +197,7 @@ namespace wan24.Core
                     Expression.Convert(Expression.Convert(valueParam, typeof(T).GetEnumUnderlyingType() ?? throw new InvalidProgramException()), typeof(object)),
                     valueParam
                     )
-                    .Compile();
+                    .CompileExt();
             }
             // GetKeyExpression
             {
@@ -253,7 +211,7 @@ namespace wan24.Core
                                 valueParam,
                                 typeof(string)
                                     .GetMethodsCached()
-                                    .FirstOrDefault(m => m.Name == nameof(string.Empty.ToLower) && m.ParameterCount == 0)
+                                    .FirstOrDefault(m => m.Name == nameof(string.Empty.ToLower) && m.ParameterCount == 0)?.Method
                                     ?? throw new InvalidProgramException()
                                 ),
                             Expression.Constant(string.Empty),
@@ -266,6 +224,7 @@ namespace wan24.Core
                                 typeof(FrozenDictionary<string, T>)
                                     .GetMethodsCached()
                                     .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<string, T>.ContainsKey) && m.ParameterCount == 1 && m.Parameters[0].ParameterType == typeof(string))
+                                    ?.Method
                                     ?? throw new InvalidProgramException(),
                                 valueParam
                                 ),
@@ -276,12 +235,25 @@ namespace wan24.Core
                     valueParam,
                     ignoreCaseParam
                     )
-                    .Compile();
+                    .CompileExt();
             }
         }
 
+        /// <summary>
+        /// Singleton instance
+        /// </summary>
+        public static EnumInfo<T> Instance { get; } = new();
+
         /// <inheritdoc/>
         public Type Type => typeof(T);
+
+        /// <inheritdoc/>
+        public Type NumericType => UnderlyingNumericType;
+
+        /// <summary>
+        /// Underlying numeric type
+        /// </summary>
+        public static Type UnderlyingNumericType { get; }
 
         /// <summary>
         /// Default value
@@ -377,8 +349,8 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
         public static bool IsValid(in T value)
-            => (IsUnsigned && (EnumExtensions.CastType<ulong>(value) & ~AllULongValues) == 0) ||
-                (!IsUnsigned && (EnumExtensions.CastType<long>(value) & ~AllLongValues) == 0);
+            => (IsUnsigned && (ObjectExtensions.CastType<ulong>(value) & ~AllULongValues) == 0) ||
+                (!IsUnsigned && (ObjectExtensions.CastType<long>(value) & ~AllLongValues) == 0);
 
         /// <inheritdoc/>
         public bool IsValidValue(in T value) => IsValid(value);
@@ -387,6 +359,23 @@ namespace wan24.Core
         public bool IsValidValue(in object value) => value switch
         {
             T enumValue => IsValid(enumValue),
+            _ => false
+        };
+
+        /// <summary>
+        /// Determine if a value is defined
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Is defined?</returns>
+        public static bool IsDefined(in T value) => Values.Contains(value);
+
+        /// <inheritdoc/>
+        public bool IsDefinedValue(in T value) => Values.Contains(value);
+
+        /// <inheritdoc/>
+        public bool IsDefinedValue(in object value) => value switch
+        {
+            T enumValue => Values.Contains(enumValue),
             _ => false
         };
     }

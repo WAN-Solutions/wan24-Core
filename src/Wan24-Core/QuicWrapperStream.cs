@@ -15,7 +15,7 @@ namespace wan24.Core
     public partial class QuicWrapperStream : WrapperStream<QuicStream>
     {
         /// <summary>
-        /// Cnstructor
+        /// Constructor
         /// </summary>
         /// <param name="baseStream">QUIC stream</param>
         /// <param name="leaveOpen">Leave the base stream open when disposing?</param>

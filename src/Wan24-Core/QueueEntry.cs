@@ -147,7 +147,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnError"/> event
         /// </summary>
-        protected virtual void RaiseOnError() => OnError?.Invoke(this, new());
+        protected virtual void RaiseOnError() => OnError?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised on state change
@@ -156,6 +156,6 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnStateChanged"/> event
         /// </summary>
-        protected virtual void RaiseOnStateChanged() => OnStateChanged?.Invoke(this, new());
+        protected virtual void RaiseOnStateChanged() => OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 }

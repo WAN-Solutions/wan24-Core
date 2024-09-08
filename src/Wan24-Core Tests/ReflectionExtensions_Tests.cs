@@ -511,7 +511,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void GetDelegates_Tests()
         {
-            Type[] delegates = typeof(DiffInterfaceType).GetDelegatesCached();
+            Type[] delegates = [..typeof(DiffInterfaceType).GetDelegatesCached()];
             Assert.AreEqual(1, delegates.Length);
         }
 

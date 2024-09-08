@@ -50,7 +50,7 @@ namespace wan24.Core
         /// <summary>
         /// Bindings
         /// </summary>
-        public BindingFlags Bindings => _Bindings ??= Field.GetBindingFlags();
+        public BindingFlags Bindings => GetBindings();
 
         /// <summary>
         /// Field name
@@ -103,7 +103,7 @@ namespace wan24.Core
         /// <summary>
         /// If the field is nullable
         /// </summary>
-        public bool IsNullable => _IsNullable ??= Field.IsNullable();
+        public bool IsNullable => GetIsNullable();
 
         /// <summary>
         /// Getter delegate
@@ -135,6 +135,26 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public bool IsDefined(Type attributeType, bool inherit) => Field.IsDefined(attributeType, inherit);
+
+        /// <summary>
+        /// Get the bindings
+        /// </summary>
+        /// <returns>Bindings</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private BindingFlags GetBindings() => _Bindings ??= Field.GetBindingFlags();
+
+        /// <summary>
+        /// Get if nullable
+        /// </summary>
+        /// <returns>If nullable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private bool GetIsNullable() => _IsNullable ??= Field.IsNullable();
 
         /// <summary>
         /// Cast as <see cref="FieldInfo"/>

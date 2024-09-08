@@ -12,148 +12,93 @@ namespace wan24.Core
     /// <remarks>
     /// Constructor
     /// </remarks>
-    public class ObjectMapping<tSource, tTarget>() : ObjectMapping()
+    public partial class ObjectMapping<tSource, tTarget>() : ObjectMapping()
     {
         /// <summary>
-        /// <see cref="Task.GetAwaiter"/> method
+        /// Compiled mapping
         /// </summary>
-        protected static readonly MethodInfoExt GetAwaiterMethod;
-        /// <summary>
-        /// <see cref="TaskAwaiter.GetResult"/> method
-        /// </summary>
-        protected static readonly MethodInfoExt GetResultMethod;
-        /// <summary>
-        /// Expression for <see cref="CancellationToken.None"/>
-        /// </summary>
-        protected static readonly Expression NoCancellationTokenExpression;
-        /// <summary>
-        /// Source object parameter expression
-        /// </summary>
-        protected static readonly ParameterExpression SourceParameter;
-        /// <summary>
-        /// Source object expression
-        /// </summary>
-        protected static readonly Expression SourceObjectParameter;
-        /// <summary>
-        /// Target object parameter expression
-        /// </summary>
-        protected static readonly ParameterExpression TargetParameter;
-        /// <summary>
-        /// Target object expression
-        /// </summary>
-        protected static readonly Expression TargetObjectParameter;
-        /// <summary>
-        /// Mapping object expression
-        /// </summary>
-        protected static readonly Expression MappingObjectExpression;
-        /// <summary>
-        /// Mapping object extended expression
-        /// </summary>
-        protected static readonly Expression MappingObjectExtExpression;
-
-        /// <summary>
-        /// Static constructor
-        /// </summary>
-        static ObjectMapping()
-        {
-            GetAwaiterMethod = typeof(Task)
-                .GetMethodsCached()
-                .FirstOrDefault(m => m.Name == nameof(Task.GetAwaiter) && m.ParameterCount < 1)
-                ?? throw new InvalidProgramException();
-            GetResultMethod = typeof(TaskAwaiter)
-                .GetMethodsCached()
-                .FirstOrDefault(m => m.Name == nameof(TaskAwaiter.GetResult) && m.ParameterCount < 1)
-                ?? throw new InvalidProgramException();
-            NoCancellationTokenExpression = Expression.Constant(CancellationToken.None);
-            SourceParameter = Expression.Parameter(typeof(tSource), "source");
-            SourceObjectParameter = Expression.Convert(SourceParameter, typeof(object));
-            TargetParameter = Expression.Parameter(typeof(tTarget), "target");
-            TargetObjectParameter = Expression.Convert(TargetParameter, typeof(object));
-            MethodInfoExt onAfterMappingMethod = typeof(IMappingObject)
-                    .GetMethodsCached()
-                    .FirstOrDefault(m => m.Name == nameof(IMappingObject.OnAfterMapping))
-                    ?? throw new InvalidProgramException(),
-                onAfterMappingAsyncMethod = typeof(IMappingObject)
-                    .GetMethodsCached()
-                    .FirstOrDefault(m => m.Name == nameof(IMappingObject.OnAfterMappingAsync))
-                    ?? throw new InvalidProgramException(),
-                onAfterMappingMethod2 = typeof(IMappingObject<tTarget>)
-                    .GetMethodsCached()
-                    .FirstOrDefault(m => m.Name == nameof(IMappingObject<tTarget>.OnAfterMapping))
-                    ?? throw new InvalidProgramException(),
-                onAfterMappingAsyncMethod2 = typeof(IMappingObject<tTarget>)
-                    .GetMethodsCached()
-                    .FirstOrDefault(m => m.Name == nameof(IMappingObject<tTarget>.OnAfterMappingAsync))
-                    ?? throw new InvalidProgramException();
-            PropertyInfoExt hasSyncHandlersProperty = typeof(IMappingObject)
-                    .GetPropertyCached(nameof(IMappingObject.HasAsyncHandlers))
-                    ?? throw new InvalidProgramException(),
-                hasAsyncHandlersProperty = typeof(IMappingObject)
-                    .GetPropertyCached(nameof(IMappingObject.HasAsyncHandlers))
-                    ?? throw new InvalidProgramException();
-            Expression sourceMappingObjectParameter = Expression.Convert(SourceParameter, typeof(IMappingObject)),
-                sourceMappingObjectExtParameter = Expression.Convert(SourceParameter, typeof(IMappingObject<tTarget>));
-            MappingObjectExpression = Expression.IfThenElse(
-                Expression.Property(sourceMappingObjectParameter, hasSyncHandlersProperty.Property),
-                Expression.Call(
-                    sourceMappingObjectParameter,
-                    onAfterMappingMethod.Method,
-                    TargetObjectParameter
-                    ),
-                Expression.IfThen(
-                    Expression.Property(sourceMappingObjectParameter, hasAsyncHandlersProperty.Property),
-                    Expression.Call(
-                        Expression.Call(
-                            Expression.Call(
-                                sourceMappingObjectParameter,
-                                onAfterMappingAsyncMethod.Method,
-                                TargetObjectParameter,
-                                NoCancellationTokenExpression
-                            ),
-                            GetAwaiterMethod
-                            ),
-                        GetResultMethod
-                        )
-                    )
-                );
-            MappingObjectExtExpression = Expression.IfThenElse(
-                Expression.Property(sourceMappingObjectParameter, hasSyncHandlersProperty.Property),
-                Expression.Call(
-                    sourceMappingObjectExtParameter,
-                    onAfterMappingMethod2.Method,
-                    TargetParameter
-                    ),
-                Expression.IfThen(
-                    Expression.Property(sourceMappingObjectParameter, hasAsyncHandlersProperty.Property),
-                    Expression.Call(
-                        Expression.Call(
-                            Expression.Call(
-                                sourceMappingObjectExtParameter,
-                                onAfterMappingAsyncMethod2.Method,
-                                TargetParameter,
-                                NoCancellationTokenExpression
-                            ),
-                            GetAwaiterMethod
-                            ),
-                        GetResultMethod
-                        )
-                    )
-                );
-        }
+        protected Action<tSource, tTarget>? _CompiledMapping = null;
 
         /// <summary>
         /// Compiled mapping
         /// </summary>
-        public Action<tSource, tTarget>? CompiledMapping
+        public virtual Action<tSource, tTarget>? CompiledMapping
         {
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get;
+            get
+            {
+                if (_CompiledMapping is null && AutoCompile) CompileMapping();
+                return _CompiledMapping;
+            }
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            set;
+            set
+            {
+                _CompiledMapping = value;
+                HasCompiledMapping = value is not null;
+                CompiledObjectMapping = value;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override ObjectMapping AddMapping(in string sourcePropertyName)
+        {
+            if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
+                throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
+            if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
+            {
+                if (attr.CanMap)
+                {
+                    MapperInfo mapper = new(pi, TargetProperty: null, new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
+                        CreateMapCallExpression(attr, pi, GenericSourceParameter, GenericTargetParameter),
+                        GenericSourceParameter,
+                        GenericTargetParameter
+                        ).CompileExt()), MapperType.GenericMapCall);
+                    if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                        throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+                    return this;
+                }
+                if (attr.CanMapAsync)
+                {
+                    MapperInfo mapper = new(
+                        pi,
+                        TargetProperty: null,
+                        new AsyncMapper_Delegate<tSource, tTarget>(async (source, target, ct) => await attr.MapAsync(pi.Name, source, target, ct).DynamicContext()),
+                        MapperType.AnyAsync
+                        );
+                    if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                        throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+                    return this;
+                }
+                if (attr.TargetPropertyName is not null)
+                    return AddMapping(sourcePropertyName, attr.TargetPropertyName);
+            }
+            return AddMapping(sourcePropertyName, sourcePropertyName);
+        }
+
+        /// <inheritdoc/>
+        public override ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)
+        {
+            PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
+                    ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
+                tp = FindProperty(TargetType, targetPropertyName)
+                    ?? throw new MappingException($"Target property \"{typeof(tTarget)}.{targetPropertyName}\" not found");
+            if (sp.Property.GetMethod is null) throw new MappingException($"Source property {sp.FullName} has no usable getter");
+            if (tp.Property.SetMethod is null) throw new MappingException($"Target property {tp.FullName} has no usable setter");
+            if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
+                throw new MappingException($"{sp.FullName} ({sp.PropertyType}) can't be mapped to {tp.FullName} ({tp.PropertyType})");
+            bool isNested = attr?.Nested ?? false;
+            MapperInfo mapper = new(sp, tp, new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
+                isNested ? CreateNestedMapperExpression(sp, tp, GenericSourceParameter, GenericTargetParameter) : CreateMapperExpression(sp, tp, GenericSourceParameter, GenericTargetParameter, attr),
+                GenericSourceParameter,
+                GenericTargetParameter
+                ).CompileExt()), isNested ? MapperType.GenericNestedMapper : MapperType.GenericMapper);
+            if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+            return this;
         }
 
         /// <summary>
@@ -166,13 +111,103 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public ObjectMapping<tSource, tTarget> AddMapping(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping<tSource, tTarget> AddMapping(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
         {
             AddMapping<tSource, tTarget>(sourcePropertyName, mapper);
             return this;
         }
 
         /// <summary>
+        /// Map a source object to the target object using the given expression (CAUTION: This will REQUIRE to compile the mapping and you can't use asynchronous mapping anymore!)
+        /// </summary>
+        /// <param name="mappingKey">Unique mapping key</param>
+        /// <param name="mapper">Mapper method</param>
+        /// <returns>This</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression<Action<tSource, tTarget>> mapper)
+        {
+            MapperInfo info = new(
+                SourceProperty: null,
+                TargetProperty: null,
+                mapper,
+                MapperType.GenericExpression,
+                CustomKey: mappingKey
+                );
+            if (!Mappings.TryAdd(mappingKey, info))
+                throw new MappingException($"A mapping for the given mapping key \"{mappingKey}\" exists already");
+            return this;
+        }
+
+        /// <inheritdoc/>
+        public override ObjectMapping AddAsyncMapping(in string sourcePropertyName)
+        {
+            if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
+                throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
+            if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
+            {
+                if (attr.CanMapAsync)
+                {
+                    MapperInfo mapper = new(
+                        pi,
+                        TargetProperty: null,
+                        new AsyncMapper_Delegate<tSource, tTarget>(async (source, target, ct) => await attr.MapAsync(pi.Name, source, target, ct).DynamicContext()),
+                        MapperType.AnyAsync
+                        );
+                    if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                        throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+                    return this;
+                }
+                if (attr.CanMap)
+                {
+                    MapperInfo mapper = new(pi, pi, new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
+                        CreateMapCallExpression(attr, pi, GenericSourceParameter, GenericTargetParameter),
+                        GenericSourceParameter,
+                        GenericTargetParameter
+                        ).CompileExt()), MapperType.GenericMapCall);
+                    if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                        throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+                    return this;
+                }
+                if (attr.TargetPropertyName is not null)
+                    return AddAsyncMapping(sourcePropertyName, attr.TargetPropertyName);
+            }
+            return AddAsyncMapping(sourcePropertyName, sourcePropertyName);
+        }
+
+        /// <inheritdoc/>
+        public override ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)
+        {
+            PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
+                    ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
+                tp = FindProperty(TargetType, targetPropertyName)
+                    ?? throw new MappingException($"Target property \"{typeof(tTarget)}.{targetPropertyName}\" not found");
+            if (sp.Getter is null) throw new MappingException($"Source property {sp.FullName} has no usable getter");
+            if (tp.Setter is null) throw new MappingException($"Target property {tp.FullName} has no usable setter");
+            if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
+                throw new MappingException($"{sp.FullName} ({sp.PropertyType}) can't be mapped to {tp.FullName} ({tp.PropertyType})");
+            bool isNested = attr?.Nested ?? false;
+            MapperInfo mapper = new(
+                sp,
+                tp,
+                isNested
+                    ? new AsyncMapper_Delegate<tSource, tTarget>(
+                        async (source, target, ct) => tp.Setter(target, sp.Getter(source) is object value ? await value.MapObjectToAsync(tp.PropertyType, ct).DynamicContext() : null)
+                        )
+                    : new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
+                        CreateMapperExpression(sp, tp, GenericSourceParameter, GenericTargetParameter, attr),
+                        GenericSourceParameter,
+                        GenericTargetParameter
+                        ).CompileExt()),
+                isNested ? MapperType.AnyAsync : MapperType.GenericMapper
+                );
+            if (!Mappings.TryAdd(sourcePropertyName, mapper))
+                throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
+            return this;
+        }
+
+        /// <summary>
         /// Map a source object property value to the target object using the given method
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
@@ -182,47 +217,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
         {
             AddAsyncMapping<tSource, tTarget>(sourcePropertyName, mapper);
             return this;
         }
-
-        /// <summary>
-        /// Apply mappings
-        /// </summary>
-        /// <param name="source">Source object</param>
-        /// <param name="target">Target object</param>
-        /// <returns>This</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public virtual ObjectMapping<tSource, tTarget> ApplyMappings(in tSource source, in tTarget target)
-        {
-            if (CompiledMapping is not null)
-            {
-                CompiledMapping(source, target);
-            }
-            else
-            {
-                ApplyMappings<tSource, tTarget>(source, target);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Apply mappings
-        /// </summary>
-        /// <param name="source">Source object</param>
-        /// <param name="target">Target object</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public virtual Task ApplyMappingsAsync(tSource source, tTarget target, CancellationToken cancellationToken = default)
-            => ApplyMappingsAsync<tSource, tTarget>(source, target, cancellationToken);
 
         /// <summary>
         /// Compile the object mapping and set <see cref="CompiledMapping"/>
@@ -230,84 +229,92 @@ namespace wan24.Core
         /// <returns>This</returns>
         public virtual ObjectMapping<tSource, tTarget> CompileMapping()
         {
-            bool isMappingObject = typeof(IMappingObject).IsAssignableFrom(typeof(tSource)),
-                isMappingObjectExt = typeof(IMappingObject<tTarget>).IsAssignableFrom(typeof(tSource));
             int i = 0,
                 len = Mappings.Count;
-            if (isMappingObject) len++;
-            if (isMappingObjectExt) len++;
+            if (IsMappingObject) len++;
+            if (IsMappingObjectExt) len++;
+            if (ObjectValidator is not null) len++;
             Expression[] expressions = new Expression[len];
-            for (; i < len; i++)
-                expressions[i] = Mappings[i] switch
+            for (MapperInfo mapper; i < len; i++)
+            {
+                mapper = Mappings[i];
+                switch (mapper.Type)
                 {
-                    Mapper_Delegate<tSource, tTarget> mapper => Expression.Invoke(
-                        Expression.Constant(mapper),
-                        SourceParameter,
-                        TargetParameter
-                        ),
-                    AsyncMapper_Delegate<tSource, tTarget> mapper => Expression.Call(
-                        Expression.Call(
-                            Expression.Invoke(
-                                Expression.Constant(mapper),
-                                SourceParameter,
-                                TargetParameter,
-                                NoCancellationTokenExpression
-                            ),
-                            GetAwaiterMethod
-                            ),
-                        GetResultMethod
-                        ),
-                    ObjectMapper_Delegate mapper => Expression.Invoke(
-                        Expression.Constant(mapper),
-                        SourceObjectParameter,
-                        TargetObjectParameter
-                        ),
-                    AsyncObjectMapper_Delegate mapper => Expression.Call(
-                        Expression.Call(
-                            Expression.Invoke(
-                                Expression.Constant(mapper),
-                                SourceObjectParameter,
-                                TargetObjectParameter,
-                                NoCancellationTokenExpression
-                            ),
-                            GetAwaiterMethod
-                            ),
-                        GetResultMethod
-                        ),
-                    _ => throw new MappingException($"Invalid mapper type {Mappings[i].GetType()} in object mapping configuration for mapping {SourceType.Type} to {TargetType.Type}"),
-                };
-            if (isMappingObject) expressions[++i] = MappingObjectExpression;
-            if (isMappingObjectExt) expressions[++i] = MappingObjectExtExpression;
-            CompiledMapping = Expression.Lambda<Action<tSource, tTarget>>(Expression.Block(expressions), SourceParameter, TargetParameter).Compile();
+                    case MapperType.Mapper or MapperType.GenericMapper when mapper.SourceProperty is not null && mapper.TargetProperty is not null:
+                        expressions[i] = CreateMapperExpression(
+                            mapper.SourceProperty,
+                            mapper.TargetProperty,
+                            GenericSourceParameter,
+                            GenericTargetParameter,
+                            mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>()
+                            );
+                        break;
+                    case MapperType.CustomMapper:
+                        expressions[i] = Expression.Invoke(
+                            Expression.Constant(mapper.Mapper, mapper.Mapper.GetType()),
+                            GenericSourceParameter,
+                            GenericTargetParameter
+                            );
+                        break;
+                    case MapperType.MapCall or MapperType.GenericMapCall
+                        when mapper.SourceProperty is not null && mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>() is MapAttribute mapAttr:
+                        expressions[i] = CreateMapCallExpression(
+                            mapAttr,
+                            mapper.SourceProperty,
+                            GenericSourceParameter,
+                            GenericTargetParameter
+                            );
+                        break;
+                    case MapperType.NestedMapper or MapperType.GenericNestedMapper when mapper.SourceProperty is not null && mapper.TargetProperty is not null:
+                        expressions[i] = CreateNestedMapperExpression(
+                            mapper.SourceProperty,
+                            mapper.TargetProperty,
+                            GenericSourceParameter,
+                            GenericTargetParameter,
+                            mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>()
+                            );
+                        break;
+                    case MapperType.AnyAsync:
+                        {
+                            bool isObjectMapper = !mapper.Mapper.GetType().IsGenericType;
+                            expressions[i] = Expression.Call(
+                                Expression.Call(
+                                    Expression.Invoke(
+                                        Expression.Constant(mapper.Mapper, mapper.Mapper.GetType()),
+                                        isObjectMapper ? GenericSourceObjectParameter : GenericSourceParameter,
+                                        isObjectMapper ? GenericTargetObjectParameter : GenericTargetParameter,
+                                        NoCancellationTokenExpression
+                                    ),
+                                    GetAwaiterMethod
+                                    ),
+                                GetResultMethod
+                                );
+                        }
+                        break;
+                    case MapperType.Expression when mapper.Mapper is Expression<Action<object, object>> mapperExpression:
+                        expressions[i] = Expression.Invoke(
+                            mapperExpression,
+                            GenericSourceObjectParameter,
+                            GenericTargetObjectParameter
+                            );
+                        break;
+                    case MapperType.GenericExpression when mapper.Mapper is Expression<Action<tSource, tTarget>> mapperExpression:
+                        expressions[i] = Expression.Invoke(
+                            mapperExpression,
+                            GenericSourceParameter,
+                            GenericTargetParameter
+                            );
+                        break;
+                    default:
+                        throw new MappingException($"Invalid mapper type {mapper.Type} or configuration at #{i} for mapping {SourceType.Type} to {TargetType.Type}");
+                }
+            }
+            if (IsMappingObject) expressions[++i] = MappingObjectExpression;
+            if (IsMappingObjectExt) expressions[++i] = MappingObjectExtExpression;
+            if (ObjectValidator is not null) expressions[++i] = ValidateObjectExpression;
+            CompiledMapping = Expression.Lambda<Action<tSource, tTarget>>(len > 1 ? Expression.Block(expressions) : expressions[0], GenericSourceParameter, GenericTargetParameter)
+                .CompileExt();
             return this;
         }
-
-        /// <summary>
-        /// Create an object mapping
-        /// </summary>
-        /// <returns>Object mapping</returns>
-        public static ObjectMapping<tSource, tTarget> Create() => new()
-        {
-            SourceType = TypeInfoExt.From(typeof(tSource)),
-            TargetType = TypeInfoExt.From(typeof(tTarget))
-        };
-
-        /// <summary>
-        /// Get a registered object mapping
-        /// </summary>
-        /// <returns>Object mapping</returns>
-        public static ObjectMapping? Get()
-            => RegisteredMappings.TryGetValue((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
-                ? res
-                : null;
-
-        /// <summary>
-        /// Remove a registered object mapping
-        /// </summary>
-        /// <returns>Removed object mapping</returns>
-        public static ObjectMapping? Remove()
-            => RegisteredMappings.TryRemove((typeof(tSource), typeof(tTarget)), out ObjectMapping? res)
-                ? res
-                : null;
     }
 }

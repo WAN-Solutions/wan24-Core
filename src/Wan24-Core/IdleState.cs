@@ -150,7 +150,7 @@
         /// <summary>
         /// Raise the <see cref="OnIdle"/> event
         /// </summary>
-        private void RaiseOnIdle() => OnIdle?.Invoke(this, new());
+        private void RaiseOnIdle() => OnIdle?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raised when busy (while thread locked!)
@@ -159,7 +159,7 @@
         /// <summary>
         /// Raise the <see cref="OnBusy"/> event
         /// </summary>
-        private void RaiseOnBusy() => OnBusy?.Invoke(this, new());
+        private void RaiseOnBusy() => OnBusy?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Cast as idle state

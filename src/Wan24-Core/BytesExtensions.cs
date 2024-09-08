@@ -81,12 +81,9 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public static bool SlowCompare(this ReadOnlySpan<byte> a, in ReadOnlySpan<byte> b)
         {
-            unchecked
-            {
-                int diff = a.Length ^ b.Length;
-                for (int i = 0; i < a.Length && i < b.Length; diff |= a[i] ^ b[i], i++) ;
-                return diff == 0;
-            }
+            int diff = a.Length ^ b.Length;
+            for (int i = 0; i < a.Length && i < b.Length; diff |= a[i] ^ b[i], i++) ;
+            return diff == 0;
         }
 
         /// <summary>

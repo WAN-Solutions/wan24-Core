@@ -12,6 +12,10 @@ namespace wan24.Core
         /// </summary>
         Type Type { get; }
         /// <summary>
+        /// Underlying numeric type
+        /// </summary>
+        Type NumericType { get; }
+        /// <summary>
         /// Default value
         /// </summary>
         Enum DefaultValue { get; }
@@ -47,8 +51,14 @@ namespace wan24.Core
         /// Determine if the enumeration value is valid
         /// </summary>
         /// <param name="value">Value</param>
-        /// <returns>If the value is value</returns>
+        /// <returns>If the value is valid</returns>
         bool IsValidValue(in object value);
+        /// <summary>
+        /// Determine if the enumeration value is defined
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is defined</returns>
+        bool IsDefinedValue(in object value);
     }
 
     /// <summary>
@@ -73,7 +83,13 @@ namespace wan24.Core
         /// Determine if the enumeration value is valid
         /// </summary>
         /// <param name="value">Value</param>
-        /// <returns>If the value is value</returns>
+        /// <returns>If the value is valid</returns>
         bool IsValidValue(in T value);
+        /// <summary>
+        /// Determine if the enumeration value is defined
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>If the value is defined</returns>
+        bool IsDefinedValue(in T value);
     }
 }

@@ -411,7 +411,7 @@ namespace wan24.Core
         /// <summary>
         /// Raise the <see cref="OnException"/> event
         /// </summary>
-        protected virtual void RaiseOnException() => OnException?.Invoke(this, new());
+        protected virtual void RaiseOnException() => OnException?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Cast as running-flag
