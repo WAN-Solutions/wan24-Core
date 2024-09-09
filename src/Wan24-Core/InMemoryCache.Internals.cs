@@ -59,7 +59,7 @@
             if (!Cache.TryRemove(key, out InMemoryCacheEntry<T>? res))
                 return null;
             _Count--;
-            res.OnRemoved();
+            res.OnRemoved(reason);
             HandleEntryRemoved(res);
             RaiseOnEntryRemoved(res, reason);
             return res;
@@ -73,7 +73,7 @@
             if (Cache.Remove(new KeyValuePair<string, InMemoryCacheEntry<T>>(entry.Key, entry)))
             {
                 _Count--;
-                entry.OnRemoved();
+                entry.OnRemoved(reason);
                 HandleEntryRemoved(entry);
                 RaiseOnEntryRemoved(entry, reason);
                 return true;
