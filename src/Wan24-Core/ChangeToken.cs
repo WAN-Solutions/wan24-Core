@@ -1,14 +1,13 @@
 ﻿using Microsoft.Extensions.Primitives;
 using System.ComponentModel;
 using System.Runtime;
-using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Change token
     /// </summary>
-    public class ChangeToken : IChangeToken, INotifyPropertyChanged
+    public class ChangeToken : IChangeToken, INotifyPropertyChanged, INotifyPropertyChanging
     {
         /// <summary>
         /// Registered callbacks
@@ -89,6 +88,7 @@ namespace wan24.Core
         /// <param name="propertyName">Property name</param>
         protected virtual void SetNewPropertyValue<T>(ref T field, in T value, in string propertyName)
         {
+            RaisePropertyChanging(propertyName);
             field = value;
             InvokeCallbacks();
             RaisePropertyChanged(propertyName);
@@ -107,6 +107,20 @@ namespace wan24.Core
         /// <param name="sender">Sender</param>
         /// <param name="e">Arguments</param>
         protected void RaisePropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(sender, e);
+
+        /// <inheritdoc/>
+        public event PropertyChangingEventHandler? PropertyChanging;
+        /// <summary>
+        /// Raise the <see cref="PropertyChanging"/> event
+        /// </summary>
+        /// <param name="name">Name of the changed property</param>
+        public virtual void RaisePropertyChanging(in string? name = null) => RaisePropertyChanging(this, new PropertyChangingEventArgs(name));
+        /// <summary>
+        /// Raise the <see cref="PropertyChanging"/> event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
+        protected void RaisePropertyChanging(object sender, PropertyChangingEventArgs e) => PropertyChanging?.Invoke(sender, e);
 
         /// <summary>
         /// Cast as changed-flag
@@ -156,16 +170,6 @@ namespace wan24.Core
                 Callbacks.Add(res);
             }
             return res;
-        }
-
-        /// <summary>
-        /// Dummy object notification subscription
-        /// </summary>
-        [StructLayout(LayoutKind.Sequential)]
-        protected readonly record struct DummySubscription : IDisposable
-        {
-            /// <inheritdoc/>
-            public readonly void Dispose() { }
         }
     }
 }

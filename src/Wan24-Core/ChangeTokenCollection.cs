@@ -21,7 +21,6 @@ namespace wan24.Core
         ICollection, 
         IList,
         INotifyCollectionChanged,
-        INotifyPropertyChanged,
         IObserver<T>,
         IDisposableObject
     {
@@ -341,10 +340,10 @@ namespace wan24.Core
         /// <returns>Subscription</returns>
         private IDisposable SubscribeTo(T item)
         {
-            if (!ObserveItems) return default(DummySubscription);
+            if (!ObserveItems) return DummyDisposable.Instance;
             IDisposable res = item is IObservable<T> observable
                 ? observable.Subscribe(this)
-                : (item as IChangeToken)?.RegisterChangeCallback((obj) => OnNext(item), state: null) ?? default(DummySubscription);
+                : (item as IChangeToken)?.RegisterChangeCallback((obj) => OnNext(item), state: null) ?? DummyDisposable.Instance;
             if (item is INotifyPropertyChanged npc) npc.PropertyChanged += HandlePropertyChanged;
             return res;
         }

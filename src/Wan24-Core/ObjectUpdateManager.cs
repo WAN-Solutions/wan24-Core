@@ -14,13 +14,17 @@ namespace wan24.Core
         /// </summary>
         protected readonly UpdateEventThrottle EventThrottler;
         /// <summary>
+        /// Object update cancellation (an update will be cancelled, if it's running while there's a newer update already)
+        /// </summary>
+        protected readonly CancellationTokenSource UpdateCancellation = new();
+        /// <summary>
         /// <see cref="IChangeToken"/> callback registration
         /// </summary>
         protected IDisposable? ChangeTokenCallback = null;
         /// <summary>
         /// If the <see cref="INotifyPropertyChanged"/> interface is used to detect object changes
         /// </summary>
-        protected bool ObservesChangedProperties;
+        protected bool ObservesChangedProperties = false;
         /// <summary>
         /// <see cref="IObservable{T}"/> subscription
         /// </summary>
@@ -51,7 +55,14 @@ namespace wan24.Core
         public T Object { get; }
 
         /// <inheritdoc/>
-        void IObserver<T>.OnCompleted() => ObservableSubscription!.Dispose();
+        void IObserver<T>.OnCompleted()
+        {
+            if (ObservableSubscription is not null)
+            {
+                ObservableSubscription.Dispose();
+                ObservableSubscription = null;
+            }
+        }
 
         /// <inheritdoc/>
         void IObserver<T>.OnError(Exception error) { }
@@ -63,7 +74,7 @@ namespace wan24.Core
         /// Handle an updated <see cref="Object"/> (<see cref="Task.Yield"/> should be called)
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        protected abstract Task OnObjectUpdatedAsync(CancellationToken cancellationToken = default);
+        protected abstract void OnObjectUpdated(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Observe the <see cref="IChangeToken"/> interface
@@ -137,6 +148,8 @@ namespace wan24.Core
         {
             StopObserving();
             EventThrottler.Dispose();
+            UpdateCancellation.Cancel();
+            UpdateCancellation.Dispose();
         }
 
         /// <inheritdoc/>
@@ -144,6 +157,8 @@ namespace wan24.Core
         {
             StopObserving();
             await EventThrottler.DisposeAsync().DynamicContext();
+            UpdateCancellation.Cancel();
+            UpdateCancellation.Dispose();
         }
 
         /// <summary>
@@ -174,7 +189,7 @@ namespace wan24.Core
             public ObjectUpdateManager<T> UpdateManager { get; } = updateManager;
 
             /// <inheritdoc/>
-            protected override void HandleEvent(in DateTime raised, in int raisedCount) => _ = UpdateManager.OnObjectUpdatedAsync();
+            protected override void HandleEvent(in DateTime raised, in int raisedCount) => UpdateManager.OnObjectUpdated();
         }
     }
 }

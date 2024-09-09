@@ -18,7 +18,6 @@ namespace wan24.Core
         IDictionary, 
         IReadOnlyDictionary<tKey, tValue>, 
         INotifyCollectionChanged,
-        INotifyPropertyChanged,
         IObserver<tValue>,
         IDisposableObject
         where tKey : notnull
@@ -330,7 +329,7 @@ namespace wan24.Core
         /// <returns>Subscription</returns>
         private IDisposable SubscribeTo(tKey key, tValue value)
         {
-            if (!ObserveItems) return default(DummySubscription);
+            if (!ObserveItems) return DummyDisposable.Instance;
             IDisposable res = value is IObservable<tValue> observable
                 ? observable.Subscribe(this)
                 : (value as IChangeToken)?.RegisterChangeCallback(
@@ -340,7 +339,7 @@ namespace wan24.Core
                         RaisePropertyChanged(new(key, value));
                     },
                     state: null
-                    ) ?? default(DummySubscription);
+                    ) ?? DummyDisposable.Instance;
             if (value is INotifyPropertyChanged npc) npc.PropertyChanged += HandlePropertyChanged;
             return res;
         }

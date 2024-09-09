@@ -23,7 +23,6 @@ namespace wan24.Core
         ICollection,
         IDictionary,
         INotifyCollectionChanged,
-        INotifyPropertyChanged,
         IObserver<tValue>,
         IDisposableObject
         where tKey : notnull
