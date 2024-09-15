@@ -58,6 +58,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Checkout wan24-Core-Shared
+      uses: actions/checkout@v3
+      with:
+        repository: WAN-Solutions/wan24-Core-Shared
+        path: '../wan24-Core-Shared'
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
