@@ -279,7 +279,7 @@ namespace wan24.Core
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
             RentedArray<int> intBits = new(len: 4, clean: false);
-            for (int i = 0; i < 4; intBits[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
+            for (int i = 0; i < 4; intBits.Span[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
             return new decimal(intBits.Span);
         }
 #else

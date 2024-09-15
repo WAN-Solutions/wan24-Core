@@ -168,7 +168,8 @@
         /// <summary>
         /// Handle this removed from the cache
         /// </summary>
-        public virtual void OnRemoved()
+        /// <param name="reason">Reason</param>
+        public virtual void OnRemoved(CacheEventReasons reason = CacheEventReasons.UserAction)
         {
             lock (SyncObject)
             {
@@ -180,6 +181,7 @@
             }
             if (ObserveDisposing && Item is IDisposableObject disposable)
                 disposable.OnDisposing -= HandleItemDisposing;
+            RaiseOnEntryRemoved(reason);
         }
 
         /// <summary>
@@ -203,6 +205,14 @@
         /// <param name="sender">Sender</param>
         /// <param name="e">Arguments</param>
         protected virtual void HandleItemDisposing(IDisposableObject sender, EventArgs e) => Cache.Remove(this);
+
+        /// <inheritdoc/>
+        public event ICache<T>.CacheEntryEvent_Delegate? OnEntryRemoved;
+        /// <summary>
+        /// Raise the <see cref="OnEntryRemoved"/> event
+        /// </summary>
+        /// <param name="reason">Reason</param>
+        protected virtual void RaiseOnEntryRemoved(CacheEventReasons reason = CacheEventReasons.UserAction) => OnEntryRemoved?.Invoke(Cache, new(this, reason));
 
         /// <summary>
         /// Cast as item

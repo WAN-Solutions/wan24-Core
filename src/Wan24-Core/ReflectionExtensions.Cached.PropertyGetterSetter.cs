@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -11,6 +13,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>If a getter can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreatePropertyGetter(this PropertyInfo pi)
             => pi.DeclaringType is not null &&
                 !pi.DeclaringType.IsGenericTypeDefinition &&
@@ -21,13 +27,17 @@ namespace wan24.Core
                 !pi.PropertyType.IsByRef &&
                 !pi.PropertyType.IsByRefLike &&
                 !pi.PropertyType.IsPointer &&
-                pi.GetMethod.GetParameters().Length == 0;
+                pi.GetMethod.GetParameterCountCached() == 0;
 
         /// <summary>
         /// Determine if a property getter can be created (using <see cref="CreatePropertySetter(PropertyInfo)"/>)
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>If a getter can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreatePropertySetter(this PropertyInfo pi)
             => pi.DeclaringType is not null &&
                 !pi.DeclaringType.IsGenericTypeDefinition &&
@@ -38,13 +48,17 @@ namespace wan24.Core
                 !pi.PropertyType.IsByRef &&
                 !pi.PropertyType.IsByRefLike &&
                 !pi.PropertyType.IsPointer &&
-                pi.SetMethod.GetParameters().Length == 1;
+                pi.SetMethod.GetParameterCountCached() == 1;
 
         /// <summary>
         /// Create a property getter
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreatePropertyGetter(this PropertyInfo pi)
         {
             // https://tyrrrz.me/blog/expression-trees
@@ -59,6 +73,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreateInstancePropertyGetter(this PropertyInfo pi)
         {
             EnsureCanCreatePropertyGetter(pi);
@@ -75,6 +93,10 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<tObj, tValue?> CreateTypedInstancePropertyGetter<tObj, tValue>(this PropertyInfo pi)
         {
             EnsureCanCreatePropertyGetter(pi);
@@ -94,6 +116,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?> CreateStaticPropertyGetter(this PropertyInfo pi)
         {
             EnsureCanCreatePropertyGetter(pi);
@@ -107,6 +133,10 @@ namespace wan24.Core
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<T> CreateTypedStaticPropertyGetter<T>(this PropertyInfo pi)
         {
             EnsureCanCreatePropertyGetter(pi);
@@ -124,6 +154,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreateStaticPropertyGetter2(this PropertyInfo pi)
         {
             Func<object?> getter = CreateStaticPropertyGetter(pi);
@@ -135,6 +169,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreatePropertySetter(this PropertyInfo pi)
         {
             EnsureCanCreatePropertySetter(pi);
@@ -148,6 +186,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreateInstancePropertySetter(this PropertyInfo pi)
         {
             EnsureCanCreatePropertySetter(pi);
@@ -172,6 +214,10 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<tObj, tValue?> CreateTypedInstancePropertySetter<tObj, tValue>(this PropertyInfo pi)
         {
             EnsureCanCreatePropertySetter(pi);
@@ -196,6 +242,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?> CreateStaticPropertySetter(this PropertyInfo pi)
         {
             EnsureCanCreatePropertySetter(pi);
@@ -211,6 +261,10 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<T?> CreateTypedStaticPropertySetter<T>(this PropertyInfo pi)
         {
             EnsureCanCreatePropertySetter(pi);
@@ -225,6 +279,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreateStaticPropertySetter2(this PropertyInfo pi)
         {
             Action<object?> setter = CreateStaticPropertySetter(pi);
@@ -236,6 +294,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <exception cref="ArgumentException">Can't create a property getter</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static void EnsureCanCreatePropertyGetter(in PropertyInfo pi)
         {
             if (!CanCreatePropertyGetter(pi)) throw new ArgumentException("Can't create getter for this kind of property", nameof(pi));
@@ -246,6 +308,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pi">Property</param>
         /// <exception cref="ArgumentException">Can't create a property setter</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static void EnsureCanCreatePropertySetter(in PropertyInfo pi)
         {
             if (!CanCreatePropertySetter(pi)) throw new ArgumentException("Can't create setter for this kind of property", nameof(pi));

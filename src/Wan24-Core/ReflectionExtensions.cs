@@ -31,8 +31,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [Obsolete("Use PropertyInfoExt.IsInitOnly instead")]//TODO Remove in v3
-        public static bool IsInitOnly(this PropertyInfoExt pi)
-            => pi.Property.SetMethod is MethodInfo mi && mi.ReturnParameter.GetRequiredCustomModifiers().Any(m => m.Name == "IsExternalInit");
+        public static bool IsInitOnly(this PropertyInfoExt pi) => pi.IsInitOnly;
 
         /// <summary>
         /// Determine if a method is a property accessor
@@ -82,6 +81,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="bindings">Bindings (<see cref="BindingFlags.GetField"/>, <see cref="BindingFlags.GetProperty"/> and <see cref="BindingFlags.InvokeMethod"/>)</param>
         /// <returns>Elements (<see cref="FieldInfoExt"/>, <see cref="PropertyInfoExt"/> or <see cref="MethodInfoExt"/>)</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<ICustomAttributeProvider> Reflect(this object obj, BindingFlags? bindings = null)
             => Reflect(obj.GetType(), bindings ?? (obj as IReflect)?.Bindings);
     }

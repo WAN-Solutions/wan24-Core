@@ -129,7 +129,7 @@ namespace wan24.Core
                 .FirstOrDefault(m => m.Name == nameof(TaskAwaiter.GetResult) && m.ParameterCount < 1)
                 ?? throw new InvalidProgramException();
             GetTypeMethod = typeof(object)
-                .GetMethod(nameof(GetType))
+                .GetMethodCached(nameof(GetType))
                 ?? throw new InvalidProgramException();
             GetUnderlyingTypeMethod = typeof(Nullable)
                 .GetMethodsCached()

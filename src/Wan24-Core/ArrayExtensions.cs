@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -18,6 +20,9 @@ namespace wan24.Core
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<T> EnsureValid<T>(this Span<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
@@ -36,6 +41,9 @@ namespace wan24.Core
         /// <returns>Span</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlySpan<T> EnsureValid<T>(this ReadOnlySpan<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
@@ -53,6 +61,9 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValid<T>(this Span<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
@@ -68,6 +79,9 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValid<T>(this ReadOnlySpan<T> span, in int offset, in int length)
         {
             long lastOffset = offset + length;
@@ -84,6 +98,9 @@ namespace wan24.Core
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<T> EnsureValid<T>(this Memory<T> memory, in int offset, in int length)
         {
             EnsureValid(memory.Span, offset, length);
@@ -100,6 +117,9 @@ namespace wan24.Core
         /// <returns>Memory</returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on offset/length error</exception>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlyMemory<T> EnsureValid<T>(this ReadOnlyMemory<T> memory, in int offset, in int length)
         {
             EnsureValid(memory.Span, offset, length);
@@ -115,6 +135,9 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValid<T>(this Memory<T> memory, in int offset, in int length) => IsValid(memory.Span, offset, length);
 
         /// <summary>
@@ -126,6 +149,9 @@ namespace wan24.Core
         /// <param name="length">Length</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValid<T>(this ReadOnlyMemory<T> memory, in int offset, in int length) => IsValid(memory.Span, offset, length);
 
         /// <summary>
@@ -136,6 +162,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int IndexOf<T>(this T[] arr, in T value) => Array.IndexOf(arr, value);
 
         /// <summary>
@@ -146,6 +175,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int IndexOf<T>(this Memory<T> arr, in T value) => IndexOf((ReadOnlySpan<T>)arr.Span, value);
 
         /// <summary>
@@ -156,6 +188,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int IndexOf<T>(this ReadOnlyMemory<T> arr, in T value) => IndexOf(arr.Span, value);
 
         /// <summary>
@@ -166,6 +201,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Index or <c>-1</c>, if not found</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int IndexOf<T>(this ReadOnlySpan<T> arr, in T value)
         {
             if (value is null)
@@ -187,6 +225,9 @@ namespace wan24.Core
         /// <param name="values">Required values (each value should be unique!)</param>
         /// <returns>All contained?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsAll<T>(this T[] arr, params T[] values)
         {
             int valuesLen = values.Length;
@@ -212,6 +253,9 @@ namespace wan24.Core
         /// <param name="values">Values</param>
         /// <returns>Any contained?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsAny<T>(this T[] arr, params T[] values)
         {
             if (values.Length == 0) return false;
@@ -227,6 +271,9 @@ namespace wan24.Core
         /// <param name="span">Span</param>
         /// <returns>Span</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlySpan<T> AsReadOnly<T>(this Span<T> span) => (ReadOnlySpan<T>)span;
 
         /// <summary>
@@ -236,6 +283,9 @@ namespace wan24.Core
         /// <param name="mem">Memory</param>
         /// <returns>Memory</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlyMemory<T> AsReadOnly<T>(this Memory<T> mem) => (ReadOnlyMemory<T>)mem;
 
         /// <summary>
@@ -245,6 +295,9 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <returns>Read-only collection</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> enumerable) => new List<T>(enumerable).AsReadOnly();
 
         /// <summary>
@@ -254,6 +307,9 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <returns>New array</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T[] CloneArray<T>(this T[] arr)
         {
             if (arr.Length == 0) return [];

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -12,7 +13,10 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? GetValueFast(this PropertyInfoExt pi, in object? obj)
         {
             if (pi.Getter is null) throw new InvalidOperationException("The property has no usable getter");
@@ -26,6 +30,9 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? GetValueFast(this PropertyInfo pi, in object? obj)
         {
             PropertyInfoExt prop = PropertyInfoExt.From(pi);
@@ -39,7 +46,10 @@ namespace wan24.Core
         /// <param name="pi">Property</param>
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void SetValueFast(this PropertyInfoExt pi, in object? obj, in object? value)
         {
             if (pi.Setter is null) throw new InvalidOperationException("The property has no usable setter");
@@ -53,6 +63,9 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void SetValueFast(this PropertyInfo pi, in object? obj, in object? value)
         {
             PropertyInfoExt prop = PropertyInfoExt.From(pi);
@@ -66,7 +79,10 @@ namespace wan24.Core
         /// <param name="fi">Field</param>
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? GetValueFast(this FieldInfoExt fi, in object? obj)
         {
             if (fi.Getter is null) throw new InvalidOperationException("The field has no usable getter");
@@ -80,6 +96,9 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? GetValueFast(this FieldInfo fi, in object? obj)
         {
             FieldInfoExt field = FieldInfoExt.From(fi);
@@ -93,7 +112,10 @@ namespace wan24.Core
         /// <param name="fi">Field</param>
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void SetValueFast(this FieldInfoExt fi, in object? obj, in object? value)
         {
             if (fi.Setter is null) throw new InvalidOperationException("The field has no usable setter");
@@ -107,6 +129,9 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="value">Value</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void SetValueFast(this FieldInfo fi, in object? obj, in object? value)
         {
             FieldInfoExt field = FieldInfoExt.From(fi);

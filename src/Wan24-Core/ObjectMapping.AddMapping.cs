@@ -42,6 +42,7 @@ namespace wan24.Core
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
                 SourceProperty: null,
                 TargetProperty: null,
@@ -65,6 +66,7 @@ namespace wan24.Core
 #endif
         public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression<Action<object, object>> mapper)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
                 SourceProperty: null,
                 TargetProperty: null,
@@ -92,6 +94,7 @@ namespace wan24.Core
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
                 SourceProperty: null,
                 TargetProperty: null,
@@ -134,6 +137,7 @@ namespace wan24.Core
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
                 SourceProperty: null,
                 TargetProperty: null,
@@ -162,6 +166,7 @@ namespace wan24.Core
             in BindingFlags bindings = PROPERTY_REFLECTION_FLAGS
             )
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapAttribute? attr = SourceMappingOptions;
             optIn ??= attr?.OptIn ?? false;
             publicGetterOnly ??= attr?.PublicGetterOnly ?? false;

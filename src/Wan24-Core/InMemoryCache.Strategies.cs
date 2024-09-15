@@ -252,6 +252,46 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Reduce the number of cache entries by a filter
+        /// </summary>
+        /// <param name="filter">Filter (needs to return if to remove the entry)</param>
+        /// <param name="reason">Removal reason</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual void ReduceBy(Func<InMemoryCacheEntry<T>, bool> filter, CacheEventReasons reason = CacheEventReasons.Tidy, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values)
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (filter(entry) && RemoveInt(entry, CacheEventReasons.Tidy) && IsItemDisposable)
+                    DisposeItem(entry.Item);
+            }
+        }
+
+        /// <summary>
+        /// Reduce the number of cache entries by a filter
+        /// </summary>
+        /// <param name="filter">Filter (needs to return if to remove the entry)</param>
+        /// <param name="reason">Removal reason</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task ReduceByAsync(
+            Func<InMemoryCacheEntry<T>, CancellationToken, Task<bool>> filter, 
+            CacheEventReasons reason = CacheEventReasons.Tidy, 
+            CancellationToken cancellationToken = default
+            )
+        {
+            EnsureUndisposed();
+            foreach (InMemoryCacheEntry<T> entry in Cache.Values)
+            {
+                EnsureUndisposed();
+                cancellationToken.ThrowIfCancellationRequested();
+                if (await filter(entry, cancellationToken).DynamicContext() && RemoveInt(entry, reason) && IsItemDisposable)
+                    await DisposeItemAsync(entry.Item).DynamicContext();
+            }
+        }
+
+        /// <summary>
         /// Tidy the cache
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
