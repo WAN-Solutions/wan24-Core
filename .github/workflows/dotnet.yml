@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         repository: WAN-Solutions/wan24-Core-Shared
-        path: '../wan24-Core-Shared'
+        path: './src/Others/wan24-Core-Shared'
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
