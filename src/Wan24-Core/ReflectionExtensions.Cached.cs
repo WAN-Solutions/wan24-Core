@@ -2,6 +2,8 @@
 using System.Collections.Frozen;
 using System.Collections.Immutable;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -68,6 +70,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Fields</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<FieldInfoExt> GetFieldsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
@@ -84,6 +90,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Fields</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<FieldInfoExt> GetFieldsCached(this Type type, Func<FieldInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
@@ -100,6 +110,10 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Field</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FieldInfoExt? GetFieldCached(this Type type, string name, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetFieldCached(type, (f) => f.Name == name, bindingFlags);
 
@@ -110,6 +124,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Field</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FieldInfoExt? GetFieldCached(this Type type, Func<FieldInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetFieldsCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -119,6 +137,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Properties</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
@@ -135,6 +157,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Properties</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, Func<PropertyInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
@@ -151,6 +177,10 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Property</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static PropertyInfoExt? GetPropertyCached(this Type type, string name, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetPropertyCached(type, (p) => p.Name == name, bindingFlags);
 
@@ -161,6 +191,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Field</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static PropertyInfoExt? GetPropertyCached(this Type type, Func<PropertyInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetPropertiesCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -170,6 +204,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Methods</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<MethodInfoExt> GetMethodsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
@@ -186,6 +224,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Methods</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<MethodInfoExt> GetMethodsCached(this Type type, Func<MethodInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
@@ -202,6 +244,10 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Method</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static MethodInfoExt? GetMethodCached(this Type type, string name, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetMethodCached(type, (m) => m.Name == name, bindingFlags);
 
@@ -212,6 +258,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Method</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static MethodInfoExt? GetMethodCached(this Type type, Func<MethodInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetMethodsCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -221,6 +271,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Delegates</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<Type> GetDelegatesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
@@ -237,6 +291,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Delegates</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<Type> GetDelegatesCached(this Type type, Func<Type, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
@@ -253,6 +311,10 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Delegate</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Type? GetDelegateCached(this Type type, string name, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetDelegateCached(type, (d) => d.Name == name, bindingFlags);
 
@@ -263,6 +325,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Delegate</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Type? GetDelegateCached(this Type type, Func<Type, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetDelegatesCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -272,6 +338,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Constructors</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
@@ -288,6 +358,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Constructors</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, Func<ConstructorInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
@@ -304,6 +378,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Constructor</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ConstructorInfoExt? GetConstructorCached(this Type type, Func<ConstructorInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetConstructorsCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -313,6 +391,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Events</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<EventInfo> GetEventsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
@@ -329,6 +411,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Events</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<EventInfo> GetEventsCached(this Type type, Func<EventInfo, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
@@ -345,6 +431,10 @@ namespace wan24.Core
         /// <param name="name">Name</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static EventInfo? GetEventCached(this Type type, string name, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetEventCached(type, (e) => e.Name == name, bindingFlags);
 
@@ -355,6 +445,10 @@ namespace wan24.Core
         /// <param name="filter">Filter</param>
         /// <param name="bindingFlags">Binding flags</param>
         /// <returns>Event</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static EventInfo? GetEventCached(this Type type, Func<EventInfo, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
             => GetEventsCached(type, filter, bindingFlags).FirstOrDefault();
 
@@ -363,6 +457,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="method">Method</param>
         /// <returns>Parameters</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<ParameterInfo> GetParametersCached(this MethodBase method)
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
@@ -377,6 +475,10 @@ namespace wan24.Core
         /// <param name="method">Method</param>
         /// <param name="filter">Filter</param>
         /// <returns>Events</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<ParameterInfo> GetParametersCached(this MethodBase method, Func<ParameterInfo, bool> filter)
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
@@ -391,6 +493,10 @@ namespace wan24.Core
         /// <param name="method">Method</param>
         /// <param name="name">Name</param>
         /// <returns>Parameter</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ParameterInfo? GetParameterCached(this MethodBase method, string name)
             => GetParameterCached(method, (p) => p.Name == name);
 
@@ -400,6 +506,10 @@ namespace wan24.Core
         /// <param name="method">Method</param>
         /// <param name="index">Parameter index (0..n)</param>
         /// <returns>Parameter</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ParameterInfo? GetParameterCached(this MethodBase method, in int index)
             => GetCachedParameters(method)[index];
 
@@ -409,14 +519,33 @@ namespace wan24.Core
         /// <param name="method">Method</param>
         /// <param name="filter">Filter</param>
         /// <returns>Parameter</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ParameterInfo? GetParameterCached(this MethodBase method, Func<ParameterInfo, bool> filter)
             => GetParametersCached(method, filter).FirstOrDefault();
+
+        /// <summary>
+        /// Get the number of parameters
+        /// </summary>
+        /// <param name="method">Method</param>
+        /// <returns>Number of parameters</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetParameterCountCached(this MethodBase method) => GetCachedParameters(method).Length;
 
         /// <summary>
         /// Get generic type arguments from the cache
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Generic arguments</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<Type> GetGenericArgumentsCached(this Type type)
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(type);
@@ -431,6 +560,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="index">Argument index</param>
         /// <returns>Generic argument</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Type GetGenericArgumentCached(this Type type, in int index)
             => GetCachedGenericArguments(type)[index];
 
@@ -439,6 +572,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mi">Method</param>
         /// <returns>Generic arguments</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<Type> GetGenericArgumentsCached(this MethodInfo mi)
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(mi);
@@ -453,8 +590,34 @@ namespace wan24.Core
         /// <param name="mi">Method</param>
         /// <param name="index">Argument index</param>
         /// <returns>Generic argument</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Type GetGenericArgumentCached(this MethodInfo mi, in int index)
             => GetCachedGenericArguments(mi)[index];
+
+        /// <summary>
+        /// Get the number of generic arguments
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Number of generic arguments</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetGenericArgumentCountCached(this Type type) => GetCachedGenericArguments(type).Length;
+
+        /// <summary>
+        /// Get the number of generic arguments
+        /// </summary>
+        /// <param name="mi">Method</param>
+        /// <returns>Number of generic arguments</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetGenericArgumentCountCached(this MethodInfo mi) => GetCachedGenericArguments(mi).Length;
 
         /// <summary>
         /// Get an attribute (inherited)
@@ -462,6 +625,10 @@ namespace wan24.Core
         /// <typeparam name="T">Attribute type</typeparam>
         /// <param name="obj">Reflection object</param>
         /// <returns>Attribute</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? GetCustomAttributeCached<T>(this ICustomAttributeProvider obj) where T : Attribute
             => GetCustomAttributesCached<T>(obj).FirstOrDefault();
 
@@ -471,6 +638,10 @@ namespace wan24.Core
         /// <typeparam name="T">Attribute type</typeparam>
         /// <param name="obj">Reflection object</param>
         /// <returns>Attributes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> GetCustomAttributesCached<T>(this ICustomAttributeProvider obj) where T : Attribute
         {
             FrozenSet<Attribute> attributes = GetCachedAttributes(obj);
@@ -485,6 +656,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<ConstructorInfoExt> GetCachedConstructors(Type type, in int? typeHashCode = null)
             => ConstructorInfoCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -497,6 +672,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<FieldInfoExt> GetCachedFields(Type type, in int? typeHashCode = null)
             => FieldInfoCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -509,6 +688,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<PropertyInfoExt> GetCachedProperties(Type type, in int? typeHashCode = null)
             => PropertyInfoCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -521,6 +704,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<MethodInfoExt> GetCachedMethods(Type type, in int? typeHashCode = null)
             => MethodInfoCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -533,6 +720,10 @@ namespace wan24.Core
         /// <param name="method">Method</param>
         /// <param name="methodHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ImmutableArray<ParameterInfo> GetCachedParameters(MethodBase method, in int? methodHashCode = null)
             => ParameterInfoCache.GetOrAdd(
                 methodHashCode ?? method.GetHashCode(),
@@ -545,6 +736,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<EventInfo> GetCachedEvents(Type type, in int? typeHashCode = null)
             => EventInfoCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -557,6 +752,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<Type> GetCachedDelegates(Type type, in int? typeHashCode = null)
             => DelegateCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -569,6 +768,10 @@ namespace wan24.Core
         /// <param name="provider">Provider</param>
         /// <param name="providerHashCode">Provider hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<Attribute> GetCachedAttributes(ICustomAttributeProvider provider, in int? providerHashCode = null)
             => AttributeCache.GetOrAdd(
                 providerHashCode ?? provider.GetHashCode(),
@@ -581,6 +784,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ImmutableArray<Type> GetCachedGenericArguments(Type type, in int? typeHashCode = null)
             => GenericArgumentsCache.GetOrAdd(
                 typeHashCode ?? type.GetHashCode(),
@@ -593,6 +800,10 @@ namespace wan24.Core
         /// <param name="method">Methods</param>
         /// <param name="typeHashCode">Methods hash code</param>
         /// <returns>Cache contents</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ImmutableArray<Type> GetCachedGenericArguments(MethodInfo method, in int? typeHashCode = null)
             => GenericArgumentsCache.GetOrAdd(
                 typeHashCode ?? method.GetHashCode(),

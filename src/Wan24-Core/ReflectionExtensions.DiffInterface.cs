@@ -21,7 +21,7 @@ namespace wan24.Core
         /// <param name="nic">Nullability info context</param>
         /// <param name="useCache">If to store the result of the called <see cref="DiffInterface(Type, Type, NullabilityInfoContext?, bool)"/> in the <see cref="DiffInterfaceCache"/></param>
         /// <returns>If <c>type</c> defines compatible properties, methods and events to match the <c>interfaceType</c>, as if it would implement the interface</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif

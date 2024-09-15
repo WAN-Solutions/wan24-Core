@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -11,6 +13,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>If a getter can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreateFieldGetter(this FieldInfo fi)
             => fi.DeclaringType is not null && 
                 !fi.DeclaringType.IsGenericTypeDefinition && 
@@ -24,6 +30,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>If a setter can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreateFieldSetter(this FieldInfo fi)
             => fi.DeclaringType is not null &&
                 !fi.DeclaringType.IsGenericTypeDefinition &&
@@ -39,6 +49,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreateFieldGetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -52,6 +66,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreateInstanceFieldGetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -68,6 +86,10 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<tObj, tValue?> CreateTypedInstanceFieldGetter<tObj, tValue>(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -87,6 +109,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?> CreateStaticFieldGetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -100,6 +126,10 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?> CreateTypedStaticFieldGetter<T>(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -112,6 +142,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Getter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Func<object?, object?> CreateStaticFieldGetter2(this FieldInfo fi)
         {
             EnsureCanCreateFieldGetter(fi);
@@ -124,6 +158,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreateFieldSetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -137,6 +175,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreateInstanceFieldSetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -161,6 +203,10 @@ namespace wan24.Core
         /// <typeparam name="tValue">Value type</typeparam>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<tObj, tValue?> CreateTypedInstanceFieldSetter<tObj, tValue>(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -185,6 +231,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?> CreateStaticFieldSetter(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -206,6 +256,10 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<T?> CreateTypedStaticFieldSetter<T>(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -220,6 +274,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <returns>Setter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Action<object?, object?> CreateStaticFieldSetter2(this FieldInfo fi)
         {
             EnsureCanCreateFieldSetter(fi);
@@ -232,6 +290,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <exception cref="ArgumentException">Can't create a field getter</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static void EnsureCanCreateFieldGetter(in FieldInfo fi)
         {
             if (!CanCreateFieldGetter(fi)) throw new ArgumentException("Can't create getter for this kind of field", nameof(fi));
@@ -242,6 +304,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="fi">Field</param>
         /// <exception cref="ArgumentException">Can't create a field setter</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static void EnsureCanCreateFieldSetter(in FieldInfo fi)
         {
             if (!CanCreateFieldSetter(fi)) throw new ArgumentException("Can't create setter for this kind of field", nameof(fi));

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     // Apply mapping
     public partial class ObjectMapping

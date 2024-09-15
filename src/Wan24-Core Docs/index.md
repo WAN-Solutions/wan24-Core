@@ -253,6 +253,10 @@ including extensions for numeric type encoding/decoding)
 - Virtual interface checkjing using `Type.DiffInterface`
 - XML documentation comments parsing using `Xml*DocComments`
 - Structure (de)serializing using `StructExtensions`
+- Query- and Enumerable pagination
+- UDP fallback
+- Query- and Enumerable builder
+- Synchronous enumerator for `IAsyncEnumerator<T>`
 
 ## How to get it
 

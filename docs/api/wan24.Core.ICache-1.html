@@ -319,7 +319,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_Clear_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.Clear(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L97">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L110">View Source</a>
   </span>
   <a id="wan24_Core_ICache_1_Clear_" data-uid="wan24.Core.ICache`1.Clear*"></a>
   <h4 id="wan24_Core_ICache_1_Clear_System_Boolean__" data-uid="wan24.Core.ICache`1.Clear(System.Boolean@)">Clear(in bool)</h4>
@@ -369,7 +369,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_ClearAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.ClearAsync(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_ICache_1_ClearAsync_" data-uid="wan24.Core.ICache`1.ClearAsync*"></a>
   <h4 id="wan24_Core_ICache_1_ClearAsync_System_Boolean_" data-uid="wan24.Core.ICache`1.ClearAsync(System.Boolean)">ClearAsync(bool)</h4>
@@ -658,6 +658,96 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_RemoveBy_System_Func_wan24_Core_ICacheEntry__0__System_Boolean___.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.RemoveBy(System.Func%7Bwan24.Core.ICacheEntry%7B%600%7D%2CSystem.Boolean%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L97">View Source</a>
+  </span>
+  <a id="wan24_Core_ICache_1_RemoveBy_" data-uid="wan24.Core.ICache`1.RemoveBy*"></a>
+  <h4 id="wan24_Core_ICache_1_RemoveBy_System_Func_wan24_Core_ICacheEntry__0__System_Boolean___" data-uid="wan24.Core.ICache`1.RemoveBy(System.Func{wan24.Core.ICacheEntry{`0},System.Boolean}@)">RemoveBy(in Func&lt;ICacheEntry&lt;T&gt;, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Remove entries by a filter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void RemoveBy(in Func&lt;ICacheEntry&lt;T&gt;, bool&gt; filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">filter</span></td>
+        <td><p>Filter (needs to return if to remove the entry)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_RemoveByAsync_System_Func_wan24_Core_ICacheEntry__0__System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.RemoveByAsync(System.Func%7Bwan24.Core.ICacheEntry%7B%600%7D%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L104">View Source</a>
+  </span>
+  <a id="wan24_Core_ICache_1_RemoveByAsync_" data-uid="wan24.Core.ICache`1.RemoveByAsync*"></a>
+  <h4 id="wan24_Core_ICache_1_RemoveByAsync_System_Func_wan24_Core_ICacheEntry__0__System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.ICache`1.RemoveByAsync(System.Func{wan24.Core.ICacheEntry{`0},System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">RemoveByAsync(Func&lt;ICacheEntry&lt;T&gt;, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Remove entries by a filter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task RemoveByAsync(Func&lt;ICacheEntry&lt;T&gt;, CancellationToken, Task&lt;bool&gt;&gt; filter, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="wan24.Core.ICacheEntry-1.html">ICacheEntry</a>&lt;T&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">filter</span></td>
+        <td><p>Filter (needs to return if to remove the entry)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Removed entries</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_TryRemove_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.TryRemove(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -713,7 +803,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_OnCacheEntryAdded.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.OnCacheEntryAdded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L140">View Source</a>
   </span>
   <h4 id="wan24_Core_ICache_1_OnCacheEntryAdded" data-uid="wan24.Core.ICache`1.OnCacheEntryAdded">OnCacheEntryAdded</h4>
   <div class="markdown level1 summary"><p>Raised when an entry was added</p>
@@ -743,7 +833,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ICache_1_OnCacheEntryRemoved.md&amp;value=---%0Auid%3A%20wan24.Core.ICache%601.OnCacheEntryRemoved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L131">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ICache.cs/#L144">View Source</a>
   </span>
   <h4 id="wan24_Core_ICache_1_OnCacheEntryRemoved" data-uid="wan24.Core.ICache`1.OnCacheEntryRemoved">OnCacheEntryRemoved</h4>
   <div class="markdown level1 summary"><p>Raised when an entry was removed</p>
@@ -848,6 +938,42 @@
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Int32_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, int, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__3___1_System_Func___0___2___System_Collections_Generic_IEqualityComparer___2___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSkip__2___1_System_Int32__">EnumerableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSorting__3___1_System_Func___0___2___System_Boolean__System_Collections_Generic_IComparer___2___">EnumerableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithTake__2___1_System_Int32__">EnumerableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutCondition__2___1_">EnumerableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutDistinct__2___1_">EnumerableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSkip__2___1_">EnumerableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSorting__2___1_">EnumerableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
   </div>
   <div>
@@ -888,6 +1014,42 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Int32_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, int, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Collections_Generic_IEqualityComparer___2___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSkip__2___1_System_Int32__">QueryableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSorting__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Boolean__System_Collections_Generic_IComparer___2___">QueryableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithTake__2___1_System_Int32__">QueryableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutCondition__2___1_">QueryableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutDistinct__2___1_">QueryableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSkip__2___1_">QueryableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSorting__2___1_">QueryableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutTake__2___1_">QueryableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>

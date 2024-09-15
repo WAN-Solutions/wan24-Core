@@ -48,7 +48,7 @@ namespace wan24.Core
         /// <summary>
         /// Mappings
         /// </summary>
-        protected readonly OrderedDictionary<string, MapperInfo> Mappings = [];
+        protected readonly FreezableOrderedDictionary<string, MapperInfo> Mappings = [];
         /// <summary>
         /// Source object type
         /// </summary>

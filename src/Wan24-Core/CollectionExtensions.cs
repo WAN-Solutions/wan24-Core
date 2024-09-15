@@ -15,7 +15,7 @@ namespace wan24.Core
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items) => AddRange(collection, items.AsEnumerable());
+        public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items) => AddRange(collection, (IEnumerable<T>)items);
 
         /// <summary>
         /// Add items

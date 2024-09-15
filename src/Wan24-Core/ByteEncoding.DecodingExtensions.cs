@@ -16,7 +16,7 @@ namespace wan24.Core
         public static byte DecodeByte(this ReadOnlySpan<char> str, in ReadOnlyMemory<char>? charMap = null, byte[]? buffer = null, ArrayPool<byte>? pool = null)
         {
             if (str.Length != GetEncodedLength(1)) throw new ArgumentException("Invalid encoded length", nameof(str));
-            if(buffer is null)
+            if (buffer is null)
             {
                 using RentedArrayRefStruct<byte> rented = new(len: 1, pool, clean: false);
                 str.Decode(rented.Span, charMap);

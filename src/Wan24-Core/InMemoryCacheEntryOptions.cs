@@ -8,9 +8,7 @@
     /// </remarks>
     public record class InMemoryCacheEntryOptions() : ICacheEntryOptions
     {
-        /// <summary>
-        /// Item size (should be at last <c>1</c>)
-        /// </summary>
+        /// <inheritdoc/>
         public int Size { get; set; } = 1;
 
         /// <summary>

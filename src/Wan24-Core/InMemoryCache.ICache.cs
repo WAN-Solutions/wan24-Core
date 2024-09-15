@@ -67,6 +67,13 @@
             => Remove(entry as InMemoryCacheEntry<T> ?? throw new ArgumentException($"{typeof(InMemoryCacheEntry<T>)} required", nameof(entry)));
 
         /// <inheritdoc/>
+        void ICache<T>.RemoveBy(in Func<ICacheEntry<T>, bool> filter) => ReduceBy(filter, CacheEventReasons.UserAction);
+
+        /// <inheritdoc/>
+        Task ICache<T>.RemoveByAsync(Func<ICacheEntry<T>, CancellationToken, Task<bool>> filter, CancellationToken cancellationToken)
+            => ReduceByAsync(filter, CacheEventReasons.UserAction, cancellationToken);
+
+        /// <inheritdoc/>
         ICacheEntry<T>[] ICache<T>.Clear(in bool disposeItems) => Clear();
 
         /// <inheritdoc/>
