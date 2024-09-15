@@ -17,9 +17,9 @@ namespace wan24.Core
         public static bool DoesMatch(this BindingFlags flags, in ICustomAttributeProvider obj, in Type? type = null)
         {
             bool wantPublic = IsPublic(flags),
-                wantsPrivate = IsNonPublic(flags),
-                requirePublic = wantPublic && !wantsPrivate,
-                requirePrivate = wantsPrivate && !wantPublic,
+                wantPrivate = IsNonPublic(flags),
+                requirePublic = wantPublic && !wantPrivate,
+                requirePrivate = wantPrivate && !wantPublic,
                 wantStatic = obj is not Type && IsStatic(flags),
                 wantInstance = obj is not Type && IsInstance(flags),
                 requireStatic = obj is not Type && wantStatic && !wantInstance,
@@ -32,8 +32,14 @@ namespace wan24.Core
             {
                 case Type o:
                     isPublic = o.IsPublic || (o.IsDelegate() && o.IsVisible);
-                    isStatic = true;
+                    isStatic = o.GetConstructorsCached(ALL_BINDINGS).All(ci => ci.Constructor.IsStatic);
                     isProtected = o.IsNestedFamily;
+                    declaringType = o.DeclaringType;
+                    break;
+                case TypeInfoExt o:
+                    isPublic = o.Type.IsPublic || (o.Type.IsDelegate() && o.Type.IsVisible);
+                    isStatic = o.Constructors.All(ci => ci.Constructor.IsStatic);
+                    isProtected = o.Type.IsNestedFamily;
                     declaringType = o.DeclaringType;
                     break;
                 case FieldInfo o:
@@ -124,6 +130,14 @@ namespace wan24.Core
             BindingFlags res = BindingFlags.Default;
             switch (obj)
             {
+                case Type o:
+                    res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.GetConstructorsCached(ALL_BINDINGS).All(ci => ci.Constructor.IsStatic) ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
+                case TypeInfoExt o:
+                    res |= o.Type.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.Constructors.All(ci => ci.Constructor.IsStatic) ? BindingFlags.Static : BindingFlags.Instance;
+                    break;
                 case FieldInfo o:
                     res |= o.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
                     res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;

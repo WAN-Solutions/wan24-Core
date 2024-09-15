@@ -326,6 +326,16 @@ namespace wan24.Core
                 : await Type.ConstructAutoAsync(sp, usePrivate: true, param).DynamicContext();
 
         /// <summary>
+        /// Get the generic type definition
+        /// </summary>
+        /// <returns>Generic type definition</returns>
+        public TypeInfoExt? GetGenericTypeDefinition()
+        {
+            if (GenericTypeDefinition is not null || !Type.IsGenericType || !Type.IsConstructedGenericType) return GenericTypeDefinition;
+            return GenericTypeDefinition = From(Type.GetGenericTypeDefinition());
+        }
+
+        /// <summary>
         /// Construct a generic type
         /// </summary>
         /// <param name="genericArguments">Generic arguments</param>
@@ -339,6 +349,7 @@ namespace wan24.Core
             if (GenericTypes.TryGetValue(key, out TypeInfoExt? res)) return res;
             res = From(Type.MakeGenericType(genericArguments));
             res._GenericArguments ??= [.. genericArguments];
+            res.GenericTypeDefinition = this;
             GenericTypes.TryAdd(key, res);
             return res;
         }

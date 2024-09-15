@@ -201,12 +201,12 @@ namespace wan24.Core
                 if (valueOffset == 0)
                 {
                     // Empty value
-                    argsBuffer[argsOffset] = string.Empty;
+                    argsBuffer.Span[argsOffset] = string.Empty;
                 }
                 else
                 {
                     // Raw or JSON encoded value
-                    argsBuffer[argsOffset] = isQuoted
+                    argsBuffer.Span[argsOffset] = isQuoted
                         ? JsonHelper.Decode<string>($"\"{new string(valueBuffer.Span[..valueOffset])}\"")
                             ?? throw new InvalidDataException($"Failed to JSON decode quoted value ending at #{i} (\"{new string(valueBuffer.Span[..valueOffset])}\")")
                         : new string(valueBuffer.Span[..valueOffset]);

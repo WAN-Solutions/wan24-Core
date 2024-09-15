@@ -90,6 +90,19 @@
         /// <returns>If removed</returns>
         bool Remove(in ICacheEntry<T> entry);
         /// <summary>
+        /// Remove entries by a filter
+        /// </summary>
+        /// <param name="filter">Filter (needs to return if to remove the entry)</param>
+        /// <returns>Removed entries</returns>
+        void RemoveBy(in Func<ICacheEntry<T>, bool> filter);
+        /// <summary>
+        /// Remove entries by a filter
+        /// </summary>
+        /// <param name="filter">Filter (needs to return if to remove the entry)</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Removed entries</returns>
+        Task RemoveByAsync(Func<ICacheEntry<T>, CancellationToken, Task<bool>> filter, CancellationToken cancellationToken = default);
+        /// <summary>
         /// Clear the cache
         /// </summary>
         /// <param name="disposeItems">Dispose the items?</param>

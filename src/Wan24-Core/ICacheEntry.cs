@@ -34,5 +34,14 @@
         /// Options
         /// </summary>
         ICacheEntryOptions? Options { get; }
+        /// <summary>
+        /// Called from the cache when the entry was removed
+        /// </summary>
+        /// <param name="reason">Reason</param>
+        void OnRemoved(CacheEventReasons reason = CacheEventReasons.UserAction);
+        /// <summary>
+        /// Raised when the entry was removed from the cache
+        /// </summary>
+        event ICache<T>.CacheEntryEvent_Delegate? OnEntryRemoved;
     }
 }

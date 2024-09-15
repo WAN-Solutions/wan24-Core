@@ -92,11 +92,11 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(typeof(ReflectionExtensions_Tests).GetField(nameof(TestField))!.IsNullable());
             Assert.IsFalse(typeof(ReflectionExtensions_Tests).GetField(nameof(TestField2))!.IsNullable());
             // Nullable method return value and parameters
-            MethodInfo mi = typeof(ReflectionExtensions_Tests).GetMethod(nameof(TestMethod))!;
+            MethodInfoExt mi = typeof(ReflectionExtensions_Tests).GetMethodCached(nameof(TestMethod))!;
             Assert.IsTrue(mi.IsNullable());
-            Assert.IsTrue(mi.ReturnParameter.IsNullable());
-            Assert.IsTrue(mi.GetParameters()[0].IsNullable());
-            Assert.IsFalse(mi.GetParameters()[1].IsNullable());
+            Assert.IsTrue(mi.Method.ReturnParameter.IsNullable());
+            Assert.IsTrue(mi[0].IsNullable());
+            Assert.IsFalse(mi[1].IsNullable());
         }
 
         [TestMethod]

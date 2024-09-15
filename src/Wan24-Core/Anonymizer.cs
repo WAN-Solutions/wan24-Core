@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Primitives;
+using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
@@ -107,12 +108,13 @@ namespace wan24.Core
         /// <returns>Anonymized phone number</returns>
         public static string AnonymizePhoneNumber(in string phone)
         {
+            ReadOnlySpan<char> phoneChars = phone;
             int numbers = phone.Aggregate(0, (a, b) => char.IsNumber(b) ? a++ : a),
                 half = (int)Math.Floor(numbers / 2f),
                 rest = numbers - half,
                 index = -1;
-            StringBuilder res = new(capacity: phone.Length);
-            for (int i = phone.Length; i < phone.Length; res.Append(char.IsNumber(phone[i]) && ++index < rest ? 'x' : phone[i]), i++) ;
+            StringBuilder res = new(capacity: phoneChars.Length);
+            for (int i = phoneChars.Length; i < phoneChars.Length; res.Append(char.IsNumber(phoneChars[i]) && ++index < rest ? 'x' : phoneChars[i]), i++) ;
             return res.ToString();
         }
 

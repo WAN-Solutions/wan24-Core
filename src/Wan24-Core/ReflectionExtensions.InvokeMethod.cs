@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,7 +15,17 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
-        public static object? InvokeFast(this MethodInfo mi, in object? obj, params object?[] param) => CreateMethodInvoker(mi)(obj, param);
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object? InvokeFast(this MethodInfo mi, in object? obj, params object?[] param)
+        {
+            MethodInfoExt method = MethodInfoExt.From(mi);
+            return method.Invoker is null
+                ? method.Method.Invoke(obj, param)
+                : method.Invoker(obj, param);
+        }
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -24,6 +35,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, params object?[] param)
             => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param));
 
@@ -36,6 +50,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, in IServiceProvider serviceProvider, params object?[] param)
             => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param, serviceProvider));
 
@@ -48,6 +65,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? InvokeAuto<T>(this MethodInfo mi, in object? obj, params object?[] param) => (T?)InvokeAuto(mi, obj, param);
 
         /// <summary>
@@ -60,6 +80,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? InvokeAuto<T>(this MethodInfo mi, in object? obj, in IServiceProvider serviceProvider, params object?[] param)
             => (T?)InvokeAuto(mi, obj, serviceProvider, param);
 
@@ -70,6 +93,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, params object?[] param)
         {
             await Task.Yield();
@@ -85,6 +112,10 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
@@ -100,6 +131,10 @@ namespace wan24.Core
         /// <param name="serviceProvider">Service provider</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IAsyncServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
@@ -116,6 +151,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> InvokeAutoAsync<T>(this MethodInfo mi, object? obj, params object?[] param)
             => (T?)await InvokeAutoAsync(mi, obj, param).DynamicContext();
 
@@ -129,6 +167,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> InvokeAutoAsync<T>(this MethodInfo mi, object? obj, IServiceProvider serviceProvider, params object?[] param)
             => (T?)await InvokeAutoAsync(mi, obj, serviceProvider, param).DynamicContext();
 
@@ -142,6 +183,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> InvokeAutoAsync<T>(this MethodInfo mi, object? obj, IAsyncServiceProvider serviceProvider, params object?[] param)
             => (T?)await InvokeAutoAsync(mi, obj, serviceProvider, param).DynamicContext();
 
@@ -150,6 +194,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mi">Method</param>
         /// <returns>If a method invoker can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreateMethodInvoker(this MethodInfo mi)
             => !mi.IsSpecialName &&
                 (
@@ -163,8 +211,8 @@ namespace wan24.Core
                     !mi.IsGenericMethod ||
                     mi.IsConstructedGenericMethod
                 ) &&
-                !mi.GetParametersCached().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer) &&
-                !mi.ReturnType.IsByRef && !mi.ReturnType.IsByRefLike && !mi.ReturnType.IsPointer;
+                !mi.GetParametersCached().Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
+                !mi.ReturnType.IsByRef && !mi.ReturnType.GetRealType().IsByRefLike && !mi.ReturnType.GetRealType().IsPointer;
 
 
         /// <summary>
@@ -183,7 +231,7 @@ namespace wan24.Core
             ParameterInfo[] pis = [..mi.GetParametersCached()];
             Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
-                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType);
+                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType.GetRealType());
             if (mi.IsStatic)
             {
                 if (mi.ReturnType == typeof(void))
@@ -224,9 +272,11 @@ namespace wan24.Core
                 else
                 {
                     Func<object?, object?[], object?> lambda = Expression.Lambda<Func<object?, object?[], object?>>(
-                        Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
-                        objArg,
-                        paramsArg
+                            mi.ReturnType.GetRealType().IsValueType && mi.IsNullable()
+                                ? Expression.Convert(Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), mi.ReturnType.GetRealType()), typeof(object))
+                                : Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
+                            objArg,
+                            paramsArg
                         ).CompileExt();
                     res = (obj, param) => lambda(obj, param);
                 }

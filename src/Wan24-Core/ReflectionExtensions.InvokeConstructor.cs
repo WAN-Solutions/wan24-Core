@@ -14,8 +14,18 @@ namespace wan24.Core
         /// <param name="ci">Constructor</param>
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param) => ci.CreateConstructorInvoker()(ci.GetParametersCached().GetDiObjects(param));
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object InvokeAuto(this ConstructorInfo ci, params object?[] param)
+        {
+            ConstructorInfoExt constructor = ConstructorInfoExt.From(ci);
+            param = constructor.Parameters.GetDiObjects(param);
+            return constructor.Invoker is null
+                ? constructor.Constructor.Invoke( param)
+                : constructor.Invoker(param);
+        }
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -25,6 +35,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param)
              => ci.CreateConstructorInvoker()(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
 
@@ -36,6 +49,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T InvokeAuto<T>(this ConstructorInfo ci, params object?[] param) => (T)InvokeAuto(ci, param);
 
         /// <summary>
@@ -47,6 +63,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T InvokeAuto<T>(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param) => (T)InvokeAuto(ci, serviceProvider, param);
 
         /// <summary>
@@ -57,6 +76,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
             => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext());
 
@@ -69,6 +91,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T> InvokeAutoAsync<T>(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
             => (T)await InvokeAutoAsync(ci, serviceProvider, param).DynamicContext();
 
@@ -80,6 +105,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object ConstructAuto(this Type type, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, out _, usePrivate, param);
 
@@ -92,6 +120,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object ConstructAuto(this Type type, in IServiceProvider serviceProvider, in bool usePrivate = false, params object?[] param)
             => ConstructAuto(type, serviceProvider, out _, usePrivate, param);
 
@@ -165,6 +196,9 @@ namespace wan24.Core
         /// <param name="param">Parameters</param>
         /// <returns>Instance</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<object> ConstructInstanceAutoAsync(
             this Type type,
             IAsyncServiceProvider serviceProvider,
@@ -209,6 +243,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ci">Constructor</param>
         /// <returns>If a constructor invoker can be created</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool CanCreateConstructorInvoker(this ConstructorInfo ci)
             => ci.DeclaringType is not null &&
                 !ci.IsStatic &&
@@ -220,7 +258,8 @@ namespace wan24.Core
                         !ci.ContainsGenericParameters
                     )
                 ) &&
-                !ci.GetParameters().Any(p => p.ParameterType.IsByRef || p.ParameterType.IsByRefLike || p.IsOut || p.ParameterType.IsPointer);
+                !ci.GetParametersCached().Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
+                !(ci.DeclaringType?.IsByRefLike ?? false);
 
         /// <summary>
         /// Create a delegate for type constructor invocation
@@ -237,7 +276,7 @@ namespace wan24.Core
             ParameterInfo[] pis = [..ci.GetParametersCached()];
             Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
-                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType);
+                parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType.GetRealType());
             res = Expression.Lambda<Func<object?[], object>>(Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object)), paramsArg).CompileExt();
             ConstructorInvokeDelegateCache.TryAdd(hc, res);
             return res;

@@ -64,6 +64,10 @@ namespace wan24.Core
         /// Accessed event
         /// </summary>
         private EventInfo? _AccessedEvent = null;
+        /// <summary>
+        /// Generic method definition
+        /// </summary>
+        private MethodInfoExt? GenericMethodDefinition = null;
 
         /// <summary>
         /// Get the parameter at the specified index
@@ -285,10 +289,9 @@ namespace wan24.Core
             GenericMethodKey key = new(GetHashCode(), genericArguments);
             if (GenericMethods.TryGetValue(key, out MethodInfoExt? res)) return res;
             MethodInfo mi = Method.MakeGenericMethod(genericArguments);
-            res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null)
-            {
-                _GenericArguments = [.. genericArguments]
-            };
+            res = From(mi);
+            res._GenericArguments = [.. genericArguments];
+            res.GenericMethodDefinition = this;
             GenericMethods.TryAdd(key, res);
             return res;
         }
@@ -312,6 +315,16 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public ImmutableArray<Type> GetGenericArguments() => _GenericArguments ??= Method.IsGenericMethod ? ReflectionExtensions.GetCachedGenericArguments(Method) : [];
+
+        /// <summary>
+        /// Get the generic method definition
+        /// </summary>
+        /// <returns>Generic method definition</returns>
+        public MethodInfoExt? GetGenericMethodDefinition()
+        {
+            if (GenericMethodDefinition is not null || !Method.IsGenericMethod || !Method.IsConstructedGenericMethod) return GenericMethodDefinition;
+            return GenericMethodDefinition = From(Method.GetGenericMethodDefinition());
+        }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
