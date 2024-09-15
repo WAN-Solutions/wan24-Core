@@ -1,15 +1,24 @@
 ﻿using Microsoft.Extensions.Primitives;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Runtime;
-using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Change token
     /// </summary>
-    public class ChangeToken : IChangeToken, INotifyPropertyChanged
+    public class ChangeToken : IChangeToken, INotifyPropertyChanged, INotifyPropertyChanging
     {
+        /// <summary>
+        /// <see cref="PropertyChangedEventArgs"/> cache (key is the property name)
+        /// </summary>
+        protected static readonly ConcurrentDictionary<string, PropertyChangedEventArgs> PropertyChangedEventArgsCache = [];
+        /// <summary>
+        /// <see cref="PropertyChangingEventArgs"/> cache (key is the property name)
+        /// </summary>
+        protected static readonly ConcurrentDictionary<string, PropertyChangingEventArgs> PropertyChangingEventArgsCache = [];
+
         /// <summary>
         /// Registered callbacks
         /// </summary>
@@ -81,7 +90,7 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Set a new property value (will invoke callbacks and call <see cref="RaisePropertyChanged(in string?)"/>)
+        /// Set a new property value (will invoke callbacks and call <see cref="RaisePropertyChanged(string?)"/>)
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="field">Internal property field</param>
@@ -89,6 +98,7 @@ namespace wan24.Core
         /// <param name="propertyName">Property name</param>
         protected virtual void SetNewPropertyValue<T>(ref T field, in T value, in string propertyName)
         {
+            RaisePropertyChanging(propertyName);
             field = value;
             InvokeCallbacks();
             RaisePropertyChanged(propertyName);
@@ -100,13 +110,29 @@ namespace wan24.Core
         /// Raise the <see cref="PropertyChanged"/> event
         /// </summary>
         /// <param name="name">Name of the changed property</param>
-        public virtual void RaisePropertyChanged(in string? name = null) => RaisePropertyChanged(this, new PropertyChangedEventArgs(name));
+        public virtual void RaisePropertyChanged(string? name = null)
+            => RaisePropertyChanged(this, PropertyChangedEventArgsCache.GetOrAdd(name ?? string.Empty, key => new PropertyChangedEventArgs(name)));
         /// <summary>
         /// Raise the <see cref="PropertyChanged"/> event
         /// </summary>
         /// <param name="sender">Sender</param>
         /// <param name="e">Arguments</param>
         protected void RaisePropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(sender, e);
+
+        /// <inheritdoc/>
+        public event PropertyChangingEventHandler? PropertyChanging;
+        /// <summary>
+        /// Raise the <see cref="PropertyChanging"/> event
+        /// </summary>
+        /// <param name="name">Name of the changed property</param>
+        public virtual void RaisePropertyChanging(string? name = null)
+            => RaisePropertyChanging(this, PropertyChangingEventArgsCache.GetOrAdd(name ?? string.Empty, key => new PropertyChangingEventArgs(name)));
+        /// <summary>
+        /// Raise the <see cref="PropertyChanging"/> event
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
+        protected void RaisePropertyChanging(object sender, PropertyChangingEventArgs e) => PropertyChanging?.Invoke(sender, e);
 
         /// <summary>
         /// Cast as changed-flag
@@ -156,16 +182,6 @@ namespace wan24.Core
                 Callbacks.Add(res);
             }
             return res;
-        }
-
-        /// <summary>
-        /// Dummy object notification subscription
-        /// </summary>
-        [StructLayout(LayoutKind.Sequential)]
-        protected readonly record struct DummySubscription : IDisposable
-        {
-            /// <inheritdoc/>
-            public readonly void Dispose() { }
         }
     }
 }

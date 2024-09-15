@@ -11,6 +11,10 @@
     public class AutoDisposer<T>(in T obj) : DisposableBase()
     {
         /// <summary>
+        /// No usage event (raised when the <see cref="Object"/> isn't in use)
+        /// </summary>
+        protected readonly ResetEvent NoUsageEvent = new(initialState: true);
+        /// <summary>
         /// <see cref="Object"/> usage count
         /// </summary>
         protected volatile int _UsageCount = 0;
@@ -23,6 +27,11 @@
         /// Hosted object
         /// </summary>
         public T Object { get; } = obj ?? throw new ArgumentNullException(nameof(obj));
+
+        /// <summary>
+        /// If only exclusive object usage is allowed
+        /// </summary>
+        public bool OnlyExclusiveObjectUsage { get; init; }
 
         /// <summary>
         /// <see cref="Object"/> usage count
@@ -80,6 +89,8 @@
         public virtual Context UseObject(in string? usage = null)
         {
             EnsureUndisposed();
+            if (OnlyExclusiveObjectUsage) return UseObjectExclusive(usage);
+            NoUsageEvent.Reset();
             if (_ShouldDispose)
                 throw new InvalidOperationException();
             _UsageCount++;
@@ -94,11 +105,57 @@
         /// <summary>
         /// Use the <see cref="Object"/>
         /// </summary>
+        /// <param name="usage">Usage</param>
         /// <returns>Usage context (don't forget to dispose to release the <see cref="Object"/> after use!)</returns>
         /// <exception cref="InvalidOperationException">Should be disposed</exception>
         public virtual async Task<Context> UseObjectAsync(string? usage = null)
         {
             EnsureUndisposed();
+            if (OnlyExclusiveObjectUsage) return await UseObjectExclusiveAsync(usage).DynamicContext();
+            await NoUsageEvent.ResetAsync().DynamicContext();
+            if (_ShouldDispose)
+                throw new InvalidOperationException();
+            _UsageCount++;
+            if (_ShouldDispose && --_UsageCount < 1)
+                await DisposeAsync().DynamicContext();
+            EnsureUndisposed();
+            Context res = new(this, usage);
+            ActiveContexts.Add(res);
+            return res;
+        }
+
+        /// <summary>
+        /// Use the <see cref="Object"/> exclusive
+        /// </summary>
+        /// <param name="usage">Usage</param>
+        /// <returns>Usage context (don't forget to dispose to release the <see cref="Object"/> after use!)</returns>
+        /// <exception cref="InvalidOperationException">Should be disposed</exception>
+        public virtual Context UseObjectExclusive(in string? usage = null)
+        {
+            EnsureUndisposed();
+            NoUsageEvent.WaitAndReset();
+            if (_ShouldDispose)
+                throw new InvalidOperationException();
+            _UsageCount++;
+            if (_ShouldDispose && --_UsageCount < 1)
+                Dispose();
+            EnsureUndisposed();
+            Context res = new(this, usage);
+            ActiveContexts.Add(res);
+            return res;
+        }
+
+        /// <summary>
+        /// Use the <see cref="Object"/> exclusive
+        /// </summary>
+        /// <param name="usage">Usage</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Usage context (don't forget to dispose to release the <see cref="Object"/> after use!)</returns>
+        /// <exception cref="InvalidOperationException">Should be disposed</exception>
+        public virtual async Task<Context> UseObjectExclusiveAsync(string? usage = null, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await NoUsageEvent.WaitAndResetAsync(cancellationToken).DynamicContext();
             if (_ShouldDispose)
                 throw new InvalidOperationException();
             _UsageCount++;
@@ -111,10 +168,18 @@
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => Object.TryDispose();
+        protected override void Dispose(bool disposing)
+        {
+            NoUsageEvent.Dispose();
+            Object.TryDispose();
+        }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await Object.TryDisposeAsync().DynamicContext();
+        protected override async Task DisposeCore()
+        {
+            await NoUsageEvent.DisposeAsync().DynamicContext();
+            await Object.TryDisposeAsync().DynamicContext();
+        }
 
         /// <summary>
         /// Cast as object
@@ -151,16 +216,24 @@
             protected override void Dispose(bool disposing)
             {
                 Disposer.ActiveContexts.Remove(this);
-                if (--Disposer._UsageCount < 1 && Disposer._ShouldDispose)
-                    Disposer.Dispose();
+                if (--Disposer._UsageCount < 1)
+                {
+                    Disposer.NoUsageEvent.Set();
+                    if (Disposer._ShouldDispose)
+                        Disposer.Dispose();
+                }
             }
 
             /// <inheritdoc/>
             protected override async Task DisposeCore()
             {
                 Disposer.ActiveContexts.Remove(this);
-                if (--Disposer._UsageCount < 1 && Disposer._ShouldDispose)
-                    await Disposer.DisposeAsync().DynamicContext();
+                if (--Disposer._UsageCount < 1)
+                {
+                    await Disposer.NoUsageEvent.SetAsync().DynamicContext();
+                    if (Disposer._ShouldDispose)
+                        await Disposer.DisposeAsync().DynamicContext();
+                }
             }
 
             /// <summary>

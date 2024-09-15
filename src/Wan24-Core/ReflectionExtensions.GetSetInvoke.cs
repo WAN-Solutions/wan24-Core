@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -12,6 +14,10 @@ namespace wan24.Core
         /// <param name="method">Method name (may be static also)</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? InvokeReflected(this object obj, string method, params object?[] param)
         {
             if (
@@ -31,6 +37,10 @@ namespace wan24.Core
         /// <param name="genericArgs">Generic arguments</param>
         /// <param name="param">Parameters</param>
         /// <returns>Return value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? InvokeReflectedGeneric(this object obj, string method, Type[] genericArgs, params object?[] param)
         {
             if (
@@ -48,6 +58,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="fieldOrProperty">Field or property name (may be static)</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? GetValueReflected(this object obj, string fieldOrProperty)
         {
             Type type = obj.GetType();
@@ -70,6 +84,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="fieldOrProperty">Field or property name (may be static)</param>
         /// <param name="value">Value to set</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void SetValueReflected(this object obj, string fieldOrProperty, object? value)
         {
             Type type = obj.GetType();

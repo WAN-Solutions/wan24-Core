@@ -1,4 +1,5 @@
 ﻿using System.Collections.Frozen;
+using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -143,6 +144,31 @@ namespace wan24.Core
         public static IEnumerable<T> Enumerate<T>(this IList<T> arr, Func<T, bool> filter)
         {
             for (int i = 0, len = arr.Count; i < len; i++)
+                if (filter(arr[i]))
+                    yield return arr[i];
+        }
+
+        /// <summary>
+        /// Enumerate
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <returns>Items</returns>
+        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr)
+        {
+            for (int i = 0, len = arr.Length; i < len; i++) yield return arr[i];
+        }
+
+        /// <summary>
+        /// Enumerate
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="filter">Filter</param>
+        /// <returns>Items</returns>
+        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr, Func<T, bool> filter)
+        {
+            for (int i = 0, len = arr.Length; i < len; i++)
                 if (filter(arr[i]))
                     yield return arr[i];
         }

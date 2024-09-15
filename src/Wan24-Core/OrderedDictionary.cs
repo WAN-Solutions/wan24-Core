@@ -67,10 +67,10 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public ICollection<tKey> Keys => Items.Select(i => i.Key).ToArray();
+        public virtual ICollection<tKey> Keys => Items.Select(i => i.Key).ToArray();
 
         /// <inheritdoc/>
-        public ICollection<tValue> Values => Items.Select(i => i.Value).ToArray();
+        public virtual ICollection<tValue> Values => Items.Select(i => i.Value).ToArray();
 
         /// <inheritdoc/>
         ICollection IDictionary.Keys => Items.Select(i => i.Key).ToArray();
@@ -85,7 +85,7 @@ namespace wan24.Core
         IEnumerable<tValue> IReadOnlyDictionary<tKey, tValue>.Values => Items.Select(i => i.Value).ToArray();
 
         /// <inheritdoc/>
-        public int Count => Items.Count;
+        public virtual int Count => Items.Count;
 
         /// <inheritdoc/>
         public virtual bool IsReadOnly { get; protected set; }
@@ -100,7 +100,7 @@ namespace wan24.Core
         public virtual object SyncRoot => this;
 
         /// <inheritdoc/>
-        public tValue this[tKey key]
+        public virtual tValue this[tKey key]
         {
             get => Items[EnsureExistingKey(key)].Value;
             set
@@ -122,11 +122,12 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public tValue this[int index]
+        public virtual tValue this[int index]
         {
             get => Items[EnsureValidIndex(index)].Value;
             set
             {
+                EnsureWritable();
                 index = EnsureValidIndex(index);
                 KeyValuePair<tKey, tValue> prev = Items[index];
                 Items[index] = new(Items[index].Key, value);
@@ -135,7 +136,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public object? this[object key]
+        public virtual object? this[object key]
         {
             get => this[(tKey)EnsureValidKey(key)];
             set
@@ -217,7 +218,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void Add(object key, object? value)
+        public virtual void Add(object key, object? value)
         {
             EnsureWritable();
             tKey k = (tKey)EnsureValidKey(key);
@@ -227,7 +228,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void Insert(int index, tKey key, tValue value)
+        public virtual void Insert(int index, tKey key, tValue value)
         {
             EnsureWritable();
             if (index < 0 || index > Items.Count) throw new IndexOutOfRangeException();
@@ -244,14 +245,14 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void Insert(int index, object key, object? value)
+        public virtual void Insert(int index, object key, object? value)
         {
             EnsureWritable();
             Insert(EnsureValidIndex(index), (tKey)EnsureValidKey(key), (tValue)EnsureValidValue(value)!);
         }
 
         /// <inheritdoc/>
-        public void ReplaceAt(int index, tKey key, tValue value)
+        public virtual void ReplaceAt(int index, tKey key, tValue value)
         {
             EnsureWritable();
             KeyValuePair<tKey, tValue> prev = Items[index];
@@ -261,36 +262,36 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool Contains(KeyValuePair<tKey, tValue> item)
+        public virtual bool Contains(KeyValuePair<tKey, tValue> item)
         {
             int index = IndexOfKey(item.Key);
             return index != -1 && IsEqual(Items[index].Value, item.Value);
         }
 
         /// <inheritdoc/>
-        public bool Contains(object key) => key is not null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
+        public virtual bool Contains(object key) => key is not null && typeof(tKey).IsAssignableFrom(key.GetType()) && ContainsKey((tKey)key);
 
         /// <inheritdoc/>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public bool ContainsKey(tKey key) => IndexOfKey(key) != -1;
+        public virtual bool ContainsKey(tKey key) => IndexOfKey(key) != -1;
 
         /// <inheritdoc/>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
+        public virtual bool ContainsValue(tValue value) => IndexOfValue(value) != -1;
 
         /// <inheritdoc/>
-        public KeyValuePair<tKey, tValue> GetAt(int index)
+        public virtual KeyValuePair<tKey, tValue> GetAt(int index)
         {
             if (index < 0 || index >= Items.Count) throw new ArgumentOutOfRangeException(nameof(index));
             return Items[index];
         }
 
         /// <inheritdoc/>
-        public int IndexOfKey(tKey key)
+        public virtual int IndexOfKey(tKey key)
         {
             for (int i = 0; i < Items.Count; i++)
                 if (IsEqual(Items[i].Key, key))
@@ -299,7 +300,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public int IndexOfValue(tValue value)
+        public virtual int IndexOfValue(tValue value)
         {
             for (int i = 0; i < Items.Count; i++)
                 if (IsEqual(Items[i].Value, value))
@@ -328,7 +329,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void Remove(object key)
+        public virtual void Remove(object key)
         {
             EnsureWritable();
             if (!Remove((tKey)EnsureValidKey(key))) throw new KeyNotFoundException();
@@ -353,7 +354,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void CopyTo(KeyValuePair<tKey, tValue>[] array, int arrayIndex)
+        public virtual void CopyTo(KeyValuePair<tKey, tValue>[] array, int arrayIndex)
         {
             if (arrayIndex < 0 || arrayIndex > array.Length) throw new IndexOutOfRangeException();
             if (array.Length - arrayIndex < Items.Count) throw new OverflowException();
@@ -361,7 +362,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void CopyTo(Array array, int index)
+        public virtual void CopyTo(Array array, int index)
         {
             if (index < 0 || index > array.Length) throw new IndexOutOfRangeException();
             if (array.Length - index < Items.Count) throw new OverflowException();
@@ -369,7 +370,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool TryGetValue(tKey key, [MaybeNullWhen(false)] out tValue value)
+        public virtual bool TryGetValue(tKey key, [MaybeNullWhen(false)] out tValue value)
         {
             value = default;
             int index = IndexOfKey(key);
@@ -379,10 +380,10 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public OrderedDictionary<tKey, tValue> AsReadOnly() => new(this);
+        public virtual OrderedDictionary<tKey, tValue> AsReadOnly() => new(this);
 
         /// <inheritdoc/>
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             ArgumentNullException.ThrowIfNull(info);
             info.AddValue(nameof(Items.Capacity), Items.Capacity);
@@ -392,7 +393,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public void OnDeserialization(object? sender)
+        public virtual void OnDeserialization(object? sender)
         {
             if (Info is null) throw new SerializationException("No serialization info");
             Items.Capacity = (int)(Info.GetValue(nameof(Items.Capacity), typeof(int)) ?? throw new SerializationException($"Failed to deserialize {nameof(Items.Capacity)} ({typeof(int)})"));
@@ -405,7 +406,7 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public IEnumerator<KeyValuePair<tKey, tValue>> GetEnumerator() => Items.GetEnumerator();
+        public virtual IEnumerator<KeyValuePair<tKey, tValue>> GetEnumerator() => Items.GetEnumerator();
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => Items.GetEnumerator();
@@ -424,7 +425,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected bool IsEqual(object? a, object? b) => (a is null && b is null) || (a is not null && a.Equals(b)) || (b is not null && b.Equals(a));
+        protected virtual bool IsEqual(object? a, object? b) => (a is null && b is null) || (a is not null && a.Equals(b)) || (b is not null && b.Equals(a));
 
         /// <summary>
         /// Ensure a valid key
@@ -435,7 +436,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected object EnsureValidKey(object key)
+        protected virtual object EnsureValidKey(object key)
             => key is null || !typeof(tKey).IsAssignableFrom(key.GetType()) ? throw new ArgumentException("Invalid key", nameof(key)) : key;
 
         /// <summary>
@@ -447,7 +448,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected object? EnsureValidValue(object? value)
+        protected virtual object? EnsureValidValue(object? value)
             => value is not null && !typeof(tValue).IsAssignableFrom(value.GetType()) ? throw new ArgumentException("Invalid value", nameof(value)) : value;
 
         /// <summary>
@@ -459,7 +460,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected int EnsureValidIndex(int index) => index < 0 || index >= Items.Count ? throw new IndexOutOfRangeException() : index;
+        protected virtual int EnsureValidIndex(int index) => index < 0 || index >= Items.Count ? throw new IndexOutOfRangeException() : index;
 
         /// <summary>
         /// Ensure writable
@@ -468,7 +469,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected void EnsureWritable()
+        protected virtual void EnsureWritable()
         {
             if (IsReadOnly) throw new NotSupportedException();
         }
@@ -482,7 +483,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected tKey EnsureFreshKey(tKey key) => IndexOfKey(key) == -1 ? key : throw new ArgumentException("Key exists", nameof(key));
+        protected virtual tKey EnsureFreshKey(tKey key) => IndexOfKey(key) == -1 ? key : throw new ArgumentException("Key exists", nameof(key));
 
         /// <summary>
         /// Ensure an existing key
@@ -493,7 +494,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        protected int EnsureExistingKey(tKey key)
+        protected virtual int EnsureExistingKey(tKey key)
         {
             int index = IndexOfKey(key);
             if (index == -1) throw new KeyNotFoundException();

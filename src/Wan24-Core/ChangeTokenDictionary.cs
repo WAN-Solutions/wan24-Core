@@ -18,7 +18,6 @@ namespace wan24.Core
         IDictionary, 
         IReadOnlyDictionary<tKey, tValue>, 
         INotifyCollectionChanged,
-        INotifyPropertyChanged,
         IObserver<tValue>,
         IDisposableObject
         where tKey : notnull
@@ -330,7 +329,7 @@ namespace wan24.Core
         /// <returns>Subscription</returns>
         private IDisposable SubscribeTo(tKey key, tValue value)
         {
-            if (!ObserveItems) return default(DummySubscription);
+            if (!ObserveItems) return DummyDisposable.Instance;
             IDisposable res = value is IObservable<tValue> observable
                 ? observable.Subscribe(this)
                 : (value as IChangeToken)?.RegisterChangeCallback(
@@ -340,9 +339,23 @@ namespace wan24.Core
                         RaisePropertyChanged(new(key, value));
                     },
                     state: null
-                    ) ?? default(DummySubscription);
+                    ) ?? DummyDisposable.Instance;
             if (value is INotifyPropertyChanged npc) npc.PropertyChanged += HandlePropertyChanged;
+            if (value is INotifyPropertyChanging npci) npci.PropertyChanging += HandlePropertyChanging;
             return res;
+        }
+
+        /// <summary>
+        /// Handle an item property changing
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
+        private void HandlePropertyChanging(object? sender, PropertyChangingEventArgs e)
+        {
+            if (!Disposable.EnsureNotDisposed(throwException: false)) return;
+            if (IgnoreUnnamedPropertyNotifications && e.PropertyName is null) return;
+            if (sender is not tValue value || KeyOfValue(value) is not tKey key) return;
+            RaisePropertyChanging(new KeyValuePair<tKey, tValue>(key, value), e);
         }
 
         /// <summary>
@@ -365,7 +378,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         private void UnsubscribeFrom(in tValue value)
         {
-            if (ObserveItems && value is INotifyPropertyChanged npc) npc.PropertyChanged -= HandlePropertyChanged;
+            if (!ObserveItems) return;
+            if (value is INotifyPropertyChanged npc) npc.PropertyChanged -= HandlePropertyChanged;
+            if (value is INotifyPropertyChanging npci) npci.PropertyChanging -= HandlePropertyChanging;
         }
 
         /// <inheritdoc/>
@@ -383,7 +398,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="item">Affected item</param>
         /// <param name="name">Name of the changed property</param>
-        private void RaisePropertyChanged(in KeyValuePair<tKey, tValue> item, in string? name = null) => RaisePropertyChanged(item, new PropertyChangedEventArgs(name));
+        private void RaisePropertyChanged(in KeyValuePair<tKey, tValue> item, string? name = null)
+            => RaisePropertyChanged(item, PropertyChangedEventArgsCache.GetOrAdd(name ?? string.Empty, key => new PropertyChangedEventArgs(name)));
 
         /// <inheritdoc/>
         public event IDisposableObject.Dispose_Delegate? OnDisposing

@@ -97,7 +97,7 @@ namespace wan24.Core
             return new()
             {
                 Method = mi.Name,
-                Parameters = [..CreateParameterInfo(mi.GetParameters())],
+                Parameters = [.. CreateParameterInfo([..mi.GetParametersCached()])],
                 MultiAction = attr.MultiAction,
                 IsDefault = attr.IsDefault,
                 Title = mi.GetDisplayText(),
@@ -121,7 +121,7 @@ namespace wan24.Core
             return template with
             {
                 Method = mi.Name,
-                Parameters = [.. CreateParameterInfo(mi.GetParameters())],
+                Parameters = [.. CreateParameterInfo([..mi.GetParametersCached()])],
                 MultiAction = attr.MultiAction,
                 IsDefault = attr.IsDefault,
                 Title = mi.GetDisplayText(),

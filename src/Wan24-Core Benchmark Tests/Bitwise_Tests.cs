@@ -1,4 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using wan24.Core;
 

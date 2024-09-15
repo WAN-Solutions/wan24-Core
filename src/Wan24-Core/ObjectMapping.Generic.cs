@@ -40,12 +40,14 @@ namespace wan24.Core
                 _CompiledMapping = value;
                 HasCompiledMapping = value is not null;
                 CompiledObjectMapping = value;
+                if (value is null) Mappings.Unfreeze();
             }
         }
 
         /// <inheritdoc/>
         public override ObjectMapping AddMapping(in string sourcePropertyName)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
@@ -82,6 +84,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -113,6 +116,7 @@ namespace wan24.Core
 #endif
         public virtual ObjectMapping<tSource, tTarget> AddMapping(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             AddMapping<tSource, tTarget>(sourcePropertyName, mapper);
             return this;
         }
@@ -128,6 +132,7 @@ namespace wan24.Core
 #endif
         public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression<Action<tSource, tTarget>> mapper)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
                 SourceProperty: null,
                 TargetProperty: null,
@@ -143,6 +148,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override ObjectMapping AddAsyncMapping(in string sourcePropertyName)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
@@ -179,6 +185,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public override ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -219,6 +226,7 @@ namespace wan24.Core
 #endif
         public virtual ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
         {
+            if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             AddAsyncMapping<tSource, tTarget>(sourcePropertyName, mapper);
             return this;
         }
@@ -314,6 +322,7 @@ namespace wan24.Core
             if (ObjectValidator is not null) expressions[++i] = ValidateObjectExpression;
             CompiledMapping = Expression.Lambda<Action<tSource, tTarget>>(len > 1 ? Expression.Block(expressions) : expressions[0], GenericSourceParameter, GenericTargetParameter)
                 .CompileExt();
+            Mappings.Freeze();
             return this;
         }
     }

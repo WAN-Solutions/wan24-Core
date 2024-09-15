@@ -108,6 +108,7 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">OrderedDictionary&lt;tKey, tValue&gt;</span></div>
+      <div class="level2"><a class="xref" href="wan24.Core.FreezableOrderedDictionary-2.html">FreezableOrderedDictionary&lt;tKey, tValue&gt;</a></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
@@ -444,7 +445,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual int Count { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -571,7 +572,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public tValue this[int index] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual tValue this[int index] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -610,7 +611,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Item_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Item(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L138">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L139">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Item_" data-uid="wan24.Core.OrderedDictionary`2.Item*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Item_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.Item(System.Object)">this[object]</h4>
@@ -619,7 +620,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object? this[object key] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual object? this[object key] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -692,7 +693,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public tValue this[tKey key] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual tValue this[tKey key] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -768,7 +769,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;tKey&gt; Keys { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual ICollection&lt;tKey&gt; Keys { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -832,7 +833,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;tValue&gt; Values { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual ICollection&lt;tValue&gt; Values { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -857,7 +858,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Add_System_Collections_Generic_KeyValuePair__0__1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Add(System.Collections.Generic.KeyValuePair%7B%600%2C%601%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L211">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Add_" data-uid="wan24.Core.OrderedDictionary`2.Add*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Add_System_Collections_Generic_KeyValuePair__0__1__" data-uid="wan24.Core.OrderedDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">Add(KeyValuePair&lt;tKey, tValue&gt;)</h4>
@@ -907,7 +908,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Add_System_Object_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Add(System.Object%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L220">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L221">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Add_" data-uid="wan24.Core.OrderedDictionary`2.Add*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Add_System_Object_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.Add(System.Object,System.Object)">Add(object, object?)</h4>
@@ -916,7 +917,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(object key, object? value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Add(object key, object? value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -975,7 +976,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Add__0__1_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Add(%600%2C%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L203">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L204">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Add_" data-uid="wan24.Core.OrderedDictionary`2.Add*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Add__0__1_" data-uid="wan24.Core.OrderedDictionary`2.Add(`0,`1)">Add(tKey, tValue)</h4>
@@ -1041,7 +1042,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_AsReadOnly.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.AsReadOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L381">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L382">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_AsReadOnly_" data-uid="wan24.Core.OrderedDictionary`2.AsReadOnly*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_AsReadOnly" data-uid="wan24.Core.OrderedDictionary`2.AsReadOnly">AsReadOnly()</h4>
@@ -1051,7 +1052,7 @@ public class OrderedDictionary&lt;tKey, tValue&gt; : IOrderedDictionary&lt;tKey,
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
+public virtual OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -1074,7 +1075,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L347">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L348">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Clear_" data-uid="wan24.Core.OrderedDictionary`2.Clear*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Clear" data-uid="wan24.Core.OrderedDictionary`2.Clear">Clear()</h4>
@@ -1106,7 +1107,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Contains_System_Collections_Generic_KeyValuePair__0__1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Contains(System.Collections.Generic.KeyValuePair%7B%600%2C%601%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L264">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L265">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Contains_" data-uid="wan24.Core.OrderedDictionary`2.Contains*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Contains_System_Collections_Generic_KeyValuePair__0__1__" data-uid="wan24.Core.OrderedDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">Contains(KeyValuePair&lt;tKey, tValue&gt;)</h4>
@@ -1115,7 +1116,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Contains(KeyValuePair&lt;tKey, tValue&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool Contains(KeyValuePair&lt;tKey, tValue&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1156,7 +1157,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Contains_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Contains(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L271">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L272">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Contains_" data-uid="wan24.Core.OrderedDictionary`2.Contains*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Contains_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.Contains(System.Object)">Contains(object)</h4>
@@ -1165,7 +1166,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Contains(object key)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool Contains(object key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1222,7 +1223,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_ContainsKey__0_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.ContainsKey(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L275">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L276">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_ContainsKey_" data-uid="wan24.Core.OrderedDictionary`2.ContainsKey*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_ContainsKey__0_" data-uid="wan24.Core.OrderedDictionary`2.ContainsKey(`0)">ContainsKey(tKey)</h4>
@@ -1231,7 +1232,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ContainsKey(tKey key)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsKey(tKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1288,7 +1289,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_ContainsValue__1_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.ContainsValue(%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L281">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L282">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_ContainsValue_" data-uid="wan24.Core.OrderedDictionary`2.ContainsValue*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_ContainsValue__1_" data-uid="wan24.Core.OrderedDictionary`2.ContainsValue(`1)">ContainsValue(tValue)</h4>
@@ -1297,7 +1298,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ContainsValue(tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsValue(tValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1338,7 +1339,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_CopyTo_System_Array_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.CopyTo(System.Array%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L364">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L365">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_CopyTo_" data-uid="wan24.Core.OrderedDictionary`2.CopyTo*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_CopyTo_System_Array_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.CopyTo(System.Array,System.Int32)">CopyTo(Array, int)</h4>
@@ -1347,7 +1348,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CopyTo(Array array, int index)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void CopyTo(Array array, int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1408,7 +1409,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_CopyTo_System_Collections_Generic_KeyValuePair__0__1____System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.CopyTo(System.Collections.Generic.KeyValuePair%7B%600%2C%601%7D%5B%5D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L356">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L357">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_CopyTo_" data-uid="wan24.Core.OrderedDictionary`2.CopyTo*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_CopyTo_System_Collections_Generic_KeyValuePair__0__1____System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">CopyTo(KeyValuePair&lt;tKey, tValue&gt;[], int)</h4>
@@ -1417,7 +1418,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CopyTo(KeyValuePair&lt;tKey, tValue&gt;[] array, int arrayIndex)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void CopyTo(KeyValuePair&lt;tKey, tValue&gt;[] array, int arrayIndex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1474,7 +1475,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureExistingKey__0_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureExistingKey(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L494">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L495">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureExistingKey_" data-uid="wan24.Core.OrderedDictionary`2.EnsureExistingKey*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureExistingKey__0_" data-uid="wan24.Core.OrderedDictionary`2.EnsureExistingKey(`0)">EnsureExistingKey(tKey)</h4>
@@ -1483,7 +1484,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int EnsureExistingKey(tKey key)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual int EnsureExistingKey(tKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1540,7 +1541,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureFreshKey__0_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureFreshKey(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L483">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L484">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureFreshKey_" data-uid="wan24.Core.OrderedDictionary`2.EnsureFreshKey*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureFreshKey__0_" data-uid="wan24.Core.OrderedDictionary`2.EnsureFreshKey(`0)">EnsureFreshKey(tKey)</h4>
@@ -1549,7 +1550,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected tKey EnsureFreshKey(tKey key)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual tKey EnsureFreshKey(tKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1606,7 +1607,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureValidIndex_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureValidIndex(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L460">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L461">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureValidIndex_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidIndex*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureValidIndex_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidIndex(System.Int32)">EnsureValidIndex(int)</h4>
@@ -1615,7 +1616,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int EnsureValidIndex(int index)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual int EnsureValidIndex(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1672,7 +1673,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureValidKey_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureValidKey(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L436">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L437">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureValidKey_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidKey*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureValidKey_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidKey(System.Object)">EnsureValidKey(object)</h4>
@@ -1681,7 +1682,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected object EnsureValidKey(object key)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual object EnsureValidKey(object key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1738,7 +1739,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureValidValue_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureValidValue(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L448">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L449">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureValidValue_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidValue*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureValidValue_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.EnsureValidValue(System.Object)">EnsureValidValue(object?)</h4>
@@ -1747,7 +1748,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected object? EnsureValidValue(object? value)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual object? EnsureValidValue(object? value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1804,7 +1805,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_EnsureWritable.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.EnsureWritable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L469">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L470">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_EnsureWritable_" data-uid="wan24.Core.OrderedDictionary`2.EnsureWritable*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_EnsureWritable" data-uid="wan24.Core.OrderedDictionary`2.EnsureWritable">EnsureWritable()</h4>
@@ -1813,7 +1814,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void EnsureWritable()</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void EnsureWritable()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
@@ -1836,7 +1837,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_GetAt_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.GetAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L286">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L287">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_GetAt_" data-uid="wan24.Core.OrderedDictionary`2.GetAt*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_GetAt_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.GetAt(System.Int32)">GetAt(int)</h4>
@@ -1845,7 +1846,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public KeyValuePair&lt;tKey, tValue&gt; GetAt(int index)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual KeyValuePair&lt;tKey, tValue&gt; GetAt(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1886,7 +1887,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L407">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L408">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_GetEnumerator_" data-uid="wan24.Core.OrderedDictionary`2.GetEnumerator*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_GetEnumerator" data-uid="wan24.Core.OrderedDictionary`2.GetEnumerator">GetEnumerator()</h4>
@@ -1896,7 +1897,7 @@ public OrderedDictionary&lt;tKey, tValue&gt; AsReadOnly()</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code></pre>
+public virtual IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -1919,7 +1920,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L385">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L386">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_GetObjectData_" data-uid="wan24.Core.OrderedDictionary`2.GetObjectData*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="wan24.Core.OrderedDictionary`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
@@ -1928,7 +1929,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1975,7 +1976,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_IndexOfKey__0_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.IndexOfKey(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L293">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L294">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_IndexOfKey_" data-uid="wan24.Core.OrderedDictionary`2.IndexOfKey*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_IndexOfKey__0_" data-uid="wan24.Core.OrderedDictionary`2.IndexOfKey(`0)">IndexOfKey(tKey)</h4>
@@ -1984,7 +1985,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int IndexOfKey(tKey key)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual int IndexOfKey(tKey key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2025,7 +2026,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_IndexOfValue__1_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.IndexOfValue(%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L302">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L303">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_IndexOfValue_" data-uid="wan24.Core.OrderedDictionary`2.IndexOfValue*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_IndexOfValue__1_" data-uid="wan24.Core.OrderedDictionary`2.IndexOfValue(`1)">IndexOfValue(tValue)</h4>
@@ -2034,7 +2035,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int IndexOfValue(tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual int IndexOfValue(tValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2075,7 +2076,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Insert_System_Int32_System_Object_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Insert(System.Int32%2CSystem.Object%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L247">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L248">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Insert_" data-uid="wan24.Core.OrderedDictionary`2.Insert*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Insert_System_Int32_System_Object_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.Insert(System.Int32,System.Object,System.Object)">Insert(int, object, object?)</h4>
@@ -2084,7 +2085,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Insert(int index, object key, object? value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Insert(int index, object key, object? value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2156,7 +2157,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Insert_System_Int32__0__1_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Insert(System.Int32%2C%600%2C%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L230">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L231">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Insert_" data-uid="wan24.Core.OrderedDictionary`2.Insert*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Insert_System_Int32__0__1_" data-uid="wan24.Core.OrderedDictionary`2.Insert(System.Int32,`0,`1)">Insert(int, tKey, tValue)</h4>
@@ -2165,7 +2166,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Insert(int index, tKey key, tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Insert(int index, tKey key, tValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2202,7 +2203,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_IsEqual_System_Object_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.IsEqual(System.Object%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L425">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L426">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_IsEqual_" data-uid="wan24.Core.OrderedDictionary`2.IsEqual*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_IsEqual_System_Object_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.IsEqual(System.Object,System.Object)">IsEqual(object?, object?)</h4>
@@ -2211,7 +2212,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool IsEqual(object? a, object? b)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual bool IsEqual(object? a, object? b)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2258,7 +2259,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_MoveIndexDown_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.MoveIndexDown(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L189">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L190">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_MoveIndexDown_" data-uid="wan24.Core.OrderedDictionary`2.MoveIndexDown*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_MoveIndexDown_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.MoveIndexDown(System.Int32)">MoveIndexDown(int)</h4>
@@ -2292,7 +2293,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_MoveIndexUp_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.MoveIndexUp(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L175">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_MoveIndexUp_" data-uid="wan24.Core.OrderedDictionary`2.MoveIndexUp*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_MoveIndexUp_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.MoveIndexUp(System.Int32)">MoveIndexUp(int)</h4>
@@ -2326,7 +2327,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_OnDeserialization_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.OnDeserialization(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L395">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L396">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_OnDeserialization_" data-uid="wan24.Core.OrderedDictionary`2.OnDeserialization*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_OnDeserialization_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.OnDeserialization(System.Object)">OnDeserialization(object?)</h4>
@@ -2335,7 +2336,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void OnDeserialization(object? sender)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void OnDeserialization(object? sender)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2360,7 +2361,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_RaiseOnAdded_System_Int32___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.RaiseOnAdded(System.Int32%40%2C%600%40%2C%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L520">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L521">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_RaiseOnAdded_" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnAdded*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_RaiseOnAdded_System_Int32___0___1__" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnAdded(System.Int32@,`0@,`1@)">RaiseOnAdded(in int, in tKey, in tValue)</h4>
@@ -2406,7 +2407,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_RaiseOnRemoved_System_Int32___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.RaiseOnRemoved(System.Int32%40%2C%600%40%2C%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L544">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L545">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_RaiseOnRemoved_" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnRemoved*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_RaiseOnRemoved_System_Int32___0___1__" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnRemoved(System.Int32@,`0@,`1@)">RaiseOnRemoved(in int, in tKey, in tValue)</h4>
@@ -2452,7 +2453,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_RaiseOnUpdated_System_Int32___0___1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.RaiseOnUpdated(System.Int32%40%2C%600%40%2C%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L532">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L533">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_RaiseOnUpdated_" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnUpdated*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_RaiseOnUpdated_System_Int32___0___1__" data-uid="wan24.Core.OrderedDictionary`2.RaiseOnUpdated(System.Int32@,`0@,`1@)">RaiseOnUpdated(in int, in tKey, in tValue)</h4>
@@ -2498,7 +2499,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Remove_System_Collections_Generic_KeyValuePair__0__1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Remove(System.Collections.Generic.KeyValuePair%7B%600%2C%601%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L321">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L322">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Remove_" data-uid="wan24.Core.OrderedDictionary`2.Remove*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Remove_System_Collections_Generic_KeyValuePair__0__1__" data-uid="wan24.Core.OrderedDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">Remove(KeyValuePair&lt;tKey, tValue&gt;)</h4>
@@ -2564,7 +2565,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Remove_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Remove(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L331">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L332">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Remove_" data-uid="wan24.Core.OrderedDictionary`2.Remove*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Remove_System_Object_" data-uid="wan24.Core.OrderedDictionary`2.Remove(System.Object)">Remove(object)</h4>
@@ -2573,7 +2574,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Remove(object key)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void Remove(object key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2621,7 +2622,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_Remove__0_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.Remove(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L311">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L312">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_Remove_" data-uid="wan24.Core.OrderedDictionary`2.Remove*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_Remove__0_" data-uid="wan24.Core.OrderedDictionary`2.Remove(`0)">Remove(tKey)</h4>
@@ -2692,7 +2693,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_RemoveAt_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.RemoveAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L338">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L339">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_RemoveAt_" data-uid="wan24.Core.OrderedDictionary`2.RemoveAt*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_RemoveAt_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.RemoveAt(System.Int32)">RemoveAt(int)</h4>
@@ -2751,7 +2752,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_ReplaceAt_System_Int32__0__1_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.ReplaceAt(System.Int32%2C%600%2C%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L254">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L255">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_ReplaceAt_" data-uid="wan24.Core.OrderedDictionary`2.ReplaceAt*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_ReplaceAt_System_Int32__0__1_" data-uid="wan24.Core.OrderedDictionary`2.ReplaceAt(System.Int32,`0,`1)">ReplaceAt(int, tKey, tValue)</h4>
@@ -2760,7 +2761,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ReplaceAt(int index, tKey key, tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void ReplaceAt(int index, tKey key, tValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2797,7 +2798,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_SwapIndex_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.SwapIndex(System.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L161">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_SwapIndex_" data-uid="wan24.Core.OrderedDictionary`2.SwapIndex*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_SwapIndex_System_Int32_System_Int32_" data-uid="wan24.Core.OrderedDictionary`2.SwapIndex(System.Int32,System.Int32)">SwapIndex(int, int)</h4>
@@ -2837,7 +2838,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_TryGetValue__0__1__.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.TryGetValue(%600%2C%601%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L372">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L373">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_TryGetValue_" data-uid="wan24.Core.OrderedDictionary`2.TryGetValue*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_TryGetValue__0__1__" data-uid="wan24.Core.OrderedDictionary`2.TryGetValue(`0,`1@)">TryGetValue(tKey, out tValue)</h4>
@@ -2846,7 +2847,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TryGetValue(tKey key, out tValue value)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual bool TryGetValue(tKey key, out tValue value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2911,7 +2912,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_OnAdded.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.OnAdded%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L513">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L514">View Source</a>
   </span>
   <h4 id="wan24_Core_OrderedDictionary_2_OnAdded" data-uid="wan24.Core.OrderedDictionary`2.OnAdded">OnAdded</h4>
   <div class="markdown level1 summary"><p>Raised when added a key/value pair</p>
@@ -2941,7 +2942,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_OnRemoved.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.OnRemoved%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L537">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L538">View Source</a>
   </span>
   <h4 id="wan24_Core_OrderedDictionary_2_OnRemoved" data-uid="wan24.Core.OrderedDictionary`2.OnRemoved">OnRemoved</h4>
   <div class="markdown level1 summary"><p>Raised when removed a key/value pair</p>
@@ -2971,7 +2972,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_OnUpdated.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.OnUpdated%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L525">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L526">View Source</a>
   </span>
   <h4 id="wan24_Core_OrderedDictionary_2_OnUpdated" data-uid="wan24.Core.OrderedDictionary`2.OnUpdated">OnUpdated</h4>
   <div class="markdown level1 summary"><p>Raised when updated a value (the event handler will get the previous index, key and value)</p>
@@ -3003,7 +3004,7 @@ public IEnumerator&lt;KeyValuePair&lt;tKey, tValue&gt;&gt; GetEnumerator()</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OrderedDictionary_2_op_Implicit_wan24_Core_OrderedDictionary__0__1____System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.OrderedDictionary%602.op_Implicit(wan24.Core.OrderedDictionary%7B%600%2C%601%7D%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L550">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OrderedDictionary.cs/#L551">View Source</a>
   </span>
   <a id="wan24_Core_OrderedDictionary_2_op_Implicit_" data-uid="wan24.Core.OrderedDictionary`2.op_Implicit*"></a>
   <h4 id="wan24_Core_OrderedDictionary_2_op_Implicit_wan24_Core_OrderedDictionary__0__1____System_Int32" data-uid="wan24.Core.OrderedDictionary`2.op_Implicit(wan24.Core.OrderedDictionary{`0,`1}@)~System.Int32">implicit operator int(in OrderedDictionary&lt;tKey, tValue&gt;)</h4>
@@ -3156,10 +3157,19 @@ public static implicit operator int(in OrderedDictionary&lt;tKey, tValue&gt; dic
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CreateBuilder__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.CreateBuilder&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DiscardAll__1_System_Collections_Generic_IEnumerable___0__System_Boolean_">EnumerableExtensions.DiscardAll&lt;T&gt;(IEnumerable&lt;T&gt;, bool)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple___1_System_Boolean____System_Threading_CancellationToken_">EnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;(tResult Result, bool Next)&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_ValueTuple___1_System_Boolean___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, (tResult Result, bool Next)&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__1_System_Collections_Generic_IEnumerable___0__System_Type_System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem&gt;(IEnumerable&lt;tItem&gt;, Type, bool)</a>
@@ -3169,6 +3179,18 @@ public static implicit operator int(in OrderedDictionary&lt;tKey, tValue&gt; dic
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereNotNull__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.WhereNotNull&lt;T&gt;(IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableDictionary__2_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair___0___1___">FreezableExtensions.ToFreezableDictionary&lt;tKey, tValue&gt;(IEnumerable&lt;KeyValuePair&lt;tKey, tValue&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableList__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableList&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableOrderedDictionary__2_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair___0___1___">FreezableExtensions.ToFreezableOrderedDictionary&lt;tKey, tValue&gt;(IEnumerable&lt;KeyValuePair&lt;tKey, tValue&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableSet__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableSet&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;, CancellationToken)</a>
@@ -3294,6 +3316,42 @@ public static implicit operator int(in OrderedDictionary&lt;tKey, tValue&gt; dic
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Int32_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, int, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__3___1_System_Func___0___2___System_Collections_Generic_IEqualityComparer___2___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSkip__2___1_System_Int32__">EnumerableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSorting__3___1_System_Func___0___2___System_Boolean__System_Collections_Generic_IComparer___2___">EnumerableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithTake__2___1_System_Int32__">EnumerableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutCondition__2___1_">EnumerableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutDistinct__2___1_">EnumerableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSkip__2___1_">EnumerableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSorting__2___1_">EnumerableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
   </div>
   <div>
@@ -3334,6 +3392,42 @@ public static implicit operator int(in OrderedDictionary&lt;tKey, tValue&gt; dic
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Int32_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, int, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Collections_Generic_IEqualityComparer___2___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSkip__2___1_System_Int32__">QueryableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSorting__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Boolean__System_Collections_Generic_IComparer___2___">QueryableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithTake__2___1_System_Int32__">QueryableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutCondition__2___1_">QueryableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutDistinct__2___1_">QueryableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSkip__2___1_">QueryableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSorting__2___1_">QueryableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutTake__2___1_">QueryableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>

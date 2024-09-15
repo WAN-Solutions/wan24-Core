@@ -115,6 +115,8 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable</a>&lt;<a class="xref" href="wan24.Core.ChangeTokenCollection-1.html">ChangeTokenCollection</a>&lt;T&gt;&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</div>
@@ -125,7 +127,6 @@
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.icollection">ICollection</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.specialized.inotifycollectionchanged">INotifyCollectionChanged</a></div>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobserver-1">IObserver</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
@@ -155,7 +156,13 @@
       <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanged">ChangeToken.PropertyChanged</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String__">ChangeToken.RaisePropertyChanged(in string)</a>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanged_System_String_">ChangeToken.RaisePropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_PropertyChanging">ChangeToken.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ChangeToken.html#wan24_Core_ChangeToken_RaisePropertyChanging_System_String_">ChangeToken.RaisePropertyChanging(string)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -180,7 +187,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ChangeTokenCollection_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ChangeTokenCollection&lt;T&gt; : DisposableChangeToken&lt;ChangeTokenCollection&lt;T&gt;&gt;, IChangeToken, IObservable&lt;ChangeTokenCollection&lt;T&gt;&gt;, IList&lt;T&gt;, ICollection&lt;T&gt;, IReadOnlyList&lt;T&gt;, IReadOnlyCollection&lt;T&gt;, IEnumerable&lt;T&gt;, IList, ICollection, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged, IObserver&lt;T&gt;, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ChangeTokenCollection&lt;T&gt; : DisposableChangeToken&lt;ChangeTokenCollection&lt;T&gt;&gt;, IChangeToken, INotifyPropertyChanged, INotifyPropertyChanging, IObservable&lt;ChangeTokenCollection&lt;T&gt;&gt;, IList&lt;T&gt;, ICollection&lt;T&gt;, IReadOnlyList&lt;T&gt;, IReadOnlyCollection&lt;T&gt;, IEnumerable&lt;T&gt;, IList, ICollection, IEnumerable, INotifyCollectionChanged, IObserver&lt;T&gt;, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -205,7 +212,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1__ctor_System_Collections_Generic_List__0___.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.%23ctor(System.Collections.Generic.List%7B%600%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L56">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1__ctor_" data-uid="wan24.Core.ChangeTokenCollection`1.#ctor*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1__ctor_System_Collections_Generic_List__0___" data-uid="wan24.Core.ChangeTokenCollection`1.#ctor(System.Collections.Generic.List{`0}@)">ChangeTokenCollection(in List&lt;T&gt;)</h4>
@@ -239,7 +246,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1__ctor_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.%23ctor(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L44">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1__ctor_" data-uid="wan24.Core.ChangeTokenCollection`1.#ctor*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1__ctor_System_Int32__" data-uid="wan24.Core.ChangeTokenCollection`1.#ctor(System.Int32@)">ChangeTokenCollection(in int)</h4>
@@ -275,7 +282,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Count.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L146">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L145">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Count_" data-uid="wan24.Core.ChangeTokenCollection`1.Count*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Count" data-uid="wan24.Core.ChangeTokenCollection`1.Count">Count</h4>
@@ -307,7 +314,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_HasChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.HasChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L135">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L134">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_HasChanged_" data-uid="wan24.Core.ChangeTokenCollection`1.HasChanged*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_HasChanged" data-uid="wan24.Core.ChangeTokenCollection`1.HasChanged">HasChanged</h4>
@@ -340,7 +347,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IgnoreUnnamedPropertyNotifications.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IgnoreUnnamedPropertyNotifications%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IgnoreUnnamedPropertyNotifications_" data-uid="wan24.Core.ChangeTokenCollection`1.IgnoreUnnamedPropertyNotifications*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IgnoreUnnamedPropertyNotifications" data-uid="wan24.Core.ChangeTokenCollection`1.IgnoreUnnamedPropertyNotifications">IgnoreUnnamedPropertyNotifications</h4>
@@ -371,7 +378,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_InvokeCallbacksOnPropertyChange.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.InvokeCallbacksOnPropertyChange%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L131">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_InvokeCallbacksOnPropertyChange_" data-uid="wan24.Core.ChangeTokenCollection`1.InvokeCallbacksOnPropertyChange*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_InvokeCallbacksOnPropertyChange" data-uid="wan24.Core.ChangeTokenCollection`1.InvokeCallbacksOnPropertyChange">InvokeCallbacksOnPropertyChange</h4>
@@ -402,7 +409,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IsDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IsDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L163">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IsDisposed_" data-uid="wan24.Core.ChangeTokenCollection`1.IsDisposed*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IsDisposed" data-uid="wan24.Core.ChangeTokenCollection`1.IsDisposed">IsDisposed</h4>
@@ -433,7 +440,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IsDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IsDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L161">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IsDisposing_" data-uid="wan24.Core.ChangeTokenCollection`1.IsDisposing*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IsDisposing" data-uid="wan24.Core.ChangeTokenCollection`1.IsDisposing">IsDisposing</h4>
@@ -464,7 +471,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IsFixedSize.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IsFixedSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L158">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L157">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IsFixedSize_" data-uid="wan24.Core.ChangeTokenCollection`1.IsFixedSize*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IsFixedSize" data-uid="wan24.Core.ChangeTokenCollection`1.IsFixedSize">IsFixedSize</h4>
@@ -496,7 +503,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IsReadOnly.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IsReadOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L148">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IsReadOnly_" data-uid="wan24.Core.ChangeTokenCollection`1.IsReadOnly*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IsReadOnly" data-uid="wan24.Core.ChangeTokenCollection`1.IsReadOnly">IsReadOnly</h4>
@@ -528,7 +535,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IsSynchronized.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IsSynchronized%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L151">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IsSynchronized_" data-uid="wan24.Core.ChangeTokenCollection`1.IsSynchronized*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IsSynchronized" data-uid="wan24.Core.ChangeTokenCollection`1.IsSynchronized">IsSynchronized</h4>
@@ -560,7 +567,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Item_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Item(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L66">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L65">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Item_" data-uid="wan24.Core.ChangeTokenCollection`1.Item*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Item_System_Int32_" data-uid="wan24.Core.ChangeTokenCollection`1.Item(System.Int32)">this[int]</h4>
@@ -631,7 +638,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_ObserveCollection.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.ObserveCollection%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_ObserveCollection_" data-uid="wan24.Core.ChangeTokenCollection`1.ObserveCollection*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_ObserveCollection" data-uid="wan24.Core.ChangeTokenCollection`1.ObserveCollection">ObserveCollection</h4>
@@ -662,7 +669,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_ObserveItems.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.ObserveItems%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L117">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_ObserveItems_" data-uid="wan24.Core.ChangeTokenCollection`1.ObserveItems*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_ObserveItems" data-uid="wan24.Core.ChangeTokenCollection`1.ObserveItems">ObserveItems</h4>
@@ -693,7 +700,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OverrideStateOnPropertyChange.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OverrideStateOnPropertyChange%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_OverrideStateOnPropertyChange_" data-uid="wan24.Core.ChangeTokenCollection`1.OverrideStateOnPropertyChange*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OverrideStateOnPropertyChange" data-uid="wan24.Core.ChangeTokenCollection`1.OverrideStateOnPropertyChange">OverrideStateOnPropertyChange</h4>
@@ -724,7 +731,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_SyncRoot.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.SyncRoot%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L154">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_SyncRoot_" data-uid="wan24.Core.ChangeTokenCollection`1.SyncRoot*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_SyncRoot" data-uid="wan24.Core.ChangeTokenCollection`1.SyncRoot">SyncRoot</h4>
@@ -758,7 +765,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Add_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Add(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L177">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Add_" data-uid="wan24.Core.ChangeTokenCollection`1.Add*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Add_System_Object_" data-uid="wan24.Core.ChangeTokenCollection`1.Add(System.Object)">Add(object?)</h4>
@@ -826,7 +833,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Add__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Add(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L167">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L166">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Add_" data-uid="wan24.Core.ChangeTokenCollection`1.Add*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Add__0_" data-uid="wan24.Core.ChangeTokenCollection`1.Add(`0)">Add(T)</h4>
@@ -876,7 +883,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L188">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L187">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Clear_" data-uid="wan24.Core.ChangeTokenCollection`1.Clear*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Clear" data-uid="wan24.Core.ChangeTokenCollection`1.Clear">Clear()</h4>
@@ -908,7 +915,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Contains_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Contains(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L211">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L210">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Contains_" data-uid="wan24.Core.ChangeTokenCollection`1.Contains*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Contains_System_Object_" data-uid="wan24.Core.ChangeTokenCollection`1.Contains(System.Object)">Contains(object?)</h4>
@@ -958,7 +965,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Contains__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Contains(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L203">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Contains_" data-uid="wan24.Core.ChangeTokenCollection`1.Contains*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Contains__0_" data-uid="wan24.Core.ChangeTokenCollection`1.Contains(`0)">Contains(T)</h4>
@@ -1008,7 +1015,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_CopyTo_System_Array_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.CopyTo(System.Array%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L225">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L224">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_CopyTo_" data-uid="wan24.Core.ChangeTokenCollection`1.CopyTo*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_CopyTo_System_Array_System_Int32_" data-uid="wan24.Core.ChangeTokenCollection`1.CopyTo(System.Array,System.Int32)">CopyTo(Array, int)</h4>
@@ -1078,7 +1085,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_CopyTo__0___System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.CopyTo(%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L218">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L217">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_CopyTo_" data-uid="wan24.Core.ChangeTokenCollection`1.CopyTo*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_CopyTo__0___System_Int32_" data-uid="wan24.Core.ChangeTokenCollection`1.CopyTo(`0[],System.Int32)">CopyTo(T[], int)</h4>
@@ -1144,7 +1151,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L322">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L321">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Dispose_" data-uid="wan24.Core.ChangeTokenCollection`1.Dispose*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Dispose" data-uid="wan24.Core.ChangeTokenCollection`1.Dispose">Dispose()</h4>
@@ -1162,7 +1169,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.DisposeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L330">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L329">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_DisposeAsync_" data-uid="wan24.Core.ChangeTokenCollection`1.DisposeAsync*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_DisposeAsync" data-uid="wan24.Core.ChangeTokenCollection`1.DisposeAsync">DisposeAsync()</h4>
@@ -1194,7 +1201,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L232">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L231">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_GetEnumerator_" data-uid="wan24.Core.ChangeTokenCollection`1.GetEnumerator*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_GetEnumerator" data-uid="wan24.Core.ChangeTokenCollection`1.GetEnumerator">GetEnumerator()</h4>
@@ -1226,7 +1233,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IndexOf_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IndexOf(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L246">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L245">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IndexOf_" data-uid="wan24.Core.ChangeTokenCollection`1.IndexOf*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IndexOf_System_Object_" data-uid="wan24.Core.ChangeTokenCollection`1.IndexOf(System.Object)">IndexOf(object?)</h4>
@@ -1276,7 +1283,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_IndexOf__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.IndexOf(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L239">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L238">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_IndexOf_" data-uid="wan24.Core.ChangeTokenCollection`1.IndexOf*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_IndexOf__0_" data-uid="wan24.Core.ChangeTokenCollection`1.IndexOf(`0)">IndexOf(T)</h4>
@@ -1326,7 +1333,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Insert_System_Int32_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Insert(System.Int32%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L263">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L262">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Insert_" data-uid="wan24.Core.ChangeTokenCollection`1.Insert*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Insert_System_Int32_System_Object_" data-uid="wan24.Core.ChangeTokenCollection`1.Insert(System.Int32,System.Object)">Insert(int, object?)</h4>
@@ -1394,7 +1401,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Insert_System_Int32__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Insert(System.Int32%2C%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L253">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L252">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Insert_" data-uid="wan24.Core.ChangeTokenCollection`1.Insert*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Insert_System_Int32__0_" data-uid="wan24.Core.ChangeTokenCollection`1.Insert(System.Int32,`0)">Insert(int, T)</h4>
@@ -1455,7 +1462,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OnCompleted.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OnCompleted%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L308">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L307">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_OnCompleted_" data-uid="wan24.Core.ChangeTokenCollection`1.OnCompleted*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OnCompleted" data-uid="wan24.Core.ChangeTokenCollection`1.OnCompleted">OnCompleted()</h4>
@@ -1471,7 +1478,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OnError_System_Exception_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OnError(System.Exception)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L311">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L310">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_OnError_" data-uid="wan24.Core.ChangeTokenCollection`1.OnError*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OnError_System_Exception_" data-uid="wan24.Core.ChangeTokenCollection`1.OnError(System.Exception)">OnError(Exception)</h4>
@@ -1505,7 +1512,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OnNext__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OnNext(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L314">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L313">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_OnNext_" data-uid="wan24.Core.ChangeTokenCollection`1.OnNext*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OnNext__0_" data-uid="wan24.Core.ChangeTokenCollection`1.OnNext(`0)">OnNext(T)</h4>
@@ -1539,7 +1546,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Remove_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Remove(System.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L283">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L282">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Remove_" data-uid="wan24.Core.ChangeTokenCollection`1.Remove*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Remove_System_Object_" data-uid="wan24.Core.ChangeTokenCollection`1.Remove(System.Object)">Remove(object?)</h4>
@@ -1591,7 +1598,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_Remove__0_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.Remove(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L273">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L272">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_Remove_" data-uid="wan24.Core.ChangeTokenCollection`1.Remove*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_Remove__0_" data-uid="wan24.Core.ChangeTokenCollection`1.Remove(`0)">Remove(T)</h4>
@@ -1657,7 +1664,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_RemoveAt_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.RemoveAt(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L292">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L291">View Source</a>
   </span>
   <a id="wan24_Core_ChangeTokenCollection_1_RemoveAt_" data-uid="wan24.Core.ChangeTokenCollection`1.RemoveAt*"></a>
   <h4 id="wan24_Core_ChangeTokenCollection_1_RemoveAt_System_Int32_" data-uid="wan24.Core.ChangeTokenCollection`1.RemoveAt(System.Int32)">RemoveAt(int)</h4>
@@ -1714,7 +1721,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_CollectionChanged.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.CollectionChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L375">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L389">View Source</a>
   </span>
   <h4 id="wan24_Core_ChangeTokenCollection_1_CollectionChanged" data-uid="wan24.Core.ChangeTokenCollection`1.CollectionChanged">CollectionChanged</h4>
   <div class="markdown level1 summary"><p>Occurs when the collection changes.</p>
@@ -1744,7 +1751,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L398">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L413">View Source</a>
   </span>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OnDisposed" data-uid="wan24.Core.ChangeTokenCollection`1.OnDisposed">OnDisposed</h4>
   <div class="markdown level1 summary"><p>Raised when disposed</p>
@@ -1774,7 +1781,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ChangeTokenCollection_1_OnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.ChangeTokenCollection%601.OnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L391">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ChangeTokenCollection.cs/#L406">View Source</a>
   </span>
   <h4 id="wan24_Core_ChangeTokenCollection_1_OnDisposing" data-uid="wan24.Core.ChangeTokenCollection`1.OnDisposing">OnDisposing</h4>
   <div class="markdown level1 summary"><p>Raised when disposing</p>
@@ -1802,6 +1809,12 @@
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.primitives.ichangetoken">IChangeToken</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobservable-1">IObservable&lt;T&gt;</a>
@@ -1832,9 +1845,6 @@
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.specialized.inotifycollectionchanged">INotifyCollectionChanged</a>
-  </div>
-  <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iobserver-1">IObserver&lt;T&gt;</a>
@@ -1907,10 +1917,19 @@
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CreateBuilder__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.CreateBuilder&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DiscardAll__1_System_Collections_Generic_IEnumerable___0__System_Boolean_">EnumerableExtensions.DiscardAll&lt;T&gt;(IEnumerable&lt;T&gt;, bool)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple___1_System_Boolean____System_Threading_CancellationToken_">EnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;(tResult Result, bool Next)&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_ValueTuple___1_System_Boolean___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, (tResult Result, bool Next)&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__1_System_Collections_Generic_IEnumerable___0__System_Type_System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem&gt;(IEnumerable&lt;tItem&gt;, Type, bool)</a>
@@ -1920,6 +1939,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereNotNull__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.WhereNotNull&lt;T&gt;(IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableList__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableList&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableSet__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableSet&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;, CancellationToken)</a>
@@ -1956,6 +1981,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Enumerate__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean__">EnumerableExtensions.Enumerate&lt;T&gt;(IList&lt;T&gt;, Func&lt;T, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IList___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple___1_System_Boolean____System_Threading_CancellationToken_">EnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IList&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;(tResult Result, bool Next)&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IList___0__System_Func___0_System_ValueTuple___1_System_Boolean___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IList&lt;tItem&gt;, Func&lt;tItem, (tResult Result, bool Next)&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ListExtensions.html#wan24_Core_ListExtensions_MoveIndexDown__1_System_Collections_Generic_IList___0__System_Int32__">ListExtensions.MoveIndexDown&lt;T&gt;(IList&lt;T&gt;, in int)</a>
@@ -2057,6 +2088,42 @@
       <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Int32_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, int, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__3___1_System_Func___0___2___System_Collections_Generic_IEqualityComparer___2___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSkip__2___1_System_Int32__">EnumerableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSorting__3___1_System_Func___0___2___System_Boolean__System_Collections_Generic_IComparer___2___">EnumerableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithTake__2___1_System_Int32__">EnumerableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutCondition__2___1_">EnumerableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutDistinct__2___1_">EnumerableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSkip__2___1_">EnumerableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSorting__2___1_">EnumerableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
   </div>
   <div>
@@ -2097,6 +2164,42 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Int32_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, int, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Collections_Generic_IEqualityComparer___2___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSkip__2___1_System_Int32__">QueryableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSorting__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Boolean__System_Collections_Generic_IComparer___2___">QueryableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithTake__2___1_System_Int32__">QueryableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutCondition__2___1_">QueryableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutDistinct__2___1_">QueryableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSkip__2___1_">QueryableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSorting__2___1_">QueryableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutTake__2___1_">QueryableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>

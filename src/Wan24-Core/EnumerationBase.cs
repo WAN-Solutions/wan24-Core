@@ -252,10 +252,10 @@ namespace wan24.Core
         {
             List<T> allValues = [];
             T value;
-            foreach(FieldInfoExt fi in from fi in typeof(T).GetFieldsCached(BindingFlags.Static | BindingFlags.Public)
-                                    where fi.FieldType == typeof(T) && 
-                                        fi.Getter is not null
-                                    select fi)
+            foreach (FieldInfoExt fi in from fi in typeof(T).GetFieldsCached(BindingFlags.Static | BindingFlags.Public)
+                                        where fi.FieldType == typeof(T) &&
+                                            fi.Getter is not null
+                                        select fi)
             {
                 value = fi.Getter!(null) as T ?? throw new InvalidProgramException($"{typeof(T)}.{fi.Name} value is NULL");
                 if (value.Name != fi.Name) throw new InvalidProgramException($"Field {typeof(T)}.{fi.Name} enumeration value name mismatch");
