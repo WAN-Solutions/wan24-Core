@@ -64,7 +64,6 @@ namespace wan24.Core
         /// <param name="type">Type (may be a generic type definition, but not an interface)</param>
         /// <param name="baseType">Base type (may be a generic type definition, but not an interface, can't be <see cref="object"/>)</param>
         /// <returns>If the base type is implemented</returns>
-        [TargetedPatchingOptOut("Tiny method")]
         public static bool HasBaseType(this Type type, in Type baseType)
         {
             if (type.IsInterface || type.IsValueType || baseType.IsInterface || baseType.IsValueType)
@@ -93,7 +92,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>If the type is a delegate type</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsDelegate(this Type type) => type.HasBaseType(typeof(MulticastDelegate));
 
         /// <summary>
@@ -102,6 +104,9 @@ namespace wan24.Core
         /// <param name="type">Delegate type</param>
         /// <returns>Delegate method</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static MethodInfo GetDelegateMethod(this Type type)
         {
             if (!type.IsDelegate()) throw new InvalidOperationException("Not a delegate type");
@@ -226,7 +231,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static ConstructorInfoExt? GetParameterlessConstructor(this Type type)
-            => type.GetConstructorsCached(ALL_BINDINGS).FirstOrDefault(c => c.ParameterCount == 0);
+            => type.GetConstructorsCached(ALL_BINDINGS).OrderBy(c => c.Constructor.IsStatic).FirstOrDefault(c => c.ParameterCount == 0);
 
         /// <summary>
         /// Get the common base type
@@ -265,6 +270,6 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Type GetRealType(this Type type) => !type.IsArray && !type.IsEnum && type.HasElementType ? type.GetElementType()! : type;
+        public static Type GetRealType(this Type type) => !type.IsArray && !type.IsEnum && !type.IsPointer && type.HasElementType ? type.GetElementType()! : type;
     }
 }

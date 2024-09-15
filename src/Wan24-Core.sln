@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Validation", "Validation", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{C2CDDCD2-203E-4265-A79C-96B7EAC12139}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "wan24-Core-Shared", "..\..\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.shproj", "{9BBD359E-D0C4-4876-91E2-8663ADD3C9A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,8 +90,13 @@ Global
 		{44639A1B-E8B2-439C-A0C2-858E35674361} = {3D02A4B3-564A-4B76-B53F-D99A87FF2CDA}
 		{434F3CEA-1222-4314-9539-FD748EBBF2C7} = {C2CDDCD2-203E-4265-A79C-96B7EAC12139}
 		{C2E53DA2-70CA-46F0-8295-E93DCA56DAB0} = {C2CDDCD2-203E-4265-A79C-96B7EAC12139}
+		{9BBD359E-D0C4-4876-91E2-8663ADD3C9A4} = {F4B9E829-D39C-46BA-B3A1-915972529463}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48BC12D6-0419-474B-933B-E06B49F6226D}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems*{2f943ae5-d1bd-4488-b3b8-3c64c7fb8d3b}*SharedItemsImports = 5
+		..\..\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems*{9bbd359e-d0c4-4876-91e2-8663add3c9a4}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

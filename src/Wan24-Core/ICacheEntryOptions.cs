@@ -5,5 +5,9 @@
     /// </summary>
     public interface ICacheEntryOptions
     {
+        /// <summary>
+        /// Item size (should be at last <c>1</c>)
+        /// </summary>
+        int Size { get; set; }
     }
 }

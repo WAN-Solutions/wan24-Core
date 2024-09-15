@@ -223,7 +223,7 @@ namespace wan24.Core
                                 Expression.Constant(KeyValues),
                                 typeof(FrozenDictionary<string, T>)
                                     .GetMethodsCached()
-                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<string, T>.ContainsKey) && m.ParameterCount == 1 && m.Parameters[0].ParameterType == typeof(string))
+                                    .FirstOrDefault(m => m.Name == nameof(FrozenDictionary<string, T>.ContainsKey) && m.ParameterCount == 1 && m[0].ParameterType == typeof(string))
                                     ?.Method
                                     ?? throw new InvalidProgramException(),
                                 valueParam

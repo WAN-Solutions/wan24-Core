@@ -510,5 +510,21 @@ namespace wan24.Core
             }
             return res;
         }
+
+        /// <summary>
+        /// Create a builder
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <returns>Builder</returns>
+        public static EnumerableBuilder<T> CreateBuilder<T>(this IEnumerable<T> enumerable) => new(enumerable);
+
+        /// <summary>
+        /// Create a builder
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="queryable">Queryable</param>
+        /// <returns>Builder</returns>
+        public static QueryableBuilder<T> CreateBuilder<T>(this IQueryable<T> queryable) => new(queryable);
     }
 }

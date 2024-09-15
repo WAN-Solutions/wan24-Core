@@ -77,6 +77,10 @@ namespace wan24.Core
         /// The parameterless constructor
         /// </summary>
         private ConstructorInfoExt? _ParameterlessConstructor = null;
+        /// <summary>
+        /// Generic type definition
+        /// </summary>
+        private TypeInfoExt? GenericTypeDefinition = null;
 
         /// <summary>
         /// Get the bindings

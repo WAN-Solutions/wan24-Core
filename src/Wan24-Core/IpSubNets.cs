@@ -505,7 +505,7 @@ namespace wan24.Core
             IpSubNet[] newSubNets = new IpSubNet[subNets.Count + unknown.Count];
             Array.Copy(subNets.SubNets, 0, newSubNets, 0, subNets.Count);
             for (int start = subNets.Count, i = start, len = start + unknown.Count; i < len; i++)
-                newSubNets[i] = other[unknown[i - start]];
+                newSubNets[i] = other.SubNets[unknown[i - start]];
             return new(newSubNets);
         }
 

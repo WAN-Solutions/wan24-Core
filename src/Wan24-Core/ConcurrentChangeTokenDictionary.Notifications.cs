@@ -68,7 +68,21 @@ namespace wan24.Core
                     state: null
                     ) ?? DummyDisposable.Instance;
             if (value is INotifyPropertyChanged npc) npc.PropertyChanged += HandlePropertyChanged;
+            if (value is INotifyPropertyChanging npci) npci.PropertyChanging += HandlePropertyChanging;
             return res;
+        }
+
+        /// <summary>
+        /// Handle an item property change
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Arguments</param>
+        private void HandlePropertyChanging(object? sender, PropertyChangingEventArgs e)
+        {
+            if (!Disposable.EnsureNotDisposed(throwException: false)) return;
+            if (IgnoreUnnamedPropertyNotifications && e.PropertyName is null) return;
+            if (sender is not tValue value || KeyOfValue(value) is not tKey key) return;
+            RaisePropertyChanging(new KeyValuePair<tKey, tValue>(key, value), e);
         }
 
         /// <summary>
@@ -91,7 +105,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         private void UnsubscribeFrom(in tValue value)
         {
-            if (ObserveItems && value is INotifyPropertyChanged npc) npc.PropertyChanged -= HandlePropertyChanged;
+            if (!ObserveItems) return;
+            if (value is INotifyPropertyChanged npc) npc.PropertyChanged -= HandlePropertyChanged;
+            if (value is INotifyPropertyChanging npci) npci.PropertyChanging -= HandlePropertyChanging;
         }
 
         /// <inheritdoc/>

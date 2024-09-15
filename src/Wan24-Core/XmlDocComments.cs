@@ -103,7 +103,7 @@ namespace wan24.Core
                     sb.Append(GetGenericName(mi.DeclaringType));
                     sb.Append('.');
                     sb.Append(GetGenericName(mi));
-                    parameters = mi.GetParameters();
+                    parameters = [..mi.GetParametersCached()];
                     break;
                 case MethodInfoExt mi:
                     if (mi.Method.DeclaringType is null) throw new ArgumentException($"No declaring type for method {mi.Name.ToQuotedLiteral()}", nameof(member));
@@ -121,7 +121,7 @@ namespace wan24.Core
                     sb.Append(GetGenericName(ci.DeclaringType));
                     sb.Append('.');
                     sb.Append("#ctor");
-                    parameters = ci.GetParameters();
+                    parameters = [..ci.GetParametersCached()];
                     break;
                 case ConstructorInfoExt ci:
                     if (ci.DeclaringType is null) throw new ArgumentException("No declaring type for constructor", nameof(member));
@@ -168,7 +168,7 @@ namespace wan24.Core
                     break;
                 case MethodInfoExt mi:
                     sb.Append(mi.Name);
-                    if (mi.Method.IsGenericMethod) genericParameters = mi.GetGenericArguments();
+                    if (mi.Method.IsGenericMethod) genericParameters = mi.GenericArguments;
                     break;
                 default:
                     throw new ArgumentException("Invalid member type", nameof(member));
