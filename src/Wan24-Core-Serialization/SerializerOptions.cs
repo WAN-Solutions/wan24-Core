@@ -19,7 +19,7 @@
         public static SerializerOptions Default
         {
             get => _Default with { };
-            set => _Default = value;
+            set => _Default = value with { };
         }
 
         /// <summary>

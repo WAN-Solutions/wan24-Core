@@ -11,9 +11,18 @@ namespace wan24.Core
     public record class DeserializerOptions()
     {
         /// <summary>
+        /// Default options
+        /// </summary>
+        private static DeserializerOptions _Default = new();
+
+        /// <summary>
         /// Default
         /// </summary>
-        public static DeserializerOptions Default { get; set; } = new();
+        public static DeserializerOptions Default
+        {
+            get => _Default with { };
+            set => _Default = value with { };
+        }
 
         /// <summary>
         /// If to clear buffers after use

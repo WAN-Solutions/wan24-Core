@@ -94,7 +94,7 @@
                 : (from tt in (from it in type.GetInterfaces()
                                where it.IsGenericType &&
                                 it.GetGenericTypeDefinition() == typeof(ITypeConverter<>)
-                               select it.GetGenericArgumentsCached()[0])
+                               select it.GetGenericArgumentCached(index: 0))
                    where FindStreamSerializerType(tt, options) != StreamSerializerTypes.None
                    orderby FindStreamSerializerType(tt, options)
                    select tt)
@@ -113,7 +113,7 @@
                 : (from tt in (from it in type.GetInterfaces()
                                where it.IsGenericType &&
                                 it.GetGenericTypeDefinition() == typeof(ITypeConverter<>)
-                               select it.GetGenericArgumentsCached()[0])
+                               select it.GetGenericArgumentCached(index: 0))
                    where FindStreamDeserializerType(tt, options) != StreamSerializerTypes.None
                    orderby FindStreamDeserializerType(tt, options)
                    select tt)

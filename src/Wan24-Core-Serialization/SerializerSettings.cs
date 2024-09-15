@@ -22,7 +22,7 @@ namespace wan24.Core
         /// </summary>
         public static int Version
         {
-            get => (CustomVersion << 8) | SerializerConstants.VERSION;
+            get => (_CustomVersion << 8) | SerializerConstants.VERSION;
             set
             {
                 if ((value & byte.MaxValue) != SerializerConstants.VERSION)
