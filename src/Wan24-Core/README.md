@@ -210,6 +210,7 @@ including extensions for numeric type encoding/decoding)
     - `CopyStream` does copy a stream to a target stream in a background task
     - `DataEventStream` blocks reading of a wrapped stream until more input 
     data is available
+    - `PreBufferingStream` pre-reads from another stream into a blocking buffer
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -2081,3 +2082,29 @@ mapping.Compile();
 
 **WARNING**: As soon as any mapping expression was added, asynchronous 
 mappings will be executed synchronous (using `.GetAwaiter().GetResult()`).
+
+### Advanced
+
+#### Conditional mappings
+
+All `ObjectMapping.Add*` methods have a `condition` parameter (type of 
+`object?`), which allow to define a condition that needs to confirm applying 
+the mapping for the current source and target objects. A condition may be a 
+
+- `ObjectMapping.Condition_Delegate<object, object>`
+- `ObjectMapping.Condition_Delegate<tSource, tTarget>`
+- `Expression<Func<string, object, object, bool>>`
+- `Expression<Func<string, tSource, tTarget, bool>>`
+
+The parameters are:
+
+1. `string`: The mapping name
+2. `object|tSource`: The current source object
+3. `object|tTarget`: The current target object
+
+The condition needs to return `true` to confirm applying the mapping for the 
+given source and target objects. If `false` was returned, a mapping would 
+simply be skipped.
+
+**NOTE**: If an expression condition was given, the mapping has to be compiled 
+before it can be used!

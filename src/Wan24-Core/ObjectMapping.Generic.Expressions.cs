@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Immutable;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -101,6 +102,79 @@ namespace wan24.Core
                 if (ObjectValidator is null) throw new MappingException($"{typeof(tSource)} to {typeof(tTarget)} mapping has no object validator");
                 return _ValidateObjectExpression ??= Expression.Invoke(Expression.Constant(ObjectValidator), GenericTargetParameter);
             }
+        }
+
+        /// <summary>
+        /// Create a condition expression
+        /// </summary>
+        /// <param name="condition">Condition (if <see langword="null"/>, <c>mapping</c> will be returned)</param>
+        /// <param name="objectSourceParameter">Object source parameter</param>
+        /// <param name="objectTargetParameter">Object target parameter</param>
+        /// <param name="typedSourceParameter">Typed source parameter</param>
+        /// <param name="typedTargetParameter">Typed target parameter</param>
+        /// <param name="mapping">Mapping expression to execute if the condition does match</param>
+        /// <returns>Expression</returns>
+        protected virtual Expression CreateConditionExpression(
+            in object? condition,
+            in Expression objectSourceParameter,
+            in Expression objectTargetParameter,
+            in Expression typedSourceParameter,
+            in Expression typedTargetParameter,
+            in Expression mapping
+            )
+        {
+            if (condition is null) return mapping;
+            // Object condition delegate or expression
+            if (condition is Condition_Delegate<object, object> objectCondition)
+            {
+                return Expression.IfThen(
+                    Expression.Invoke(Expression.Constant(objectCondition), objectSourceParameter, objectTargetParameter),
+                    mapping
+                    );
+            }
+            else if (condition is Expression<Func<string, object, object, bool>> objectExpressionCondition)
+            {
+                return Expression.IfThen(
+                    Expression.Invoke(objectExpressionCondition, objectSourceParameter, objectTargetParameter),
+                    mapping
+                    );
+            }
+            // Validate the condition type
+            TypeInfoExt type = condition.GetType();
+            if (!type.IsGenericType) throw new MappingException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}");
+            TypeInfoExt gtd = type.GetGenericTypeDefinition() ?? throw new InvalidProgramException();
+            ImmutableArray<Type> gp = type.GetGenericArguments();
+            if (gp.Length != 2) throw new InvalidProgramException();
+            // Typed condition delegate or expression
+            if (gtd.Type == typeof(Condition_Delegate<,>))
+            {
+                if (gp[0] == typeof(object) && gp[1] == typeof(object))
+                {
+                    throw new InvalidProgramException();
+                }
+                else if (gp[0] == SourceType.Type && gp[1] == TargetType.Type)
+                {
+                    return Expression.IfThen(
+                        Expression.Invoke(Expression.Constant(condition, condition.GetType()), typedSourceParameter, typedTargetParameter),
+                        mapping
+                        );
+                }
+            }
+            else if (gtd.Type == typeof(Expression<>))
+            {
+                if (gp[0] == typeof(object) && gp[1] == typeof(object))
+                {
+                    throw new InvalidProgramException();
+                }
+                else if (gp[0] == SourceType.Type && gp[1] == TargetType.Type)
+                {
+                    return Expression.IfThen(
+                        Expression.Invoke((Expression<Func<string, object, object, bool>>)condition, typedSourceParameter, typedTargetParameter),
+                        mapping
+                        );
+                }
+            }
+            throw new MappingException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}");
         }
 
         /// <summary>

@@ -1,4 +1,7 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.Immutable;
+using System.Diagnostics.Contracts;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -138,6 +141,65 @@ namespace wan24.Core
                 }
                 return _CompileMappingMethod;
             }
+        }
+
+        /// <summary>
+        /// Validate a condition argument
+        /// </summary>
+        /// <param name="condition">Condition argument value</param>
+        /// <returns>Valid condition argument value</returns>
+        /// <exception cref="ArgumentException">Invalid condition</exception>
+        protected virtual object ValidateConditionArgument<tSource, tTarget>(in object condition)
+            => condition switch
+            {
+                Condition_Delegate<object, object> => condition,
+                Condition_Delegate<tSource, tTarget> => condition,
+                Expression<Func<string, object, object, bool>> => condition,
+                Expression<Func<string, tSource, tTarget, bool>> => condition,
+                _ => throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}")
+            };
+
+        /// <summary>
+        /// Validate a condition argument
+        /// </summary>
+        /// <param name="condition">Condition argument value</param>
+        /// <returns>Valid condition argument value</returns>
+        /// <exception cref="ArgumentException">Invalid condition</exception>
+        protected virtual object ValidateConditionArgument(in object condition)
+        {
+            if (condition is Condition_Delegate<object, object> || condition is Expression<Func<string, object, object, bool>>)
+                return condition;
+            TypeInfoExt type = condition.GetType();
+            if (!type.IsGenericType) throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
+            TypeInfoExt gtd = type.GetGenericTypeDefinition() ?? throw new InvalidProgramException();
+            if (gtd.Type != typeof(Condition_Delegate<,>) && gtd.Type != typeof(Expression<>))
+                throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
+            ImmutableArray<Type> gp = type.GetGenericArguments();
+            if (gp.Length != 2) throw new InvalidProgramException();
+            if ((gp[0] == typeof(object) && gp[1] == typeof(object)) || (gp[0] == SourceType.Type && gp[1] == TargetType.Type)) return true;
+            throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
+        }
+
+        /// <summary>
+        /// Evaluate a condition
+        /// </summary>
+        /// <typeparam name="tSource">Source object type (must match <see cref="SourceType"/>)</typeparam>
+        /// <typeparam name="tTarget">Target object type (must match <see cref="TargetType"/>)</typeparam>
+        /// <param name="mapping">Mapping name</param>
+        /// <param name="condition">Condition</param>
+        /// <param name="source">Source</param>
+        /// <param name="target">Target</param>
+        /// <returns>If to apply the mapping for the given source and target object</returns>
+        protected virtual bool EvaluateCondition<tSource, tTarget>(in string mapping, in object condition, in tSource source, in tTarget target)
+        {
+            Contract.Assert(source is not null && target is not null);
+            return condition switch
+            {
+                Condition_Delegate<object, object> objectCondition => objectCondition(mapping, source, target),
+                Condition_Delegate<tSource, tTarget> genericCondition => genericCondition(mapping, source, target),
+                Expression => throw new MappingException("An expression condition can only be applied within a compiled mapping"),
+                _ => throw new MappingException($"Invalid mapping condition {condition.ToString()?.ToQuotedLiteral() ?? "\"UNKNOWN\""} for mapping {typeof(tSource)} to {typeof(tTarget)}")
+            };
         }
 
         /// <summary>
