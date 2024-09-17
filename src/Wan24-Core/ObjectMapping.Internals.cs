@@ -147,7 +147,7 @@ namespace wan24.Core
         /// Validate a condition argument
         /// </summary>
         /// <param name="condition">Condition argument value</param>
-        /// <returns>Valid condition argument value</returns>
+        /// <returns>Valid condition argument value (may differ from the given <c>condition</c> argument value)</returns>
         /// <exception cref="ArgumentException">Invalid condition</exception>
         protected virtual object ValidateConditionArgument<tSource, tTarget>(in object condition)
             => condition switch
@@ -156,6 +156,8 @@ namespace wan24.Core
                 Condition_Delegate<tSource, tTarget> => condition,
                 Expression<Func<string, object, object, bool>> => condition,
                 Expression<Func<string, tSource, tTarget, bool>> => condition,
+                Func<string, object, object, bool> funcCondition => new Condition_Delegate<object, object>(funcCondition),
+                Func<string, tSource, tTarget, bool> funcCondition => new Condition_Delegate<tSource, tTarget>(funcCondition),
                 _ => throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}")
             };
 
@@ -163,20 +165,38 @@ namespace wan24.Core
         /// Validate a condition argument
         /// </summary>
         /// <param name="condition">Condition argument value</param>
-        /// <returns>Valid condition argument value</returns>
+        /// <returns>Valid condition argument value (may differ from the given <c>condition</c> argument value)</returns>
         /// <exception cref="ArgumentException">Invalid condition</exception>
         protected virtual object ValidateConditionArgument(in object condition)
         {
+            // Object condition delegate, expression or function
             if (condition is Condition_Delegate<object, object> || condition is Expression<Func<string, object, object, bool>>)
                 return condition;
+            if (condition is Func<string, object, object, bool> funcCondition)
+                return new Condition_Delegate<object, object>(funcCondition);
+            // Validate the condition type
             TypeInfoExt type = condition.GetType();
             if (!type.IsGenericType) throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
             TypeInfoExt gtd = type.GetGenericTypeDefinition() ?? throw new InvalidProgramException();
-            if (gtd.Type != typeof(Condition_Delegate<,>) && gtd.Type != typeof(Expression<>))
-                throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
             ImmutableArray<Type> gp = type.GetGenericArguments();
-            if (gp.Length != 2) throw new InvalidProgramException();
-            if ((gp[0] == typeof(object) && gp[1] == typeof(object)) || (gp[0] == SourceType.Type && gp[1] == TargetType.Type)) return true;
+            // Types condition delegate, expression or function
+            if (gtd.Type == typeof(Condition_Delegate<,>) && gp.Length == 2 && gp[0] == SourceType.Type && gp[1] == TargetType.Type)
+            {
+                return condition;
+            }
+            else if (gtd.Type == typeof(Expression<>) && gp.Length == 1 && gp[0].IsGenericType && TypeInfoExt.From(gp[0]).GetGenericTypeDefinition()?.Type == typeof(Func<,,,>))
+            {
+                gp = ReflectionExtensions.GetCachedGenericArguments(gp[0]);
+                if (gp.Length == 4 && gp[0] == typeof(string) && gp[1] == SourceType.Type && gp[2] == TargetType.Type && gp[3] == typeof(bool)) return condition;
+            }
+            else if (gtd.Type == typeof(Func<,,,>) && gp.Length == 4 && gp[0] == typeof(string) && gp[1] == SourceType.Type && gp[2] == TargetType.Type && gp[3] == typeof(bool))
+            {
+                return TypeInfoExt.From(typeof(Condition_Delegate<,>)).MakeGenericType(gp[1], gp[2]).GetConstructors()
+                    .FirstOrDefault(ci => ci.ParameterCount == 1)
+                    ?.Invoker
+                    ?.Invoke([condition])
+                    ?? throw new InvalidProgramException();
+            }
             throw new ArgumentException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}", nameof(condition));
         }
 

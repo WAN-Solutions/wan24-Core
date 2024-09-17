@@ -17,8 +17,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         public abstract ObjectMapping AddMapping(string sourcePropertyName, object? condition = null);
 
@@ -28,8 +28,8 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         public abstract ObjectMapping AddMapping(string sourcePropertyName, string targetPropertyName, object? condition = null);
 
@@ -41,8 +41,8 @@ namespace wan24.Core
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -75,8 +75,8 @@ namespace wan24.Core
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -105,8 +105,8 @@ namespace wan24.Core
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -138,8 +138,8 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         public abstract ObjectMapping AddAsyncMapping(string sourcePropertyName, object? condition = null);
 
@@ -149,8 +149,8 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         public abstract ObjectMapping AddAsyncMapping(string sourcePropertyName, string targetPropertyName, object? condition = null);
 
@@ -162,8 +162,8 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -2106,5 +2106,12 @@ The condition needs to return `true` to confirm applying the mapping for the
 given source and target objects. If `false` was returned, a mapping would 
 simply be skipped.
 
+Another possibility for working with conditions is to override the 
+`MapAttribute` and return `true` for `HasMappingCondition` and override the 
+`MappingCondition<tSource, tTarget>` method. As soon as the 
+`HasMappingCondition` property returns `true`, the 
+`MappingCondition<tSource, tTarget>` method is being called during mapping of 
+the attribute related proprety.
+
 **NOTE**: If an expression condition was given, the mapping has to be compiled 
 before it can be used!

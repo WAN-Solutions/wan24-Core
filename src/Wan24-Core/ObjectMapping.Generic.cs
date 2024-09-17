@@ -20,7 +20,7 @@ namespace wan24.Core
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
-            if (condition is not null) ValidateConditionArgument<tSource, tTarget>(condition);
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
                 if (condition is null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
@@ -58,7 +58,7 @@ namespace wan24.Core
         public override ObjectMapping AddMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
-            if (condition is not null) ValidateConditionArgument<tSource, tTarget>(condition);
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -85,8 +85,8 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
@@ -105,8 +105,8 @@ namespace wan24.Core
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -133,7 +133,7 @@ namespace wan24.Core
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
-            if (condition is not null) ValidateConditionArgument<tSource, tTarget>(condition);
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
                 if (condition is null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
@@ -171,7 +171,7 @@ namespace wan24.Core
         public override ObjectMapping AddAsyncMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
-            if (condition is not null) ValidateConditionArgument<tSource, tTarget>(condition);
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -208,8 +208,8 @@ namespace wan24.Core
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
         /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
-        /// where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and <c>TResult</c> is a <see cref="bool"/>, if the mapping 
-        /// should be applied to the given source and target object)</param>
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE

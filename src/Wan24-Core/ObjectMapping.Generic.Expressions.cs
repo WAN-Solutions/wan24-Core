@@ -144,35 +144,22 @@ namespace wan24.Core
             if (!type.IsGenericType) throw new MappingException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}");
             TypeInfoExt gtd = type.GetGenericTypeDefinition() ?? throw new InvalidProgramException();
             ImmutableArray<Type> gp = type.GetGenericArguments();
-            if (gp.Length != 2) throw new InvalidProgramException();
             // Typed condition delegate or expression
-            if (gtd.Type == typeof(Condition_Delegate<,>))
+            if (gtd.Type == typeof(Condition_Delegate<,>) && gp.Length == 2 && gp[0] == SourceType.Type && gp[1] == TargetType.Type)
             {
-                if (gp[0] == typeof(object) && gp[1] == typeof(object))
-                {
-                    throw new InvalidProgramException();
-                }
-                else if (gp[0] == SourceType.Type && gp[1] == TargetType.Type)
-                {
-                    return Expression.IfThen(
-                        Expression.Invoke(Expression.Constant(condition, condition.GetType()), typedSourceParameter, typedTargetParameter),
-                        mapping
-                        );
-                }
+                return Expression.IfThen(
+                    Expression.Invoke(Expression.Constant(condition, condition.GetType()), typedSourceParameter, typedTargetParameter),
+                    mapping
+                    );
             }
-            else if (gtd.Type == typeof(Expression<>))
+            else if (gtd.Type == typeof(Expression<>) && gp[0].IsGenericType && TypeInfoExt.From(gp[0]).GetGenericTypeDefinition()?.Type == typeof(Func<,,,>))
             {
-                if (gp[0] == typeof(object) && gp[1] == typeof(object))
-                {
-                    throw new InvalidProgramException();
-                }
-                else if (gp[0] == SourceType.Type && gp[1] == TargetType.Type)
-                {
+                gp = ReflectionExtensions.GetCachedGenericArguments(gp[0]);
+                if (gp.Length == 4 && gp[0] == typeof(string) && gp[1] == SourceType.Type && gp[2] == TargetType.Type && gp[3] == typeof(bool))
                     return Expression.IfThen(
-                        Expression.Invoke((Expression<Func<string, object, object, bool>>)condition, typedSourceParameter, typedTargetParameter),
+                        Expression.Invoke((Expression)condition, typedSourceParameter, typedTargetParameter),
                         mapping
                         );
-                }
             }
             throw new MappingException($"Invalid condition {condition.ToString() ?? "UNKNOWN"}");
         }
