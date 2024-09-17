@@ -118,6 +118,11 @@ namespace wan24.Core
         /// </summary>
         public readonly int LastItemIndex => Math.Min(_Page * ItemsPerPage, Count - 1);
 
+        /// <summary>
+        /// Number of items on the current page
+        /// </summary>
+        public readonly int ItemsOnPage => _Page >= TotalPages ? Count % ItemsPerPage : ItemsPerPage;
+
         /// <inheritdoc/>
         readonly int? ISerializeBinary.StructureSize => STRUCTURE_SIZE;
 
