@@ -27,6 +27,7 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(0, data.FirstItemIndex);
             Assert.AreEqual(5, data.LastItemIndex);
             Assert.AreEqual(5, data.ItemsOnPage);
+            Assert.AreEqual(2, data.NextPage());
 
             data.Page = 3;
             Assert.IsTrue(data.HasPreviousPage);
