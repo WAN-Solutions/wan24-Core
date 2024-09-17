@@ -258,7 +258,7 @@ including extensions for numeric type encoding/decoding)
 - UDP fallback
 - Query- and Enumerable builder
 - Synchronous enumerator for `IAsyncEnumerator<T>`
-- Pagination using `(Async)(Enumerable|Queryable)Pagination` and 
+- Pagination using `(Cached)(Async)(Enumerable|Queryable)Pagination` and 
 `PaginationMetaData`
 
 ## How to get it
