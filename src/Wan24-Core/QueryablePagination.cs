@@ -19,7 +19,7 @@ namespace wan24.Core
         /// </summary>
         public int ItemsPerPage = ItemsPerPage;
         /// <summary>
-        /// Current page
+        /// Current page (is zero, if not started enumerating yet)
         /// </summary>
         public int CurrentPage = 0;
         /// <summary>

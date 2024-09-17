@@ -32,7 +32,7 @@ namespace wan24.Core
         public int ItemsPerPage { get; } = itemsPerPage;
 
         /// <summary>
-        /// Current page
+        /// Current page (is zero, if not started enumerating yet)
         /// </summary>
         public int CurrentPage { get; private set; } = 0;
 
@@ -57,13 +57,27 @@ namespace wan24.Core
             EnsureUndisposed();
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             await InterruptCurrentEnumerationAsync().DynamicContext();
+            if (page.HasValue && (page.Value < 1 || page.Value <= CurrentPage)) throw new NotSupportedException("Asynchronous pagination can't move back");
             if (IsDone) yield break;
-            if (CurrentPageItemIndex < ItemsPerPage) await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
+            bool increasePage = true;
+            if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+            {
+                await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
+                increasePage = false;
+            }
             if (IsDone) yield break;
             int prevPage = CurrentPage;
-            if (page.HasValue) CurrentPage = page.Value;
+            if (page.HasValue)
+            {
+                CurrentPage = page.Value;
+            }
+            else if(increasePage)
+            {
+                CurrentPage++;
+                CurrentPageItemIndex = 0;
+            }
             if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage >= CurrentPage)
+            if (prevPage > 0 && prevPage >= CurrentPage)
             {
                 CurrentPage = prevPage;
                 throw new InvalidOperationException("Can't enumerate backward");

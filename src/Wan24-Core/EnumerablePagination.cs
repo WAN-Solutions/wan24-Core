@@ -32,7 +32,7 @@ namespace wan24.Core
         public int ItemsPerPage { get; } = itemsPerPage;
 
         /// <summary>
-        /// Current page
+        /// Current page (is zero, if not started enumerating yet)
         /// </summary>
         public int CurrentPage { get; private set; } = 0;
 
@@ -56,12 +56,24 @@ namespace wan24.Core
             EnsureUndisposed();
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             InterruptCurrentEnumeration();
-            if (IsDone) yield break;
-            if (CurrentPageItemIndex < ItemsPerPage) MoveForward(ItemsPerPage - CurrentPageItemIndex);
+            bool increasePage = true;
+            if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+            {
+                MoveForward(ItemsPerPage - CurrentPageItemIndex);
+                increasePage = false;
+            }
             int prevPage = CurrentPage;
-            if (page.HasValue) CurrentPage = page.Value;
+            if (page.HasValue)
+            {
+                CurrentPage = page.Value;
+            }
+            else if(increasePage)
+            {
+                CurrentPage++;
+                CurrentPageItemIndex = 0;
+            }
             if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
+            if (prevPage > 0 && prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
             if (IsDone) yield break;
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;

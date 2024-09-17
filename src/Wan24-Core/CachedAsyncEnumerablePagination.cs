@@ -42,7 +42,7 @@ namespace wan24.Core
         public int ItemsPerPage { get; } = itemsPerPage;
 
         /// <summary>
-        /// Current page
+        /// Current page (is zero, if not started enumerating yet)
         /// </summary>
         public int CurrentPage { get; private set; } = 0;
 
@@ -77,12 +77,24 @@ namespace wan24.Core
             EnsureUndisposed();
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             InterruptCurrentEnumeration();
-            if (IsDone) yield break;
-            if (CurrentPageItemIndex < ItemsPerPage) await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
+            bool increasePage = true;
+            if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+            {
+                await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
+                increasePage = false;
+            }
             int prevPage = CurrentPage;
-            if (page.HasValue) CurrentPage = page.Value;
+            if (page.HasValue)
+            {
+                CurrentPage = page.Value;
+            }
+            else if(increasePage)
+            {
+                CurrentPage++;
+                CurrentPageItemIndex = 0;
+            }
             if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage >= CurrentPage) await MoveBackwardAsync((CurrentPage - 1) * ItemsPerPage).DynamicContext();
+            if (prevPage > 0 && prevPage >= CurrentPage) await MoveBackwardAsync((CurrentPage - 1) * ItemsPerPage).DynamicContext();
             if (IsDone) yield break;
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;
@@ -99,6 +111,7 @@ namespace wan24.Core
         {
             InterruptCurrentEnumeration();
             Enumerator.DisposeAsync().AsTask().GetAwaiter().GetResult();
+            if (Cache.IsFrozen) Cache.Unfreeze();
             Cache.Clear();
         }
 
@@ -107,6 +120,7 @@ namespace wan24.Core
         {
             InterruptCurrentEnumeration();
             await Enumerator.DisposeAsync().DynamicContext();
+            if (Cache.IsFrozen) Cache.Unfreeze();
             Cache.Clear();
         }
 
@@ -205,7 +219,7 @@ namespace wan24.Core
                 {
                     EnsureUndisposed();
                     EnsureValidState();
-                    return Pagination.Cache[Pagination.CurrentCacheIndex];
+                    return Pagination.Cache[Pagination.CurrentCacheIndex - 1];
                 }
             }
 
@@ -228,7 +242,7 @@ namespace wan24.Core
                 if (await Pagination.Enumerator.MoveNextAsync().DynamicContext())
                 {
                     Pagination.CurrentPageItemIndex++;
-                    Pagination.Cache.Add(Current);
+                    Pagination.Cache.Add(Pagination.Enumerator.Current);
                     return true;
                 }
                 Pagination.IsDone = true;
