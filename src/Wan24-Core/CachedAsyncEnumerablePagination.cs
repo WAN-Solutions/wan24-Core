@@ -67,6 +67,11 @@ namespace wan24.Core
         public int CacheCount => Cache.Count;
 
         /// <summary>
+        /// Last exception (if not <see langword="null"/>, <see cref="NextPageAsync(int?, CancellationToken)"/> can't be used anymore)
+        /// </summary>
+        public Exception? LastException { get; private set; }
+
+        /// <summary>
         /// Get the next page (<see cref="CurrentPage"/> will be increased, if <c>page</c> wasn't given)
         /// </summary>
         /// <param name="page">Specific page to get (will be set to <see cref="CurrentPage"/>; must be greater than the present <see cref="CurrentPage"/> value)</param>
@@ -75,31 +80,49 @@ namespace wan24.Core
         public async IAsyncEnumerable<T> NextPageAsync(int? page = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
-            InterruptCurrentEnumeration();
-            bool increasePage = true;
-            if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+            if (LastException is not null) throw new AggregateException(LastException);
+            try
             {
-                await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
-                increasePage = false;
+                if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
+                InterruptCurrentEnumeration();
+                bool increasePage = true;
+                if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+                {
+                    await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
+                    increasePage = false;
+                }
+                int prevPage = CurrentPage;
+                if (page.HasValue)
+                {
+                    CurrentPage = page.Value;
+                }
+                else if (increasePage)
+                {
+                    CurrentPage++;
+                    CurrentPageItemIndex = 0;
+                }
+                if (CurrentPage < 1) CurrentPage = 1;
+                if (prevPage > 0 && prevPage >= CurrentPage) await MoveBackwardAsync((CurrentPage - 1) * ItemsPerPage).DynamicContext();
+                if (IsDone) yield break;
             }
-            int prevPage = CurrentPage;
-            if (page.HasValue)
+            catch (Exception ex)
             {
-                CurrentPage = page.Value;
+                LastException = ex;
+                throw new AggregateException(ex);
             }
-            else if(increasePage)
-            {
-                CurrentPage++;
-                CurrentPageItemIndex = 0;
-            }
-            if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage > 0 && prevPage >= CurrentPage) await MoveBackwardAsync((CurrentPage - 1) * ItemsPerPage).DynamicContext();
-            if (IsDone) yield break;
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;
             while (await enumerator.MoveNextAsync().DynamicContext())
             {
+                try
+                {
+                    if (!await enumerator.MoveNextAsync().DynamicContext()) break;
+                }
+                catch (Exception ex)
+                {
+                    LastException = ex;
+                    throw new AggregateException(ex);
+                }
                 if (cancellationToken.IsCancellationRequested) break;
                 yield return enumerator.Current;
             }

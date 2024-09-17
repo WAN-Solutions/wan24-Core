@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.ComponentModel;
 
 namespace wan24.Core
 {
@@ -68,6 +67,11 @@ namespace wan24.Core
         public int CacheCount => Cache.Count;
 
         /// <summary>
+        /// Last exception (if not <see langword="null"/>, <see cref="NextPage(int?)"/> can't be used anymore)
+        /// </summary>
+        public Exception? LastException { get; private set; }
+
+        /// <summary>
         /// Get the next page (<see cref="CurrentPage"/> will be increased, if <c>page</c> wasn't given)
         /// </summary>
         /// <param name="page">Specific page to get (will be set to <see cref="CurrentPage"/>; must be greater than the present <see cref="CurrentPage"/> value)</param>
@@ -76,29 +80,49 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
-            InterruptCurrentEnumeration();
-            bool increasePage = true;
-            if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+            try
             {
-                MoveForward(ItemsPerPage - CurrentPageItemIndex);
-                increasePage = false;
+                InterruptCurrentEnumeration();
+                bool increasePage = true;
+                if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+                {
+                    MoveForward(ItemsPerPage - CurrentPageItemIndex);
+                    increasePage = false;
+                }
+                int prevPage = CurrentPage;
+                if (page.HasValue)
+                {
+                    CurrentPage = page.Value;
+                }
+                else if (increasePage)
+                {
+                    CurrentPage++;
+                    CurrentPageItemIndex = 0;
+                }
+                if (CurrentPage < 1) CurrentPage = 1;
+                if (prevPage > 0 && prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
+                if (IsDone) yield break;
             }
-            int prevPage = CurrentPage;
-            if (page.HasValue)
+            catch (Exception ex)
             {
-                CurrentPage = page.Value;
+                LastException = ex;
+                throw new AggregateException(ex);
             }
-            else if(increasePage)
-            {
-                CurrentPage++;
-                CurrentPageItemIndex = 0;
-            }
-            if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage > 0 && prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
-            if (IsDone) yield break;
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;
-            while (enumerator.MoveNext()) yield return enumerator.Current;
+            while (true)
+            {
+                try
+                {
+                    if (!enumerator.MoveNext()) break;
+                }
+                catch(Exception ex)
+                {
+                    LastException = ex;
+                    throw new AggregateException(ex);
+                }
+                yield return enumerator.Current;
+            }
             if (CurrentEnumerator == enumerator) CurrentEnumerator = null;
         }
 
