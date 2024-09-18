@@ -260,6 +260,7 @@ including extensions for numeric type encoding/decoding)
 - Synchronous enumerator for `IAsyncEnumerator<T>`
 - Pagination using `(Cached)(Async)(Enumerable|Queryable)Pagination` and 
 `PaginationMetaData`
+- Plugins
 
 ## How to get it
 
@@ -2117,3 +2118,24 @@ the attribute related proprety.
 
 **NOTE**: If an expression condition was given, the mapping has to be compiled 
 before it can be used!
+
+## Plugins
+
+Using the `Plugin` type you can manage plugins:
+
+```cs
+// Load a plugin
+Plugin.Load("/path/to/plugin.dll");
+
+// Unload a plugin
+Plugin.Get("/path/to/plugin.dll").Dispose();
+```
+
+**NOTE**: The `Plugin` type does store loaded plugins as singleton instances. 
+By disposing an instance, it'll removed from the store.
+
+The plugin assembly needs to export at last one type which implements the 
+`IPlugin` interface. Dependencies will be loaded from the plugins folder.
+
+The `PluginInfo` type is a helper for loading or storing plugin information 
+from/to JSON (and it implements `IPlugin`).
