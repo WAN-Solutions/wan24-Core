@@ -70,7 +70,7 @@ namespace Wan24_Core_Tests
                 Assert.IsTrue(pagination.IsDone);
 
                 // The used enumerator can't move back
-                await Assert.ThrowsExceptionAsync<NotSupportedException>(async () =>
+                await Assert.ThrowsExceptionAsync<AggregateException>(async () =>
                 {
                     IAsyncEnumerator<int> enumerator = pagination.NextPageAsync(page: 2).GetAsyncEnumerator();
                     await using (enumerator)

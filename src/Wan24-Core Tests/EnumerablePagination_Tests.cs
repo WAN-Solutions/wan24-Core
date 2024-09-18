@@ -58,7 +58,7 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(pagination.IsDone);
 
             // The used enumerator can't move back
-            Assert.ThrowsException<NotSupportedException>(() =>
+            Assert.ThrowsException<AggregateException>(() =>
             {
                 using IEnumerator<int> enumerator = pagination.NextPage(page: 2).GetEnumerator();
                 enumerator.MoveNext();
