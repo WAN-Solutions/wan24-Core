@@ -81,9 +81,9 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (LastException is not null) throw new AggregateException(LastException);
+            if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             try
             {
-                if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
                 InterruptCurrentEnumeration();
                 bool increasePage = true;
                 if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
@@ -112,7 +112,7 @@ namespace wan24.Core
             }
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;
-            while (await enumerator.MoveNextAsync().DynamicContext())
+            while (true)
             {
                 try
                 {
@@ -283,6 +283,7 @@ namespace wan24.Core
             /// <exception cref="InvalidOperationException">The pagination moved on with another page already</exception>
             private void EnsureValidState()
             {
+                if (Pagination.LastException is not null) throw new AggregateException(Pagination.LastException);
                 if (Pagination.CurrentPage != Page) throw new InvalidOperationException("The pagination moved on with another page already");
             }
         }

@@ -2128,14 +2128,15 @@ Using the `Plugin` type you can manage plugins:
 Plugin.Load("/path/to/plugin.dll");
 
 // Unload a plugin
-Plugin.Get("/path/to/plugin.dll").Dispose();
+Plugin.Get("/path/to/plugin.dll")?.Dispose();
 ```
 
 **NOTE**: The `Plugin` type does store loaded plugins as singleton instances. 
-By disposing an instance, it'll removed from the store.
+By disposing an instance, it'll be removed from the store.
 
 The plugin assembly needs to export at last one type which implements the 
 `IPlugin` interface. Dependencies will be loaded from the plugins folder.
 
 The `PluginInfo` type is a helper for loading or storing plugin information 
-from/to JSON (and it implements `IPlugin`).
+from/to JSON (and it implements `IPlugin`). You can use it for exporting an 
+`IPlugin` type from your plugin assembly.

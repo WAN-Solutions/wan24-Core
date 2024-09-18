@@ -79,6 +79,7 @@ namespace wan24.Core
         public IEnumerable<T> NextPage(int? page = null)
         {
             EnsureUndisposed();
+            if (LastException is not null) throw new AggregateException(LastException);
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             try
             {
@@ -277,6 +278,7 @@ namespace wan24.Core
             /// <exception cref="InvalidOperationException">The pagination moved on with another page already</exception>
             private void EnsureValidState()
             {
+                if (Pagination.LastException is not null) throw new AggregateException(Pagination.LastException);
                 if (Pagination.CurrentPage != Page) throw new InvalidOperationException("The pagination moved on with another page already");
             }
         }
