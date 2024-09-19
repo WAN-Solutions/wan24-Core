@@ -107,6 +107,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
 
-  <Import Project="..\Others\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" />
+  <Import Project="..\..\..\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" Condition="'$(Configuration)' == 'Trunk'" />
+  <Import Project="..\Others\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" Condition="'$(Configuration)' != 'Trunk'" />
 
 </Project>
