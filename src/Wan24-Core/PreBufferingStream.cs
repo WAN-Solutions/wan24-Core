@@ -78,7 +78,7 @@
             }
             catch (Exception ex)
             {
-                ErrorHandling.Handle(new("Pre-buffering stream background buffer task failed", ex));
+                ErrorHandling.Handle(new("Pre-buffering stream background buffer task failed", ex, tag: this));
                 LastException = ex;
             }
         }

@@ -206,7 +206,7 @@ namespace wan24.Core
             }
             catch(Exception ex)
             {
-                ErrorHandling.Handle(new($"XML DocComment XPath expression {xpath.ToQuotedLiteral()} failed exceptional", ex));
+                ErrorHandling.Handle(new($"XML DocComment XPath expression {xpath.ToQuotedLiteral()} failed exceptional", ex, tag: this));
                 return null;
             }
         }

@@ -95,7 +95,7 @@
                 }
                 catch(Exception ex)
                 {
-                    ErrorHandling.Handle(new($"Distributed global read-write-lock context failed to release the global lock", ex));
+                    ErrorHandling.Handle(new($"Distributed global read-write-lock context failed to release the global lock", ex, tag: this));
                 }
             }
 
@@ -113,7 +113,7 @@
                     }
                     catch(Exception ex)
                     {
-                        ErrorHandling.Handle(new($"Distributed global read-write-lock context failed to release the global lock", ex));
+                        ErrorHandling.Handle(new($"Distributed global read-write-lock context failed to release the global lock", ex, tag: this));
                     }
             }
         }

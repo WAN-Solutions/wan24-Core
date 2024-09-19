@@ -71,7 +71,7 @@ namespace wan24.Core
             }
             catch (Exception ex)
             {
-                ErrorHandling.Handle(new($"Failed to load plugins from {assembly.MaxLength(byte.MaxValue).ToQuotedLiteral()}", ex));
+                ErrorHandling.Handle(new($"Failed to load plugins from {assembly.MaxLength(byte.MaxValue).ToQuotedLiteral()}", ex, tag: assembly));
                 return false;
             }
             finally
