@@ -288,7 +288,7 @@ namespace wan24.Core
         /// Regular expression to parse a string (<c>$1</c> is the whole placeholder, <c>$2</c> the inner variable declaration)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"(\%\{([^\}]+)\})", RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(@"(\%\{([^\}]+)\})", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RxParser_Generated();
     }
 }
