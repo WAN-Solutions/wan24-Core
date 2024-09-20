@@ -31,7 +31,7 @@ namespace wan24.Core
             LcName = name.ToLower();
             Value = value;
             Name = name;
-            HashCode = GetType().GetHashCode() ^ value.GetHashCode();
+            HashCode = System.HashCode.Combine(GetType(), value);
         }
 
         /// <inheritdoc/>
