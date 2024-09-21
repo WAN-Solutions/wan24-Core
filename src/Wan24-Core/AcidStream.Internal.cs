@@ -1,4 +1,5 @@
-﻿using static wan24.Core.Logging;
+﻿using System.Formats.Asn1;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -244,19 +245,19 @@ namespace wan24.Core
             if (NeedsCommit)
                 if (AutoRollback)
                 {
-                    ErrorHandling.Handle(new InvalidOperationException($"{GetType()} wasn't committed - will be rolled back for disposing"));
+                    ErrorHandling.Handle(new($"{GetType()} wasn't committed - will be rolled back for disposing", new InvalidOperationException(), tag: this));
                     try
                     {
                         RollbackInt();
                     }
                     catch (Exception ex)
                     {
-                        ErrorHandling.Handle(ex);
+                        ErrorHandling.Handle(new($"{GetType()} wasn't committed - rollback for disposing failed", ex, tag: this));
                     }
                 }
                 else
                 {
-                    ErrorHandling.Handle(new InvalidOperationException($"{GetType()} wasn't committed - won't roll back for disposing"));
+                    ErrorHandling.Handle(new($"{GetType()} wasn't committed - won't roll back for disposing", new InvalidOperationException(), tag: this));
                 }
             using SemaphoreSync sync = SyncIO;
             using SemaphoreSyncContext ssc = SyncIO;
@@ -271,19 +272,19 @@ namespace wan24.Core
             if (NeedsCommit)
                 if (AutoRollback)
                 {
-                    ErrorHandling.Handle(new InvalidOperationException($"{GetType()} wasn't committed - will be rolled back for disposing"));
+                    ErrorHandling.Handle(new($"{GetType()} wasn't committed - will be rolled back for disposing", new InvalidOperationException(), tag: this));
                     try
                     {
                         await RollbackIntAsync(CancellationToken.None).DynamicContext();
                     }
                     catch (Exception ex)
                     {
-                        ErrorHandling.Handle(ex);
+                        ErrorHandling.Handle(new($"{GetType()} wasn't committed - rollback for disposing failed", ex, tag: this));
                     }
                 }
                 else
                 {
-                    ErrorHandling.Handle(new InvalidOperationException($"{GetType()} wasn't committed - won't roll back for disposing"));
+                    ErrorHandling.Handle(new($"{GetType()} wasn't committed - won't roll back for disposing", new InvalidOperationException(), tag: this));
                 }
             await using (SyncIO.DynamicContext())
             {

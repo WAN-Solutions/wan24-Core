@@ -60,6 +60,10 @@ namespace wan24.Core
         /// Regular expression to match a hex string
         /// </summary>
         public const string HEX_STRING = @"^[a-f|0-9]+$";
+        /// <summary>
+        /// Regular expression to match a whitespace
+        /// </summary>
+        public const string WHITESPACE = @"\s";
 
         /// <summary>
         /// An object for thread synchronization
@@ -125,6 +129,10 @@ namespace wan24.Core
         /// Regular expression to match a hex string
         /// </summary>
         public static readonly Regex RX_HEX_STRING = RX_HEX_STRING_Generated();
+        /// <summary>
+        /// Regular expression to match a whitespace
+        /// </summary>
+        public static readonly Regex RX_WHITESPACE = RX_WHITESPACE_Generated();
 
         /// <summary>
         /// Named expression names
@@ -286,5 +294,12 @@ namespace wan24.Core
         /// <returns>Regular expression</returns>
         [GeneratedRegex(HEX_STRING, RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled, 3000)]
         private static partial Regex RX_HEX_STRING_Generated();
+
+        /// <summary>
+        /// Regular expression to match a whitespace
+        /// </summary>
+        /// <returns>Regular expression</returns>
+        [GeneratedRegex(WHITESPACE, RegexOptions.Singleline | RegexOptions.Compiled, 3000)]
+        private static partial Regex RX_WHITESPACE_Generated();
     }
 }

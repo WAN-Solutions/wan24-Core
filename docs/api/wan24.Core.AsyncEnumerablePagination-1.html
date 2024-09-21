@@ -243,7 +243,7 @@
   </span>
   <a id="wan24_Core_AsyncEnumerablePagination_1_CurrentPage_" data-uid="wan24.Core.AsyncEnumerablePagination`1.CurrentPage*"></a>
   <h4 id="wan24_Core_AsyncEnumerablePagination_1_CurrentPage" data-uid="wan24.Core.AsyncEnumerablePagination`1.CurrentPage">CurrentPage</h4>
-  <div class="markdown level1 summary"><p>Current page</p>
+  <div class="markdown level1 summary"><p>Current page (is zero, if not started enumerating yet)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -358,6 +358,37 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerablePagination_1_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerablePagination%601.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L52">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncEnumerablePagination_1_LastException_" data-uid="wan24.Core.AsyncEnumerablePagination`1.LastException*"></a>
+  <h4 id="wan24_Core_AsyncEnumerablePagination_1_LastException" data-uid="wan24.Core.AsyncEnumerablePagination`1.LastException">LastException</h4>
+  <div class="markdown level1 summary"><p>Last exception (if not <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, <a class="xref" href="wan24.Core.AsyncEnumerablePagination-1.html#wan24_Core_AsyncEnumerablePagination_1_NextPageAsync_System_Nullable_System_Int32__System_Threading_CancellationToken_">NextPageAsync(int?, CancellationToken)</a> can't be used anymore)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Exception? LastException { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -365,7 +396,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerablePagination_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerablePagination%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L119">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerablePagination_1_Dispose_" data-uid="wan24.Core.AsyncEnumerablePagination`1.Dispose*"></a>
   <h4 id="wan24_Core_AsyncEnumerablePagination_1_Dispose_System_Boolean_" data-uid="wan24.Core.AsyncEnumerablePagination`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -401,7 +432,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerablePagination_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerablePagination%601.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L89">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerablePagination_1_DisposeCore_" data-uid="wan24.Core.AsyncEnumerablePagination`1.DisposeCore*"></a>
   <h4 id="wan24_Core_AsyncEnumerablePagination_1_DisposeCore" data-uid="wan24.Core.AsyncEnumerablePagination`1.DisposeCore">DisposeCore()</h4>
@@ -434,7 +465,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncEnumerablePagination_1_NextPageAsync_System_Nullable_System_Int32__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncEnumerablePagination%601.NextPageAsync(System.Nullable%7BSystem.Int32%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncEnumerablePagination.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_AsyncEnumerablePagination_1_NextPageAsync_" data-uid="wan24.Core.AsyncEnumerablePagination`1.NextPageAsync*"></a>
   <h4 id="wan24_Core_AsyncEnumerablePagination_1_NextPageAsync_System_Nullable_System_Int32__System_Threading_CancellationToken_" data-uid="wan24.Core.AsyncEnumerablePagination`1.NextPageAsync(System.Nullable{System.Int32},System.Threading.CancellationToken)">NextPageAsync(int?, CancellationToken)</h4>

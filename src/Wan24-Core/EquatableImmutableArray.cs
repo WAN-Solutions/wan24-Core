@@ -53,9 +53,7 @@ namespace wan24.Core
         public EquatableImmutableArray(in ImmutableArray<T> array)
         {
             Array = array;
-            int hashCode = array.Length.GetHashCode();
-            for (int i = 0, len = array.Length; i < len; hashCode ^= array[i]?.GetHashCode() ?? 0, i++) ;
-            HashCode = hashCode;
+            HashCode = array.GetHashCode();
         }
 
         /// <inheritdoc/>

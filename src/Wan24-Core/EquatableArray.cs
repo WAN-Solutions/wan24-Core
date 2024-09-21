@@ -52,9 +52,7 @@ namespace wan24.Core
         public EquatableArray(in T[] array)
         {
             Array = array;
-            int hashCode = array.Length.GetHashCode();
-            for (int i = 0, len = array.Length; i < len; hashCode ^= array[i]?.GetHashCode() ?? 0, i++) ;
-            HashCode = hashCode;
+            HashCode = array.CombineHashCodes();
         }
 
         /// <inheritdoc/>

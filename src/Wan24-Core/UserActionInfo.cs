@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace wan24.Core
 {
     /// <summary>
-    /// User action informations
+    /// User action information
     /// </summary>
     /// <remarks>
     /// Constructor
@@ -23,7 +23,7 @@ namespace wan24.Core
         public required string Method { get; init; }
 
         /// <summary>
-        /// Parameter informations
+        /// Parameter information
         /// </summary>
         public required UserActionParameterInfo[] Parameters { get; init; }
 
@@ -131,10 +131,10 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Create user action parameter informations
+        /// Create user action parameter information
         /// </summary>
         /// <param name="param">Parameters</param>
-        /// <returns>Parameter informations</returns>
+        /// <returns>Parameter information</returns>
         public static IEnumerable<UserActionParameterInfo> CreateParameterInfo(params ParameterInfo[] param)
         {
             NullabilityInfoContext nic = new();

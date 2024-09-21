@@ -88,6 +88,11 @@ namespace wan24.Core
         public virtual bool CanMapAsync { get; }
 
         /// <summary>
+        /// If this attribute implements <see cref="MappingCondition{tSource, tTarget}(string, tSource, tTarget)"/>
+        /// </summary>
+        public virtual bool HasMappingCondition { get; }
+
+        /// <summary>
         /// If <see cref="TargetInstanceFactory(Type, Type)"/> should be used
         /// </summary>
         public virtual bool UseTargetInstanceFactory { get; init; }
@@ -119,6 +124,17 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public virtual Task MapAsync<tSource, tTarget>(string sourcePropertyName, tSource source, tTarget target, CancellationToken cancellationToken)
             => throw new NotImplementedException();
+
+        /// <summary>
+        /// Mapping condition
+        /// </summary>
+        /// <typeparam name="tSource">Source object type</typeparam>
+        /// <typeparam name="tTarget">Target object type</typeparam>
+        /// <param name="mapping">Mapping name</param>
+        /// <param name="source">Source object</param>
+        /// <param name="target">Target object</param>
+        /// <returns>If the mapping should be applied for the given source and target object</returns>
+        public virtual bool MappingCondition<tSource, tTarget>(string mapping, tSource source, tTarget target) => throw new NotImplementedException();
 
         /// <summary>
         /// Target instance factory (uses <see cref="ObjectMapping.DefaultTargetInstanceCreator(Type, Type)"/> per default)

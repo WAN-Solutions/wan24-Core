@@ -51,7 +51,7 @@ namespace wan24.Core
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new($"{this} failed to rollback during disposing", ex));
+                    ErrorHandling.Handle(new($"{this} failed to rollback during disposing", ex, tag: this));
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace wan24.Core
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new($"{this} failed to rollback during disposing", ex));
+                    ErrorHandling.Handle(new($"{this} failed to rollback during disposing", ex, tag: this));
                 }
             }
         }

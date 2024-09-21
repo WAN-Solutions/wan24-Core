@@ -14,51 +14,23 @@ namespace wan24.Core
     /// </remarks>
     public partial class ObjectMapping<tSource, tTarget>() : ObjectMapping()
     {
-        /// <summary>
-        /// Compiled mapping
-        /// </summary>
-        protected Action<tSource, tTarget>? _CompiledMapping = null;
-
-        /// <summary>
-        /// Compiled mapping
-        /// </summary>
-        public virtual Action<tSource, tTarget>? CompiledMapping
-        {
-#if !NO_INLINE
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-            get
-            {
-                if (_CompiledMapping is null && AutoCompile) CompileMapping();
-                return _CompiledMapping;
-            }
-#if !NO_INLINE
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-            set
-            {
-                _CompiledMapping = value;
-                HasCompiledMapping = value is not null;
-                CompiledObjectMapping = value;
-                if (value is null) Mappings.Unfreeze();
-            }
-        }
-
         /// <inheritdoc/>
-        public override ObjectMapping AddMapping(in string sourcePropertyName)
+        public override ObjectMapping AddMapping(string sourcePropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
+                if (condition is null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
                 if (attr.CanMap)
                 {
                     MapperInfo mapper = new(pi, TargetProperty: null, new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
                         CreateMapCallExpression(attr, pi, GenericSourceParameter, GenericTargetParameter),
                         GenericSourceParameter,
                         GenericTargetParameter
-                        ).CompileExt()), MapperType.GenericMapCall);
+                        ).CompileExt()), MapperType.GenericMapCall, Condition: condition);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
@@ -69,22 +41,24 @@ namespace wan24.Core
                         pi,
                         TargetProperty: null,
                         new AsyncMapper_Delegate<tSource, tTarget>(async (source, target, ct) => await attr.MapAsync(pi.Name, source, target, ct).DynamicContext()),
-                        MapperType.AnyAsync
+                        MapperType.AnyAsync,
+                        Condition: condition
                         );
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
                 }
                 if (attr.TargetPropertyName is not null)
-                    return AddMapping(sourcePropertyName, attr.TargetPropertyName);
+                    return AddMapping(sourcePropertyName, attr.TargetPropertyName, condition);
             }
-            return AddMapping(sourcePropertyName, sourcePropertyName);
+            return AddMapping(sourcePropertyName, sourcePropertyName, condition);
         }
 
         /// <inheritdoc/>
-        public override ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)
+        public override ObjectMapping AddMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -93,12 +67,13 @@ namespace wan24.Core
             if (tp.Property.SetMethod is null) throw new MappingException($"Target property {tp.FullName} has no usable setter");
             if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.FullName} ({sp.PropertyType}) can't be mapped to {tp.FullName} ({tp.PropertyType})");
+            if (condition is null && attr is not null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
             bool isNested = attr?.Nested ?? false;
             MapperInfo mapper = new(sp, tp, new Mapper_Delegate<tSource, tTarget>(Expression.Lambda<Action<tSource, tTarget>>(
                 isNested ? CreateNestedMapperExpression(sp, tp, GenericSourceParameter, GenericTargetParameter) : CreateMapperExpression(sp, tp, GenericSourceParameter, GenericTargetParameter, attr),
                 GenericSourceParameter,
                 GenericTargetParameter
-                ).CompileExt()), isNested ? MapperType.GenericNestedMapper : MapperType.GenericMapper);
+                ).CompileExt()), isNested ? MapperType.GenericNestedMapper : MapperType.GenericMapper, Condition: condition);
             if (!Mappings.TryAdd(sourcePropertyName, mapper))
                 throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
             return this;
@@ -109,15 +84,18 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping<tSource, tTarget> AddMapping(in string sourcePropertyName, in Mapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping<tSource, tTarget> AddMapping(string sourcePropertyName, Mapper_Delegate<tSource, tTarget> mapper, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
-            AddMapping<tSource, tTarget>(sourcePropertyName, mapper);
+            AddMapping<tSource, tTarget>(sourcePropertyName, mapper, condition);
             return this;
         }
 
@@ -126,11 +104,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression<Action<tSource, tTarget>> mapper)
+        public virtual ObjectMapping AddMappingExpression(string mappingKey, Expression<Action<tSource, tTarget>> mapper, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
@@ -138,7 +119,8 @@ namespace wan24.Core
                 TargetProperty: null,
                 mapper,
                 MapperType.GenericExpression,
-                CustomKey: mappingKey
+                CustomKey: mappingKey,
+                Condition: condition is null ? null : ValidateConditionArgument<tSource, tTarget>(condition)
                 );
             if (!Mappings.TryAdd(mappingKey, info))
                 throw new MappingException($"A mapping for the given mapping key \"{mappingKey}\" exists already");
@@ -146,20 +128,23 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override ObjectMapping AddAsyncMapping(in string sourcePropertyName)
+        public override ObjectMapping AddAsyncMapping(string sourcePropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             if (FindProperty(SourceType, sourcePropertyName) is not PropertyInfoExt pi)
                 throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found");
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             if (pi.GetCustomAttributeCached<MapAttribute>() is MapAttribute attr)
             {
+                if (condition is null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
                 if (attr.CanMapAsync)
                 {
                     MapperInfo mapper = new(
                         pi,
                         TargetProperty: null,
                         new AsyncMapper_Delegate<tSource, tTarget>(async (source, target, ct) => await attr.MapAsync(pi.Name, source, target, ct).DynamicContext()),
-                        MapperType.AnyAsync
+                        MapperType.AnyAsync,
+                        Condition: condition
                         );
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
@@ -171,21 +156,22 @@ namespace wan24.Core
                         CreateMapCallExpression(attr, pi, GenericSourceParameter, GenericTargetParameter),
                         GenericSourceParameter,
                         GenericTargetParameter
-                        ).CompileExt()), MapperType.GenericMapCall);
+                        ).CompileExt()), MapperType.GenericMapCall, Condition: condition);
                     if (!Mappings.TryAdd(sourcePropertyName, mapper))
                         throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
                     return this;
                 }
                 if (attr.TargetPropertyName is not null)
-                    return AddAsyncMapping(sourcePropertyName, attr.TargetPropertyName);
+                    return AddAsyncMapping(sourcePropertyName, attr.TargetPropertyName, condition);
             }
-            return AddAsyncMapping(sourcePropertyName, sourcePropertyName);
+            return AddAsyncMapping(sourcePropertyName, sourcePropertyName, condition);
         }
 
         /// <inheritdoc/>
-        public override ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)
+        public override ObjectMapping AddAsyncMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
+            if (condition is not null) condition = ValidateConditionArgument<tSource, tTarget>(condition);
             PropertyInfoExt sp = FindProperty(SourceType, sourcePropertyName)
                     ?? throw new MappingException($"Source property \"{typeof(tSource)}.{sourcePropertyName}\" not found"),
                 tp = FindProperty(TargetType, targetPropertyName)
@@ -194,6 +180,7 @@ namespace wan24.Core
             if (tp.Setter is null) throw new MappingException($"Target property {tp.FullName} has no usable setter");
             if (!CanMapPropertyTo(sp, tp, out MapAttribute? attr))
                 throw new MappingException($"{sp.FullName} ({sp.PropertyType}) can't be mapped to {tp.FullName} ({tp.PropertyType})");
+            if (condition is null && attr is not null && attr.HasMappingCondition) condition = new Condition_Delegate<tSource, tTarget>(attr.MappingCondition);
             bool isNested = attr?.Nested ?? false;
             MapperInfo mapper = new(
                 sp,
@@ -207,7 +194,8 @@ namespace wan24.Core
                         GenericSourceParameter,
                         GenericTargetParameter
                         ).CompileExt()),
-                isNested ? MapperType.AnyAsync : MapperType.GenericMapper
+                isNested ? MapperType.AnyAsync : MapperType.GenericMapper,
+                Condition: condition
                 );
             if (!Mappings.TryAdd(sourcePropertyName, mapper))
                 throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");
@@ -219,110 +207,18 @@ namespace wan24.Core
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="ObjectMapping.Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping<tSource, tTarget> AddAsyncMapping(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
-            AddAsyncMapping<tSource, tTarget>(sourcePropertyName, mapper);
-            return this;
-        }
-
-        /// <summary>
-        /// Compile the object mapping and set <see cref="CompiledMapping"/>
-        /// </summary>
-        /// <returns>This</returns>
-        public virtual ObjectMapping<tSource, tTarget> CompileMapping()
-        {
-            int i = 0,
-                len = Mappings.Count;
-            if (IsMappingObject) len++;
-            if (IsMappingObjectExt) len++;
-            if (ObjectValidator is not null) len++;
-            Expression[] expressions = new Expression[len];
-            for (MapperInfo mapper; i < len; i++)
-            {
-                mapper = Mappings[i];
-                switch (mapper.Type)
-                {
-                    case MapperType.Mapper or MapperType.GenericMapper when mapper.SourceProperty is not null && mapper.TargetProperty is not null:
-                        expressions[i] = CreateMapperExpression(
-                            mapper.SourceProperty,
-                            mapper.TargetProperty,
-                            GenericSourceParameter,
-                            GenericTargetParameter,
-                            mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>()
-                            );
-                        break;
-                    case MapperType.CustomMapper:
-                        expressions[i] = Expression.Invoke(
-                            Expression.Constant(mapper.Mapper, mapper.Mapper.GetType()),
-                            GenericSourceParameter,
-                            GenericTargetParameter
-                            );
-                        break;
-                    case MapperType.MapCall or MapperType.GenericMapCall
-                        when mapper.SourceProperty is not null && mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>() is MapAttribute mapAttr:
-                        expressions[i] = CreateMapCallExpression(
-                            mapAttr,
-                            mapper.SourceProperty,
-                            GenericSourceParameter,
-                            GenericTargetParameter
-                            );
-                        break;
-                    case MapperType.NestedMapper or MapperType.GenericNestedMapper when mapper.SourceProperty is not null && mapper.TargetProperty is not null:
-                        expressions[i] = CreateNestedMapperExpression(
-                            mapper.SourceProperty,
-                            mapper.TargetProperty,
-                            GenericSourceParameter,
-                            GenericTargetParameter,
-                            mapper.SourceProperty.GetCustomAttributeCached<MapAttribute>()
-                            );
-                        break;
-                    case MapperType.AnyAsync:
-                        {
-                            bool isObjectMapper = !mapper.Mapper.GetType().IsGenericType;
-                            expressions[i] = Expression.Call(
-                                Expression.Call(
-                                    Expression.Invoke(
-                                        Expression.Constant(mapper.Mapper, mapper.Mapper.GetType()),
-                                        isObjectMapper ? GenericSourceObjectParameter : GenericSourceParameter,
-                                        isObjectMapper ? GenericTargetObjectParameter : GenericTargetParameter,
-                                        NoCancellationTokenExpression
-                                    ),
-                                    GetAwaiterMethod
-                                    ),
-                                GetResultMethod
-                                );
-                        }
-                        break;
-                    case MapperType.Expression when mapper.Mapper is Expression<Action<object, object>> mapperExpression:
-                        expressions[i] = Expression.Invoke(
-                            mapperExpression,
-                            GenericSourceObjectParameter,
-                            GenericTargetObjectParameter
-                            );
-                        break;
-                    case MapperType.GenericExpression when mapper.Mapper is Expression<Action<tSource, tTarget>> mapperExpression:
-                        expressions[i] = Expression.Invoke(
-                            mapperExpression,
-                            GenericSourceParameter,
-                            GenericTargetParameter
-                            );
-                        break;
-                    default:
-                        throw new MappingException($"Invalid mapper type {mapper.Type} or configuration at #{i} for mapping {SourceType.Type} to {TargetType.Type}");
-                }
-            }
-            if (IsMappingObject) expressions[++i] = MappingObjectExpression;
-            if (IsMappingObjectExt) expressions[++i] = MappingObjectExtExpression;
-            if (ObjectValidator is not null) expressions[++i] = ValidateObjectExpression;
-            CompiledMapping = Expression.Lambda<Action<tSource, tTarget>>(len > 1 ? Expression.Block(expressions) : expressions[0], GenericSourceParameter, GenericTargetParameter)
-                .CompileExt();
-            Mappings.Freeze();
+            AddAsyncMapping<tSource, tTarget>(sourcePropertyName, mapper, condition);
             return this;
         }
     }
