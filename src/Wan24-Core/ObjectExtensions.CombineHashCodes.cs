@@ -32,7 +32,7 @@
                 bufferSpan[0] = hashCode;
                 for (i = 0, j = 0, len2 = Math.Min(7, len); i < len2; bufferSpan[++i] = objs[j], j = i) ;
                 hashCode = CombineHashCodesInt<object?>(bufferSpan[..Math.Min(8, len + 1)]);
-                if (len < 7) return hashCode;
+                if (len <= 7) return hashCode;
                 objs = objs[7..];
                 len -= 7;
             }
