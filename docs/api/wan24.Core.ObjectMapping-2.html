@@ -116,16 +116,16 @@
       <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_PROPERTY_REFLECTION_FLAGS">ObjectMapping.PROPERTY_REFLECTION_FLAGS</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping__2_System_String__wan24_Core_ObjectMapping_Mapper_Delegate___0___1___">ObjectMapping.AddMapping&lt;tSource, tTarget&gt;(in string, in ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping__2_System_String_wan24_Core_ObjectMapping_Mapper_Delegate___0___1__System_Object_">ObjectMapping.AddMapping&lt;tSource, tTarget&gt;(string, ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt;, object)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMappingExpression_System_String__System_Linq_Expressions_Expression_System_Action_System_Object_System_Object____">ObjectMapping.AddMappingExpression(in string, in Expression&lt;Action&lt;object, object&gt;&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMappingExpression_System_String_System_Linq_Expressions_Expression_System_Action_System_Object_System_Object___System_Object_">ObjectMapping.AddMappingExpression(string, Expression&lt;Action&lt;object, object&gt;&gt;, object)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMappingExpression__2_System_String__System_Linq_Expressions_Expression_System_Action___0___1____">ObjectMapping.AddMappingExpression&lt;tSource, tTarget&gt;(in string, in Expression&lt;Action&lt;tSource, tTarget&gt;&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMappingExpression__2_System_String_System_Linq_Expressions_Expression_System_Action___0___1___System_Object_">ObjectMapping.AddMappingExpression&lt;tSource, tTarget&gt;(string, Expression&lt;Action&lt;tSource, tTarget&gt;&gt;, object)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping__2_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate___0___1___">ObjectMapping.AddAsyncMapping&lt;tSource, tTarget&gt;(in string, in ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt;)</a>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping__2_System_String_wan24_Core_ObjectMapping_AsyncMapper_Delegate___0___1__System_Object_">ObjectMapping.AddAsyncMapping&lt;tSource, tTarget&gt;(string, ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt;, object)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAutoMappings_System_Nullable_System_Boolean__System_Nullable_System_Boolean__System_Nullable_System_Boolean__System_Reflection_BindingFlags__">ObjectMapping.AddAutoMappings(bool?, bool?, bool?, in BindingFlags)</a>
@@ -270,6 +270,15 @@
     </div>
     <div>
       <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_CompileMappingMethod">ObjectMapping.CompileMappingMethod</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_ValidateConditionArgument__2_System_Object__">ObjectMapping.ValidateConditionArgument&lt;tSource, tTarget&gt;(in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_ValidateConditionArgument_System_Object__">ObjectMapping.ValidateConditionArgument(in object)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_EvaluateCondition__2_System_String__System_Object____0____1__">ObjectMapping.EvaluateCondition&lt;tSource, tTarget&gt;(in string, in object, in tSource, in tTarget)</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AutoCreate">ObjectMapping.AutoCreate</a>
@@ -882,7 +891,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_NULL_VALUE_EXCEPTION_MESSAGE.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.NULL_VALUE_EXCEPTION_MESSAGE%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L12">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L13">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2_NULL_VALUE_EXCEPTION_MESSAGE" data-uid="wan24.Core.ObjectMapping`2.NULL_VALUE_EXCEPTION_MESSAGE">NULL_VALUE_EXCEPTION_MESSAGE</h4>
   <div class="markdown level1 summary"><p>Message for the <a class="xref" href="wan24.Core.MappingException.html">MappingException</a> to throw when trying to map <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to a non-nullable target property</p>
@@ -1032,7 +1041,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__CompiledMapping.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._CompiledMapping%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Compile.cs/#L12">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__CompiledMapping" data-uid="wan24.Core.ObjectMapping`2._CompiledMapping">_CompiledMapping</h4>
   <div class="markdown level1 summary"><p>Compiled mapping</p>
@@ -1062,7 +1071,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__SourceTypedParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._SourceTypedParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L26">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__SourceTypedParameter" data-uid="wan24.Core.ObjectMapping`2._SourceTypedParameter">_SourceTypedParameter</h4>
   <div class="markdown level1 summary"><p>Typed source parameter expression</p>
@@ -1092,7 +1101,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__TargetTypedParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._TargetTypedParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L29">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L30">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__TargetTypedParameter" data-uid="wan24.Core.ObjectMapping`2._TargetTypedParameter">_TargetTypedParameter</h4>
   <div class="markdown level1 summary"><p>Typed target parameter expression</p>
@@ -1122,7 +1131,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__TypedMapMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._TypedMapMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L34">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__TypedMapMethod" data-uid="wan24.Core.ObjectMapping`2._TypedMapMethod">_TypedMapMethod</h4>
   <div class="markdown level1 summary"><p>Typed <a class="xref" href="wan24.Core.MapAttribute.html#wan24_Core_MapAttribute_Map__2_System_String___0___1_">Map&lt;tSource, tTarget&gt;(string, tSource, tTarget)</a> method</p>
@@ -1152,7 +1161,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__TypedSourceParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._TypedSourceParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L17">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L18">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__TypedSourceParameter" data-uid="wan24.Core.ObjectMapping`2._TypedSourceParameter">_TypedSourceParameter</h4>
   <div class="markdown level1 summary"><p>Typed source parameter</p>
@@ -1182,7 +1191,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__TypedTargetParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._TypedTargetParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L22">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__TypedTargetParameter" data-uid="wan24.Core.ObjectMapping`2._TypedTargetParameter">_TypedTargetParameter</h4>
   <div class="markdown level1 summary"><p>Typed target parameter</p>
@@ -1212,7 +1221,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2__ValidateObjectExpression.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602._ValidateObjectExpression%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L38">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectMapping_2__ValidateObjectExpression" data-uid="wan24.Core.ObjectMapping`2._ValidateObjectExpression">_ValidateObjectExpression</h4>
   <div class="markdown level1 summary"><p>Object validation expression</p>
@@ -1244,7 +1253,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CompiledMapping.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CompiledMapping%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Compile.cs/#L17">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CompiledMapping_" data-uid="wan24.Core.ObjectMapping`2.CompiledMapping*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CompiledMapping" data-uid="wan24.Core.ObjectMapping`2.CompiledMapping">CompiledMapping</h4>
@@ -1275,7 +1284,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_SourceTypedParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.SourceTypedParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_SourceTypedParameter_" data-uid="wan24.Core.ObjectMapping`2.SourceTypedParameter*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_SourceTypedParameter" data-uid="wan24.Core.ObjectMapping`2.SourceTypedParameter">SourceTypedParameter</h4>
@@ -1306,7 +1315,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_TargetTypedParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.TargetTypedParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L86">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L87">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_TargetTypedParameter_" data-uid="wan24.Core.ObjectMapping`2.TargetTypedParameter*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_TargetTypedParameter" data-uid="wan24.Core.ObjectMapping`2.TargetTypedParameter">TargetTypedParameter</h4>
@@ -1337,7 +1346,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_TypedMapMethod.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.TypedMapMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L42">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_TypedMapMethod_" data-uid="wan24.Core.ObjectMapping`2.TypedMapMethod*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_TypedMapMethod" data-uid="wan24.Core.ObjectMapping`2.TypedMapMethod">TypedMapMethod</h4>
@@ -1368,7 +1377,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_TypedSourceParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.TypedSourceParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L53">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_TypedSourceParameter_" data-uid="wan24.Core.ObjectMapping`2.TypedSourceParameter*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_TypedSourceParameter" data-uid="wan24.Core.ObjectMapping`2.TypedSourceParameter">TypedSourceParameter</h4>
@@ -1399,7 +1408,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_TypedTargetParameter.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.TypedTargetParameter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L64">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L65">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_TypedTargetParameter_" data-uid="wan24.Core.ObjectMapping`2.TypedTargetParameter*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_TypedTargetParameter" data-uid="wan24.Core.ObjectMapping`2.TypedTargetParameter">TypedTargetParameter</h4>
@@ -1430,7 +1439,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_ValidateObjectExpression.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.ValidateObjectExpression%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L97">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_ValidateObjectExpression_" data-uid="wan24.Core.ObjectMapping`2.ValidateObjectExpression*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_ValidateObjectExpression" data-uid="wan24.Core.ObjectMapping`2.ValidateObjectExpression">ValidateObjectExpression</h4>
@@ -1460,19 +1469,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L131">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String@)">AddAsyncMapping(in string)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String_System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String,System.Object)">AddAsyncMapping(string, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the target object property having the same name (prefer to use asynchronous mapping possibilities, if possible)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ObjectMapping AddAsyncMapping(in string sourcePropertyName)</code></pre>
+    <pre><code class="lang-csharp hljs">public override ObjectMapping AddAsyncMapping(string sourcePropertyName, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1488,6 +1497,14 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">sourcePropertyName</span></td>
         <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
 </td>
       </tr>
     </tbody>
@@ -1509,22 +1526,22 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping_System_String__">ObjectMapping.AddAsyncMapping(in string)</a></div>
+  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping_System_String_System_Object_">ObjectMapping.AddAsyncMapping(string, object?)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String_System_String_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%2CSystem.String%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L171">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__System_String__" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String@,System.String@)">AddAsyncMapping(in string, in string)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String_System_String_System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String,System.String,System.Object)">AddAsyncMapping(string, string, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the given target object property (prefer to use asynchronous mapping possibilities, if possible)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName)</code></pre>
+    <pre><code class="lang-csharp hljs">public override ObjectMapping AddAsyncMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1548,6 +1565,14 @@
         <td><p>Target property name</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -1567,23 +1592,23 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping_System_String__System_String__">ObjectMapping.AddAsyncMapping(in string, in string)</a></div>
+  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddAsyncMapping_System_String_System_String_System_Object_">ObjectMapping.AddAsyncMapping(string, string, object?)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate__0__1___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%40%2Cwan24.Core.ObjectMapping.AsyncMapper_Delegate%7B%600%2C%601%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate__0__1___System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddAsyncMapping(System.String%40%2Cwan24.Core.ObjectMapping.AsyncMapper_Delegate%7B%600%2C%601%7D%40%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L223">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L214">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddAsyncMapping_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate__0__1___" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String@,wan24.Core.ObjectMapping.AsyncMapper_Delegate{`0,`1}@)">AddAsyncMapping(in string, in AsyncMapper_Delegate&lt;tSource, tTarget&gt;)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddAsyncMapping_System_String__wan24_Core_ObjectMapping_AsyncMapper_Delegate__0__1___System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddAsyncMapping(System.String@,wan24.Core.ObjectMapping.AsyncMapper_Delegate{`0,`1}@,System.Object)">AddAsyncMapping(in string, in AsyncMapper_Delegate&lt;tSource, tTarget&gt;, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the target object using the given method</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string sourcePropertyName, in ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt; mapper)</code></pre>
+public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string sourcePropertyName, in ObjectMapping.AsyncMapper_Delegate&lt;tSource, tTarget&gt; mapper, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1607,6 +1632,14 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
         <td><p>Mapper method</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -1627,19 +1660,19 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L48">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddMapping_" data-uid="wan24.Core.ObjectMapping`2.AddMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String__" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String@)">AddMapping(in string)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String_System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String,System.Object)">AddMapping(string, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the target object property having the same name</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ObjectMapping AddMapping(in string sourcePropertyName)</code></pre>
+    <pre><code class="lang-csharp hljs">public override ObjectMapping AddMapping(string sourcePropertyName, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1655,6 +1688,14 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">sourcePropertyName</span></td>
         <td><p>Source property name</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
 </td>
       </tr>
     </tbody>
@@ -1676,22 +1717,22 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping_System_String__">ObjectMapping.AddMapping(in string)</a></div>
+  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping_System_String_System_Object_">ObjectMapping.AddMapping(string, object?)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String__System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%40%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String_System_String_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%2CSystem.String%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddMapping_" data-uid="wan24.Core.ObjectMapping`2.AddMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String__System_String__" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String@,System.String@)">AddMapping(in string, in string)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String_System_String_System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String,System.String,System.Object)">AddMapping(string, string, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the given target object property</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName)</code></pre>
+    <pre><code class="lang-csharp hljs">public override ObjectMapping AddMapping(string sourcePropertyName, string targetPropertyName, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1715,6 +1756,14 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
         <td><p>Target property name</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -1734,23 +1783,23 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddAsyncMapping(in string s
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping_System_String__System_String__">ObjectMapping.AddMapping(in string, in string)</a></div>
+  <div><a class="xref" href="wan24.Core.ObjectMapping.html#wan24_Core_ObjectMapping_AddMapping_System_String_System_String_System_Object_">ObjectMapping.AddMapping(string, string, object?)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String__wan24_Core_ObjectMapping_Mapper_Delegate__0__1___.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%40%2Cwan24.Core.ObjectMapping.Mapper_Delegate%7B%600%2C%601%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMapping_System_String_wan24_Core_ObjectMapping_Mapper_Delegate__0__1__System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMapping(System.String%2Cwan24.Core.ObjectMapping.Mapper_Delegate%7B%600%2C%601%7D%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L113">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddMapping_" data-uid="wan24.Core.ObjectMapping`2.AddMapping*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String__wan24_Core_ObjectMapping_Mapper_Delegate__0__1___" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String@,wan24.Core.ObjectMapping.Mapper_Delegate{`0,`1}@)">AddMapping(in string, in Mapper_Delegate&lt;tSource, tTarget&gt;)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddMapping_System_String_wan24_Core_ObjectMapping_Mapper_Delegate__0__1__System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddMapping(System.String,wan24.Core.ObjectMapping.Mapper_Delegate{`0,`1},System.Object)">AddMapping(string, Mapper_Delegate&lt;tSource, tTarget&gt;, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object property value to the target object using the given method</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(in string sourcePropertyName, in ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt; mapper)</code></pre>
+public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(string sourcePropertyName, ObjectMapping.Mapper_Delegate&lt;tSource, tTarget&gt; mapper, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1774,6 +1823,14 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(in string source
         <td><p>Mapper method</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -1794,19 +1851,19 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(in string source
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMappingExpression_System_String__System_Linq_Expressions_Expression_System_Action__0__1____.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMappingExpression(System.String%40%2CSystem.Linq.Expressions.Expression%7BSystem.Action%7B%600%2C%601%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_AddMappingExpression_System_String_System_Linq_Expressions_Expression_System_Action__0__1___System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.AddMappingExpression(System.String%2CSystem.Linq.Expressions.Expression%7BSystem.Action%7B%600%2C%601%7D%7D%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L131">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_AddMappingExpression_" data-uid="wan24.Core.ObjectMapping`2.AddMappingExpression*"></a>
-  <h4 id="wan24_Core_ObjectMapping_2_AddMappingExpression_System_String__System_Linq_Expressions_Expression_System_Action__0__1____" data-uid="wan24.Core.ObjectMapping`2.AddMappingExpression(System.String@,System.Linq.Expressions.Expression{System.Action{`0,`1}}@)">AddMappingExpression(in string, in Expression&lt;Action&lt;tSource, tTarget&gt;&gt;)</h4>
+  <h4 id="wan24_Core_ObjectMapping_2_AddMappingExpression_System_String_System_Linq_Expressions_Expression_System_Action__0__1___System_Object_" data-uid="wan24.Core.ObjectMapping`2.AddMappingExpression(System.String,System.Linq.Expressions.Expression{System.Action{`0,`1}},System.Object)">AddMappingExpression(string, Expression&lt;Action&lt;tSource, tTarget&gt;&gt;, object?)</h4>
   <div class="markdown level1 summary"><p>Map a source object to the target object using the given expression (CAUTION: This will REQUIRE to compile the mapping and you can't use asynchronous mapping anymore!)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression&lt;Action&lt;tSource, tTarget&gt;&gt; mapper)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual ObjectMapping AddMappingExpression(string mappingKey, Expression&lt;Action&lt;tSource, tTarget&gt;&gt; mapper, object? condition = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1828,6 +1885,14 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(in string source
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;tSource, tTarget&gt;&gt;</td>
         <td><span class="parametername">mapper</span></td>
         <td><p>Mapper method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Mapping condition (may be a <a class="xref" href="wan24.Core.ObjectMapping.Condition_Delegate-2.html">ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</a> or an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a> of a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func&lt;T1, T2, T3, TResult&gt;</a>, where <code>T1</code> is the mapping name (<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>), <code>T2</code> is the source, and <code>T3</code> is the target object, and
+<code>TResult</code> is a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>, if the mapping should be applied to the given source and target object)</p>
 </td>
       </tr>
     </tbody>
@@ -1909,7 +1974,7 @@ public virtual ObjectMapping&lt;tSource, tTarget&gt; AddMapping(in string source
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_ApplyMappingsAsync__0__1_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.ApplyMappingsAsync(%600%2C%601%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L91">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L96">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_ApplyMappingsAsync_" data-uid="wan24.Core.ObjectMapping`2.ApplyMappingsAsync*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_ApplyMappingsAsync__0__1_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMapping`2.ApplyMappingsAsync(`0,`1,System.Threading.CancellationToken)">ApplyMappingsAsync(tSource, tTarget, CancellationToken)</h4>
@@ -1971,7 +2036,7 @@ public virtual Task ApplyMappingsAsync(tSource source, tTarget target, Cancellat
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_ApplyObjectMappings_System_Object__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.ApplyObjectMappings(System.Object%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L84">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_ApplyObjectMappings_" data-uid="wan24.Core.ObjectMapping`2.ApplyObjectMappings*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_ApplyObjectMappings_System_Object__System_Object__" data-uid="wan24.Core.ObjectMapping`2.ApplyObjectMappings(System.Object@,System.Object@)">ApplyObjectMappings(in object, in object)</h4>
@@ -2030,7 +2095,7 @@ public override ObjectMapping ApplyObjectMappings(in object source, in object ta
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_ApplyObjectMappingsAsync_System_Object_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.ApplyObjectMappingsAsync(System.Object%2CSystem.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.ApplyMapping.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_ApplyObjectMappingsAsync_" data-uid="wan24.Core.ObjectMapping`2.ApplyObjectMappingsAsync*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_ApplyObjectMappingsAsync_System_Object_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMapping`2.ApplyObjectMappingsAsync(System.Object,System.Object,System.Threading.CancellationToken)">ApplyObjectMappingsAsync(object, object, CancellationToken)</h4>
@@ -2094,7 +2159,7 @@ public override Task ApplyObjectMappingsAsync(object source, object target, Canc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CompileMapping.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CompileMapping%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.cs/#L238">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Compile.cs/#L43">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CompileMapping_" data-uid="wan24.Core.ObjectMapping`2.CompileMapping*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CompileMapping" data-uid="wan24.Core.ObjectMapping`2.CompileMapping">CompileMapping()</h4>
@@ -2207,10 +2272,90 @@ public static ObjectMapping&lt;tSource, tTarget&gt; Create(in bool autoCompile)<
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CreateConditionExpression_System_Object__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CreateConditionExpression(System.Object%40%2CSystem.Linq.Expressions.Expression%40%2CSystem.Linq.Expressions.Expression%40%2CSystem.Linq.Expressions.Expression%40%2CSystem.Linq.Expressions.Expression%40%2CSystem.Linq.Expressions.Expression%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMapping_2_CreateConditionExpression_" data-uid="wan24.Core.ObjectMapping`2.CreateConditionExpression*"></a>
+  <h4 id="wan24_Core_ObjectMapping_2_CreateConditionExpression_System_Object__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__System_Linq_Expressions_Expression__" data-uid="wan24.Core.ObjectMapping`2.CreateConditionExpression(System.Object@,System.Linq.Expressions.Expression@,System.Linq.Expressions.Expression@,System.Linq.Expressions.Expression@,System.Linq.Expressions.Expression@,System.Linq.Expressions.Expression@)">CreateConditionExpression(in object?, in Expression, in Expression, in Expression, in Expression, in Expression)</h4>
+  <div class="markdown level1 summary"><p>Create a condition expression</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Expression CreateConditionExpression(in object? condition, in Expression objectSourceParameter, in Expression objectTargetParameter, in Expression typedSourceParameter, in Expression typedTargetParameter, in Expression mapping)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><span class="parametername">condition</span></td>
+        <td><p>Condition (if <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, <code>mapping</code> will be returned)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><span class="parametername">objectSourceParameter</span></td>
+        <td><p>Object source parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><span class="parametername">objectTargetParameter</span></td>
+        <td><p>Object target parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><span class="parametername">typedSourceParameter</span></td>
+        <td><p>Typed source parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><span class="parametername">typedTargetParameter</span></td>
+        <td><p>Typed target parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><span class="parametername">mapping</span></td>
+        <td><p>Mapping expression to execute if the condition does match</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression">Expression</a></td>
+        <td><p>Expression</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CreateIsNullHelperExpression_System_Linq_Expressions_Expression__System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CreateIsNullHelperExpression(System.Linq.Expressions.Expression%40%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L253">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L314">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CreateIsNullHelperExpression_" data-uid="wan24.Core.ObjectMapping`2.CreateIsNullHelperExpression*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CreateIsNullHelperExpression_System_Linq_Expressions_Expression__System_Type__" data-uid="wan24.Core.ObjectMapping`2.CreateIsNullHelperExpression(System.Linq.Expressions.Expression@,System.Type@)">CreateIsNullHelperExpression(in Expression, in Type)</h4>
@@ -2266,7 +2411,7 @@ public static ObjectMapping&lt;tSource, tTarget&gt; Create(in bool autoCompile)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CreateMapCallExpression_wan24_Core_MapAttribute__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CreateMapCallExpression(wan24.Core.MapAttribute%40%2Cwan24.Core.PropertyInfoExt%40%2CSystem.Linq.Expressions.ParameterExpression%40%2CSystem.Linq.Expressions.ParameterExpression%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L233">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L294">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CreateMapCallExpression_" data-uid="wan24.Core.ObjectMapping`2.CreateMapCallExpression*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CreateMapCallExpression_wan24_Core_MapAttribute__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__" data-uid="wan24.Core.ObjectMapping`2.CreateMapCallExpression(wan24.Core.MapAttribute@,wan24.Core.PropertyInfoExt@,System.Linq.Expressions.ParameterExpression@,System.Linq.Expressions.ParameterExpression@)">CreateMapCallExpression(in MapAttribute, in PropertyInfoExt, in ParameterExpression?, in ParameterExpression?)</h4>
@@ -2334,7 +2479,7 @@ public static ObjectMapping&lt;tSource, tTarget&gt; Create(in bool autoCompile)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CreateMapperExpression_wan24_Core_PropertyInfoExt__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__wan24_Core_MapAttribute__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CreateMapperExpression(wan24.Core.PropertyInfoExt%40%2Cwan24.Core.PropertyInfoExt%40%2CSystem.Linq.Expressions.ParameterExpression%40%2CSystem.Linq.Expressions.ParameterExpression%40%2Cwan24.Core.MapAttribute%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L115">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CreateMapperExpression_" data-uid="wan24.Core.ObjectMapping`2.CreateMapperExpression*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CreateMapperExpression_wan24_Core_PropertyInfoExt__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__wan24_Core_MapAttribute__" data-uid="wan24.Core.ObjectMapping`2.CreateMapperExpression(wan24.Core.PropertyInfoExt@,wan24.Core.PropertyInfoExt@,System.Linq.Expressions.ParameterExpression@,System.Linq.Expressions.ParameterExpression@,wan24.Core.MapAttribute@)">CreateMapperExpression(in PropertyInfoExt, in PropertyInfoExt, in ParameterExpression?, in ParameterExpression?, in MapAttribute?)</h4>
@@ -2408,7 +2553,7 @@ public static ObjectMapping&lt;tSource, tTarget&gt; Create(in bool autoCompile)<
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMapping_2_CreateNestedMapperExpression_wan24_Core_PropertyInfoExt__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__wan24_Core_MapAttribute__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMapping%602.CreateNestedMapperExpression(wan24.Core.PropertyInfoExt%40%2Cwan24.Core.PropertyInfoExt%40%2CSystem.Linq.Expressions.ParameterExpression%40%2CSystem.Linq.Expressions.ParameterExpression%40%2Cwan24.Core.MapAttribute%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMapping.Generic.Expressions.cs/#L229">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMapping_2_CreateNestedMapperExpression_" data-uid="wan24.Core.ObjectMapping`2.CreateNestedMapperExpression*"></a>
   <h4 id="wan24_Core_ObjectMapping_2_CreateNestedMapperExpression_wan24_Core_PropertyInfoExt__wan24_Core_PropertyInfoExt__System_Linq_Expressions_ParameterExpression__System_Linq_Expressions_ParameterExpression__wan24_Core_MapAttribute__" data-uid="wan24.Core.ObjectMapping`2.CreateNestedMapperExpression(wan24.Core.PropertyInfoExt@,wan24.Core.PropertyInfoExt@,System.Linq.Expressions.ParameterExpression@,System.Linq.Expressions.ParameterExpression@,wan24.Core.MapAttribute@)">CreateNestedMapperExpression(in PropertyInfoExt, in PropertyInfoExt, in ParameterExpression?, in ParameterExpression?, in MapAttribute?)</h4>

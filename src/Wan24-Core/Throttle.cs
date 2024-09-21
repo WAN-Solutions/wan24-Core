@@ -71,7 +71,7 @@ namespace wan24.Core
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new("Throttle timer update failed", ex));
+                    ErrorHandling.Handle(new("Throttle timer update failed", ex, tag: this));
                 }
             };
             ThrottleTable.Throttles[GUID] = this;

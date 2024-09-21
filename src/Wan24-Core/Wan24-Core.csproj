@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PackageId>wan24-Core</PackageId>
     <Title>wan24-Core</Title>
-    <Version>2.37.0</Version>
+    <Version>2.38.0</Version>
     <Authors>nd1012</Authors>
     <Company>Andreas Zimmermann, wan24.de</Company>
     <Product>wan24-Core</Product>
@@ -107,6 +107,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
 
-  <Import Project="..\Others\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" />
+  <Import Project="..\..\..\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" Condition="'$(Configuration)' == 'Trunk'" />
+  <Import Project="..\Others\wan24-Core-Shared\src\wan24-Core-Shared\wan24-Core-Shared.projitems" Label="Shared" Condition="'$(Configuration)' != 'Trunk'" />
 
 </Project>

@@ -376,6 +376,7 @@ processor</li>
 <li><code>CopyStream</code> does copy a stream to a target stream in a background task</li>
 <li><code>DataEventStream</code> blocks reading of a wrapped stream until more input
 data is available</li>
+<li><code>PreBufferingStream</code> pre-reads from another stream into a blocking buffer</li>
 </ul>
 </li>
 <li>Named mutex helper
@@ -440,6 +441,9 @@ data is available</li>
 <li>UDP fallback</li>
 <li>Query- and Enumerable builder</li>
 <li>Synchronous enumerator for <code>IAsyncEnumerator&lt;T&gt;</code></li>
+<li>Pagination using <code>(Cached)(Async)(Enumerable|Queryable)Pagination</code> and
+<code>PaginationMetaData</code></li>
+<li>Plugins</li>
 </ul>
 <h2 id="how-to-get-it">How to get it</h2>
 <p>This library is available as
@@ -2104,6 +2108,49 @@ mapping.Compile();
 </code></pre>
 <p><strong>WARNING</strong>: As soon as any mapping expression was added, asynchronous
 mappings will be executed synchronous (using <code>.GetAwaiter().GetResult()</code>).</p>
+<h3 id="advanced">Advanced</h3>
+<h4 id="conditional-mappings">Conditional mappings</h4>
+<p>All <code>ObjectMapping.Add*</code> methods have a <code>condition</code> parameter (type of
+<code>object?</code>), which allow to define a condition that needs to confirm applying
+the mapping for the current source and target objects. A condition may be a</p>
+<ul>
+<li><code>ObjectMapping.Condition_Delegate&lt;object, object&gt;</code></li>
+<li><code>ObjectMapping.Condition_Delegate&lt;tSource, tTarget&gt;</code></li>
+<li><code>Expression&lt;Func&lt;string, object, object, bool&gt;&gt;</code></li>
+<li><code>Expression&lt;Func&lt;string, tSource, tTarget, bool&gt;&gt;</code></li>
+</ul>
+<p>The parameters are:</p>
+<ol>
+<li><code>string</code>: The mapping name</li>
+<li><code>object|tSource</code>: The current source object</li>
+<li><code>object|tTarget</code>: The current target object</li>
+</ol>
+<p>The condition needs to return <code>true</code> to confirm applying the mapping for the
+given source and target objects. If <code>false</code> was returned, a mapping would
+simply be skipped.</p>
+<p>Another possibility for working with conditions is to override the
+<code>MapAttribute</code> and return <code>true</code> for <code>HasMappingCondition</code> and override the
+<code>MappingCondition&lt;tSource, tTarget&gt;</code> method. As soon as the
+<code>HasMappingCondition</code> property returns <code>true</code>, the
+<code>MappingCondition&lt;tSource, tTarget&gt;</code> method is being called during mapping of
+the attribute related proprety.</p>
+<p><strong>NOTE</strong>: If an expression condition was given, the mapping has to be compiled
+before it can be used!</p>
+<h2 id="plugins">Plugins</h2>
+<p>Using the <code>Plugin</code> type you can manage plugins:</p>
+<pre><code class="lang-cs">// Load a plugin
+Plugin.Load(&quot;/path/to/plugin.dll&quot;);
+
+// Unload a plugin
+Plugin.Get(&quot;/path/to/plugin.dll&quot;)?.Dispose();
+</code></pre>
+<p><strong>NOTE</strong>: The <code>Plugin</code> type does store loaded plugins as singleton instances.
+By disposing an instance, it'll be removed from the store.</p>
+<p>The plugin assembly needs to export at last one type which implements the
+<code>IPlugin</code> interface. Dependencies will be loaded from the plugins folder.</p>
+<p>The <code>PluginInfo</code> type is a helper for loading or storing plugin information
+from/to JSON (and it implements <code>IPlugin</code>). You can use it for exporting an
+<code>IPlugin</code> type from your plugin assembly.</p>
 
 </article>
                 </div>

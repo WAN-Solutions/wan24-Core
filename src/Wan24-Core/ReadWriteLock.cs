@@ -58,7 +58,7 @@
         /// Read
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Context</returns>
+        /// <returns>Context (don't forget to dispose when the reading process is done!)</returns>
         public virtual Context Read(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -74,7 +74,7 @@
                     WriteEvent.Reset(CancellationToken.None);
                     ActiveReaderCount++;
                     NoReadEvent.Reset(CancellationToken.None);
-                    return new(this, reading: true);
+                    return CreateContext(reading: true);
                 }
             }
             finally
@@ -87,7 +87,7 @@
         /// Read
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Context</returns>
+        /// <returns>Context (don't forget to dispose when the reading process is done!)</returns>
         public virtual async Task<Context> ReadAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -104,7 +104,7 @@
                     await WriteEvent.ResetAsync(CancellationToken.None).DynamicContext();
                     ActiveReaderCount++;
                     await NoReadEvent.ResetAsync(CancellationToken.None).DynamicContext();
-                    return new(this, reading: true);
+                    return CreateContext(reading: true);
                 }
             }
             finally
@@ -117,7 +117,7 @@
         /// Write
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Context</returns>
+        /// <returns>Context (don't forget to dispose when the writing process is done!)</returns>
         public virtual Context Write(in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -131,7 +131,7 @@
                 ReadEvent.Reset(CancellationToken.None);
                 WriteEvent.Reset(CancellationToken.None);
                 NoWriteEvent.Reset(CancellationToken.None);
-                return new(this, reading: false);
+                return CreateContext(reading: false);
             }
         }
 
@@ -139,7 +139,7 @@
         /// Write
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Context</returns>
+        /// <returns>Context (don't forget to dispose when the writing process is done!)</returns>
         public virtual async Task<Context> WriteAsync(CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
@@ -154,9 +154,16 @@
                 await ReadEvent.ResetAsync(CancellationToken.None).DynamicContext();
                 await WriteEvent.ResetAsync(CancellationToken.None).DynamicContext();
                 await NoWriteEvent.ResetAsync(CancellationToken.None).DynamicContext();
-                return new(this, reading: false);
+                return CreateContext(reading: false);
             }
         }
+
+        /// <summary>
+        /// Create a context
+        /// </summary>
+        /// <param name="reading">If read-only</param>
+        /// <returns>Context</returns>
+        protected virtual Context CreateContext(in bool reading) => new(this, reading);
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
@@ -212,7 +219,7 @@
             /// <summary>
             /// Read (ignores the reader count limit; should only stay alive while the write lock is alive)
             /// </summary>
-            /// <returns>Context</returns>
+            /// <returns>Context (don't forget to dispose when the reading process is done!)</returns>
             public Context Read()
             {
                 EnsureUndisposed();

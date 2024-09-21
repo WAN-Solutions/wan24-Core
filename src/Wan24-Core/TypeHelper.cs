@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Reflection;
+using System.Runtime.Loader;
 using static wan24.Core.Logging;
 
 namespace wan24.Core
@@ -10,11 +11,11 @@ namespace wan24.Core
     public sealed class TypeHelper
     {
         /// <summary>
-        /// Types
+        /// Types (key is the type as string)
         /// </summary>
         private readonly ConcurrentDictionary<string, Type> Types = new();
         /// <summary>
-        /// Assemblies
+        /// Assemblies (key is the assembly full name)
         /// </summary>
         private readonly ConcurrentDictionary<string, Assembly> _Assemblies = new();
 
@@ -159,6 +160,31 @@ namespace wan24.Core
                 res = e.Type;
             }
             if (res is not null) Types[name] = res;
+            return res;
+        }
+
+        /// <summary>
+        /// Remove an assembly (and its types)
+        /// </summary>
+        /// <param name="assembly">Assembly to remove</param>
+        /// <returns>Removed types</returns>
+        public Type[] RemoveAssembly(Assembly assembly)
+        {
+            KeyValuePair<string, Type>[] types = [.. Types.Where(kvp => kvp.Value.Assembly == assembly)];
+            _Assemblies.TryRemove(assembly.GetName().FullName, out _);
+            foreach (string type in types.Select(kvp => kvp.Key)) Types.TryRemove(type, out _);
+            return [.. types.Select(kvp => kvp.Value)];
+        }
+
+        /// <summary>
+        /// Remove all assemblies from a load context
+        /// </summary>
+        /// <param name="context">Context</param>
+        /// <returns>Removed assemblies</returns>
+        public Assembly[] RemoveLoadContext(AssemblyLoadContext? context)
+        {
+            Assembly[] res = [.. _Assemblies.Values.Where(a => AssemblyLoadContext.GetLoadContext(a) == context)];
+            foreach(Assembly assembly in res) RemoveAssembly(assembly);
             return res;
         }
 

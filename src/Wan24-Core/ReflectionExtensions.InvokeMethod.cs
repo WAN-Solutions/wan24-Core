@@ -271,14 +271,13 @@ namespace wan24.Core
                 }
                 else
                 {
-                    Func<object?, object?[], object?> lambda = Expression.Lambda<Func<object?, object?[], object?>>(
+                    res = Expression.Lambda<Func<object?, object?[], object?>>(
                             mi.ReturnType.GetRealType().IsValueType && mi.IsNullable()
                                 ? Expression.Convert(Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), mi.ReturnType.GetRealType()), typeof(object))
                                 : Expression.Convert(Expression.Call(objArg2, mi, [.. parameters]), typeof(object)),
                             objArg,
                             paramsArg
                         ).CompileExt();
-                    res = (obj, param) => lambda(obj, param);
                 }
             }
             MethodInvokeDelegateCache.TryAdd(hc, res);

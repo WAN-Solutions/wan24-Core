@@ -210,6 +210,7 @@ including extensions for numeric type encoding/decoding)
     - `CopyStream` does copy a stream to a target stream in a background task
     - `DataEventStream` blocks reading of a wrapped stream until more input 
     data is available
+    - `PreBufferingStream` pre-reads from another stream into a blocking buffer
 - Named mutex helper
     - `GlobalLock` for a synchronous context
     - `GlobalLockAsync` for an asynchronous context
@@ -257,6 +258,9 @@ including extensions for numeric type encoding/decoding)
 - UDP fallback
 - Query- and Enumerable builder
 - Synchronous enumerator for `IAsyncEnumerator<T>`
+- Pagination using `(Cached)(Async)(Enumerable|Queryable)Pagination` and 
+`PaginationMetaData`
+- Plugins
 
 ## How to get it
 
@@ -2081,3 +2085,58 @@ mapping.Compile();
 
 **WARNING**: As soon as any mapping expression was added, asynchronous 
 mappings will be executed synchronous (using `.GetAwaiter().GetResult()`).
+
+### Advanced
+
+#### Conditional mappings
+
+All `ObjectMapping.Add*` methods have a `condition` parameter (type of 
+`object?`), which allow to define a condition that needs to confirm applying 
+the mapping for the current source and target objects. A condition may be a 
+
+- `ObjectMapping.Condition_Delegate<object, object>`
+- `ObjectMapping.Condition_Delegate<tSource, tTarget>`
+- `Expression<Func<string, object, object, bool>>`
+- `Expression<Func<string, tSource, tTarget, bool>>`
+
+The parameters are:
+
+1. `string`: The mapping name
+2. `object|tSource`: The current source object
+3. `object|tTarget`: The current target object
+
+The condition needs to return `true` to confirm applying the mapping for the 
+given source and target objects. If `false` was returned, a mapping would 
+simply be skipped.
+
+Another possibility for working with conditions is to override the 
+`MapAttribute` and return `true` for `HasMappingCondition` and override the 
+`MappingCondition<tSource, tTarget>` method. As soon as the 
+`HasMappingCondition` property returns `true`, the 
+`MappingCondition<tSource, tTarget>` method is being called during mapping of 
+the attribute related proprety.
+
+**NOTE**: If an expression condition was given, the mapping has to be compiled 
+before it can be used!
+
+## Plugins
+
+Using the `Plugin` type you can manage plugins:
+
+```cs
+// Load a plugin
+Plugin.Load("/path/to/plugin.dll");
+
+// Unload a plugin
+Plugin.Get("/path/to/plugin.dll")?.Dispose();
+```
+
+**NOTE**: The `Plugin` type does store loaded plugins as singleton instances. 
+By disposing an instance, it'll be removed from the store.
+
+The plugin assembly needs to export at last one type which implements the 
+`IPlugin` interface. Dependencies will be loaded from the plugins folder.
+
+The `PluginInfo` type is a helper for loading or storing plugin information 
+from/to JSON (and it implements `IPlugin`). You can use it for exporting an 
+`IPlugin` type from your plugin assembly.
