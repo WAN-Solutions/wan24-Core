@@ -59,7 +59,7 @@ namespace wan24.Core
                 if (Warning) Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
                 System.Diagnostics.Debugger.Break();
                 if (StackInfo is not null)
-                    ErrorHandling.Handle(new StackInfoException(StackInfo, "Destructor called"));
+                    ErrorHandling.Handle(new(new StackInfoException(StackInfo, "Destructor called"), tag: this));
             }
             else
             {

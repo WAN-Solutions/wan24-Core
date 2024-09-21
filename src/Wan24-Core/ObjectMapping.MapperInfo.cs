@@ -15,13 +15,15 @@
         /// <param name="Type">Mapper delegate type</param>
         /// <param name="SourceMappingConfig"><c>SourceProperty</c> <see cref="MapAttribute"/></param>
         /// <param name="CustomKey">Custom mapper key</param>
+        /// <param name="Condition">Mapping condition</param>
         protected sealed record class MapperInfo(
             in PropertyInfoExt? SourceProperty, 
             in PropertyInfoExt? TargetProperty, 
             in object Mapper, 
             in MapperType Type,
             in MapAttribute? SourceMappingConfig = null,
-            in string? CustomKey = null
+            in string? CustomKey = null,
+            in object? Condition = null
             )
         {
             /// <summary>
@@ -48,6 +50,10 @@
             /// Custom mapper key
             /// </summary>
             public readonly string? CustomKey = CustomKey;
+            /// <summary>
+            /// Condition
+            /// </summary>
+            public readonly object? Condition = Condition;
         }
 
         /// <summary>

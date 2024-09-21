@@ -16,16 +16,22 @@ namespace wan24.Core
         /// Map a source object property value to the target object property having the same name
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
-        public abstract ObjectMapping AddMapping(in string sourcePropertyName);
+        public abstract ObjectMapping AddMapping(string sourcePropertyName, object? condition = null);
 
         /// <summary>
         /// Map a source object property value to the given target object property
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
-        public abstract ObjectMapping AddMapping(in string sourcePropertyName, in string targetPropertyName);
+        public abstract ObjectMapping AddMapping(string sourcePropertyName, string targetPropertyName, object? condition = null);
 
         /// <summary>
         /// Map a source object to the target object using the given method
@@ -34,11 +40,18 @@ namespace wan24.Core
         /// <typeparam name="tTarget">Target object type (must match <see cref="TargetType"/>)</typeparam>
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping AddMapping<tSource, tTarget>(in string mappingKey, in Mapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping AddMapping<tSource, tTarget>(
+            string mappingKey, 
+            Mapper_Delegate<tSource, tTarget> mapper, 
+            object? condition = null
+            )
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
@@ -48,7 +61,8 @@ namespace wan24.Core
                 TargetProperty: null,
                 mapper,
                 MapperType.CustomMapper,
-                CustomKey: mappingKey
+                CustomKey: mappingKey,
+                Condition: condition is null ? null : ValidateConditionArgument<tSource, tTarget>(condition)
                 );
             if (!Mappings.TryAdd(mappingKey, info))
                 throw new MappingException($"A mapping for the given mapping key \"{mappingKey}\" exists already");
@@ -60,11 +74,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping AddMappingExpression(in string mappingKey, in Expression<Action<object, object>> mapper)
+        public virtual ObjectMapping AddMappingExpression(string mappingKey, Expression<Action<object, object>> mapper, object? condition = null)
         {
             if (Mappings.IsFrozen) throw new InvalidOperationException("Mappings have been compiled - for adding more mappings, delete the compiled mapping first");
             MapperInfo info = new(
@@ -72,7 +89,8 @@ namespace wan24.Core
                 TargetProperty: null,
                 mapper,
                 MapperType.Expression,
-                CustomKey: mappingKey
+                CustomKey: mappingKey,
+                Condition: condition is null ? null : ValidateConditionArgument(condition)
                 );
             if (!Mappings.TryAdd(mappingKey, info))
                 throw new MappingException($"A mapping for the given mapping key \"{mappingKey}\" exists already");
@@ -86,11 +104,18 @@ namespace wan24.Core
         /// <typeparam name="tTarget">Target object type (must match <see cref="TargetType"/>)</typeparam>
         /// <param name="mappingKey">Unique mapping key</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping AddMappingExpression<tSource, tTarget>(in string mappingKey, in Expression<Action<tSource, tTarget>> mapper)
+        public virtual ObjectMapping AddMappingExpression<tSource, tTarget>(
+            string mappingKey, 
+            Expression<Action<tSource, tTarget>> mapper, 
+            object? condition = null
+            )
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
@@ -100,7 +125,8 @@ namespace wan24.Core
                 TargetProperty: null,
                 mapper,
                 MapperType.GenericExpression,
-                CustomKey: mappingKey
+                CustomKey: mappingKey,
+                Condition: condition is null ? null : ValidateConditionArgument<tSource, tTarget>(condition)
                 );
             if (!Mappings.TryAdd(mappingKey, info))
                 throw new MappingException($"A mapping for the given mapping key \"{mappingKey}\" exists already");
@@ -111,16 +137,22 @@ namespace wan24.Core
         /// Map a source object property value to the target object property having the same name (prefer to use asynchronous mapping possibilities, if possible)
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
-        public abstract ObjectMapping AddAsyncMapping(in string sourcePropertyName);
+        public abstract ObjectMapping AddAsyncMapping(string sourcePropertyName, object? condition = null);
 
         /// <summary>
         /// Map a source object property value to the given target object property (prefer to use asynchronous mapping possibilities, if possible)
         /// </summary>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="targetPropertyName">Target property name</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
-        public abstract ObjectMapping AddAsyncMapping(in string sourcePropertyName, in string targetPropertyName);
+        public abstract ObjectMapping AddAsyncMapping(string sourcePropertyName, string targetPropertyName, object? condition = null);
 
         /// <summary>
         /// Map a source object property value to the target object using the given method
@@ -129,11 +161,18 @@ namespace wan24.Core
         /// <typeparam name="tTarget">Target object type (must match <see cref="TargetType"/>)</typeparam>
         /// <param name="sourcePropertyName">Source property name</param>
         /// <param name="mapper">Mapper method</param>
+        /// <param name="condition">Mapping condition (may be a <see cref="Condition_Delegate{tSource, tTarget}"/> or an <see cref="Expression"/> of a <see cref="Func{T1, T2, T3, TResult}"/>, 
+        /// or a <see cref="Func{T1, T2, T3, TResult}"/>, where <c>T1</c> is the mapping name (<see cref="string"/>), <c>T2</c> is the source, and <c>T3</c> is the target object, and 
+        /// <c>TResult</c> is a <see cref="bool"/>, if the mapping should be applied to the given source and target object)</param>
         /// <returns>This</returns>
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public virtual ObjectMapping AddAsyncMapping<tSource, tTarget>(in string sourcePropertyName, in AsyncMapper_Delegate<tSource, tTarget> mapper)
+        public virtual ObjectMapping AddAsyncMapping<tSource, tTarget>(
+            string sourcePropertyName, 
+            AsyncMapper_Delegate<tSource, tTarget> mapper,
+            object? condition = null
+            )
         {
             if (!SourceType.Type.IsAssignableFrom(typeof(tSource))) throw new MappingException($"Source object type from {nameof(tSource)} mismatch ({SourceType.Type} / {typeof(tSource)})");
             if (!TargetType.Type.IsAssignableFrom(typeof(tTarget))) throw new MappingException($"Target object type from {nameof(tTarget)} mismatch ({TargetType.Type} / {typeof(tTarget)})");
@@ -143,7 +182,8 @@ namespace wan24.Core
                 TargetProperty: null,
                 mapper,
                 MapperType.AnyAsync,
-                CustomKey: sourcePropertyName
+                CustomKey: sourcePropertyName,
+                Condition: condition is null ? null : ValidateConditionArgument<tSource, tTarget>(condition)
                 );
             if (!Mappings.TryAdd(sourcePropertyName, info))
                 throw new MappingException($"A mapping for the given source property name \"{sourcePropertyName}\" exists already");

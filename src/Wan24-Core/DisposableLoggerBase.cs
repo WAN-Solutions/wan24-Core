@@ -79,7 +79,7 @@ namespace wan24.Core
         /// <summary>
         /// Regular expression to match a new line
         /// </summary>
-        [GeneratedRegex(@"\r?\n\t?", RegexOptions.Compiled | RegexOptions.Singleline)]
+        [GeneratedRegex(@"\r?\n\t?", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RX_NL_Generated();
     }
 }

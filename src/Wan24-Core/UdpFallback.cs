@@ -303,7 +303,7 @@ namespace wan24.Core
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new($"UDP response pre-listener #{++i} {listener} failed exceptional", ex));
+                    ErrorHandling.Handle(new($"UDP response pre-listener #{++i} {listener} failed exceptional", ex, tag: this));
                 }
             // Run post-listener
             i = 0;
@@ -314,7 +314,7 @@ namespace wan24.Core
                 }
                 catch (Exception ex)
                 {
-                    ErrorHandling.Handle(new($"UDP response post-listener #{i + 1} {UdpResponsePostListener[i]} failed exceptional", ex));
+                    ErrorHandling.Handle(new($"UDP response post-listener #{i + 1} {UdpResponsePostListener[i]} failed exceptional", ex, tag: this));
                 }
             return false;
         }

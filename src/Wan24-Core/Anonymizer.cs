@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Primitives;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
@@ -24,6 +23,10 @@ namespace wan24.Core
         /// Regular expression to remove all non-numeric characters from a credit card number
         /// </summary>
         private static readonly Regex RX_CC = RxCcGenerator();
+        /// <summary>
+        /// IBAN syntax regular expression (<c>$1</c> is the country, <c>$2</c> the checksum, <c>$3</c> the bank ID and <c>$4</c> the account ID)
+        /// </summary>
+        private static readonly Regex RX_IBAN = RxIbanGenerator();
 
         /// <summary>
         /// Anonymize an IP address (works for IPv4/6 addresses)
@@ -119,24 +122,58 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Anonymize a bank account number (only the last up to 4 digits will be visible; at last 50% of the bank account number will be anonymized for sure)
+        /// </summary>
+        /// <param name="ban">Bank account number</param>
+        /// <returns>Anonymized bank account number</returns>
+        public static string AnonymizeBankAccountNumber(in string ban)
+        {
+            string normalizedBan = RegularExpressions.RX_WHITESPACE.Replace(ban, string.Empty);
+            int leaveDigits = (int)Math.Ceiling(Math.Min(4, normalizedBan.Length / 2f)),
+                anonymizeDigits = normalizedBan.Length - leaveDigits;
+            return leaveDigits < 1
+                ? normalizedBan
+                : $"{new string('x', anonymizeDigits)}{normalizedBan[anonymizeDigits..]}";
+        }
+
+        /// <summary>
+        /// Anonymize an IBAN
+        /// </summary>
+        /// <param name="iban">IBAN</param>
+        /// <returns>Anonymized IBAN</returns>
+        public static string AnonymizeIban(in string iban)
+        {
+            string normalizedIban = RegularExpressions.RX_WHITESPACE.Replace(iban, string.Empty).ToUpper();
+            return RX_IBAN.IsMatch(iban)
+                ? RX_IBAN.Replace(normalizedIban, $"$1$2$3{AnonymizeBankAccountNumber(RX_IBAN.Replace(normalizedIban, "$4"))}")
+                : iban;
+        }
+
+        /// <summary>
         /// Generate the <see cref="RX_IPv4"/>
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^((\d+\.){2}).*$", RegexOptions.Compiled)]
+        [GeneratedRegex(@"^((\d+\.){2}).*$", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RxIpv4_Generator();
 
         /// <summary>
         /// Generate the <see cref="RX_IPv6"/>
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^(([0-9|a-f]{1,4}){4}).*$", RegexOptions.Compiled)]
+        [GeneratedRegex(@"^(([0-9|a-f]{1,4}){4}).*$", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RxIpv6_Generator();
 
         /// <summary>
         /// Generate the <see cref="RX_CC"/>
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"[^\d]", RegexOptions.Compiled)]
+        [GeneratedRegex(@"[^\d]", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
         private static partial Regex RxCcGenerator();
+
+        /// <summary>
+        /// IBAN syntax regular expression (<c>$1</c> is the country, <c>$2</c> the checksum, <c>$3</c> the bank ID and <c>$4</c> the account ID)
+        /// </summary>
+        [GeneratedRegex(@"^([A-Z]{2})(\d{2})(\d{8})(\d{10})$", RegexOptions.Compiled | RegexOptions.Singleline, 3000)]
+        private static partial Regex RxIbanGenerator();
     }
 }

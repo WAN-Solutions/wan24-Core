@@ -36,7 +36,7 @@ namespace wan24.Core
         /// <param name="obj">Synchronized object</param>
         public SemaphoreSync(in object obj) : base(asyncDisposing: false)
         {
-            int hashCode = obj.GetType().GetHashCode() ^ obj.GetHashCode();
+            int hashCode = HashCode.Combine(obj.GetType(), obj);
             ObjectInfo? objInfo;
             while (!Instances.TryGetValue(hashCode, out objInfo) || !objInfo.AddInstance())
             {
@@ -298,7 +298,7 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>Number of object synchronizing instances</returns>
         public static int GetSynchronizationInstanceCount(in object obj)
-            => Instances.TryGetValue(obj.GetType().GetHashCode() ^ obj.GetHashCode(), out ObjectInfo? objInfo) ? objInfo.InstanceCount : 0;
+            => Instances.TryGetValue(HashCode.Combine(obj.GetType(), obj), out ObjectInfo? objInfo) ? objInfo.InstanceCount : 0;
 
         /// <summary>
         /// Synchronized object information

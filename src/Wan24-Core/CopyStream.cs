@@ -90,7 +90,7 @@
             _Cancellations = cancellationToken.IsEqualTo(default)
                 ? new(Cancellation.Token) 
                 : new(Cancellation.Token, cancellationToken);
-            CopyTask = StartCopyAsync();
+            CopyTask = ((Func<Task>)StartCopyAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
         }
 
         /// <summary>

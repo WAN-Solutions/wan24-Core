@@ -157,7 +157,7 @@ namespace wan24.Core
         /// Regular expression to match a one or many wildcard (<c>$1</c> is the prefix, <c>$2</c> the postfix)
         /// </summary>
         /// <returns>Regular expression</returns>
-        [GeneratedRegex(@"^(.*[^\\])?\\([\*\+].*)$", RegexOptions.Compiled)]
+        [GeneratedRegex(@"^(.*[^\\])?\\([\*\+].*)$", RegexOptions.Compiled, 3000)]
         private static partial Regex RxOneOrMany_Generator();
     }
 }
