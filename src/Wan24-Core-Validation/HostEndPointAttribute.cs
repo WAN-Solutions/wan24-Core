@@ -17,6 +17,11 @@ namespace wan24.Core
         public bool CheckIfExists { get; set; }
 
         /// <summary>
+        /// If <see cref="CheckExists(HostEndPoint)"/> should use cached results
+        /// </summary>
+        public bool UseCache { get; set; } = true;
+
+        /// <summary>
         /// Check if an IP/host endpoint exists
         /// </summary>
         /// <param name="hostEndPoint">Host endpoint (may be <see langword="default"/>)</param>
