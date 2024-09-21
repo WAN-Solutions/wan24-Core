@@ -32,7 +32,7 @@ namespace wan24.Core
         public int ItemsPerPage { get; } = itemsPerPage;
 
         /// <summary>
-        /// Current page
+        /// Current page (is zero, if not started enumerating yet)
         /// </summary>
         public int CurrentPage { get; private set; } = 0;
 
@@ -47,6 +47,11 @@ namespace wan24.Core
         public bool IsEnumerating => CurrentEnumerator is not null;
 
         /// <summary>
+        /// Last exception (if not <see langword="null"/>, <see cref="NextPage(int?)"/> can't be used anymore)
+        /// </summary>
+        public Exception? LastException { get; private set; }
+
+        /// <summary>
         /// Get the next page (<see cref="CurrentPage"/> will be increased, if <c>page</c> wasn't given)
         /// </summary>
         /// <param name="page">Specific page to get (will be set to <see cref="CurrentPage"/>; must be greater than the present <see cref="CurrentPage"/> value)</param>
@@ -55,17 +60,50 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
-            InterruptCurrentEnumeration();
-            if (IsDone) yield break;
-            if (CurrentPageItemIndex < ItemsPerPage) MoveForward(ItemsPerPage - CurrentPageItemIndex);
-            int prevPage = CurrentPage;
-            if (page.HasValue) CurrentPage = page.Value;
-            if (CurrentPage < 1) CurrentPage = 1;
-            if (prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
-            if (IsDone) yield break;
+            if (LastException is not null) throw new AggregateException(LastException);
+            try
+            {
+                InterruptCurrentEnumeration();
+                bool increasePage = true;
+                if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
+                {
+                    MoveForward(ItemsPerPage - CurrentPageItemIndex);
+                    increasePage = false;
+                }
+                int prevPage = CurrentPage;
+                if (page.HasValue)
+                {
+                    CurrentPage = page.Value;
+                }
+                else if (increasePage)
+                {
+                    CurrentPage++;
+                    CurrentPageItemIndex = 0;
+                }
+                if (CurrentPage < 1) CurrentPage = 1;
+                if (prevPage > 0 && prevPage >= CurrentPage) MoveBackward((CurrentPage - 1) * ItemsPerPage);
+                if (IsDone) yield break;
+            }
+            catch (Exception ex)
+            {
+                LastException = ex;
+                throw new AggregateException(ex);
+            }
             using PageEnumerator enumerator = new(this);
             CurrentEnumerator = enumerator;
-            while (enumerator.MoveNext()) yield return enumerator.Current;
+            while (true)
+            {
+                try
+                {
+                    if (!enumerator.MoveNext()) break;
+                }
+                catch(Exception ex)
+                {
+                    LastException = ex;
+                    throw new AggregateException(ex);
+                }
+                yield return enumerator.Current;
+            }
             if (CurrentEnumerator == enumerator) CurrentEnumerator = null;
         }
 
@@ -94,7 +132,8 @@ namespace wan24.Core
         /// <param name="count">Count</param>
         private void MoveForward(in int count)
         {
-            for(int i = 0; i < count; i++)
+            if (count < 1) return;
+            for (int i = 0; i < count; i++)
             {
                 if (!Enumerator.MoveNext())
                 {
@@ -183,6 +222,7 @@ namespace wan24.Core
             /// <exception cref="InvalidOperationException">The pagination moved on with another page already</exception>
             private void EnsureValidState()
             {
+                if (Pagination.LastException is not null) throw new AggregateException(Pagination.LastException);
                 if (Pagination.CurrentPage != Page) throw new InvalidOperationException("The pagination moved on with another page already");
             }
         }

@@ -25,6 +25,11 @@ namespace wan24.Core
             for (int i = 0, len = Mappings.Count; i < len; i++)
             {
                 mapper = Mappings[i];
+                if (
+                    mapper.Condition is not null &&
+                    !EvaluateCondition(mapper.CustomKey ?? mapper.SourceProperty?.Name ?? throw new InvalidProgramException(), mapper.Condition, source, target)
+                    )
+                    continue;
                 switch (mapper.Type)
                 {
                     case MapperType.GenericMapper or MapperType.GenericMapCall or MapperType.GenericNestedMapper when mapper.Mapper is Mapper_Delegate<tSource, tTarget> mapperDelegate:

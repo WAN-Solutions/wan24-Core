@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace wan24.Core
 {
     /// <summary>
-    /// User setting informations
+    /// User setting information
     /// </summary>
     /// <remarks>
     /// Constructor
@@ -104,7 +104,7 @@ namespace wan24.Core
         /// <param name="providerField">Static provider dictionary field name</param>
         /// <param name="providerKey">Provider instance key</param>
         /// <param name="nic">Nullability context</param>
-        /// <returns>User setting informations</returns>
+        /// <returns>User setting information</returns>
         public static UserSettingInfo FromProperty(
             in PropertyInfoExt pi, 
             in string providerType, 
@@ -113,7 +113,7 @@ namespace wan24.Core
             NullabilityInfoContext? nic = null
             )
         {
-            UserSettingAttribute attr = pi.GetCustomAttributeCached<UserSettingAttribute>() ?? throw new ArgumentException("Not an user setting property", nameof(pi));
+            if (pi.GetCustomAttributeCached<UserSettingAttribute>() is null) throw new ArgumentException("Not an user setting property", nameof(pi));
             return new()
             {
                 Property = pi.Name,
@@ -136,10 +136,10 @@ namespace wan24.Core
         /// <param name="providerKey">Provider instance key</param>
         /// <param name="template">User setting information template (must include provider type and static dictionary field name)</param>
         /// <param name="nic">Nullability context</param>
-        /// <returns>User setting informations</returns>
+        /// <returns>User setting information</returns>
         public static UserSettingInfo FromProperty(in PropertyInfoExt pi, in string providerKey, in UserSettingInfo template, NullabilityInfoContext? nic = null)
         {
-            UserSettingAttribute attr = pi.GetCustomAttributeCached<UserSettingAttribute>() ?? throw new ArgumentException("Not an user setting property", nameof(pi));
+            if (pi.GetCustomAttributeCached<UserSettingAttribute>() is null) throw new ArgumentException("Not an user setting property", nameof(pi));
             return template with
             {
                 Property = pi.Name,

@@ -9,7 +9,7 @@ namespace wan24.Core
     /// <summary>
     /// Object extensions
     /// </summary>
-    public static class ObjectExtensions
+    public static partial class ObjectExtensions
     {
         /// <summary>
         /// Determine if an object is within an object list

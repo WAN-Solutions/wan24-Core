@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     /// <summary>
-    /// Enumerable pagination
+    /// Cached enumerable pagination
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
     /// <remarks>
@@ -11,12 +11,17 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="enumerator">Enumerator</param>
     /// <param name="itemsPerPage">Items per page</param>
-    public sealed class AsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage) : DisposableBase()
+    /// <param name="cacheCapacity">Cache initial capacity</param>
+    public sealed class CachedAsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage, in int? cacheCapacity = null) : DisposableBase()
     {
         /// <summary>
         /// Enumerator
         /// </summary>
         private readonly IAsyncEnumerator<T> Enumerator = enumerator;
+        /// <summary>
+        /// Cache
+        /// </summary>
+        private readonly FreezableList<T> Cache = cacheCapacity.HasValue ? new(cacheCapacity.Value) : [];
         /// <summary>
         /// Current page item index
         /// </summary>
@@ -25,6 +30,11 @@ namespace wan24.Core
         /// Current page enumerator
         /// </summary>
         private PageEnumerator? CurrentEnumerator = null;
+
+        /// <summary>
+        /// Cache index of the current item
+        /// </summary>
+        private int CurrentCacheIndex => (CurrentPage - 1) * ItemsPerPage + CurrentPageItemIndex;
 
         /// <summary>
         /// Items per page
@@ -42,9 +52,19 @@ namespace wan24.Core
         public bool IsDone { get; private set; }
 
         /// <summary>
+        /// If fully enumerated once
+        /// </summary>
+        public bool FullyEnumerated { get; private set; }
+
+        /// <summary>
         /// If enumerating
         /// </summary>
         public bool IsEnumerating => CurrentEnumerator is not null;
+
+        /// <summary>
+        /// Number of cached items
+        /// </summary>
+        public int CacheCount => Cache.Count;
 
         /// <summary>
         /// Last exception (if not <see langword="null"/>, <see cref="NextPageAsync(int?, CancellationToken)"/> can't be used anymore)
@@ -61,19 +81,16 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (LastException is not null) throw new AggregateException(LastException);
+            if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
             try
             {
-                if (ItemsPerPage < 1) throw new InvalidOperationException("No items per page");
-                await InterruptCurrentEnumerationAsync().DynamicContext();
-                if (page.HasValue && (page.Value < 1 || page.Value <= CurrentPage)) throw new NotSupportedException("Asynchronous pagination can't move back");
-                if (IsDone) yield break;
+                InterruptCurrentEnumeration();
                 bool increasePage = true;
                 if (CurrentPage > 0 && CurrentPageItemIndex < ItemsPerPage)
                 {
                     await MoveForwardAsync(ItemsPerPage - CurrentPageItemIndex).DynamicContext();
                     increasePage = false;
                 }
-                if (IsDone) yield break;
                 int prevPage = CurrentPage;
                 if (page.HasValue)
                 {
@@ -85,11 +102,8 @@ namespace wan24.Core
                     CurrentPageItemIndex = 0;
                 }
                 if (CurrentPage < 1) CurrentPage = 1;
-                if (prevPage > 0 && prevPage >= CurrentPage)
-                {
-                    CurrentPage = prevPage;
-                    throw new InvalidOperationException("Can't enumerate backward");
-                }
+                if (prevPage > 0 && prevPage >= CurrentPage) await MoveBackwardAsync((CurrentPage - 1) * ItemsPerPage).DynamicContext();
+                if (IsDone) yield break;
             }
             catch (Exception ex)
             {
@@ -104,12 +118,12 @@ namespace wan24.Core
                 {
                     if (!await enumerator.MoveNextAsync().DynamicContext()) break;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     LastException = ex;
                     throw new AggregateException(ex);
                 }
-                if (cancellationToken.IsCancellationRequested) yield break;
+                if (cancellationToken.IsCancellationRequested) break;
                 yield return enumerator.Current;
             }
             if (CurrentEnumerator == enumerator) CurrentEnumerator = null;
@@ -118,25 +132,29 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            InterruptCurrentEnumerationAsync().GetAwaiter().GetResult();
+            InterruptCurrentEnumeration();
             Enumerator.DisposeAsync().AsTask().GetAwaiter().GetResult();
+            if (Cache.IsFrozen) Cache.Unfreeze();
+            Cache.Clear();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await InterruptCurrentEnumerationAsync().DynamicContext();
+            InterruptCurrentEnumeration();
             await Enumerator.DisposeAsync().DynamicContext();
+            if (Cache.IsFrozen) Cache.Unfreeze();
+            Cache.Clear();
         }
 
         /// <summary>
         /// Interrupt the current enumeration
         /// </summary>
-        private async Task InterruptCurrentEnumerationAsync()
+        private void InterruptCurrentEnumeration()
         {
             if (CurrentEnumerator is PageEnumerator enumerator)
             {
-                await enumerator.DisposeAsync().DynamicContext();
+                enumerator.Dispose();
                 CurrentEnumerator = null;
             }
         }
@@ -147,13 +165,40 @@ namespace wan24.Core
         /// <param name="count">Count</param>
         private async Task MoveForwardAsync(int count)
         {
+            if (count < 1) return;
+            int currentCacheIndex = CurrentCacheIndex,
+                newCacheIndex = currentCacheIndex + count;
+            if (newCacheIndex < Cache.Count)
+            {
+                CurrentPageItemIndex += count;
+                CurrentPage += (int)Math.Floor((float)CurrentPageItemIndex / ItemsPerPage);
+                CurrentPageItemIndex %= ItemsPerPage;
+                if (FullyEnumerated && CurrentCacheIndex == Cache.Count - 1) IsDone = true;
+                return;
+            }
+            if (currentCacheIndex < Cache.Count)
+            {
+                int cached = count - (Cache.Count - currentCacheIndex);
+                CurrentPageItemIndex += cached;
+                CurrentPage += (int)Math.Floor((float)CurrentPageItemIndex / ItemsPerPage);
+                CurrentPageItemIndex %= ItemsPerPage;
+                count -= cached;
+            }
+            if (FullyEnumerated)
+            {
+                IsDone = true;
+                return;
+            }
             for (int i = 0; i < count; i++)
             {
                 if (!await Enumerator.MoveNextAsync().DynamicContext())
                 {
                     IsDone = true;
+                    FullyEnumerated = true;
+                    Cache.Freeze();
                     return;
                 }
+                Cache.Add(Enumerator.Current);
                 CurrentPageItemIndex++;
                 if (CurrentPageItemIndex >= ItemsPerPage)
                 {
@@ -164,23 +209,31 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Move backward to item index N
+        /// </summary>
+        /// <param name="index">Index</param>
+        private async Task MoveBackwardAsync(int index)
+        {
+            IsDone = false;
+            CurrentPage = 1;
+            CurrentPageItemIndex = 0;
+            if (index > 0) await MoveForwardAsync(index).DynamicContext();
+        }
+
+        /// <summary>
         /// Page enumerator
         /// </summary>
         /// <param name="pagination">Pagination</param>
-        private sealed class PageEnumerator(in AsyncEnumerablePagination<T> pagination) : DisposableBase(asyncDisposing: false), IAsyncEnumerator<T>
+        private sealed class PageEnumerator(in CachedAsyncEnumerablePagination<T> pagination) : DisposableBase(asyncDisposing: false), IAsyncEnumerator<T>
         {
             /// <summary>
             /// Pagination
             /// </summary>
-            private readonly AsyncEnumerablePagination<T> Pagination = pagination;
+            private readonly CachedAsyncEnumerablePagination<T> Pagination = pagination;
             /// <summary>
             /// Page
             /// </summary>
             private readonly int Page = pagination.CurrentPage;
-            /// <summary>
-            /// Current item index
-            /// </summary>
-            private int CurrentItemIndex = 0;
 
             /// <inheritdoc/>
             public T Current
@@ -189,7 +242,7 @@ namespace wan24.Core
                 {
                     EnsureUndisposed();
                     EnsureValidState();
-                    return Pagination.Enumerator.Current;
+                    return Pagination.Cache[Pagination.CurrentCacheIndex - 1];
                 }
             }
 
@@ -198,18 +251,31 @@ namespace wan24.Core
             {
                 if (!EnsureUndisposed(throwException: false)) return false;
                 EnsureValidState();
-                if (Pagination.IsDone || CurrentItemIndex >= Pagination.ItemsPerPage) return false;
+                if (Pagination.IsDone || Pagination.CurrentPageItemIndex >= Pagination.ItemsPerPage) return false;
+                if (Pagination.CurrentCacheIndex < Pagination.Cache.Count)
+                {
+                    Pagination.CurrentPageItemIndex++;
+                    return true;
+                }
+                if (Pagination.FullyEnumerated)
+                {
+                    Pagination.IsDone = true;
+                    return false;
+                }
                 if (await Pagination.Enumerator.MoveNextAsync().DynamicContext())
                 {
-                    CurrentItemIndex++;
+                    Pagination.CurrentPageItemIndex++;
+                    Pagination.Cache.Add(Pagination.Enumerator.Current);
                     return true;
                 }
                 Pagination.IsDone = true;
+                Pagination.FullyEnumerated = true;
+                Pagination.Cache.Freeze();
                 return false;
             }
 
             /// <inheritdoc/>
-            protected override void Dispose(bool disposing) => Pagination.CurrentPageItemIndex += CurrentItemIndex;
+            protected override void Dispose(bool disposing) { }
 
             /// <summary>
             /// Ensure a valid pagination state

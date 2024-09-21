@@ -54,6 +54,7 @@ namespace Wan24_Core_Tests
                 XYInt.MinValue,
                 XYZ.MaxValue,
                 XYZInt.MinValue,
+                new PaginationMetaData(count: 10, itemsPerPage: 5, page: 2),
                 new TestType()
             })
             {

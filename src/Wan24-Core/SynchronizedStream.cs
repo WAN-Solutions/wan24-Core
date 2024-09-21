@@ -32,35 +32,43 @@
         public SemaphoreSync SyncIO { get; } = new();
 
         /// <inheritdoc/>
-        public sealed override long Position
+        public override long Position
         {
-            get => base.Position;
+            get
+            {
+                EnsureUndisposed();
+                EnsureSeekable();
+                return base.Position;
+            }
             set
             {
                 EnsureUndisposed();
+                EnsureSeekable();
                 using SemaphoreSyncContext ssc = SyncIO.SyncContext();
                 base.Position = value;
             }
         }
 
         /// <inheritdoc/>
-        public sealed override void SetLength(long value)
+        public override void SetLength(long value)
         {
             EnsureUndisposed();
+            EnsureWritable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.SetLength(value);
         }
 
         /// <inheritdoc/>
-        public sealed override long Seek(long offset, SeekOrigin origin)
+        public override long Seek(long offset, SeekOrigin origin)
         {
             EnsureUndisposed();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.GenericSeek(offset, origin);
         }
 
         /// <inheritdoc/>
-        public sealed override void Flush()
+        public override void Flush()
         {
             EnsureUndisposed(allowDisposing: true);
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
@@ -68,7 +76,7 @@
         }
 
         /// <inheritdoc/>
-        public sealed override async Task FlushAsync(CancellationToken cancellationToken)
+        public override async Task FlushAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed(allowDisposing: true);
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
@@ -76,17 +84,19 @@
         }
 
         /// <inheritdoc/>
-        public sealed override int Read(byte[] buffer, int offset, int count)
+        public override int Read(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.Read(buffer, offset, count);
         }
 
         /// <inheritdoc/>
-        public sealed override int Read(Span<byte> buffer)
+        public override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.Read(buffer);
         }
@@ -97,26 +107,30 @@
         /// <param name="offset">Byte offset</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of bytes red</returns>
-        public int ReadAt(in long offset, in Span<byte> buffer)
+        public virtual int ReadAt(in long offset, in Span<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureReadable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.Position = offset;
             return BaseStream.Read(buffer);
         }
 
         /// <inheritdoc/>
-        public sealed override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             return await BaseStream.ReadAsync(buffer, offset, count, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public sealed override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
+        public override async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             return await BaseStream.ReadAsync(buffer, cancellationToken).DynamicContext();
         }
@@ -128,18 +142,21 @@
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of bytes red</returns>
-        public async Task<int> ReadAtAsync(long offset, Memory<byte> buffer, CancellationToken cancellationToken = default)
+        public virtual async Task<int> ReadAtAsync(long offset, Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureReadable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             base.Position = offset;
             return await BaseStream.ReadAsync(buffer, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public sealed override int ReadByte()
+        public override int ReadByte()
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             return BaseStream.ReadByte();
         }
@@ -149,26 +166,30 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <returns>Byte or <c>-1</c>, if reading failed</returns>
-        public int ReadByteAt(in long offset)
+        public virtual int ReadByteAt(in long offset)
         {
             EnsureUndisposed();
+            EnsureReadable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             base.Position = offset;
             return BaseStream.ReadByte();
         }
 
         /// <inheritdoc/>
-        public sealed override void Write(byte[] buffer, int offset, int count)
+        public override void Write(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
+            EnsureWritable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.Write(buffer, offset, count);
         }
 
         /// <inheritdoc/>
-        public sealed override void Write(ReadOnlySpan<byte> buffer)
+        public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureWritable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.Write(buffer);
         }
@@ -178,26 +199,31 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <param name="buffer">Buffer</param>
-        public void WriteAt(in long offset, in ReadOnlySpan<byte> buffer)
+        public virtual void WriteAt(in long offset, in ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureWritable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             base.Position = offset;
             BaseStream.Write(buffer);
         }
 
         /// <inheritdoc/>
-        public sealed override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            EnsureWritable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             await BaseStream.WriteAsync(buffer, offset, count, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public sealed override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureWritable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
         }
@@ -208,18 +234,21 @@
         /// <param name="offset">Byte offset</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public async Task WriteAtAsync(long offset, ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
+        public virtual async Task WriteAtAsync(long offset, ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureWritable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             base.Position = offset;
             await BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public sealed override void WriteByte(byte value)
+        public override void WriteByte(byte value)
         {
             EnsureUndisposed();
+            EnsureWritable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.WriteByte(value);
         }
@@ -229,34 +258,39 @@
         /// </summary>
         /// <param name="offset">Byte offset</param>
         /// <param name="value">Value</param>
-        public void WriteByteAt(in long offset, in byte value)
+        public virtual void WriteByteAt(in long offset, in byte value)
         {
             EnsureUndisposed();
+            EnsureWritable();
+            EnsureSeekable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             base.Position = offset;
             BaseStream.WriteByte(value);
         }
 
         /// <inheritdoc/>
-        public sealed override void CopyTo(Stream destination, int bufferSize)
+        public override void CopyTo(Stream destination, int bufferSize)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = SyncIO.SyncContext();
             BaseStream.CopyTo(destination, bufferSize);
         }
 
         /// <inheritdoc/>
-        public sealed override async Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
+        public override async Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            EnsureReadable();
             using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync(cancellationToken).DynamicContext();
             await BaseStream.CopyToAsync(destination, bufferSize, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
-        public sealed override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
         {
             EnsureUndisposed();
+            EnsureReadable();
             SyncIO.Sync();
             try
             {
@@ -270,9 +304,10 @@
         }
 
         /// <inheritdoc/>
-        public sealed override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
+        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback? callback, object? state)
         {
             EnsureUndisposed();
+            EnsureWritable();
             SyncIO.Sync();
             try
             {
@@ -286,10 +321,11 @@
         }
 
         /// <inheritdoc/>
-        public sealed override int EndRead(IAsyncResult asyncResult)
+        public override int EndRead(IAsyncResult asyncResult)
         {
             try
             {
+                EnsureReadable();
                 return BaseStream.EndRead(asyncResult);
             }
             finally
@@ -299,10 +335,11 @@
         }
 
         /// <inheritdoc/>
-        public sealed override void EndWrite(IAsyncResult asyncResult)
+        public override void EndWrite(IAsyncResult asyncResult)
         {
             try
             {
+                EnsureWritable();
                 BaseStream.EndWrite(asyncResult);
             }
             finally
@@ -312,7 +349,7 @@
         }
 
         /// <inheritdoc/>
-        public sealed override void Close()
+        public override void Close()
         {
             if (IsClosed) return;
             try
@@ -326,14 +363,14 @@
         }
 
         /// <inheritdoc/>
-        protected sealed override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (IsDisposed) return;
             SyncIO.Dispose();
         }
 
         /// <inheritdoc/>
-        protected sealed override Task DisposeCore()
+        protected override Task DisposeCore()
         {
             SyncIO.Dispose();
             return Task.CompletedTask;
