@@ -224,7 +224,7 @@ namespace wan24.Core
         /// </summary>
         /// <exception cref="NotSupportedException">Not seekable</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureSeekable()
+        protected virtual void EnsureSeekable()
         {
             if (!CanSeek)
                 throw new NotSupportedException("Not seekable");
@@ -235,7 +235,7 @@ namespace wan24.Core
         /// </summary>
         /// <exception cref="NotSupportedException">Not writable</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureWritable()
+        protected virtual void EnsureWritable()
         {
             if (!CanWrite)
                 throw new NotSupportedException("Not writable");
@@ -246,7 +246,7 @@ namespace wan24.Core
         /// </summary>
         /// <exception cref="NotSupportedException">Not readable</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        protected void EnsureReadable()
+        protected virtual void EnsureReadable()
         {
             if (!CanRead)
                 throw new NotSupportedException("Not readable");
