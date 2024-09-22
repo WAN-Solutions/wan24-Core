@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using Microsoft.Extensions.Logging;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Base class for a pipeline stream element
@@ -13,6 +15,11 @@
         /// Pipeline stream
         /// </summary>
         public PipelineStream Pipeline { get; internal set; } = null!;
+
+        /// <summary>
+        /// Logger
+        /// </summary>
+        public ILogger? Logger => Pipeline?.Logger;
 
         /// <summary>
         /// Position of the element in the list of processing elements
@@ -44,7 +51,7 @@
         /// Get the next element in the pipeline
         /// </summary>
         /// <returns>Element</returns>
-        protected virtual PipelineElementBase? GetNextElement()
+        public virtual PipelineElementBase? GetNextElement()
         {
             int pos = Position + 1;
             return pos >= Pipeline.Elements.Count

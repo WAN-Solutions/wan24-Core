@@ -9,6 +9,11 @@ namespace wan24.Core
     public partial class PipelineStream : StreamBase
     {
         /// <summary>
+        /// Input buffer processor task
+        /// </summary>
+        protected readonly Task? InputBufferProcessorTask = null;
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="queueCapacity">Queue capacity</param>
@@ -36,24 +41,25 @@ namespace wan24.Core
                 ? new(outputBufferSize.Value, clearBuffers)
                 : null;
             int index = -1;
-            Elements = new OrderedDictionary<string, PipelineElementBase>(
+            Elements = new(
                 elements.Select(e =>
                 {
                     e.Pipeline = this;
                     e.Position = ++index;
                     return new KeyValuePair<string, PipelineElementBase>(e.Name, e);
                 })
-                )
-                .AsReadOnly();
+                );
+            Elements.Freeze();
+            if (inputBufferSize.HasValue) InputBufferProcessorTask = ((Func<Task>)ProcessInputBufferAsync).StartLongRunningTask();
         }
 
         /// <summary>
         /// Pipeline elements (read-only)
         /// </summary>
-        public OrderedDictionary<string, PipelineElementBase> Elements { get; }
+        public FreezableOrderedDictionary<string, PipelineElementBase> Elements { get; }
 
         /// <summary>
-        /// Processing queue
+        /// Processing queue (needs to be started before sending anything into the pipeline stream!)
         /// </summary>
         public ProcessingQueue Queue { get; }
 
@@ -341,6 +347,7 @@ namespace wan24.Core
             Elements.Values.DisposeAll();
             InputBuffer?.Dispose();
             OutputBuffer?.Dispose();
+            InputBufferProcessorTask?.GetAwaiter().GetResult();
         }
 
         /// <inheritdoc/>
@@ -351,6 +358,7 @@ namespace wan24.Core
             await Elements.Values.DisposeAllAsync().DynamicContext();
             if (InputBuffer is not null) await InputBuffer.DisposeAsync().DynamicContext();
             if (OutputBuffer is not null) await OutputBuffer.DisposeAsync().DynamicContext();
+            if (InputBufferProcessorTask is not null) await InputBufferProcessorTask.DynamicContext();
         }
     }
 }
