@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace wan24.Core
 {
     /// <summary>
-    /// Pipeline stream
+    /// Pipeline stream (don't forget to start the <see cref="Queue"/> before feeding data into the pipeline)
     /// </summary>
     public partial class PipelineStream : StreamBase
     {
