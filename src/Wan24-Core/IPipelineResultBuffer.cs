@@ -8,6 +8,6 @@
         /// <summary>
         /// Buffer (may be cleared!)
         /// </summary>
-        Memory<byte> Buffer { get; }
+        ReadOnlyMemory<byte> Buffer { get; }
     }
 }

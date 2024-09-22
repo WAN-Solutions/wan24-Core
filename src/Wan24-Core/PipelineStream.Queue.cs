@@ -14,8 +14,9 @@ namespace wan24.Core
             /// Constructor
             /// </summary>
             /// <param name="pipeline">Pipeline</param>
+            /// <param name="capacity">Capacity</param>
             /// <param name="parallelism">Degree of parallelism (how many tasks to process in parallel)</param>
-            public ProcessingQueue(in PipelineStream pipeline, in int parallelism) : base(parallelism, parallelism)
+            public ProcessingQueue(in PipelineStream pipeline, in int capacity, in int parallelism) : base(capacity, parallelism)
             {
                 Pipeline = pipeline;
                 CanPause = true;
@@ -41,59 +42,86 @@ namespace wan24.Core
                     if (!CancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
                     {
                         if (item.Buffer is null && item.Result is null) throw new InvalidProgramException("No result and buffer");
-                        result = item.Buffer is null
-                            ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
-                            : await item.Element.ProcessAsync(item.Buffer.Memory, cancellationToken).DynamicContext();
-                        if(result is null)
+                        while (true)
                         {
-                            // Processing stops here
-                            Logger?.LogDebug("Processing queued item for element #{pos} has no result", item.Element.Position);
-                            await item.DisposeAsync().DynamicContext();
-                        }
-                        else if(result.Next is null)
-                        {
-                            // Try to write the result to the output buffer of the pipeline
-                            Logger?.LogDebug("Processing queued item for element #{pos} has no next element", item.Element.Position);
-                            try
+                            result = item.Buffer is null
+                                ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
+                                : await item.Element.ProcessAsync(item.Buffer.Memory, cancellationToken).DynamicContext();
+                            if (result is null)
                             {
-                                if (Pipeline.OutputBuffer is not null)
+                                // Processing stops here
+                                Logger?.LogDebug("Processing queued item for element #{pos} has no result", item.Element.Position);
+                                await item.DisposeAsync().DynamicContext();
+                            }
+                            else if (result.Next is null)
+                            {
+                                // Try to write the result to the output buffer of the pipeline
+                                Logger?.LogDebug("Processing queued item for element #{pos} has no next element", item.Element.Position);
+                                try
                                 {
-                                    // Process a result buffer
-                                    if (result is IPipelineResultBuffer resultBuffer)
+                                    if (Pipeline.OutputBuffer is not null)
                                     {
-                                        Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output buffer", item.Element.Position);
-                                        await Pipeline.OutputBuffer.WriteAsync(resultBuffer.Buffer, cancellationToken).DynamicContext();
+                                        // Process a result buffer
+                                        if (result is IPipelineResultBuffer resultBuffer)
+                                        {
+                                            Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output buffer", item.Element.Position);
+                                            await Pipeline.OutputBuffer.WriteAsync(resultBuffer.Buffer, cancellationToken).DynamicContext();
+                                        }
+                                        // Process a result stream
+                                        if (result is IPipelineResultStream resultStream)
+                                            if (resultStream.Stream.CanSeek)
+                                            {
+                                                Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but a seekable output stream", item.Element.Position);
+                                                await resultStream.Stream.CopyExactlyPartialToAsync(
+                                                    Pipeline.OutputBuffer,
+                                                    resultStream.Stream.GetRemainingBytes(),
+                                                    cancellationToken: cancellationToken
+                                                    )
+                                                    .DynamicContext();
+                                            }
+                                            else
+                                            {
+                                                Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output stream", item.Element.Position);
+                                                await resultStream.Stream.CopyToAsync(Pipeline.OutputBuffer, cancellationToken).DynamicContext();
+                                            }
                                     }
-                                    // Process a result stream
-                                    if(result is IPipelineResultStream resultStream)
-                                        if (resultStream.Stream.CanSeek)
-                                        {
-                                            Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but a seekable output stream", item.Element.Position);
-                                            await resultStream.Stream.CopyExactlyPartialToAsync(
-                                                Pipeline.OutputBuffer,
-                                                resultStream.Stream.GetRemainingBytes(),
-                                                cancellationToken: cancellationToken
-                                                )
-                                                .DynamicContext();
-                                        }
-                                        else
-                                        {
-                                            Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output stream", item.Element.Position);
-                                            await resultStream.Stream.CopyToAsync(Pipeline.OutputBuffer, cancellationToken).DynamicContext();
-                                        }
+                                }
+                                finally
+                                {
+                                    await item.DisposeAsync().DynamicContext();
+                                    await result.DisposeAsync().DynamicContext();
                                 }
                             }
-                            finally
+                            else if (result.ProcessInParallel)
                             {
-                                await item.DisposeAsync().DynamicContext();
-                                await result.DisposeAsync().DynamicContext();
+                                // Further parallel result processing
+                                Logger?.LogDebug("Processing queued item for element #{pos} has next element #{next}", item.Element.Position, result.Next.Position);
+                                EnqueueResult(item, result);
                             }
-                        }
-                        else
-                        {
-                            // Further result processing
-                            Logger?.LogDebug("Processing queued item for element #{pos} has next element #{next}", item.Element.Position, result.Next.Position);
-                            EnqueueResult(item, result);
+                            else
+                            {
+                                // Further non-parallel result processing
+                                PipelineResultBase? newResult = await result.Next.ProcessAsync(result, cancellationToken).DynamicContext();
+                                try
+                                {
+                                    await item.DisposeAsync().DynamicContext();
+                                    item = new()
+                                    {
+                                        PreviousElement = result.Element,
+                                        Element = result.Next,
+                                        Result = result
+                                    };
+                                    await result.DisposeAsync().DynamicContext();
+                                    result = newResult;
+                                    continue;
+                                }
+                                catch
+                                {
+                                    if(newResult is not null) await newResult.DisposeAsync().DynamicContext();
+                                    throw;
+                                }
+                            }
+                            break;
                         }
                     }
                     else

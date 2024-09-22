@@ -12,8 +12,13 @@
     public class PipelineResultBuffer(in PipelineElementBase element, in Memory<byte> buffer, in PipelineElementBase? next = null)
         : PipelineResultBase(element, next), IPipelineResultBuffer
     {
+        /// <summary>
+        /// Buffer
+        /// </summary>
+        protected readonly Memory<byte> _Buffer = buffer;
+
         /// <inheritdoc/>
-        public Memory<byte> Buffer { get; } = buffer;
+        public ReadOnlyMemory<byte> Buffer => _Buffer;
 
         /// <summary>
         /// Clean the <see cref="Buffer"/> when disposing?
@@ -23,13 +28,13 @@
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (CleanBuffer || Element.Pipeline.ClearBuffers) Buffer.Span.Clean();
+            if (CleanBuffer || Element.Pipeline.ClearBuffers) _Buffer.Span.Clean();
         }
 
         /// <inheritdoc/>
         protected override Task DisposeCore()
         {
-            if (CleanBuffer || Element.Pipeline.ClearBuffers) Buffer.Span.Clean();
+            if (CleanBuffer || Element.Pipeline.ClearBuffers) _Buffer.Span.Clean();
             return Task.CompletedTask;
         }
     }

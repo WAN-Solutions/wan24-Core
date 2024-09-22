@@ -39,5 +39,17 @@
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result or <see langword="null"/> to end processing</returns>
         public abstract Task<PipelineResultBase?> ProcessAsync(PipelineResultBase result, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get the next element in the pipeline
+        /// </summary>
+        /// <returns>Element</returns>
+        protected virtual PipelineElementBase? GetNextElement()
+        {
+            int pos = Position + 1;
+            return pos >= Pipeline.Elements.Count
+                ? null
+                : Pipeline.Elements[pos];
+        }
     }
 }

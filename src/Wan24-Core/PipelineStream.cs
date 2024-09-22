@@ -11,12 +11,14 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="parallelism">Degree of parallelism (how many tasks to process in parallel)</param>
         /// <param name="inputBufferSize">Input buffer size in bytes (or <see langword="null"/> to write to the first element directly)</param>
         /// <param name="outputBufferSize">Output buffer size in bytes (or <see langword="null"/>, if not readable)</param>
         /// <param name="clearBuffers">If to clear buffers after use</param>
         /// <param name="elements">Elements</param>
         public PipelineStream(
+            in int queueCapacity,
             in int parallelism,
             in int? inputBufferSize,
             in int? outputBufferSize,
@@ -25,14 +27,14 @@ namespace wan24.Core
             )
             : base()
         {
-            Queue = new(this, parallelism);
+            ClearBuffers = clearBuffers;
+            Queue = new(this, queueCapacity, parallelism);
             InputBuffer = inputBufferSize.HasValue
                 ? new(inputBufferSize.Value, clearBuffers)
                 : null;
             OutputBuffer = outputBufferSize.HasValue
                 ? new(outputBufferSize.Value, clearBuffers)
                 : null;
-            ClearBuffers = clearBuffers;
             int index = -1;
             Elements = new OrderedDictionary<string, PipelineElementBase>(
                 elements.Select(e =>
@@ -336,6 +338,7 @@ namespace wan24.Core
         {
             base.Dispose(disposing);
             Queue.Dispose();
+            Elements.Values.DisposeAll();
             InputBuffer?.Dispose();
             OutputBuffer?.Dispose();
         }
@@ -345,6 +348,7 @@ namespace wan24.Core
         {
             await base.DisposeCore().DynamicContext();
             await Queue.DisposeAsync().DynamicContext();
+            await Elements.Values.DisposeAllAsync().DynamicContext();
             if (InputBuffer is not null) await InputBuffer.DisposeAsync().DynamicContext();
             if (OutputBuffer is not null) await OutputBuffer.DisposeAsync().DynamicContext();
         }

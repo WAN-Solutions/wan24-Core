@@ -19,5 +19,10 @@
         /// Get the next processing element
         /// </summary>
         public PipelineElementBase? Next { get; } = next;
+
+        /// <summary>
+        /// If to process the result in parallel
+        /// </summary>
+        public bool ProcessInParallel { get; init; } = true;
     }
 }
