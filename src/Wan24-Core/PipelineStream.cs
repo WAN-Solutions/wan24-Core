@@ -19,6 +19,7 @@ namespace wan24.Core
         /// <param name="queueCapacity">Queue capacity</param>
         /// <param name="parallelism">Degree of parallelism (how many tasks to process in parallel)</param>
         /// <param name="inputBufferSize">Input buffer size in bytes (or <see langword="null"/> to write to the first element directly)</param>
+        /// <param name="runInputBufferProcessor">If to run an input buffer processor which feeds the first element from the input buffer</param>
         /// <param name="outputBufferSize">Output buffer size in bytes (or <see langword="null"/>, if not readable)</param>
         /// <param name="clearBuffers">If to clear buffers after use</param>
         /// <param name="elements">Elements</param>
@@ -26,6 +27,7 @@ namespace wan24.Core
             in int queueCapacity,
             in int parallelism,
             in int? inputBufferSize,
+            in bool runInputBufferProcessor,
             in int? outputBufferSize,
             in bool clearBuffers,
             params PipelineElementBase[] elements
@@ -50,7 +52,7 @@ namespace wan24.Core
                 })
                 );
             Elements.Freeze();
-            if (inputBufferSize.HasValue) InputBufferProcessorTask = ((Func<Task>)ProcessInputBufferAsync).StartLongRunningTask();
+            if (runInputBufferProcessor && inputBufferSize.HasValue) InputBufferProcessorTask = ((Func<Task>)ProcessInputBufferAsync).StartLongRunningTask();
         }
 
         /// <summary>
