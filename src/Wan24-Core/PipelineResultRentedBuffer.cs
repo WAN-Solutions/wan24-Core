@@ -18,7 +18,7 @@
         public RentedArray<byte> RentedBuffer { get; } = buffer;
 
         /// <inheritdoc/>
-        public Memory<byte> Buffer => RentedBuffer.Memory;
+        public ReadOnlyMemory<byte> Buffer => RentedBuffer.Memory;
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => RentedBuffer.Dispose();
