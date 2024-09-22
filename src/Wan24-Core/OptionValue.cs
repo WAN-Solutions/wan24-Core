@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -23,7 +26,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in T value)
+        public OptionValue([NotNull] in T value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -32,28 +35,59 @@ namespace wan24.Core
         /// <summary>
         /// If a <see cref="Value"/> is available
         /// </summary>
-        public bool HasValue => _Value is not null;
+        public bool HasValue
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => _Value is not null;
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public T Value => _Value ?? throw new InvalidOperationException();
+        public T Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => _Value ?? throw new InvalidOperationException();
+        }
 
         /// <summary>
         /// Value type
         /// </summary>
-        public ValueTypes ValueType => _Value is null ? ValueTypes.None : ValueTypes.Type1;
+        public ValueTypes ValueType
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => _Value is null ? ValueTypes.None : ValueTypes.Type1;
+        }
 
         /// <summary>
         /// Cast from value
         /// </summary>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator OptionValue<T>(in T value) => new(value);
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator T(in OptionValue<T> value) => value.Value;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator T(in OptionValue<T> value) => value.Value ?? throw new InvalidOperationException();
     }
 }

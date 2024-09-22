@@ -1,4 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -33,7 +36,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t1 value)
+        public OptionValue([NotNull] in t1 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -44,7 +47,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t2 value)
+        public OptionValue([NotNull] in t2 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -55,7 +58,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t3 value)
+        public OptionValue([NotNull] in t3 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -66,7 +69,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t4 value)
+        public OptionValue([NotNull] in t4 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -77,7 +80,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t5 value)
+        public OptionValue([NotNull] in t5 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -88,7 +91,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t6 value)
+        public OptionValue([NotNull] in t6 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -99,7 +102,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t7 value)
+        public OptionValue([NotNull] in t7 value)
         {
             ArgumentNullException.ThrowIfNull(value);
             _Value = value;
@@ -109,12 +112,110 @@ namespace wan24.Core
         /// <summary>
         /// If a <see cref="Value"/> is available
         /// </summary>
-        public bool HasValue => ValueType != ValueTypes.None;
+        public bool HasValue
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType != ValueTypes.None;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t1"/>
+        /// </summary>
+        public bool HasT1Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type1;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t2"/>
+        /// </summary>
+        public bool HasT2Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type2;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t3"/>
+        /// </summary>
+        public bool HasT3Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type3;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t4"/>
+        /// </summary>
+        public bool HasT4Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type4;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t5"/>
+        /// </summary>
+        public bool HasT5Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type5;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t6"/>
+        /// </summary>
+        public bool HasT6Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type6;
+        }
+
+        /// <summary>
+        /// If the value is a type of <typeparamref name="t7"/>
+        /// </summary>
+        public bool HasT7Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type7;
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public object Value => _Value ?? throw new InvalidOperationException();
+        public object Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => _Value ?? throw new InvalidOperationException();
+        }
 
         /// <summary>
         /// Value type
@@ -124,78 +225,169 @@ namespace wan24.Core
         /// <summary>
         /// Value
         /// </summary>
-        public t1 ValueAsT1 => (t1)(_Value ?? throw new InvalidOperationException());
+        public t1 ValueAsT1
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t1)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t2 ValueAsT2 => (t2)(_Value ?? throw new InvalidOperationException());
+        public t2 ValueAsT2
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t2)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t3 ValueAsT3 => (t3)(_Value ?? throw new InvalidOperationException());
+        public t3 ValueAsT3
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t3)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t4 ValueAsT4 => (t4)(_Value ?? throw new InvalidOperationException());
+        public t4 ValueAsT4
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t4)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t5 ValueAsT5 => (t5)(_Value ?? throw new InvalidOperationException());
+        public t5 ValueAsT5
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t5)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t6 ValueAsT6 => (t6)(_Value ?? throw new InvalidOperationException());
+        public t6 ValueAsT6
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t6)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Value
         /// </summary>
-        public t7 ValueAsT7 => (t7)(_Value ?? throw new InvalidOperationException());
+        public t7 ValueAsT7
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => (t7)(_Value ?? throw new InvalidOperationException());
+        }
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t1(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT1;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t1(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT1 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t2(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT2;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t2(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT2 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t3(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT3;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t3(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT3 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t4(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT4;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t4(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT4 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t5(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT5;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t5(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT5 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t6(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT6;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t6(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT6 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
         /// </summary>
         /// <param name="value">Value</param>
-        public static implicit operator t7(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT7;
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t7(in OptionValue<t1, t2, t3, t4, t5, t6, t7> value) => value.ValueAsT7 ?? throw new InvalidProgramException();
     }
 }

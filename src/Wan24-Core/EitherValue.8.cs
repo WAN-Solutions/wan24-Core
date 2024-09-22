@@ -1,12 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
     /// <summary>
-    /// Option value (may have a value or not)
+    /// Either value
     /// </summary>
     /// <typeparam name="t1">Value type 1</typeparam>
     /// <typeparam name="t2">Value type 2</typeparam>
@@ -14,31 +14,19 @@ namespace wan24.Core
     /// <typeparam name="t4">Value type 4</typeparam>
     /// <typeparam name="t5">Value type 5</typeparam>
     /// <typeparam name="t6">Value type 6</typeparam>
+    /// <typeparam name="t7">Value type 7</typeparam>
+    /// <typeparam name="t8">Value type 8</typeparam>
     [StructLayout(LayoutKind.Sequential)]
-    public readonly record struct OptionValue<t1, t2, t3, t4, t5, t6>
+    public readonly record struct EitherValue<t1, t2, t3, t4, t5, t6, t7, t8>
     {
-        /// <summary>
-        /// Value
-        /// </summary>
-        private readonly object? _Value;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public OptionValue()
-        {
-            _Value = default;
-            ValueType = ValueTypes.None;
-        }
-
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue([NotNull] in t1 value)
+        public EitherValue([NotNull] in t1 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type1;
         }
 
@@ -46,10 +34,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue([NotNull] in t2 value)
+        public EitherValue([NotNull] in t2 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type2;
         }
 
@@ -57,10 +45,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue([NotNull] in t3 value)
+        public EitherValue([NotNull] in t3 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type3;
         }
 
@@ -68,10 +56,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue([NotNull] in t4 value)
+        public EitherValue([NotNull] in t4 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type4;
         }
 
@@ -79,10 +67,10 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue(in t5 value)
+        public EitherValue([NotNull] in t5 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type5;
         }
 
@@ -90,23 +78,57 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="value">Value</param>
-        public OptionValue([NotNull] in t6 value)
+        public EitherValue([NotNull] in t6 value)
         {
             ArgumentNullException.ThrowIfNull(value);
-            _Value = value;
+            Value = value;
             ValueType = ValueTypes.Type6;
         }
 
         /// <summary>
-        /// If a <see cref="Value"/> is available
+        /// Constructor
         /// </summary>
-        public bool HasValue
+        /// <param name="value">Value</param>
+        public EitherValue([NotNull] in t7 value)
         {
-            [TargetedPatchingOptOut("Tiny method")]
+            ArgumentNullException.ThrowIfNull(value);
+            Value = value;
+            ValueType = ValueTypes.Type7;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="value">Value</param>
+        public EitherValue([NotNull] in t8 value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+            Value = value;
+            ValueType = ValueTypes.Type8;
+        }
+
+        /// <summary>
+        /// Value
+        /// </summary>
+        public object Value
+        {
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => ValueType != ValueTypes.None;
+            get;
+            private init;
+        }
+
+        /// <summary>
+        /// Value type
+        /// </summary>
+        public ValueTypes ValueType
+        {
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get;
+            private init;
         }
 
         /// <summary>
@@ -182,24 +204,31 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Value
+        /// If the value is a type of <typeparamref name="t7"/>
         /// </summary>
-        public object Value
+        public bool HasT7Value
         {
             [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => _Value ?? throw new InvalidOperationException();
+            get => ValueType == ValueTypes.Type7;
         }
 
         /// <summary>
-        /// Value type
+        /// If the value is a type of <typeparamref name="t8"/>
         /// </summary>
-        public ValueTypes ValueType { get; private init; }
+        public bool HasT8Value
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            get => ValueType == ValueTypes.Type8;
+        }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t1"/>
         /// </summary>
         public t1 ValueAsT1
         {
@@ -208,11 +237,11 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t1)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type1 ? (t1)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t2"/>
         /// </summary>
         public t2 ValueAsT2
         {
@@ -221,11 +250,11 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t2)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type2 ? (t2)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t3"/>
         /// </summary>
         public t3 ValueAsT3
         {
@@ -234,11 +263,11 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t3)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type3 ? (t3)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t4"/>
         /// </summary>
         public t4 ValueAsT4
         {
@@ -247,11 +276,11 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t4)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type4 ? (t4)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t5"/>
         /// </summary>
         public t5 ValueAsT5
         {
@@ -260,11 +289,11 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t5)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type5 ? (t5)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
-        /// Value
+        /// Get the value as <typeparamref name="t6"/>
         /// </summary>
         public t6 ValueAsT6
         {
@@ -273,7 +302,33 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t6)(_Value ?? throw new InvalidOperationException());
+            get => ValueType == ValueTypes.Type6 ? (t6)Value : throw new InvalidOperationException();
+        }
+
+        /// <summary>
+        /// Get the value as <typeparamref name="t7"/>
+        /// </summary>
+        public t7 ValueAsT7
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => ValueType == ValueTypes.Type7 ? (t7)Value : throw new InvalidOperationException();
+        }
+
+        /// <summary>
+        /// Get the value as <typeparamref name="t8"/>
+        /// </summary>
+        public t8 ValueAsT8
+        {
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+            [return: NotNull]
+            get => ValueType == ValueTypes.Type8 ? (t8)Value : throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -285,7 +340,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t1(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT1 ?? throw new InvalidOperationException();
+        public static implicit operator t1(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT1 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
@@ -296,7 +351,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t2(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT2 ?? throw new InvalidOperationException();
+        public static implicit operator t2(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT2 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
@@ -307,7 +362,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t3(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT3 ?? throw new InvalidOperationException();
+        public static implicit operator t3(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT3 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
@@ -318,7 +373,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t4(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT4 ?? throw new InvalidOperationException();
+        public static implicit operator t4(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT4 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
@@ -329,7 +384,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t5(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT5 ?? throw new InvalidOperationException();
+        public static implicit operator t5(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT5 ?? throw new InvalidProgramException();
 
         /// <summary>
         /// Cast as value
@@ -340,6 +395,28 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t6(in OptionValue<t1, t2, t3, t4, t5, t6> value) => value.ValueAsT6 ?? throw new InvalidOperationException();
+        public static implicit operator t6(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT6 ?? throw new InvalidProgramException();
+
+        /// <summary>
+        /// Cast as value
+        /// </summary>
+        /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t7(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT7 ?? throw new InvalidProgramException();
+
+        /// <summary>
+        /// Cast as value
+        /// </summary>
+        /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        public static implicit operator t8(in EitherValue<t1, t2, t3, t4, t5, t6, t7, t8> value) => value.ValueAsT8 ?? throw new InvalidProgramException();
     }
 }
