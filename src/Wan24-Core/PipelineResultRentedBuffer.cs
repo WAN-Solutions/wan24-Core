@@ -7,7 +7,7 @@
     /// Constructor
     /// </remarks>
     /// <param name="element">Providing element</param>
-    /// <param name="buffer">Buffer</param>
+    /// <param name="buffer">Buffer (will be disposed)</param>
     /// <param name="next">Next element</param>
     public class PipelineResultRentedBuffer(in PipelineElementBase element, in RentedArray<byte> buffer, in PipelineElementBase? next = null)
         : PipelineResultBase(element, next), IPipelineResultBuffer

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -64,6 +65,79 @@ namespace wan24.Core
                 ? null
                 : Pipeline.Elements[pos];
         }
+
+        /// <summary>
+        /// Create a buffer result
+        /// </summary>
+        /// <param name="buffer">Buffer (may be cleared)</param>
+        /// <param name="next">Next element</param>
+        /// <param name="cleanBuffer">If to clean the <c>buffer</c> after use</param>
+        /// <param name="processInParallel">If to process the result in parallel</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultBuffer CreateBufferResult(in Memory<byte> buffer, in PipelineElementBase? next = null, in bool cleanBuffer = true, in bool processInParallel = true)
+            => new(this, buffer, next ?? GetNextElement())
+            {
+                CleanBuffer = cleanBuffer,
+                ProcessInParallel = processInParallel
+            };
+
+        /// <summary>
+        /// Create a buffer result
+        /// </summary>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="next">Next element</param>
+        /// <param name="processInParallel">If to process the result in parallel</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultReadOnlyBuffer CreateReadOnlyBufferResult(in ReadOnlyMemory<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
+            => new(this, buffer, next ?? GetNextElement())
+            {
+                ProcessInParallel = processInParallel
+            };
+
+        /// <summary>
+        /// Create a rented buffer result
+        /// </summary>
+        /// <param name="buffer">Buffer (will be disposed)</param>
+        /// <param name="next">Next element</param>
+        /// <param name="processInParallel">If to process the result in parallel</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultRentedBuffer CreateRentedBufferResult(in RentedArray<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
+            => new(this, buffer, next ?? GetNextElement())
+            {
+                ProcessInParallel = processInParallel
+            };
+
+        /// <summary>
+        /// Create a stream result
+        /// </summary>
+        /// <param name="stream">Stream (may be disposed)</param>
+        /// <param name="next">Next element</param>
+        /// <param name="disposeStream">If to dispose the <c>stream</c> after use</param>
+        /// <param name="processInParallel">If to process the result in parallel</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultStream CreateStreamResult(in Stream stream, in PipelineElementBase? next = null, in bool disposeStream = true, in bool processInParallel = true)
+            => new(this, stream, next ?? GetNextElement())
+            {
+                DisposeStream = disposeStream,
+                ProcessInParallel = processInParallel
+            };
+
+        /// <summary>
+        /// Create a stream result
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="next">Next element</param>
+        /// <param name="disposeObject">If to dispose the <c>value</c> after use</param>
+        /// <param name="processInParallel">If to process the result in parallel</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultObject<T> CreateObjectResult<T>([NotNull] in T value, in PipelineElementBase? next = null, in bool disposeObject = true, in bool processInParallel = true)
+            => new(this, value, next ?? GetNextElement())
+            {
+                DisposeObject = disposeObject,
+                ProcessInParallel = processInParallel
+            };
+
         /// <summary>
         /// Read a chunk from a stream
         /// </summary>

@@ -32,10 +32,7 @@
             EnsureUndisposed();
             await InputStream.WriteAsync(buffer, cancellationToken).DynamicContext();
             RentedArray<byte> bufferInt = await ReadStreamChunkAsync(OutputStream, cancellationToken).DynamicContext();
-            return new PipelineResultRentedBuffer(this, bufferInt, GetNextElement())
-            {
-                ProcessInParallel = ProcessResultInParallel
-            };
+            return CreateRentedBufferResult(bufferInt, processInParallel: ProcessResultInParallel);
         }
 
         /// <inheritdoc/>

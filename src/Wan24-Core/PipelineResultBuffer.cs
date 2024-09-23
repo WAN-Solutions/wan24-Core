@@ -7,13 +7,13 @@
     /// Constructor
     /// </remarks>
     /// <param name="element">Providing element</param>
-    /// <param name="buffer">Buffer</param>
+    /// <param name="buffer">Buffer (may be cleared)</param>
     /// <param name="next">Next element</param>
     public class PipelineResultBuffer(in PipelineElementBase element, in Memory<byte> buffer, in PipelineElementBase? next = null)
         : PipelineResultBase(element, next), IPipelineResultBuffer
     {
         /// <summary>
-        /// Buffer
+        /// Buffer (may be cleared)
         /// </summary>
         protected readonly Memory<byte> _Buffer = buffer;
 
