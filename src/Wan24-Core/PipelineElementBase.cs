@@ -51,6 +51,7 @@ namespace wan24.Core
         {
             get
             {
+                EnsureUndisposed();
                 if (_ProcessableTypes.HasValue) return _ProcessableTypes.Value;
                 if(this is not IPipelineElementObject)
                 {
@@ -123,11 +124,14 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultBuffer CreateBufferResult(in Memory<byte> buffer, in PipelineElementBase? next = null, in bool cleanBuffer = true, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement(buffer))
-            {
-                CleanBuffer = cleanBuffer,
-                ProcessInParallel = processInParallel
-            };
+        {
+            EnsureUndisposed();
+            return new(this, buffer, next ?? GetNextElement(buffer))
+               {
+                   CleanBuffer = cleanBuffer,
+                   ProcessInParallel = processInParallel
+               };
+        }
 
         /// <summary>
         /// Create a buffer result
@@ -137,10 +141,13 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultReadOnlyBuffer CreateReadOnlyBufferResult(in ReadOnlyMemory<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement(buffer))
-            {
-                ProcessInParallel = processInParallel
-            };
+        {
+            EnsureUndisposed();
+            return new(this, buffer, next ?? GetNextElement(buffer))
+               {
+                   ProcessInParallel = processInParallel
+               };
+        }
 
         /// <summary>
         /// Create a rented buffer result
@@ -150,10 +157,13 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultRentedBuffer CreateRentedBufferResult(in RentedArray<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement(buffer.Memory))
-            {
-                ProcessInParallel = processInParallel
-            };
+        {
+            EnsureUndisposed();
+            return new(this, buffer, next ?? GetNextElement(buffer.Memory))
+               {
+                   ProcessInParallel = processInParallel
+               };
+        }
 
         /// <summary>
         /// Create a stream result
@@ -164,11 +174,14 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultStream CreateStreamResult(in Stream stream, in PipelineElementBase? next = null, in bool disposeStream = true, in bool processInParallel = true)
-            => new(this, stream, next ?? GetNextElement(stream))
-            {
-                DisposeStream = disposeStream,
-                ProcessInParallel = processInParallel
-            };
+        {
+            EnsureUndisposed();
+            return new(this, stream, next ?? GetNextElement(stream))
+               {
+                   DisposeStream = disposeStream,
+                   ProcessInParallel = processInParallel
+               };
+        }
 
         /// <summary>
         /// Create a stream result
@@ -180,25 +193,48 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultObject<T> CreateObjectResult<T>([NotNull] in T value, in PipelineElementBase? next = null, in bool disposeObject = true, in bool processInParallel = true)
-            => new(this, value, next ?? GetNextElement(value))
-            {
-                DisposeObject = disposeObject,
-                ProcessInParallel = processInParallel
-            };
+        {
+            EnsureUndisposed();
+            return new(this, value, next ?? GetNextElement(value))
+               {
+                   DisposeObject = disposeObject,
+                   ProcessInParallel = processInParallel
+               };
+        }
 
         /// <summary>
         /// Forward a buffer to the next element
         /// </summary>
         /// <param name="buffer">Buffer (will be copied)</param>
         /// <returns>Result</returns>
-        public virtual PipelineResultRentedBuffer ForwardBuffer(in Memory<byte> buffer) => CreateRentedBufferResult(Pipeline.CreateBuffer(buffer.Length));
+        public virtual PipelineResultRentedBuffer ForwardBuffer(in Memory<byte> buffer)
+        {
+            EnsureUndisposed();
+            return CreateRentedBufferResult(Pipeline.CreateBuffer(buffer.Length));
+        }
 
         /// <summary>
         /// Forward a result to the next element
         /// </summary>
         /// <param name="result">Result</param>
         /// <returns>Result</returns>
-        public virtual PipelineResultBase ForwardResult(in PipelineResultBase result) => result.CreateCopy(this);
+        public virtual PipelineResultBase ForwardResult(in PipelineResultBase result)
+        {
+            EnsureUndisposed();
+            return result.CreateCopy(this);
+        }
+
+        /// <summary>
+        /// Forward a result to the next element
+        /// </summary>
+        /// <param name="result">Result</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Result</returns>
+        public virtual async Task<PipelineResultBase> ForwardResultAsync(PipelineResultBase result, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            return await result.CreateCopyAsync(this, cancellationToken).DynamicContext();
+        }
 
         /// <summary>
         /// Read a chunk from a stream

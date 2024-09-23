@@ -41,6 +41,7 @@
         /// <returns>Copy of this result</returns>
         public virtual Task<PipelineResultBase> CreateCopyAsync(PipelineElementBase? element = null, CancellationToken cancellationToken = default)
         {
+            EnsureUndisposed();
             cancellationToken.ThrowIfCancellationRequested();
             return Task.FromResult(CreateCopy(element));
         }
