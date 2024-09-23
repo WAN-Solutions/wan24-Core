@@ -15,16 +15,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this tItem[] enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this tItem[] enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -39,18 +37,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this tItem[] enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -62,16 +58,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this Memory<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this Memory<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable.Span[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable.Span[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -86,18 +80,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this Memory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable.Span[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable.Span[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -109,16 +101,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ReadOnlyMemory<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ReadOnlyMemory<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable.Span[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable.Span[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -133,18 +123,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this ReadOnlyMemory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable.Span[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable.Span[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -156,16 +144,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IEnumerable<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IEnumerable<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
-            foreach(tItem item in enumerable)
+            ExecuteResult<tResult> result;
+            foreach (tItem item in enumerable)
             {
-                (result, useResult, next) = action(item);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(item);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -179,19 +165,17 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this IEnumerable<tItem> enumerable, 
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action, 
+            this IEnumerable<tItem> enumerable,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             foreach (tItem item in enumerable)
             {
-                (result, useResult, next) = await action(item, cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(item, cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -206,18 +190,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this IAsyncEnumerable<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             await foreach (tItem item in enumerable.DynamicContext().WithCancellation(cancellationToken))
             {
-                (result, useResult, next) = await action(item, cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(item, cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -229,16 +211,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this List<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this List<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -253,18 +233,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this List<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -276,16 +254,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IList<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IList<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -300,18 +276,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this IList<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -323,16 +297,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this FrozenSet<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this FrozenSet<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable.Items[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable.Items[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -347,18 +319,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this FrozenSet<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Count; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable.Items[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable.Items[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -370,16 +340,14 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ImmutableArray<tItem> enumerable, Func<tItem, (tResult Result, bool UseResult, bool Next)> action)
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ImmutableArray<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = action(enumerable[i]);
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -394,18 +362,16 @@ namespace wan24.Core
         /// <returns>Result</returns>
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this ImmutableArray<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool UseResult, bool Next)>> action,
+            Func<tItem, CancellationToken, Task<ExecuteResult<tResult>>> action,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            bool next,
-                useResult;
-            tResult result;
+            ExecuteResult<tResult> result;
             for (int i = 0, len = enumerable.Length; i < len; i++)
             {
-                (result, useResult, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                if (useResult) yield return result;
+                result = await action(enumerable[i], cancellationToken).DynamicContext();
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
     }
