@@ -9,9 +9,9 @@ namespace wan24.Core
     public partial class PipelineStream : StreamBase
     {
         /// <summary>
-        /// Input buffer processor task
+        /// Cancellation
         /// </summary>
-        protected readonly Task? InputBufferProcessorTask = null;
+        protected readonly CancellationTokenSource Cancellation = new();
 
         /// <summary>
         /// Constructor
@@ -35,7 +35,10 @@ namespace wan24.Core
             : base()
         {
             ClearBuffers = clearBuffers;
-            Queue = new(this, queueCapacity, parallelism);
+            Queue = new(this, queueCapacity, parallelism)
+            {
+                Name = "Pipeline stream parallel processing queue"
+            };
             InputBuffer = inputBufferSize.HasValue
                 ? new(inputBufferSize.Value, clearBuffers)
                 : null;
@@ -56,9 +59,14 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Pipeline elements (read-only)
+        /// Thread synchronization event (raised when not synchronized)
         /// </summary>
-        public FreezableOrderedDictionary<string, PipelineElementBase> Elements { get; }
+        public ResetEvent SyncEvent { get; } = new(initialState: true);
+
+        /// <summary>
+        /// Pause event (raised when not paused)
+        /// </summary>
+        public ResetEvent PauseEvent { get; } = new(initialState: true);
 
         /// <summary>
         /// If to clear buffers after use
@@ -104,23 +112,31 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            Cancellation.Cancel();
             base.Dispose(disposing);
             Queue.Dispose();
             Elements.Values.DisposeAll();
             InputBuffer?.Dispose();
             OutputBuffer?.Dispose();
             InputBufferProcessorTask?.GetAwaiter().GetResult();
+            SyncEvent.Dispose();
+            PauseEvent.Dispose();
+            Cancellation.Dispose();
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            Cancellation.Cancel();
             await base.DisposeCore().DynamicContext();
             await Queue.DisposeAsync().DynamicContext();
             await Elements.Values.DisposeAllAsync().DynamicContext();
             if (InputBuffer is not null) await InputBuffer.DisposeAsync().DynamicContext();
             if (OutputBuffer is not null) await OutputBuffer.DisposeAsync().DynamicContext();
             if (InputBufferProcessorTask is not null) await InputBufferProcessorTask.DynamicContext();
+            await SyncEvent.DisposeAsync().DynamicContext();
+            await PauseEvent.DisposeAsync().DynamicContext();
+            Cancellation.Cancel();
         }
     }
 }

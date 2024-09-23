@@ -25,7 +25,7 @@ namespace wan24.Core
         /// <summary>
         /// Position of the element in the list of processing elements
         /// </summary>
-        public int Position { get; internal set; }
+        public int Position { get; internal set; } = -1;
 
         /// <summary>
         /// Name
@@ -148,6 +148,8 @@ namespace wan24.Core
         protected virtual async Task<int> ReadStreamChunkAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             return await Pipeline.ReadStreamChunkAsync(stream, buffer, cancellationToken).DynamicContext();
         }
 
@@ -160,6 +162,8 @@ namespace wan24.Core
         protected virtual async Task<RentedArray<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             return await Pipeline.ReadStreamChunkAsync(stream, cancellationToken).DynamicContext();
         }
 
@@ -172,6 +176,8 @@ namespace wan24.Core
         protected virtual async Task CopyStreamAsync(Stream source, Stream target, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             await Pipeline.CopyStreamAsync(source, target, cancellationToken).DynamicContext();
         }
     }

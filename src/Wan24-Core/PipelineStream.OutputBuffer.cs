@@ -15,6 +15,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
+            SyncEvent.Wait();
+            PauseEvent.Wait();
             Logger?.LogTrace("Synchron reading {count} bytes from the output buffer", count);
             using RentedArray<byte> bufferInt = ReadStreamChunkAsync(OutputBuffer).GetAwaiter().GetResult();
             Logger?.LogTrace("Synchron red {count} bytes from the output buffer", bufferInt.Length);
@@ -28,6 +30,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
+            SyncEvent.Wait();
+            PauseEvent.Wait();
             Logger?.LogTrace("Synchron reading {count} bytes from the output buffer", buffer.Length);
             using RentedArray<byte> bufferInt = ReadStreamChunkAsync(OutputBuffer).GetAwaiter().GetResult();
             Logger?.LogTrace("Synchron red {count} bytes from the output buffer", bufferInt.Length);
@@ -41,6 +45,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
+            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             Logger?.LogTrace("Asynchron reading {count} bytes from the output buffer", count);
             using RentedArray<byte> bufferInt = await ReadStreamChunkAsync(OutputBuffer, cancellationToken).DynamicContext();
             Logger?.LogTrace("Asynchron red {count} bytes from the output buffer", bufferInt.Length);
@@ -54,6 +60,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
+            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             Logger?.LogTrace("Asynchron reading {count} bytes from the output buffer", buffer.Length);
             using RentedArray<byte> bufferInt = await ReadStreamChunkAsync(OutputBuffer, cancellationToken).DynamicContext();
             Logger?.LogTrace("Asynchron red {count} bytes from the output buffer", bufferInt.Length);
@@ -67,6 +75,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureReadable();
+            SyncEvent.Wait();
+            PauseEvent.Wait();
             Logger?.LogTrace("Synchron reading a single byte from the output buffer");
             using RentedArray<byte> bufferInt = ReadStreamChunkAsync(OutputBuffer).GetAwaiter().GetResult();
             Logger?.LogTrace("Synchron red {count} bytes from the output buffer", bufferInt.Length);

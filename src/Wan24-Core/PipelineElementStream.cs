@@ -30,7 +30,11 @@
         public override async Task<PipelineResultBase?> ProcessAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             await InputStream.WriteAsync(buffer, cancellationToken).DynamicContext();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             RentedArray<byte> bufferInt = await ReadStreamChunkAsync(OutputStream, cancellationToken).DynamicContext();
             return CreateRentedBufferResult(bufferInt, processInParallel: ProcessResultInParallel);
         }
@@ -39,6 +43,8 @@
         public override async Task<PipelineResultBase?> ProcessAsync(PipelineResultBase result, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             switch (result)
             {
                 case IPipelineResultBuffer resultBuffer:

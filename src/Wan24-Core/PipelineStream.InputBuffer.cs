@@ -7,6 +7,11 @@ namespace wan24.Core
     public partial class PipelineStream
     {
         /// <summary>
+        /// Input buffer processor task
+        /// </summary>
+        protected readonly Task? InputBufferProcessorTask = null;
+
+        /// <summary>
         /// Input buffer
         /// </summary>
         public BlockingBufferStream? InputBuffer { get; }
@@ -27,6 +32,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             ArgumentNullException.ThrowIfNull(value);
+            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             if (Elements.Count < 1) throw new InvalidOperationException("No processing pipeline elements");
             if (Elements[0] is not IPipelineElementObject) throw new InvalidOperationException("The first processing pipeline element can't process an object");
             if (Elements[0] is not IPipelineElementObject<T>)
@@ -55,6 +62,8 @@ namespace wan24.Core
         public override void Write(byte[] buffer, int offset, int count)
         {
             EnsureUndisposed();
+            SyncEvent.Wait();
+            PauseEvent.Wait();
             if (InputBuffer is not null)
             {
                 Logger?.LogTrace("Write {count} bytes to the input buffer", count);
@@ -91,6 +100,8 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
+            SyncEvent.Wait();
+            PauseEvent.Wait();
             if (InputBuffer is not null)
             {
                 Logger?.LogTrace("Write {count} bytes to the input buffer", buffer.Length);
@@ -127,7 +138,8 @@ namespace wan24.Core
         public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            EnsureUndisposed();
+            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             if (InputBuffer is not null)
             {
                 Logger?.LogTrace("Write {count} bytes to the input buffer", count);
@@ -167,6 +179,8 @@ namespace wan24.Core
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             if (InputBuffer is not null)
             {
                 Logger?.LogTrace("Write {count} bytes to the input buffer", buffer.Length);
@@ -222,14 +236,16 @@ namespace wan24.Core
                 int red;
                 while (!IsDisposing)
                 {
+                    await SyncEvent.WaitAsync(Cancellation.Token).DynamicContext();
+                    await PauseEvent.WaitAsync(Cancellation.Token).DynamicContext();
                     buffer = CreateBuffer();
-                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Memory).DynamicContext();
+                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Memory, Cancellation.Token).DynamicContext();
                     if (Elements.Count < 1)
                     {
                         if (OutputBuffer is not null)
                         {
                             Logger?.LogDebug("Write {count} bytes from the input buffer to the output buffer", red);
-                            await OutputBuffer.WriteAsync(buffer.Memory[..red]).DynamicContext();
+                            await OutputBuffer.WriteAsync(buffer.Memory[..red], Cancellation.Token).DynamicContext();
                         }
                         else
                         {
@@ -247,19 +263,22 @@ namespace wan24.Core
                         try
                         {
                             Logger?.LogDebug("Enqueue {count} bytes from the input buffer to the processing queue", red);
-                            Queue.EnqueueAsync(item).AsTask().GetAwaiter().GetResult();
+                            await Queue.EnqueueAsync(item, Cancellation.Token).DynamicContext();
                             buffer = null;
                         }
                         catch (Exception ex)
                         {
                             Logger?.LogError("Failed to enqueue {count} bytes from the input buffer to the processing queue: {ex}", red, ex);
-                            item.Dispose();
+                            await item.DisposeAsync().DynamicContext();
                             throw;
                         }
                     }
                 }
             }
             catch (ObjectDisposedException) when (IsDisposing)
+            {
+            }
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(Cancellation.Token))
             {
             }
             catch (Exception ex)

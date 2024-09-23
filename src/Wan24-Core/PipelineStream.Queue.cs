@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading;
 
 namespace wan24.Core
 {
@@ -55,6 +56,9 @@ namespace wan24.Core
                     {
                         while (true)
                         {
+                            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
+                            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+                            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
                             objectItem = null;
                             if (item.Buffer is null && item.Result is null && (objectItem = item as IProcessingObjectQueueItem) is null)
                                 throw new InvalidProgramException("No result and buffer");
@@ -172,6 +176,9 @@ namespace wan24.Core
                     else
                     {
                         // Cancelled
+                        await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
+                        await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+                        await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
                         Logger?.LogWarning("Processing queued item for element #{pos} was cancelled", item.Element.Position);
                         await item.DisposeAsync().DynamicContext();
                     }
@@ -193,6 +200,9 @@ namespace wan24.Core
             protected virtual async void EnqueueResult(ProcessingQueueItem item, PipelineResultBase result)
             {
                 await Task.Yield();
+                await PauseEvent.WaitAsync(CancelToken).DynamicContext();
+                await Pipeline.SyncEvent.WaitAsync(CancelToken).DynamicContext();
+                await Pipeline.PauseEvent.WaitAsync(CancelToken).DynamicContext();
                 ProcessingQueueItem newItem = new()
                 {
                     Result = result,

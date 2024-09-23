@@ -20,6 +20,8 @@
         public override async Task<PipelineResultBase?> ProcessAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             return await BufferProcessor(this, buffer, cancellationToken).DynamicContext();
         }
 
@@ -27,6 +29,8 @@
         public override async Task<PipelineResultBase?> ProcessAsync(PipelineResultBase result, CancellationToken cancellationToken)
         {
             EnsureUndisposed();
+            await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
+            await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
             if (ResultProcessor is not null) return await ResultProcessor(this, result, cancellationToken).DynamicContext();
             switch (result)
             {
