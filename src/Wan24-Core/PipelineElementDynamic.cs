@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Dynamic pipeline stream element
+    /// Dynamic pipeline stream element with a processor delegate
     /// </summary>
     /// <param name="name">Name</param>
     public class PipelineElementDynamic(in string name) : PipelineElementBase(name)
@@ -18,11 +18,15 @@
 
         /// <inheritdoc/>
         public override async Task<PipelineResultBase?> ProcessAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
-            => await BufferProcessor(this, buffer, cancellationToken).DynamicContext();
+        {
+            EnsureUndisposed();
+            return await BufferProcessor(this, buffer, cancellationToken).DynamicContext();
+        }
 
         /// <inheritdoc/>
         public override async Task<PipelineResultBase?> ProcessAsync(PipelineResultBase result, CancellationToken cancellationToken)
         {
+            EnsureUndisposed();
             if (ResultProcessor is not null) return await ResultProcessor(this, result, cancellationToken).DynamicContext();
             switch (result)
             {
@@ -30,34 +34,12 @@
                     return await ProcessAsync(resultBuffer.Buffer, cancellationToken).DynamicContext();
                 case IPipelineResultStream resultStream:
                     {
-                        RentedArrayStructSimple<byte>? buffer = null;
-                        try
-                        {
-                            using (MemoryPoolStream ms = new()
-                            {
-                                CleanReturned = Pipeline.ClearBuffers
-                            })
-                            {
-                                await resultStream.Stream.CopyToAsync(ms, cancellationToken).DynamicContext();
-                                buffer = new((int)ms.Length, clean: false)
-                                {
-                                    Clear = Pipeline.ClearBuffers
-                                };
-                                ms.Position = 0;
-                                ms.ReadExactly(buffer.Value.Span);
-                            }
-                            return await ProcessAsync(buffer.Value.Memory, cancellationToken).DynamicContext();
-                        }
-                        catch
-                        {
-                            buffer?.Dispose();
-                            throw;
-                        }
+                        using RentedArray<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
+                        return await ProcessAsync(buffer.Memory, cancellationToken).DynamicContext();
                     }
                 default:
                     throw new InvalidDataException($"Dynamic pipeline element can't process a {result.GetType()} result");
             }
-
         }
 
         /// <inheritdoc/>

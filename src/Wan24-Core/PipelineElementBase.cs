@@ -53,10 +53,47 @@ namespace wan24.Core
         /// <returns>Element</returns>
         public virtual PipelineElementBase? GetNextElement()
         {
+            EnsureUndisposed();
             int pos = Position + 1;
             return pos >= Pipeline.Elements.Count
                 ? null
                 : Pipeline.Elements[pos];
+        }
+        /// <summary>
+        /// Read a chunk from a stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of bytes red into the <c>buffer</c></returns>
+        protected virtual async Task<int> ReadStreamChunkAsync(Stream stream, Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            return await Pipeline.ReadStreamChunkAsync(stream, buffer, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Read a chunk from a stream
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Chunk buffer</returns>
+        protected virtual async Task<RentedArray<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            return await Pipeline.ReadStreamChunkAsync(stream, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Copy a stream
+        /// </summary>
+        /// <param name="source">Source stream</param>
+        /// <param name="target">Target stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        protected virtual async Task CopyStreamAsync(Stream source, Stream target, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            await Pipeline.CopyStreamAsync(source, target, cancellationToken).DynamicContext();
         }
     }
 }

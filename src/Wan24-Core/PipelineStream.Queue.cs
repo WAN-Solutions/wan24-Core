@@ -3,8 +3,13 @@
 namespace wan24.Core
 {
     // Queue
-    public abstract partial class PipelineStream
+    public partial class PipelineStream
     {
+        /// <summary>
+        /// Processing queue (needs to be started before sending anything into the pipeline stream!)
+        /// </summary>
+        public ProcessingQueue Queue { get; }
+
         /// <summary>
         /// Processing queue
         /// </summary>
@@ -46,7 +51,13 @@ namespace wan24.Core
                         {
                             result = item.Buffer is null
                                 ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
-                                : await item.Element.ProcessAsync(item.Buffer.Memory, cancellationToken).DynamicContext();
+                                : await item.Element.ProcessAsync(
+                                    item.BufferLength.HasValue 
+                                        ? item.Buffer.Memory[..item.BufferLength.Value] 
+                                        : item.Buffer.Memory, 
+                                    cancellationToken
+                                    )
+                                    .DynamicContext();
                             if (result is null)
                             {
                                 // Processing stops here
@@ -69,21 +80,10 @@ namespace wan24.Core
                                         }
                                         // Process a result stream
                                         if (result is IPipelineResultStream resultStream)
-                                            if (resultStream.Stream.CanSeek)
-                                            {
-                                                Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but a seekable output stream", item.Element.Position);
-                                                await resultStream.Stream.CopyExactlyPartialToAsync(
-                                                    Pipeline.OutputBuffer,
-                                                    resultStream.Stream.GetRemainingBytes(),
-                                                    cancellationToken: cancellationToken
-                                                    )
-                                                    .DynamicContext();
-                                            }
-                                            else
-                                            {
-                                                Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output stream", item.Element.Position);
-                                                await resultStream.Stream.CopyToAsync(Pipeline.OutputBuffer, cancellationToken).DynamicContext();
-                                            }
+                                        {
+                                            Logger?.LogDebug("Processing queued item for element #{pos} has no next element, but an output stream", item.Element.Position);
+                                            await Pipeline.CopyStreamAsync(resultStream.Stream, Pipeline.OutputBuffer, cancellationToken).DynamicContext();
+                                        }
                                     }
                                 }
                                 finally
@@ -203,6 +203,11 @@ namespace wan24.Core
             /// Buffer to process
             /// </summary>
             public RentedArray<byte>? Buffer { get; init; }
+
+            /// <summary>
+            /// Buffer length in bytes
+            /// </summary>
+            public int? BufferLength { get; init; }
 
             /// <summary>
             /// Previous pipeline element result
