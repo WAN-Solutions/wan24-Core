@@ -166,7 +166,7 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            get => _Value ?? throw new InvalidOperationException();
+            get => _Value ?? throw new NullValueException();
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t1)(_Value ?? throw new InvalidOperationException());
+            get => (t1)(_Value ?? throw new NullValueException());
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t2)(_Value ?? throw new InvalidOperationException());
+            get => (t2)(_Value ?? throw new NullValueException());
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t3)(_Value ?? throw new InvalidOperationException());
+            get => (t3)(_Value ?? throw new NullValueException());
         }
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t4)(_Value ?? throw new InvalidOperationException());
+            get => (t4)(_Value ?? throw new NullValueException());
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => (t5)(_Value ?? throw new InvalidOperationException());
+            get => (t5)(_Value ?? throw new NullValueException());
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t1(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT1 ?? throw new InvalidOperationException();
+        public static implicit operator t1(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT1 ?? throw new NullValueException();
 
         /// <summary>
         /// Cast as value
@@ -259,7 +259,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t2(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT2 ?? throw new InvalidOperationException();
+        public static implicit operator t2(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT2 ?? throw new NullValueException();
 
         /// <summary>
         /// Cast as value
@@ -270,7 +270,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t3(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT3 ?? throw new InvalidOperationException();
+        public static implicit operator t3(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT3 ?? throw new NullValueException();
 
         /// <summary>
         /// Cast as value
@@ -281,7 +281,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t4(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT4 ?? throw new InvalidOperationException();
+        public static implicit operator t4(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT4 ?? throw new NullValueException();
 
         /// <summary>
         /// Cast as value
@@ -292,6 +292,6 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator t5(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT5 ?? throw new InvalidOperationException();
+        public static implicit operator t5(in OptionValue<t1, t2, t3, t4, t5> value) => value.ValueAsT5 ?? throw new NullValueException();
     }
 }

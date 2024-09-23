@@ -54,7 +54,7 @@ namespace wan24.Core
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
             [return: NotNull]
-            get => _Value ?? throw new InvalidOperationException();
+            get => _Value ?? throw new NullValueException();
         }
 
         /// <summary>
@@ -88,6 +88,6 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         [return: NotNull]
-        public static implicit operator T(in OptionValue<T> value) => value.Value ?? throw new InvalidOperationException();
+        public static implicit operator T(in OptionValue<T> value) => value.Value ?? throw new NullValueException();
     }
 }
