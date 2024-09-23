@@ -44,7 +44,7 @@
             /// Cast from tuple
             /// </summary>
             /// <param name="tuple">Tuple</param>
-            public static implicit operator ExecuteResult<T>(in (T Result, bool UseResult) tuple) => new(tuple.Result, tuple.UseResult);
+            public static implicit operator ExecuteResult<T>(in (T Result, bool Next) tuple) => new(tuple.Result, Next: tuple.Next);
 
             /// <summary>
             /// Cast from <typeparamref name="T"/>
