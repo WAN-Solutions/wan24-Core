@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pipeline stream element which processes a stream in chunks
@@ -25,6 +27,9 @@
         /// If to dispose the <see cref="OutputStream"/> when disposing
         /// </summary>
         public bool DisposeOutputStream { get; init; } = true;
+
+        /// <inheritdoc/>
+        public override bool CanProcess<T>([NotNull] in T value) => base.CanProcess(value) || typeof(Stream).IsAssignableFrom(typeof(T));
 
         /// <inheritdoc/>
         public override async Task<PipelineResultBase?> ProcessAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)

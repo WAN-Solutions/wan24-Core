@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Pipeline stream element processing result which provides a buffer
@@ -14,6 +16,23 @@
     {
         /// <inheritdoc/>
         public ReadOnlyMemory<byte> Buffer { get; } = buffer;
+
+        /// <inheritdoc/>
+        public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
+        {
+            EnsureUndisposed();
+            RentedArray<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
+            Buffer.Span.CopyTo(buffer.Span);
+            return element?.CreateRentedBufferResult(buffer, processInParallel: element.ProcessResultInParallel)
+                ?? Element.CreateRentedBufferResult(buffer, processInParallel: Element.ProcessResultInParallel);
+        }
+
+        /// <inheritdoc/>
+        public override PipelineElementBase? GetNextElement(in PipelineElementBase currentElement)
+        {
+            EnsureUndisposed();
+            return Element.GetNextElement(Buffer);
+        }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) { }

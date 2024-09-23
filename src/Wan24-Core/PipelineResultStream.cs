@@ -18,6 +18,37 @@
         public bool DisposeStream { get; init; } = true;
 
         /// <inheritdoc/>
+        public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
+            => CreateCopyAsync(element, CancellationToken.None).GetAwaiter().GetResult();
+
+        /// <inheritdoc/>
+        public override async Task<PipelineResultBase> CreateCopyAsync(PipelineElementBase? element = null, CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            PooledTempStream? stream = null;
+            try
+            {
+                stream = new PooledTempStream(Stream.CanSeek ? Stream.GetRemainingBytes() : 0);
+                await Stream.CopyToAsync(stream, cancellationToken).DynamicContext();
+                if (Stream.CanSeek) Stream.Position = 0;
+                return element?.CreateStreamResult(stream, processInParallel: element.ProcessResultInParallel)
+                    ?? Element.CreateStreamResult(stream, processInParallel: Element.ProcessResultInParallel);
+            }
+            catch
+            {
+                if (stream is not null) await stream.DisposeAsync().DynamicContext();
+                throw;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override PipelineElementBase? GetNextElement(in PipelineElementBase currentElement)
+        {
+            EnsureUndisposed();
+            return Element.GetNextElement(Stream);
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if (DisposeStream) Stream.Dispose();

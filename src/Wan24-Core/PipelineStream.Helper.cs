@@ -40,10 +40,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             Logger?.LogDebug("Reading chunk from stream");
-            using MemoryPoolStream ms = new()
-            {
-                CleanReturned = ClearBuffers
-            };
+            using PooledTempStream ms = new();
             await CopyStreamAsync(stream, ms, cancellationToken).DynamicContext();
             Logger?.LogDebug("Red {count} bytes chunk from stream", ms.Length);
             RentedArray<byte> buffer = CreateBuffer((int)ms.Length);

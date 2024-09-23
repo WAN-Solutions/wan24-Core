@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
@@ -12,6 +13,11 @@ namespace wan24.Core
     /// <param name="name">Name</param>
     public abstract class PipelineElementBase(in string name) : DisposableBase()
     {
+        /// <summary>
+        /// Processable types
+        /// </summary>
+        protected ImmutableArray<Type>? _ProcessableTypes = null;
+
         /// <summary>
         /// Pipeline stream
         /// </summary>
@@ -38,6 +44,45 @@ namespace wan24.Core
         public bool ProcessResultInParallel { get; init; } = true;
 
         /// <summary>
+        /// Processable types
+        /// </summary>
+        [MemberNotNull(nameof(_ProcessableTypes))]
+        public virtual ImmutableArray<Type> ProcessableTypes
+        {
+            get
+            {
+                if (_ProcessableTypes.HasValue) return _ProcessableTypes.Value;
+                if(this is not IPipelineElementObject)
+                {
+                    _ProcessableTypes = [];
+                    return _ProcessableTypes.Value;
+                }
+                List<Type> types = [];
+                foreach (Type objectInterface in GetType().GetInterfaces().Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IPipelineElementObject<>)))
+                    objectInterface.GetGenericArgumentCached(index: 0);
+                _ProcessableTypes = [.. types];
+                return _ProcessableTypes.Value;
+            }
+        }
+
+        /// <summary>
+        /// If a value can be processed
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <returns>If the value can be processed</returns>
+        public virtual bool CanProcess<T>([NotNull] in T value)
+        {
+            EnsureUndisposed();
+            ArgumentNullException.ThrowIfNull(value);
+            if (typeof(ReadOnlyMemory<byte>).IsAssignableFrom(typeof(T)) || typeof(PipelineResultBase).IsAssignableFrom(typeof(T))) return true;
+            for (int i = 0, len = ProcessableTypes.Length; i < len; i++)
+                if (_ProcessableTypes.Value[i].IsAssignableFrom(typeof(T)))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
         /// Process the input buffer
         /// </summary>
         /// <param name="buffer">Buffer</param>
@@ -56,14 +101,17 @@ namespace wan24.Core
         /// <summary>
         /// Get the next element in the pipeline
         /// </summary>
+        /// <typeparam name="T">Result value type</typeparam>
+        /// <param name="result">Result value</param>
         /// <returns>Element</returns>
-        public virtual PipelineElementBase? GetNextElement()
+        public virtual PipelineElementBase? GetNextElement<T>([NotNull] in T result)
         {
             EnsureUndisposed();
-            int pos = Position + 1;
-            return pos >= Pipeline.Elements.Count
-                ? null
-                : Pipeline.Elements[pos];
+            ArgumentNullException.ThrowIfNull(result);
+            for (int i = Position + 1, len = Pipeline.Elements.Count; i < len; i++)
+                if (Pipeline.Elements[i].CanProcess(result))
+                    return Pipeline.Elements[i];
+            return null;
         }
 
         /// <summary>
@@ -75,7 +123,7 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultBuffer CreateBufferResult(in Memory<byte> buffer, in PipelineElementBase? next = null, in bool cleanBuffer = true, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement())
+            => new(this, buffer, next ?? GetNextElement(buffer))
             {
                 CleanBuffer = cleanBuffer,
                 ProcessInParallel = processInParallel
@@ -89,7 +137,7 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultReadOnlyBuffer CreateReadOnlyBufferResult(in ReadOnlyMemory<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement())
+            => new(this, buffer, next ?? GetNextElement(buffer))
             {
                 ProcessInParallel = processInParallel
             };
@@ -102,7 +150,7 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultRentedBuffer CreateRentedBufferResult(in RentedArray<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
-            => new(this, buffer, next ?? GetNextElement())
+            => new(this, buffer, next ?? GetNextElement(buffer.Memory))
             {
                 ProcessInParallel = processInParallel
             };
@@ -116,7 +164,7 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultStream CreateStreamResult(in Stream stream, in PipelineElementBase? next = null, in bool disposeStream = true, in bool processInParallel = true)
-            => new(this, stream, next ?? GetNextElement())
+            => new(this, stream, next ?? GetNextElement(stream))
             {
                 DisposeStream = disposeStream,
                 ProcessInParallel = processInParallel
@@ -132,11 +180,25 @@ namespace wan24.Core
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
         public virtual PipelineResultObject<T> CreateObjectResult<T>([NotNull] in T value, in PipelineElementBase? next = null, in bool disposeObject = true, in bool processInParallel = true)
-            => new(this, value, next ?? GetNextElement())
+            => new(this, value, next ?? GetNextElement(value))
             {
                 DisposeObject = disposeObject,
                 ProcessInParallel = processInParallel
             };
+
+        /// <summary>
+        /// Forward a buffer to the next element
+        /// </summary>
+        /// <param name="buffer">Buffer (will be copied)</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultRentedBuffer ForwardBuffer(in Memory<byte> buffer) => CreateRentedBufferResult(Pipeline.CreateBuffer(buffer.Length));
+
+        /// <summary>
+        /// Forward a result to the next element
+        /// </summary>
+        /// <param name="result">Result</param>
+        /// <returns>Result</returns>
+        public virtual PipelineResultBase ForwardResult(in PipelineResultBase result) => result.CreateCopy(this);
 
         /// <summary>
         /// Read a chunk from a stream

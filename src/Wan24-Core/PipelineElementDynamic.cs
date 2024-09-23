@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Dynamic pipeline stream element with a processor delegate
@@ -15,6 +17,9 @@
         /// Result processor
         /// </summary>
         public Func<PipelineElementDynamic, PipelineResultBase, CancellationToken, Task<PipelineResultBase?>>? ResultProcessor { get; init; }
+
+        /// <inheritdoc/>
+        public override bool CanProcess<T>([NotNull] in T value) => base.CanProcess(value) || typeof(Stream).IsAssignableFrom(typeof(T));
 
         /// <inheritdoc/>
         public override async Task<PipelineResultBase?> ProcessAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
@@ -35,8 +40,10 @@
             switch (result)
             {
                 case IPipelineResultBuffer resultBuffer:
+                    if (!CanProcess(resultBuffer.Buffer)) throw new InvalidOperationException("This pipeline element can't process a buffer");
                     return await ProcessAsync(resultBuffer.Buffer, cancellationToken).DynamicContext();
                 case IPipelineResultStream resultStream:
+                    if (!CanProcess(resultStream.Stream)) throw new InvalidOperationException("This pipeline element can't process a stream");
                     {
                         using RentedArray<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
                         return await ProcessAsync(buffer.Memory, cancellationToken).DynamicContext();

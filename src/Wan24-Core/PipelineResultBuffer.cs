@@ -26,6 +26,23 @@
         public bool CleanBuffer { get; init; } = true;
 
         /// <inheritdoc/>
+        public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
+        {
+            EnsureUndisposed();
+            RentedArray<byte> buffer = Element.Pipeline.CreateBuffer(_Buffer.Length);
+            _Buffer.Span.CopyTo(buffer.Span);
+            return element?.CreateRentedBufferResult(buffer, processInParallel: element.ProcessResultInParallel)
+                ?? Element.CreateRentedBufferResult(buffer, processInParallel: Element.ProcessResultInParallel);
+        }
+
+        /// <inheritdoc/>
+        public override PipelineElementBase? GetNextElement(in PipelineElementBase currentElement)
+        {
+            EnsureUndisposed();
+            return Element.GetNextElement(_Buffer);
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if (CleanBuffer || Element.Pipeline.ClearBuffers) _Buffer.Span.Clean();

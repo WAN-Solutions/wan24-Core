@@ -28,6 +28,21 @@ namespace wan24.Core
         object IPipelineResultObject.ObjectValue => Object;
 
         /// <inheritdoc/>
+        public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
+        {
+            EnsureUndisposed();
+            return element?.CreateObjectResult(Object, processInParallel: element.ProcessResultInParallel)
+                ?? Element.CreateObjectResult(Object, processInParallel: Element.ProcessResultInParallel);
+        }
+
+        /// <inheritdoc/>
+        public override PipelineElementBase? GetNextElement(in PipelineElementBase currentElement)
+        {
+            EnsureUndisposed();
+            return Element.GetNextElement(Object);
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             if (DisposeObject) Object.TryDispose();

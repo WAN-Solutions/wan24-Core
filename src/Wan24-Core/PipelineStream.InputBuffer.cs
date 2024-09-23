@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -21,43 +20,6 @@ namespace wan24.Core
         /// </summary>
         public Exception? LastException { get; protected set; }
 
-        /// <summary>
-        /// Write an object
-        /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <param name="value">Object</param>
-        /// <param name="disposeOnError">If to dispose the <c>value</c> on error</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        public virtual async Task WriteObjectAsync<T>([NotNull] T value, bool disposeOnError = true, CancellationToken cancellationToken = default)
-        {
-            EnsureUndisposed();
-            ArgumentNullException.ThrowIfNull(value);
-            await SyncEvent.WaitAsync(cancellationToken).DynamicContext();
-            await PauseEvent.WaitAsync(cancellationToken).DynamicContext();
-            if (Elements.Count < 1) throw new InvalidOperationException("No processing pipeline elements");
-            if (Elements[0] is not IPipelineElementObject) throw new InvalidOperationException("The first processing pipeline element can't process an object");
-            if (Elements[0] is not IPipelineElementObject<T>)
-                throw new InvalidOperationException($"The first processing pipeline element can't process an object of type {typeof(T)}");
-            ProcessingObjectQueueItem<T> item = new()
-            {
-                Object = value,
-                ObjectType = typeof(T),
-                Element = Elements[0]
-            };
-            try
-            {
-                Logger?.LogDebug("Enqueue {type} to the processing queue", typeof(T));
-                await Queue.EnqueueAsync(item, cancellationToken).DynamicContext();
-            }
-            catch (Exception ex)
-            {
-                Logger?.LogDebug("Failed to enqueue {type} to the processing queue: {ex}", typeof(T), ex);
-                await item.DisposeAsync().DynamicContext();
-                if (disposeOnError) await value.TryDisposeAsync().DynamicContext();
-                throw;
-            }
-        }
-
         /// <inheritdoc/>
         public override void Write(byte[] buffer, int offset, int count)
         {
@@ -76,6 +38,7 @@ namespace wan24.Core
                 OutputBuffer?.Write(buffer, offset, count);
                 return;
             }
+            if (!Elements[0].CanProcess(buffer.AsMemory(offset, count))) throw new InvalidOperationException("The first pipeline element can't process a buffer");
             RentedArray<byte> processingBuffer = CreateBuffer(count);
             buffer.AsSpan(offset, count).CopyTo(processingBuffer.Span);
             ProcessingQueueItem item = new()
@@ -116,6 +79,14 @@ namespace wan24.Core
             }
             RentedArray<byte> processingBuffer = CreateBuffer(buffer.Length);
             buffer.CopyTo(processingBuffer.Span);
+            try
+            {
+                if (!Elements[0].CanProcess(processingBuffer.Memory)) throw new InvalidOperationException("The first pipeline element can't process a buffer");
+            }
+            finally
+            {
+                processingBuffer.Dispose();
+            }
             ProcessingQueueItem item = new()
             {
                 Buffer = processingBuffer,
@@ -155,6 +126,7 @@ namespace wan24.Core
                 }
                 return;
             }
+            if (!Elements[0].CanProcess(buffer.AsMemory(offset, count))) throw new InvalidOperationException("The first pipeline element can't process a buffer");
             RentedArray<byte> processingBuffer =CreateBuffer(count);
             buffer.AsSpan(offset, count).CopyTo(processingBuffer.Span);
             ProcessingQueueItem item = new()
@@ -196,6 +168,7 @@ namespace wan24.Core
                 }
                 return;
             }
+            if (!Elements[0].CanProcess(buffer)) throw new InvalidOperationException("The first pipeline element can't process a buffer");
             RentedArray<byte> processingBuffer = CreateBuffer(buffer.Length);
             buffer.Span.CopyTo(processingBuffer.Span);
             ProcessingQueueItem item = new()

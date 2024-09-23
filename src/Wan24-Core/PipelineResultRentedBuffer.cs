@@ -21,6 +21,23 @@
         public ReadOnlyMemory<byte> Buffer => RentedBuffer.Memory;
 
         /// <inheritdoc/>
+        public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
+        {
+            EnsureUndisposed();
+            RentedArray<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
+            RentedBuffer.Span.CopyTo(buffer.Span);
+            return element?.CreateRentedBufferResult(buffer, processInParallel: element.ProcessResultInParallel)
+                ?? Element.CreateRentedBufferResult(buffer, processInParallel: Element.ProcessResultInParallel);
+        }
+
+        /// <inheritdoc/>
+        public override PipelineElementBase? GetNextElement(in PipelineElementBase currentElement)
+        {
+            EnsureUndisposed();
+            return Element.GetNextElement(Buffer);
+        }
+
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing) => RentedBuffer.Dispose();
 
         /// <inheritdoc/>
