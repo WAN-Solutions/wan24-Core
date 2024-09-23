@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -42,22 +43,66 @@ namespace wan24.Core
             {
                 Logger?.LogDebug("Processing queued item for element #{pos}", item.Element.Position);
                 PipelineResultBase? result = null;
+                IProcessingObjectQueueItem? objectItem = null;
+                TypeInfoExt elementInterface,
+                    itemInterface;
+                PropertyInfoExt itemObjectProperty;
+                MethodInfoExt processObjectMethod;
+                object? returnValue;
                 try
                 {
                     if (!CancelToken.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
                     {
-                        if (item.Buffer is null && item.Result is null) throw new InvalidProgramException("No result and buffer");
                         while (true)
                         {
-                            result = item.Buffer is null
-                                ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
-                                : await item.Element.ProcessAsync(
-                                    item.BufferLength.HasValue 
-                                        ? item.Buffer.Memory[..item.BufferLength.Value] 
-                                        : item.Buffer.Memory, 
-                                    cancellationToken
-                                    )
-                                    .DynamicContext();
+                            objectItem = null;
+                            if (item.Buffer is null && item.Result is null && (objectItem = item as IProcessingObjectQueueItem) is null)
+                                throw new InvalidProgramException("No result and buffer");
+                            // Call the processor method of the pipeline stream element
+                            if (objectItem is null)
+                            {
+                                // Buffer or result processing
+                                Logger?.LogDebug("Processing queued {type} item for element #{pos}", item.Buffer is null ? "Result" : "Buffer", item.Element.Position);
+                                result = item.Buffer is null
+                                    ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
+                                    : await item.Element.ProcessAsync(
+                                        item.BufferLength.HasValue
+                                            ? item.Buffer.Memory[..item.BufferLength.Value]
+                                            : item.Buffer.Memory,
+                                        cancellationToken
+                                        )
+                                        .DynamicContext();
+                            }
+                            else
+                            {
+                                // Object processing
+                                Logger?.LogDebug("Processing queued object ({type}) item for element #{pos}", objectItem.ObjectType, item.Element.Position);
+                                elementInterface = TypeInfoExt.From(typeof(IPipelineElementObject<>)).MakeGenericType(objectItem.ObjectType);
+                                if (!elementInterface.Type.IsAssignableFrom(item.Element.GetType()))
+                                    throw new InvalidDataException($"Pipeline element {item.Element.GetType()} can't process an object of type {objectItem.ObjectType}");
+                                itemInterface = TypeInfoExt.From(typeof(ProcessingObjectQueueItem<>)).MakeGenericType(objectItem.ObjectType);
+                                if (!itemInterface.Type.IsAssignableFrom(item.GetType()))
+                                    throw new InvalidDataException($"Pipeline processor queue item {item.GetType()} doesn't host an object of type {objectItem.ObjectType}");
+                                processObjectMethod = elementInterface.Type.GetMethodCached(nameof(IPipelineElementObject<object>.ProcessAsync))
+                                    ?? throw new InvalidProgramException($"Failed to get object processing method from {elementInterface.Type}");
+                                if (processObjectMethod.Invoker is null)
+                                    throw new InvalidProgramException($"Failed to get object processing method with an invoker from {elementInterface.Type}");
+                                itemObjectProperty = itemInterface.Type.GetPropertyCached(nameof(ProcessingObjectQueueItem<object>.Object))
+                                    ?? throw new InvalidProgramException($"Failed to get object property from {itemInterface.Type}");
+                                if (itemObjectProperty.Getter is null)
+                                    throw new InvalidProgramException($"Failed to get object property with a getter from {itemInterface.Type}");
+                                returnValue = processObjectMethod.Invoker(
+                                    item.Element,
+                                    [
+                                        itemObjectProperty.Getter(item) ?? throw new InvalidDataException($"Failed to get non-null object value from {itemObjectProperty.FullName}"),
+                                        cancellationToken
+                                    ]
+                                    );
+                                result = returnValue is null
+                                    ? null
+                                    : await TaskHelper.GetAnyTaskResultAsync(returnValue).DynamicContext() as PipelineResultBase;
+                            }
+                            // Handle the processing result
                             if (result is null)
                             {
                                 // Processing stops here
@@ -237,6 +282,36 @@ namespace wan24.Core
                 if (Buffer is not null) await Buffer.DisposeAsync().DynamicContext();
                 if (Result is not null) await Result.DisposeAsync().DynamicContext();
             }
+        }
+
+        /// <summary>
+        /// Interface for a processing queue item which hosts an object to process
+        /// </summary>
+        public interface IProcessingObjectQueueItem : IDisposableObject
+        {
+            /// <summary>
+            /// Processed object type
+            /// </summary>
+            Type ObjectType { get; }
+        }
+
+        /// <summary>
+        /// Processing queue item which hosts an object to process
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
+        public class ProcessingObjectQueueItem<T>() : ProcessingQueueItem(), IProcessingObjectQueueItem
+        {
+            /// <summary>
+            /// Object to process
+            /// </summary>
+            [NotNull]
+            public required T Object { get; init; }
+
+            /// <inheritdoc/>
+            public required Type ObjectType { get; init; }
         }
     }
 }

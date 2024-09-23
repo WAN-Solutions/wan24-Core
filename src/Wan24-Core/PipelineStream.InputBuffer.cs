@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 
 namespace wan24.Core
 {
@@ -16,66 +17,37 @@ namespace wan24.Core
         public Exception? LastException { get; protected set; }
 
         /// <summary>
-        /// Process the <see cref="InputBuffer"/>
+        /// Write an object
         /// </summary>
-        protected virtual async Task ProcessInputBufferAsync()
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="value">Object</param>
+        /// <param name="disposeOnError">If to dispose the <c>value</c> on error</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task WriteObjectAsync<T>([NotNull] T value, bool disposeOnError = true, CancellationToken cancellationToken = default)
         {
-            await Task.Yield();
-            if (InputBuffer is null) throw new InvalidProgramException();
-            RentedArray<byte>? buffer = null;
+            EnsureUndisposed();
+            ArgumentNullException.ThrowIfNull(value);
+            if (Elements.Count < 1) throw new InvalidOperationException("No processing pipeline elements");
+            if (Elements[0] is not IPipelineElementObject) throw new InvalidOperationException("The first processing pipeline element can't process an object");
+            if (Elements[0] is not IPipelineElementObject<T>)
+                throw new InvalidOperationException($"The first processing pipeline element can't process an object of type {typeof(T)}");
+            ProcessingObjectQueueItem<T> item = new()
+            {
+                Object = value,
+                ObjectType = typeof(T),
+                Element = Elements[0]
+            };
             try
             {
-                int red;
-                while (!IsDisposing)
-                {
-                    buffer = CreateBuffer();
-                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Memory).DynamicContext();
-                    if (Elements.Count < 1)
-                    {
-                        if (OutputBuffer is not null)
-                        {
-                            Logger?.LogDebug("Write {count} bytes from the input buffer to the output buffer", red);
-                            await OutputBuffer.WriteAsync(buffer.Memory[..red]).DynamicContext();
-                        }
-                        else
-                        {
-                            Logger?.LogWarning("Discard {count} bytes from the input buffer (nothing to do)", red);
-                        }
-                    }
-                    else
-                    {
-                        ProcessingQueueItem item = new()
-                        {
-                            Buffer = buffer,
-                            BufferLength = red,
-                            Element = Elements[0]
-                        };
-                        try
-                        {
-                            Logger?.LogDebug("Enqueue {count} bytes from the input buffer to the processing queue", red);
-                            Queue.EnqueueAsync(item).AsTask().GetAwaiter().GetResult();
-                            buffer = null;
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger?.LogError("Failed to enqueue {count} bytes from the input buffer to the processing queue: {ex}", red, ex);
-                            item.Dispose();
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch(ObjectDisposedException) when (IsDisposing)
-            {
+                Logger?.LogDebug("Enqueue {type} to the processing queue", typeof(T));
+                await Queue.EnqueueAsync(item, cancellationToken).DynamicContext();
             }
             catch (Exception ex)
             {
-                LastException = ex;
-                RaiseOnError();
-            }
-            finally
-            {
-                if (buffer is not null) await buffer.DisposeAsync().DynamicContext();
+                Logger?.LogDebug("Failed to enqueue {type} to the processing queue: {ex}", typeof(T), ex);
+                await item.DisposeAsync().DynamicContext();
+                if (disposeOnError) await value.TryDisposeAsync().DynamicContext();
+                throw;
             }
         }
 
@@ -235,6 +207,70 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             this.GenericWriteByte(value);
+        }
+
+        /// <summary>
+        /// Process the <see cref="InputBuffer"/>
+        /// </summary>
+        protected virtual async Task ProcessInputBufferAsync()
+        {
+            await Task.Yield();
+            if (InputBuffer is null) throw new InvalidProgramException();
+            RentedArray<byte>? buffer = null;
+            try
+            {
+                int red;
+                while (!IsDisposing)
+                {
+                    buffer = CreateBuffer();
+                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Memory).DynamicContext();
+                    if (Elements.Count < 1)
+                    {
+                        if (OutputBuffer is not null)
+                        {
+                            Logger?.LogDebug("Write {count} bytes from the input buffer to the output buffer", red);
+                            await OutputBuffer.WriteAsync(buffer.Memory[..red]).DynamicContext();
+                        }
+                        else
+                        {
+                            Logger?.LogWarning("Discard {count} bytes from the input buffer (nothing to do)", red);
+                        }
+                    }
+                    else
+                    {
+                        ProcessingQueueItem item = new()
+                        {
+                            Buffer = buffer,
+                            BufferLength = red,
+                            Element = Elements[0]
+                        };
+                        try
+                        {
+                            Logger?.LogDebug("Enqueue {count} bytes from the input buffer to the processing queue", red);
+                            Queue.EnqueueAsync(item).AsTask().GetAwaiter().GetResult();
+                            buffer = null;
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger?.LogError("Failed to enqueue {count} bytes from the input buffer to the processing queue: {ex}", red, ex);
+                            item.Dispose();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (ObjectDisposedException) when (IsDisposing)
+            {
+            }
+            catch (Exception ex)
+            {
+                LastException = ex;
+                RaiseOnError();
+            }
+            finally
+            {
+                if (buffer is not null) await buffer.DisposeAsync().DynamicContext();
+            }
         }
 
         /// <summary>

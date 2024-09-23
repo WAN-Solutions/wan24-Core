@@ -32,6 +32,11 @@ namespace wan24.Core
         public string Name { get; } = name;
 
         /// <summary>
+        /// If to process results in parallel
+        /// </summary>
+        public bool ProcessResultInParallel { get; init; } = true;
+
+        /// <summary>
         /// Process the input buffer
         /// </summary>
         /// <param name="buffer">Buffer</param>
