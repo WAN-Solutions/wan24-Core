@@ -359,11 +359,11 @@ namespace wan24.Core
         public static bool IsDisposable<T>(this T obj) => obj is IDisposable || obj is IAsyncDisposable;
 
         /// <summary>
-        /// Determine if an object is a task
+        /// Determine if an object is a (value?) task
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="obj">Object</param>
-        /// <returns>If the object is a task</returns>
+        /// <returns>If the object is a (value?) task</returns>
         public static bool IsTask<T>(this T obj) => obj is Task || IsValueTask(obj);
 
         /// <summary>
@@ -376,8 +376,8 @@ namespace wan24.Core
         {
             if (obj is null) return false;
             if (obj is ValueTask) return true;
-            Type type = obj.GetType();
-            return type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ValueTask<>);
+            TypeInfoExt type = TypeInfoExt.From(obj.GetType());
+            return type.Type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition()!.Type == typeof(ValueTask<>);
         }
 
         /// <summary>

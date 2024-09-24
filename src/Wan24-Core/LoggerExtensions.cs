@@ -22,9 +22,9 @@ namespace wan24.Core
         public static ILogger GetFinalLogger(this ILogger logger)
         {
             while (logger is LoggerBase baseLogger)
-                if (baseLogger.Next is not null)
+                if (baseLogger.Next is ILogger nextLogger)
                 {
-                    logger = baseLogger.Next;
+                    logger = nextLogger;
                 }
                 else
                 {

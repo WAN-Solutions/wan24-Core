@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.InteropServices;
+
+namespace wan24.Core
 {
     // Execute result
     public static partial class EnumerableExtensions
@@ -13,12 +15,9 @@
         /// <param name="Result">Result</param>
         /// <param name="UseResult">If to yield the result</param>
         /// <param name="Next">If to continue with the next item</param>
+        [StructLayout(LayoutKind.Sequential)]
         public readonly record struct ExecuteResult<T>(in T Result, in bool UseResult = true, in bool Next = true)
         {
-            /// <summary>
-            /// Result
-            /// </summary>
-            public readonly T Result = Result;
             /// <summary>
             /// If to yield the result
             /// </summary>
@@ -27,6 +26,10 @@
             /// If to continue with the next item
             /// </summary>
             public readonly bool Next = Next;
+            /// <summary>
+            /// Result
+            /// </summary>
+            public readonly T Result = Result;
 
             /// <summary>
             /// Cast as tuple

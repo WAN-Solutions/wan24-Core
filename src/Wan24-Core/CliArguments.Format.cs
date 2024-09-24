@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,8 +16,8 @@ namespace wan24.Core
             bool first;
             int i,
                 len;
-            foreach (KeyValuePair<string, ReadOnlyCollection<string>> kvp in _Arguments)
-                if (kvp.Value.Count == 0)
+            foreach (KeyValuePair<string, ImmutableArray<string>> kvp in _Arguments)
+                if (kvp.Value.Length == 0)
                 {
                     sb.Append('-');
                     sb.Append(SanitizeValue(kvp.Key));
@@ -29,7 +29,7 @@ namespace wan24.Core
                     sb.Append('-', 2);
                     sb.Append(key);
                     first = true;
-                    for (i = 0, len = kvp.Value.Count; i < len; i++)
+                    for (i = 0, len = kvp.Value.Length; i < len; i++)
                     {
                         sb.Append(' ');
                         if (!first && kvp.Value[i].Length != 0 && kvp.Value[i][0] == '-')
@@ -54,7 +54,7 @@ namespace wan24.Core
         /// <param name="args">Arguments</param>
         protected void Initialize(in ReadOnlySpan<string> args)
         {
-            this.EnsureValidState(KeyLessArguments is null, "Initialized already");
+            this.EnsureValidState(KeyLessArguments == default, "Initialized already");
             Dictionary<string, List<string>> a = [];
             List<string> keyLess = [];
             string? lastKey = null;
@@ -159,8 +159,8 @@ namespace wan24.Core
                 }
             if (lastKey is not null)
                 _Arguments.AddRange(from kvp in a
-                                    select new KeyValuePair<string, ReadOnlyCollection<string>>(kvp.Key, kvp.Value.AsReadOnly()));
-            KeyLessArguments = keyLess.AsReadOnly();
+                                    select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, [.. kvp.Value]));
+            KeyLessArguments = [.. keyLess];
         }
 
         /// <summary>

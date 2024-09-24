@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -115,7 +115,7 @@ namespace wan24.Core
         /// <summary>
         /// Indexes of modified chunks
         /// </summary>
-        public ReadOnlyCollection<int> ModifiedChunks => _ModifiedChunks.AsReadOnly();
+        public ImmutableArray<int> ModifiedChunks => _ModifiedChunks.AsReadOnly();
 
         /// <summary>
         /// Is committed?

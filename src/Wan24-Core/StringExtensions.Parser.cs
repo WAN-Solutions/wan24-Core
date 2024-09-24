@@ -37,7 +37,7 @@ namespace wan24.Core
         /// Parse a string
         /// </summary>
         /// <param name="str">String</param>
-        /// <param name="data">Parser data (accessable with the zero based index)</param>
+        /// <param name="data">Parser data (accessible with the zero based index)</param>
         /// <returns>Parsed string</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static string Parse(this string str, params string[] data)

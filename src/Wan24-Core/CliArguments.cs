@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -23,11 +23,11 @@ namespace wan24.Core
         /// <summary>
         /// Arguments
         /// </summary>
-        protected readonly OrderedDictionary<string, ReadOnlyCollection<string>> _Arguments = [];
+        protected readonly OrderedDictionary<string, ImmutableArray<string>> _Arguments = [];
         /// <summary>
         /// Read-only arguments
         /// </summary>
-        protected OrderedDictionary<string, ReadOnlyCollection<string>>? ReadOnlyArguments = null;
+        protected OrderedDictionary<string, ImmutableArray<string>>? ReadOnlyArguments = null;
 
         /// <summary>
         /// Constructor
@@ -51,7 +51,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="args">Arguments</param>
-        public CliArguments(in IEnumerable<KeyValuePair<string, ReadOnlyCollection<string>>> args) => _Arguments.AddRange(args);
+        public CliArguments(in IEnumerable<KeyValuePair<string, ImmutableArray<string>>> args) => _Arguments.AddRange(args);
 
         /// <summary>
         /// Get if an argument was given
@@ -59,17 +59,17 @@ namespace wan24.Core
         /// <param name="key">Key</param>
         /// <param name="requireValues">Is the key required to have values (not be a boolean)?</param>
         /// <returns>Argument was given (and has values)?</returns>
-        public bool this[in string key, in bool requireValues = false] => _Arguments.ContainsKey(key) && (!requireValues || _Arguments[key].Count != 0);
+        public bool this[in string key, in bool requireValues = false] => _Arguments.ContainsKey(key) && (!requireValues || _Arguments[key].Length != 0);
 
         /// <summary>
         /// Arguments
         /// </summary>
-        public OrderedDictionary<string, ReadOnlyCollection<string>> Arguments => ReadOnlyArguments ??= _Arguments.AsReadOnly();
+        public OrderedDictionary<string, ImmutableArray<string>> Arguments => ReadOnlyArguments ??= _Arguments.AsReadOnly();
 
         /// <summary>
         /// Keyless arguments
         /// </summary>
-        public ReadOnlyCollection<string> KeyLessArguments { get; internal set; } = null!;
+        public ImmutableArray<string> KeyLessArguments { get; internal set; } = default;
 
         /// <summary>
         /// Number of given arguments
@@ -84,8 +84,8 @@ namespace wan24.Core
         public string Single(in string key)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             return values[0];
         }
 
@@ -128,11 +128,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Values</returns>
-        public ReadOnlyCollection<string> All(in string key)
+        public ImmutableArray<string> All(in string key)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
             return values;
         }
 
@@ -145,9 +145,9 @@ namespace wan24.Core
         public IEnumerable<T> AllJson<T>(string key)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
-            for (int i = 0, len = values.Count; i < len; i++)
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            for (int i = 0, len = values.Length; i < len; i++)
                 yield return JsonHelper.Decode<T>(values[i])
                     ?? throw new InvalidDataException($"Failed to JSON decode value #{i} of \"{key}\"");
         }
@@ -161,9 +161,9 @@ namespace wan24.Core
         public IEnumerable<object> AllJson(string key, Type type)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
-            for (int i = 0, len = values.Count; i < len; i++)
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            for (int i = 0, len = values.Length; i < len; i++)
                 yield return JsonHelper.DecodeObject(type, values[i])
                     ?? throw new InvalidDataException($"Failed to JSON decode value #{i} of \"{key}\" as {type}");
         }
@@ -177,9 +177,9 @@ namespace wan24.Core
         public IEnumerable<T?> AllJsonNullable<T>(string key)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
-            for (int i = 0, len = values.Count; i < len; i++)
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            for (int i = 0, len = values.Length; i < len; i++)
                 yield return JsonHelper.Decode<T>(values[i]);
         }
 
@@ -192,9 +192,9 @@ namespace wan24.Core
         public IEnumerable<object?> AllJsonNullable(string key, Type type)
         {
             if (!_Arguments.ContainsKey(key)) throw new ArgumentException($"Unknown argument \"{key}\"", nameof(key));
-            ReadOnlyCollection<string> values = _Arguments[key];
-            if (values.Count == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
-            for (int i = 0, len = values.Count; i < len; i++)
+            ImmutableArray<string> values = _Arguments[key];
+            if (values.Length == 0) throw new InvalidOperationException($"Given argument \"{key}\" is a boolean");
+            for (int i = 0, len = values.Length; i < len; i++)
                 yield return JsonHelper.DecodeObject(type, values[i]);
         }
 
@@ -203,21 +203,21 @@ namespace wan24.Core
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Is a flag (boolean)?</returns>
-        public bool IsBoolean(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count == 0;
+        public bool IsBoolean(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Length == 0;
 
         /// <summary>
         /// Determine if a given argument has values
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Is has values?</returns>
-        public bool HasValues(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Count != 0;
+        public bool HasValues(in string key) => _Arguments.ContainsKey(key) && _Arguments[key].Length != 0;
 
         /// <summary>
         /// Get the value count for a key
         /// </summary>
         /// <param name="key">Key</param>
         /// <returns>Number of values or <c>-1</c>, if the argument wasn't given</returns>
-        public int ValueCount(in string key) => _Arguments.ContainsKey(key) ? _Arguments[key].Count : -1;
+        public int ValueCount(in string key) => _Arguments.ContainsKey(key) ? _Arguments[key].Length : -1;
 
         /// <summary>
         /// Get an existing key

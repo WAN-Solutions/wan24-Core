@@ -1,12 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
+using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Pipeline stream (don't forget to start the <see cref="Queue"/> before feeding data into the pipeline)
     /// </summary>
-    public partial class PipelineStream : StreamBase
+    public partial class PipelineStream : StreamBase, IStatusProvider
     {
         /// <summary>
         /// Cancellation
@@ -55,8 +56,14 @@ namespace wan24.Core
                 })
                 );
             Elements.Freeze();
+            PipelineStreamTable.Streams[GUID] = this;
             if (runInputBufferProcessor && inputBufferSize.HasValue) InputBufferProcessorTask = ((Func<Task>)ProcessInputBufferAsync).StartLongRunningTask();
         }
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string GUID { get; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Thread synchronization event (raised when not synchronized)
@@ -95,6 +102,35 @@ namespace wan24.Core
         public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
         /// <inheritdoc/>
+        public virtual IEnumerable<Status> State
+        {
+            get
+            {
+                yield return new(__("GUID"), GUID, __("Unique ID of the instance"));
+                yield return new(__("Name"), Name, __("Name"));
+                yield return new(__("Type"), GetType(), __("CLR object type"));
+                yield return new(__("Last exception"), LastException?.Message ?? LastException?.GetType().ToString(), __("Last exception message"));
+                yield return new(__("Elements"), Elements.Count, __("Number of pipeline stream elements"));
+                yield return new(__("Clear"), ClearBuffers, __("If to clear buffers after use"));
+                string group = __("Queue");
+                foreach (Status status in Queue.State)
+                    yield return new(status.Name, status.State, status.Description, group.CombineStatusGroupNames(status.Group));
+                if(InputBuffer is not null)
+                {
+                    group = __("Input buffer");
+                    foreach (Status status in InputBuffer.State)
+                        yield return new(status.Name, status.State, status.Description, group.CombineStatusGroupNames(status.Group));
+                }
+                if (OutputBuffer is not null)
+                {
+                    group = __("Output buffer");
+                    foreach (Status status in OutputBuffer.State)
+                        yield return new(status.Name, status.State, status.Description, group.CombineStatusGroupNames(status.Group));
+                }
+            }
+        }
+
+        /// <inheritdoc/>
         public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
 
         /// <inheritdoc/>
@@ -112,6 +148,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            PipelineStreamTable.Streams.TryRemove(GUID, out _);
             Cancellation.Cancel();
             base.Dispose(disposing);
             Queue.Dispose();
@@ -127,6 +164,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            PipelineStreamTable.Streams.TryRemove(GUID, out _);
             Cancellation.Cancel();
             await base.DisposeCore().DynamicContext();
             await Queue.DisposeAsync().DynamicContext();

@@ -16,6 +16,7 @@ namespace wan24.Core
             {typeof(Delay), typeof(DelayTable) },
             {typeof(IInMemoryCache), typeof(InMemoryCacheTable) },
             {typeof(IObjectLockManager), typeof(ObjectLockTable) },
+            {typeof(PipelineStream), typeof(PipelineStreamTable) },
             {typeof(IPool), typeof(PoolTable) },
             {typeof(IProcessingInfo), typeof(ProcessTable) },
             {typeof(IServiceWorker), typeof(ServiceWorkerTable) },

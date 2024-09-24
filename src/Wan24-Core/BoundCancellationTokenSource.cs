@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <summary>
         /// Bound cancellation token
         /// </summary>
-        public ReadOnlyCollection<CancellationToken> BoundTokens => _BoundTokens.AsReadOnly();
+        public ImmutableArray<CancellationToken> BoundTokens => [.. _BoundTokens];
 
         /// <summary>
         /// Add tokens

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -57,7 +58,7 @@ namespace wan24.Core
         /// <summary>
         /// Sub-progresses
         /// </summary>
-        public ReadOnlyCollection<ProcessingProgress> SubProgress
+        public ImmutableArray<ProcessingProgress> SubProgress
         {
             get
             {

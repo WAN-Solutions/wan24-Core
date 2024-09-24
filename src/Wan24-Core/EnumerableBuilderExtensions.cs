@@ -16,9 +16,9 @@
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Func<tItem, bool>[] predicates)
             where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
-            foreach (Func<tItem, bool> predicate in predicates)
-                if (!builder.Conditions.Add(new(predicate)))
-                    throw new ArgumentException($"Detected multiple equal predicate {predicate.ToString()?.ToQuotedLiteral() ?? string.Empty}", nameof(predicates));
+            for (int i = 0, len = predicates.Length; i < len; i++)
+                if (!builder.Conditions.Add(new(predicates[i])))
+                    throw new ArgumentException($"Detected multiple equal predicate at #{i}: {predicates[i].ToString()?.ToQuotedLiteral() ?? "UNKNOWN"}", nameof(predicates));
             return builder;
         }
 
@@ -33,9 +33,9 @@
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Func<tItem, int, bool>[] predicates)
             where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
-            foreach (Func<tItem, int, bool> predicate in predicates)
-                if (!builder.Conditions.Add(new(predicate)))
-                    throw new ArgumentException($"Detected multiple equal predicate {predicate.ToString()?.ToQuotedLiteral() ?? string.Empty}", nameof(predicates));
+            for (int i = 0, len = predicates.Length; i < len; i++)
+                if (!builder.Conditions.Add(new(predicates[i])))
+                    throw new ArgumentException($"Detected multiple equal predicate at #{i}: {predicates[i].ToString()?.ToQuotedLiteral() ?? "UNKNOWN"}", nameof(predicates));
             return builder;
         }
 
