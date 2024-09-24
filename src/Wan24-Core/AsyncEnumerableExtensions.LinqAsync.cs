@@ -127,8 +127,8 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
         public static async IAsyncEnumerable<T> WhereAsync<T>(
-            this IAsyncEnumerable<T> enumerable, 
-            Func<T, CancellationToken, Task<bool>> predicate, 
+            this IAsyncEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
@@ -438,9 +438,9 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
         public static async Task<T?> FirstOrDefaultAsync<T>(
-            this IAsyncEnumerable<T> enumerable, 
-            Func<T, bool> predicate, 
-            T? defaultResult = default, 
+            this IAsyncEnumerable<T> enumerable,
+            Func<T, bool> predicate,
+            T? defaultResult = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -460,9 +460,9 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
         public static async Task<T?> FirstOrDefaultAsync<T>(
-            this IAsyncEnumerable<T> enumerable, 
-            Func<T, CancellationToken, Task<bool>> predicate, 
-            T? defaultResult = default, 
+            this IAsyncEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
+            T? defaultResult = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -470,6 +470,86 @@ namespace wan24.Core
                 if (await predicate(item, cancellationToken).DynamicContext())
                     return item;
             return defaultResult;
+        }
+
+        /// <summary>
+        /// All
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static async Task<bool> AllAsync<T>(
+            this IEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
+            CancellationToken cancellationToken = default
+            )
+        {
+            foreach (T item in enumerable)
+                if (!await predicate(item, cancellationToken).DynamicContext())
+                    return false;
+            return true;
+        }
+
+        /// <summary>
+        /// All
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static async Task<bool> AllAsync<T>(
+            this IAsyncEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
+            CancellationToken cancellationToken = default
+            )
+        {
+            await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+                if (!await predicate(item, cancellationToken).DynamicContext())
+                    return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Any
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If the predicate returned <see langword="true"/> for any item</returns>
+        public static async Task<bool> AnyAsync<T>(
+            this IEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
+            CancellationToken cancellationToken = default
+            )
+        {
+            foreach (T item in enumerable)
+                if (await predicate(item, cancellationToken).DynamicContext())
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Any
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>If the predicate returned <see langword="true"/> for any item</returns>
+        public static async Task<bool> AnyAsync<T>(
+            this IAsyncEnumerable<T> enumerable,
+            Func<T, CancellationToken, Task<bool>> predicate,
+            CancellationToken cancellationToken = default
+            )
+        {
+            await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+                if (await predicate(item, cancellationToken).DynamicContext())
+                    return true;
+            return false;
         }
     }
 }

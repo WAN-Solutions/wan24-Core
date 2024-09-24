@@ -84,8 +84,8 @@ namespace wan24.Core
         public static IEnumerable<T> Take<T>(this ImmutableArray<T> arr, int take)
         {
             int len = arr.Length;
-            return len <= take 
-                ? arr.Enumerate() 
+            return len <= take
+                ? arr.Enumerate()
                 : Skip(arr, len - take);
         }
 
@@ -99,8 +99,8 @@ namespace wan24.Core
         public static IEnumerable<T> Take<T>(this FrozenSet<T> arr, int take)
         {
             int len = arr.Count;
-            return len <= take 
-                ? arr.Enumerate() 
+            return len <= take
+                ? arr.Enumerate()
                 : Skip(arr, len - take);
         }
 
@@ -166,7 +166,7 @@ namespace wan24.Core
             for (int i = 0, len = arr.Length; i < len; i++)
             {
                 item = arr[i];
-                if(item is null)
+                if (item is null)
                 {
                     if (seen.Add(0))
                         yield return item;
@@ -326,6 +326,66 @@ namespace wan24.Core
                     return item;
             }
             return defaultResult;
+        }
+
+        /// <summary>
+        /// All
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static bool All<T>(this ImmutableArray<T> enumerable, in Func<T, bool> predicate)
+        {
+            for (int i = 0, len = enumerable.Length; i < len; i++)
+                if (!predicate(enumerable[i]))
+                    return false;
+            return true;
+        }
+
+        /// <summary>
+        /// All
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static bool All<T>(this FrozenSet<T> enumerable, in Func<T, bool> predicate)
+        {
+            for (int i = 0, len = enumerable.Count; i < len; i++)
+                if (!predicate(enumerable.Items[i]))
+                    return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Any
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static bool Any<T>(this ImmutableArray<T> enumerable, in Func<T, bool> predicate)
+        {
+            for (int i = 0, len = enumerable.Length; i < len; i++)
+                if (predicate(enumerable[i]))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Any
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="predicate">Predicate</param>
+        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        public static bool Any<T>(this FrozenSet<T> enumerable, in Func<T, bool> predicate)
+        {
+            for (int i = 0, len = enumerable.Count; i < len; i++)
+                if (predicate(enumerable.Items[i]))
+                    return true;
+            return false;
         }
     }
 }
