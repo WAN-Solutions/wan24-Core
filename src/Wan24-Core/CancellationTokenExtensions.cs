@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="CancellationToken"/> extensions
@@ -10,6 +13,10 @@
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Cancellation awaiter</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static CancellationAwaiter GetAwaiter(this CancellationToken cancellationToken) => new(cancellationToken);
 
         /// <summary>
@@ -18,6 +25,10 @@
         /// <param name="cancellationToken">Cancellation token</param>
         /// <exception cref="OperationCanceledException">Cancellation is requested</exception>
         /// <returns><see langword="false"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool GetIsCancellationRequested(this CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -30,6 +41,10 @@
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="alternate">Alternative cancellation token</param>
         /// <returns>Non-default cancellation token</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static CancellationToken EnsureNotDefault(this CancellationToken cancellationToken, in CancellationToken alternate)
             => cancellationToken.IsEqualTo(default) ? alternate : cancellationToken;
 
@@ -39,6 +54,10 @@
         /// <param name="cancellationToken">Cancellation token</param>
         /// <param name="other">Other cancellation token</param>
         /// <returns>If the cancellation tokens are equal</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsEqualTo(this CancellationToken cancellationToken, CancellationToken other)
             => CancellationToken.Equals(cancellationToken, other);
 
@@ -47,6 +66,10 @@
         /// </summary>
         /// <param name="tokens">Cancellation tokens</param>
         /// <returns>Resulting cancellation tokens</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<CancellationToken> RemoveNoneAndDefault(this IEnumerable<CancellationToken> tokens)
             => Remove(tokens, default, CancellationToken.None);
 
@@ -56,6 +79,10 @@
         /// <param name="tokens">Cancellation tokens</param>
         /// <param name="removeTokens">Cancellation tokens to remove</param>
         /// <returns>Resulting cancellation tokens</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<CancellationToken> RemoveNoneAndDefaultAnd(this IEnumerable<CancellationToken> tokens, params CancellationToken[] removeTokens)
             => Remove(tokens, [default, CancellationToken.None, ..removeTokens]);
 
@@ -65,6 +92,10 @@
         /// <param name="tokens">Cancellation tokens</param>
         /// <param name="removeTokens">Cancellation tokens to remove</param>
         /// <returns>Resulting cancellation tokens</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<CancellationToken> Remove(this IEnumerable<CancellationToken> tokens, params CancellationToken[] removeTokens)
             => tokens.Where(t => !removeTokens.Any(rt => rt.IsEqualTo(t)));
 
@@ -73,6 +104,10 @@
         /// </summary>
         /// <param name="tokens">Cancellation tokens</param>
         /// <returns>Resulting cancellation tokens</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<CancellationToken> RemoveDoubles(this IEnumerable<CancellationToken> tokens)
             => new HashSet<CancellationToken>().AddRange(tokens);
     }

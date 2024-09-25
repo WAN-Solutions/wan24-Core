@@ -1,4 +1,6 @@
 ﻿using System.Linq.Expressions;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +17,10 @@ namespace wan24.Core
         /// <param name="builder">Builder</param>
         /// <param name="predicates">Predicates</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Expression<Func<tItem, bool>>[] predicates)
             where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
@@ -32,6 +38,10 @@ namespace wan24.Core
         /// <param name="builder">Builder</param>
         /// <param name="predicates">Predicates</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Expression<Func<tItem, int, bool>>[] predicates)
             where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
@@ -48,6 +58,10 @@ namespace wan24.Core
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutCondition<tItem, tBuilder>(this tBuilder builder) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Conditions.Clear();
@@ -65,6 +79,10 @@ namespace wan24.Core
         /// <param name="ascending">If to sort ascending</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithSorting<tItem, tBuilder, tKey>(
             this tBuilder builder,
             in Expression<Func<tItem, tKey>> expression,
@@ -85,6 +103,10 @@ namespace wan24.Core
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutSorting<tItem, tBuilder>(this tBuilder builder) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Sorting.Clear();
@@ -99,6 +121,10 @@ namespace wan24.Core
         /// <param name="builder">Builder</param>
         /// <param name="skip">Skip count</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithSkip<tItem, tBuilder>(this tBuilder builder, in int skip) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Skip = skip;
@@ -112,6 +138,10 @@ namespace wan24.Core
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutSkip<tItem, tBuilder>(this tBuilder builder) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Skip = null;
@@ -126,6 +156,10 @@ namespace wan24.Core
         /// <param name="builder">Builder</param>
         /// <param name="take">Take count</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithTake<tItem, tBuilder>(this tBuilder builder, in int take) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Take = take;
@@ -139,6 +173,10 @@ namespace wan24.Core
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutTake<tItem, tBuilder>(this tBuilder builder) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Take = null;
@@ -153,6 +191,10 @@ namespace wan24.Core
         /// <param name="builder">Builder</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithDistinct<tItem, tBuilder>(this tBuilder builder, in IEqualityComparer<tItem>? comparer = null) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.DistinctBy = null;
@@ -171,6 +213,10 @@ namespace wan24.Core
         /// <param name="keySelector">Key selector</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithDistinct<tItem, tBuilder, tKey>(
             this tBuilder builder,
             in Expression<Func<tItem, tKey>> keySelector,
@@ -191,6 +237,10 @@ namespace wan24.Core
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutDistinct<tItem, tBuilder>(this tBuilder builder) where tBuilder : QueryableBuilderBase<tItem, tBuilder>
         {
             builder.Distinct = false;

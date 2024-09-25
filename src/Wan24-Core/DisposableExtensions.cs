@@ -1,6 +1,7 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +16,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<IDisposable> DisposeAll(this IEnumerable<IDisposable> disposables)
         {
             foreach (IDisposable disposable in disposables) disposable.Dispose();
@@ -27,6 +31,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IList<IDisposable> DisposeAll(this IList<IDisposable> disposables)
         {
             for (int i = 0, len = disposables.Count; i < len; disposables[i].Dispose(), i++) ;
@@ -39,6 +46,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static List<IDisposable> DisposeAll(this List<IDisposable> disposables)
         {
             for (int i = 0, len = disposables.Count; i < len; disposables[i].Dispose(), i++) ;
@@ -51,6 +61,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlySpan<IDisposable> DisposeAll(this ReadOnlySpan<IDisposable> disposables)
         {
             for (int i = 0, len = disposables.Length; i < len; disposables[i].Dispose(), i++) ;
@@ -63,6 +76,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IDisposable[] DisposeAll(this IDisposable[] disposables)
         {
             DisposeAll((ReadOnlySpan<IDisposable>)disposables);
@@ -75,6 +91,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<IDisposable> DisposeAll(this Span<IDisposable> disposables)
         {
             DisposeAll((ReadOnlySpan<IDisposable>)disposables);
@@ -87,6 +106,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<IDisposable> DisposeAll(this Memory<IDisposable> disposables)
         {
             DisposeAll((ReadOnlySpan<IDisposable>)disposables.Span);
@@ -99,6 +121,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ReadOnlyMemory<IDisposable> DisposeAll(this ReadOnlyMemory<IDisposable> disposables)
         {
             DisposeAll(disposables.Span);
@@ -111,6 +136,9 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ImmutableArray<IDisposable> DisposeAll(this ImmutableArray<IDisposable> disposables)
         {
             for (int i = 0, len = disposables.Length; i < len; disposables[i].Dispose(), i++) ;
@@ -123,10 +151,162 @@ namespace wan24.Core
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static FrozenSet<IDisposable> DisposeAll(this FrozenSet<IDisposable> disposables)
         {
             for (int i = 0, len = disposables.Count; i < len; disposables.Items[i].Dispose(), i++) ;
             return disposables;
+        }
+
+        /// <summary>
+        /// Try dispose, if disposable
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="obj">Object</param>
+        /// <returns>Object</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T TryDispose<T>(this T obj)
+        {
+            ArgumentNullException.ThrowIfNull(obj);
+            switch (obj)
+            {
+                case IBasicDisposableObject basicDisposable and IDisposable disposable:
+                    if (!basicDisposable.IsDisposing) disposable.Dispose();
+                    break;
+                case IBasicDisposableObject basicDisposable and IAsyncDisposable disposable:
+                    if (!basicDisposable.IsDisposing) disposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
+                    break;
+                case IDisposable disposable:
+                    disposable.Dispose();
+                    break;
+                case IAsyncDisposable disposable:
+                    disposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
+                    break;
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this IEnumerable<object> objects)
+        {
+            foreach (object obj in objects) obj.TryDispose();
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this ReadOnlySpan<object> objects)
+        {
+            for (int i = 0, len = objects.Length; i < len; objects[i].TryDispose(), i++) ;
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this Span<object> objects) => TryDisposeAll((ReadOnlySpan<object>)objects);
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this Memory<object> objects) => TryDisposeAll((ReadOnlySpan<object>)objects.Span);
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this ReadOnlyMemory<object> objects) => TryDisposeAll(objects.Span);
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this object[] objects) => TryDisposeAll((ReadOnlySpan<object>)objects);
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this IList<object> objects)
+        {
+            for (int i = 0, len = objects.Count; i < len; objects[i].TryDispose(), i++) ;
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this List<object> objects)
+        {
+            for (int i = 0, len = objects.Count; i < len; objects[i].TryDispose(), i++) ;
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this ImmutableArray<object> objects)
+        {
+            for (int i = 0, len = objects.Length; i < len; objects[i].TryDispose(), i++) ;
+        }
+
+        /// <summary>
+        /// Try to dispose disposable objects
+        /// </summary>
+        /// <param name="objects">Objects</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void TryDisposeAll(this FrozenSet<object> objects)
+        {
+            for (int i = 0, len = objects.Count; i < len; objects.Items[i].TryDispose(), i++) ;
         }
     }
 }

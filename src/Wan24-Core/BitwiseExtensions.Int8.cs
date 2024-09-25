@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -12,6 +13,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte ShiftLeft(this sbyte value, in int bits) => (sbyte)(value << bits);
 
         /// <summary>
@@ -21,6 +25,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte ShiftRight(this sbyte value, in int bits) => (sbyte)(value >> bits);
 
         /// <summary>
@@ -30,6 +37,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte Or(this sbyte value, in sbyte other) => (sbyte)(value | other);
 
         /// <summary>
@@ -39,6 +49,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte And(this sbyte value, in sbyte other) => (sbyte)(value & other);
 
         /// <summary>
@@ -48,6 +61,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte Xor(this sbyte value, in sbyte other) => (sbyte)(value ^ other);
 
         /// <summary>
@@ -57,6 +73,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool HasFlags(this sbyte value, in sbyte flags) => (value & flags) == flags;
 
         /// <summary>
@@ -66,6 +85,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte AddFlags(this sbyte value, in sbyte flags) => (sbyte)(value | flags);
 
         /// <summary>
@@ -75,6 +97,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte RemoveFlags(this sbyte value, in sbyte flags) => (sbyte)(value & ~flags);
 
         /// <summary>
@@ -83,6 +108,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte ToByte(this sbyte value) => (byte)value;
 
         /// <summary>
@@ -91,6 +119,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static short ToShort(this sbyte value) => value;
 
         /// <summary>
@@ -99,6 +130,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ushort ToUShort(this sbyte value) => (ushort)value;
 
         /// <summary>
@@ -107,6 +141,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToInt(this sbyte value) => value;
 
         /// <summary>
@@ -115,6 +152,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ToUInt(this sbyte value) => (uint)value;
 
         /// <summary>
@@ -123,6 +163,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long ToLong(this sbyte value) => value;
 
         /// <summary>
@@ -131,6 +174,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong ToULong(this sbyte value) => (ulong)value;
     }
 }

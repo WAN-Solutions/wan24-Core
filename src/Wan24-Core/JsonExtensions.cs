@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,9 @@ namespace wan24.Core
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToJson(this object obj, in bool prettify = false) => JsonHelper.Encode(obj, prettify);
 
         /// <summary>
@@ -23,6 +27,9 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? FromJson(this Type type, in string json) => JsonHelper.DecodeObject(type, json);
 
         /// <summary>
@@ -32,6 +39,9 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? DecodeJson<T>(this string json) => JsonHelper.Decode<T>(json);
 
         /// <summary>
@@ -186,6 +196,9 @@ namespace wan24.Core
         /// <param name="jsonDict">JSON dictionary</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T ToObject<T>(this IReadOnlyDictionary<string, object?> jsonDict)
         {
             using MemoryPoolStream ms = new();
@@ -201,6 +214,9 @@ namespace wan24.Core
         /// <param name="type">Object type</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object ToObject(this IReadOnlyDictionary<string, object?> jsonDict, in Type type)
         {
             using MemoryPoolStream ms = new();

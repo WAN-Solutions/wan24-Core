@@ -14,6 +14,9 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <returns>Remaining number of bytes</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long GetRemainingBytes(this Stream stream) => stream.Length - stream.Position;
 
         /// <summary>
@@ -24,6 +27,9 @@ namespace wan24.Core
         /// <param name="origin">Origin</param>
         /// <returns>Position</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long GenericSeek(this Stream stream, in long offset, in SeekOrigin origin) => stream.Position = origin switch
         {
             SeekOrigin.Begin => offset,
@@ -37,6 +43,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Byte or <c>-1</c>, if read failed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
@@ -56,6 +66,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif

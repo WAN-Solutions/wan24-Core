@@ -17,6 +17,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this IEnumerable<T> delegates, params object?[] param) where T : Delegate
         {
             foreach (T d in delegates) d.Method.InvokeAuto(obj: null, param);
@@ -29,6 +32,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this ReadOnlySpan<T> delegates, params object?[] param) where T : Delegate
         {
             for (int i = 0, len = delegates.Length; i < len; delegates[i].Method.InvokeAuto(obj: null, param), i++) ;
@@ -41,6 +47,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this Span<T> delegates, params object?[] param) where T : Delegate => InvokeAll((ReadOnlySpan<T>)delegates, param);
 
         /// <summary>
@@ -50,6 +59,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this Memory<T> delegates, params object?[] param) where T : Delegate => InvokeAll((ReadOnlySpan<T>)delegates.Span, param);
 
         /// <summary>
@@ -59,6 +71,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this ReadOnlyMemory<T> delegates, params object?[] param) where T : Delegate => InvokeAll(delegates.Span, param);
 
         /// <summary>
@@ -68,6 +83,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this T[] delegates, params object?[] param) where T : Delegate => InvokeAll((ReadOnlySpan<T>)delegates, param);
 
         /// <summary>
@@ -77,6 +95,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this IList<T> delegates, params object?[] param) where T : Delegate
         {
             for (int i = 0, len = delegates.Count; i < len; delegates[i].Method.InvokeAuto(obj: null, param), i++) ;
@@ -89,6 +110,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this List<T> delegates, params object?[] param) where T : Delegate
         {
             for (int i = 0, len = delegates.Count; i < len; delegates[i].Method.InvokeAuto(obj: null, param), i++) ;
@@ -101,6 +125,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this ImmutableArray<T> delegates, params object?[] param) where T : Delegate
         {
             for (int i = 0, len = delegates.Length; i < len; delegates[i].Method.InvokeAuto(obj: null, param), i++) ;
@@ -113,6 +140,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void InvokeAll<T>(this FrozenSet<T> delegates, params object?[] param) where T : Delegate
         {
             for (int i = 0, len = delegates.Count; i < len; delegates.Items[i].Method.InvokeAuto(obj: null, param), i++) ;
@@ -205,6 +235,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tResult?[] InvokeAll<tDelegate, tResult>(this tDelegate[] delegates, params object?[] param) where tDelegate : Delegate
             => InvokeAll<tDelegate, tResult>((ReadOnlySpan<tDelegate>)delegates, param);
 
@@ -216,6 +249,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tResult?[] InvokeAll<tDelegate, tResult>(this Span<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
             => InvokeAll<tDelegate, tResult>((ReadOnlySpan<tDelegate>)delegates, param);
 
@@ -227,6 +263,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tResult?[] InvokeAll<tDelegate, tResult>(this Memory<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
             => InvokeAll<tDelegate, tResult>((ReadOnlySpan<tDelegate>)delegates.Span, param);
 
@@ -238,6 +277,9 @@ namespace wan24.Core
         /// <param name="delegates">Delegates</param>
         /// <param name="param">Parameters</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tResult?[] InvokeAll<tDelegate, tResult>(this ReadOnlyMemory<tDelegate> delegates, params object?[] param) where tDelegate : Delegate
             => InvokeAll<tDelegate, tResult>(delegates.Span, param);
 

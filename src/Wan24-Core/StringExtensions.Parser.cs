@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using static wan24.Core.Logging;
@@ -40,6 +41,9 @@ namespace wan24.Core
         /// <param name="data">Parser data (accessible with the zero based index)</param>
         /// <returns>Parsed string</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string Parse(this string str, params string[] data)
         {
             int len = data.Length;
@@ -55,7 +59,7 @@ namespace wan24.Core
         /// <param name="data">Parser data</param>
         /// <param name="options">Options</param>
         /// <returns>Parsed string</returns>
-        public static string Parse(this string str, in Dictionary<string, string> data, in StringParserOptions? options = null)
+        public static string Parse(this string str, in IDictionary<string, string> data, in StringParserOptions? options = null)
         {
             Regex rx = options?.Regex ?? RxParser;
             int rxGroup = options?.RegexGroup ?? RxParserGroup;

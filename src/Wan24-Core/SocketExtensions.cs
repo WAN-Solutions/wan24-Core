@@ -1,4 +1,6 @@
 ﻿using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -17,6 +19,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="socket">Socket</param>
         /// <returns>Is connected?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsConnected(this Socket socket)
         {
             try

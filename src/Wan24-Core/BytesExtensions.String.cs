@@ -51,6 +51,9 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToUtf8String(this ReadOnlySpan<byte> bytes, in Span<char> buffer, in bool ignoreUsed = false)
         {
             new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
@@ -66,6 +69,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf8String(this Span<byte> bytes) => ToUtf8String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -74,6 +80,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf8String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf8String();
 
         /// <summary>
@@ -82,6 +91,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf8String(this Memory<byte> bytes) => ToUtf8String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -90,6 +102,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf8String(this byte[] bytes) => bytes.AsSpan().ToUtf8String();
 
         /// <summary>
@@ -134,6 +149,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf8Chars(this Span<byte> bytes) => ToUtf8Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -142,6 +160,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf8Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf8Chars();
 
         /// <summary>
@@ -150,6 +171,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf8Chars(this Memory<byte> bytes) => ToUtf8Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -158,6 +182,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf8Chars(this byte[] bytes) => bytes.AsSpan().ToUtf8Chars();
 
         /// <summary>
@@ -205,6 +232,9 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToUtf16String(this ReadOnlySpan<byte> bytes, in Span<char> buffer, in bool ignoreUsed = false)
         {
             new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
@@ -220,6 +250,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf16String(this Span<byte> bytes) => ToUtf16String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -228,6 +261,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf16String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf16String();
 
         /// <summary>
@@ -236,6 +272,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf16String(this Memory<byte> bytes) => ToUtf16String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -244,6 +283,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf16String(this byte[] bytes) => bytes.AsSpan().ToUtf16String();
 
         /// <summary>
@@ -285,6 +327,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf16Chars(this Span<byte> bytes) => ToUtf16Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -293,6 +338,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf16Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf16Chars();
 
         /// <summary>
@@ -301,6 +349,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf16Chars(this Memory<byte> bytes) => ToUtf16Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -309,6 +360,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf16Chars(this byte[] bytes) => bytes.AsSpan().ToUtf16Chars();
 
         /// <summary>
@@ -355,6 +409,9 @@ namespace wan24.Core
         /// <param name="ignoreUsed">Ignore the number of used bytes?</param>
         /// <returns>Number of used bytes from the output buffer</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToUtf32String(this ReadOnlySpan<byte> bytes, in Span<char> buffer, in bool ignoreUsed = false)
         {
             new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
@@ -370,6 +427,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf32String(this Span<byte> bytes) => ToUtf32String((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -378,6 +438,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf32String(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf32String();
 
         /// <summary>
@@ -386,6 +449,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf32String(this Memory<byte> bytes) => ToUtf32String((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -394,6 +460,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes (little endian)</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToUtf32String(this byte[] bytes) => bytes.AsSpan().ToUtf32String();
 
         /// <summary>
@@ -435,6 +504,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf32Chars(this Span<byte> bytes) => ToUtf32Chars((ReadOnlySpan<byte>)bytes);
 
         /// <summary>
@@ -443,6 +515,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf32Chars(this ReadOnlyMemory<byte> bytes) => bytes.Span.ToUtf32Chars();
 
         /// <summary>
@@ -451,6 +526,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf32Chars(this Memory<byte> bytes) => ToUtf32Chars((ReadOnlySpan<byte>)bytes.Span);
 
         /// <summary>
@@ -459,6 +537,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static char[] ToUtf32Chars(this byte[] bytes) => bytes.AsSpan().ToUtf32Chars();
     }
 }

@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Multiple combined process throttles (will balance a total limit to all hosted throttles; all throttles need to use the same time restriction for this)
     /// </summary>
-    public class MultiProcessThrottle : DisposableBase, IStatusProvider
+    public class MultiProcessThrottle : BasicAllDisposableBase, IStatusProvider
     {
         /// <summary>
         /// Thread synchronization
@@ -276,7 +276,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await (await ClearAsync().DynamicContext()).DisposeAllAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
     }
 }

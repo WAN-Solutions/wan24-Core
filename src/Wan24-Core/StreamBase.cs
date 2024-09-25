@@ -58,7 +58,7 @@ namespace wan24.Core
             if (!await DoDisposeAsync().DynamicContext()) return;
             await DisposeCore().DynamicContext();
             Close();
-            await DisposeSyncObject.DisposeAsync().DynamicContext();
+            DisposeSyncObject.Dispose();
             IsDisposed = true;
             GC.SuppressFinalize(this);
             OnDisposed?.Invoke(this, new());

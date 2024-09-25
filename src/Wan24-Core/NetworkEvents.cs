@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Network events
     /// </summary>
-    public class NetworkEvents : DisposableBase
+    public class NetworkEvents : BasicDisposableBase
     {
         /// <summary>
         /// Check timer
@@ -17,7 +17,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="adapter">Network adapter</param>
         /// <param name="checkInterval">State check interval (default is one second)</param>
-        public NetworkEvents(in NetworkInterface adapter, in TimeSpan? checkInterval = null) : base(asyncDisposing: false)
+        public NetworkEvents(in NetworkInterface adapter, in TimeSpan? checkInterval = null) : base()
         {
             Adapter = adapter;
             CheckTimer = new()

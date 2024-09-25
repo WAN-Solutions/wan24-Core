@@ -261,7 +261,7 @@ namespace wan24.Core
             }
             finally
             {
-                if (buffer is not null) await buffer.DisposeAsync().DynamicContext();
+                buffer?.Dispose();
             }
         }
 

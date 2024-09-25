@@ -169,7 +169,7 @@
             await Cancellation.CancelAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
             Cancellation.Dispose();
-            await _Cancellations.DisposeAsync().DynamicContext();
+            _Cancellations.Dispose();
             if (!LeaveTargetOpen)
                 await CopyTarget.DisposeAsync().DynamicContext();
         }

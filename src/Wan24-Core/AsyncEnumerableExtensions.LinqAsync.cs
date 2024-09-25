@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -15,6 +16,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this IEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -34,6 +39,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this T[] enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -57,6 +66,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this ImmutableArray<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -80,6 +93,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this FrozenSet<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -103,6 +120,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this IList<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -126,6 +147,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -145,6 +170,10 @@ namespace wan24.Core
         /// <param name="skip">Number of items to skip</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> SkipAsync<T>(this IAsyncEnumerable<T> enumerable, int skip, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
@@ -160,6 +189,10 @@ namespace wan24.Core
         /// <param name="take">Number of items to take</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> TakeAsync<T>(this IAsyncEnumerable<T> enumerable, int take, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
@@ -178,6 +211,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this IEnumerable<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -197,6 +234,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this tItem[] enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -216,6 +257,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this ImmutableArray<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -235,6 +280,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this FrozenSet<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -254,6 +303,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this IList<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -273,6 +326,10 @@ namespace wan24.Core
         /// <param name="selector">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this IAsyncEnumerable<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
@@ -290,6 +347,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async IAsyncEnumerable<T> DistinctAsync<T>(this IAsyncEnumerable<T> enumerable, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             HashSet<int> seen = [];
@@ -367,6 +428,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T> FirstAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
         {
             IAsyncEnumerator<T> enumerator = enumerable.GetAsyncEnumerator(cancellationToken);
@@ -386,6 +451,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T> FirstAsync<T>(this IAsyncEnumerable<T> enumerable, Func<T, bool> predicate, CancellationToken cancellationToken = default)
         {
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
@@ -402,6 +471,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T> FirstAsync<T>(this IAsyncEnumerable<T> enumerable, Func<T, CancellationToken, Task<bool>> predicate, CancellationToken cancellationToken = default)
         {
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
@@ -418,6 +491,10 @@ namespace wan24.Core
         /// <param name="defaultResult">Default result</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> FirstOrDefaultAsync<T>(this IAsyncEnumerable<T> enumerable, T? defaultResult = default, CancellationToken cancellationToken = default)
         {
             IAsyncEnumerator<T> enumerator = enumerable.GetAsyncEnumerator(cancellationToken);
@@ -437,6 +514,10 @@ namespace wan24.Core
         /// <param name="defaultResult">Default result</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> FirstOrDefaultAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, bool> predicate,
@@ -459,6 +540,10 @@ namespace wan24.Core
         /// <param name="defaultResult">Default result</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<T?> FirstOrDefaultAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -480,6 +565,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> AllAsync<T>(
             this IEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -500,6 +589,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> AllAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -520,6 +613,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If the predicate returned <see langword="true"/> for any item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> AnyAsync<T>(
             this IEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
@@ -540,6 +637,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If the predicate returned <see langword="true"/> for any item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> AnyAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,

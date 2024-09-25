@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerables">Enumerables</param>
         /// <returns>Combined enumerable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Combine<T>(this IEnumerable<IEnumerable<T>> enumerables)
         {
             foreach (IEnumerable<T> e in enumerables)
@@ -28,6 +33,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="chunkSize">Chunk size</param>
         /// <returns>Chunks</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T[]> ChunkEnum<T>(this IEnumerable<T> enumerable, int chunkSize)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, 1);
@@ -74,6 +83,9 @@ namespace wan24.Core
         /// <param name="values">Values</param>
         /// <returns>Any contained?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsAny<T>(this IEnumerable<T> enumerable, params T[] values)
         {
             if (values.Length == 0) return false;
@@ -88,6 +100,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="value">Element</param>
         /// <returns>Element index or <c>-1</c>, if not enumerated</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ElementIndex<T>(this IEnumerable<T> enumerable, in T value)
         {
             int res = 0;
@@ -110,6 +126,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <returns>Non-<see langword="null"/> items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> enumerable) => enumerable.Where(i => i is not null).Cast<T>();
 
         /// <summary>
@@ -220,6 +240,10 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <param name="extended">If to match the generic type definition, too</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tItem> WhereIsAssignableTo<tItem>(this IEnumerable<tItem> enumerable, Type type, bool extended = false)
         {
             foreach (tItem item in enumerable)
@@ -235,6 +259,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="extended">If to match the generic type definition, too</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tItem> WhereIsAssignableTo<tItem, tType>(this IEnumerable<tItem> enumerable, bool extended = false)
         {
             Type type = typeof(tType);
@@ -285,6 +313,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="dispose">Dispose disposables?</param>
         /// <returns>Number of discarded items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int DiscardAll<T>(this IEnumerable<T> enumerable, bool dispose = true)
         {
             int res = 0;
@@ -310,6 +342,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static EnumerableBuilder<T> CreateBuilder<T>(this IEnumerable<T> enumerable) => new(enumerable);
 
         /// <summary>
@@ -318,6 +354,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="queryable">Queryable</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static QueryableBuilder<T> CreateBuilder<T>(this IQueryable<T> queryable) => new(queryable);
     }
 }

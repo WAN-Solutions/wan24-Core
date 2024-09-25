@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="initialValue">Initial value</param>
-    public class ThreadSafeValue<T>(in T? initialValue = default) : DisposableBase()
+    public class ThreadSafeValue<T>(in T? initialValue = default) : BasicAllDisposableBase()
     {
         /// <summary>
         /// Thread synchronization

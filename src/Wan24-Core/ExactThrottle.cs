@@ -7,7 +7,7 @@ namespace wan24.Core
     /// <summary>
     /// (Almost) Exact throttle (with an overhead; use <see cref="Throttle"/> for a low overhead instead, if performance is more important than being exact)
     /// </summary>
-    public class ExactThrottle : DisposableBase, IThrottle
+    public class ExactThrottle : BasicAllDisposableBase, IThrottle
     {
         /// <summary>
         /// Thread synchronization

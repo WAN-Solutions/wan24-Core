@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Rented thread
     /// </summary>
-    public class RentedThread : DisposableBase, IObjectPoolItem
+    public class RentedThread : SimpleDisposableBase, IObjectPoolItem
     {
         /// <summary>
         /// Thread synchronization
@@ -233,7 +233,7 @@ namespace wan24.Core
         {
             await WorkEvent.SetAsync().DynamicContext();
             await WorkDoneEvent.WaitAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             ManagedThread.Join();
             await WorkEvent.DisposeAsync().DynamicContext();
             await WorkDoneEvent.DisposeAsync().DynamicContext();

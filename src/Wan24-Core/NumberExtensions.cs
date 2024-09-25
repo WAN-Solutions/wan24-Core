@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +16,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsUnsigned<T>(this T? value) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => (value?.GetType() ?? typeof(T)).IsUnsigned();
 
@@ -25,6 +29,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsUnsigned<T>(this T value) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => value.GetType().IsUnsigned();
 
@@ -34,6 +41,9 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <returns>Is unsigned?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsUnsigned<T>() where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => typeof(T).IsUnsigned();
 
@@ -149,6 +159,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this short value)
         {
             byte[] res = new byte[sizeof(short)];
@@ -163,6 +176,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this short value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -176,6 +192,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this short value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt16LittleEndian(target, value);
@@ -189,6 +208,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this short value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt16LittleEndian(target.Span, value);
@@ -201,6 +223,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this ushort value)
         {
             byte[] res = new byte[sizeof(ushort)];
@@ -215,6 +240,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this ushort value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -228,6 +256,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this ushort value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt16LittleEndian(target, value);
@@ -241,6 +272,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this ushort value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt16LittleEndian(target.Span, value);
@@ -253,6 +287,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this int value)
         {
             byte[] res = new byte[sizeof(int)];
@@ -267,6 +304,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this int value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -280,6 +320,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this int value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt32LittleEndian(target, value);
@@ -293,6 +336,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this int value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt32LittleEndian(target.Span, value);
@@ -305,6 +351,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this uint value)
         {
             byte[] res = new byte[sizeof(uint)];
@@ -319,6 +368,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this uint value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -332,6 +384,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this uint value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt32LittleEndian(target, value);
@@ -345,6 +400,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this uint value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt32LittleEndian(target.Span, value);
@@ -357,6 +415,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this long value)
         {
             byte[] res = new byte[sizeof(long)];
@@ -371,6 +432,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this long value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -384,6 +448,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this long value, in Span<byte> target)
         {
             BinaryPrimitives.WriteInt64LittleEndian(target, value);
@@ -397,6 +464,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this long value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteInt64LittleEndian(target.Span, value);
@@ -409,6 +479,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this ulong value)
         {
             byte[] res = new byte[sizeof(ulong)];
@@ -423,6 +496,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this ulong value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -436,6 +512,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this ulong value, in Span<byte> target)
         {
             BinaryPrimitives.WriteUInt64LittleEndian(target, value);
@@ -449,6 +528,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this ulong value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt64LittleEndian(target.Span, value);
@@ -461,6 +543,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this float value)
         {
             byte[] res = new byte[sizeof(float)];
@@ -475,6 +560,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this float value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -488,6 +576,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this float value, in Span<byte> target)
         {
             BinaryPrimitives.WriteSingleLittleEndian(target, value);
@@ -501,6 +592,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this float value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteSingleLittleEndian(target.Span, value);
@@ -513,6 +607,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this double value)
         {
             byte[] res = new byte[sizeof(double)];
@@ -527,6 +624,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this double value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -540,6 +640,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this double value, in Span<byte> target)
         {
             BinaryPrimitives.WriteDoubleLittleEndian(target, value);
@@ -553,6 +656,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this double value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteDoubleLittleEndian(target.Span, value);
@@ -565,6 +671,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this decimal value)
         {
             byte[] res = new byte[sizeof(int) << 2];
@@ -580,6 +689,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this decimal value, in byte[] target)
         {
             GetBytes(value, target.AsSpan());
@@ -593,6 +705,9 @@ namespace wan24.Core
         /// <param name="target">Target span</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> GetBytes(this decimal value, in Span<byte> target)
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
@@ -608,6 +723,9 @@ namespace wan24.Core
         /// <param name="target">Target memory</param>
         /// <returns>Bytes (endian converted)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> GetBytes(this decimal value, in Memory<byte> target)
         {
             if (target.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(target));
@@ -624,6 +742,9 @@ namespace wan24.Core
         /// <param name="higherBorder">Range end (including)</param>
         /// <returns>Is within the range?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsBetween<T>(this T value, in T lowerBorder, in T higherBorder) where T : struct, IConvertible, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
             => value.CompareTo(lowerBorder) >= 0 && value.CompareTo(higherBorder) <= 0;
     }

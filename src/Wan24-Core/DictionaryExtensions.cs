@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace wan24.Core
@@ -132,6 +133,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="dict">Dictionary</param>
         /// <returns>Query string</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string AsQueryString(this Dictionary<string, string> dict)
         {
             NameValueCollection nvc = HttpUtility.ParseQueryString(string.Empty);
@@ -147,6 +152,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>If the value is contained</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
             => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
 
@@ -158,6 +167,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>If the value is contained</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
             => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
 
@@ -169,6 +182,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>If the value is contained</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool ContainsValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
             => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
 
@@ -181,6 +198,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Key</returns>
         /// <exception cref="KeyNotFoundException">Key not found</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tKey GetKeyOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
         {
             if (!TryGetKeyOfValue(dict, value, out tKey? res))
@@ -197,6 +218,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Key</returns>
         /// <exception cref="KeyNotFoundException">Key not found</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tKey GetKeyOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
         {
             if (!TryGetKeyOfValue(dict, value, out tKey? res))
@@ -213,6 +238,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Key</returns>
         /// <exception cref="KeyNotFoundException">Key not found</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tKey GetKeyOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, in tValue value) where tKey : notnull
         {
             if (!TryGetKeyOfValue(dict, value, out tKey? res))
@@ -229,6 +258,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="key">Found key</param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
@@ -250,6 +283,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="key">Found key</param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
@@ -271,6 +308,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="key">Found key</param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
@@ -291,6 +332,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>Keys</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
@@ -306,6 +351,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>Keys</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
@@ -321,6 +370,10 @@ namespace wan24.Core
         /// <param name="dict">Dictionary</param>
         /// <param name="value">Value</param>
         /// <returns>Keys</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
             foreach (KeyValuePair<tKey, tValue> kvp in dict)

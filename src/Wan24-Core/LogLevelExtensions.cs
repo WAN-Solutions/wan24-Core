@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -12,6 +14,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If tracing</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsTracing(this LogLevel level) => level == LogLevel.Trace;
 
         /// <summary>
@@ -19,6 +25,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If debugging</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsDebugging(this LogLevel level) => level <= LogLevel.Debug && !level.IsNoLogging();
 
         /// <summary>
@@ -26,6 +36,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If informative</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsInformative(this LogLevel level) => level <= LogLevel.Information && !level.IsNoLogging();
 
         /// <summary>
@@ -33,6 +47,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If warning</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsWarning(this LogLevel level) => level <= LogLevel.Warning && !level.IsNoLogging();
 
         /// <summary>
@@ -40,6 +58,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If error</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsError(this LogLevel level) => level <= LogLevel.Error && !level.IsNoLogging();
 
         /// <summary>
@@ -47,6 +69,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If critical</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsCritical(this LogLevel level) => level <= LogLevel.Critical && !level.IsNoLogging();
 
         /// <summary>
@@ -54,6 +80,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="level">Log level</param>
         /// <returns>If not logging</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsNoLogging(this LogLevel level) => level == LogLevel.None;
     }
 }

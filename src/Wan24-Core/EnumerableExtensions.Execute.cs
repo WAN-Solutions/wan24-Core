@@ -1,5 +1,7 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +16,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this tItem[] enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -33,6 +39,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this Memory<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -52,6 +62,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ReadOnlyMemory<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -71,6 +85,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IEnumerable<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -90,6 +108,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this List<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -109,6 +131,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IList<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -128,6 +154,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this FrozenSet<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;
@@ -147,6 +177,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ImmutableArray<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
             ExecuteResult<tResult> result;

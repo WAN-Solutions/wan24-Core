@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Rented thread (can be used with <see cref="ObjectPool{T}"/> and <see cref="RentedObject{T}"/>)
     /// </summary>
     /// <typeparam name="T">Worker return value type</typeparam>
-    public class RentedThread<T> : DisposableBase, IObjectPoolItem
+    public class RentedThread<T> : SimpleDisposableBase, IObjectPoolItem
     {
         /// <summary>
         /// Thread synchronization
@@ -113,7 +113,7 @@ namespace wan24.Core
         /// Work
         /// </summary>
         /// <param name="worker">Worker</param>
-        /// <param name="cancellationToken">Cancellation token (used for thead synchronization only)</param>
+        /// <param name="cancellationToken">Cancellation token (used for thread synchronization only)</param>
         /// <returns>Worker return value</returns>
         public virtual async Task<T> WorkAsync(Worker_Delegate worker, CancellationToken cancellationToken = default)
         {
@@ -234,7 +234,7 @@ namespace wan24.Core
         {
             await WorkEvent.SetAsync().DynamicContext();
             await WorkDoneEvent.WaitAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             ManagedThread.Join();
             await WorkEvent.DisposeAsync().DynamicContext();
             await WorkDoneEvent.DisposeAsync().DynamicContext();

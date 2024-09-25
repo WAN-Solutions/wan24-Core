@@ -11,7 +11,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="name">Name</param>
-    public abstract class PipelineElementBase(in string name) : DisposableBase()
+    public abstract class PipelineElementBase(in string name) : SimpleDisposableBase()
     {
         /// <summary>
         /// Processable types

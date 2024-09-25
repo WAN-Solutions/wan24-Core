@@ -175,7 +175,7 @@ namespace wan24.Core
             await Queue.DisposeAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
             await QueueCounter.DisposeAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
 
         /// <summary>

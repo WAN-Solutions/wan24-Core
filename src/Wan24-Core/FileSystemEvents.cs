@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// Number of times events have been raised during throttline
+        /// Number of times events have been raised during throttling
         /// </summary>
         public int EventCount => Throttle?.RaisedCount ?? 0;
 
@@ -226,7 +226,7 @@
             Watcher.Dispose();
             await WatcherEvent.DisposeAsync().DynamicContext();
             if (Throttle is not null) await Throttle.DisposeAsync().DynamicContext();
-            await EventSync.DisposeAsync().DynamicContext();
+            EventSync.Dispose();
         }
 
         /// <summary>

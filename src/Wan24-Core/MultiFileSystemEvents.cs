@@ -168,7 +168,7 @@ namespace wan24.Core
         /// Remove a file system events watcher
         /// </summary>
         /// <param name="id">ID</param>
-        /// <returns>Removed file system events watcher (won'tbe disposed)</returns>
+        /// <returns>Removed file system events watcher (won't be disposed)</returns>
         public virtual FileSystemEvents Remove(in string id)
         {
             EnsureUndisposed();
@@ -181,7 +181,7 @@ namespace wan24.Core
         /// Remove a file system events watcher
         /// </summary>
         /// <param name="id">ID</param>
-        /// <param name="result">Removed file system events watcher (won'tbe disposed)</param>
+        /// <param name="result">Removed file system events watcher (won't be disposed)</param>
         /// <returns>If succeed</returns>
         public virtual bool TryRemove(in string id, [NotNullWhen(returnValue: true)] out FileSystemEvents? result)
         {
@@ -278,7 +278,7 @@ namespace wan24.Core
             await base.DisposeCore().DynamicContext();
             if (Throttle is not null) await Throttle.DisposeAsync().DynamicContext();
             await WatcherEvent.DisposeAsync().DynamicContext();
-            await EventSync.DisposeAsync().DynamicContext();
+            EventSync.Dispose();
             await Watchers.Values.DisposeAllAsync().DynamicContext();
             foreach (FileSystemEvents watcher in Watchers.Values) watcher.OnEvents -= HandleEvent;
             Watchers.Clear();

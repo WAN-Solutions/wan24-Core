@@ -41,6 +41,10 @@
         protected override void Dispose(bool disposing) => RentedBuffer.Dispose();
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await RentedBuffer.DisposeAsync().DynamicContext();
+        protected override Task DisposeCore()
+        {
+            RentedBuffer.Dispose();
+            return Task.CompletedTask;
+        }
     }
 }

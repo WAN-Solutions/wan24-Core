@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,9 @@ namespace wan24.Core
         /// <param name="mta">MTA</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Send(this IEmail email, IMta? mta = null)
         {
             if (mta is null) return EmailHelper.Send(email);
@@ -34,6 +38,9 @@ namespace wan24.Core
         /// <param name="connection">Connection</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Send(this IEmail email, IMtaConnection connection)
         {
             try
@@ -54,6 +61,9 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> SendAsync(this IEmail email, IMta? mta = null, CancellationToken cancellationToken = default)
         {
             if (mta is null) return await EmailHelper.SendAsync(email, cancellationToken).DynamicContext();
@@ -75,6 +85,9 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> SendAsync(this IEmail email, IMtaConnection connection, CancellationToken cancellationToken = default)
         {
             try
@@ -98,6 +111,9 @@ namespace wan24.Core
         /// <param name="mta">MTA</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Send(
             this IEmailTemplate template, 
             string fromEmail, 
@@ -119,6 +135,9 @@ namespace wan24.Core
         /// <param name="attachments">Attachments (will be disposed!)</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Send(
             this IEmailTemplate template,
             string fromEmail,
@@ -141,6 +160,9 @@ namespace wan24.Core
         /// <param name="attachments">Attachments (will be disposed!)</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> SendAsync(
             this IEmailTemplate template, 
             string fromEmail, 
@@ -165,6 +187,9 @@ namespace wan24.Core
         /// <param name="attachments">Attachments (will be disposed!)</param>
         /// <returns>If succeed</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<bool> SendAsync(
             this IEmailTemplate template,
             string fromEmail,

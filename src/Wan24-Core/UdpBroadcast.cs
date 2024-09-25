@@ -212,7 +212,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();
-            await BroadcastSync.DisposeAsync().DynamicContext();
+            BroadcastSync.Dispose();
             await ServiceEvent.DisposeAsync().DynamicContext();
         }
     }

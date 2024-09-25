@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// <see cref="Cancellations"/> combines multiple <see cref="CancellationToken"/> into one
     /// </summary>
-    public sealed class Cancellations : DisposableBase
+    public sealed class Cancellations : BasicDisposableBase
     {
         /// <summary>
         /// <see cref="CancellationTokenSource"/>

@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -35,36 +37,60 @@ namespace wan24.Core
             /// Cast as tuple
             /// </summary>
             /// <param name="result">Result</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator (T result, bool useResult, bool next)(in ExecuteResult<T> result) => (result.Result, result.UseResult, result.Next);
 
             /// <summary>
             /// Cast from tuple
             /// </summary>
             /// <param name="tuple">Tuple</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator ExecuteResult<T>(in (T Result, bool UseResult, bool Next) tuple) => new(tuple.Result, tuple.UseResult, tuple.Next);
 
             /// <summary>
             /// Cast from tuple
             /// </summary>
             /// <param name="tuple">Tuple</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator ExecuteResult<T>(in (T Result, bool Next) tuple) => new(tuple.Result, Next: tuple.Next);
 
             /// <summary>
             /// Cast from <typeparamref name="T"/>
             /// </summary>
             /// <param name="result">Result</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator ExecuteResult<T>(in T result) => new(result);
 
             /// <summary>
             /// Cast as <see cref="Result"/>
             /// </summary>
             /// <param name="result">Result</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator T(in ExecuteResult<T> result) => result.Result;
 
             /// <summary>
             /// Cast as <see cref="UseResult"/>
             /// </summary>
             /// <param name="result">Result</param>
+            [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
             public static implicit operator bool(in ExecuteResult<T> result) => result.UseResult;
         }
     }

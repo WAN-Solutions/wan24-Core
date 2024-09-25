@@ -1,5 +1,7 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -13,6 +15,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Where<T>(this ImmutableArray<T> arr, Func<T, bool> predicate)
         {
             T item;
@@ -31,6 +37,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Where<T>(this FrozenSet<T> arr, Func<T, bool> predicate)
         {
             T item;
@@ -49,6 +59,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="skip">Items to skip</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Skip<T>(this ImmutableArray<T> arr, int skip)
         {
             int len = arr.Length;
@@ -65,6 +79,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="skip">Items to skip</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Skip<T>(this FrozenSet<T> arr, int skip)
         {
             int len = arr.Count;
@@ -81,6 +99,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="take">Items to take</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Take<T>(this ImmutableArray<T> arr, int take)
         {
             int len = arr.Length;
@@ -96,6 +118,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="take">Items to take</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Take<T>(this FrozenSet<T> arr, int take)
         {
             int len = arr.Count;
@@ -112,6 +138,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="selector">Selector</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> Select<tItem, tResult>(this ImmutableArray<tItem> arr, Func<tItem, tResult> selector)
         {
             for (int i = 0, len = arr.Length; i < len; i++)
@@ -126,6 +156,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="selector">Selector</param>
         /// <returns>Result items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<tResult> Select<tItem, tResult>(this FrozenSet<tItem> arr, Func<tItem, tResult> selector)
         {
             for (int i = 0, len = arr.Count; i < len; i++)
@@ -138,6 +172,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <returns>Items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumerable<T> Distinct<T>(this ImmutableArray<T> arr)
         {
             HashSet<int> seen = [];
@@ -212,6 +250,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T First<T>(this ImmutableArray<T> arr)
         {
             if (arr.Length < 1) throw new InvalidOperationException("Sequence contains no elements");
@@ -224,6 +266,10 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T First<T>(this FrozenSet<T> arr)
         {
             if (arr.Count < 1) throw new InvalidOperationException("Sequence contains no elements");
@@ -237,6 +283,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T First<T>(this ImmutableArray<T> arr, Func<T, bool> predicate)
         {
             T item;
@@ -256,6 +306,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>First item</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T First<T>(this FrozenSet<T> arr, Func<T, bool> predicate)
         {
             T item;
@@ -275,6 +329,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="defaultResult">Default result</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? FirstOrDefault<T>(this ImmutableArray<T> arr, T? defaultResult = default)
             => arr.Length < 1 ? defaultResult : arr[0];
 
@@ -285,6 +343,10 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="defaultResult">Default result</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? FirstOrDefault<T>(this FrozenSet<T> arr, T? defaultResult = default)
             => arr.Count < 1 ? defaultResult : arr.Items[0];
 
@@ -296,6 +358,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultResult">Default result</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? FirstOrDefault<T>(this ImmutableArray<T> arr, Func<T, bool> predicate, T? defaultResult = default)
         {
             T item;
@@ -316,6 +382,10 @@ namespace wan24.Core
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultResult">Default result</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? FirstOrDefault<T>(this FrozenSet<T> arr, Func<T, bool> predicate, T? defaultResult = default)
         {
             T item;
@@ -335,6 +405,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool All<T>(this ImmutableArray<T> enumerable, in Func<T, bool> predicate)
         {
             for (int i = 0, len = enumerable.Length; i < len; i++)
@@ -350,6 +424,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool All<T>(this FrozenSet<T> enumerable, in Func<T, bool> predicate)
         {
             for (int i = 0, len = enumerable.Count; i < len; i++)
@@ -365,6 +443,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Any<T>(this ImmutableArray<T> enumerable, in Func<T, bool> predicate)
         {
             for (int i = 0, len = enumerable.Length; i < len; i++)
@@ -380,6 +462,10 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool Any<T>(this FrozenSet<T> enumerable, in Func<T, bool> predicate)
         {
             for (int i = 0, len = enumerable.Count; i < len; i++)

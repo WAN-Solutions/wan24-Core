@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Pool rented array (returns the array to the pool, when disposed)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class RentedArray<T> : DisposableBase, IRentedArray<T>
+    public sealed class RentedArray<T> : BasicDisposableBase, IRentedArray<T>
     {
         /// <summary>
         /// Rented array

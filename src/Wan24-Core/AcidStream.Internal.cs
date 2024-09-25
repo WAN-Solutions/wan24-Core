@@ -286,11 +286,11 @@ namespace wan24.Core
                 {
                     ErrorHandling.Handle(new($"{GetType()} wasn't committed - won't roll back for disposing", new InvalidOperationException(), tag: this));
                 }
-            await using (SyncIO.DynamicContext())
+            using (SyncIO)
             {
                 using SemaphoreSyncContext ssc = await SyncIO.SyncContextAsync().DynamicContext();
                 await Backup.DisposeAsync().DynamicContext();
-                await SerializationBuffer.DisposeAsync().DynamicContext();
+                SerializationBuffer.Dispose();
                 await base.DisposeCore().DynamicContext();
             }
         }

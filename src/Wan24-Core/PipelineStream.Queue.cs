@@ -289,7 +289,7 @@ namespace wan24.Core
         /// <remarks>
         /// Constructor
         /// </remarks>
-        public class ProcessingQueueItem() : DisposableBase()
+        public class ProcessingQueueItem() : BasicAllDisposableBase()
         {
             /// <summary>
             /// Buffer to process
@@ -326,7 +326,7 @@ namespace wan24.Core
             /// <inheritdoc/>
             protected override async Task DisposeCore()
             {
-                if (Buffer is not null) await Buffer.DisposeAsync().DynamicContext();
+                Buffer?.Dispose();
                 if (Result is not null) await Result.DisposeAsync().DynamicContext();
             }
         }
@@ -334,7 +334,7 @@ namespace wan24.Core
         /// <summary>
         /// Interface for a processing queue item which hosts an object to process
         /// </summary>
-        public interface IProcessingObjectQueueItem : IDisposableObject
+        public interface IProcessingObjectQueueItem : IBasicDisposableObject, IDisposable, IAsyncDisposable
         {
             /// <summary>
             /// Processed object type

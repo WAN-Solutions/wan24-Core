@@ -52,7 +52,7 @@ namespace wan24.Core
             }
             catch
             {
-                await buffer.DisposeAsync().DynamicContext();
+                buffer.Dispose();
                 throw;
             }
         }

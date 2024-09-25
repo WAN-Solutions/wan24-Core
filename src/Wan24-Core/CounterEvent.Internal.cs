@@ -18,7 +18,11 @@ namespace wan24.Core
         protected override void Dispose(bool disposing) => Sync.Dispose();
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await Sync.DisposeAsync().DynamicContext();
+        protected override Task DisposeCore()
+        {
+            Sync.Dispose();
+            return Task.CompletedTask;
+        }
 
         /// <summary>
         /// Set a new counter value

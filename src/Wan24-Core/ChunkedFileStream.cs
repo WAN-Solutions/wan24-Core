@@ -9,7 +9,7 @@
         /// Create a chunked file stream
         /// </summary>
         /// <param name="fileName">Filename template (needs to use variable <c>chunk</c> (the numeric chunk index) for parsing a chunk filename using 
-        /// <see cref="StringExtensions.Parse(string, in Dictionary{string, string}, in StringParserOptions?)"/></param>
+        /// <see cref="StringExtensions.Parse(string, in IDictionary{string, string}, in StringParserOptions?)"/></param>
         /// <param name="chunkSize">Chunk size in bytes</param>
         /// <param name="createMode">File create mode</param>
         /// <param name="openMode">Open existing file mode</param>

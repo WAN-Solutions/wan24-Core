@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="EnumerableBuilder{T}"/> extensions
@@ -13,6 +16,10 @@
         /// <param name="builder">Builder</param>
         /// <param name="predicates">Predicates</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Func<tItem, bool>[] predicates)
             where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
@@ -30,6 +37,10 @@
         /// <param name="builder">Builder</param>
         /// <param name="predicates">Predicates</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithCondition<tItem, tBuilder>(this tBuilder builder, params Func<tItem, int, bool>[] predicates)
             where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
@@ -46,6 +57,10 @@
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutCondition<tItem, tBuilder>(this tBuilder builder) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Conditions.Clear();
@@ -63,6 +78,10 @@
         /// <param name="ascending">If to sort ascending</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithSorting<tItem, tBuilder, tKey>(
             this tBuilder builder,
             in Func<tItem, tKey> expression,
@@ -83,6 +102,10 @@
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutSorting<tItem, tBuilder>(this tBuilder builder) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Sorting.Clear();
@@ -97,6 +120,10 @@
         /// <param name="builder">Builder</param>
         /// <param name="skip">Skip count</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithSkip<tItem, tBuilder>(this tBuilder builder, in int skip) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Skip = skip;
@@ -110,6 +137,10 @@
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutSkip<tItem, tBuilder>(this tBuilder builder) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Skip = null;
@@ -124,6 +155,10 @@
         /// <param name="builder">Builder</param>
         /// <param name="take">Take count</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithTake<tItem, tBuilder>(this tBuilder builder, in int take) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Take = take;
@@ -137,6 +172,10 @@
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutTake<tItem, tBuilder>(this tBuilder builder) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Take = null;
@@ -151,6 +190,10 @@
         /// <param name="builder">Builder</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithDistinct<tItem, tBuilder>(this tBuilder builder, in IEqualityComparer<tItem>? comparer = null) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.DistinctBy = null;
@@ -169,6 +212,10 @@
         /// <param name="keySelector">Key selector</param>
         /// <param name="comparer">Comparer</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithDistinct<tItem, tBuilder, tKey>(
             this tBuilder builder,
             in Func<tItem, tKey> keySelector,
@@ -189,6 +236,10 @@
         /// <typeparam name="tBuilder">Builder type</typeparam>
         /// <param name="builder">Builder</param>
         /// <returns>Builder</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tBuilder WithoutDistinct<tItem, tBuilder>(this tBuilder builder) where tBuilder : EnumerableBuilderBase<tItem, tBuilder>
         {
             builder.Distinct = false;

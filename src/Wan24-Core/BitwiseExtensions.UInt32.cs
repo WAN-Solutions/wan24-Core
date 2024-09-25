@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint RotateLeft(this uint value, in int bits) => BitOperations.RotateLeft(value, bits);
 
         /// <summary>
@@ -23,6 +27,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint RotateRight(this uint value, in int bits) => BitOperations.RotateRight(value, bits);
 
         /// <summary>
@@ -32,6 +39,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint Or(this uint value, in uint other) => value | other;
 
         /// <summary>
@@ -41,6 +51,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint And(this uint value, in uint other) => value & other;
 
         /// <summary>
@@ -50,6 +63,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint Xor(this uint value, in uint other) => value ^ other;
 
         /// <summary>
@@ -59,6 +75,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ShiftLeft(this uint value, in int bits) => value << bits;
 
         /// <summary>
@@ -68,6 +87,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ShiftRight(this uint value, in int bits) => value >> bits;
 
         /// <summary>
@@ -77,6 +99,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool HasFlags(this uint value, in uint flags) => (value & flags) == flags;
 
         /// <summary>
@@ -86,6 +111,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint AddFlags(this uint value, in uint flags) => value | flags;
 
         /// <summary>
@@ -95,6 +123,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint RemoveFlags(this uint value, in uint flags) => value & ~flags;
 
         /// <summary>
@@ -103,6 +134,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte ToSByte(this uint value) => (sbyte)value;
 
         /// <summary>
@@ -111,6 +145,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte ToByte(this uint value) => (byte)value;
 
         /// <summary>
@@ -119,6 +156,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static short ToShort(this uint value) => (short)value;
 
         /// <summary>
@@ -127,6 +167,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ushort ToUShort(this uint value) => (ushort)value;
 
         /// <summary>
@@ -135,6 +178,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToInt(this uint value) => (int)value;
 
         /// <summary>
@@ -143,6 +189,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long ToLong(this uint value) => value;
 
         /// <summary>
@@ -151,6 +200,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong ToULong(this uint value) => value;
     }
 }

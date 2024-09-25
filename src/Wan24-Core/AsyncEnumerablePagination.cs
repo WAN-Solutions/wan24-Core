@@ -11,7 +11,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="enumerator">Enumerator</param>
     /// <param name="itemsPerPage">Items per page</param>
-    public sealed class AsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage) : DisposableBase()
+    public sealed class AsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage) : BasicAllDisposableBase()
     {
         /// <summary>
         /// Enumerator
@@ -167,7 +167,7 @@ namespace wan24.Core
         /// Page enumerator
         /// </summary>
         /// <param name="pagination">Pagination</param>
-        private sealed class PageEnumerator(in AsyncEnumerablePagination<T> pagination) : DisposableBase(asyncDisposing: false), IAsyncEnumerator<T>
+        private sealed class PageEnumerator(in AsyncEnumerablePagination<T> pagination) : DisposableBase(), IAsyncEnumerator<T>
         {
             /// <summary>
             /// Pagination

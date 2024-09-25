@@ -1,6 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -82,6 +84,10 @@ namespace wan24.Core
         /// <typeparam name="T">Type to deserialize</typeparam>
         /// <param name="buffer">Buffer</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T DeserializeTypeFrom<T>(this ReadOnlySpan<byte> buffer) where T : ISerializeBinary<T>
             => BinaryGenericHelper<T>.DeserializeTypeMethod(buffer);
 
@@ -92,6 +98,10 @@ namespace wan24.Core
         /// <param name="buffer">Buffer</param>
         /// <param name="result">Instance</param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryDeserializeTypeFrom<T>(this ReadOnlySpan<byte> buffer, [NotNullWhen(returnValue: true)] out T? result) where T : ISerializeBinary<T>
             => BinaryGenericHelper<T>.TryDeserializeTypeMethod(buffer, out result);
 
@@ -159,6 +169,10 @@ namespace wan24.Core
         /// <typeparam name="T">Type to deserialize</typeparam>
         /// <param name="str">String</param>
         /// <returns>Instance</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T Parse<T>(this ReadOnlySpan<char> str) where T : ISerializeString<T> => StringGenericHelper<T>.ParseMethod(str);
 
         /// <summary>
@@ -168,6 +182,10 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="result">Instance</param>
         /// <returns>If succeed</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool TryParse<T>(this ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out T? result) where T : ISerializeString<T>
             => StringGenericHelper<T>.TryParseMethod(str, out result);
 
