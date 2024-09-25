@@ -259,6 +259,7 @@ namespace wan24.Core
             int len = objects.Length;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
+            Array.Fill(tasks.Array, Task.CompletedTask);
             for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects.Span[i]), i++) ;
             await Task.WhenAll(tasks.Array).DynamicContext();
         }
@@ -296,6 +297,7 @@ namespace wan24.Core
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
+            Array.Fill(tasks.Array, Task.CompletedTask);
             for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
             await Task.WhenAll(tasks.Array).DynamicContext();
         }
@@ -313,6 +315,7 @@ namespace wan24.Core
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
+            Array.Fill(tasks.Array, Task.CompletedTask);
             for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
             await Task.WhenAll(tasks.Array).DynamicContext();
         }
@@ -330,6 +333,7 @@ namespace wan24.Core
             int len = objects.Length;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
+            Array.Fill(tasks.Array, Task.CompletedTask);
             for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
             await Task.WhenAll(tasks.Array).DynamicContext();
         }
@@ -347,6 +351,7 @@ namespace wan24.Core
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
+            Array.Fill(tasks.Array, Task.CompletedTask);
             for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects.Items[i]), i++) ;
             await Task.WhenAll(tasks.Array).DynamicContext();
         }
