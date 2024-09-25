@@ -72,6 +72,7 @@ namespace wan24.Core
                 int len = disposables.Length;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
+                Array.Fill(tasks.Array, Task.CompletedTask);
                 for (int i = 0; i < len; tasks[i] = disposables.Span[i].DisposeAsync().AsTask(), i++) ;
                 await Task.WhenAll(tasks).DynamicContext();
             }
@@ -119,6 +120,7 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
+                Array.Fill(tasks.Array, Task.CompletedTask);
                 for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
                 await Task.WhenAll(tasks).DynamicContext();
             }
@@ -144,6 +146,7 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
+                Array.Fill(tasks.Array, Task.CompletedTask);
                 for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
                 await Task.WhenAll(tasks).DynamicContext();
             }
@@ -169,6 +172,7 @@ namespace wan24.Core
                 int len = disposables.Length;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
+                Array.Fill(tasks.Array, Task.CompletedTask);
                 for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
                 await Task.WhenAll(tasks).DynamicContext();
             }
@@ -194,6 +198,7 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
+                Array.Fill(tasks.Array, Task.CompletedTask);
                 for (int i = 0; i < len; tasks[i] = disposables.Items[i].DisposeAsync().AsTask(), i++) ;
                 await Task.WhenAll(tasks).DynamicContext();
             }
