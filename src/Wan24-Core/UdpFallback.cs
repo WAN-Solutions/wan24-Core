@@ -138,13 +138,13 @@ namespace wan24.Core
             try
             {
                 await UdpClient.SendAsync(data, target, cancellationToken).DynamicContext();
-                using CancellationTokenSource cts = new(ResponseTimeout);
+                using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+                cts.CancelAfter(ResponseTimeout);
                 try
                 {
-                    using Cancellations cancellation = new(cancellationToken, cts.Token, CancelToken);
-                    return await tcs.Task.WaitAsync(cancellation).DynamicContext();
+                    return await tcs.Task.WaitAsync(cts.Token).DynamicContext();
                 }
-                catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(cts.Token) || ex.CancellationToken.IsEqualTo(CancelToken))
+                catch (OperationCanceledException ex) when (ex.CancellationToken.IsEqualTo(cts.Token))
                 {
                 }
             }
@@ -234,13 +234,13 @@ namespace wan24.Core
             EnsureUndisposed();
             await fallbackConnection.WriteAsync(data, cancellationToken).DynamicContext();
             int len = 0;
-            using CancellationTokenSource cts = new(ResponseTimeout);
+            using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cts.CancelAfter(ResponseTimeout);
             try
             {
-                using Cancellations cancellation = new(cancellationToken, cts.Token);
                 while (len < response.Length)
                 {
-                    len += await fallbackConnection.ReadAsync(response[len..], cancellation).DynamicContext();
+                    len += await fallbackConnection.ReadAsync(response[len..], cts.Token).DynamicContext();
                     if (responseVerifier(response[..len], isFromFallback: true)) break;
                 }
             }

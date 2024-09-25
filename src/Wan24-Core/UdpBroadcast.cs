@@ -96,16 +96,16 @@ namespace wan24.Core
 #pragma warning restore CA1416 // Supported on Windows only
             listener.Client.DontFragment = true;
             ConfigureBroadcastListener(listener);
-            using CancellationTokenSource cts = new(timeout);
-            using Cancellations cancellations = new(cancellationToken, cts.Token);
+            using CancellationTokenSource cancellations = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            cancellations.CancelAfter(timeout);
             List<T?> res = [];
             Func<Task> receiver = async () =>
             {
                 try
                 {
-                    while (cancellations)
+                    while (!cancellations.IsCancellationRequested)
                     {
-                        res.Add(HandleResponse(await listener.ReceiveAsync(cancellations).DynamicContext()));
+                        res.Add(HandleResponse(await listener.ReceiveAsync(cancellations.Token).DynamicContext()));
                         if (maxResponseCount < 1) continue;
                         if (res.Count == maxResponseCount) return;
                     }
@@ -117,8 +117,8 @@ namespace wan24.Core
                 {
                 }
             };
-            Task receiverTask = receiver.StartLongRunningTask(cancellationToken: cancellations);
-            await listener.SendAsync(payload, new IPEndPoint(IPAddress.Broadcast, port != 0 ? port : BroadcastPort), cancellations).DynamicContext();
+            Task receiverTask = receiver.StartLongRunningTask(cancellationToken: cancellations.Token);
+            await listener.SendAsync(payload, new IPEndPoint(IPAddress.Broadcast, port != 0 ? port : BroadcastPort), cancellations.Token).DynamicContext();
             await receiverTask.DynamicContext();
             return res.Count == 0 ? [] : [.. res];
         }

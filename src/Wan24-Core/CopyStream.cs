@@ -58,11 +58,7 @@
         /// <summary>
         /// Cancellation
         /// </summary>
-        protected readonly CancellationTokenSource Cancellation = new();
-        /// <summary>
-        /// Cancellations
-        /// </summary>
-        protected readonly Cancellations _Cancellations;
+        protected readonly CancellationTokenSource Cancellation;
 
         /// <summary>
         /// Constructor
@@ -87,9 +83,7 @@
                 throw new ArgumentException("Writable copy target stream required", nameof(copyTarget));
             CopyTarget = copyTarget;
             LeaveTargetOpen = leaveTargetStreamOpen;
-            _Cancellations = cancellationToken.IsEqualTo(default)
-                ? new(Cancellation.Token) 
-                : new(Cancellation.Token, cancellationToken);
+            Cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             CopyTask = ((Func<Task>)StartCopyAsync).StartLongRunningTask(cancellationToken: CancellationToken.None);
         }
 
@@ -120,7 +114,7 @@
         public CancellationToken CopyCancellation => Cancellation.Token;
 
         /// <inheritdoc/>
-        public CancellationToken Cancellations => _Cancellations;
+        public CancellationToken Cancellations => Cancellation.Token;
 
         /// <inheritdoc/>
         public bool IsCopyCompleted { get; protected set; }
@@ -139,7 +133,7 @@
             await Task.Yield();
             try
             {
-                await CopyToAsync(CopyTarget, _Cancellations).DynamicContext();
+                await CopyToAsync(CopyTarget, Cancellation.Token).DynamicContext();
                 IsCopyCompleted = true;
                 RaiseOnComplete();
             }
@@ -158,7 +152,6 @@
             Cancellation.Cancel();
             base.Dispose(disposing);
             Cancellation.Dispose();
-            _Cancellations.Dispose();
             if (!LeaveTargetOpen)
                 CopyTarget.Dispose();
         }
@@ -169,7 +162,6 @@
             await Cancellation.CancelAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
             Cancellation.Dispose();
-            _Cancellations.Dispose();
             if (!LeaveTargetOpen)
                 await CopyTarget.DisposeAsync().DynamicContext();
         }

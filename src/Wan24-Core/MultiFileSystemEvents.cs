@@ -69,8 +69,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureRunning();
-            using Cancellations cancellation = new(cancellationToken, CancelToken);
-            WatcherEvent.Wait(cancellation);
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            WatcherEvent.Wait(cancellation.Token);
             return Last ?? throw new InvalidProgramException();
         }
 
@@ -83,8 +83,8 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureRunning();
-            using Cancellations cancellation = new(cancellationToken, CancelToken);
-            await WatcherEvent.WaitAsync(cancellation).DynamicContext();
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            await WatcherEvent.WaitAsync(cancellation.Token).DynamicContext();
             return Last ?? throw new InvalidProgramException();
         }
 

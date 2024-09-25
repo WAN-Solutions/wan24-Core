@@ -5,6 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Bound cancellation token source (canceled when a parent token was canceled)
     /// </summary>
+    [Obsolete("Use CancellationTokenSource.CreateLinkedTokenSource instead")]//TODO Remove in v3
     public class BoundCancellationTokenSource : CancellationTokenSource
     {
         /// <summary>

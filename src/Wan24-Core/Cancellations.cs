@@ -5,6 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// <see cref="Cancellations"/> combines multiple <see cref="CancellationToken"/> into one
     /// </summary>
+    [Obsolete("Use CancellationTokenSource.CreateLinkedTokenSource instead")]//TODO Remove in v3
     public sealed class Cancellations : BasicDisposableBase
     {
         /// <summary>

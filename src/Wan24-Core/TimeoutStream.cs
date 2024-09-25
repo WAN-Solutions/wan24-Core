@@ -68,22 +68,9 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cts = new(WriteTimeout);
-                List<CancellationToken> cancelToken = [cts.Token];
-                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
-                using Cancellations cancellation = new([.. cancelToken]);
-                try
-                {
-                    await Target.FlushAsync(cancellation).DynamicContext();
-                }
-                catch (TimeoutException)
-                {
-                    throw;
-                }
-                catch (OperationCanceledException ex) when (cts.Token.IsCancellationRequested)
-                {
-                    throw new TimeoutException(message: null, ex);
-                }
+                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                cancellation.CancelAfter(WriteTimeout);
+                await Target.FlushAsync(cancellation.Token).DynamicContext();
             }
             else
             {
@@ -96,22 +83,9 @@
         {
             if (_ReadTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cts = new(WriteTimeout);
-                List<CancellationToken> cancelToken = [cts.Token];
-                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
-                using Cancellations cancellation = new([.. cancelToken]);
-                try
-                {
-                    return await Target.ReadAsync(buffer, offset, count, cancellation).DynamicContext();
-                }
-                catch (TimeoutException)
-                {
-                    throw;
-                }
-                catch (OperationCanceledException ex) when (cts.Token.IsCancellationRequested)
-                {
-                    throw new TimeoutException(message: null, ex);
-                }
+                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                cancellation.CancelAfter(WriteTimeout);
+                return await Target.ReadAsync(buffer, offset, count, cancellation.Token).DynamicContext();
             }
             else
             {
@@ -124,22 +98,9 @@
         {
             if (_ReadTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cts = new(WriteTimeout);
-                List<CancellationToken> cancelToken = [cts.Token];
-                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
-                using Cancellations cancellation = new([.. cancelToken]);
-                try
-                {
-                    return await Target.ReadAsync(buffer, cancellation).DynamicContext();
-                }
-                catch (TimeoutException)
-                {
-                    throw;
-                }
-                catch (OperationCanceledException ex) when (cts.Token.IsCancellationRequested)
-                {
-                    throw new TimeoutException(message: null, ex);
-                }
+                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                cancellation.CancelAfter(WriteTimeout);
+                return await Target.ReadAsync(buffer, cancellation.Token).DynamicContext();
             }
             else
             {
@@ -152,22 +113,9 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cts = new(WriteTimeout);
-                List<CancellationToken> cancelToken = [cts.Token];
-                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
-                using Cancellations cancellation = new([.. cancelToken]);
-                try
-                {
-                    await Target.WriteAsync(buffer, offset, count, cancellation).DynamicContext();
-                }
-                catch (TimeoutException)
-                {
-                    throw;
-                }
-                catch (OperationCanceledException ex) when (cts.Token.IsCancellationRequested)
-                {
-                    throw new TimeoutException(message: null, ex);
-                }
+                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                cancellation.CancelAfter(WriteTimeout);
+                await Target.WriteAsync(buffer, offset, count, cancellation.Token).DynamicContext();
             }
             else
             {
@@ -180,22 +128,9 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cts = new(WriteTimeout);
-                List<CancellationToken> cancelToken = [cts.Token];
-                if (!cancellationToken.IsEqualTo(default)) cancelToken.Add(cancellationToken);
-                using Cancellations cancellation = new([.. cancelToken]);
-                try
-                {
-                    await Target.WriteAsync(buffer, cancellation).DynamicContext();
-                }
-                catch (TimeoutException)
-                {
-                    throw;
-                }
-                catch (OperationCanceledException ex) when (cts.Token.IsCancellationRequested)
-                {
-                    throw new TimeoutException(message: null, ex);
-                }
+                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                cancellation.CancelAfter(WriteTimeout);
+                await Target.WriteAsync(buffer, cancellation.Token).DynamicContext();
             }
             else
             {

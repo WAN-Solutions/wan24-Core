@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Threading;
 
 namespace wan24.Core
 {
@@ -188,8 +189,8 @@ namespace wan24.Core
                     Contract.Assert(WorkerCompletion is not null);
                     try
                     {
-                        using Cancellations cancellation = new([.. new CancellationToken[] { cts.Token, WorkerCancellation }.RemoveNoneAndDefault()]);
-                        Worker.Invoke(this, cancellation);
+                        using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, WorkerCancellation);
+                        Worker.Invoke(this, cancellation.Token);
                         WorkEvent.Reset();
                         WorkerCompletion.SetResult();
                     }
