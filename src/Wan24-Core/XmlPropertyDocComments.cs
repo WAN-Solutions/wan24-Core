@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Xml.XPath;
+﻿using System.Xml.XPath;
 
 namespace wan24.Core
 {
@@ -24,7 +23,7 @@ namespace wan24.Core
             Type = type;
             Property = property;
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(property)}']/summary");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(property)}']/summary")?.Trim();
         }
 
         /// <summary>

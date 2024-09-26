@@ -179,7 +179,7 @@ namespace wan24.Core
                 sb.Append('{');
                 List<string> genericParameterInfos = [];
                 foreach (Type type in genericParameters)
-                    sb.Append(type.IsGenericParameter ? type.Name : GetGenericName(type));
+                    sb.Append(type.IsGenericParameter ? type.Name : GetGenericName(type, isParameter: true));
                 sb.Append(string.Join(',', genericParameterInfos));
                 sb.Append('}');
             }

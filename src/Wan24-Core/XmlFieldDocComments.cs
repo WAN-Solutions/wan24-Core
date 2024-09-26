@@ -23,7 +23,7 @@ namespace wan24.Core
             Type = type;
             Field = field;
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(field)}']/summary");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(field)}']/summary")?.Trim();
         }
 
         /// <summary>
