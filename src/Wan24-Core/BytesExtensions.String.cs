@@ -23,12 +23,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return new string(chars.Span[..count]);
+                return new string(charsSpan[..count]);
 #if !NO_UNSAFE
             }
             else
@@ -123,12 +124,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UTF8Encoding(encoderShouldEmitUTF8Identifier: true, throwOnInvalidBytes: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-8 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return chars.Span[..count].ToArray();
+                return charsSpan[..count].ToArray();
 #if !NO_UNSAFE
             }
             else
@@ -204,12 +206,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return new string(chars.Span[..count]);
+                return new string(charsSpan[..count]);
 #if !NO_UNSAFE
             }
             else
@@ -301,12 +304,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UnicodeEncoding(bigEndian: false, byteOrderMark: false, throwOnInvalidBytes: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-16 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return chars.Span[..count].ToArray();
+                return charsSpan[..count].ToArray();
 #if !NO_UNSAFE
             }
             else
@@ -381,12 +385,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return new string(chars.Span[..count]);
+                return new string(charsSpan[..count]);
 #if !NO_UNSAFE
             }
             else
@@ -478,12 +483,13 @@ namespace wan24.Core
             if (bytes.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<char> chars = new(bytes.Length, clean: false);
+                using RentedMemoryRef<char> chars = new(bytes.Length, clean: false);
+                Span<char> charsSpan = chars.Span;
                 new UTF32Encoding(bigEndian: false, byteOrderMark: false, throwOnInvalidCharacters: true)
                     .GetDecoder()
-                    .Convert(bytes, chars.Span, flush: true, out int used, out int count, out bool completed);
+                    .Convert(bytes, charsSpan, flush: true, out int used, out int count, out bool completed);
                 if (!completed || (!ignoreUsed && used != bytes.Length)) throw new InvalidDataException($"UTF-32 decoding failed (completed: {completed}, {used}/{bytes.Length})");
-                return chars.Span[..count].ToArray();
+                return charsSpan[..count].ToArray();
 #if !NO_UNSAFE
             }
             else

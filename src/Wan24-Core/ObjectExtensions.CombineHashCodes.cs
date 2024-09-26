@@ -22,7 +22,7 @@
             if (len < 9) return hashCode;
             objs = objs[8..];
             len -= 8;
-            using RentedArrayRefStruct<object?> buffer = new(len: Math.Min(8, len + 1), clean: false);
+            using RentedMemoryRef<object?> buffer = new(len: Math.Min(8, len + 1), clean: false);
             Span<object?> bufferSpan = buffer.Span;
             int i,
                 j,

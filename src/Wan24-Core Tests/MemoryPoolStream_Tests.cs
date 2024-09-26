@@ -9,7 +9,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void General_Tests()
         {
-            using MemoryPoolStream ms = new(ArrayPool<byte>.Create(maxArrayLength: Settings.BufferSize, maxArraysPerBucket: 10));
+            using MemoryPoolStream ms = new();
             ms.WriteByte(0);
             Assert.AreEqual(1L, ms.Length);
             Assert.AreEqual(1L, ms.Position);
@@ -31,7 +31,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void SetLength_Tests()
         {
-            using MemoryPoolStream ms = new(ArrayPool<byte>.Create(maxArrayLength: Settings.BufferSize, maxArraysPerBucket: 10));
+            using MemoryPoolStream ms = new();
             Assert.AreEqual(0L, ms.Length);
             ms.SetLength(1);
             Assert.AreEqual(1L, ms.Length);
@@ -51,7 +51,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void WriteByte_Tests()
         {
-            using MemoryPoolStream ms = new(ArrayPool<byte>.Create(maxArrayLength: 2, maxArraysPerBucket: 10), bufferSize: 2);
+            using MemoryPoolStream ms = new(bufferSize: 2);
             ms.WriteByte(1);
             Assert.AreEqual(1L, ms.Length);
             Assert.AreEqual(1L, ms.Position);
@@ -72,7 +72,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void ReadByte_Tests()
         {
-            using MemoryPoolStream ms = new(ArrayPool<byte>.Create(maxArrayLength: 2, maxArraysPerBucket: 10), bufferSize: 2);
+            using MemoryPoolStream ms = new(bufferSize: 2);
             Assert.AreEqual(-1, ms.ReadByte());
             ms.WriteByte(1);
             ms.Position = 0;
@@ -90,7 +90,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void ToArray_Tests()
         {
-            using MemoryPoolStream ms = new(ArrayPool<byte>.Create(maxArrayLength: Settings.BufferSize, maxArraysPerBucket: 10));
+            using MemoryPoolStream ms = new();
             Assert.AreEqual(0, ms.ToArray().Length);
             byte[] data = new byte[200000];
             Random.Shared.NextBytes(data);

@@ -39,8 +39,8 @@ namespace wan24.Core
                 return;
             }
             if (!Elements[0].CanProcess(buffer.AsMemory(offset, count))) throw new InvalidOperationException("The first pipeline element can't process a buffer");
-            RentedArray<byte> processingBuffer = CreateBuffer(count);
-            buffer.AsSpan(offset, count).CopyTo(processingBuffer.Span);
+            RentedMemory<byte> processingBuffer = CreateBuffer(count);
+            buffer.AsSpan(offset, count).CopyTo(processingBuffer.Memory.Span);
             ProcessingQueueItem item = new()
             {
                 Buffer = processingBuffer,
@@ -77,8 +77,8 @@ namespace wan24.Core
                 OutputBuffer?.Write(buffer);
                 return;
             }
-            RentedArray<byte> processingBuffer = CreateBuffer(buffer.Length);
-            buffer.CopyTo(processingBuffer.Span);
+            RentedMemory<byte> processingBuffer = CreateBuffer(buffer.Length);
+            buffer.CopyTo(processingBuffer.Memory.Span);
             try
             {
                 if (!Elements[0].CanProcess(processingBuffer.Memory)) throw new InvalidOperationException("The first pipeline element can't process a buffer");
@@ -127,8 +127,8 @@ namespace wan24.Core
                 return;
             }
             if (!Elements[0].CanProcess(buffer.AsMemory(offset, count))) throw new InvalidOperationException("The first pipeline element can't process a buffer");
-            RentedArray<byte> processingBuffer =CreateBuffer(count);
-            buffer.AsSpan(offset, count).CopyTo(processingBuffer.Span);
+            RentedMemory<byte> processingBuffer = CreateBuffer(count);
+            buffer.AsSpan(offset, count).CopyTo(processingBuffer.Memory.Span);
             ProcessingQueueItem item = new()
             {
                 Buffer = processingBuffer,
@@ -169,8 +169,8 @@ namespace wan24.Core
                 return;
             }
             if (!Elements[0].CanProcess(buffer)) throw new InvalidOperationException("The first pipeline element can't process a buffer");
-            RentedArray<byte> processingBuffer = CreateBuffer(buffer.Length);
-            buffer.Span.CopyTo(processingBuffer.Span);
+            RentedMemory<byte> processingBuffer = CreateBuffer(buffer.Length);
+            buffer.Span.CopyTo(processingBuffer.Memory.Span);
             ProcessingQueueItem item = new()
             {
                 Buffer = processingBuffer,
@@ -203,7 +203,7 @@ namespace wan24.Core
         {
             await Task.Yield();
             if (InputBuffer is null) throw new InvalidProgramException();
-            RentedArray<byte>? buffer = null;
+            RentedMemory<byte>? buffer = null;
             try
             {
                 int red;
@@ -212,13 +212,13 @@ namespace wan24.Core
                     await SyncEvent.WaitAsync(Cancellation.Token).DynamicContext();
                     await PauseEvent.WaitAsync(Cancellation.Token).DynamicContext();
                     buffer = CreateBuffer();
-                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Memory, Cancellation.Token).DynamicContext();
+                    red = await ReadStreamChunkAsync(InputBuffer, buffer.Value.Memory, Cancellation.Token).DynamicContext();
                     if (Elements.Count < 1)
                     {
                         if (OutputBuffer is not null)
                         {
                             Logger?.LogDebug("Write {count} bytes from the input buffer to the output buffer", red);
-                            await OutputBuffer.WriteAsync(buffer.Memory[..red], Cancellation.Token).DynamicContext();
+                            await OutputBuffer.WriteAsync(buffer.Value.Memory[..red], Cancellation.Token).DynamicContext();
                         }
                         else
                         {
@@ -229,7 +229,7 @@ namespace wan24.Core
                     {
                         ProcessingQueueItem item = new()
                         {
-                            Buffer = buffer,
+                            Buffer = buffer.Value,
                             BufferLength = red,
                             Element = Elements[0]
                         };

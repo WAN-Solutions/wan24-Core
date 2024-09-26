@@ -10,7 +10,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="len">Buffer length in bytes</param>
         /// <returns>Buffer</returns>
-        public virtual RentedArray<byte> CreateBuffer(in int len = 0)
+        public virtual RentedMemory<byte> CreateBuffer(in int len = 0)
             => new(len < 1 ? Settings.BufferSize : len, clean: false)
             {
                 Clear = ClearBuffers
@@ -36,18 +36,18 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Chunk buffer</returns>
-        public virtual async Task<RentedArray<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
+        public virtual async Task<RentedMemory<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             Logger?.LogDebug("Reading chunk from stream");
             using PooledTempStream ms = new();
             await CopyStreamAsync(stream, ms, cancellationToken).DynamicContext();
             Logger?.LogDebug("Red {count} bytes chunk from stream", ms.Length);
-            RentedArray<byte> buffer = CreateBuffer((int)ms.Length);
+            RentedMemory<byte> buffer = CreateBuffer((int)ms.Length);
             try
             {
                 ms.Position = 0;
-                ms.ReadExactly(buffer.Span);
+                ms.ReadExactly(buffer.Memory.Span);
                 return buffer;
             }
             catch

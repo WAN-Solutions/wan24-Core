@@ -15,6 +15,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -24,69 +26,15 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this tItem[] enumerable,
             Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
+            int offset = 0, 
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
             {
                 result = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!result.Next) yield break;
-                if (result) yield return result.Result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this Memory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                result = await action(enumerable.Span[i], cancellationToken).DynamicContext();
-                if (!result.Next) yield break;
-                if (result) yield return result.Result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this ReadOnlyMemory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                result = await action(enumerable.Span[i], cancellationToken).DynamicContext();
                 if (!result.Next) yield break;
                 if (result) yield return result.Result;
             }
@@ -155,6 +103,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -164,11 +114,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this List<tItem> enumerable,
             Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
             {
                 result = await action(enumerable[i], cancellationToken).DynamicContext();
                 if (!result.Next) yield break;
@@ -183,6 +135,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -192,11 +146,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this IList<tItem> enumerable,
             Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
             {
                 result = await action(enumerable[i], cancellationToken).DynamicContext();
                 if (!result.Next) yield break;
@@ -211,6 +167,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -220,11 +178,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this FrozenSet<tItem> enumerable,
             Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
             {
                 result = await action(enumerable.Items[i], cancellationToken).DynamicContext();
                 if (!result.Next) yield break;
@@ -239,6 +199,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -248,11 +210,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
             this ImmutableArray<tItem> enumerable,
             Func<tItem, CancellationToken, Task<EnumerableExtensions.ExecuteResult<tResult>>> action,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             EnumerableExtensions.ExecuteResult<tResult> result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
             {
                 result = await action(enumerable[i], cancellationToken).DynamicContext();
                 if (!result.Next) yield break;

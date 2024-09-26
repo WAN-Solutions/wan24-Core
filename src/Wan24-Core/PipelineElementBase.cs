@@ -156,7 +156,7 @@ namespace wan24.Core
         /// <param name="next">Next element</param>
         /// <param name="processInParallel">If to process the result in parallel</param>
         /// <returns>Result</returns>
-        public virtual PipelineResultRentedBuffer CreateRentedBufferResult(in RentedArray<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
+        public virtual PipelineResultRentedBuffer CreateRentedBufferResult(in RentedMemory<byte> buffer, in PipelineElementBase? next = null, in bool processInParallel = true)
         {
             EnsureUndisposed();
             return new(this, buffer, next ?? GetNextElement(buffer.Memory))
@@ -257,7 +257,7 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Chunk buffer</returns>
-        protected virtual async Task<RentedArray<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
+        protected virtual async Task<RentedMemory<byte>> ReadStreamChunkAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();

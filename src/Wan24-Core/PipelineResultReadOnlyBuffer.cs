@@ -21,8 +21,8 @@ namespace wan24.Core
         public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
         {
             EnsureUndisposed();
-            RentedArray<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
-            Buffer.Span.CopyTo(buffer.Span);
+            RentedMemory<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
+            Buffer.Span.CopyTo(buffer.Memory.Span);
             return element?.CreateRentedBufferResult(buffer, processInParallel: element.ProcessResultInParallel)
                 ?? Element.CreateRentedBufferResult(buffer, processInParallel: Element.ProcessResultInParallel);
         }

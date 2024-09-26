@@ -37,63 +37,6 @@ namespace wan24.Core
         /// <param name="version">Version</param>
         /// <param name="requireVersionFilter">Require the item to implement a version filter (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)?</param>
         /// <returns>Filtered items</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<T> FilterByVersion<T>(this Memory<T> enumerable, int version, bool requireVersionFilter = false)
-            => FilterByVersion((ReadOnlyMemory<T>)enumerable, version, requireVersionFilter);
-
-        /// <summary>
-        /// Filter by version (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="version">Version</param>
-        /// <param name="requireVersionFilter">Require the item to implement a version filter (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)?</param>
-        /// <returns>Filtered items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<T> FilterByVersion<T>(this ReadOnlyMemory<T> enumerable, int version, bool requireVersionFilter = false)
-        {
-            T item;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                item = enumerable.Span[i];
-                if (
-                    (item is not IVersioning v || (v.FromVersion <= version && v.ToVersion >= version)) &&
-                    (item is not IVersioningExt ve || ve.IsIncluded(version)) &&
-                    (!requireVersionFilter || item is IVersioningExt || item is IVersioning)
-                    )
-                    yield return item;
-            }
-        }
-
-        /// <summary>
-        /// Filter by version (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="version">Version</param>
-        /// <param name="requireVersionFilter">Require the item to implement a version filter (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)?</param>
-        /// <returns>Filtered items</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<T> FilterByVersion<T>(this T[] enumerable, int version, bool requireVersionFilter = false)
-            => FilterByVersion((ReadOnlyMemory<T>)enumerable, version, requireVersionFilter);
-
-        /// <summary>
-        /// Filter by version (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="version">Version</param>
-        /// <param name="requireVersionFilter">Require the item to implement a version filter (using <see cref="IVersioning"/> and <see cref="IVersioningExt"/>)?</param>
-        /// <returns>Filtered items</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

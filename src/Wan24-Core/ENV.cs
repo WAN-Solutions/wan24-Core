@@ -14,6 +14,10 @@ namespace wan24.Core
         /// CLI Arguments
         /// </summary>
         internal static string[] _CliArguments;
+        /// <summary>
+        /// CLR platform target
+        /// </summary>
+        private static ImageFileMachine? _ClrPlatformTarget = null;
 
         /// <summary>
         /// Constructor
@@ -76,21 +80,21 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Absolute app path including entry assembly filename (empty string, if runnng in a browser)
+        /// Absolute app path including entry assembly filename (empty string, if running in a browser)
         /// </summary>
         [CliConfig]
         [Required]
         public static string App { get; set; }
 
         /// <summary>
-        /// Absolute app folder (empty string, if runnng in a browser)
+        /// Absolute app folder (empty string, if running in a browser)
         /// </summary>
         [CliConfig]
         [Required]
         public static string AppFolder { get; set; }
 
         /// <summary>
-        /// App start command (empty string, if runnng in a browser)
+        /// App start command (empty string, if running in a browser)
         /// </summary>
         [CliConfig]
         [Required]
@@ -140,5 +144,19 @@ namespace wan24.Core
         /// Current call stack
         /// </summary>
         public static string Stack => new StackTrace(fNeedFileInfo: true).ToString();
+
+        /// <summary>
+        /// CLR platform target
+        /// </summary>
+        public static ImageFileMachine ClrPlatformTarget
+        {
+            get
+            {
+                if (_ClrPlatformTarget.HasValue) return _ClrPlatformTarget.Value;
+                typeof(object).Module.GetPEKind(out _, out ImageFileMachine machine);
+                _ClrPlatformTarget = machine;
+                return machine;
+            }
+        }
     }
 }

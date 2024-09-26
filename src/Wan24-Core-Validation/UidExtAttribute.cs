@@ -45,9 +45,10 @@ namespace wan24.Core
             if (uid == default)
             {
                 if (!AllowUid) return this.CreateValidationResult($"UID not allowed", validationContext);
-                using RentedArrayRefStruct<byte> buffer = new(UidExt.STRUCTURE_SIZE);
-                ((Uid)value).GetBytes(buffer.Span);
-                uid = buffer.Span;
+                using RentedMemoryRef<byte> buffer = new(UidExt.STRUCTURE_SIZE);
+                Span<byte> bufferSpan = buffer.Span;
+                ((Uid)value).GetBytes(bufferSpan);
+                uid = bufferSpan;
             }
             if (uid.Id < RequiredId || (MaxRequiredId.HasValue && uid.Id > MaxRequiredId.Value) || (!MaxRequiredId.HasValue && uid.Id != RequiredId))
                 return this.CreateValidationResult($"Invalid ID", validationContext);

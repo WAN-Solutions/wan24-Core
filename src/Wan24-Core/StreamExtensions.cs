@@ -53,7 +53,7 @@ namespace wan24.Core
         public static int GenericReadByte(this Stream stream)
         {
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
+            using RentedMemoryRef<byte> buffer = new(len: 1, clean: false);
             return stream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
 #else
             Span<byte> buffer = stackalloc byte[1];
@@ -76,9 +76,10 @@ namespace wan24.Core
         public static void GenericWriteByte(this Stream stream, in byte value)
         {
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = new(len: 1);
-            buffer[0] = value;
-            stream.Write(buffer.Span);
+            using RentedMemoryRef<byte> buffer = new(len: 1);
+            Span<byte> bufferSpan = buffer.Span;
+            bufferSpan[0] = value;
+            stream.Write(bufferSpan);
 #else
             Span<byte> buffer = [value];
             stream.Write(buffer);

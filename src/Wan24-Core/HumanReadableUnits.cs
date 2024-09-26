@@ -177,21 +177,22 @@ namespace wan24.Core
                 current;
             int index = -1;
             using RentedArrayRefStruct<string> buffer = new(len: 7, clean: false);
+            Span<string> bufferSpan = buffer.Span;
             for (int i = 0; i < 7; prevLen = len, len *= unitFactor, i++)
             {
                 current = total % len;
                 if (current == 0) continue;
                 total -= current;
-                buffer.Span[++index] = i >= 6 && total > 0
+                bufferSpan[++index] = i >= 6 && total > 0
                     ? $"{Math.Round((decimal)bytes / prevLen, round).ToString($"N{round}", formatProvider)}{unitSeparator}{Unit(6)}"
                     : $"{(prevLen > 0 ? current / prevLen : current)}{unitSeparator}{Unit(i)}";
             }
             if (index < 0)
             {
                 index = 0;
-                buffer.Span[0] = $"0{unitSeparator}{Unit(0)}";
+                bufferSpan[0] = $"0{unitSeparator}{Unit(0)}";
             }
-            if (index > 0) buffer.Span[..(index + 1)].Reverse();
+            if (index > 0) bufferSpan[..(index + 1)].Reverse();
             return string.Join(valuesSeparator ?? string.Empty, buffer.Array, 0, index + 1);
         }
 

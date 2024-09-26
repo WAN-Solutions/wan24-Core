@@ -41,46 +41,6 @@ namespace wan24.Core
         /// <param name="sources">Source objects</param>
         /// <param name="targetType">Target object type</param>
         /// <returns>Created and mapped target objects</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<object> MapObjectsTo(this Memory<object> sources, Type targetType) => MapObjectsTo((ReadOnlyMemory<object>)sources, targetType);
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <returns>Created and mapped target objects</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<object> MapObjectsTo(this ReadOnlyMemory<object> sources, Type targetType)
-        {
-            for (int i = 0, len = sources.Length; i < len; i++)
-                yield return MapObjectTo(sources.Span[i], targetType);
-        }
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <returns>Created and mapped target objects</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<object> MapObjectsTo(this object[] sources, Type targetType) => MapObjectsTo((ReadOnlyMemory<object>)sources, targetType);
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <returns>Created and mapped target objects</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

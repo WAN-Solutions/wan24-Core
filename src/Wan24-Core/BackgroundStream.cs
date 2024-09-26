@@ -105,13 +105,10 @@ namespace wan24.Core
             EnsureUndisposed();
             if (LastException is not null) throw new IOException(LastException.Message, LastException);
             bool countMemory = false;
-            RentedArray<byte> queuedBuffer = new(len: buffer.Length, clean: false)
-            {
-                Clear = true
-            };
+            RentedMemory<byte> queuedBuffer = new(len: buffer.Length, clean: false);
             try
             {
-                buffer.CopyTo(queuedBuffer.Span);
+                buffer.CopyTo(queuedBuffer);
                 QueueCounter.Count(buffer.Length);
                 countMemory = true;
                 Queue.EnqueueAsync(queuedBuffer).AsTask().GetAwaiter().GetResult();
@@ -140,13 +137,10 @@ namespace wan24.Core
             EnsureUndisposed();
             if (LastException is not null) throw new IOException(LastException.Message, LastException);
             bool countMemory = false;
-            RentedArray<byte> queuedBuffer = new(len: buffer.Length, clean: false)
-            {
-                Clear = true
-            };
+            RentedMemory<byte> queuedBuffer = new(len: buffer.Length, clean: false);
             try
             {
-                buffer.Span.CopyTo(queuedBuffer.Span);
+                buffer.Span.CopyTo(queuedBuffer);
                 await QueueCounter.CountAsync(buffer.Length, cancellationToken: CancellationToken.None).DynamicContext();
                 countMemory = true;
                 await Queue.EnqueueAsync(queuedBuffer, cancellationToken).DynamicContext();
@@ -216,7 +210,7 @@ namespace wan24.Core
         /// </remarks>
         /// <param name="target">Target stream</param>
         /// <param name="queueSize">Max. queue size</param>
-        protected sealed class WriteService(in BackgroundStream<T> target, in int queueSize) : ItemQueueWorkerBase<RentedArray<byte>>(queueSize)
+        protected sealed class WriteService(in BackgroundStream<T> target, in int queueSize) : ItemQueueWorkerBase<RentedMemory<byte>>(queueSize)
         {
             /// <summary>
             /// Target stream
@@ -224,9 +218,9 @@ namespace wan24.Core
             public BackgroundStream<T> Target { get; } = target;
 
             /// <inheritdoc/>
-            protected override async Task ProcessItem(RentedArray<byte> item, CancellationToken cancellationToken)
+            protected override async Task ProcessItem(RentedMemory<byte> item, CancellationToken cancellationToken)
             {
-                using RentedArray<byte> buffer = item;
+                using RentedMemory<byte> buffer = item;
                 try
                 {
                     if (_LastException is null && !IsDisposing) await Target.BaseStream.WriteAsync(buffer.Memory, cancellationToken).DynamicContext();
@@ -239,7 +233,7 @@ namespace wan24.Core
                 }
                 finally
                 {
-                    await Target.QueueCounter.CountAsync(-buffer.Length, cancellationToken: CancellationToken.None).DynamicContext();
+                    await Target.QueueCounter.CountAsync(-buffer.Memory.Length, cancellationToken: CancellationToken.None).DynamicContext();
                 }
             }
 

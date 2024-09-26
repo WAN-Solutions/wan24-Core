@@ -304,7 +304,7 @@ namespace wan24.Core
             Vector512<uint> shiftRight = Vector512.Create(Encoding512ShiftRight),
                 shiftLeft = Vector512.Create(Encoding512ShiftLeft);
             char* resultStart = result;// Result start pointer
-            using RentedArrayRefStruct<byte> charMapIndex = new(len: 64, clean: false);// Character map index buffer
+            using RentedMemoryRef<byte> charMapIndex = new(len: 64, clean: false);// Character map index buffer
             fixed (byte* charMapIndexPtr = charMapIndex.Span)
                 // Process data in 48 byte chunks (which results in a 64 byte chunk each 48 byte chunk)
                 for (byte* dataEnd = data + len; data < dataEnd; data += 48, result += 64)
@@ -421,7 +421,7 @@ namespace wan24.Core
             Vector512<uint> shiftLeft = Vector512.Create(Decoding512ShiftLeft),
                 shiftRight = Vector512.Create(Decoding512ShiftRight);
             int i;// Loop index
-            using RentedArrayRefStruct<byte> charBytes = new(len: 64, clean: false);// Character byte buffer
+            using RentedMemoryRef<byte> charBytes = new(len: 64, clean: false);// Character byte buffer
             fixed (byte* charBytesPtr = charBytes.Span)
                 // Process data in 64 byte chunks (which results in a 48 byte chunk each 64 byte chunk)
                 for (char* dataEnd = data + len; data < dataEnd; data += 64, result += 48)

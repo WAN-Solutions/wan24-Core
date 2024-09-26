@@ -31,11 +31,12 @@ namespace wan24.Core
 #endif
         public static byte[] GetBase64Bytes(this ReadOnlySpan<char> str)
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(Encoding.UTF8.GetByteCount(str)), clean: false);
-            OperationStatus status = Base64.DecodeFromUtf8InPlace(buffer.Span[..Encoding.UTF8.GetBytes(str, buffer.Span)], out int written);
+            using RentedMemoryRef<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(Encoding.UTF8.GetByteCount(str)), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            OperationStatus status = Base64.DecodeFromUtf8InPlace(bufferSpan[..Encoding.UTF8.GetBytes(str, bufferSpan)], out int written);
             return status switch
             {
-                OperationStatus.Done => buffer.Span[..written].ToArray(),
+                OperationStatus.Done => bufferSpan[..written].ToArray(),
                 OperationStatus.InvalidData => throw new InvalidDataException(),
                 _ => throw new ArgumentException($"Invalid base64 string: {status}", nameof(str)),
             };
@@ -52,11 +53,12 @@ namespace wan24.Core
 #endif
         public static byte[] GetBase64Bytes(this string str)
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(Encoding.UTF8.GetByteCount(str)), clean: false);
-            OperationStatus status = Base64.DecodeFromUtf8InPlace(buffer.Span[..Encoding.UTF8.GetBytes(str, buffer.Span)], out int written);
+            using RentedMemoryRef<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(Encoding.UTF8.GetByteCount(str)), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            OperationStatus status = Base64.DecodeFromUtf8InPlace(bufferSpan[..Encoding.UTF8.GetBytes(str, bufferSpan)], out int written);
             return status switch
             {
-                OperationStatus.Done => buffer.Span[..written].ToArray(),
+                OperationStatus.Done => bufferSpan[..written].ToArray(),
                 OperationStatus.InvalidData => throw new InvalidDataException(),
                 _ => throw new ArgumentException($"Invalid base64 string: {status}", nameof(str)),
             };

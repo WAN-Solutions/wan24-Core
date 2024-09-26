@@ -35,34 +35,6 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void ExecuteParallel<T>(this ReadOnlyMemory<T> enumerable, Action<T> action, in ParallelOptions? options = null)
-            => Parallel.For(0, enumerable.Length, options ?? new() { MaxDegreeOfParallelism = Environment.ProcessorCount }, (i) => action(enumerable.Span[i]));
-
-        /// <summary>
-        /// Execute parallel
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="options">Options</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static void ExecuteParallel<T>(this T[] enumerable, in Action<T> action, in ParallelOptions? options = null)
-            => ExecuteParallel((ReadOnlyMemory<T>)enumerable, action, options);
-
-        /// <summary>
-        /// Execute parallel
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="options">Options</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
         public static void ExecuteParallel<T>(this IList<T> enumerable, Action<T> action, in ParallelOptions? options = null)
             => Parallel.For(0, enumerable.Count, options ?? new() { MaxDegreeOfParallelism = Environment.ProcessorCount }, (i) => action(enumerable[i]));
 
@@ -131,51 +103,6 @@ namespace wan24.Core
                 options ?? new() { MaxDegreeOfParallelism = Environment.ProcessorCount, CancellationToken = cancellationToken },
                 action
                 );
-
-        /// <summary>
-        /// Execute parallel
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task ExecuteParallelAsync<T>(
-            this ReadOnlyMemory<T> enumerable,
-            Func<T, CancellationToken, ValueTask> action,
-            ParallelOptions? options = null,
-            CancellationToken cancellationToken = default
-            )
-            => Parallel.ForAsync(
-                0,
-                enumerable.Length,
-                options ?? new() { MaxDegreeOfParallelism = Environment.ProcessorCount, CancellationToken = cancellationToken },
-                async (i, ct) => await action(enumerable.Span[i], ct).DynamicContext()
-                );
-
-        /// <summary>
-        /// Execute parallel
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="options">Options</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task ExecuteParallelAsync<T>(
-            this T[] enumerable,
-            Func<T, CancellationToken, ValueTask> action,
-            ParallelOptions? options = null,
-            CancellationToken cancellationToken = default
-            )
-            => ExecuteParallelAsync((ReadOnlyMemory<T>)enumerable, action, options, cancellationToken);
 
         /// <summary>
         /// Execute parallel

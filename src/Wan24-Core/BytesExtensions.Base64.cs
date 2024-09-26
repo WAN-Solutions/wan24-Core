@@ -105,8 +105,9 @@ namespace wan24.Core
 #endif
         public static byte[] GetBase64Bytes(this byte[] bytes)
         {
-            using RentedArrayRefStruct<byte> buffer2 = new(len: Base64.GetMaxEncodedToUtf8Length(bytes.Length), clean: false);
-            return buffer2.Span[..GetBase64(bytes, buffer2.Span)].ToArray();
+            using RentedMemoryRef<byte> buffer2 = new(len: Base64.GetMaxEncodedToUtf8Length(bytes.Length), clean: false);
+            Span<byte> bufferSpan = buffer2.Span;
+            return bufferSpan[..GetBase64(bytes, bufferSpan)].ToArray();
         }
 
         /// <summary>
@@ -121,8 +122,9 @@ namespace wan24.Core
 #endif
         public static int GetBase64(this byte[] bytes, in Span<char> buffer)
         {
-            using RentedArrayRefStruct<byte> buffer2 = new(len: Base64.GetMaxEncodedToUtf8Length(bytes.Length), clean: false);
-            return Encoding.UTF8.GetChars(buffer2.Span[..GetBase64(bytes, buffer2.Span)], buffer);
+            using RentedMemoryRef<byte> buffer2 = new(len: Base64.GetMaxEncodedToUtf8Length(bytes.Length), clean: false);
+            Span<byte> bufferSpan = buffer2.Span;
+            return Encoding.UTF8.GetChars(bufferSpan[..GetBase64(bytes, bufferSpan)], buffer);
         }
 
         /// <summary>
@@ -174,8 +176,9 @@ namespace wan24.Core
 #endif
         public static byte[] DecodeBase64(this ReadOnlySpan<byte> bytes)
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(bytes.Length), clean: false);
-            return buffer.Span[..DecodeBase64(bytes, buffer.Span)].ToArray();
+            using RentedMemoryRef<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(bytes.Length), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            return bufferSpan[..DecodeBase64(bytes, bufferSpan)].ToArray();
         }
 
         /// <summary>

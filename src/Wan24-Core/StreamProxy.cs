@@ -218,7 +218,7 @@ namespace wan24.Core
         {
             try
             {
-                using RentedArrayStructSimple<byte> buffer = new(BufferSize, clean: false);
+                using RentedMemory<byte> buffer = new(BufferSize, clean: false);
                 int red;
                 while (!Cancellation.IsCancellationRequested)
                 {

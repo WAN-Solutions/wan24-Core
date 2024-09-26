@@ -362,9 +362,10 @@ namespace wan24.Core
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
-            RentedArray<int> intBits = new(len: 4, clean: false);
-            for (int i = 0; i < 4; intBits.Span[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
-            return new decimal(intBits.Span);
+            RentedMemoryRef<int> intBits = new(len: 4, clean: false);
+            Span<int> intBitsSpan = intBits.Span;
+            for (int i = 0; i < 4; intBitsSpan[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
+            return new decimal(intBitsSpan);
         }
 #else
         /// <summary>

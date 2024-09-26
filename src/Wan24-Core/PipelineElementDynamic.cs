@@ -45,7 +45,7 @@ namespace wan24.Core
                 case IPipelineResultStream resultStream:
                     if (!CanProcess(resultStream.Stream)) throw new InvalidOperationException("This pipeline element can't process a stream");
                     {
-                        using RentedArray<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
+                        using RentedMemory<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
                         return await ProcessAsync(buffer.Memory, cancellationToken).DynamicContext();
                     }
                 default:

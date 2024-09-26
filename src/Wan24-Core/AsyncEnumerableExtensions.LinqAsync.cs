@@ -37,53 +37,8 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static async IAsyncEnumerable<T> WhereAsync<T>(
-            this ReadOnlyMemory<T> enumerable,
-            Func<T, CancellationToken, Task<bool>> predicate,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            T item;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                item = enumerable.Span[i];
-                if (await predicate(item, cancellationToken).DynamicContext())
-                    yield return item;
-            }
-        }
-
-
-        /// <summary>
-        /// Where
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="predicate">Predicate</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Items</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IAsyncEnumerable<T> WhereAsync<T>(
-            this Memory<T> enumerable,
-            Func<T, CancellationToken, Task<bool>> predicate,
-            CancellationToken cancellationToken = default
-            )
-            => WhereAsync((ReadOnlyMemory<T>)enumerable, predicate, cancellationToken);
-
-        /// <summary>
-        /// Where
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="predicate">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -93,11 +48,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this ImmutableArray<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             T item;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
             {
                 item = enumerable[i];
                 if (await predicate(item, cancellationToken).DynamicContext())
@@ -111,6 +68,8 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -120,11 +79,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this FrozenSet<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             T item;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
             {
                 item = enumerable.Items[i];
                 if (await predicate(item, cancellationToken).DynamicContext())
@@ -138,6 +99,8 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -147,11 +110,13 @@ namespace wan24.Core
         public static async IAsyncEnumerable<T> WhereAsync<T>(
             this IList<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
             T item;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
             {
                 item = enumerable[i];
                 if (await predicate(item, cancellationToken).DynamicContext())
@@ -252,49 +217,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="selector">Predicate</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
-            this ReadOnlyMemory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<tResult>> selector,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-                yield return await selector(enumerable.Span[i], cancellationToken).DynamicContext();
-        }
-
-        /// <summary>
-        /// Select
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="selector">Predicate</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result items</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
-            this Memory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<tResult>> selector,
-            CancellationToken cancellationToken = default
-            )
-            => SelectAsync((ReadOnlyMemory<tItem>)enumerable, selector, cancellationToken);
-
-        /// <summary>
-        /// Select
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="selector">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -304,10 +228,12 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this ImmutableArray<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            for (int i = 0, len = enumerable.Length; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
                 yield return await selector(enumerable[i], cancellationToken).DynamicContext();
         }
 
@@ -318,6 +244,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="selector">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -327,10 +255,12 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this FrozenSet<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
                 yield return await selector(enumerable.Items[i], cancellationToken).DynamicContext();
         }
 
@@ -341,6 +271,8 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="selector">Predicate</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Result items</returns>
         [TargetedPatchingOptOut("Tiny method")]
@@ -350,10 +282,12 @@ namespace wan24.Core
         public static async IAsyncEnumerable<tResult> SelectAsync<tItem, tResult>(
             this IList<tItem> enumerable,
             Func<tItem, CancellationToken, Task<tResult>> selector,
+            int offset = 0,
+            int? length = null,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
-            for (int i = 0, len = enumerable.Count; i < len; i++)
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
                 yield return await selector(enumerable[i], cancellationToken).DynamicContext();
         }
 

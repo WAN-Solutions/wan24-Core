@@ -49,13 +49,14 @@
         {
             EnsureUndisposed();
             EnsureReadable();
-            using RentedArrayStructSimple<byte> temp = new(buffer.Length, clean: false)
+            using RentedMemoryRef<byte> temp = new(buffer.Length, clean: false)
             {
                 Clear = ClearBuffers
             };
-            buffer.CopyTo(temp.Span);
+            Span<byte> tempSpan = temp.Span;
+            buffer.CopyTo(tempSpan);
             int res = ReadAsync(temp.Memory).AsTask().GetAwaiter().GetResult();
-            if (res > 0) temp.Span[..res].CopyTo(buffer);
+            if (res > 0) tempSpan[..res].CopyTo(buffer);
             return res;
         }
 
@@ -64,7 +65,7 @@
         {
             EnsureUndisposed();
             EnsureReadable();
-            using RentedArrayStructSimple<byte> buffer = new(len: sizeof(byte), clean: false)
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(byte), clean: false)
             {
                 Clear = ClearBuffers
             };
@@ -80,7 +81,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            using RentedArrayStructSimple<byte> temp = new(buffer.Length, clean: false)
+            using RentedMemoryRef<byte> temp = new(buffer.Length, clean: false)
             {
                 Clear = ClearBuffers
             };
@@ -93,7 +94,7 @@
         {
             EnsureUndisposed();
             EnsureWritable();
-            using RentedArrayStructSimple<byte> buffer = new(len: sizeof(byte), clean: false)
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(byte), clean: false)
             {
                 Clear = ClearBuffers
             };

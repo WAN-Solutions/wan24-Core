@@ -65,53 +65,6 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task DisposeAllAsync(this ReadOnlyMemory<IAsyncDisposable> disposables, bool parallel = false)
-        {
-            if (parallel)
-            {
-                int len = disposables.Length;
-                if (len < 1) return;
-                using RentedArrayStructSimple<Task> tasks = new(len);
-                for (int i = 0; i < len; tasks[i] = disposables.Span[i].DisposeAsync().AsTask(), i++) ;
-                await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
-            }
-            else
-            {
-                for (int i = 0, len = disposables.Length; i < len; await disposables.Span[i].DisposeAsync().DynamicContext(), i++) ;
-            }
-        }
-
-        /// <summary>
-        /// Dispose all
-        /// </summary>
-        /// <param name="disposables">Disposables</param>
-        /// <param name="parallel">Dispose parallel?</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task DisposeAllAsync(this IAsyncDisposable[] disposables, bool parallel = false) => DisposeAllAsync((ReadOnlyMemory<IAsyncDisposable>)disposables, parallel);
-
-        /// <summary>
-        /// Dispose all
-        /// </summary>
-        /// <param name="disposables">Disposables</param>
-        /// <param name="parallel">Dispose parallel?</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task DisposeAllAsync(this Memory<IAsyncDisposable> disposables, bool parallel = false) => DisposeAllAsync((ReadOnlyMemory<IAsyncDisposable>)disposables, parallel);
-
-        /// <summary>
-        /// Dispose all
-        /// </summary>
-        /// <param name="disposables">Disposables</param>
-        /// <param name="parallel">Dispose parallel?</param>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
         public static async Task DisposeAllAsync(this IList<IAsyncDisposable> disposables, bool parallel = false)
         {
             if (parallel)
@@ -119,8 +72,9 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
-                for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
-                await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+                Task[] tasksArray = tasks.Array;
+                for (int i = 0; i < len; tasksArray[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
+                await Task.WhenAll(tasks.Array.Enumerate(offset: 0, len)).DynamicContext();
             }
             else
             {
@@ -144,8 +98,9 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
-                for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
-                await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+                Task[] tasksArray = tasks.Array;
+                for (int i = 0; i < len; tasksArray[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
+                await Task.WhenAll(tasks.Array.Enumerate(offset: 0, len)).DynamicContext();
             }
             else
             {
@@ -169,8 +124,9 @@ namespace wan24.Core
                 int len = disposables.Length;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
-                for (int i = 0; i < len; tasks[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
-                await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+                Task[] tasksArray = tasks.Array;
+                for (int i = 0; i < len; tasksArray[i] = disposables[i].DisposeAsync().AsTask(), i++) ;
+                await Task.WhenAll(tasks.Array.Enumerate(offset: 0, len)).DynamicContext();
             }
             else
             {
@@ -194,8 +150,9 @@ namespace wan24.Core
                 int len = disposables.Count;
                 if (len < 1) return;
                 using RentedArrayStructSimple<Task> tasks = new(len);
-                for (int i = 0; i < len; tasks[i] = disposables.Items[i].DisposeAsync().AsTask(), i++) ;
-                await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+                Task[] tasksArray = tasks.Array;
+                for (int i = 0; i < len; tasksArray[i] = disposables.Items[i].DisposeAsync().AsTask(), i++) ;
+                await Task.WhenAll(tasks.Array.Enumerate(offset: 0, len)).DynamicContext();
             }
             else
             {
@@ -254,50 +211,14 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task TryDisposeAllAsync(this ReadOnlyMemory<object> objects)
-        {
-            int len = objects.Length;
-            if (len < 1) return;
-            using RentedArrayStructSimple<Task> tasks = new(len);
-            for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects.Span[i]), i++) ;
-            await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
-        }
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task TryDisposeAllAsync(this Memory<object> objects) => TryDisposeAllAsync((ReadOnlyMemory<object>)objects);
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static Task TryDisposeAllAsync(this object[] objects) => TryDisposeAllAsync((ReadOnlyMemory<object>)objects);
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
         public static async Task TryDisposeAllAsync(this IList<object> objects)
         {
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
-            for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
-            await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+            Task[] tasksArray = tasks.Array;
+            for (int i = 0; i < len; tasksArray[i] = TryDisposeAsync(objects[i]), i++) ;
+            await Task.WhenAll(tasksArray.Enumerate(offset: 0, len)).DynamicContext();
         }
 
         /// <summary>
@@ -313,8 +234,9 @@ namespace wan24.Core
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
-            for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
-            await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+            Task[] tasksArray = tasks.Array;
+            for (int i = 0; i < len; tasksArray[i] = TryDisposeAsync(objects[i]), i++) ;
+            await Task.WhenAll(tasksArray.Enumerate(offset: 0, len)).DynamicContext();
         }
 
         /// <summary>
@@ -330,8 +252,9 @@ namespace wan24.Core
             int len = objects.Length;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
-            for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects[i]), i++) ;
-            await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+            Task[] tasksArray = tasks.Array;
+            for (int i = 0; i < len; tasksArray[i] = TryDisposeAsync(objects[i]), i++) ;
+            await Task.WhenAll(tasksArray.Enumerate(offset: 0, len)).DynamicContext();
         }
 
         /// <summary>
@@ -347,8 +270,9 @@ namespace wan24.Core
             int len = objects.Count;
             if (len < 1) return;
             using RentedArrayStructSimple<Task> tasks = new(len);
-            for (int i = 0; i < len; tasks.Span[i] = TryDisposeAsync(objects.Items[i]), i++) ;
-            await Task.WhenAll(tasks.Memory.Take(len)).DynamicContext();
+            Task[] tasksArray = tasks.Array;
+            for (int i = 0; i < len; tasksArray[i] = TryDisposeAsync(objects.Items[i]), i++) ;
+            await Task.WhenAll(tasksArray.Enumerate(offset: 0, len)).DynamicContext();
         }
     }
 }

@@ -9,13 +9,13 @@
     /// <param name="element">Providing element</param>
     /// <param name="buffer">Buffer (will be disposed)</param>
     /// <param name="next">Next element</param>
-    public class PipelineResultRentedBuffer(in PipelineElementBase element, in RentedArray<byte> buffer, in PipelineElementBase? next = null)
+    public class PipelineResultRentedBuffer(in PipelineElementBase element, in RentedMemory<byte> buffer, in PipelineElementBase? next = null)
         : PipelineResultBase(element, next), IPipelineResultBuffer
     {
         /// <summary>
         /// Rented buffer (will be disposed)
         /// </summary>
-        public RentedArray<byte> RentedBuffer { get; } = buffer;
+        public RentedMemory<byte> RentedBuffer { get; } = buffer;
 
         /// <inheritdoc/>
         public ReadOnlyMemory<byte> Buffer => RentedBuffer.Memory;
@@ -24,8 +24,8 @@
         public override PipelineResultBase CreateCopy(in PipelineElementBase? element = null)
         {
             EnsureUndisposed();
-            RentedArray<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
-            RentedBuffer.Span.CopyTo(buffer.Span);
+            RentedMemory<byte> buffer = Element.Pipeline.CreateBuffer(Buffer.Length);
+            RentedBuffer.Memory.Span.CopyTo(buffer.Memory.Span);
             return element?.CreateRentedBufferResult(buffer, processInParallel: element.ProcessResultInParallel)
                 ?? Element.CreateRentedBufferResult(buffer, processInParallel: Element.ProcessResultInParallel);
         }

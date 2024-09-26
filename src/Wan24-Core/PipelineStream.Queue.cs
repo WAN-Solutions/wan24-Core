@@ -108,8 +108,8 @@ namespace wan24.Core
                                     ? await item.Element.ProcessAsync(item.Result!, cancellationToken).DynamicContext()
                                     : await item.Element.ProcessAsync(
                                         item.BufferLength.HasValue
-                                            ? item.Buffer.Memory[..item.BufferLength.Value]
-                                            : item.Buffer.Memory,
+                                            ? item.Buffer.Value.Memory[..item.BufferLength.Value]
+                                            : item.Buffer.Value.Memory,
                                         cancellationToken
                                         )
                                         .DynamicContext();
@@ -294,7 +294,7 @@ namespace wan24.Core
             /// <summary>
             /// Buffer to process
             /// </summary>
-            public RentedArray<byte>? Buffer { get; init; }
+            public RentedMemory<byte>? Buffer { get; init; }
 
             /// <summary>
             /// Buffer length in bytes

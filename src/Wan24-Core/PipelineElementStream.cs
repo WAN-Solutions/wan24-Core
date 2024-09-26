@@ -40,7 +40,7 @@ namespace wan24.Core
             await InputStream.WriteAsync(buffer, cancellationToken).DynamicContext();
             await Pipeline.SyncEvent.WaitAsync(cancellationToken).DynamicContext();
             await Pipeline.PauseEvent.WaitAsync(cancellationToken).DynamicContext();
-            RentedArray<byte> bufferInt = await ReadStreamChunkAsync(OutputStream, cancellationToken).DynamicContext();
+            RentedMemory<byte> bufferInt = await ReadStreamChunkAsync(OutputStream, cancellationToken).DynamicContext();
             return CreateRentedBufferResult(bufferInt, processInParallel: ProcessResultInParallel);
         }
 
@@ -56,7 +56,7 @@ namespace wan24.Core
                     return await ProcessAsync(resultBuffer.Buffer, cancellationToken).DynamicContext();
                 case IPipelineResultStream resultStream:
                     {
-                        using RentedArray<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
+                        using RentedMemory<byte> buffer = await ReadStreamChunkAsync(resultStream.Stream, cancellationToken).DynamicContext();
                         return await ProcessAsync(buffer.Memory, cancellationToken).DynamicContext();
                     }
                 default:

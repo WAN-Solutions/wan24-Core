@@ -153,7 +153,8 @@ namespace wan24.Core
             if (ReadOffset == 0) return false;
             bool hadSpace = !IsWriteBlocked;
             WriteOffset -= ReadOffset;
-            Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset);
+            Span<byte> buffer = Buffer.Memory.Span;
+            buffer.Slice(ReadOffset, WriteOffset).CopyTo(buffer[..WriteOffset]);
             ReadOffset = 0;
             if (!hadSpace)
             {
@@ -176,7 +177,8 @@ namespace wan24.Core
             if (ReadOffset == 0) return false;
             bool hadSpace = !IsWriteBlocked;
             WriteOffset -= ReadOffset;
-            Array.Copy(Buffer, ReadOffset, Buffer, 0, WriteOffset);
+            Memory<byte> buffer = Buffer.Memory;
+            buffer.Slice(ReadOffset, WriteOffset).CopyTo(buffer[..WriteOffset]);
             ReadOffset = 0;
             if (!hadSpace)
             {

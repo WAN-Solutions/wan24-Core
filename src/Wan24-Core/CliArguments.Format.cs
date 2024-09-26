@@ -181,8 +181,10 @@ namespace wan24.Core
             // Return early, if empty
             if (str.Length == 0) return [];
             // Prepare parsing
-            using RentedArrayStruct<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
-            using RentedArrayStruct<char> valueBuffer = new(str.Length);// Current value
+            using RentedMemoryRef<string> argsBuffer = new(Math.Max(1, str.Length >> 1));// Arguments
+            Span<string> argsBufferSpan = argsBuffer.Span;
+            using RentedMemoryRef<char> valueBuffer = new(str.Length);// Current value
+            Span<char> valueBufferSpan = valueBuffer.Span;
             bool inValue = false,// Is within a value at present?
                 isQuoted = false,// Is within a quoted value at present?
                 isEscaped = false,// Was the previous character a backslash?
@@ -195,21 +197,21 @@ namespace wan24.Core
 #if !NO_INLINE
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-            void AddValue()
+            void AddValue(in Span<string> argsBufferSpan, in Span<char> valueBufferSpan)
             {
                 // Add the current value to the result
                 if (valueOffset == 0)
                 {
                     // Empty value
-                    argsBuffer.Span[argsOffset] = string.Empty;
+                    argsBufferSpan[argsOffset] = string.Empty;
                 }
                 else
                 {
                     // Raw or JSON encoded value
-                    argsBuffer.Span[argsOffset] = isQuoted
-                        ? JsonHelper.Decode<string>($"\"{new string(valueBuffer.Span[..valueOffset])}\"")
-                            ?? throw new InvalidDataException($"Failed to JSON decode quoted value ending at #{i} (\"{new string(valueBuffer.Span[..valueOffset])}\")")
-                        : new string(valueBuffer.Span[..valueOffset]);
+                    argsBufferSpan[argsOffset] = isQuoted
+                        ? JsonHelper.Decode<string>($"\"{new string(valueBufferSpan[..valueOffset])}\"")
+                            ?? throw new InvalidDataException($"Failed to JSON decode quoted value ending at #{i} (\"{new string(valueBufferSpan[..valueOffset])}\")")
+                        : new string(valueBufferSpan[..valueOffset]);
                     valueOffset = 0;
                 }
                 argsOffset++;
@@ -224,7 +226,7 @@ namespace wan24.Core
                     // Handle an in-value character
                     isWhiteSpace = char.IsWhiteSpace(c);
                     if (!isWhiteSpace && char.IsControl(c))
-                        throw new FormatException($"Illegal control character at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
+                        throw new FormatException($"Illegal control character at #{i} (current value \"{valueBufferSpan[..valueOffset]}\")");
                     switch (c)
                     {
                         case '\'':
@@ -236,31 +238,31 @@ namespace wan24.Core
                                 if (c == '"')
                                 {
                                     // Double quote (needs to stay escaped for JSON decoding)
-                                    valueBuffer.Span[valueOffset] = c;
+                                    valueBufferSpan[valueOffset] = c;
                                     valueOffset++;
                                 }
                                 else
                                 {
                                     // Single quote doesn't need escaping for JSON decoding
-                                    valueBuffer.Span[valueOffset - 1] = c;
+                                    valueBufferSpan[valueOffset - 1] = c;
                                 }
                                 isEscaped = false;
                             }
                             else if (isQuoted && c == quote && (i == str.Length - 1 || char.IsWhiteSpace(str[i + 1])))
                             {
                                 // Value closing quote
-                                AddValue();
+                                AddValue(argsBufferSpan, valueBufferSpan);
                             }
                             else if (isQuoted)
                             {
                                 // Add an unescaped quote character to the current value
-                                if (c == '"') throw new FormatException($"Double quote must be escaped always at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
-                                valueBuffer.Span[valueOffset] = c;
+                                if (c == '"') throw new FormatException($"Double quote must be escaped always at #{i} (current value \"{valueBufferSpan[..valueOffset]}\")");
+                                valueBufferSpan[valueOffset] = c;
                                 valueOffset++;
                             }
                             else
                             {
-                                throw new FormatException($"Illegal quote character \"{c}\" in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
+                                throw new FormatException($"Illegal quote character \"{c}\" in unquoted value at #{i} (current value \"{valueBufferSpan[..valueOffset]}\")");
                             }
                             break;
                         case '\\':
@@ -274,9 +276,9 @@ namespace wan24.Core
                             {
                                 // Start escaping
                                 if (!isQuoted)
-                                    throw new FormatException($"Illegal escape character in unquoted value at #{i} (current value \"{valueBuffer.Span[..valueOffset]}\")");
+                                    throw new FormatException($"Illegal escape character in unquoted value at #{i} (current value \"{valueBufferSpan[..valueOffset]}\")");
                                 isEscaped = true;
-                                valueBuffer.Span[valueOffset] = c;
+                                valueBufferSpan[valueOffset] = c;
                                 valueOffset++;
                             }
                             break;
@@ -285,12 +287,12 @@ namespace wan24.Core
                             if (!isQuoted && !isEscaped && isWhiteSpace)
                             {
                                 // End of the value found
-                                AddValue();
+                                AddValue(argsBufferSpan, valueBufferSpan);
                             }
                             else
                             {
                                 // Extend the current value
-                                valueBuffer.Span[valueOffset] = c;
+                                valueBufferSpan[valueOffset] = c;
                                 valueOffset++;
                                 isEscaped = false;
                             }
@@ -314,18 +316,18 @@ namespace wan24.Core
                     }
                     inValue = true;
                     if (isQuoted) continue;
-                    valueBuffer.Span[0] = c;
+                    valueBufferSpan[0] = c;
                     valueOffset++;
                 }
             }
             // Be sure to add the last value
             if (inValue)
             {
-                if (isEscaped) throw new FormatException($"Last escape character is unused (current value \"{valueBuffer.Span[..valueOffset]}\")");
-                if (isQuoted) throw new FormatException($"Last quoted argument is missing the closing quote \"{quote}\" (current value \"{valueBuffer.Span[..valueOffset]}\")");
-                AddValue();
+                if (isEscaped) throw new FormatException($"Last escape character is unused (current value \"{valueBufferSpan[..valueOffset]}\")");
+                if (isQuoted) throw new FormatException($"Last quoted argument is missing the closing quote \"{quote}\" (current value \"{valueBufferSpan[..valueOffset]}\")");
+                AddValue(argsBufferSpan, valueBufferSpan);
             }
-            return argsOffset == 0 ? [] : argsBuffer.Span[..argsOffset].ToArray();
+            return argsOffset == 0 ? [] : argsBufferSpan[..argsOffset].ToArray();
         }
 
         /// <summary>

@@ -22,11 +22,15 @@ namespace wan24.Core
         /// <summary>
         /// Buffers
         /// </summary>
-        protected readonly List<byte[]> Buffers;
+        protected readonly List<IMemoryOwner<byte>> Buffers;
         /// <summary>
         /// Pool
         /// </summary>
-        protected readonly ArrayPool<byte> Pool;
+        protected readonly MemoryPool<byte> Pool;
+        /// <summary>
+        /// If writable
+        /// </summary>
+        protected readonly bool _CanWrite = true;
         /// <summary>
         /// Buffer index
         /// </summary>
@@ -40,7 +44,7 @@ namespace wan24.Core
         /// </summary>
         protected int LastBufferOffset = 0;
         /// <summary>
-        /// Buffer site in bytes
+        /// Buffer size in bytes
         /// </summary>
         protected int _BufferSize = _DefaultBufferSize;
         /// <summary>
@@ -57,10 +61,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(in ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
+        public MemoryPoolStream(in MemoryPool<byte>? pool = null, in int? bufferSize = null) : base()
         {
-            Pool = pool ?? ArrayPool<byte>.Shared;
-            if (bufferSize is not null) BufferSize = bufferSize.Value;
+            Pool = pool ?? MemoryPool<byte>.Shared;
+            if (bufferSize.HasValue) BufferSize = bufferSize.Value;
             Buffers =
             [
                 Pool.Rent(BufferSize)
@@ -70,12 +74,78 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="data">Initial data (will be disposed; stream is writable; initial position will be <c>0</c>)</param>
+        /// <param name="pool">Pool</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        /// <param name="writable">If writable</param>
+        public MemoryPoolStream(in IMemoryOwner<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
+        {
+            _CanWrite = writable;
+            Pool = pool ?? MemoryPool<byte>.Shared;
+            if (bufferSize.HasValue) BufferSize = bufferSize.Value;
+            Buffers =
+            [
+                data,
+                writable
+                    ?Pool.Rent(BufferSize)
+                    :new MemoryOwner<byte>(Array.Empty<byte>())
+            ];
+            _Length = data.Memory.Length;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="data">Initial data (will be copied, if writable; stream is writable; initial position will be <c>0</c>)</param>
+        /// <param name="pool">Pool</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        /// <param name="writable">If writable</param>
+        public MemoryPoolStream(in byte[] data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
+        {
+            _CanWrite = writable;
+            Pool = pool ?? MemoryPool<byte>.Shared;
+            if (bufferSize.HasValue) BufferSize = bufferSize.Value;
+            if (writable)
+            {
+                Buffers =
+                [
+                    Pool.Rent(BufferSize)
+                ];
+                Write(data);
+                Position = 0;
+            }
+            else
+            {
+                Buffers =
+                [
+                    new MemoryOwner<byte>(data),
+                    new MemoryOwner<byte>(Array.Empty<byte>())
+                ];
+                _Length = data.Length;
+            }
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(in byte[] data, in ArrayPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
+        public MemoryPoolStream(in ReadOnlySpan<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
         {
             Write(data);
+            Position = 0;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
+        /// <param name="pool">Pool</param>
+        /// <param name="bufferSize">Buffer size in bytes</param>
+        public MemoryPoolStream(in ReadOnlyMemory<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
+        {
+            Write(data.Span);
             Position = 0;
         }
 
@@ -101,6 +171,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
+                EnsureWritable();
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 _BufferSize = value;
             }
@@ -109,7 +180,7 @@ namespace wan24.Core
         /// <summary>
         /// Total buffer length in bytes
         /// </summary>
-        public long BufferLength => Buffers.Sum(b => b.Length);
+        public long BufferLength => Buffers.Sum(b => (long)b.Memory.Length);
 
         /// <summary>
         /// Current number of buffers
@@ -143,6 +214,7 @@ namespace wan24.Core
                     yield return new(__("Stack"), StackInfo.Stack, __("Instance creation stack"));
                     yield return new(__("Created"), StackInfo.Created, __("Instance creation time"));
                 }
+                yield return new(__("Writable"), CanWrite, __("If writable"));
                 yield return new(__("Size"), Length, __("Length in bytes"));
                 yield return new(__("Buffers"), BufferCount, __("Number of buffers"));
                 yield return new(__("Buffer"), BufferLength, __("All buffer length in bytes"));
@@ -157,7 +229,7 @@ namespace wan24.Core
         public override bool CanSeek => true;
 
         /// <inheritdoc/>
-        public override bool CanWrite => true;
+        public override bool CanWrite => _CanWrite;
 
         /// <inheritdoc/>
         public override long Length => _Length;
@@ -184,7 +256,7 @@ namespace wan24.Core
                         len;
                     for (BufferIndex = 0; ; BufferIndex++)
                     {
-                        len = Buffers[BufferIndex].Length;
+                        len = Buffers[BufferIndex].Memory.Length;
                         add = Math.Min(len, value - pos);
                         pos += add;
                         if (add == len && pos != value) continue;
@@ -218,12 +290,12 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void Flush() => EnsureUndisposed();
+        public override void Flush() => EnsureUndisposed(allowDisposing: true);
 
         /// <inheritdoc/>
         public override Task FlushAsync(CancellationToken cancellationToken)
         {
-            EnsureUndisposed();
+            EnsureUndisposed(allowDisposing: true);
             cancellationToken.ThrowIfCancellationRequested();
             return Task.CompletedTask;
         }
@@ -240,12 +312,12 @@ namespace wan24.Core
             int res = 0,
                 red,
                 lastBuffer = Buffers.Count - 1;
-            byte[] data;
+            Memory<byte> data;
             while (res != len && _Position != _Length)
             {
-                data = Buffers[BufferIndex];
+                data = Buffers[BufferIndex].Memory;
                 red = Math.Min((BufferIndex == lastBuffer ? LastBufferOffset : data.Length) - BufferOffset, len - res);
-                data.AsSpan(BufferOffset, red).CopyTo(buffer[res..]);
+                data.Span.Slice(BufferOffset, red).CopyTo(buffer[res..]);
                 _Position += red;
                 BufferOffset += red;
                 res += red;
@@ -261,13 +333,13 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (_Position == _Length) return -1;
-            byte[] data = Buffers[BufferIndex];
+            Memory<byte> data = Buffers[BufferIndex].Memory;
             if (data.Length == BufferOffset)
             {
                 BufferIndex++;
                 BufferOffset = 0;
             }
-            int res = data[BufferOffset];
+            int res = data.Span[BufferOffset];
             BufferOffset++;
             _Position++;
             if (data.Length == BufferOffset)
@@ -307,18 +379,19 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureWritable();
             int len = buffer.Length;
             if (len == 0) return;
             long newLen = _Position + len;
             if (newLen > _Length) SetLength(newLen, clear: false);
             int written = 0,
                 chunk;
-            byte[] data;
+            Memory<byte> data;
             while (written != len)
             {
-                data = Buffers[BufferIndex];
+                data = Buffers[BufferIndex].Memory;
                 chunk = Math.Min(data.Length - BufferOffset, len - written);
-                buffer.Slice(written, chunk).CopyTo(data.AsSpan(BufferOffset));
+                buffer.Slice(written, chunk).CopyTo(data.Span[BufferOffset..]);
                 _Position += chunk;
                 BufferOffset += chunk;
                 written += chunk;
@@ -332,15 +405,16 @@ namespace wan24.Core
         public override void WriteByte(byte value)
         {
             EnsureUndisposed();
+            EnsureWritable();
             _Position++;
-            byte[] data = Buffers[BufferIndex];
+            Memory<byte> data = Buffers[BufferIndex].Memory;
             if (_Position > _Length) SetLength(_Position, clear: false);
             if (data.Length == BufferOffset)
             {
                 BufferIndex++;
                 BufferOffset = 0;
             }
-            data[BufferOffset] = value;
+            data.Span[BufferOffset] = value;
             BufferOffset++;
             if (BufferIndex == Buffers.Count - 1)
             {
@@ -370,6 +444,7 @@ namespace wan24.Core
         public override ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureWritable();
             cancellationToken.ThrowIfCancellationRequested();
             Write(buffer.Span);
             return ValueTask.CompletedTask;
@@ -386,10 +461,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            foreach (byte[] buffer in Buffers)
+            foreach (IMemoryOwner<byte> buffer in Buffers)
             {
-                if (CleanReturned) buffer.Clear();
-                Pool.Return(buffer);
+                if (CleanReturned) buffer.Memory.Span.Clean();
+                buffer.Dispose();
             }
             Buffers.Clear();
             base.Dispose(disposing);
@@ -398,10 +473,10 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            foreach (byte[] buffer in Buffers)
+            foreach (IMemoryOwner<byte> buffer in Buffers)
             {
-                if (CleanReturned) buffer.Clear();
-                Pool.Return(buffer);
+                if (CleanReturned) buffer.Memory.Span.Clean();
+                buffer.Dispose();
             }
             Buffers.Clear();
             await base.DisposeCore().DynamicContext();
@@ -415,6 +490,7 @@ namespace wan24.Core
         protected void SetLength(in long value, in bool clear)
         {
             EnsureUndisposed();
+            EnsureWritable();
             ArgumentOutOfRangeException.ThrowIfNegative(value);
             if (value == _Length) return;
             if (value == 0)
@@ -422,8 +498,8 @@ namespace wan24.Core
                 // Delete all data
                 for (int i = 1, len = Buffers.Count; i < len; i++)
                 {
-                    if (CleanReturned) Buffers[i].Clear();
-                    Pool.Return(Buffers[i]);
+                    if (CleanReturned) Buffers[i].Memory.Span.Clean();
+                    Buffers[i].Dispose();
                 }
                 if (Buffers.Count > 1) Buffers.RemoveRange(1, Buffers.Count - 1);
                 _Length = _Position = BufferIndex = BufferOffset = LastBufferOffset = 0;
@@ -437,7 +513,7 @@ namespace wan24.Core
                     len;
                 for (BufferIndex = 0; ; BufferIndex++)
                 {
-                    len = Buffers[BufferIndex].Length;
+                    len = Buffers[BufferIndex].Memory.Length;
                     add = Math.Min(len, value - pos);
                     pos += add;
                     if (add == len && pos != value) continue;
@@ -450,8 +526,8 @@ namespace wan24.Core
                 {
                     for (int i = BufferIndex + 1; i < len; i++)
                     {
-                        if (CleanReturned) Buffers[i].Clear();
-                        Pool.Return(Buffers[i]);
+                        if (CleanReturned) Buffers[i].Memory.Span.Clean();
+                        Buffers[i].Dispose();
                     }
                     Buffers.RemoveRange(BufferIndex + 1, (int)len - BufferIndex - 1);
                 }
@@ -462,9 +538,9 @@ namespace wan24.Core
             {
                 // Add buffers
                 long len = value - _Length;
-                byte[] data = Buffers[^1];
+                Memory<byte> data = Buffers[^1].Memory;
                 len -= (int)Math.Min(data.Length - LastBufferOffset, len);
-                if (clear) data.AsSpan(LastBufferOffset).Clear();
+                if (clear) data.Span[LastBufferOffset..].Clean();
                 if (len == 0)
                 {
                     LastBufferOffset += (int)(value - _Length);
@@ -478,9 +554,8 @@ namespace wan24.Core
                 {
                     for (; len > 0; len -= LastBufferOffset)
                     {
-                        data = clear ? Pool.RentClean(BufferSize) : Pool.Rent(BufferSize);
-                        Buffers.Add(data);
-                        LastBufferOffset = (int)Math.Min(len, data.Length);
+                        Buffers.Add(clear ? Pool.RentClean(BufferSize) : Pool.Rent(BufferSize));
+                        LastBufferOffset = (int)Math.Min(len, Buffers[^1].Memory.Length);
                     }
                 }
                 _Length = value;

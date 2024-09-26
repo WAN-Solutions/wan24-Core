@@ -1,5 +1,4 @@
-﻿using System.Formats.Asn1;
-using static wan24.Core.Logging;
+﻿using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
@@ -9,7 +8,7 @@ namespace wan24.Core
         /// <summary>
         /// Serialization buffer
         /// </summary>
-        protected readonly RentedArray<byte> SerializationBuffer;
+        protected readonly RentedMemory<byte> SerializationBuffer;
 
         /// <summary>
         /// Write a write backup record
@@ -23,13 +22,14 @@ namespace wan24.Core
             {
                 if (Trace) Logging.WriteTrace($"{this} writing {len} byte overwritten data backup at offset {Backup.Position}");
                 long pos = BaseStream.Position;
+                Span<byte> bufferSpan = SerializationBuffer.Memory.Span;
                 Backup.WriteByte((byte)IoTypes.Write);
-                Backup.Write(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Span));
-                Backup.Write(pos.GetBytes(SerializationBuffer.Span));
-                Backup.Write(len.GetBytes(SerializationBuffer.Span[..sizeof(int)]));
+                Backup.Write(DateTime.UtcNow.Ticks.GetBytes(bufferSpan));
+                Backup.Write(pos.GetBytes(bufferSpan));
+                Backup.Write(len.GetBytes(bufferSpan[..sizeof(int)]));
                 BaseStream.CopyExactlyPartialTo(Backup, len);
-                Backup.Write(len.GetBytes(SerializationBuffer.Span[..sizeof(int)]));
-                Backup.Write(pos.GetBytes(SerializationBuffer.Span));
+                Backup.Write(len.GetBytes(bufferSpan[..sizeof(int)]));
+                Backup.Write(pos.GetBytes(bufferSpan));
                 Backup.WriteByte((byte)IoTypes.Write);
                 if (Trace) Logging.WriteTrace($"{this} overwritten data backup done at offset {Backup.Position}");
                 if (AutoFlushBackup) Backup.Flush();
@@ -53,13 +53,14 @@ namespace wan24.Core
             {
                 if (Trace) Logging.WriteTrace($"{this} writing {len} byte overwritten data backup at offset {Backup.Position}");
                 long pos = BaseStream.Position;
+                Memory<byte> bufferMem = SerializationBuffer.Memory;
                 Backup.WriteByte((byte)IoTypes.Write);
-                await Backup.WriteAsync(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(pos.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory[..sizeof(int)]), cancellationToken).DynamicContext();
+                await Backup.WriteAsync(DateTime.UtcNow.Ticks.GetBytes(bufferMem), cancellationToken).DynamicContext();
+                await Backup.WriteAsync(pos.GetBytes(bufferMem), cancellationToken).DynamicContext();
+                await Backup.WriteAsync(len.GetBytes(bufferMem[..sizeof(int)]), cancellationToken).DynamicContext();
                 await BaseStream.CopyExactlyPartialToAsync(Backup, len, cancellationToken: cancellationToken).DynamicContext();
-                await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory[..sizeof(int)]), cancellationToken).DynamicContext();
-                await Backup.WriteAsync(pos.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
+                await Backup.WriteAsync(len.GetBytes(bufferMem[..sizeof(int)]), cancellationToken).DynamicContext();
+                await Backup.WriteAsync(pos.GetBytes(bufferMem), cancellationToken).DynamicContext();
                 Backup.WriteByte((byte)IoTypes.Write);
                 if (Trace) Logging.WriteTrace($"{this} overwritten data backup done at offset {Backup.Position}");
                 if (AutoFlushBackup) await Backup.FlushAsync(cancellationToken).DynamicContext();
@@ -79,10 +80,11 @@ namespace wan24.Core
         protected bool WriteLengthBackupRecord(in long len, in long value)
         {
             if (Trace) Logging.WriteTrace($"{this} applying new length at offset {Backup.Position}");
+            Span<byte> bufferSpan = SerializationBuffer.Memory.Span;
             Backup.WriteByte((byte)IoTypes.Length);
-            Backup.Write(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Span));
-            Backup.Write(len.GetBytes(SerializationBuffer.Span));
-            Backup.Write(value.GetBytes(SerializationBuffer.Span));
+            Backup.Write(DateTime.UtcNow.Ticks.GetBytes(bufferSpan));
+            Backup.Write(len.GetBytes(bufferSpan));
+            Backup.Write(value.GetBytes(bufferSpan));
             long dataLen = Math.Max(0, len - value);
             if (dataLen != 0)
             {
@@ -96,8 +98,8 @@ namespace wan24.Core
             {
                 if (Trace) Logging.WriteTrace($"{this} setting new length to {value} byte");
             }
-            Backup.Write(value.GetBytes(SerializationBuffer.Span));
-            Backup.Write(len.GetBytes(SerializationBuffer.Span));
+            Backup.Write(value.GetBytes(bufferSpan));
+            Backup.Write(len.GetBytes(bufferSpan));
             Backup.WriteByte((byte)IoTypes.Length);
             if (Trace) Logging.WriteTrace($"{this} applying new length done at offset {Backup.Position}");
             if (AutoFlushBackup) Backup.Flush();
@@ -116,10 +118,11 @@ namespace wan24.Core
         protected async Task<bool> WriteLengthBackupRecordAsync(long len, long value, CancellationToken cancellationToken)
         {
             if (Trace) Logging.WriteTrace($"{this} applying new length at offset {Backup.Position}");
+            Memory<byte> bufferMem = SerializationBuffer.Memory;
             Backup.WriteByte((byte)IoTypes.Length);
-            await Backup.WriteAsync(DateTime.UtcNow.Ticks.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-            await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-            await Backup.WriteAsync(value.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
+            await Backup.WriteAsync(DateTime.UtcNow.Ticks.GetBytes(bufferMem), cancellationToken).DynamicContext();
+            await Backup.WriteAsync(len.GetBytes(bufferMem), cancellationToken).DynamicContext();
+            await Backup.WriteAsync(value.GetBytes(bufferMem), cancellationToken).DynamicContext();
             long dataLen = Math.Max(0, len - value);
             if (dataLen != 0)
             {
@@ -133,8 +136,8 @@ namespace wan24.Core
             {
                 if (Trace) Logging.WriteTrace($"{this} setting new length to {value} byte");
             }
-            await Backup.WriteAsync(value.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
-            await Backup.WriteAsync(len.GetBytes(SerializationBuffer.Memory), cancellationToken).DynamicContext();
+            await Backup.WriteAsync(value.GetBytes(bufferMem), cancellationToken).DynamicContext();
+            await Backup.WriteAsync(len.GetBytes(bufferMem), cancellationToken).DynamicContext();
             Backup.WriteByte((byte)IoTypes.Length);
             if (Trace) Logging.WriteTrace($"{this} applying new length done at offset {Backup.Position}");
             if (AutoFlushBackup) await Backup.FlushAsync(cancellationToken).DynamicContext();
