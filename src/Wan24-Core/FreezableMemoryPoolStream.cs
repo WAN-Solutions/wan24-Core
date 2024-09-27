@@ -5,9 +5,9 @@ using static wan24.Core.TranslationHelper;
 namespace wan24.Core
 {
     /// <summary>
-    /// Memory pool stream (stores in arrays from <see cref="MemoryPool{T}"/>)
+    /// Freezable memory pool stream
     /// </summary>
-    public class MemoryPoolStream : StreamBase, IStatusProvider
+    public class FreezableMemoryPoolStream : StreamBase, IStatusProvider
     {
         /// <summary>
         /// Default buffer size in bytes
@@ -22,7 +22,7 @@ namespace wan24.Core
         /// <summary>
         /// Buffers
         /// </summary>
-        protected readonly List<IMemoryOwner<byte>> Buffers;
+        protected readonly FreezableList<IMemoryOwner<byte>> Buffers;
         /// <summary>
         /// Pool
         /// </summary>
@@ -30,7 +30,7 @@ namespace wan24.Core
         /// <summary>
         /// If writable
         /// </summary>
-        protected readonly bool _CanWrite = true;
+        protected bool _CanWrite = true;
         /// <summary>
         /// Buffer index
         /// </summary>
@@ -61,7 +61,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(in MemoryPool<byte>? pool = null, in int? bufferSize = null) : base()
+        public FreezableMemoryPoolStream(in MemoryPool<byte>? pool = null, in int? bufferSize = null) : base()
         {
             Pool = pool ?? MemoryPool<byte>.Shared;
             if (bufferSize.HasValue) BufferSize = bufferSize.Value;
@@ -78,7 +78,7 @@ namespace wan24.Core
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="writable">If writable</param>
-        public MemoryPoolStream(in IMemoryOwner<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
+        public FreezableMemoryPoolStream(in IMemoryOwner<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
         {
             _CanWrite = writable;
             Pool = pool ?? MemoryPool<byte>.Shared;
@@ -91,6 +91,7 @@ namespace wan24.Core
                     :new MemoryOwner<byte>(Array.Empty<byte>())
             ];
             _Length = data.Memory.Length;
+            if (!writable) Buffers.Freeze();
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace wan24.Core
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="writable">If writable</param>
-        public MemoryPoolStream(in byte[] data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
+        public FreezableMemoryPoolStream(in byte[] data, in MemoryPool<byte>? pool = null, in int? bufferSize = null, in bool writable = true) : base()
         {
             _CanWrite = writable;
             Pool = pool ?? MemoryPool<byte>.Shared;
@@ -122,6 +123,7 @@ namespace wan24.Core
                     new MemoryOwner<byte>(Array.Empty<byte>())
                 ];
                 _Length = data.Length;
+                if (!writable) Buffers.Freeze();
             }
         }
 
@@ -131,7 +133,7 @@ namespace wan24.Core
         /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(in ReadOnlySpan<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
+        public FreezableMemoryPoolStream(in ReadOnlySpan<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
         {
             Write(data);
             Position = 0;
@@ -143,7 +145,7 @@ namespace wan24.Core
         /// <param name="data">Initial data (will be copied; stream is writable; initial position will be <c>0</c>)</param>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public MemoryPoolStream(in ReadOnlyMemory<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
+        public FreezableMemoryPoolStream(in ReadOnlyMemory<byte> data, in MemoryPool<byte>? pool = null, in int? bufferSize = null) : this(pool, bufferSize)
         {
             Write(data.Span);
             Position = 0;
@@ -171,6 +173,7 @@ namespace wan24.Core
             set
             {
                 EnsureUndisposed();
+                EnsureWritable();
                 ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
                 _BufferSize = value;
             }
@@ -263,6 +266,28 @@ namespace wan24.Core
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Freeze
+        /// </summary>
+        public void Freeze()
+        {
+            EnsureUndisposed();
+            if (!_CanWrite) return;
+            _CanWrite = false;
+            Buffers.Freeze();
+        }
+
+        /// <summary>
+        /// Unfreeze
+        /// </summary>
+        public void Unfreeze()
+        {
+            EnsureUndisposed(allowDisposing: true);
+            if (_CanWrite) return;
+            _CanWrite = true;
+            Buffers.Unfreeze();
         }
 
         /// <summary>
@@ -420,6 +445,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
+            Unfreeze();
             foreach (IMemoryOwner<byte> buffer in Buffers)
             {
                 if (CleanReturned) buffer.Memory.Span.Clean();
@@ -432,6 +458,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
+            Unfreeze();
             foreach (IMemoryOwner<byte> buffer in Buffers)
             {
                 if (CleanReturned) buffer.Memory.Span.Clean();
@@ -528,9 +555,9 @@ namespace wan24.Core
             {
                 // Add buffers
                 long len = value - _Length;
-                Span<byte> data = Buffers[^1].Memory.Span;
+                Memory<byte> data = Buffers[^1].Memory;
                 len -= (int)Math.Min(data.Length - LastBufferOffset, len);
-                if (clear) data[LastBufferOffset..].Clean();
+                if (clear) data.Span[LastBufferOffset..].Clean();
                 if (len == 0)
                 {
                     LastBufferOffset += (int)(value - _Length);
@@ -558,13 +585,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator byte[](in MemoryPoolStream ms) => ms.ToArray();
+        public static implicit operator byte[](in FreezableMemoryPoolStream ms) => ms.ToArray();
 
         /// <summary>
         /// Cast as length
         /// </summary>
         /// <param name="ms"><see cref="MemoryPoolStream"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator long(in MemoryPoolStream ms) => ms.Length;
+        public static implicit operator long(in FreezableMemoryPoolStream ms) => ms.Length;
     }
 }

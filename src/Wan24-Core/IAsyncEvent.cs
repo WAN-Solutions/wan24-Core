@@ -24,11 +24,11 @@
         /// <summary>
         /// Event handlers
         /// </summary>
-        HashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> EventHandlers { get; }
+        HashSet<EventHandler_Delegate> EventHandlers { get; }
         /// <summary>
         /// Event handlers
         /// </summary>
-        HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers { get; }
+        HashSet<EventHandlerAsync_Delegate> AsyncEventHandlers { get; }
         /// <summary>
         /// Detach all event handlers
         /// </summary>
