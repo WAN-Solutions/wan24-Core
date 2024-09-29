@@ -3,16 +3,8 @@
     /// <summary>
     /// Interface for a disposable object
     /// </summary>
-    public interface IDisposableObject : IDisposable, IAsyncDisposable
+    public interface IDisposableObject : IBasicDisposableObject, IDisposable, IAsyncDisposable
     {
-        /// <summary>
-        /// Is disposing? (is <see langword="true"/> when disposed already, too!)
-        /// </summary>
-        bool IsDisposing { get; }
-        /// <summary>
-        /// Is disposed? (final object disposing state)
-        /// </summary>
-        bool IsDisposed { get; }
         /// <summary>
         /// Delegate for the disposing events
         /// </summary>

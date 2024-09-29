@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -13,7 +13,7 @@ namespace wan24.Core
         /// <summary>
         /// Not cached types
         /// </summary>
-        public ReadOnlyCollection<Type> ScopeNotCachedTypes
+        public ImmutableArray<Type> ScopeNotCachedTypes
         {
             get
             {

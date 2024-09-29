@@ -53,7 +53,7 @@ namespace wan24.Core
                     KeyedScopeObjectFactories.Clear();
                     ScopeAsyncObjectFactories.Clear();
                     KeyedScopeAsyncObjectFactories.Clear();
-                    await Sync.DisposeAsync().DynamicContext();
+                    Sync.Dispose();
                 });
         }
 

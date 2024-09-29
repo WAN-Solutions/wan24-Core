@@ -7,7 +7,7 @@
     /// <remarks>
     /// Constructor
     /// </remarks>
-    public abstract class VolatileValueBase<T>() : DisposableBase()
+    public abstract class VolatileValueBase<T>() : SimpleDisposableBase()
     {
         /// <summary>
         /// Thread synchronization
@@ -103,7 +103,7 @@
         protected override async Task DisposeCore()
         {
             await Cancellation.CancelAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             if (_CurrentValue.Task.IsCompleted)
                 _CurrentValue = new(TaskCreationOptions.RunContinuationsAsynchronously);
             _CurrentValue.TrySetException(new ObjectDisposedException(GetType().ToString()));

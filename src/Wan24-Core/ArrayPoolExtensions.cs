@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -16,6 +17,9 @@ namespace wan24.Core
         /// <param name="len">Length</param>
         /// <returns>Rented clean array</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T[] RentClean<T>(this ArrayPool<T> pool, in int len)
         {
             T[] res = pool.Rent(len);

@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Event throttle (allow to raise once within N ms)
     /// </summary>
-    public abstract class EventThrottle : DisposableBase, IEventThrottle
+    public abstract class EventThrottle : BasicAllDisposableBase, IEventThrottle
     {
         /// <summary>
         /// Timer
@@ -141,6 +141,13 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing) => Timer.Dispose();
+
+        /// <inheritdoc/>
+        protected override Task DisposeCore()
+        {
+            Timer.Dispose();
+            return Task.CompletedTask;
+        }
 
         /// <summary>
         /// Cast as throttling-flag

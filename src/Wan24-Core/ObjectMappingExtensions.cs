@@ -8,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// <see cref="ObjectMapping"/> extension methods
     /// </summary>
-    public static class ObjectMappingExtensions
+    public static partial class ObjectMappingExtensions
     {
         /// <summary>
         /// Map an object to a target object
@@ -260,99 +260,6 @@ namespace wan24.Core
             // Apply the mapping
             await MapObjectToAsync(source, res, cancellationToken).DynamicContext();
             return res;
-        }
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <typeparam name="tSource">Source object type</typeparam>
-        /// <typeparam name="tTarget">Target object type</typeparam>
-        /// <param name="sources">Source objects</param>
-        /// <returns>Created and mapped target objects</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<tTarget> MapTo<tSource, tTarget>(this IEnumerable<tSource> sources)
-            => sources.Select(MapTo<tSource, tTarget>);
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <returns>Created and mapped target objects</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static IEnumerable<object> MapObjectsTo(this IEnumerable<object> sources, Type targetType)
-            => sources.Select(s => MapObjectTo(s, targetType));
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <typeparam name="tSource">Source object type</typeparam>
-        /// <typeparam name="tTarget">Target object type</typeparam>
-        /// <param name="sources">Source objects</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Created and mapped target objects</returns>
-        public static async IAsyncEnumerable<tTarget> MapToAsync<tSource, tTarget>(
-            this IEnumerable<tSource> sources,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            foreach (tSource source in sources) yield return await MapToAsync<tSource, tTarget>(source, cancellationToken).DynamicContext();
-        }
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Created and mapped target objects</returns>
-        public static async IAsyncEnumerable<object> MapObjectsToAsync(
-            this IEnumerable<object> sources,
-            Type targetType,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            foreach (object source in sources) yield return await MapObjectToAsync(source, targetType, cancellationToken).DynamicContext();
-        }
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <typeparam name="tSource">Source object type</typeparam>
-        /// <typeparam name="tTarget">Target object type</typeparam>
-        /// <param name="sources">Source objects</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Created and mapped target objects</returns>
-        public static async IAsyncEnumerable<tTarget> MapToAsync<tSource, tTarget>(
-            this IAsyncEnumerable<tSource> sources,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            await foreach (tSource source in sources.WithCancellation(cancellationToken))
-                yield return await MapToAsync<tSource, tTarget>(source, cancellationToken).DynamicContext();
-        }
-
-        /// <summary>
-        /// Map a list of source objects to new target object instances
-        /// </summary>
-        /// <param name="sources">Source objects</param>
-        /// <param name="targetType">Target object type</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Created and mapped target objects</returns>
-        public static async IAsyncEnumerable<object> MapObjectsToAsync(
-            this IAsyncEnumerable<object> sources,
-            Type targetType,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            await foreach (object source in sources.WithCancellation(cancellationToken))
-                yield return await MapObjectToAsync(source, targetType, cancellationToken).DynamicContext();
         }
 
         /// <summary>

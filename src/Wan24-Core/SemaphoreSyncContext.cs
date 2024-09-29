@@ -100,15 +100,14 @@ namespace wan24.Core
                 if (IsDisposed) return;
                 IsDisposed = true;
             }
-            lock (Semaphore)
-                if (IsSynchronized)
-                    try
-                    {
-                        Semaphore.Release();
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                    }
+            if (IsSynchronized)
+                try
+                {
+                    Semaphore.Release();
+                }
+                catch (ObjectDisposedException)
+                {
+                }
         }
 
         /// <summary>

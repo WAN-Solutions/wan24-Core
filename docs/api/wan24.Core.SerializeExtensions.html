@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_DeserializeFrom_System_Type_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.DeserializeFrom(System.Type%2CSystem.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L37">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_DeserializeFrom_" data-uid="wan24.Core.SerializeExtensions.DeserializeFrom*"></a>
   <h4 id="wan24_Core_SerializeExtensions_DeserializeFrom_System_Type_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.SerializeExtensions.DeserializeFrom(System.Type,System.ReadOnlySpan{System.Byte}@)">DeserializeFrom(Type, in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -202,7 +202,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_DeserializeTypeFrom__1_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.DeserializeTypeFrom%60%601(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L87">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_DeserializeTypeFrom_" data-uid="wan24.Core.SerializeExtensions.DeserializeTypeFrom*"></a>
   <h4 id="wan24_Core_SerializeExtensions_DeserializeTypeFrom__1_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.SerializeExtensions.DeserializeTypeFrom``1(System.ReadOnlySpan{System.Byte})">DeserializeTypeFrom&lt;T&gt;(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -211,7 +211,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T DeserializeTypeFrom&lt;T&gt;(this ReadOnlySpan&lt;byte&gt; buffer) where T : ISerializeBinary&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static T DeserializeTypeFrom&lt;T&gt;(this ReadOnlySpan&lt;byte&gt; buffer) where T : ISerializeBinary&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -268,7 +269,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_ParseObject_System_Type_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.ParseObject(System.Type%2CSystem.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_ParseObject_" data-uid="wan24.Core.SerializeExtensions.ParseObject*"></a>
   <h4 id="wan24_Core_SerializeExtensions_ParseObject_System_Type_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.SerializeExtensions.ParseObject(System.Type,System.ReadOnlySpan{System.Char}@)">ParseObject(Type, in ReadOnlySpan&lt;char&gt;)</h4>
@@ -324,7 +325,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_Parse__1_System_ReadOnlySpan_System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.Parse%60%601(System.ReadOnlySpan%7BSystem.Char%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_Parse_" data-uid="wan24.Core.SerializeExtensions.Parse*"></a>
   <h4 id="wan24_Core_SerializeExtensions_Parse__1_System_ReadOnlySpan_System_Char__" data-uid="wan24.Core.SerializeExtensions.Parse``1(System.ReadOnlySpan{System.Char})">Parse&lt;T&gt;(ReadOnlySpan&lt;char&gt;)</h4>
@@ -333,7 +334,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T Parse&lt;T&gt;(this ReadOnlySpan&lt;char&gt; str) where T : ISerializeString&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static T Parse&lt;T&gt;(this ReadOnlySpan&lt;char&gt; str) where T : ISerializeString&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -390,7 +392,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_TryDeserializeFrom_System_Type_System_ReadOnlySpan_System_Byte___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.TryDeserializeFrom(System.Type%2CSystem.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L58">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_TryDeserializeFrom_" data-uid="wan24.Core.SerializeExtensions.TryDeserializeFrom*"></a>
   <h4 id="wan24_Core_SerializeExtensions_TryDeserializeFrom_System_Type_System_ReadOnlySpan_System_Byte___System_Object__" data-uid="wan24.Core.SerializeExtensions.TryDeserializeFrom(System.Type,System.ReadOnlySpan{System.Byte}@,System.Object@)">TryDeserializeFrom(Type, in ReadOnlySpan&lt;byte&gt;, out object?)</h4>
@@ -452,7 +454,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_TryDeserializeTypeFrom__1_System_ReadOnlySpan_System_Byte____0__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.TryDeserializeTypeFrom%60%601(System.ReadOnlySpan%7BSystem.Byte%7D%2C%60%600%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_TryDeserializeTypeFrom_" data-uid="wan24.Core.SerializeExtensions.TryDeserializeTypeFrom*"></a>
   <h4 id="wan24_Core_SerializeExtensions_TryDeserializeTypeFrom__1_System_ReadOnlySpan_System_Byte____0__" data-uid="wan24.Core.SerializeExtensions.TryDeserializeTypeFrom``1(System.ReadOnlySpan{System.Byte},``0@)">TryDeserializeTypeFrom&lt;T&gt;(ReadOnlySpan&lt;byte&gt;, out T?)</h4>
@@ -461,7 +463,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryDeserializeTypeFrom&lt;T&gt;(this ReadOnlySpan&lt;byte&gt; buffer, out T? result) where T : ISerializeBinary&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool TryDeserializeTypeFrom&lt;T&gt;(this ReadOnlySpan&lt;byte&gt; buffer, out T? result) where T : ISerializeBinary&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -524,7 +527,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_TryParseObject_System_Type_System_ReadOnlySpan_System_Char___System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.TryParseObject(System.Type%2CSystem.ReadOnlySpan%7BSystem.Char%7D%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L139">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_TryParseObject_" data-uid="wan24.Core.SerializeExtensions.TryParseObject*"></a>
   <h4 id="wan24_Core_SerializeExtensions_TryParseObject_System_Type_System_ReadOnlySpan_System_Char___System_Object__" data-uid="wan24.Core.SerializeExtensions.TryParseObject(System.Type,System.ReadOnlySpan{System.Char}@,System.Object@)">TryParseObject(Type, in ReadOnlySpan&lt;char&gt;, out object?)</h4>
@@ -586,7 +589,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SerializeExtensions_TryParse__1_System_ReadOnlySpan_System_Char____0__.md&amp;value=---%0Auid%3A%20wan24.Core.SerializeExtensions.TryParse%60%601(System.ReadOnlySpan%7BSystem.Char%7D%2C%60%600%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L171">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SerializeExtensions.cs/#L185">View Source</a>
   </span>
   <a id="wan24_Core_SerializeExtensions_TryParse_" data-uid="wan24.Core.SerializeExtensions.TryParse*"></a>
   <h4 id="wan24_Core_SerializeExtensions_TryParse__1_System_ReadOnlySpan_System_Char____0__" data-uid="wan24.Core.SerializeExtensions.TryParse``1(System.ReadOnlySpan{System.Char},``0@)">TryParse&lt;T&gt;(ReadOnlySpan&lt;char&gt;, out T?)</h4>
@@ -595,7 +598,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool TryParse&lt;T&gt;(this ReadOnlySpan&lt;char&gt; str, out T? result) where T : ISerializeString&lt;T&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static bool TryParse&lt;T&gt;(this ReadOnlySpan&lt;char&gt; str, out T? result) where T : ISerializeString&lt;T&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

@@ -484,9 +484,10 @@ namespace wan24.Core
             if (mask.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException("An IPv4 IP address is required", nameof(mask));
             uint ipAddress = BinaryPrimitives.ReadUInt32BigEndian(ip.GetAddressBytes()),
                 maskAddress = BinaryPrimitives.ReadUInt32BigEndian(mask.GetAddressBytes());
-            RentedArrayStruct<byte> buffer = new(len: sizeof(uint));
-            BinaryPrimitives.WriteUInt32BigEndian(buffer.Span, (ipAddress & maskAddress) | ~maskAddress);
-            return new(buffer.Span);
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(uint));
+            Span<byte> bufferSpan = buffer.Memory.Span;
+            BinaryPrimitives.WriteUInt32BigEndian(bufferSpan, (ipAddress & maskAddress) | ~maskAddress);
+            return new(bufferSpan);
         }
 
         /// <summary>

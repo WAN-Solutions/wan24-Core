@@ -143,10 +143,89 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Frozen_FrozenSet___0__System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.VersioningExtensions.FilterByVersion%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L121">View Source</a>
+  </span>
+  <a id="wan24_Core_VersioningExtensions_FilterByVersion_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion*"></a>
+  <h4 id="wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Frozen_FrozenSet___0__System_Int32_System_Boolean_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion``1(System.Collections.Frozen.FrozenSet{``0},System.Int32,System.Boolean)">FilterByVersion&lt;T&gt;(FrozenSet&lt;T&gt;, int, bool)</h4>
+  <div class="markdown level1 summary"><p>Filter by version (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>Version</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">requireVersionFilter</span></td>
+        <td><p>Require the item to implement a version filter (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Filtered items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.VersioningExtensions.FilterByVersion%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L21">View Source</a>
   </span>
   <a id="wan24_Core_VersioningExtensions_FilterByVersion_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion*"></a>
   <h4 id="wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Boolean_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean)">FilterByVersion&lt;T&gt;(IEnumerable&lt;T&gt;, int, bool)</h4>
@@ -155,7 +234,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -169,6 +249,243 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>Version</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">requireVersionFilter</span></td>
+        <td><p>Require the item to implement a version filter (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Filtered items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_IList___0__System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.VersioningExtensions.FilterByVersion%60%601(System.Collections.Generic.IList%7B%60%600%7D%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L40">View Source</a>
+  </span>
+  <a id="wan24_Core_VersioningExtensions_FilterByVersion_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion*"></a>
+  <h4 id="wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_IList___0__System_Int32_System_Boolean_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion``1(System.Collections.Generic.IList{``0},System.Int32,System.Boolean)">FilterByVersion&lt;T&gt;(IList&lt;T&gt;, int, bool)</h4>
+  <div class="markdown level1 summary"><p>Filter by version (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this IList&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>Version</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">requireVersionFilter</span></td>
+        <td><p>Require the item to implement a version filter (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Filtered items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_List___0__System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.VersioningExtensions.FilterByVersion%60%601(System.Collections.Generic.List%7B%60%600%7D%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L67">View Source</a>
+  </span>
+  <a id="wan24_Core_VersioningExtensions_FilterByVersion_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion*"></a>
+  <h4 id="wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_List___0__System_Int32_System_Boolean_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion``1(System.Collections.Generic.List{``0},System.Int32,System.Boolean)">FilterByVersion&lt;T&gt;(List&lt;T&gt;, int, bool)</h4>
+  <div class="markdown level1 summary"><p>Filter by version (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this List&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">version</span></td>
+        <td><p>Version</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">requireVersionFilter</span></td>
+        <td><p>Require the item to implement a version filter (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Filtered items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.VersioningExtensions.FilterByVersion%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/VersioningExtensions.cs/#L94">View Source</a>
+  </span>
+  <a id="wan24_Core_VersioningExtensions_FilterByVersion_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion*"></a>
+  <h4 id="wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_System_Boolean_" data-uid="wan24.Core.VersioningExtensions.FilterByVersion``1(System.Collections.Immutable.ImmutableArray{``0},System.Int32,System.Boolean)">FilterByVersion&lt;T&gt;(ImmutableArray&lt;T&gt;, int, bool)</h4>
+  <div class="markdown level1 summary"><p>Filter by version (using <a class="xref" href="wan24.Core.IVersioning.html">IVersioning</a> and <a class="xref" href="wan24.Core.IVersioningExt.html">IVersioningExt</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterByVersion&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable, int version, bool requireVersionFilter = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;T&gt;</td>
         <td><span class="parametername">enumerable</span></td>
         <td><p>Enumerable</p>
 </td>

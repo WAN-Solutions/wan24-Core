@@ -84,9 +84,10 @@ namespace wan24.Core
         /// <returns>Hex string (upper case)</returns>
         public string ToHexString()
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: BINARY_SIZE, clean: false);
-            GetBytes(buffer.Span);
-            return Convert.ToHexString(buffer.Span);
+            using RentedMemoryRef<byte> buffer = new(len: BINARY_SIZE, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            GetBytes(bufferSpan);
+            return Convert.ToHexString(bufferSpan);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Timeout value (disposable value will be disposed on timeout or when disposing)
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
-    public sealed class TimeoutValue<T> : DisposableBase
+    public sealed class TimeoutValue<T> : SimpleDisposableBase
     {
         /// <summary>
         /// Factory

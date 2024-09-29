@@ -207,7 +207,7 @@ namespace wan24.Core
             Vector256<uint> shiftRight = Vector256.Create(Encoding2ShiftRight),
                 shiftLeft = Vector256.Create(Encoding2ShiftLeft);
             char* resultStart = result;// Result start pointer
-            using RentedArrayRefStruct<byte> charMapIndex = new(len: 32, clean: false);// Character map index buffer
+            using RentedMemoryRef<byte> charMapIndex = new(len: 32, clean: false);// Character map index buffer
             fixed (byte* charMapIndexPtr = charMapIndex.Span)
                 // Process data in 24 byte chunks (which results in a 32 byte chunk each 24 byte chunk)
                 for (byte* dataEnd = data + len; data < dataEnd; data += 24, result += 32)
@@ -292,7 +292,7 @@ namespace wan24.Core
             Vector256<uint> shiftLeft = Vector256.Create(Decoding2ShiftLeft),
                 shiftRight = Vector256.Create(Decoding2ShiftRight);
             int i;// Loop index
-            using RentedArrayRefStruct<byte> charBytes = new(len: 32, clean: false);// Character byte buffer
+            using RentedMemoryRef<byte> charBytes = new(len: 32, clean: false);// Character byte buffer
             fixed (byte* charBytesPtr = charBytes.Span)
                 // Process data in 32 byte chunks (which results in a 24 byte chunk each 32 byte chunk)
                 for (char* dataEnd = data + len; data < dataEnd; data += 32, result += 24)

@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Pool rented array (returns the array to the pool, when disposed)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class RentedArray<T> : DisposableBase, IRentedArray<T>
+    public sealed class RentedArray<T> : BasicDisposableBase, IRentedArray<T>
     {
         /// <summary>
         /// Rented array
@@ -107,7 +107,7 @@ namespace wan24.Core
         public Memory<T> Memory => Array.AsMemory(0, Length);
 
         /// <inheritdoc/>
-        public bool Clear { get; set; }
+        public bool Clear { get; set; } = Settings.ClearBuffers;
 
         /// <inheritdoc/>
         public T[] GetCopy()
@@ -120,14 +120,23 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override bool Equals([NotNullWhen(true)] object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
@@ -201,5 +210,15 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static implicit operator int(in RentedArray<T> arr) => arr.Length;
+
+        /// <summary>
+        /// Cast from Int32 (length value)
+        /// </summary>
+        /// <param name="len">Length in bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator RentedArray<T>(in int len) => new(len);
     }
 }

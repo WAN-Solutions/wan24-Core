@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Object lock
     /// </summary>
-    public sealed class ObjectLock : DisposableBase
+    public sealed class ObjectLock : SimpleDisposableBase
     {
         /// <summary>
         /// Task completion

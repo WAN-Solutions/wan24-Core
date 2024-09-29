@@ -21,7 +21,7 @@
             in ReadWriteLock.Context localContext,
             in UidExt guid
             )
-            : DisposableBase()
+            : BasicAllDisposableBase()
         {
             /// <summary>
             /// Local usage context (will be disposed)

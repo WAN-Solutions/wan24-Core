@@ -122,8 +122,9 @@ namespace wan24.Core
             {
                 if (s is not string str) return null;
                 ReadOnlySpan<char> chars = str;
-                using RentedArrayRefStruct<byte> buffer = new(len: Encoding.UTF8.GetByteCount(chars), clean: false);
-                return t.DeserializeFrom(buffer.Span[..chars.GetBase64Bytes(buffer.Span)]);
+                using RentedMemoryRef<byte> buffer = new(len: Encoding.UTF8.GetByteCount(chars), clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                return t.DeserializeFrom(bufferSpan[..chars.GetBase64Bytes(bufferSpan)]);
             };
             StringConverter[typeof(string)] = (t, v) => v as string;
             StringConverter[typeof(bool)] = (t, v) => v?.ToString();
@@ -155,8 +156,9 @@ namespace wan24.Core
                 if (v is null) return null;
                 if (v is not ISerializeBinary serializeBinary) throw new InvalidCastException();
                 if (serializeBinary.StructureSize is not int size) return serializeBinary.GetBytes().GetBase64String();
-                using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxEncodedToUtf8Length(size), clean: false);
-                return System.Convert.ToBase64String(buffer.Span[..serializeBinary.GetBytes(buffer.Span)]);
+                using RentedMemoryRef<byte> buffer = new(len: Base64.GetMaxEncodedToUtf8Length(size), clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                return System.Convert.ToBase64String(bufferSpan[..serializeBinary.GetBytes(bufferSpan)]);
             };
             NamedValueConverter[JSON_CONVERTER_NAME] = (t, s) => s is null ? null : JsonHelper.DecodeObject(t, s);
             NamedValueConverter[XML_CONVERTER_NAME] = (t, s) =>
@@ -176,9 +178,10 @@ namespace wan24.Core
                 XmlSerializer serializer = new(t);
                 serializer.Serialize(ms, v);
                 ms.Position = 0;
-                using RentedArrayRefStruct<byte> buffer = new((int)ms.Length, clean: false);
-                ms.ReadExactly(buffer.Span);
-                return buffer.Span.ToUtf8String();
+                using RentedMemoryRef<byte> buffer = new((int)ms.Length, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                ms.ReadExactly(bufferSpan);
+                return bufferSpan.ToUtf8String();
             };
             NamedStringConverter[STRING_CONVERTER_NAME] = (t, v) => v is null ? null : ConvertObjectToString(v);
         }

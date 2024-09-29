@@ -14,15 +14,20 @@ namespace wan24.Core
         /// <returns>If waiting for user input</returns>
         public static bool NeedUserInput(this Process p)
         {
-            foreach (ProcessThread t in p.Threads)
+            ProcessThreadCollection threads = p.Threads;
+            ProcessThread thread;
+            for (int i = 0, len = threads.Count; i < len; i++)
+            {
+                thread = threads[i];
                 if (
-                    t.ThreadState == System.Diagnostics.ThreadState.Wait && 
+                    thread.ThreadState == System.Diagnostics.ThreadState.Wait &&
                     (
-                        t.WaitReason == ThreadWaitReason.UserRequest || 
-                        t.WaitReason == ThreadWaitReason.LpcReply
+                        thread.WaitReason == ThreadWaitReason.UserRequest ||
+                        thread.WaitReason == ThreadWaitReason.LpcReply
                     )
                     )
                     return true;
+            }
             return false;
         }
     }

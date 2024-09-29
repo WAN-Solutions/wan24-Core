@@ -24,10 +24,6 @@
         /// </summary>
         protected readonly CancellationTokenSource Cancellation = new();
         /// <summary>
-        /// Combined cancellation tokens
-        /// </summary>
-        protected readonly Cancellations CombinedCancellation;
-        /// <summary>
         /// Task scheduler to use for the processing background task
         /// </summary>
         protected TaskScheduler? Scheduler = null;
@@ -50,7 +46,7 @@
         /// <param name="bufferSize">Buffer size in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         protected BackgroundProcessingStreamBase(in int bufferSize, in CancellationToken cancellationToken = default) : base(bufferSize)
-            => CombinedCancellation = new(Cancellation.Token, cancellationToken);
+            => Cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 
         /// <summary>
         /// Last processing exception (may be set during disposing)
@@ -115,13 +111,13 @@
         {
             try
             {
-                await ProcessAsync(CombinedCancellation.Cancellation).DynamicContext();
-                await SetIsEndOfFileAsync(CombinedCancellation).DynamicContext();
+                await ProcessAsync(Cancellation.Token).DynamicContext();
+                await SetIsEndOfFileAsync(Cancellation.Token).DynamicContext();
             }
             catch(ObjectDisposedException) when (IsDisposing)
             {
             }
-            catch(OperationCanceledException) when (CombinedCancellation.Cancellation.IsCancellationRequested)
+            catch(OperationCanceledException) when (Cancellation.IsCancellationRequested)
             {
             }
             catch(Exception ex)
@@ -143,8 +139,8 @@
             if (DidProcess) throw new InvalidOperationException();
             DidProcess = true;
             ProcessorTask = LongRunning
-                ? ((Func<Task>)ProcessorAsync).StartLongRunningTask(Scheduler, CombinedCancellation)
-                : ((Func<Task>)ProcessorAsync).StartFairTask(Scheduler, CombinedCancellation);
+                ? ((Func<Task>)ProcessorAsync).StartLongRunningTask(Scheduler, Cancellation.Token)
+                : ((Func<Task>)ProcessorAsync).StartFairTask(Scheduler, Cancellation.Token);
         }
 
         /// <summary>
@@ -174,7 +170,6 @@
             Cancellation.Cancel();
             ProcessorTask?.GetAwaiter().GetResult();
             base.Dispose(disposing);
-            CombinedCancellation.Dispose();
             Cancellation.Dispose();
         }
 
@@ -184,7 +179,6 @@
             await Cancellation.CancelAsync().DynamicContext();
             if (ProcessorTask is Task processor) await processor.DynamicContext();
             await base.DisposeCore().DynamicContext();
-            await CombinedCancellation.DisposeAsync().DynamicContext();
             Cancellation.Dispose();
         }
 

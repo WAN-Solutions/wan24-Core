@@ -181,15 +181,16 @@ namespace wan24.Core
         {
             if (bits < BigInteger.Zero || bits > MaxIPv6) throw new ArgumentOutOfRangeException(nameof(bits));
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = new(ByteCount);
-            if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
+            using RentedMemoryRef<byte> buffer = new(ByteCount);
+            Span<byte> bufferSpan = buffer.Span;
+            if (!bits.TryWriteBytes(bufferSpan, out int written, isUnsigned: true, isBigEndian: true))
                 throw new ArgumentOutOfRangeException(nameof(bits), $"{written} bytes written");
             if (written != buffer.Length)
             {
-                buffer.Span[..written].CopyTo(buffer.Span[(buffer.Length - written)..]);
-                buffer.Span[..written].Clear();
+                bufferSpan[..written].CopyTo(bufferSpan[(buffer.Length - written)..]);
+                bufferSpan[..written].Clear();
             }
-            return new(buffer.Span);
+            return new(bufferSpan);
 #else
             Span<byte> buffer = stackalloc byte[ByteCount];
             if (!bits.TryWriteBytes(buffer, out int written, isUnsigned: true, isBigEndian: true))
@@ -219,7 +220,7 @@ namespace wan24.Core
             if (ip.AddressFamily != AddressFamily.InterNetwork && ip.AddressFamily != AddressFamily.InterNetworkV6)
                 throw new ArgumentException("Sub-net supports only IPv4/6 addresses", nameof(ip));
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = GetBytes(ip);
+            using RentedMemoryRef<byte> buffer = GetBytes(ip);
             return new(buffer.Span, isUnsigned: true, isBigEndian: true);
 #else
             Span<byte> buffer = stackalloc byte[ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES];
@@ -236,13 +237,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static RentedArrayStructSimple<byte> GetBytes(in IPAddress ip)
+        private static RentedMemory<byte> GetBytes(in IPAddress ip)
         {
             int len = ip.AddressFamily == AddressFamily.InterNetwork ? IPV4_BYTES : IPV6_BYTES;
-            RentedArrayStructSimple<byte> res = new(len, clean: false);
+            RentedMemory<byte> res = new(len, clean: false);
             try
             {
-                if (ip.TryWriteBytes(res.Span, out int written) && len == written) return res;
+                if (ip.TryWriteBytes(res.Memory.Span, out int written) && len == written) return res;
                 throw new ArgumentException("Invalid IP address", nameof(ip));
             }
             catch

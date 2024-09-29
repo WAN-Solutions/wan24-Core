@@ -120,6 +120,7 @@
     <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
@@ -398,7 +399,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ForceAsyncStream_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ForceAsyncStream&lt;T&gt; : WrapperStream, IStreamWrapper, IStream, IDisposableObject, IAsyncDisposable, IStatusProvider, IDisposable where T : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class ForceAsyncStream&lt;T&gt; : WrapperStream, IStreamWrapper, IStream, IDisposableObject, IBasicDisposableObject, IAsyncDisposable, IStatusProvider, IDisposable where T : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -498,7 +499,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L110">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_Dispose_" data-uid="wan24.Core.ForceAsyncStream`1.Dispose*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_Dispose" data-uid="wan24.Core.ForceAsyncStream`1.Dispose">Dispose()</h4>
@@ -513,7 +514,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L113">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_Dispose_" data-uid="wan24.Core.ForceAsyncStream`1.Dispose*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_Dispose_System_Boolean_" data-uid="wan24.Core.ForceAsyncStream`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -740,7 +741,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.ReadByte%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L63">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_ReadByte_" data-uid="wan24.Core.ForceAsyncStream`1.ReadByte*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_ReadByte" data-uid="wan24.Core.ForceAsyncStream`1.ReadByte">ReadByte()</h4>
@@ -795,7 +796,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L76">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L77">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_Write_" data-uid="wan24.Core.ForceAsyncStream`1.Write*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.ForceAsyncStream`1.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
@@ -884,7 +885,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_Write_" data-uid="wan24.Core.ForceAsyncStream`1.Write*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.ForceAsyncStream`1.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -920,7 +921,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ForceAsyncStream_1_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.ForceAsyncStream%601.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ForceAsyncStream.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_ForceAsyncStream_1_WriteByte_" data-uid="wan24.Core.ForceAsyncStream`1.WriteByte*"></a>
   <h4 id="wan24_Core_ForceAsyncStream_1_WriteByte_System_Byte_" data-uid="wan24.Core.ForceAsyncStream`1.WriteByte(System.Byte)">WriteByte(byte)</h4>
@@ -986,6 +987,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
@@ -1148,10 +1152,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

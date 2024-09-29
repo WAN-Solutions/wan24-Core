@@ -115,12 +115,13 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a></div>
     <div><a class="xref" href="wan24.Core.ITimer.html">ITimer</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a></div>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -411,7 +412,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_EnvironmentService_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EnvironmentService : TimedHostedServiceBase, IWillDispose, IExportUserActions, ITimer, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class EnvironmentService : TimedHostedServiceBase, IWillDispose, IDisposableObject, IExportUserActions, ITimer, IServiceWorkerStatus, IServiceWorker, IHostedService, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -468,7 +469,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_IncludeSummaries.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.IncludeSummaries%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_IncludeSummaries_" data-uid="wan24.Core.EnvironmentService.IncludeSummaries*"></a>
   <h4 id="wan24_Core_EnvironmentService_IncludeSummaries" data-uid="wan24.Core.EnvironmentService.IncludeSummaries">IncludeSummaries</h4>
@@ -499,7 +500,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_LockedObjects.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.LockedObjects%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L125">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_LockedObjects_" data-uid="wan24.Core.EnvironmentService.LockedObjects*"></a>
   <h4 id="wan24_Core_EnvironmentService_LockedObjects" data-uid="wan24.Core.EnvironmentService.LockedObjects">LockedObjects</h4>
@@ -530,7 +531,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_ObjectReferences.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.ObjectReferences%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_ObjectReferences_" data-uid="wan24.Core.EnvironmentService.ObjectReferences*"></a>
   <h4 id="wan24_Core_EnvironmentService_ObjectReferences" data-uid="wan24.Core.EnvironmentService.ObjectReferences">ObjectReferences</h4>
@@ -561,7 +562,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_PreForked.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.PreForked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L110">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_PreForked_" data-uid="wan24.Core.EnvironmentService.PreForked*"></a>
   <h4 id="wan24_Core_EnvironmentService_PreForked" data-uid="wan24.Core.EnvironmentService.PreForked">PreForked</h4>
@@ -592,7 +593,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_QueuedItems.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.QueuedItems%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L105">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_QueuedItems_" data-uid="wan24.Core.EnvironmentService.QueuedItems*"></a>
   <h4 id="wan24_Core_EnvironmentService_QueuedItems" data-uid="wan24.Core.EnvironmentService.QueuedItems">QueuedItems</h4>
@@ -623,7 +624,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_RunningServices.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.RunningServices%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_RunningServices_" data-uid="wan24.Core.EnvironmentService.RunningServices*"></a>
   <h4 id="wan24_Core_EnvironmentService_RunningServices" data-uid="wan24.Core.EnvironmentService.RunningServices">RunningServices</h4>
@@ -654,7 +655,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_RunningTimers.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.RunningTimers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L100">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_RunningTimers_" data-uid="wan24.Core.EnvironmentService.RunningTimers*"></a>
   <h4 id="wan24_Core_EnvironmentService_RunningTimers" data-uid="wan24.Core.EnvironmentService.RunningTimers">RunningTimers</h4>
@@ -685,7 +686,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_Services.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.Services%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L86">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_Services_" data-uid="wan24.Core.EnvironmentService.Services*"></a>
   <h4 id="wan24_Core_EnvironmentService_Services" data-uid="wan24.Core.EnvironmentService.Services">Services</h4>
@@ -749,7 +750,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_StoredObjects.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.StoredObjects%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L115">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_StoredObjects_" data-uid="wan24.Core.EnvironmentService.StoredObjects*"></a>
   <h4 id="wan24_Core_EnvironmentService_StoredObjects" data-uid="wan24.Core.EnvironmentService.StoredObjects">StoredObjects</h4>
@@ -780,7 +781,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_Timers.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.Timers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L95">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L96">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_Timers_" data-uid="wan24.Core.EnvironmentService.Timers*"></a>
   <h4 id="wan24_Core_EnvironmentService_Timers" data-uid="wan24.Core.EnvironmentService.Timers">Timers</h4>
@@ -811,7 +812,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_WorkingSet.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.WorkingSet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L81">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_WorkingSet_" data-uid="wan24.Core.EnvironmentService.WorkingSet*"></a>
   <h4 id="wan24_Core_EnvironmentService_WorkingSet" data-uid="wan24.Core.EnvironmentService.WorkingSet">WorkingSet</h4>
@@ -844,7 +845,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnvironmentService_TimedWorkerAsync.md&amp;value=---%0Auid%3A%20wan24.Core.EnvironmentService.TimedWorkerAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L128">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnvironmentService.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_EnvironmentService_TimedWorkerAsync_" data-uid="wan24.Core.EnvironmentService.TimedWorkerAsync*"></a>
   <h4 id="wan24_Core_EnvironmentService_TimedWorkerAsync" data-uid="wan24.Core.EnvironmentService.TimedWorkerAsync">TimedWorkerAsync()</h4>
@@ -877,6 +878,9 @@
       <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a>
   </div>
   <div>
@@ -892,7 +896,7 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -983,10 +987,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

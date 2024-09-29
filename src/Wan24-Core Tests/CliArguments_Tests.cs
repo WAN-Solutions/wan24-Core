@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
@@ -37,18 +38,18 @@ namespace Wan24_Core_Tests
             // key1
             Assert.IsTrue(ca.HasValues("key1"));
             Assert.AreEqual("value1", ca.Single("key1"));
-            ReadOnlyCollection<string> values = ca.All("key1");
-            Assert.AreEqual(3, values.Count);
+            ImmutableArray<string> values = ca.All("key1");
+            Assert.AreEqual(3, values.Length);
             Assert.AreEqual("value2", values[1]);
             Assert.AreEqual("value3", values[2]);
             // key2
             values = ca.All("key2");
-            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual(2, values.Length);
             Assert.AreEqual("value 1\\'\"", values[0]);
             Assert.AreEqual("value 2\\'\"", values[1]);
             // key3
             values = ca.All("key3");
-            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual(2, values.Length);
             Assert.AreEqual("-value1", values[0]);
             Assert.AreEqual("-value2", values[1]);
             // Arguments printing
@@ -79,7 +80,7 @@ namespace Wan24_Core_Tests
         public void KeyLess_Tests()
         {
             CliArguments ca = CliArguments.Parse("value1 -flag value2 --key value3");
-            Assert.AreEqual(2, ca.KeyLessArguments.Count);
+            Assert.AreEqual(2, ca.KeyLessArguments.Length);
             Assert.AreEqual("value1", ca.KeyLessArguments[0]);
             Assert.AreEqual("value2", ca.KeyLessArguments[1]);
             Assert.IsTrue(ca["flag"]);

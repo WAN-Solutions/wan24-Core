@@ -21,6 +21,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] ConvertEndian(this ReadOnlySpan<byte> bytes)
         {
             byte[] res = bytes.ToArray();
@@ -34,6 +37,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] ConvertEndian(this ReadOnlyMemory<byte> bytes) => bytes.Span.ConvertEndian();
 
         /// <summary>
@@ -42,6 +48,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> ConvertEndian(this Span<byte> bytes)
         {
             if (!BitConverter.IsLittleEndian) bytes.Reverse();
@@ -54,6 +63,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Memory<byte> ConvertEndian(this Memory<byte> bytes)
         {
             bytes.Span.ConvertEndian();
@@ -66,6 +78,9 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <returns>Converted bytes</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] ConvertEndian(this byte[] bytes)
         {
             bytes.AsSpan().ConvertEndian();
@@ -93,6 +108,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this Span<byte> a, in ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
 
         /// <summary>
@@ -102,6 +120,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this byte[] a, in ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a, b);
 
         /// <summary>
@@ -111,6 +132,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this ReadOnlyMemory<byte> a, in ReadOnlySpan<byte> b) => SlowCompare(a.Span, b);
 
         /// <summary>
@@ -120,6 +144,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this Memory<byte> a, in ReadOnlySpan<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b);
 
         /// <summary>
@@ -129,6 +156,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this ReadOnlyMemory<byte> a, in ReadOnlyMemory<byte> b) => SlowCompare(a.Span, b.Span);
 
         /// <summary>
@@ -138,6 +168,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool SlowCompare(this Memory<byte> a, in Memory<byte> b) => SlowCompare((ReadOnlySpan<byte>)a.Span, b.Span);
 
         /// <summary>
@@ -146,6 +179,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static short ToShort(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt16LittleEndian(bits);
 
         /// <summary>
@@ -154,6 +190,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static short ToShort(this Span<byte> bits) => ToShort((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -162,6 +201,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ushort ToUShort(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt16LittleEndian(bits);
 
         /// <summary>
@@ -170,6 +212,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ushort ToUShort(this Span<byte> bits) => ToUShort((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -178,6 +223,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToInt(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt32LittleEndian(bits);
 
         /// <summary>
@@ -186,6 +234,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToInt(this Span<byte> bits) => ToInt((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -194,6 +245,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ToUInt(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt32LittleEndian(bits);
 
         /// <summary>
@@ -202,6 +256,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ToUInt(this Span<byte> bits) => ToUInt((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -210,6 +267,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long ToLong(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadInt64LittleEndian(bits);
 
         /// <summary>
@@ -218,6 +278,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long ToLong(this Span<byte> bits) => ToLong((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -226,6 +289,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong ToULong(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadUInt64LittleEndian(bits);
 
         /// <summary>
@@ -234,6 +300,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong ToULong(this Span<byte> bits) => ToULong((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -242,6 +311,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static float ToFloat(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadSingleLittleEndian(bits);
 
         /// <summary>
@@ -250,6 +322,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static float ToFloat(this Span<byte> bits) => ToFloat((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -258,6 +333,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static double ToDouble(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadDoubleLittleEndian(bits);
 
         /// <summary>
@@ -266,6 +344,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static double ToDouble(this Span<byte> bits) => ToDouble((ReadOnlySpan<byte>)bits);
 
 #if NO_UNSAFE
@@ -275,12 +356,16 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
-            RentedArray<int> intBits = new(len: 4, clean: false);
-            for (int i = 0; i < 4; intBits.Span[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
-            return new decimal(intBits.Span);
+            RentedMemoryRef<int> intBits = new(len: 4, clean: false);
+            Span<int> intBitsSpan = intBits.Span;
+            for (int i = 0; i < 4; intBitsSpan[i] = bits.Slice(i << 2, sizeof(int)).ToInt(), i++) ;
+            return new decimal(intBitsSpan);
         }
 #else
         /// <summary>
@@ -290,6 +375,9 @@ namespace wan24.Core
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
         [SkipLocalsInit]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal ToDecimal(this ReadOnlySpan<byte> bits)
         {
             if (bits.Length < sizeof(int) << 2) throw new ArgumentOutOfRangeException(nameof(bits));
@@ -305,6 +393,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static decimal ToDecimal(this Span<byte> bits) => ToDecimal((ReadOnlySpan<byte>)bits);
 
         /// <summary>
@@ -312,6 +403,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void Clear(this byte[] bytes) => Clean(bytes.AsSpan());
 
         /// <summary>
@@ -319,6 +413,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="bytes">Bytes</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void Clean(this Span<byte> bytes)
         {
             if (bytes.Length == 0) return;

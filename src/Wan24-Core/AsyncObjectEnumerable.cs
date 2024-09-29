@@ -8,7 +8,7 @@
     /// Constructor
     /// </remarks>
     /// <param name="enumerable">Enumerable</param>
-    public sealed class AsyncObjectEnumerable<T>(in IAsyncEnumerable<T> enumerable) : DisposableBase(), IAsyncEnumerable<object>
+    public sealed class AsyncObjectEnumerable<T>(in IAsyncEnumerable<T> enumerable) : BasicAllDisposableBase(), IAsyncEnumerable<object>
     {
         /// <summary>
         /// Enumerable

@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +16,9 @@ namespace wan24.Core
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ICollection<T> AddRange<T>(this ICollection<T> collection, params T[] items) => AddRange(collection, (IEnumerable<T>)items);
 
         /// <summary>
@@ -25,6 +29,9 @@ namespace wan24.Core
         /// <param name="items">Items</param>
         /// <returns>Collection</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ICollection<T> AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
             foreach (T item in items) collection.Add(item);
@@ -39,6 +46,9 @@ namespace wan24.Core
         /// <param name="items">Items</param>
         /// <param name="cancellationToken">Cancellation token</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task AddRangeAsync<T>(this ICollection<T> collection, IAsyncEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             await foreach (T item in items.WithCancellation(cancellationToken).ConfigureAwait(continueOnCapturedContext: false)) collection.Add(item);
@@ -106,6 +116,9 @@ namespace wan24.Core
         /// <param name="item">Item</param>
         /// <returns>Collection</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ICollection<T> MoveItemUp<T>(this ICollection<T> collection, in T item) => MoveIndexUp(collection, collection.ElementIndex(item));
 
         /// <summary>
@@ -116,6 +129,9 @@ namespace wan24.Core
         /// <param name="item">Item</param>
         /// <returns>Collection</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ICollection<T> MoveItemDown<T>(this ICollection<T> collection, in T item) => MoveIndexDown(collection, collection.ElementIndex(item));
     }
 }

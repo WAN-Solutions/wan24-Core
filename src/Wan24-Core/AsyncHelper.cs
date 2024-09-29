@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime;
+﻿using System.Runtime;
 
 namespace wan24.Core
 {
@@ -476,62 +475,5 @@ namespace wan24.Core
                 registeredWaitHandle.Unregister(waitHandle);
             }
         }
-
-        /// <summary>
-        /// Try dispose, if disposable
-        /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <param name="obj">Object</param>
-        /// <returns>Object</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static T TryDispose<T>(this T obj)
-        {
-            Contract.Assert(obj is not null);
-            if(obj is IDisposableObject dObj)
-            {
-                if (!dObj.IsDisposing) dObj.Dispose();
-            }
-            else if (obj is IDisposable disposable) disposable?.Dispose();
-            else if (obj is IAsyncDisposable asyncDisposable) asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
-            return obj;
-        }
-
-        /// <summary>
-        /// Try dispose, if disposable
-        /// </summary>
-        /// <typeparam name="T">Object type</typeparam>
-        /// <param name="obj">Object</param>
-        /// <returns>Object</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static async Task<T> TryDisposeAsync<T>(this T obj)
-        {
-            await Task.Yield();
-            Contract.Assert(obj is not null);
-            if (obj is IDisposableObject dObj)
-            {
-                if (!dObj.IsDisposing) await dObj.DisposeAsync().DynamicContext();
-            }
-            else if (obj is IAsyncDisposable asyncDisposable) await asyncDisposable.DisposeAsync().DynamicContext();
-            else if (obj is IDisposable disposable) disposable?.Dispose();
-            return obj;
-        }
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static void TryDisposeAll(this IEnumerable<object> objects)
-        {
-            foreach (object obj in objects) obj.TryDispose();
-        }
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Tiny method")]
-        public static Task TryDisposeAllAsync(this IEnumerable<object> objects)
-            => Task.WhenAll(from obj in objects select obj.TryDisposeAsync());
     }
 }

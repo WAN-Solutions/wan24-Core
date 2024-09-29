@@ -118,6 +118,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -462,7 +463,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BackgroundProcessingStreamBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BackgroundProcessingStreamBase : BlockingBufferStream, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BackgroundProcessingStreamBase : BlockingBufferStream, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -471,7 +472,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase__ctor_System_Int32__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.%23ctor(System.Int32%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L52">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L48">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase__ctor_" data-uid="wan24.Core.BackgroundProcessingStreamBase.#ctor*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase__ctor_System_Int32__System_Threading_CancellationToken__" data-uid="wan24.Core.BackgroundProcessingStreamBase.#ctor(System.Int32@,System.Threading.CancellationToken@)">BackgroundProcessingStreamBase(in int, in CancellationToken)</h4>
@@ -540,40 +541,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_CombinedCancellation.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.CombinedCancellation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L29">View Source</a>
-  </span>
-  <h4 id="wan24_Core_BackgroundProcessingStreamBase_CombinedCancellation" data-uid="wan24.Core.BackgroundProcessingStreamBase.CombinedCancellation">CombinedCancellation</h4>
-  <div class="markdown level1 summary"><p>Combined cancellation tokens</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Cancellations CombinedCancellation</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_DidProcess.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.DidProcess%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L37">View Source</a>
   </span>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_DidProcess" data-uid="wan24.Core.BackgroundProcessingStreamBase.DidProcess">DidProcess</h4>
   <div class="markdown level1 summary"><p>Did process already?</p>
@@ -603,7 +574,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_LongRunning.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.LongRunning%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L33">View Source</a>
   </span>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_LongRunning" data-uid="wan24.Core.BackgroundProcessingStreamBase.LongRunning">LongRunning</h4>
   <div class="markdown level1 summary"><p>Is a long running process?</p>
@@ -633,7 +604,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_ProcessorTask.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.ProcessorTask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L41">View Source</a>
   </span>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_ProcessorTask" data-uid="wan24.Core.BackgroundProcessingStreamBase.ProcessorTask">ProcessorTask</h4>
   <div class="markdown level1 summary"><p>Processor task</p>
@@ -663,7 +634,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_Scheduler.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.Scheduler%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L29">View Source</a>
   </span>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_Scheduler" data-uid="wan24.Core.BackgroundProcessingStreamBase.Scheduler">Scheduler</h4>
   <div class="markdown level1 summary"><p>Task scheduler to use for the processing background task</p>
@@ -695,7 +666,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_CanWrite_" data-uid="wan24.Core.BackgroundProcessingStreamBase.CanWrite*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_CanWrite" data-uid="wan24.Core.BackgroundProcessingStreamBase.CanWrite">CanWrite</h4>
@@ -729,7 +700,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_LastException_" data-uid="wan24.Core.BackgroundProcessingStreamBase.LastException*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_LastException" data-uid="wan24.Core.BackgroundProcessingStreamBase.LastException">LastException</h4>
@@ -762,7 +733,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.BeginWrite(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.AsyncCallback%2CSystem.Object)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L84">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_BeginWrite_" data-uid="wan24.Core.BackgroundProcessingStreamBase.BeginWrite*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_BeginWrite_System_Byte___System_Int32_System_Int32_System_AsyncCallback_System_Object_" data-uid="wan24.Core.BackgroundProcessingStreamBase.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">BeginWrite(byte[], int, int, AsyncCallback?, object?)</h4>
@@ -869,7 +840,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L172">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L168">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_Dispose_" data-uid="wan24.Core.BackgroundProcessingStreamBase.Dispose*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_Dispose_System_Boolean_" data-uid="wan24.Core.BackgroundProcessingStreamBase.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -905,7 +876,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L182">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L177">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_DisposeCore_" data-uid="wan24.Core.BackgroundProcessingStreamBase.DisposeCore*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_DisposeCore" data-uid="wan24.Core.BackgroundProcessingStreamBase.DisposeCore">DisposeCore()</h4>
@@ -937,7 +908,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_ProcessAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.ProcessAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_ProcessAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.ProcessAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_ProcessAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStreamBase.ProcessAsync(System.Threading.CancellationToken)">ProcessAsync(CancellationToken)</h4>
@@ -987,7 +958,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_ProcessorAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.ProcessorAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L114">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L110">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_ProcessorAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.ProcessorAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_ProcessorAsync" data-uid="wan24.Core.BackgroundProcessingStreamBase.ProcessorAsync">ProcessorAsync()</h4>
@@ -1018,7 +989,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_RaiseOnError.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.RaiseOnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_RaiseOnError_" data-uid="wan24.Core.BackgroundProcessingStreamBase.RaiseOnError*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_RaiseOnError" data-uid="wan24.Core.BackgroundProcessingStreamBase.RaiseOnError">RaiseOnError()</h4>
@@ -1034,7 +1005,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_SetLastException_System_Exception__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.SetLastException(System.Exception%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L163">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_SetLastException_" data-uid="wan24.Core.BackgroundProcessingStreamBase.SetLastException*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_SetLastException_System_Exception__" data-uid="wan24.Core.BackgroundProcessingStreamBase.SetLastException(System.Exception@)">SetLastException(in Exception)</h4>
@@ -1068,7 +1039,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_StartProcessing.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.StartProcessing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L136">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_StartProcessing_" data-uid="wan24.Core.BackgroundProcessingStreamBase.StartProcessing*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_StartProcessing" data-uid="wan24.Core.BackgroundProcessingStreamBase.StartProcessing">StartProcessing()</h4>
@@ -1084,7 +1055,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_StartProcessingAsync.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.StartProcessingAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L153">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L149">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_StartProcessingAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.StartProcessingAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_StartProcessingAsync" data-uid="wan24.Core.BackgroundProcessingStreamBase.StartProcessingAsync">StartProcessingAsync()</h4>
@@ -1115,7 +1086,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_TryWrite_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.TryWrite(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L76">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L72">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_TryWrite_" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWrite*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_TryWrite_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWrite(System.ReadOnlySpan{System.Byte})">TryWrite(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -1167,7 +1138,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.TryWriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L80">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_TryWriteAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWriteAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_TryWriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">TryWriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -1225,7 +1196,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.TryWriteIntAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L108">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_TryWriteIntAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWriteIntAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_TryWriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStreamBase.TryWriteIntAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">TryWriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -1281,7 +1252,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L64">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_Write_" data-uid="wan24.Core.BackgroundProcessingStreamBase.Write*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.BackgroundProcessingStreamBase.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -1317,7 +1288,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_WriteAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -1375,7 +1346,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L68">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_WriteByte_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteByte*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_WriteByte_System_Byte_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteByte(System.Byte)">WriteByte(byte)</h4>
@@ -1437,7 +1408,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.WriteIntAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L95">View Source</a>
   </span>
   <a id="wan24_Core_BackgroundProcessingStreamBase_WriteIntAsync_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteIntAsync*"></a>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_WriteIntAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.BackgroundProcessingStreamBase.WriteIntAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteIntAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -1494,7 +1465,7 @@ for writing to the buffer!)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BackgroundProcessingStreamBase_OnError.md&amp;value=---%0Auid%3A%20wan24.Core.BackgroundProcessingStreamBase.OnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L200">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BackgroundProcessingStream.cs/#L194">View Source</a>
   </span>
   <h4 id="wan24_Core_BackgroundProcessingStreamBase_OnError" data-uid="wan24.Core.BackgroundProcessingStreamBase.OnError">OnError</h4>
   <div class="markdown level1 summary"><p>Raised on error (see <a class="xref" href="wan24.Core.BackgroundProcessingStreamBase.html#wan24_Core_BackgroundProcessingStreamBase_LastException">LastException</a>)</p>
@@ -1525,6 +1496,9 @@ for writing to the buffer!)</p>
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1687,10 +1661,10 @@ for writing to the buffer!)</p>
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

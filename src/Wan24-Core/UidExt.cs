@@ -81,9 +81,10 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN, clean: false);
-                RandomNumberGenerator.Fill(buffer.Span);
-                Random = buffer.Span.ToInt();
+                using RentedMemoryRef<byte> buffer = new(len: RANDOM_LEN, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                RandomNumberGenerator.Fill(bufferSpan);
+                Random = bufferSpan.ToInt();
 #if !NO_UNSAFE
             }
 #endif
@@ -110,9 +111,10 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN, clean: false);
-                RandomNumberGenerator.Fill(buffer.Span);
-                Random = buffer.Span.ToInt();
+                using RentedMemoryRef<byte> buffer = new(len: RANDOM_LEN, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                RandomNumberGenerator.Fill(bufferSpan);
+                Random = bufferSpan.ToInt();
 #if !NO_UNSAFE
             }
 #endif
@@ -140,9 +142,10 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: RANDOM_LEN, clean: false);
-                RandomNumberGenerator.Fill(buffer.Span);
-                Random = buffer.Span.ToInt();
+                using RentedMemoryRef<byte> buffer = new(len: RANDOM_LEN, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                RandomNumberGenerator.Fill(bufferSpan);
+                Random = bufferSpan.ToInt();
 #if !NO_UNSAFE
             }
 #endif
@@ -228,10 +231,11 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
-                GetBytes(buffer.Span);
+                using RentedMemoryRef<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                GetBytes(bufferSpan);
                 using RentedArrayRefStruct<char> strBuffer = new(len: STRING_LEN, clean: false);
-                buffer.Span.Encode(res: strBuffer.Array);
+                bufferSpan.Encode(res: strBuffer.Array);
                 return new(strBuffer.Span);
 #if !NO_UNSAFE
             }
@@ -341,9 +345,10 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
-                uid.GetBytes(buffer.Span);
-                return new(buffer.Span);
+                using RentedMemoryRef<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                uid.GetBytes(bufferSpan);
+                return new(bufferSpan);
 #if !NO_UNSAFE
             }
 #endif
@@ -372,9 +377,10 @@ namespace wan24.Core
             else
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
-                uid.GetBytes(buffer.Span);
-                return new(buffer.Span);
+                using RentedMemoryRef<byte> buffer = new(len: STRUCTURE_SIZE, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                uid.GetBytes(bufferSpan);
+                return new(bufferSpan);
 #if !NO_UNSAFE
             }
 #endif

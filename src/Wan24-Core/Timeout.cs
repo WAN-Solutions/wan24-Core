@@ -8,7 +8,7 @@ namespace wan24.Core
     /// <summary>
     /// Timeout (when comparing instances, and not the timeout time, you should use the <see cref="Equals(object?)"/> method!)
     /// </summary>
-    public class Timeout : DisposableBase, ITimer, IExportUserActions
+    public class Timeout : BasicAllDisposableBase, ITimer, IExportUserActions
     {
         /// <summary>
         /// Timer
@@ -189,6 +189,13 @@ namespace wan24.Core
         {
             TimerTable.Timers.Remove(GUID, out _);
             Timer.Dispose();
+        }
+
+        /// <inheritdoc/>
+        protected override Task DisposeCore()
+        {
+            Dispose(disposing: false);
+            return Task.CompletedTask;
         }
 
         /// <summary>

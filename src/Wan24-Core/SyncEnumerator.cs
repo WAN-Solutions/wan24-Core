@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="enumerator">Asynchronous enumerator (will be disposed)</param>
-    public sealed class SyncEnumerator<T>(in IAsyncEnumerator<T> enumerator) : DisposableBase(), IEnumerable<T>, IEnumerator<T>
+    public sealed class SyncEnumerator<T>(in IAsyncEnumerator<T> enumerator) : BasicAllDisposableBase(), IEnumerable<T>, IEnumerator<T>
     {
         /// <summary>
         /// Asynchronous enumerator (will be disposed)

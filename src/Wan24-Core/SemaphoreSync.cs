@@ -9,7 +9,7 @@ namespace wan24.Core
     /// <summary>
     /// Semaphore synchronization
     /// </summary>
-    public sealed class SemaphoreSync : DisposableBase
+    public sealed class SemaphoreSync : BasicDisposableBase
     {
         /// <summary>
         /// Object synchronization instances
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        public SemaphoreSync() : base(asyncDisposing: false)
+        public SemaphoreSync() : base()
         {
             Object = null;
             Semaphore = new(1, 1);
@@ -34,7 +34,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="obj">Synchronized object</param>
-        public SemaphoreSync(in object obj) : base(asyncDisposing: false)
+        public SemaphoreSync(in object obj) : base()
         {
             int hashCode = HashCode.Combine(obj.GetType(), obj);
             ObjectInfo? objInfo;

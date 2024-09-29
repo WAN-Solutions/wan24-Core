@@ -36,9 +36,9 @@ namespace wan24.Core
             Parameters = parameters.ToFrozenSet();
             if (xml is null) return;
             XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(mi)}']";
-            Description = XmlDocComments.GetNodeValue(xml, $"{XPath}/summary");
+            Description = XmlDocComments.GetNodeValue(xml, $"{XPath}/summary")?.Trim();
             if (mi.ReturnType != typeof(void))
-                ReturnDescription = XmlDocComments.GetNodeValue(xml, $"{XPath}/returns") ?? XmlDocComments.GetNodeValue(xml, $"{XPath}/return");
+                ReturnDescription = XmlDocComments.GetNodeValue(xml, $"{XPath}/returns")?.Trim() ?? XmlDocComments.GetNodeValue(xml, $"{XPath}/return")?.Trim();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Immutable;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -39,7 +40,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static object InvokeAuto(this ConstructorInfo ci, IServiceProvider serviceProvider, params object?[] param)
-             => ci.CreateConstructorInvoker()(ci.GetParametersCached().GetDiObjects(param, serviceProvider));
+             => ci.CreateConstructorInvoker()(GetCachedParameters(ci).GetDiObjects(param, serviceProvider));
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -80,7 +81,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static async Task<object> InvokeAutoAsync(this ConstructorInfo ci, IAsyncServiceProvider serviceProvider, params object?[] param)
-            => ci.Invoke(await ci.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext());
+            => ci.Invoke(await GetCachedParameters(ci).GetDiObjectsAsync(param, serviceProvider).DynamicContext());
 
         /// <summary>
         /// Invoke a constructor and complete parameters with default values
@@ -141,12 +142,10 @@ namespace wan24.Core
                 ? BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
-            ParameterInfo[] parameters;
-            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.GetParameters().Length))
             {
-                parameters = ci.Parameters;
-                par = parameters.GetDiObjects(param, nic: nic, throwOnMissing: false);
-                if (par.Length != parameters.Length) continue;
+                par = ci.GetParameters().GetDiObjects(param, nic: nic, throwOnMissing: false);
+                if (par.Length != ci.ParameterCount) continue;
                 usedConstructor = ci;
                 return ci.Invoker is null ? ci.Constructor.Invoke([.. par]) : ci.Invoker(par);
             }
@@ -175,12 +174,10 @@ namespace wan24.Core
                 ? BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
-            ParameterInfo[] parameters;
-            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.ParameterCount))
             {
-                parameters = ci.Parameters;
-                par = parameters.GetDiObjects(param, serviceProvider, nic, throwOnMissing: false);
-                if (par.Length != parameters.Length) continue;
+                par = GetCachedParameters(ci).GetDiObjects(param, serviceProvider, nic, throwOnMissing: false);
+                if (par.Length != ci.ParameterCount) continue;
                 usedConstructor = ci;
                 return ci.Invoker is null ? ci.Constructor.Invoke([.. par]) : ci.Invoker([.. par]);
             }
@@ -227,12 +224,10 @@ namespace wan24.Core
                 ? BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance
                 : BindingFlags.Public | BindingFlags.Instance;
             object?[] par;
-            ParameterInfo[] parameters;
-            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.Parameters.Length))
+            foreach (ConstructorInfoExt ci in type.GetConstructorsCached(flags).OrderByDescending(c => c.ParameterCount))
             {
-                parameters = ci.Parameters;
-                par = await parameters.GetDiObjectsAsync(param, serviceProvider, nic, throwOnMissing: false).DynamicContext();
-                if (par.Length != parameters.Length) continue;
+                par = await GetCachedParameters(ci).GetDiObjectsAsync(param, serviceProvider, nic, throwOnMissing: false).DynamicContext();
+                if (par.Length != ci.ParameterCount) continue;
                 return ci.Invoker is null ? (ci.Constructor.Invoke([.. par]), ci) : (ci.Invoker([.. par]), ci);
             }
             throw new InvalidOperationException($"{type} can't be instanced (private: {usePrivate}) with the given parameters");
@@ -258,7 +253,7 @@ namespace wan24.Core
                         !ci.ContainsGenericParameters
                     )
                 ) &&
-                !ci.GetParametersCached().Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
+                !GetCachedParameters(ci).Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
                 !(ci.DeclaringType?.IsByRefLike ?? false);
 
         /// <summary>
@@ -273,7 +268,7 @@ namespace wan24.Core
             int hc = ci.GetHashCode();
             if (ConstructorInvokeDelegateCache.TryGetValue(hc, out Func<object?[], object>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
-            ParameterInfo[] pis = [..ci.GetParametersCached()];
+            ImmutableArray<ParameterInfo> pis = GetCachedParameters(ci, hc);
             Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
                 parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType.GetRealType());
@@ -306,7 +301,7 @@ namespace wan24.Core
                 // Check parameters
                 if (parameterTypes is not null)
                 {
-                    pt = ci.Constructor.GetParametersCached().Select(p => p.ParameterType).ToArray();
+                    pt = GetCachedParameters(ci).Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)

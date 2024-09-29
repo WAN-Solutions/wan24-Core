@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,9 @@ namespace wan24.Core
         /// <param name="len">Checksum length in bytes (must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         /// <returns>Checksum</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] CreateChecksum(this byte[] data, in int len = ChecksumTransform.HASH_LENGTH) => CreateChecksum((ReadOnlySpan<byte>)data, len);
 
         /// <summary>
@@ -23,6 +27,9 @@ namespace wan24.Core
         /// <param name="len">Checksum length in bytes (must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         /// <returns>Checksum</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] CreateChecksum(this in Memory<byte> data, in int len = ChecksumTransform.HASH_LENGTH) => CreateChecksum((ReadOnlySpan<byte>)data.Span, len);
 
         /// <summary>
@@ -32,6 +39,9 @@ namespace wan24.Core
         /// <param name="len">Checksum length in bytes (must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         /// <returns>Checksum</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] CreateChecksum(this in ReadOnlyMemory<byte> data, in int len = ChecksumTransform.HASH_LENGTH) => CreateChecksum(data.Span, len);
 
         /// <summary>
@@ -41,6 +51,9 @@ namespace wan24.Core
         /// <param name="len">Checksum length in bytes (must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         /// <returns>Checksum</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] CreateChecksum(this in Span<byte> data, in int len = ChecksumTransform.HASH_LENGTH) => CreateChecksum((ReadOnlySpan<byte>)data, len);
 
         /// <summary>
@@ -64,6 +77,9 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         /// <param name="checksum">Checksum (length must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void UpdateChecksum(this byte[] data, in Span<byte> checksum) => UpdateChecksum((ReadOnlySpan<byte>)data, checksum);
 
         /// <summary>
@@ -72,6 +88,9 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         /// <param name="checksum">Checksum (length must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void UpdateChecksum(this in Memory<byte> data, in Span<byte> checksum) => UpdateChecksum((ReadOnlySpan<byte>)data.Span, checksum);
 
         /// <summary>
@@ -80,6 +99,9 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         /// <param name="checksum">Checksum (length must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void UpdateChecksum(this in ReadOnlyMemory<byte> data, in Span<byte> checksum) => UpdateChecksum(data.Span, checksum);
 
         /// <summary>
@@ -88,6 +110,9 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         /// <param name="checksum">Checksum (length must be greater than zero, a power of two and not larger than <c>256</c>)</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void UpdateChecksum(this in Span<byte> data, in Span<byte> checksum) => UpdateChecksum((ReadOnlySpan<byte>)data, checksum);
 
         /// <summary>

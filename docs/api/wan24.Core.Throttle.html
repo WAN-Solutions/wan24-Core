@@ -107,14 +107,13 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.BasicAllDisposableBase.html">BasicAllDisposableBase</a></div>
     <div class="level2"><span class="xref">Throttle</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a></div>
-    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -122,79 +121,46 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_DisposeSyncObject">BasicAllDisposableBase.DisposeSyncObject</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_AllowFinalizer">BasicAllDisposableBase.AllowFinalizer</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_StackInfo">BasicAllDisposableBase.StackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_CreateStackInfo">BasicAllDisposableBase.CreateStackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_DestructorDisposing">BasicAllDisposableBase.DestructorDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IsDisposing">BasicAllDisposableBase.IsDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DestructorDisposing">DisposableBase.DestructorDisposing</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IsDisposed">BasicAllDisposableBase.IsDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">BasicAllDisposableBase.EnsureUndisposed(in bool, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IfUndisposed__1___0__System_Boolean__">BasicAllDisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IfUndisposed_System_Action__System_Boolean__">BasicAllDisposableBase.IfUndisposed(in Action, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(in bool, in bool)</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">BasicAllDisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.LockDisposing(in TimeSpan, in CancellationToken)</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">BasicAllDisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.LockDisposingAsync(TimeSpan, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_DisposeAsync">BasicAllDisposableBase.DisposeAsync()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.TryLockDisposing(out SemaphoreSyncContext, in TimeSpan, in CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.TryLockDisposingAsync(TimeSpan, CancellationToken)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0__System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_System_Action__System_Boolean__">DisposableBase.IfUndisposed(in Action, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+      <a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_Dispose">BasicAllDisposableBase.Dispose()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -222,7 +188,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_Throttle_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Throttle : DisposableBase, IThrottle, IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class Throttle : BasicAllDisposableBase, IThrottle, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -877,13 +843,13 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>Disposing? (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, if called from the destructor)</p>
+        <td><p>If disposing</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(bool)</a></div>
+  <div><a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_Dispose_System_Boolean_">BasicAllDisposableBase.Dispose(bool)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Throttle_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.Throttle.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
@@ -916,7 +882,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <div><a class="xref" href="wan24.Core.BasicAllDisposableBase.html#wan24_Core_BasicAllDisposableBase_DisposeCore">BasicAllDisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Throttle_Release_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Throttle.Release(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
@@ -1116,10 +1082,7 @@ public virtual Task UpdateSettingsAsync(int limit, TimeSpan timeout, Cancellatio
       <a class="xref" href="wan24.Core.IThrottle.html">IThrottle</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1210,10 +1173,10 @@ public virtual Task UpdateSettingsAsync(int limit, TimeSpan timeout, Cancellatio
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

@@ -213,7 +213,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             base.DisposeAttributes();
-            await WorkerSync.DisposeAsync().DynamicContext();
+            WorkerSync.Dispose();
             await CleanEvent.DisposeAsync().DynamicContext();
             if (CanDispose) foreach (StoredObject obj in Storage.Values) await obj.Object.TryDisposeAsync().DynamicContext();
             Storage.Clear();

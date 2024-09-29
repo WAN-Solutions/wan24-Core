@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -22,7 +22,7 @@ namespace wan24.Core
         /// <summary>
         /// Attachments
         /// </summary>
-        ReadOnlyCollection<IEmailAttachment> Attachments { get; }
+        ImmutableArray<IEmailAttachment> Attachments { get; }
         /// <summary>
         /// Create an email from this template
         /// </summary>

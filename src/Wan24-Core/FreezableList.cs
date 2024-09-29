@@ -344,6 +344,17 @@ namespace wan24.Core
             List.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Remove a range
+        /// </summary>
+        /// <param name="index">Index</param>
+        /// <param name="count">Count</param>
+        public void RemoveRange(int index, int count)
+        {
+            EnsureNotFrozen();
+            List.RemoveRange(index, count);
+        }
+
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE

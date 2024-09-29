@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 using System.Reflection;
 
 namespace wan24.Core
@@ -16,7 +16,7 @@ namespace wan24.Core
         /// <summary>
         /// Value property information
         /// </summary>
-        internal static readonly ReadOnlyCollection<PropertyInfoExt> ValuePropertyInfos =
+        internal static readonly ImmutableArray<PropertyInfoExt> ValuePropertyInfos =
             (from pi in typeof(T).GetPropertiesCached(BindingFlags.Public | BindingFlags.Instance)
              where pi.HasPublicGetter &&
                 pi.Getter is not null &&

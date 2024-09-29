@@ -6,7 +6,7 @@
         /// <summary>
         /// Buffer
         /// </summary>
-        protected readonly RentedArray<byte> Buffer;
+        protected readonly RentedMemory<byte> Buffer;
         /// <summary>
         /// Thread synchronization for buffer access
         /// </summary>

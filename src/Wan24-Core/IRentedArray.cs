@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Interface for a rented array
     /// </summary>
     /// <typeparam name="T">Element type</typeparam>
-    public interface IRentedArray<T> : IArray<T>, IDisposable
+    public interface IRentedArray<T> : IArray<T>, IMemoryOwner<T>
     {
         /// <summary>
         /// Pool

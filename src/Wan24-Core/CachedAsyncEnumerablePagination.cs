@@ -12,7 +12,7 @@ namespace wan24.Core
     /// <param name="enumerator">Enumerator</param>
     /// <param name="itemsPerPage">Items per page</param>
     /// <param name="cacheCapacity">Cache initial capacity</param>
-    public sealed class CachedAsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage, in int? cacheCapacity = null) : DisposableBase()
+    public sealed class CachedAsyncEnumerablePagination<T>(in IAsyncEnumerator<T> enumerator, in int itemsPerPage, in int? cacheCapacity = null) : BasicAllDisposableBase()
     {
         /// <summary>
         /// Enumerator
@@ -224,7 +224,7 @@ namespace wan24.Core
         /// Page enumerator
         /// </summary>
         /// <param name="pagination">Pagination</param>
-        private sealed class PageEnumerator(in CachedAsyncEnumerablePagination<T> pagination) : DisposableBase(asyncDisposing: false), IAsyncEnumerator<T>
+        private sealed class PageEnumerator(in CachedAsyncEnumerablePagination<T> pagination) : BasicAllDisposableBase(), IAsyncEnumerator<T>
         {
             /// <summary>
             /// Pagination
@@ -276,6 +276,9 @@ namespace wan24.Core
 
             /// <inheritdoc/>
             protected override void Dispose(bool disposing) { }
+
+            /// <inheritdoc/>
+            protected override Task DisposeCore() => Task.CompletedTask;
 
             /// <summary>
             /// Ensure a valid pagination state

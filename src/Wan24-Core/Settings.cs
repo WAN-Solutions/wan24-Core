@@ -74,6 +74,12 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// If to clear byte and char array buffers after use using <see cref="BytesExtensions.Clean(Span{byte})"/>
+        /// </summary>
+        [CliConfig]
+        public static bool ClearBuffers { get; set; }
+
+        /// <summary>
         /// Temporary folder (may be the customized value or the system users temporary folder)
         /// </summary>
         /// <exception cref="PlatformNotSupportedException">Not supported in a browser app</exception>

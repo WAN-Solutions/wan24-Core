@@ -4,7 +4,7 @@
     /// Asynchronous object enumerator
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class AsyncObjectEnumerator<T> : DisposableBase, IAsyncEnumerator<object>
+    public sealed class AsyncObjectEnumerator<T> : BasicAllDisposableBase, IAsyncEnumerator<object>
     {
         /// <summary>
         /// Constructor
