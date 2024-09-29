@@ -114,6 +114,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.DisposableRecordBase.html">DisposableRecordBase</a>&gt;</div>
@@ -146,7 +147,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_DisposableRecordBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract record DisposableRecordBase : IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable, IEquatable&lt;DisposableRecordBase&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract record DisposableRecordBase : IWillDispose, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IEquatable&lt;DisposableRecordBase&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -155,7 +156,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L38">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase__ctor_" data-uid="wan24.Core.DisposableRecordBase.#ctor*"></a>
   <h4 id="wan24_Core_DisposableRecordBase__ctor" data-uid="wan24.Core.DisposableRecordBase.#ctor">DisposableRecordBase()</h4>
@@ -171,7 +172,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase__ctor_System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.%23ctor(System.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L45">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase__ctor_" data-uid="wan24.Core.DisposableRecordBase.#ctor*"></a>
   <h4 id="wan24_Core_DisposableRecordBase__ctor_System_Boolean__System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.#ctor(System.Boolean@,System.Boolean@)">DisposableRecordBase(in bool, in bool)</h4>
@@ -213,7 +214,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_AllowFinalizer.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.AllowFinalizer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L24">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L25">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_AllowFinalizer" data-uid="wan24.Core.DisposableRecordBase.AllowFinalizer">AllowFinalizer</h4>
   <div class="markdown level1 summary"><p>Don't count running the finalizer as an error?</p>
@@ -243,7 +244,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_AsyncDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.AsyncDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L21">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_AsyncDisposing" data-uid="wan24.Core.DisposableRecordBase.AsyncDisposing">AsyncDisposing</h4>
   <div class="markdown level1 summary"><p>Asynchronous disposing?</p>
@@ -273,7 +274,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeObjects.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeObjects%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L28">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L29">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeObjects" data-uid="wan24.Core.DisposableRecordBase.DisposeObjects">DisposeObjects</h4>
   <div class="markdown level1 summary"><p>Objects to dispose when disposing</p>
@@ -303,7 +304,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeSyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeSyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeSyncObject" data-uid="wan24.Core.DisposableRecordBase.DisposeSyncObject">DisposeSyncObject</h4>
   <div class="markdown level1 summary"><p>An object for thread synchronization during disposing</p>
@@ -333,7 +334,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_StackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.StackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L32">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L33">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_StackInfo" data-uid="wan24.Core.DisposableRecordBase.StackInfo">StackInfo</h4>
   <div class="markdown level1 summary"><p>Stack information</p>
@@ -365,7 +366,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_CreateStackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.CreateStackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_CreateStackInfo_" data-uid="wan24.Core.DisposableRecordBase.CreateStackInfo*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_CreateStackInfo" data-uid="wan24.Core.DisposableRecordBase.CreateStackInfo">CreateStackInfo</h4>
@@ -396,7 +397,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DestructorDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DestructorDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L87">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_DestructorDisposing_" data-uid="wan24.Core.DisposableRecordBase.DestructorDisposing*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_DestructorDisposing" data-uid="wan24.Core.DisposableRecordBase.DestructorDisposing">DestructorDisposing</h4>
@@ -427,7 +428,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IsDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IsDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IsDisposed_" data-uid="wan24.Core.DisposableRecordBase.IsDisposed*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IsDisposed" data-uid="wan24.Core.DisposableRecordBase.IsDisposed">IsDisposed</h4>
@@ -458,7 +459,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IsDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IsDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IsDisposing_" data-uid="wan24.Core.DisposableRecordBase.IsDisposing*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IsDisposing" data-uid="wan24.Core.DisposableRecordBase.IsDisposing">IsDisposing</h4>
@@ -491,7 +492,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L550">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L566">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_Dispose_" data-uid="wan24.Core.DisposableRecordBase.Dispose*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_Dispose" data-uid="wan24.Core.DisposableRecordBase.Dispose">Dispose()</h4>
@@ -507,7 +508,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L318">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L334">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_Dispose_" data-uid="wan24.Core.DisposableRecordBase.Dispose*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_Dispose_System_Boolean_" data-uid="wan24.Core.DisposableRecordBase.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -541,7 +542,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L562">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L578">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_DisposeAsync_" data-uid="wan24.Core.DisposableRecordBase.DisposeAsync*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeAsync" data-uid="wan24.Core.DisposableRecordBase.DisposeAsync">DisposeAsync()</h4>
@@ -573,7 +574,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeAttributes.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeAttributes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L332">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L348">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_DisposeAttributes_" data-uid="wan24.Core.DisposableRecordBase.DisposeAttributes*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeAttributes" data-uid="wan24.Core.DisposableRecordBase.DisposeAttributes">DisposeAttributes()</h4>
@@ -589,7 +590,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeAttributesAsync.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeAttributesAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L413">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L429">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_DisposeAttributesAsync_" data-uid="wan24.Core.DisposableRecordBase.DisposeAttributesAsync*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeAttributesAsync" data-uid="wan24.Core.DisposableRecordBase.DisposeAttributesAsync">DisposeAttributesAsync()</h4>
@@ -620,7 +621,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L323">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L339">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_DisposeCore_" data-uid="wan24.Core.DisposableRecordBase.DisposeCore*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_DisposeCore" data-uid="wan24.Core.DisposableRecordBase.DisposeCore">DisposeCore()</h4>
@@ -651,7 +652,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_EnsureUndisposed_System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.EnsureUndisposed(System.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L256">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L257">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_EnsureUndisposed_" data-uid="wan24.Core.DisposableRecordBase.EnsureUndisposed*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_EnsureUndisposed_System_Boolean__System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.EnsureUndisposed(System.Boolean@,System.Boolean@)">EnsureUndisposed(in bool, in bool)</h4>
@@ -708,7 +709,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_Finalize.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.Finalize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L54">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L55">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_Finalize_" data-uid="wan24.Core.DisposableRecordBase.Finalize*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_Finalize" data-uid="wan24.Core.DisposableRecordBase.Finalize">~DisposableRecordBase()</h4>
@@ -724,7 +725,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IfUndisposed_System_Action__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IfUndisposed(System.Action%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L279">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L286">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IfUndisposed_System_Action__System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed(System.Action@,System.Boolean@)">IfUndisposed(in Action, in bool)</h4>
@@ -765,7 +766,7 @@ protected void IfUndisposed(in Action action, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IfUndisposedNullable%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L307">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L320">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IfUndisposedNullable_" data-uid="wan24.Core.DisposableRecordBase.IfUndisposedNullable*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.IfUndisposedNullable``1(System.Func{``0}@,System.Boolean@)">IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt;, in bool)</h4>
@@ -838,7 +839,7 @@ protected T? IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt; action, in bool all
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IfUndisposed__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IfUndisposed%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L293">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L303">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IfUndisposed__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed``1(System.Func{``0}@,System.Boolean@)">IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</h4>
@@ -911,7 +912,7 @@ protected T IfUndisposed&lt;T&gt;(in Func&lt;T&gt; action, in bool allowDisposin
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_IfUndisposed__1___0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.IfUndisposed%60%601(%60%600%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L267">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L271">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_IfUndisposed__1___0__System_Boolean__" data-uid="wan24.Core.DisposableRecordBase.IfUndisposed``1(``0@,System.Boolean@)">IfUndisposed&lt;T&gt;(in T, in bool)</h4>
@@ -984,7 +985,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.LockDisposing(System.TimeSpan%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L121">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_LockDisposing_" data-uid="wan24.Core.DisposableRecordBase.LockDisposing*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__" data-uid="wan24.Core.DisposableRecordBase.LockDisposing(System.TimeSpan@,System.Threading.CancellationToken@)">LockDisposing(in TimeSpan, in CancellationToken)</h4>
@@ -1040,7 +1041,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.LockDisposingAsync(System.TimeSpan%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L151">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_LockDisposingAsync_" data-uid="wan24.Core.DisposableRecordBase.LockDisposingAsync*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_" data-uid="wan24.Core.DisposableRecordBase.LockDisposingAsync(System.TimeSpan,System.Threading.CancellationToken)">LockDisposingAsync(TimeSpan, CancellationToken)</h4>
@@ -1096,7 +1097,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_RegisterForDispose__1___0__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.RegisterForDispose%60%601(%60%600%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L96">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L97">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_RegisterForDispose_" data-uid="wan24.Core.DisposableRecordBase.RegisterForDispose*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_RegisterForDispose__1___0__" data-uid="wan24.Core.DisposableRecordBase.RegisterForDispose``1(``0@)">RegisterForDispose&lt;T&gt;(in T)</h4>
@@ -1146,7 +1147,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.TryLockDisposing(wan24.Core.SemaphoreSyncContext%40%2CSystem.TimeSpan%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L181">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_TryLockDisposing_" data-uid="wan24.Core.DisposableRecordBase.TryLockDisposing*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__" data-uid="wan24.Core.DisposableRecordBase.TryLockDisposing(wan24.Core.SemaphoreSyncContext@,System.TimeSpan@,System.Threading.CancellationToken@)">TryLockDisposing(out SemaphoreSyncContext, in TimeSpan, in CancellationToken)</h4>
@@ -1208,7 +1209,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.TryLockDisposingAsync(System.TimeSpan%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L222">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L223">View Source</a>
   </span>
   <a id="wan24_Core_DisposableRecordBase_TryLockDisposingAsync_" data-uid="wan24.Core.DisposableRecordBase.TryLockDisposingAsync*"></a>
   <h4 id="wan24_Core_DisposableRecordBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_" data-uid="wan24.Core.DisposableRecordBase.TryLockDisposingAsync(System.TimeSpan,System.Threading.CancellationToken)">TryLockDisposingAsync(TimeSpan, CancellationToken)</h4>
@@ -1266,7 +1267,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_OnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.OnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L582">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L598">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_OnDisposed" data-uid="wan24.Core.DisposableRecordBase.OnDisposed">OnDisposed</h4>
   <div class="markdown level1 summary"><p>Raised when disposed</p>
@@ -1296,7 +1297,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_DisposableRecordBase_OnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.DisposableRecordBase.OnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L579">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/DisposableRecordBase.cs/#L595">View Source</a>
   </span>
   <h4 id="wan24_Core_DisposableRecordBase_OnDisposing" data-uid="wan24.Core.DisposableRecordBase.OnDisposing">OnDisposing</h4>
   <div class="markdown level1 summary"><p>Raised when disposing</p>
@@ -1327,6 +1328,9 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1417,10 +1421,10 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

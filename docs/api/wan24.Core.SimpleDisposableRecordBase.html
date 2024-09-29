@@ -113,6 +113,7 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="wan24.Core.SimpleDisposableRecordBase.html">SimpleDisposableRecordBase</a>&gt;</div>
@@ -145,40 +146,112 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_SimpleDisposableRecordBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract record SimpleDisposableRecordBase : IDisposableObject, IDisposable, IAsyncDisposable, IEquatable&lt;SimpleDisposableRecordBase&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract record SimpleDisposableRecordBase : IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IEquatable&lt;SimpleDisposableRecordBase&gt;</code></pre>
   </div>
-  <h5 id="wan24_Core_SimpleDisposableRecordBase_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Constructor</p>
-</div>
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase__ctor_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.%23ctor(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L11">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L57">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase__ctor_" data-uid="wan24.Core.SimpleDisposableRecordBase.#ctor*"></a>
-  <h4 id="wan24_Core_SimpleDisposableRecordBase__ctor" data-uid="wan24.Core.SimpleDisposableRecordBase.#ctor">SimpleDisposableRecordBase()</h4>
-  <div class="markdown level1 summary"><p>Base class for a simple disposable record type without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!)</p>
+  <h4 id="wan24_Core_SimpleDisposableRecordBase__ctor_System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.#ctor(System.Boolean@)">SimpleDisposableRecordBase(in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SimpleDisposableRecordBase()</code></pre>
+    <pre><code class="lang-csharp hljs">protected SimpleDisposableRecordBase(in bool allowFinalizer = false)</code></pre>
   </div>
-  <h5 id="wan24_Core_SimpleDisposableRecordBase__ctor_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Constructor</p>
-</div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">allowFinalizer</span></td>
+        <td><p>If to allow disposing from the finalizer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="fields">Fields
 </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_AllowFinalizer.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.AllowFinalizer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L19">View Source</a>
+  </span>
+  <h4 id="wan24_Core_SimpleDisposableRecordBase_AllowFinalizer" data-uid="wan24.Core.SimpleDisposableRecordBase.AllowFinalizer">AllowFinalizer</h4>
+  <div class="markdown level1 summary"><p>Don't count running the finalizer as an error?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly bool AllowFinalizer</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_StackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.StackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L23">View Source</a>
+  </span>
+  <h4 id="wan24_Core_SimpleDisposableRecordBase_StackInfo" data-uid="wan24.Core.SimpleDisposableRecordBase.StackInfo">StackInfo</h4>
+  <div class="markdown level1 summary"><p>Stack information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly IStackInfo? StackInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.IStackInfo.html">IStackInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_SyncDispose.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.SyncDispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L15">View Source</a>
   </span>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_SyncDispose" data-uid="wan24.Core.SimpleDisposableRecordBase.SyncDispose">SyncDispose</h4>
   <div class="markdown level1 summary"><p>An object for thread locking</p>
@@ -207,10 +280,41 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_CreateStackInfo.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.CreateStackInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L66">View Source</a>
+  </span>
+  <a id="wan24_Core_SimpleDisposableRecordBase_CreateStackInfo_" data-uid="wan24.Core.SimpleDisposableRecordBase.CreateStackInfo*"></a>
+  <h4 id="wan24_Core_SimpleDisposableRecordBase_CreateStackInfo" data-uid="wan24.Core.SimpleDisposableRecordBase.CreateStackInfo">CreateStackInfo</h4>
+  <div class="markdown level1 summary"><p>Create a <a class="xref" href="wan24.Core.SimpleDisposableRecordBase.html#wan24_Core_SimpleDisposableRecordBase_StackInfo">StackInfo</a> for every instance?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool CreateStackInfo { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IsDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IsDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L38">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L72">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IsDisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.IsDisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IsDisposed" data-uid="wan24.Core.SimpleDisposableRecordBase.IsDisposed">IsDisposed</h4>
@@ -241,7 +345,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IsDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IsDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L69">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IsDisposing_" data-uid="wan24.Core.SimpleDisposableRecordBase.IsDisposing*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IsDisposing" data-uid="wan24.Core.SimpleDisposableRecordBase.IsDisposing">IsDisposing</h4>
@@ -274,7 +378,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L56">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L90">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_Dispose_" data-uid="wan24.Core.SimpleDisposableRecordBase.Dispose*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_Dispose" data-uid="wan24.Core.SimpleDisposableRecordBase.Dispose">Dispose()</h4>
@@ -287,19 +391,19 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_Dispose_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.Dispose(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L44">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_Dispose_" data-uid="wan24.Core.SimpleDisposableRecordBase.Dispose*"></a>
-  <h4 id="wan24_Core_SimpleDisposableRecordBase_Dispose_System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.Dispose(System.Boolean@)">Dispose(in bool)</h4>
+  <h4 id="wan24_Core_SimpleDisposableRecordBase_Dispose_System_Boolean_" data-uid="wan24.Core.SimpleDisposableRecordBase.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Dispose</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract void Dispose(in bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected abstract void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -324,7 +428,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_DisposeAsync.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.DisposeAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L71">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_DisposeAsync_" data-uid="wan24.Core.SimpleDisposableRecordBase.DisposeAsync*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_DisposeAsync" data-uid="wan24.Core.SimpleDisposableRecordBase.DisposeAsync">DisposeAsync()</h4>
@@ -356,7 +460,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L49">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_DisposeCore_" data-uid="wan24.Core.SimpleDisposableRecordBase.DisposeCore*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_DisposeCore" data-uid="wan24.Core.SimpleDisposableRecordBase.DisposeCore">DisposeCore()</h4>
@@ -387,7 +491,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_EnsureUndisposed_System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.EnsureUndisposed(System.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L92">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_EnsureUndisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.EnsureUndisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_EnsureUndisposed_System_Boolean__System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.EnsureUndisposed(System.Boolean@,System.Boolean@)">EnsureUndisposed(in bool, in bool)</h4>
@@ -444,7 +548,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_Finalize.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.Finalize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L28">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_Finalize_" data-uid="wan24.Core.SimpleDisposableRecordBase.Finalize*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_Finalize" data-uid="wan24.Core.SimpleDisposableRecordBase.Finalize">~SimpleDisposableRecordBase()</h4>
@@ -460,7 +564,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IfUndisposed_System_Action__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IfUndisposed(System.Action%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L115">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L157">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed_System_Action__System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed(System.Action@,System.Boolean@)">IfUndisposed(in Action, in bool)</h4>
@@ -501,7 +605,7 @@ protected void IfUndisposed(in Action action, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IfUndisposedNullable%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L143">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L191">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IfUndisposedNullable_" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposedNullable*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposedNullable``1(System.Func{``0}@,System.Boolean@)">IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt;, in bool)</h4>
@@ -574,7 +678,7 @@ protected T? IfUndisposedNullable&lt;T&gt;(in Func&lt;T?&gt; action, in bool all
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IfUndisposed__1_System_Func___0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IfUndisposed%60%601(System.Func%7B%60%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L174">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed__1_System_Func___0___System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed``1(System.Func{``0}@,System.Boolean@)">IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</h4>
@@ -647,7 +751,7 @@ protected T IfUndisposed&lt;T&gt;(in Func&lt;T&gt; action, in bool allowDisposin
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_IfUndisposed__1___0__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.IfUndisposed%60%601(%60%600%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L103">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_IfUndisposed__1___0__System_Boolean__" data-uid="wan24.Core.SimpleDisposableRecordBase.IfUndisposed``1(``0@,System.Boolean@)">IfUndisposed&lt;T&gt;(in T, in bool)</h4>
@@ -720,7 +824,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L213">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposed_" data-uid="wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposed*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposed" data-uid="wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposed">RaiseOnDisposed()</h4>
@@ -736,7 +840,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L206">View Source</a>
   </span>
   <a id="wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposing_" data-uid="wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposing*"></a>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_RaiseOnDisposing" data-uid="wan24.Core.SimpleDisposableRecordBase.RaiseOnDisposing">RaiseOnDisposing()</h4>
@@ -754,7 +858,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_OnDisposed.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.OnDisposed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L158">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L209">View Source</a>
   </span>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_OnDisposed" data-uid="wan24.Core.SimpleDisposableRecordBase.OnDisposed">OnDisposed</h4>
   <div class="markdown level1 summary"><p>Raised when disposed</p>
@@ -784,7 +888,7 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_SimpleDisposableRecordBase_OnDisposing.md&amp;value=---%0Auid%3A%20wan24.Core.SimpleDisposableRecordBase.OnDisposing%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L151">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/SimpleDisposableRecordBase.cs/#L202">View Source</a>
   </span>
   <h4 id="wan24_Core_SimpleDisposableRecordBase_OnDisposing" data-uid="wan24.Core.SimpleDisposableRecordBase.OnDisposing">OnDisposing</h4>
   <div class="markdown level1 summary"><p>Raised when disposing</p>
@@ -812,6 +916,9 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -902,10 +1009,10 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

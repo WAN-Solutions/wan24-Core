@@ -107,46 +107,33 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.BasicDisposableBase.html">BasicDisposableBase</a></div>
     <div class="level2"><span class="xref">RentedArray&lt;T&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray</a>&lt;T&gt;</div>
     <div><a class="xref" href="wan24.Core.IArray-1.html">IArray</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.memory-1">Memory</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.imemoryowner-1">IMemoryOwner</a>&lt;T&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+      <a class="xref" href="wan24.Core.BasicDisposableBase.html#wan24_Core_BasicDisposableBase_CreateStackInfo">BasicDisposableBase.CreateStackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+      <a class="xref" href="wan24.Core.BasicDisposableBase.html#wan24_Core_BasicDisposableBase_IsDisposing">BasicDisposableBase.IsDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+      <a class="xref" href="wan24.Core.BasicDisposableBase.html#wan24_Core_BasicDisposableBase_IsDisposed">BasicDisposableBase.IsDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+      <a class="xref" href="wan24.Core.BasicDisposableBase.html#wan24_Core_BasicDisposableBase_Dispose">BasicDisposableBase.Dispose()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -165,7 +152,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_RentedArray_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class RentedArray&lt;T&gt; : DisposableBase, IWillDispose, IDisposableObject, IAsyncDisposable, IRentedArray&lt;T&gt;, IArray&lt;T&gt;, IEnumerable&lt;T&gt;, IEnumerable, IEquatable&lt;Memory&lt;T&gt;&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class RentedArray&lt;T&gt; : BasicDisposableBase, IBasicDisposableObject, IRentedArray&lt;T&gt;, IArray&lt;T&gt;, IEnumerable&lt;T&gt;, IEnumerable, IEquatable&lt;Memory&lt;T&gt;&gt;, IMemoryOwner&lt;T&gt;, IDisposable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -665,7 +652,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L149">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_Dispose_" data-uid="wan24.Core.RentedArray`1.Dispose*"></a>
   <h4 id="wan24_Core_RentedArray_1_Dispose_System_Boolean_" data-uid="wan24.Core.RentedArray`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -689,19 +676,19 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>Disposing? (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, if called from the destructor)</p>
+        <td><p>If disposing</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(bool)</a></div>
+  <div><a class="xref" href="wan24.Core.BasicDisposableBase.html#wan24_Core_BasicDisposableBase_Dispose_System_Boolean_">BasicDisposableBase.Dispose(bool)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_Equals_System_Memory__0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.Equals(System.Memory%7B%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_Equals_" data-uid="wan24.Core.RentedArray`1.Equals*"></a>
   <h4 id="wan24_Core_RentedArray_1_Equals_System_Memory__0__" data-uid="wan24.Core.RentedArray`1.Equals(System.Memory{`0})">Equals(Memory&lt;T&gt;)</h4>
@@ -837,7 +824,7 @@ public override bool Equals(object? obj)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L134">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L143">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_GetEnumerator_" data-uid="wan24.Core.RentedArray`1.GetEnumerator*"></a>
   <h4 id="wan24_Core_RentedArray_1_GetEnumerator" data-uid="wan24.Core.RentedArray`1.GetEnumerator">GetEnumerator()</h4>
@@ -869,7 +856,7 @@ public override bool Equals(object? obj)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_GetHashCode.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.GetHashCode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L130">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L136">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_GetHashCode_" data-uid="wan24.Core.RentedArray`1.GetHashCode*"></a>
   <h4 id="wan24_Core_RentedArray_1_GetHashCode" data-uid="wan24.Core.RentedArray`1.GetHashCode">GetHashCode()</h4>
@@ -903,10 +890,60 @@ public override int GetHashCode()</code></pre>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_op_Implicit_System_Int32___wan24_Core_RentedArray__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.op_Implicit(System.Int32%40)~wan24.Core.RentedArray%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L218">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedArray_1_op_Implicit_" data-uid="wan24.Core.RentedArray`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedArray_1_op_Implicit_System_Int32___wan24_Core_RentedArray__0_" data-uid="wan24.Core.RentedArray`1.op_Implicit(System.Int32@)~wan24.Core.RentedArray{`0}">implicit operator RentedArray&lt;T&gt;(in int)</h4>
+  <div class="markdown level1 summary"><p>Cast from Int32 (length value)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator RentedArray&lt;T&gt;(in int len)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.op_Implicit(wan24.Core.RentedArray%7B%600%7D%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L199">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L208">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_op_Implicit_" data-uid="wan24.Core.RentedArray`1.op_Implicit*"></a>
   <h4 id="wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Int32" data-uid="wan24.Core.RentedArray`1.op_Implicit(wan24.Core.RentedArray{`0}@)~System.Int32">implicit operator int(in RentedArray&lt;T&gt;)</h4>
@@ -956,7 +993,7 @@ public static implicit operator int(in RentedArray&lt;T&gt; arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Memory__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.op_Implicit(wan24.Core.RentedArray%7B%600%7D%40)~System.Memory%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L189">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_op_Implicit_" data-uid="wan24.Core.RentedArray`1.op_Implicit*"></a>
   <h4 id="wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Memory__0_" data-uid="wan24.Core.RentedArray`1.op_Implicit(wan24.Core.RentedArray{`0}@)~System.Memory{`0}">implicit operator Memory&lt;T&gt;(in RentedArray&lt;T&gt;)</h4>
@@ -1006,7 +1043,7 @@ public static implicit operator Memory&lt;T&gt;(in RentedArray&lt;T&gt; arr)</co
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Span__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.op_Implicit(wan24.Core.RentedArray%7B%600%7D%40)~System.Span%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L179">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L188">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_op_Implicit_" data-uid="wan24.Core.RentedArray`1.op_Implicit*"></a>
   <h4 id="wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0____System_Span__0_" data-uid="wan24.Core.RentedArray`1.op_Implicit(wan24.Core.RentedArray{`0}@)~System.Span{`0}">implicit operator Span&lt;T&gt;(in RentedArray&lt;T&gt;)</h4>
@@ -1056,7 +1093,7 @@ public static implicit operator Span&lt;T&gt;(in RentedArray&lt;T&gt; arr)</code
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0_____0__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedArray%601.op_Implicit(wan24.Core.RentedArray%7B%600%7D%40)~%600%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L169">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedArray.cs/#L178">View Source</a>
   </span>
   <a id="wan24_Core_RentedArray_1_op_Implicit_" data-uid="wan24.Core.RentedArray`1.op_Implicit*"></a>
   <h4 id="wan24_Core_RentedArray_1_op_Implicit_wan24_Core_RentedArray__0_____0__" data-uid="wan24.Core.RentedArray`1.op_Implicit(wan24.Core.RentedArray{`0}@)~`0[]">implicit operator T[](in RentedArray&lt;T&gt;)</h4>
@@ -1103,13 +1140,7 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
-  </div>
-  <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.IRentedArray-1.html">IRentedArray&lt;T&gt;</a>
@@ -1127,6 +1158,9 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
   </div>
   <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.imemoryowner-1">IMemoryOwner&lt;T&gt;</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
@@ -1134,25 +1168,40 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
       <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AllAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AnyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AnyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XY____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XY?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZ____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZ?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___1____System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SelectAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SelectAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tResult&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_WhereAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.WhereAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XY____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XY?&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYInt____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYInt?&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYInt____">EnumerableExtensions.CollectXyInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYInt?&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XY____">EnumerableExtensions.CollectXy&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XY?&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZ____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyzAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZ?&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYZInt____">EnumerableExtensions.CollectXyzInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYZInt?&gt;)</a>
@@ -1176,10 +1225,7 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple___1_System_Boolean____System_Threading_CancellationToken_">EnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;(tResult Result, bool Next)&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_ValueTuple___1_System_Boolean___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, (tResult Result, bool Next)&gt;)</a>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_wan24_Core_EnumerableExtensions_ExecuteResult___1___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__1_System_Collections_Generic_IEnumerable___0__System_Type_System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem&gt;(IEnumerable&lt;tItem&gt;, Type, bool)</a>
@@ -1224,6 +1270,9 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
       <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallel__1_System_Collections_Generic_IEnumerable___0__System_Action___0___System_Threading_Tasks_ParallelOptions__">ParallelExtensions.ExecuteParallel&lt;T&gt;(IEnumerable&lt;T&gt;, in Action&lt;T&gt;, in ParallelOptions?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.PriorityExtensions.html#wan24_Core_PriorityExtensions_PrioritizeAny__1_System_Collections_Generic_IEnumerable___0__">PriorityExtensions.PrioritizeAny&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
@@ -1231,12 +1280,6 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CommonBaseType_System_Collections_IEnumerable_System_Boolean__System_Boolean__">EnumerableExtensions.CommonBaseType(IEnumerable, in bool, in bool)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_FixedContext_System_IAsyncDisposable_">AsyncDisposableExtensions.FixedContext(IAsyncDisposable)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
@@ -1311,10 +1354,10 @@ public static implicit operator T[](in RentedArray&lt;T&gt; arr)</code></pre>
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

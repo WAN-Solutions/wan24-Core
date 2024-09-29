@@ -143,10 +143,77 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Frozen_FrozenSet___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptInOnly%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L194">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptInOnly_" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Frozen_FrozenSet___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly``1(System.Collections.Frozen.FrozenSet{``0})">FilterOptInOnly&lt;T&gt;(FrozenSet&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptInOnly%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L29">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_OptInOutExtensions_FilterOptInOnly_" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly*"></a>
   <h4 id="wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_IEnumerable___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly``1(System.Collections.Generic.IEnumerable{``0})">FilterOptInOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
@@ -155,7 +222,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -169,6 +237,274 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptInOnly%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L134">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptInOnly_" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly``1(System.Collections.Generic.IList{``0})">FilterOptInOnly&lt;T&gt;(IList&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this IList&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptInOnly%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptInOnly_" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly``1(System.Collections.Generic.List{``0})">FilterOptInOnly&lt;T&gt;(List&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this List&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Immutable_ImmutableArray___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptInOnly%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L174">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptInOnly_" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Immutable_ImmutableArray___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptInOnly``1(System.Collections.Immutable.ImmutableArray{``0})">FilterOptInOnly&lt;T&gt;(ImmutableArray&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptInOnly&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Frozen_FrozenSet___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptIn%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L102">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptIn_" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Frozen_FrozenSet___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn``1(System.Collections.Frozen.FrozenSet{``0})">FilterOptIn&lt;T&gt;(FrozenSet&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;T&gt;</td>
         <td><span class="parametername">enumerable</span></td>
         <td><p>Enumerable</p>
 </td>
@@ -212,7 +548,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptIn%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L21">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_OptInOutExtensions_FilterOptIn_" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn*"></a>
   <h4 id="wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_IEnumerable___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn``1(System.Collections.Generic.IEnumerable{``0})">FilterOptIn&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
@@ -221,7 +557,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -275,10 +612,278 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptIn%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptIn_" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn``1(System.Collections.Generic.IList{``0})">FilterOptIn&lt;T&gt;(IList&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this IList&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptIn%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L62">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptIn_" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn``1(System.Collections.Generic.List{``0})">FilterOptIn&lt;T&gt;(List&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this List&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Immutable_ImmutableArray___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptIn%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L82">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptIn_" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptIn__1_System_Collections_Immutable_ImmutableArray___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptIn``1(System.Collections.Immutable.ImmutableArray{``0})">FilterOptIn&lt;T&gt;(ImmutableArray&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt in items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptIn&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable) where T : IOptInOut</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Frozen_FrozenSet___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptOut%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L286">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptOut_" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Frozen_FrozenSet___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut``1(System.Collections.Frozen.FrozenSet{``0})">FilterOptOut&lt;T&gt;(FrozenSet&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt out items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items (or items with no opt direction)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptOut%60%601(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L214">View Source</a>
   </span>
   <a id="wan24_Core_OptInOutExtensions_FilterOptOut_" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut*"></a>
   <h4 id="wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_IEnumerable___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut``1(System.Collections.Generic.IEnumerable{``0})">FilterOptOut&lt;T&gt;(IEnumerable&lt;T&gt;)</h4>
@@ -287,7 +892,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -341,10 +947,211 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptOut%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L226">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptOut_" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut``1(System.Collections.Generic.IList{``0})">FilterOptOut&lt;T&gt;(IList&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt out items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this IList&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items (or items with no opt direction)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptOut%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L246">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptOut_" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut``1(System.Collections.Generic.List{``0})">FilterOptOut&lt;T&gt;(List&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt out items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this List&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items (or items with no opt direction)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Immutable_ImmutableArray___0__.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.FilterOptOut%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L266">View Source</a>
+  </span>
+  <a id="wan24_Core_OptInOutExtensions_FilterOptOut_" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut*"></a>
+  <h4 id="wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Immutable_ImmutableArray___0__" data-uid="wan24.Core.OptInOutExtensions.FilterOptOut``1(System.Collections.Immutable.ImmutableArray{``0})">FilterOptOut&lt;T&gt;(ImmutableArray&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Filter all opt out items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;T&gt; FilterOptOut&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;T&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><p>Opt in items (or items with no opt direction)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_OptInOutExtensions_IsOptIn_wan24_Core_OptInOut_.md&amp;value=---%0Auid%3A%20wan24.Core.OptInOutExtensions.IsOptIn(wan24.Core.OptInOut)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L13">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/OptInOutExtensions.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_OptInOutExtensions_IsOptIn_" data-uid="wan24.Core.OptInOutExtensions.IsOptIn*"></a>
   <h4 id="wan24_Core_OptInOutExtensions_IsOptIn_wan24_Core_OptInOut_" data-uid="wan24.Core.OptInOutExtensions.IsOptIn(wan24.Core.OptInOut)">IsOptIn(OptInOut)</h4>
@@ -353,7 +1160,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool IsOptIn(this OptInOut optInOut)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool IsOptIn(this OptInOut optInOut)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">

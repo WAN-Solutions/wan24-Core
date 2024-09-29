@@ -117,10 +117,11 @@
     <div><a class="xref" href="wan24.Core.IInMemoryCache-1.html">IInMemoryCache</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</div>
     <div><a class="xref" href="wan24.Core.IInMemoryCache.html">IInMemoryCache</a></div>
     <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a></div>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -604,7 +605,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_InMemoryCache_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InMemoryCache : InMemoryCache&lt;object&gt;, IInMemoryCache&lt;object&gt;, IInMemoryCache, IWillDispose, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;object&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, ICache&lt;object&gt;, IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class InMemoryCache : InMemoryCache&lt;object&gt;, IInMemoryCache&lt;object&gt;, IInMemoryCache, IWillDispose, IDisposableObject, IServiceWorkerStatus, IServiceWorker, IHostedService, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, IChangeToken, INotifyPropertyChanged, IExportUserActions, IObservable&lt;ConcurrentChangeTokenDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;object&gt;, IDictionary&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;, ICollection&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, InMemoryCacheEntry&lt;object&gt;&gt;&gt;, ICache&lt;object&gt;, IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -653,6 +654,9 @@
       <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a>
   </div>
   <div>
@@ -662,7 +666,7 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -714,10 +718,16 @@
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_SetJsonValue__1_System_Collections_Generic_IDictionary_System_String_System_Object__System_String____0__System_Char__">JsonExtensions.SetJsonValue&lt;T&gt;(IDictionary&lt;string, object?&gt;, in string, in T, in char)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_TrySetJsonValue__1_System_Collections_Generic_IDictionary_System_String_System_Object__System_String____0__System_Char__">JsonExtensions.TrySetJsonValue&lt;T&gt;(IDictionary&lt;string, object?&gt;, in string, in T, in char)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncDisposableExtensions.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">DisposableExtensions.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IEnumerable_System_Object__System_Type_">ObjectMappingExtensions.MapObjectsTo(IEnumerable&lt;object&gt;, Type)</a>
@@ -810,10 +820,10 @@
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetUserActionInfos_wan24_Core_IExportUserActions_System_String_">ReflectionExtensions.GetUserActionInfos(IExportUserActions, string?)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

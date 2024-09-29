@@ -110,14 +110,18 @@
     <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject">MarshalByRefObject</a></div>
     <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
     <div class="level3"><span class="xref">StreamBase</span></div>
+      <div class="level4"><a class="xref" href="wan24.Core.ArrayPoolStream.html">ArrayPoolStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.BiDirectionalStream-2.html">BiDirectionalStream&lt;tReadable, tWritable&gt;</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.BlockingBufferStream.html">BlockingBufferStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.ChunkedStream.html">ChunkedStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.CombinedStream.html">CombinedStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.DynamicHubStream.html">DynamicHubStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.EnumerableStream.html">EnumerableStream</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.FreezableArrayPoolStream.html">FreezableArrayPoolStream</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.FreezableMemoryPoolStream.html">FreezableMemoryPoolStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.HubStream.html">HubStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></div>
+      <div class="level4"><a class="xref" href="wan24.Core.PipelineStream.html">PipelineStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.RandomStream.html">RandomStream</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.WrapperStream-1.html">WrapperStream&lt;T&gt;</a></div>
       <div class="level4"><a class="xref" href="wan24.Core.ZeroStream.html">ZeroStream</a></div>
@@ -126,6 +130,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
   </div>
@@ -310,7 +315,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_StreamBase_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class StreamBase : Stream, IStream, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class StreamBase : Stream, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -716,7 +721,7 @@
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-protected void EnsureReadable()</code></pre>
+protected virtual void EnsureReadable()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
@@ -749,7 +754,7 @@ protected void EnsureReadable()</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-protected void EnsureSeekable()</code></pre>
+protected virtual void EnsureSeekable()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
@@ -839,7 +844,7 @@ protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwExc
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-protected void EnsureWritable()</code></pre>
+protected virtual void EnsureWritable()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-condensed">
@@ -1187,6 +1192,9 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
   <div>
@@ -1344,10 +1352,10 @@ protected T IfUndisposed&lt;T&gt;(in T value, in bool allowDisposing = false)</c
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

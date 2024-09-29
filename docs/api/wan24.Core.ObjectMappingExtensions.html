@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.CreateObjectClone%60%601(%60%600%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L367">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L274">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_CreateObjectClone_" data-uid="wan24.Core.ObjectMappingExtensions.CreateObjectClone*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__" data-uid="wan24.Core.ObjectMappingExtensions.CreateObjectClone``1(``0,System.Boolean,System.Boolean,System.Nullable{System.Boolean})">CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</h4>
@@ -449,10 +449,67 @@ public static Task MapObjectToAsync(this object source, object target, Cancellat
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Frozen_FrozenSet_System_Object__System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Frozen.FrozenSet%7BSystem.Object%7D%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L92">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Frozen_FrozenSet_System_Object__System_Type_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Frozen.FrozenSet{System.Object},System.Type)">MapObjectsTo(FrozenSet&lt;object&gt;, Type)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;object&gt; MapObjectsTo(this FrozenSet&lt;object&gt; sources, Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IEnumerable_System_Object__System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.IEnumerable%7BSystem.Object%7D%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L285">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IEnumerable_System_Object__System_Type_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.IEnumerable{System.Object},System.Type)">MapObjectsTo(IEnumerable&lt;object&gt;, Type)</h4>
@@ -506,10 +563,243 @@ public static IEnumerable&lt;object&gt; MapObjectsTo(this IEnumerable&lt;object&
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IList_System_Object__System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.IList%7BSystem.Object%7D%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L44">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IList_System_Object__System_Type_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.IList{System.Object},System.Type)">MapObjectsTo(IList&lt;object&gt;, Type)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;object&gt; MapObjectsTo(this IList&lt;object&gt; sources, Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_List_System_Object__System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.List%7BSystem.Object%7D%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L60">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_List_System_Object__System_Type_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Generic.List{System.Object},System.Type)">MapObjectsTo(List&lt;object&gt;, Type)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;object&gt; MapObjectsTo(this List&lt;object&gt; sources, Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Immutable_ImmutableArray_System_Object__System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Immutable.ImmutableArray%7BSystem.Object%7D%2CSystem.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L76">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Immutable_ImmutableArray_System_Object__System_Type_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsTo(System.Collections.Immutable.ImmutableArray{System.Object},System.Type)">MapObjectsTo(ImmutableArray&lt;object&gt;, Type)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static IEnumerable&lt;object&gt; MapObjectsTo(this ImmutableArray&lt;object&gt; sources, Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Frozen_FrozenSet_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Frozen.FrozenSet%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L168">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Frozen_FrozenSet_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Frozen.FrozenSet{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(FrozenSet&lt;object&gt;, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;object&gt; MapObjectsToAsync(this FrozenSet&lt;object&gt; sources, Type targetType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IAsyncEnumerable_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IAsyncEnumerable%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L348">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L202">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IAsyncEnumerable_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IAsyncEnumerable{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(IAsyncEnumerable&lt;object&gt;, Type, CancellationToken)</h4>
@@ -571,7 +861,7 @@ public static IEnumerable&lt;object&gt; MapObjectsTo(this IEnumerable&lt;object&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IEnumerable_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IEnumerable%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L315">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L84">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IEnumerable_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IEnumerable{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(IEnumerable&lt;object&gt;, Type, CancellationToken)</h4>
@@ -630,10 +920,335 @@ public static IEnumerable&lt;object&gt; MapObjectsTo(this IEnumerable&lt;object&
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IList_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IList%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_IList_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.IList{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(IList&lt;object&gt;, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;object&gt; MapObjectsToAsync(this IList&lt;object&gt; sources, Type targetType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_List_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.List%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L134">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Generic_List_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Generic.List{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(List&lt;object&gt;, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;object&gt; MapObjectsToAsync(this List&lt;object&gt; sources, Type targetType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Immutable_ImmutableArray_System_Object__System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Immutable.ImmutableArray%7BSystem.Object%7D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L151">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Collections_Immutable_ImmutableArray_System_Object__System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Collections.Immutable.ImmutableArray{System.Object},System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(ImmutableArray&lt;object&gt;, Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;object&gt; MapObjectsToAsync(this ImmutableArray&lt;object&gt; sources, Type targetType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Object___System_Type_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Object%5B%5D%2CSystem.Type%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L100">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapObjectsToAsync_System_Object___System_Type_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapObjectsToAsync(System.Object[],System.Type,System.Threading.CancellationToken)">MapObjectsToAsync(object[], Type, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;object&gt; MapObjectsToAsync(this object[] sources, Type targetType, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Frozen_FrozenSet___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapToAsync%60%602(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L68">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Frozen_FrozenSet___0__System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync``2(System.Collections.Frozen.FrozenSet{``0},System.Threading.CancellationToken)">MapToAsync&lt;tSource, tTarget&gt;(FrozenSet&lt;tSource&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;tTarget&gt; MapToAsync&lt;tSource, tTarget&gt;(this FrozenSet&lt;tSource&gt; sources, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.frozen.frozenset-1">FrozenSet</a>&lt;tSource&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tTarget&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapToAsync%60%602(System.Collections.Generic.IAsyncEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L332">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L186">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IAsyncEnumerable___0__System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync``2(System.Collections.Generic.IAsyncEnumerable{``0},System.Threading.CancellationToken)">MapToAsync&lt;tSource, tTarget&gt;(IAsyncEnumerable&lt;tSource&gt;, CancellationToken)</h4>
@@ -710,7 +1325,7 @@ public static IEnumerable&lt;object&gt; MapObjectsTo(this IEnumerable&lt;object&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapToAsync%60%602(System.Collections.Generic.IEnumerable%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L300">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync``2(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">MapToAsync&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;, CancellationToken)</h4>
@@ -733,6 +1348,83 @@ public static IEnumerable&lt;object&gt; MapObjectsTo(this IEnumerable&lt;object&
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tSource&gt;</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tTarget&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Immutable_ImmutableArray___0__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapToAsync%60%602(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L51">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Immutable_ImmutableArray___0__System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync``2(System.Collections.Immutable.ImmutableArray{``0},System.Threading.CancellationToken)">MapToAsync&lt;tSource, tTarget&gt;(ImmutableArray&lt;tSource&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;tTarget&gt; MapToAsync&lt;tSource, tTarget&gt;(this ImmutableArray&lt;tSource&gt; sources, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;tSource&gt;</td>
         <td><span class="parametername">sources</span></td>
         <td><p>Source objects</p>
 </td>
@@ -945,10 +1637,87 @@ public static Task&lt;tTarget&gt; MapToAsync&lt;tSource, tTarget&gt;(this tSourc
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapToAsync%60%602(%60%600%5B%5D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.ListsAsync.cs/#L34">View Source</a>
+  </span>
+  <a id="wan24_Core_ObjectMappingExtensions_MapToAsync_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync*"></a>
+  <h4 id="wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectMappingExtensions.MapToAsync``2(``0[],System.Threading.CancellationToken)">MapToAsync&lt;tSource, tTarget&gt;(tSource[], CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Map a list of source objects to new target object instances</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAsyncEnumerable&lt;tTarget&gt; MapToAsync&lt;tSource, tTarget&gt;(this tSource[] sources, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>tSource[]</td>
+        <td><span class="parametername">sources</span></td>
+        <td><p>Source objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tTarget&gt;</td>
+        <td><p>Created and mapped target objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tSource</span></td>
+        <td><p>Source object type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tTarget</span></td>
+        <td><p>Target object type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectMappingExtensions_MapTo__2_System_Collections_Generic_IEnumerable___0__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectMappingExtensions.MapTo%60%602(System.Collections.Generic.IEnumerable%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.cs/#L272">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectMappingExtensions.Lists.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_ObjectMappingExtensions_MapTo_" data-uid="wan24.Core.ObjectMappingExtensions.MapTo*"></a>
   <h4 id="wan24_Core_ObjectMappingExtensions_MapTo__2_System_Collections_Generic_IEnumerable___0__" data-uid="wan24.Core.ObjectMappingExtensions.MapTo``2(System.Collections.Generic.IEnumerable{``0})">MapTo&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;)</h4>

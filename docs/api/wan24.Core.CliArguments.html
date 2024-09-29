@@ -140,19 +140,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments__ctor_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.%23ctor(System.Collections.Generic.IEnumerable%7BSystem.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Collections.ObjectModel.ReadOnlyCollection%7BSystem.String%7D%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments__ctor_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_Immutable_ImmutableArray_System_String_____.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.%23ctor(System.Collections.Generic.IEnumerable%7BSystem.Collections.Generic.KeyValuePair%7BSystem.String%2CSystem.Collections.Immutable.ImmutableArray%7BSystem.String%7D%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.cs/#L54">View Source</a>
   </span>
   <a id="wan24_Core_CliArguments__ctor_" data-uid="wan24.Core.CliArguments.#ctor*"></a>
-  <h4 id="wan24_Core_CliArguments__ctor_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____" data-uid="wan24.Core.CliArguments.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.String}}}@)">CliArguments(in IEnumerable&lt;KeyValuePair&lt;string, ReadOnlyCollection&lt;string&gt;&gt;&gt;)</h4>
+  <h4 id="wan24_Core_CliArguments__ctor_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_Immutable_ImmutableArray_System_String_____" data-uid="wan24.Core.CliArguments.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Immutable.ImmutableArray{System.String}}}@)">CliArguments(in IEnumerable&lt;KeyValuePair&lt;string, ImmutableArray&lt;string&gt;&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CliArguments(in IEnumerable&lt;KeyValuePair&lt;string, ReadOnlyCollection&lt;string&gt;&gt;&gt; args)</code></pre>
+    <pre><code class="lang-csharp hljs">public CliArguments(in IEnumerable&lt;KeyValuePair&lt;string, ImmutableArray&lt;string&gt;&gt;&gt; args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -165,7 +165,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;&gt;</td>
         <td><span class="parametername">args</span></td>
         <td><p>Arguments</p>
 </td>
@@ -349,7 +349,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected OrderedDictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt;? ReadOnlyArguments</code></pre>
+    <pre><code class="lang-csharp hljs">protected OrderedDictionary&lt;string, ImmutableArray&lt;string&gt;&gt;? ReadOnlyArguments</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -361,7 +361,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -409,7 +409,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly OrderedDictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt; _Arguments</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly OrderedDictionary&lt;string, ImmutableArray&lt;string&gt;&gt; _Arguments</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -421,7 +421,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -442,7 +442,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public OrderedDictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt; Arguments { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public OrderedDictionary&lt;string, ImmutableArray&lt;string&gt;&gt; Arguments { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -454,7 +454,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -560,7 +560,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;string&gt; KeyLessArguments { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ImmutableArray&lt;string&gt; KeyLessArguments { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -572,7 +572,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -593,7 +593,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;string&gt; All(in string key)</code></pre>
+    <pre><code class="lang-csharp hljs">public ImmutableArray&lt;string&gt; All(in string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -623,7 +623,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
         <td><p>Values</p>
 </td>
       </tr>
@@ -1062,7 +1062,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_NeedsEncoding_System_ReadOnlySpan_System_Char___.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.NeedsEncoding(System.ReadOnlySpan%7BSystem.Char%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Format.cs/#L347">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Format.cs/#L349">View Source</a>
   </span>
   <a id="wan24_Core_CliArguments_NeedsEncoding_" data-uid="wan24.Core.CliArguments.NeedsEncoding*"></a>
   <h4 id="wan24_Core_CliArguments_NeedsEncoding_System_ReadOnlySpan_System_Char___" data-uid="wan24.Core.CliArguments.NeedsEncoding(System.ReadOnlySpan{System.Char}@)">NeedsEncoding(in ReadOnlySpan&lt;char&gt;)</h4>
@@ -1164,7 +1164,7 @@ public static CliArguments Parse(in ReadOnlySpan&lt;char&gt; str)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_SanitizeValue_System_String__System_Char__.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.SanitizeValue(System.String%40%2CSystem.Char%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Format.cs/#L338">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Format.cs/#L340">View Source</a>
   </span>
   <a id="wan24_Core_CliArguments_SanitizeValue_" data-uid="wan24.Core.CliArguments.SanitizeValue*"></a>
   <h4 id="wan24_Core_CliArguments_SanitizeValue_System_String__System_Char__" data-uid="wan24.Core.CliArguments.SanitizeValue(System.String@,System.Char@)">SanitizeValue(in string, in char)</h4>
@@ -1749,20 +1749,20 @@ public static explicit operator CliArguments(in Dictionary&lt;string, List&lt;st
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_op_Explicit_System_Collections_Generic_Dictionary_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____wan24_Core_CliArguments.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.op_Explicit(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Collections.ObjectModel.ReadOnlyCollection%7BSystem.String%7D%7D%40)~wan24.Core.CliArguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_op_Explicit_System_Collections_Generic_Dictionary_System_String_System_Collections_Immutable_ImmutableArray_System_String_____wan24_Core_CliArguments.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.op_Explicit(System.Collections.Generic.Dictionary%7BSystem.String%2CSystem.Collections.Immutable.ImmutableArray%7BSystem.String%7D%7D%40)~wan24.Core.CliArguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Casting.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_CliArguments_op_Explicit_" data-uid="wan24.Core.CliArguments.op_Explicit*"></a>
-  <h4 id="wan24_Core_CliArguments_op_Explicit_System_Collections_Generic_Dictionary_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____wan24_Core_CliArguments" data-uid="wan24.Core.CliArguments.op_Explicit(System.Collections.Generic.Dictionary{System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.String}}@)~wan24.Core.CliArguments">explicit operator CliArguments(in Dictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt;)</h4>
+  <h4 id="wan24_Core_CliArguments_op_Explicit_System_Collections_Generic_Dictionary_System_String_System_Collections_Immutable_ImmutableArray_System_String_____wan24_Core_CliArguments" data-uid="wan24.Core.CliArguments.op_Explicit(System.Collections.Generic.Dictionary{System.String,System.Collections.Immutable.ImmutableArray{System.String}}@)~wan24.Core.CliArguments">explicit operator CliArguments(in Dictionary&lt;string, ImmutableArray&lt;string&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>Cast from dictionary</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static explicit operator CliArguments(in Dictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt; dict)</code></pre>
+public static explicit operator CliArguments(in Dictionary&lt;string, ImmutableArray&lt;string&gt;&gt; dict)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1775,7 +1775,7 @@ public static explicit operator CliArguments(in Dictionary&lt;string, ReadOnlyCo
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
         <td><span class="parametername">dict</span></td>
         <td><p>Dictionary</p>
 </td>
@@ -2449,20 +2449,20 @@ public static explicit operator CliArguments(in OrderedDictionary&lt;string, Lis
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_op_Explicit_wan24_Core_OrderedDictionary_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____wan24_Core_CliArguments.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.op_Explicit(wan24.Core.OrderedDictionary%7BSystem.String%2CSystem.Collections.ObjectModel.ReadOnlyCollection%7BSystem.String%7D%7D%40)~wan24.Core.CliArguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CliArguments_op_Explicit_wan24_Core_OrderedDictionary_System_String_System_Collections_Immutable_ImmutableArray_System_String_____wan24_Core_CliArguments.md&amp;value=---%0Auid%3A%20wan24.Core.CliArguments.op_Explicit(wan24.Core.OrderedDictionary%7BSystem.String%2CSystem.Collections.Immutable.ImmutableArray%7BSystem.String%7D%7D%40)~wan24.Core.CliArguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CliArguments.Casting.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_CliArguments_op_Explicit_" data-uid="wan24.Core.CliArguments.op_Explicit*"></a>
-  <h4 id="wan24_Core_CliArguments_op_Explicit_wan24_Core_OrderedDictionary_System_String_System_Collections_ObjectModel_ReadOnlyCollection_System_String_____wan24_Core_CliArguments" data-uid="wan24.Core.CliArguments.op_Explicit(wan24.Core.OrderedDictionary{System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.String}}@)~wan24.Core.CliArguments">explicit operator CliArguments(in OrderedDictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt;)</h4>
+  <h4 id="wan24_Core_CliArguments_op_Explicit_wan24_Core_OrderedDictionary_System_String_System_Collections_Immutable_ImmutableArray_System_String_____wan24_Core_CliArguments" data-uid="wan24.Core.CliArguments.op_Explicit(wan24.Core.OrderedDictionary{System.String,System.Collections.Immutable.ImmutableArray{System.String}}@)~wan24.Core.CliArguments">explicit operator CliArguments(in OrderedDictionary&lt;string, ImmutableArray&lt;string&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>Cast from dictionary</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static explicit operator CliArguments(in OrderedDictionary&lt;string, ReadOnlyCollection&lt;string&gt;&gt; dict)</code></pre>
+public static explicit operator CliArguments(in OrderedDictionary&lt;string, ImmutableArray&lt;string&gt;&gt; dict)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2475,7 +2475,7 @@ public static explicit operator CliArguments(in OrderedDictionary&lt;string, Rea
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
+        <td><a class="xref" href="wan24.Core.OrderedDictionary-2.html">OrderedDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.immutable.immutablearray-1">ImmutableArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</td>
         <td><span class="parametername">dict</span></td>
         <td><p>Dictionary</p>
 </td>
@@ -2771,13 +2771,13 @@ public static implicit operator string(in CliArguments args)</code></pre>
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.CliConfig.html#wan24_Core_CliConfig_RemoveCliConfigArguments_wan24_Core_CliArguments_">CliConfig.RemoveCliConfigArguments(CliArguments)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

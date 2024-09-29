@@ -114,8 +114,9 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
-    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a></div>
@@ -341,7 +342,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_FileSystemEvents_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FileSystemEvents : HostedServiceBase, IWillDispose, IServiceWorker, IDisposableObject, IDisposable, IAsyncDisposable, IHostedService, IExportUserActions</code></pre>
+    <pre><code class="lang-csharp hljs">public class FileSystemEvents : HostedServiceBase, IWillDispose, IDisposableObject, IServiceWorker, IBasicDisposableObject, IDisposable, IAsyncDisposable, IHostedService, IExportUserActions</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -603,7 +604,7 @@
   </span>
   <a id="wan24_Core_FileSystemEvents_EventCount_" data-uid="wan24.Core.FileSystemEvents.EventCount*"></a>
   <h4 id="wan24_Core_FileSystemEvents_EventCount" data-uid="wan24.Core.FileSystemEvents.EventCount">EventCount</h4>
-  <div class="markdown level1 summary"><p>Number of times events have been raised during throttline</p>
+  <div class="markdown level1 summary"><p>Number of times events have been raised during throttling</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1239,10 +1240,13 @@
       <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1336,10 +1340,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

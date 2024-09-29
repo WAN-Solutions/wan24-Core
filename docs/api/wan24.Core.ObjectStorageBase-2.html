@@ -114,13 +114,14 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
     <div><a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a></div>
     <div><a class="xref" href="wan24.Core.IObjectStorage-2.html">IObjectStorage</a>&lt;tKey, tObj&gt;</div>
     <div><a class="xref" href="wan24.Core.IObjectStorage.html">IObjectStorage</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorkerStatus.html">IServiceWorkerStatus</a></div>
     <div><a class="xref" href="wan24.Core.IServiceWorker.html">IServiceWorker</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a></div>
-    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -342,7 +343,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ObjectStorageBase_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ObjectStorageBase&lt;tKey, tObj&gt; : HostedServiceBase, IWillDispose, IExportUserActions, IObjectStorage&lt;tKey, tObj&gt;, IObjectStorage, IServiceWorkerStatus, IServiceWorker, IHostedService, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider where tKey : notnull where tObj : class, IStoredObject&lt;tKey&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ObjectStorageBase&lt;tKey, tObj&gt; : HostedServiceBase, IWillDispose, IDisposableObject, IExportUserActions, IObjectStorage&lt;tKey, tObj&gt;, IObjectStorage, IServiceWorkerStatus, IServiceWorker, IHostedService, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider where tKey : notnull where tObj : class, IStoredObject&lt;tKey&gt;</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1333,6 +1334,9 @@
       <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.IExportUserActions.html">IExportUserActions</a>
   </div>
   <div>
@@ -1351,7 +1355,7 @@
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.hosting.ihostedservice">IHostedService</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1445,10 +1449,10 @@
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetUserActionInfos_wan24_Core_IExportUserActions_System_String_">ReflectionExtensions.GetUserActionInfos(IExportUserActions, string?)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

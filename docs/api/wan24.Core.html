@@ -146,6 +146,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.ArrayPoolExtensions.html">ArrayPoolExtensions</a></h5>
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a> extensions</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ArrayPoolStream.html">ArrayPoolStream</a></h5>
+      <section><p>Array pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.AsyncDisposableExtensions.html">AsyncDisposableExtensions</a></h5>
       <section><p>Asynchronous disposable extensions</p>
 </section>
@@ -205,6 +208,24 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.BackupStream-1.html">BackupStream&lt;T&gt;</a></h5>
       <section><p>Backup stream (writes red data into another stream)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicAllDisposableBase.html">BasicAllDisposableBase</a></h5>
+      <section><p>Base class for a disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicAllDisposableRecordBase.html">BasicAllDisposableRecordBase</a></h5>
+      <section><p>Base class for a disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicAsyncDisposableBase.html">BasicAsyncDisposableBase</a></h5>
+      <section><p>Base class for an asynchronous disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicAsyncDisposableRecordBase.html">BasicAsyncDisposableRecordBase</a></h5>
+      <section><p>Base class for an asynchronous disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicDisposableBase.html">BasicDisposableBase</a></h5>
+      <section><p>Base class for a synchronous disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.BasicDisposableRecordBase.html">BasicDisposableRecordBase</a></h5>
+      <section><p>Base class for a synchronous disposable type (without any extras and only a little overhead for comfort (no support for <a class="xref" href="wan24.Core.DisposeAttribute.html">DisposeAttribute</a>!); without events)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.BiDirectionalStream.html">BiDirectionalStream</a></h5>
       <section><p>Bi-directional stream</p>
@@ -661,6 +682,9 @@ synchronized (adding target streams while reading/seeking may cause an overall r
       <h5><a class="xref" href="wan24.Core.ForceSyncStream-1.html">ForceSyncStream&lt;T&gt;</a></h5>
       <section><p>Forces all operations to be performed synchronous</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.FreezableArrayPoolStream.html">FreezableArrayPoolStream</a></h5>
+      <section><p>Freezable array pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.FreezableDictionary-2.html">FreezableDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Freezable dictionary</p>
 </section>
@@ -669,6 +693,9 @@ synchronized (adding target streams while reading/seeking may cause an overall r
 </section>
       <h5><a class="xref" href="wan24.Core.FreezableList-1.html">FreezableList&lt;T&gt;</a></h5>
       <section><p>Freezable list</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.FreezableMemoryPoolStream.html">FreezableMemoryPoolStream</a></h5>
+      <section><p>Freezable memory pool stream</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FreezableOrderedDictionary-2.html">FreezableOrderedDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Freezable ordered dictionary</p>
@@ -855,8 +882,17 @@ factory (see <a class="xref" href="wan24.Core.MapAttribute.html#wan24_Core_MapAt
       <h5><a class="xref" href="wan24.Core.MathExt.html">MathExt</a></h5>
       <section><p>Extended math functions</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.MemoryOwner-1.html">MemoryOwner&lt;T&gt;</a></h5>
+      <section><p>Memory owner</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.MemoryPoolExtensions.html">MemoryPoolExtensions</a></h5>
+      <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a> extensions</p>
+</section>
       <h5><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h5>
-      <section><p>Memory pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
+      <section><p>Memory pool stream (stores in arrays from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.MemorySequenceSegment-1.html">MemorySequenceSegment&lt;T&gt;</a></h5>
+      <section><p>Memory sequence segment</p>
 </section>
       <h5><a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a></h5>
       <section><p>Extended method information</p>
@@ -891,6 +927,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NonSeekablePartialStream-1.html">NonSeekablePartialStream&lt;T&gt;</a></h5>
       <section><p>Non-seekable partial stream</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.NullValueException.html">NullValueException</a></h5>
+      <section><p>Thrown if a <a class="xref" href="wan24.Core.OptionValue-1.html">OptionValue&lt;T&gt;</a> has no value</p>
 </section>
       <h5><a class="xref" href="wan24.Core.NumberExtensions.html">NumberExtensions</a></h5>
       <section><p>Number extensions</p>
@@ -977,6 +1016,9 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.ParallelAsync.html">ParallelAsync</a></h5>
       <section><p>Asynchronous parallel execution</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ParallelExtensions.html">ParallelExtensions</a></h5>
+      <section><p>Parallel extensions</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ParallelItemQueueWorkerBase-1.html">ParallelItemQueueWorkerBase&lt;T&gt;</a></h5>
       <section><p>Base class for a parallel item queue worker</p>
 </section>
@@ -1012,6 +1054,54 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PerformanceStream-1.html">PerformanceStream&lt;T&gt;</a></h5>
       <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineElementBase.html">PipelineElementBase</a></h5>
+      <section><p>Base class for a pipeline stream element</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineElementDynamic.html">PipelineElementDynamic</a></h5>
+      <section><p>Dynamic pipeline stream element with a processor delegate</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineElementGenericObjectBase-1.html">PipelineElementGenericObjectBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a pipeline stream element which can process an object (may implement multiple additional <a class="xref" href="wan24.Core.IPipelineElementObject-1.html">IPipelineElementObject&lt;T&gt;</a> interfaces)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineElementObjectBase.html">PipelineElementObjectBase</a></h5>
+      <section><p>Base class for a pipeline stream element which can process an object (implementing types need to implement at last one <a class="xref" href="wan24.Core.IPipelineElementObject-1.html">IPipelineElementObject&lt;T&gt;</a> interface)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineElementStream.html">PipelineElementStream</a></h5>
+      <section><p>Pipeline stream element which processes a stream in chunks</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultBase.html">PipelineResultBase</a></h5>
+      <section><p>Base class for a pipeline stream element processor result</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultBuffer.html">PipelineResultBuffer</a></h5>
+      <section><p>Pipeline stream element processing result which provides a buffer</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultObject-1.html">PipelineResultObject&lt;T&gt;</a></h5>
+      <section><p>Pipeline stream element result which hosts an object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultReadOnlyBuffer.html">PipelineResultReadOnlyBuffer</a></h5>
+      <section><p>Pipeline stream element processing result which provides a buffer</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultRentedBuffer.html">PipelineResultRentedBuffer</a></h5>
+      <section><p>Pipeline stream element processing result which provides a buffer</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResultStream.html">PipelineResultStream</a></h5>
+      <section><p>Pipeline element processing result which provides a stream</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.html">PipelineStream</a></h5>
+      <section><p>Pipeline stream (don't forget to start the <a class="xref" href="wan24.Core.PipelineStream.html#wan24_Core_PipelineStream_Queue">Queue</a> before feeding data into the pipeline)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.ProcessingObjectQueueItem-1.html">PipelineStream.ProcessingObjectQueueItem&lt;T&gt;</a></h5>
+      <section><p>Processing queue item which hosts an object to process</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.ProcessingQueue.html">PipelineStream.ProcessingQueue</a></h5>
+      <section><p>Processing queue</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.ProcessingQueueItem.html">PipelineStream.ProcessingQueueItem</a></h5>
+      <section><p>Processing queue item</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStreamTable.html">PipelineStreamTable</a></h5>
+      <section><p><a class="xref" href="wan24.Core.PipelineStream.html">PipelineStream</a> table</p>
 </section>
       <h5><a class="xref" href="wan24.Core.Plugin.html">Plugin</a></h5>
       <section><p>Plugin</p>
@@ -1458,11 +1548,35 @@ Structs
       <h5><a class="xref" href="wan24.Core.DummyDisposable.html">DummyDisposable</a></h5>
       <section><p>Dummy disposable</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-2.html">EitherValue&lt;t1, t2&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-3.html">EitherValue&lt;t1, t2, t3&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-4.html">EitherValue&lt;t1, t2, t3, t4&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-5.html">EitherValue&lt;t1, t2, t3, t4, t5&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-6.html">EitherValue&lt;t1, t2, t3, t4, t5, t6&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-7.html">EitherValue&lt;t1, t2, t3, t4, t5, t6, t7&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EitherValue-8.html">EitherValue&lt;t1, t2, t3, t4, t5, t6, t7, t8&gt;</a></h5>
+      <section><p>Either value</p>
+</section>
       <h5><a class="xref" href="wan24.Core.EncodedBytes.html">EncodedBytes</a></h5>
       <section><p>Encoded bytes structure</p>
 </section>
       <h5><a class="xref" href="wan24.Core.EnumerableBuilderBase-1.Condition.html">EnumerableBuilderBase&lt;T&gt;.Condition</a></h5>
       <section><p>Condition</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.EnumerableExtensions.ExecuteResult-1.html">EnumerableExtensions.ExecuteResult&lt;T&gt;</a></h5>
+      <section><p>Execute result</p>
 </section>
       <h5><a class="xref" href="wan24.Core.EquatableArray-1.html">EquatableArray&lt;T&gt;</a></h5>
       <section><p>Equatable array (validates sequence validity, not object references)</p>
@@ -1504,6 +1618,30 @@ Structs
       <section><p>One or many items (can cast implicit from/to a single or all items; casts from <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to an empty structure; casts from an empty structure to
 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/default">default</a>)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-1.html">OptionValue&lt;T&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-2.html">OptionValue&lt;t1, t2&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-3.html">OptionValue&lt;t1, t2, t3&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-4.html">OptionValue&lt;t1, t2, t3, t4&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-5.html">OptionValue&lt;t1, t2, t3, t4, t5&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-6.html">OptionValue&lt;t1, t2, t3, t4, t5, t6&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-7.html">OptionValue&lt;t1, t2, t3, t4, t5, t6, t7&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.OptionValue-8.html">OptionValue&lt;t1, t2, t3, t4, t5, t6, t7, t8&gt;</a></h5>
+      <section><p>Option value (may have a value or not)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.PaginationMetaData.html">PaginationMetaData</a></h5>
       <section><p>Pagination meta data</p>
 </section>
@@ -1530,6 +1668,12 @@ Structs
 </section>
       <h5><a class="xref" href="wan24.Core.RentedArrayStruct-1.html">RentedArrayStruct&lt;T&gt;</a></h5>
       <section><p>Pool rented array (returns the array to the pool, when disposed)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef&lt;T&gt;</a></h5>
+      <section><p>Pool rented memory (returns the memory to the pool, when disposed)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory&lt;T&gt;</a></h5>
+      <section><p>Pool rented memory (returns the memory to the pool, when disposed)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.RentedObjectRefStruct-1.html">RentedObjectRefStruct&lt;T&gt;</a></h5>
       <section><p>Rented object (returns the rented object to the pool when disposing)</p>
@@ -1623,6 +1767,9 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IAsyncServiceProvider.html">IAsyncServiceProvider</a></h5>
       <section><p>Interface for an asynchronous service provider</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></h5>
+      <section><p>Interface for a basic disposable object (must implement <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a> and/or <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ICacheEntryOptions.html">ICacheEntryOptions</a></h5>
       <section><p>Interface for cache entry options</p>
@@ -1744,6 +1891,24 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></h5>
       <section><p>Interface for a parallel queue worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IPipelineElementObject.html">IPipelineElementObject</a></h5>
+      <section><p>Interface for a pipeline stream element which can process an object instance</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IPipelineElementObject-1.html">IPipelineElementObject&lt;T&gt;</a></h5>
+      <section><p>Interface for a pipeline stream element which can process an object instance</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IPipelineResultBuffer.html">IPipelineResultBuffer</a></h5>
+      <section><p>Interface for a pipeline result which provides a buffer</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IPipelineResultObject.html">IPipelineResultObject</a></h5>
+      <section><p>Interface for a pipeline result which hosts an object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IPipelineResultObject-1.html">IPipelineResultObject&lt;T&gt;</a></h5>
+      <section><p>Interface for a pipeline result which hosts an object</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IPipelineResultStream.html">IPipelineResultStream</a></h5>
+      <section><p>Interface for a pipeline result which provides a stream</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IPlugin.html">IPlugin</a></h5>
       <section><p>Interface for a plugin</p>
 </section>
@@ -1861,6 +2026,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></h5>
       <section><p>Interface for a disposable object which will dispose foreign disposables when disposing</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.IProcessingObjectQueueItem.html">PipelineStream.IProcessingObjectQueueItem</a></h5>
+      <section><p>Interface for a processing queue item which hosts an object to process</p>
+</section>
       <h5><a class="xref" href="wan24.Core.QueryableBuilderBase-1.IDistinctBy.html">QueryableBuilderBase&lt;T&gt;.IDistinctBy</a></h5>
       <section><p>Interface for <a class="xref" href="wan24.Core.QueryableBuilderBase-1.DistinctByInfo-1.html">QueryableBuilderBase&lt;T&gt;.DistinctByInfo&lt;tKey&gt;</a></p>
 </section>
@@ -1908,6 +2076,9 @@ Enums
 </section>
       <h5><a class="xref" href="wan24.Core.StatisticsValueModes.html">StatisticsValueModes</a></h5>
       <section><p>Statistics value modes</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ValueTypes.html">ValueTypes</a></h5>
+      <section><p>Value types</p>
 </section>
     <h3 id="delegates">
 Delegates
@@ -2109,6 +2280,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelTransaction.Rollback_Delegate.html">ParallelTransaction.Rollback_Delegate</a></h5>
       <section><p>Delegate for a rollback action</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineStream.Error_Delegate.html">PipelineStream.Error_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.PipelineStream.html#wan24_Core_PipelineStream_OnError">OnError</a> event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PortKnocking.ClientWebSocketFactory_Delegate.html">PortKnocking.ClientWebSocketFactory_Delegate</a></h5>
       <section><p>Delegate for a WebSocket client factory</p>

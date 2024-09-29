@@ -108,94 +108,70 @@ restrictions for this)</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.SimpleDisposableBase.html">SimpleDisposableBase</a></div>
     <div class="level2"><span class="xref">MultiThrottledStream</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
     <div><a class="xref" href="wan24.Core.IStreamThrottle.html">IStreamThrottle</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeSyncObject">DisposableBase.DisposeSyncObject</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_SyncDispose">SimpleDisposableBase.SyncDispose</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AsyncDisposing">DisposableBase.AsyncDisposing</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_AllowFinalizer">SimpleDisposableBase.AllowFinalizer</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_AllowFinalizer">DisposableBase.AllowFinalizer</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_StackInfo">SimpleDisposableBase.StackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeObjects">DisposableBase.DisposeObjects</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_CreateStackInfo">SimpleDisposableBase.CreateStackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_StackInfo">DisposableBase.StackInfo</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IsDisposing">SimpleDisposableBase.IsDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IsDisposed">SimpleDisposableBase.IsDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DestructorDisposing">DisposableBase.DestructorDisposing</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_Dispose">SimpleDisposableBase.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_DisposeAsync">SimpleDisposableBase.DisposeAsync()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">SimpleDisposableBase.EnsureUndisposed(in bool, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IfUndisposed__1___0__System_Boolean__">SimpleDisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_EnsureUndisposed_System_Boolean__System_Boolean__">DisposableBase.EnsureUndisposed(in bool, in bool)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IfUndisposed_System_Action__System_Boolean__">SimpleDisposableBase.IfUndisposed(in Action, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposing_System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.LockDisposing(in TimeSpan, in CancellationToken)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">SimpleDisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_LockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.LockDisposingAsync(TimeSpan, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">SimpleDisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposing_wan24_Core_SemaphoreSyncContext__System_TimeSpan__System_Threading_CancellationToken__">DisposableBase.TryLockDisposing(out SemaphoreSyncContext, in TimeSpan, in CancellationToken)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_OnDisposing">SimpleDisposableBase.OnDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_TryLockDisposingAsync_System_TimeSpan_System_Threading_CancellationToken_">DisposableBase.TryLockDisposingAsync(TimeSpan, CancellationToken)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_RaiseOnDisposing">SimpleDisposableBase.RaiseOnDisposing()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1___0__System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_OnDisposed">SimpleDisposableBase.OnDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed_System_Action__System_Boolean__">DisposableBase.IfUndisposed(in Action, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposed__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">DisposableBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributes">DisposableBase.DisposeAttributes()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAttributesAsync">DisposableBase.DisposeAttributesAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_RaiseOnDisposed">SimpleDisposableBase.RaiseOnDisposed()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -223,7 +199,7 @@ restrictions for this)</p>
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_MultiThrottledStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MultiThrottledStream : DisposableBase, IWillDispose, IStatusProvider, IStreamThrottle, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class MultiThrottledStream : SimpleDisposableBase, IStatusProvider, IStreamThrottle, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h5 id="wan24_Core_MultiThrottledStream_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -495,7 +471,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LongReadCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LongReadCountQuota%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L150">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L145">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_LongReadCountQuota_" data-uid="wan24.Core.MultiThrottledStream.LongReadCountQuota*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_LongReadCountQuota" data-uid="wan24.Core.MultiThrottledStream.LongReadCountQuota">LongReadCountQuota</h4>
@@ -526,7 +502,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_LongWriteCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.LongWriteCountQuota%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L173">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L168">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_LongWriteCountQuota_" data-uid="wan24.Core.MultiThrottledStream.LongWriteCountQuota*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_LongWriteCountQuota" data-uid="wan24.Core.MultiThrottledStream.LongWriteCountQuota">LongWriteCountQuota</h4>
@@ -619,7 +595,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ReadCount.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ReadCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L161">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L156">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_ReadCount_" data-uid="wan24.Core.MultiThrottledStream.ReadCount*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_ReadCount" data-uid="wan24.Core.MultiThrottledStream.ReadCount">ReadCount</h4>
@@ -650,7 +626,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ReadCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ReadCountQuota%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L140">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_ReadCountQuota_" data-uid="wan24.Core.MultiThrottledStream.ReadCountQuota*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_ReadCountQuota" data-uid="wan24.Core.MultiThrottledStream.ReadCountQuota">ReadCountQuota</h4>
@@ -836,7 +812,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_WriteCount.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.WriteCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L184">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L179">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_WriteCount_" data-uid="wan24.Core.MultiThrottledStream.WriteCount*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_WriteCount" data-uid="wan24.Core.MultiThrottledStream.WriteCount">WriteCount</h4>
@@ -867,7 +843,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_WriteCountQuota.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.WriteCountQuota%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L168">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L163">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_WriteCountQuota_" data-uid="wan24.Core.MultiThrottledStream.WriteCountQuota*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_WriteCountQuota" data-uid="wan24.Core.MultiThrottledStream.WriteCountQuota">WriteCountQuota</h4>
@@ -900,7 +876,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_AddStreamAsync__1___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.AddStreamAsync%60%601(%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L242">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L237">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_AddStreamAsync_" data-uid="wan24.Core.MultiThrottledStream.AddStreamAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_AddStreamAsync__1___0_System_Threading_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.AddStreamAsync``1(``0,System.Threading.CancellationToken)">AddStreamAsync&lt;T&gt;(T, CancellationToken)</h4>
@@ -972,7 +948,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_AddStream__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.AddStream%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L222">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L217">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_AddStream_" data-uid="wan24.Core.MultiThrottledStream.AddStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_AddStream__1___0_" data-uid="wan24.Core.MultiThrottledStream.AddStream``1(``0)">AddStream&lt;T&gt;(T)</h4>
@@ -1038,7 +1014,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L298">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L293">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Clear_" data-uid="wan24.Core.MultiThrottledStream.Clear*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Clear" data-uid="wan24.Core.MultiThrottledStream.Clear">Clear()</h4>
@@ -1070,7 +1046,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ClearAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ClearAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L317">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L312">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_ClearAsync_" data-uid="wan24.Core.MultiThrottledStream.ClearAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_ClearAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.ClearAsync(System.Threading.CancellationToken)">ClearAsync(CancellationToken)</h4>
@@ -1120,7 +1096,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_ClearUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.ClearUnblocked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L375">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L370">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_ClearUnblocked_" data-uid="wan24.Core.MultiThrottledStream.ClearUnblocked*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_ClearUnblocked" data-uid="wan24.Core.MultiThrottledStream.ClearUnblocked">ClearUnblocked()</h4>
@@ -1152,7 +1128,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L485">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L480">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_Dispose_" data-uid="wan24.Core.MultiThrottledStream.Dispose*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_Dispose_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -1176,19 +1152,19 @@ restrictions for this)</p>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>Disposing? (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, if called from the destructor)</p>
+        <td><p>If disposing</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(bool)</a></div>
+  <div><a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_Dispose_System_Boolean_">SimpleDisposableBase.Dispose(bool)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L492">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L487">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_DisposeCore_" data-uid="wan24.Core.MultiThrottledStream.DisposeCore*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_DisposeCore" data-uid="wan24.Core.MultiThrottledStream.DisposeCore">DisposeCore()</h4>
@@ -1215,13 +1191,13 @@ restrictions for this)</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <div><a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_DisposeCore">SimpleDisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L337">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L332">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked_" data-uid="wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_GetLongReadCountQuotaUnblocked" data-uid="wan24.Core.MultiThrottledStream.GetLongReadCountQuotaUnblocked">GetLongReadCountQuotaUnblocked()</h4>
@@ -1253,7 +1229,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L349">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L344">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked_" data-uid="wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_GetLongWriteCountQuotaUnblocked" data-uid="wan24.Core.MultiThrottledStream.GetLongWriteCountQuotaUnblocked">GetLongWriteCountQuotaUnblocked()</h4>
@@ -1285,7 +1261,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_HandleDisposedStream_wan24_Core_IDisposableObject_System_EventArgs_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject%2CSystem.EventArgs)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L482">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L477">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_HandleDisposedStream_" data-uid="wan24.Core.MultiThrottledStream.HandleDisposedStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_HandleDisposedStream_wan24_Core_IDisposableObject_System_EventArgs_" data-uid="wan24.Core.MultiThrottledStream.HandleDisposedStream(wan24.Core.IDisposableObject,System.EventArgs)">HandleDisposedStream(IDisposableObject, EventArgs)</h4>
@@ -1325,7 +1301,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_RemoveStreamAsync__1___0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.RemoveStreamAsync%60%601(%60%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L281">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L276">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_RemoveStreamAsync_" data-uid="wan24.Core.MultiThrottledStream.RemoveStreamAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_RemoveStreamAsync__1___0_System_Threading_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.RemoveStreamAsync``1(``0,System.Threading.CancellationToken)">RemoveStreamAsync&lt;T&gt;(T, CancellationToken)</h4>
@@ -1397,7 +1373,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_RemoveStream__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.RemoveStream%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L261">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L256">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_RemoveStream_" data-uid="wan24.Core.MultiThrottledStream.RemoveStream*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_RemoveStream__1___0_" data-uid="wan24.Core.MultiThrottledStream.RemoveStream``1(``0)">RemoveStream&lt;T&gt;(T)</h4>
@@ -1463,7 +1439,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimits(System.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L195">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L190">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_SetLimits_" data-uid="wan24.Core.MultiThrottledStream.SetLimits*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_SetLimits_System_Int32_System_Int32_" data-uid="wan24.Core.MultiThrottledStream.SetLimits(System.Int32,System.Int32)">SetLimits(int, int)</h4>
@@ -1503,7 +1479,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimitsAsync_System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L208">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L203">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_SetLimitsAsync_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_SetLimitsAsync_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">SetLimitsAsync(int, int, CancellationToken)</h4>
@@ -1564,7 +1540,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_SetLimitsUnblocked_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L362">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L357">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_SetLimitsUnblocked_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsUnblocked*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_SetLimitsUnblocked_System_Int32_System_Int32_" data-uid="wan24.Core.MultiThrottledStream.SetLimitsUnblocked(System.Int32,System.Int32)">SetLimitsUnblocked(int, int)</h4>
@@ -1604,7 +1580,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_UpdateCurrentLimit_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L391">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L386">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_UpdateCurrentLimit_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimit*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_UpdateCurrentLimit_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimit(System.Boolean)">UpdateCurrentLimit(bool)</h4>
@@ -1638,7 +1614,7 @@ restrictions for this)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L436">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MultiThrottledStream.cs/#L431">View Source</a>
   </span>
   <a id="wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync*"></a>
   <h4 id="wan24_Core_MultiThrottledStream_UpdateCurrentLimitAsync_System_Boolean_" data-uid="wan24.Core.MultiThrottledStream.UpdateCurrentLimitAsync(System.Boolean)">UpdateCurrentLimitAsync(bool)</h4>
@@ -1684,9 +1660,6 @@ restrictions for this)</p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
-  </div>
-  <div>
       <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
   </div>
   <div>
@@ -1694,6 +1667,9 @@ restrictions for this)</p>
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1781,10 +1757,10 @@ restrictions for this)</p>
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

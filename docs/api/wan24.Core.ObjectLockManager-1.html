@@ -107,13 +107,13 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="wan24.Core.DisposableBase.html">DisposableBase</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.SimpleDisposableBase.html">SimpleDisposableBase</a></div>
     <div class="level2"><span class="xref">ObjectLockManager&lt;T&gt;</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IObjectLockManager.html">IObjectLockManager</a></div>
@@ -122,28 +122,25 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_CreateStackInfo">DisposableBase.CreateStackInfo</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_CreateStackInfo">SimpleDisposableBase.CreateStackInfo</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposing">DisposableBase.IsDisposing</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IsDisposing">SimpleDisposableBase.IsDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_IsDisposed">DisposableBase.IsDisposed</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_IsDisposed">SimpleDisposableBase.IsDisposed</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_RegisterForDispose__1___0__">DisposableBase.RegisterForDispose&lt;T&gt;(in T)</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_Dispose">SimpleDisposableBase.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose">DisposableBase.Dispose()</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_DisposeAsync">SimpleDisposableBase.DisposeAsync()</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeAsync">DisposableBase.DisposeAsync()</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_OnDisposing">SimpleDisposableBase.OnDisposing</a>
     </div>
     <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposing">DisposableBase.OnDisposing</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_OnDisposed">DisposableBase.OnDisposed</a>
+      <a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_OnDisposed">SimpleDisposableBase.OnDisposed</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -168,7 +165,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_ObjectLockManager_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ObjectLockManager&lt;T&gt; : DisposableBase, IWillDispose, IDisposableObject, IDisposable, IAsyncDisposable, IObjectLockManager, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ObjectLockManager&lt;T&gt; : SimpleDisposableBase, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IObjectLockManager, IStatusProvider</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -193,7 +190,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1__ctor.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L21">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1__ctor_" data-uid="wan24.Core.ObjectLockManager`1.#ctor*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1__ctor" data-uid="wan24.Core.ObjectLockManager`1.#ctor">ObjectLockManager()</h4>
@@ -211,7 +208,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_Count.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L105">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_Count_" data-uid="wan24.Core.ObjectLockManager`1.Count*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_Count" data-uid="wan24.Core.ObjectLockManager`1.Count">Count</h4>
@@ -242,7 +239,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_GUID.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.GUID%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L32">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L31">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_GUID_" data-uid="wan24.Core.ObjectLockManager`1.GUID*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_GUID" data-uid="wan24.Core.ObjectLockManager`1.GUID">GUID</h4>
@@ -273,7 +270,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_Name.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L35">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L34">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_Name_" data-uid="wan24.Core.ObjectLockManager`1.Name*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_Name" data-uid="wan24.Core.ObjectLockManager`1.Name">Name</h4>
@@ -304,7 +301,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_Shared.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.Shared%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L27">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L26">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_Shared_" data-uid="wan24.Core.ObjectLockManager`1.Shared*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_Shared" data-uid="wan24.Core.ObjectLockManager`1.Shared">Shared</h4>
@@ -337,7 +334,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L237">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L231">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_Dispose_" data-uid="wan24.Core.ObjectLockManager`1.Dispose*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_Dispose_System_Boolean_" data-uid="wan24.Core.ObjectLockManager`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -361,19 +358,19 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
-        <td><p>Disposing? (may be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, if called from the destructor)</p>
+        <td><p>If disposing</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_Dispose_System_Boolean_">DisposableBase.Dispose(bool)</a></div>
+  <div><a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_Dispose_System_Boolean_">SimpleDisposableBase.Dispose(bool)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L244">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L238">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_DisposeCore_" data-uid="wan24.Core.ObjectLockManager`1.DisposeCore*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_DisposeCore" data-uid="wan24.Core.ObjectLockManager`1.DisposeCore">DisposeCore()</h4>
@@ -400,13 +397,13 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="wan24.Core.DisposableBase.html#wan24_Core_DisposableBase_DisposeCore">DisposableBase.DisposeCore()</a></div>
+  <div><a class="xref" href="wan24.Core.SimpleDisposableBase.html#wan24_Core_SimpleDisposableBase_DisposeCore">SimpleDisposableBase.DisposeCore()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_GetActiveLock_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.GetActiveLock(System.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L213">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L207">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_GetActiveLock_" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_GetActiveLock_System_Object__" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock(System.Object@)">GetActiveLock(in object)</h4>
@@ -456,7 +453,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_GetActiveLock_wan24_Core_IObjectKey__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.GetActiveLock(wan24.Core.IObjectKey%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L224">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L218">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_GetActiveLock_" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_GetActiveLock_wan24_Core_IObjectKey__" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock(wan24.Core.IObjectKey@)">GetActiveLock(in IObjectKey)</h4>
@@ -507,7 +504,7 @@ public ObjectLock? GetActiveLock(in IObjectKey obj)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_GetActiveLock__1___0__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.GetActiveLock%60%601(%60%600%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L233">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L227">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_GetActiveLock_" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_GetActiveLock__1___0__" data-uid="wan24.Core.ObjectLockManager`1.GetActiveLock``1(``0@)">GetActiveLock&lt;tObject&gt;(in tObject)</h4>
@@ -574,7 +571,7 @@ public ObjectLock? GetActiveLock&lt;tObject&gt;(in tObject obj) where tObject : 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync_System_Object_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync(System.Object%2CSystem.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L136">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync_System_Object_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync(System.Object,System.Object,System.Threading.CancellationToken)">LockAsync(object, object?, CancellationToken)</h4>
@@ -636,7 +633,7 @@ public ObjectLock? GetActiveLock&lt;tObject&gt;(in tObject obj) where tObject : 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync_System_Object_System_TimeSpan_System_Object_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync(System.Object%2CSystem.TimeSpan%2CSystem.Object%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L68">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync_System_Object_System_TimeSpan_System_Object_System_Threading_CancellationToken_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync(System.Object,System.TimeSpan,System.Object,System.Threading.CancellationToken)">LockAsync(object, TimeSpan, object?, CancellationToken)</h4>
@@ -704,7 +701,7 @@ public ObjectLock? GetActiveLock&lt;tObject&gt;(in tObject obj) where tObject : 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync_wan24_Core_IObjectKey__System_Object__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync(wan24.Core.IObjectKey%40%2CSystem.Object%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L192">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L186">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync_wan24_Core_IObjectKey__System_Object__System_Threading_CancellationToken__" data-uid="wan24.Core.ObjectLockManager`1.LockAsync(wan24.Core.IObjectKey@,System.Object@,System.Threading.CancellationToken@)">LockAsync(in IObjectKey, in object?, in CancellationToken)</h4>
@@ -767,7 +764,7 @@ public Task&lt;ObjectLock&gt; LockAsync(in IObjectKey obj, in object? tag = null
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync_wan24_Core_IObjectKey__System_TimeSpan__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync(wan24.Core.IObjectKey%40%2CSystem.TimeSpan%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync_wan24_Core_IObjectKey__System_TimeSpan__System_Object__" data-uid="wan24.Core.ObjectLockManager`1.LockAsync(wan24.Core.IObjectKey@,System.TimeSpan@,System.Object@)">LockAsync(in IObjectKey, in TimeSpan, in object?)</h4>
@@ -830,7 +827,7 @@ public Task&lt;ObjectLock&gt; LockAsync(in IObjectKey obj, in TimeSpan timeout, 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync__1___0__System_Object__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync%60%601(%60%600%40%2CSystem.Object%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync__1___0__System_Object__System_Threading_CancellationToken__" data-uid="wan24.Core.ObjectLockManager`1.LockAsync``1(``0@,System.Object@,System.Threading.CancellationToken@)">LockAsync&lt;tObject&gt;(in tObject, in object?, in CancellationToken)</h4>
@@ -909,7 +906,7 @@ public Task&lt;ObjectLock&gt; LockAsync&lt;tObject&gt;(in tObject obj, in object
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_LockAsync__1___0__System_TimeSpan__System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.LockAsync%60%601(%60%600%40%2CSystem.TimeSpan%40%2CSystem.Object%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L131">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_LockAsync_" data-uid="wan24.Core.ObjectLockManager`1.LockAsync*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_LockAsync__1___0__System_TimeSpan__System_Object__" data-uid="wan24.Core.ObjectLockManager`1.LockAsync``1(``0@,System.TimeSpan@,System.Object@)">LockAsync&lt;tObject&gt;(in tObject, in TimeSpan, in object?)</h4>
@@ -990,7 +987,7 @@ public Task&lt;ObjectLock&gt; LockAsync&lt;tObject&gt;(in tObject obj, in TimeSp
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_OnLocked.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.OnLocked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L275">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L269">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectLockManager_1_OnLocked" data-uid="wan24.Core.ObjectLockManager`1.OnLocked">OnLocked</h4>
   <div class="markdown level1 summary"><p>Raised when a lock was created</p>
@@ -1020,7 +1017,7 @@ public Task&lt;ObjectLock&gt; LockAsync&lt;tObject&gt;(in tObject obj, in TimeSp
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_OnUnlocked.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.OnUnlocked%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L287">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L281">View Source</a>
   </span>
   <h4 id="wan24_Core_ObjectLockManager_1_OnUnlocked" data-uid="wan24.Core.ObjectLockManager`1.OnUnlocked">OnUnlocked</h4>
   <div class="markdown level1 summary"><p>Raised when a lock was disposed</p>
@@ -1052,7 +1049,7 @@ public Task&lt;ObjectLock&gt; LockAsync&lt;tObject&gt;(in tObject obj, in TimeSp
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ObjectLockManager_1_op_Implicit_wan24_Core_ObjectLockManager__0____System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.ObjectLockManager%601.op_Implicit(wan24.Core.ObjectLockManager%7B%600%7D%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L300">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ObjectLockManager.cs/#L294">View Source</a>
   </span>
   <a id="wan24_Core_ObjectLockManager_1_op_Implicit_" data-uid="wan24.Core.ObjectLockManager`1.op_Implicit*"></a>
   <h4 id="wan24_Core_ObjectLockManager_1_op_Implicit_wan24_Core_ObjectLockManager__0____System_Int32" data-uid="wan24.Core.ObjectLockManager`1.op_Implicit(wan24.Core.ObjectLockManager{`0}@)~System.Int32">implicit operator int(in ObjectLockManager&lt;T&gt;)</h4>
@@ -1099,10 +1096,10 @@ public static implicit operator int(in ObjectLockManager&lt;T&gt; manager)</code
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="wan24.Core.IWillDispose.html">IWillDispose</a>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1196,10 +1193,10 @@ public static implicit operator int(in ObjectLockManager&lt;T&gt; manager)</code
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
