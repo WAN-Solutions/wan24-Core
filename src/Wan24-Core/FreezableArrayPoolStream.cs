@@ -28,6 +28,14 @@ namespace wan24.Core
         /// </summary>
         protected readonly ArrayPool<byte> Pool;
         /// <summary>
+        /// Buffer sequence
+        /// </summary>
+        protected ReadOnlySequence<byte> BufferSequence = ReadOnlySequence<byte>.Empty;
+        /// <summary>
+        /// If having updates, and the <see cref="BufferSequence"/> is invalid
+        /// </summary>
+        protected bool HasUpdates = true;
+        /// <summary>
         /// If writable
         /// </summary>
         protected bool _CanWrite = true;
@@ -50,11 +58,11 @@ namespace wan24.Core
         /// <summary>
         /// Length in bytes
         /// </summary>
-        protected long _Length = 0;
+        protected int _Length = 0;
         /// <summary>
         /// Byte offset
         /// </summary>
-        protected long _Position = 0;
+        protected int _Position = 0;
 
         /// <summary>
         /// Constructor
@@ -69,6 +77,7 @@ namespace wan24.Core
             [
                 Pool.Rent(BufferSize)
             ];
+            HasUpdates = false;
         }
 
         /// <summary>
@@ -200,9 +209,10 @@ namespace wan24.Core
                 EnsureUndisposed();
                 ArgumentOutOfRangeException.ThrowIfNegative(value, nameof(value));
                 ArgumentOutOfRangeException.ThrowIfGreaterThan(value, other: _Length, nameof(value));
-                _Position = value;
+                int v = (int)value;
+                _Position = v;
                 // Find buffer index and byte offset
-                if (value == 0)
+                if (v == 0)
                 {
                     BufferIndex = 0;
                     BufferOffset = 0;
@@ -210,15 +220,16 @@ namespace wan24.Core
                 else
                 {
                     BufferIndex = 0;
-                    for (long pos = 0, add, len; ; BufferIndex++)
+                    for (int pos = 0, add, len; ; BufferIndex++)
                     {
                         len = Buffers[BufferIndex].Length;
-                        add = Math.Min(len, value - pos);
+                        add = Math.Min(len, v - pos);
                         pos += add;
-                        if (add == len && pos != value) continue;
-                        BufferOffset = (int)add;
-                        return;
+                        if (add == len && pos != v) continue;
+                        BufferOffset = add;
+                        break;
                     }
+                    UpdateBufferOffsetAfterReading();
                 }
             }
         }
@@ -253,18 +264,20 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (_Length == 0) return [];
-            byte[] res = new byte[_Length];
-            long pos = _Position;
-            try
-            {
-                Position = 0;
-                ReadExactly(res);
-                return res;
-            }
-            finally
-            {
-                Position = pos;
-            }
+            return HasUpdates
+                ? UpdateBufferSequence().ToArray()
+                : BufferSequence.ToArray();
+        }
+
+        /// <summary>
+        /// Get the written data as read-only sequence
+        /// </summary>
+        /// <returns>Sequence</returns>
+        public ReadOnlySequence<byte> ToReadOnlySequence()
+        {
+            EnsureUndisposed();
+            if (_Length == 0) return ReadOnlySequence<byte>.Empty;
+            return HasUpdates ? UpdateBufferSequence() : BufferSequence;
         }
 
         /// <inheritdoc/>
@@ -285,23 +298,47 @@ namespace wan24.Core
         public override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
+            if (_Position == _Length) return 0;
             int len = buffer.Length;
             if (len == 0) return 0;
-            int res = 0;
-            byte[] data;
-            for (int red, lastBuffer = Buffers.Count - 1, dataLen; res != len && _Position != _Length; BufferIndex++, BufferOffset = 0)
+            int newPos = _Position + len;
+            // Reduce the target buffer length, if required
+            if (newPos > _Length)
             {
-                data = Buffers[BufferIndex];
-                dataLen = data.Length;
-                red = Math.Min((BufferIndex == lastBuffer ? LastBufferOffset : dataLen) - BufferOffset, len - res);
-                data.AsSpan(BufferOffset, red).CopyTo(buffer[res..]);
-                _Position += red;
-                BufferOffset += red;
-                res += red;
-                if (BufferIndex == lastBuffer || BufferOffset != dataLen) break;
+                len = _Length - _Position;
+                buffer = buffer[..len];
+                newPos = _Length;
             }
-            UpdateBufferOffsetAfterReading();
-            return res;
+            // Copy the sequence to the buffer
+            if (HasUpdates) UpdateBufferSequence();
+            (len == _Length ? BufferSequence : BufferSequence.Slice(_Position, len)).CopyTo(buffer);
+            // Update the buffer index and offset
+            if (newPos == _Length)
+            {
+                // Red to the end
+                _Position = newPos;
+                BufferIndex = Buffers.Count - 1;
+                BufferOffset = LastBufferOffset;
+            }
+            else
+            {
+                // Forward buffer index and offset
+                newPos -= _Position;
+                _Position += newPos;
+                for (int i = 0, dataLen, forward; newPos != 0; newPos -= forward, BufferIndex++, BufferOffset = 0, i++)
+                {
+                    dataLen = i == 0
+                        ? Buffers[BufferIndex].Length - BufferOffset
+                        : Buffers[BufferIndex].Length;
+                    forward = newPos > dataLen
+                        ? dataLen
+                        : newPos;
+                    BufferOffset += forward;
+                    if (BufferOffset != dataLen) break;
+                }
+                UpdateBufferOffsetAfterReading();
+            }
+            return len;
         }
 
         /// <inheritdoc/>
@@ -336,7 +373,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public override void SetLength(long value) => SetLength(value, clear: true);
+        public override void SetLength(long value) => SetLength((int)value, clear: true);
 
         /// <inheritdoc/>
         public override void Write(byte[] buffer, int offset, int count) => Write(buffer.AsSpan(offset, count));
@@ -348,15 +385,16 @@ namespace wan24.Core
             EnsureWritable();
             int len = buffer.Length;
             if (len == 0) return;
-            long newLen = _Position + len;
+            if (int.MaxValue - len < _Position) throw new OutOfMemoryException();
+            int newLen = _Position + len;
             if (newLen > _Length) SetLength(newLen, clear: false);
-            byte[] data;
+            Span<byte> data;
             for (int written = 0, chunk, dataLen; written != len; written += chunk, BufferIndex++, BufferOffset = 0)
             {
-                data = Buffers[BufferIndex];
+                data = Buffers[BufferIndex].AsSpan();
                 dataLen = data.Length;
                 chunk = Math.Min(dataLen - BufferOffset, len - written);
-                buffer.Slice(written, chunk).CopyTo(data.AsSpan(BufferOffset..));
+                buffer.Slice(written, chunk).CopyTo(data[BufferOffset..]);
                 _Position += chunk;
                 BufferOffset += chunk;
                 if (BufferOffset != dataLen) break;
@@ -369,6 +407,7 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             EnsureWritable();
+            if (_Position == int.MaxValue) throw new OutOfMemoryException();
             if (++_Position > _Length) SetLength(_Position, clear: false);
             Buffers[BufferIndex][BufferOffset] = value;
             BufferOffset++;
@@ -437,15 +476,20 @@ namespace wan24.Core
         /// </summary>
         protected void UpdateBufferOffsetAfterWriting()
         {
+            // Inline
             if (BufferIndex != Buffers.Count - 1)
             {
                 if (BufferOffset != Buffers[BufferIndex].Length) return;
+                // Increase the buffer index
                 BufferIndex++;
                 BufferOffset = 0;
                 return;
             }
-            if (BufferOffset < LastBufferOffset) return;
+            // Ensure a correct last buffer offset
+            if (BufferOffset <= LastBufferOffset) return;
             LastBufferOffset = BufferOffset;
+            HasUpdates = true;
+            // Ensure the last buffer has space left (or add a new buffer)
             if (LastBufferOffset != Buffers[BufferIndex].Length) return;
             Buffers.Add(Pool.Rent(BufferSize));
             BufferIndex++;
@@ -457,12 +501,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="value">New length in bytes</param>
         /// <param name="clear">Clear new buffers?</param>
-        protected void SetLength(in long value, in bool clear)
+        protected void SetLength(in int value, in bool clear)
         {
             EnsureUndisposed();
-            EnsureWritable();
             ArgumentOutOfRangeException.ThrowIfNegative(value);
-            if (value == _Length) return;
+            ArgumentOutOfRangeException.ThrowIfEqual(value, int.MaxValue, nameof(value));
             if (value == 0)
             {
                 // Delete all data
@@ -473,12 +516,14 @@ namespace wan24.Core
                 }
                 if (Buffers.Count > 1) Buffers.RemoveRange(1, Buffers.Count - 1);
                 _Length = _Position = BufferIndex = BufferOffset = LastBufferOffset = 0;
+                BufferSequence = ReadOnlySequence<byte>.Empty;
+                HasUpdates = false;
             }
             else if (value < _Length)
             {
                 // Delete some data
                 BufferIndex = -1;
-                long pos = 0,
+                int pos = 0,
                     add,
                     len;
                 for (BufferIndex = 0; ; BufferIndex++)
@@ -487,7 +532,7 @@ namespace wan24.Core
                     add = Math.Min(len, value - pos);
                     pos += add;
                     if (add == len && pos != value) continue;
-                    BufferOffset = (int)add;
+                    BufferOffset = add;
                     break;
                 }
                 LastBufferOffset = BufferOffset;
@@ -499,22 +544,22 @@ namespace wan24.Core
                         if (CleanReturned) Buffers[i].Clear();
                         Pool.Return(Buffers[i]);
                     }
-                    Buffers.RemoveRange(BufferIndex + 1, (int)len - BufferIndex - 1);
+                    Buffers.RemoveRange(BufferIndex + 1, len - BufferIndex - 1);
                 }
                 _Length = value;
                 if (_Position > value) _Position = value;
-                UpdateBufferOffsetAfterWriting();
+                HasUpdates = true;
             }
             else
             {
                 // Add buffers
-                long len = value - _Length;
-                byte[] data = Buffers[^1];
-                len -= (int)Math.Min(data.Length - LastBufferOffset, len);
-                if (clear) data.AsSpan(LastBufferOffset..).Clean();
+                int len = value - _Length;
+                Span<byte> data = Buffers[^1].AsSpan();
+                len -= Math.Min(data.Length - LastBufferOffset, len);
+                if (clear) data[LastBufferOffset..].Clean();
                 if (len == 0)
                 {
-                    LastBufferOffset += (int)(value - _Length);
+                    LastBufferOffset += value - _Length;
                     if (LastBufferOffset == data.Length)
                     {
                         Buffers.Add(clear ? Pool.RentClean(BufferSize) : Pool.Rent(BufferSize));
@@ -526,12 +571,39 @@ namespace wan24.Core
                     for (; len > 0; len -= LastBufferOffset)
                     {
                         Buffers.Add(clear ? Pool.RentClean(BufferSize) : Pool.Rent(BufferSize));
-                        LastBufferOffset = (int)Math.Min(len, Buffers[^1].Length);
+                        LastBufferOffset = Math.Min(len, Buffers[^1].Length);
                     }
                 }
                 _Length = value;
-                UpdateBufferOffsetAfterWriting();
+                HasUpdates = true;
             }
+        }
+
+        /// <summary>
+        /// Update the <see cref="BufferSequence"/> (<see cref="HasUpdates"/> signals an invalid <see cref="BufferSequence"/>)
+        /// </summary>
+        /// <returns>Sequence</returns>
+        protected ReadOnlySequence<byte> UpdateBufferSequence()
+        {
+            if (_Length == 0)
+            {
+                BufferSequence = ReadOnlySequence<byte>.Empty;
+                HasUpdates = false;
+                return BufferSequence;
+            }
+            int len = Buffers.Count - 1;
+            if (len == 0)
+            {
+                BufferSequence = new(Buffers[0].AsMemory(0, LastBufferOffset));
+                HasUpdates = false;
+                return BufferSequence;
+            }
+            MemorySequenceSegment<byte> first = new(Buffers[0]),
+                last = first;
+            for (int i = 1; i <= len; last = last.Append(i == len ? Buffers[i].AsMemory(0, LastBufferOffset) : Buffers[i]), i++) ;
+            BufferSequence = new(first, startIndex: 0, last, endIndex: LastBufferOffset);
+            HasUpdates = false;
+            return BufferSequence;
         }
 
         /// <summary>
