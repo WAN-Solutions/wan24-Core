@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Interface for a service worker object
     /// </summary>
-    public interface IServiceWorker : IHostedService, IDisposableObject
+    public interface IServiceWorker : IHostedService, IBasicDisposableObject, IDisposable, IAsyncDisposable
     {
         /// <summary>
         /// Display name

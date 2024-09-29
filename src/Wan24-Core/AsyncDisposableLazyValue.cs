@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="factory">Factory</param>
-    public sealed class AsyncDisposableLazyValue<T>(in Func<T> factory) : DisposableBase() where T : IAsyncDisposable
+    public sealed class AsyncDisposableLazyValue<T>(in Func<T> factory) : SimpleDisposableBase() where T : IAsyncDisposable
     {
         /// <summary>
         /// Factory

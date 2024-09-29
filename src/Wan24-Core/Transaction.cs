@@ -321,7 +321,7 @@ namespace wan24.Core
                     ErrorHandling.Handle(new($"{this} failed to rollback during disposing", ex, tag: this));
                 }
             }
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
 
         /// <summary>

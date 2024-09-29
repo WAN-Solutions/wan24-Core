@@ -21,7 +21,7 @@ namespace wan24.Core
         {
             await base.DisposeCore().DynamicContext();
             if (FallbackConnectionDisposer is AutoDisposer<NetworkStream> disposer) await disposer.SetShouldDisposeAsync().DynamicContext();
-            await FallbackSync.DisposeAsync().DynamicContext();
+            FallbackSync.Dispose();
             FallbackConnectionDisposer = null;
             FallbackConnection = null;
             UdpResponsePreListener.Clear();

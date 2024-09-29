@@ -30,7 +30,7 @@ namespace wan24.Core
                 parameters.Add(new(this, pi, xml));
             Parameters = parameters.ToFrozenSet();
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(ci)}']/summary");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(ci)}']/summary")?.Trim();
         }
 
         /// <summary>

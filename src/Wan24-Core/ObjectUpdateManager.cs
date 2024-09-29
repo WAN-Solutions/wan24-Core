@@ -7,7 +7,7 @@ namespace wan24.Core
     /// Object update manager (may be used to update a cache, f.e.)
     /// </summary>
     /// <typeparam name="T">Managed object type</typeparam>
-    public abstract class ObjectUpdateManager<T> : DisposableBase, IObserver<T>
+    public abstract class ObjectUpdateManager<T> : SimpleDisposableBase, IObserver<T>
     {
         /// <summary>
         /// Event throttler

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 using static wan24.Core.Logging;
 
 namespace wan24.Core
@@ -254,6 +255,9 @@ namespace wan24.Core
         /// <param name="throwException">Throw an exception if disposing/disposed?</param>
         /// <returns>Is not disposing?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwException = true)
             => !IsDisposing || (allowDisposing && !IsDisposed) || (throwException ? throw new ObjectDisposedException(ToString() ?? GetType().ToString()) : false);
 
@@ -265,6 +269,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T IfUndisposed<T>(in T value, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -277,6 +284,9 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected void IfUndisposed(in Action action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -291,6 +301,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T IfUndisposed<T>(in Func<T> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -305,6 +318,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T? IfUndisposedNullable<T>(in Func<T?> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);

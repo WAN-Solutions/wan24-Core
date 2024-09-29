@@ -15,8 +15,23 @@ namespace wan24.Core
         /// <returns>Aggregate exception</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static AggregateException Append(this Exception exception, params Exception[] ex)
-            => exception is AggregateException aex
-                ? new([.. aex.InnerExceptions, .. ex])
-                : new([exception, .. ex]);
+        {
+            Exception[] innerExceptions;
+            int index;
+            if (exception is AggregateException aex)
+            {
+                index = aex.InnerExceptions.Count;
+                innerExceptions = new Exception[index + ex.Length];
+                aex.InnerExceptions.CopyTo(innerExceptions, index: 0);
+            }
+            else
+            {
+                innerExceptions = new Exception[ex.Length + 1];
+                innerExceptions[0] = exception;
+                index = 1;
+            }
+            ex.AsSpan().CopyTo(innerExceptions.AsSpan(index));
+            return new(innerExceptions);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 
 namespace wan24.Core
 {
@@ -38,7 +39,7 @@ namespace wan24.Core
         /// <summary>
         /// Queue state changes
         /// </summary>
-        ReadOnlyCollection<QueueEntryStateChange> Changes { get; }
+        ImmutableArray<QueueEntryStateChange> Changes { get; }
         /// <summary>
         /// Processing done time
         /// </summary>

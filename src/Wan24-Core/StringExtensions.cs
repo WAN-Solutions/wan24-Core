@@ -518,7 +518,7 @@ namespace wan24.Core
         /// Find the used comma character for separating decimals used in a numeric string representation (which may contain a thousands separator, also)
         /// </summary>
         /// <param name="str">String</param>
-        /// <param name="defaultReturn">Default return vaue (if no dot or comma was found)</param>
+        /// <param name="defaultReturn">Default return value (if no dot or comma was found)</param>
         /// <returns>Comma character</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE

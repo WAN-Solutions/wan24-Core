@@ -11,11 +11,12 @@
         /// <returns>Red bytes</returns>
         public static byte[] Read(this Stream stream, in int count)
         {
-            using RentedArray<byte> buffer = new(count, clean: false);
-            int red = stream.Read(buffer.Span);
+            using RentedMemoryRef<byte> buffer = new(count, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            int red = stream.Read(bufferSpan);
             if (red < 1) return [];
             byte[] res = new byte[red];
-            buffer.Span[..red].CopyTo(res);
+            bufferSpan[..red].CopyTo(res);
             return res;
         }
 
@@ -28,11 +29,11 @@
         /// <returns>Red bytes</returns>
         public static async Task<byte[]> ReadAsync(this Stream stream, int count, CancellationToken cancellationToken = default)
         {
-            using RentedArray<byte> buffer = new(count, clean: false);
+            using RentedMemory<byte> buffer = new(count, clean: false);
             int red = await stream.ReadAsync(buffer.Memory, cancellationToken).DynamicContext();
             if (red < 1) return [];
             byte[] res = new byte[red];
-            buffer.Span[..red].CopyTo(res);
+            buffer.Memory.Span[..red].CopyTo(res);
             return res;
         }
 

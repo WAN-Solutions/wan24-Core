@@ -43,7 +43,7 @@ namespace Wan24_Core_Tests
                     Assert.IsTrue(File.Exists(parseFileName(1)));
                     Assert.IsTrue(File.Exists(parseFileName(2)));
                     Assert.IsFalse(File.Exists(parseFileName(3)));
-                    Assert.AreEqual(3, stream.ModifiedChunks.Count);
+                    Assert.AreEqual(3, stream.ModifiedChunks.Length);
                     Assert.IsTrue(stream.ModifiedChunks.Contains(0));
                     Assert.IsTrue(stream.ModifiedChunks.Contains(1));
                     Assert.IsTrue(stream.ModifiedChunks.Contains(2));
@@ -64,7 +64,7 @@ namespace Wan24_Core_Tests
                     Assert.IsFalse(stream.IsCommitted);
                     stream.Commit();
                     Assert.IsTrue(stream.IsCommitted);
-                    Assert.AreEqual(0, stream.ModifiedChunks.Count);
+                    Assert.AreEqual(0, stream.ModifiedChunks.Length);
                     Assert.AreEqual(stream.NumberOfChunks, stream.CurrentNumberOfChunks);
                 }
                 // Open existing
@@ -128,7 +128,7 @@ namespace Wan24_Core_Tests
                     Assert.IsTrue(File.Exists(parseFileName(1)));
                     Assert.IsTrue(File.Exists(parseFileName(2)));
                     Assert.IsFalse(File.Exists(parseFileName(3)));
-                    Assert.AreEqual(3, stream.ModifiedChunks.Count);
+                    Assert.AreEqual(3, stream.ModifiedChunks.Length);
                     Assert.IsTrue(stream.ModifiedChunks.Contains(0));
                     Assert.IsTrue(stream.ModifiedChunks.Contains(1));
                     Assert.IsTrue(stream.ModifiedChunks.Contains(2));
@@ -151,7 +151,7 @@ namespace Wan24_Core_Tests
                     Assert.IsFalse(stream.IsCommitted);
                     await stream.CommitAsync();
                     Assert.IsTrue(stream.IsCommitted);
-                    Assert.AreEqual(0, stream.ModifiedChunks.Count);
+                    Assert.AreEqual(0, stream.ModifiedChunks.Length);
                     Assert.AreEqual(stream.NumberOfChunks, stream.CurrentNumberOfChunks);
                 }
                 // Open existing

@@ -163,7 +163,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public bool Clear { get; set; } = false;
+        public bool Clear { get; set; } = Settings.ClearBuffers;
 
         /// <inheritdoc/>
         public readonly T[] GetCopy()
@@ -176,18 +176,30 @@ namespace wan24.Core
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override readonly bool Equals(object? obj) => Memory.Equals(obj);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public readonly bool Equals(Memory<T> other) => Memory.Equals(other);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public override readonly int GetHashCode() => Array.GetHashCode();
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public readonly IEnumerator<T> GetEnumerator() => Array.Take(Length).GetEnumerator();
 
         /// <inheritdoc/>
@@ -256,6 +268,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array (may be longer than <see cref="Length"/>!)</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator T[](in RentedArrayStruct<T> arr) => arr.Array;
 
         /// <summary>
@@ -263,6 +278,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Span<T>(in RentedArrayStruct<T> arr) => arr.Span;
 
         /// <summary>
@@ -270,6 +288,9 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator Memory<T>(in RentedArrayStruct<T> arr) => arr.Memory;
 
         /// <summary>
@@ -277,7 +298,20 @@ namespace wan24.Core
         /// </summary>
         /// <param name="arr">Array</param>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static implicit operator int(in RentedArrayStruct<T> arr) => arr.Length;
+
+        /// <summary>
+        /// Cast from Int32 (length value)
+        /// </summary>
+        /// <param name="len">Length in bytes</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static implicit operator RentedArrayStruct<T>(in int len) => new(len);
 
         /// <summary>
         /// Equals
@@ -286,6 +320,9 @@ namespace wan24.Core
         /// <param name="right">Right</param>
         /// <returns>Equals?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool operator ==(in RentedArrayStruct<T> left, in RentedArrayStruct<T> right) => left.Equals(right);
 
         /// <summary>
@@ -295,6 +332,9 @@ namespace wan24.Core
         /// <param name="right">Right</param>
         /// <returns>Not equal?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool operator !=(in RentedArrayStruct<T> left, in RentedArrayStruct<T> right) => !left.Equals(right);
     }
 }

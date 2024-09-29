@@ -41,6 +41,11 @@ namespace wan24.Core
         public string? TempFolder { get; set; }
 
         /// <summary>
+        /// If to clear byte and char array buffers after use
+        /// </summary>
+        public bool? ClearBuffers { get; set; }
+
+        /// <summary>
         /// Unix create file mode
         /// </summary>
         public UnixFileMode? CreateFileMode { get; set; }
@@ -101,6 +106,7 @@ namespace wan24.Core
                 {
                     ApplyLogger(config);
                 }
+            if (ClearBuffers.HasValue) Settings.ClearBuffers = ClearBuffers.Value;
             if (TempFolder is not null) Settings.CustomTempFolder = TempFolder;
             if (CreateFileMode.HasValue) Settings.CreateFileMode = CreateFileMode.Value;
             if (CreateFolderMode.HasValue) Settings.CreateFolderMode = CreateFolderMode.Value;
@@ -154,6 +160,7 @@ namespace wan24.Core
                 {
                     ApplyLogger(config);
                 }
+            if (ClearBuffers.HasValue) Settings.ClearBuffers = ClearBuffers.Value;
             if (TempFolder is not null) Settings.CustomTempFolder = TempFolder;
             if (CreateFileMode.HasValue) Settings.CreateFileMode = CreateFileMode.Value;
             if (CreateFolderMode.HasValue) Settings.CreateFolderMode = CreateFolderMode.Value;

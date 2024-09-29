@@ -3,7 +3,7 @@
     /// <summary>
     /// Delay
     /// </summary>
-    public sealed class Delay : DisposableBase
+    public sealed class Delay : BasicAllDisposableBase
     {
         /// <summary>
         /// Completion
@@ -159,7 +159,7 @@
             using (SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext())
                 Completion.TrySetException(new ObjectDisposedException(GetType().Name));
             DelayTable.Delays.TryRemove(GUID, out _);
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
     }
 }

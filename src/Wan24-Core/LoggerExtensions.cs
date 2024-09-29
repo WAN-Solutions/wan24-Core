@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -12,6 +14,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="logger">Logger</param>
         /// <returns>Log level</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static LogLevel GetLogLevel(this ILogger logger) => (logger as LoggerBase)?.Level ?? Settings.LogLevel;
 
         /// <summary>
@@ -22,9 +28,9 @@ namespace wan24.Core
         public static ILogger GetFinalLogger(this ILogger logger)
         {
             while (logger is LoggerBase baseLogger)
-                if (baseLogger.Next is not null)
+                if (baseLogger.Next is ILogger nextLogger)
                 {
-                    logger = baseLogger.Next;
+                    logger = nextLogger;
                 }
                 else
                 {

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Immutable;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -120,6 +122,10 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="caches">Caches (should be synchronized)</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void Clear<T>(this ImmutableArray<ICache<T>> caches)
         {
             for (int i = 0, len = caches.Length; i < len; caches[i].Clear(disposeItems: true).TryDisposeAll(), i++) ;
@@ -130,6 +136,10 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="caches">Caches (should be synchronized)</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task ClearAsync<T>(this ImmutableArray<ICache<T>> caches)
         {
             for (int i = 0, len = caches.Length; i < len; (await caches[i].ClearAsync(disposeItems: true).DynamicContext()).TryDisposeAll(), i++) ;

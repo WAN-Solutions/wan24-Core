@@ -179,7 +179,7 @@
         {
             await base.DisposeCore().DynamicContext();
             await DataEvent.DisposeAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +16,9 @@ namespace wan24.Core
         /// <returns>Information</returns>
 #pragma warning disable IDE0060 // Remove unused parameter
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static EnumInfo<T> GetInfo<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.Instance;
 #pragma warning restore IDE0060 // Remove unused parameter
 
@@ -24,6 +28,9 @@ namespace wan24.Core
         /// <typeparam name="T">Enumeration type</typeparam>
         /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static EnumInfo<T> GetInfo<T>() where T : struct, Enum, IConvertible => EnumInfo<T>.Instance;
 
         /// <summary>
@@ -32,6 +39,9 @@ namespace wan24.Core
         /// <param name="type">Enumeration type</param>
         /// <returns>Information</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static IEnumInfo GetEnumInfo(this Type type)
             => (TypeInfoExt.From(typeof(EnumInfo<>)).MakeGenericType(type)[nameof(EnumInfo<OptInOut>.Instance)] as PropertyInfoExt ?? throw new InvalidProgramException())
                 .Getter?.Invoke(null) as IEnumInfo ?? throw new InvalidProgramException();
@@ -130,6 +140,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value without flags</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T RemoveFlags<T>(this T value) where T : struct, Enum, IConvertible
             => ObjectExtensions.CastType<T>(EnumInfo<T>.IsUnsigned
                 ? ObjectExtensions.CastType<ulong>(value) & ~EnumInfo<T>.AllULongFlags
@@ -142,6 +155,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Only flags</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T OnlyFlags<T>(this T value) where T : struct, Enum, IConvertible
             => ObjectExtensions.CastType<T>(EnumInfo<T>.IsUnsigned
                 ? ObjectExtensions.CastType<ulong>(value) & EnumInfo<T>.AllULongFlags
@@ -154,6 +170,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is a flag?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsFlag<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.FlagValues.Contains(value);
 
         /// <summary>
@@ -163,6 +182,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is a value (not a flag)?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.Values.Contains(value);
 
         /// <summary>
@@ -172,6 +194,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValid<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
 
         /// <summary>
@@ -180,6 +205,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValidEnumerationValue(this object value) => value.GetType().GetEnumInfo().IsValidValue(value);
 
         /// <summary>
@@ -188,6 +216,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Is valid?</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValidEnumerationValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.IsValid(value);
 
         /// <summary>
@@ -197,6 +228,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>String</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string AsString<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsStringExpression(value);
 
         /// <summary>
@@ -206,6 +240,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Name or <see langword="null"/>, if the value doesn't exist (or isn't a single value)</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string? AsName<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsNameExpression(value);
 
         /// <summary>
@@ -215,6 +252,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Numeric value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object AsNumericValue<T>(this T value) where T : struct, Enum, IConvertible => EnumInfo<T>.AsNumericValueExpression(value);
     }
 }

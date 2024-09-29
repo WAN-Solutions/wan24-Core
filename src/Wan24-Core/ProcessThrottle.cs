@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Process throttle
     /// </summary>
-    public abstract class ProcessThrottle : DisposableBase
+    public abstract class ProcessThrottle : SimpleDisposableBase
     {
         /// <summary>
         /// Throttle timer

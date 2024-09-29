@@ -213,7 +213,7 @@ namespace wan24.Core
         /// Page enumerator
         /// </summary>
         /// <param name="pagination">Pagination</param>
-        private sealed class PageEnumerator(in CachedEnumerablePagination<T> pagination) : DisposableBase(asyncDisposing: false), IEnumerator<T>
+        private sealed class PageEnumerator(in CachedEnumerablePagination<T> pagination) : BasicDisposableBase(), IEnumerator<T>
         {
             /// <summary>
             /// Pagination

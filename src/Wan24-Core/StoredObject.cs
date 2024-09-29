@@ -8,7 +8,7 @@
     /// </remarks>
     /// <param name="storage">Storage</param>
     /// <param name="obj">Object</param>
-    public sealed class StoredObject<tKey, tObj>(in IObjectStorage<tKey, tObj> storage, in tObj obj) : DisposableBase(asyncDisposing: false)
+    public sealed class StoredObject<tKey, tObj>(in IObjectStorage<tKey, tObj> storage, in tObj obj) : SimpleDisposableBase()
         where tKey : notnull
         where tObj : class, IStoredObject<tKey>
     {

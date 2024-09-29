@@ -35,7 +35,7 @@
                 }
                 try
                 {
-                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
+                    Buffer.Memory.Span.Slice(ReadOffset, read).CopyTo(buffer);
                     buffer = buffer[read..];
                     res += read;
                     ReadOffset += read;
@@ -82,7 +82,7 @@
                 }
                 try
                 {
-                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer);
+                    Buffer.Memory.Span.Slice(ReadOffset, read).CopyTo(buffer);
                     buffer = buffer[read..];
                     res += read;
                     ReadOffset += read;
@@ -134,7 +134,7 @@
                 }
                 try
                 {
-                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
+                    Buffer.Memory.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
                     buffer = buffer[read..];
                     res += read;
                     ReadOffset += read;
@@ -182,7 +182,7 @@
                 }
                 try
                 {
-                    Buffer.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
+                    Buffer.Memory.Span.Slice(ReadOffset, read).CopyTo(buffer.Span);
                     buffer = buffer[read..];
                     res += read;
                     ReadOffset += read;

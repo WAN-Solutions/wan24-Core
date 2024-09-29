@@ -3,7 +3,7 @@
     /// <summary>
     /// Timed idle state
     /// </summary>
-    public sealed class IdleState : DisposableBase
+    public sealed class IdleState : BasicAllDisposableBase
     {
         /// <summary>
         /// Thread synchronization
@@ -117,7 +117,7 @@
         protected override async Task DisposeCore()
         {
             await IdleTimeout.DisposeAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
 
         /// <summary>

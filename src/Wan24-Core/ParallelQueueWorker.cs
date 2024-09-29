@@ -195,7 +195,7 @@ namespace wan24.Core
             await base.DisposeCore().DynamicContext();
             await Busy.DisposeAsync().DynamicContext();
             await Processing.DisposeAsync().DynamicContext();
-            await WorkerSync.DisposeAsync().DynamicContext();
+            WorkerSync.Dispose();
         }
     }
 }

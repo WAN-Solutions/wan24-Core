@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="InMemoryCache"/> extensions
@@ -15,6 +18,10 @@
         /// <param name="disposeUnused">Dispose the given <c>item</c>, if a newer item was found?</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
         /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is <see cref="AutoDisposer{T}"/></exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static InMemoryCacheEntry<tEntry> Add<tEntry, tItem>(
             this InMemoryCache<tEntry> cache,
             in tItem item,
@@ -39,6 +46,10 @@
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Cache entry (may be another revision, if not removing or a newer item revision has been cached during processing)</returns>
         /// <exception cref="OutOfMemoryException">Item exceeds the <see cref="InMemoryCacheOptions.MaxItemSize"/>, and type is <see cref="AutoDisposer{T}"/></exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task<InMemoryCacheEntry<tEntry>> AddAsync<tEntry, tItem>(
             this InMemoryCache<tEntry> cache,
             tItem item,

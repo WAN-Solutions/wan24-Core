@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -18,6 +19,9 @@ namespace wan24.Core
         /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool In(this object obj, params object?[] objects)
         {
             int len = objects.Length;
@@ -33,6 +37,9 @@ namespace wan24.Core
         /// <param name="objects">Object list</param>
         /// <returns>Is within the object list?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool In<T>(this T obj, in IEnumerable<T?> objects) => objects.Contains(obj);
 
         /// <summary>
@@ -54,6 +61,9 @@ namespace wan24.Core
         /// <returns>Object</returns>
         /// <exception cref="InvalidOperationException">The object is not in a state which allows to perform the operation</exception>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T EnsureValidState<T>(this T obj, in bool state, in string? error = null)
         {
             if (state) return obj;
@@ -102,6 +112,9 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static tReturn Do<tObject, tReturn>(this tObject obj, in Func<tObject, tReturn> action) => action(obj);
 
         /// <summary>
@@ -111,6 +124,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Dictionary<string, object?> ToDictionary<T>(this T obj, in int maxRecursionDepth = 32) => ToDictionary([], obj, [], maxRecursionDepth);
 
         /// <summary>
@@ -120,6 +137,10 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <param name="maxRecursionDepth">Maximum recursion depth</param>
         /// <returns>Dictionary</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static OrderedDictionary<string, object?> ToOrderedDictionary<T>(this T obj, in int maxRecursionDepth = 32)
             => ToOrderedDictionary([], obj, [], maxRecursionDepth);
 
@@ -356,14 +377,21 @@ namespace wan24.Core
         /// <param name="obj">Object</param>
         /// <returns>If disposable</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsDisposable<T>(this T obj) => obj is IDisposable || obj is IAsyncDisposable;
 
         /// <summary>
-        /// Determine if an object is a task
+        /// Determine if an object is a (value?) task
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="obj">Object</param>
-        /// <returns>If the object is a task</returns>
+        /// <returns>If the object is a (value?) task</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsTask<T>(this T obj) => obj is Task || IsValueTask(obj);
 
         /// <summary>
@@ -372,12 +400,16 @@ namespace wan24.Core
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="obj">Object</param>
         /// <returns>If the object is a value task</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool IsValueTask<T>(this T obj)
         {
             if (obj is null) return false;
             if (obj is ValueTask) return true;
-            Type type = obj.GetType();
-            return type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ValueTask<>);
+            TypeInfoExt type = TypeInfoExt.From(obj.GetType());
+            return type.Type.IsValueType && type.IsGenericType && type.GetGenericTypeDefinition()!.Type == typeof(ValueTask<>);
         }
 
         /// <summary>
@@ -387,6 +419,9 @@ namespace wan24.Core
         /// <param name="value">Enumeration value</param>
         /// <returns>Numeric value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T CastType<T>(this object value)
             => value is T res
                 ? res

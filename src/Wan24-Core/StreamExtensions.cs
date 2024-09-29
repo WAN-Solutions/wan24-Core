@@ -14,6 +14,9 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <returns>Remaining number of bytes</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long GetRemainingBytes(this Stream stream) => stream.Length - stream.Position;
 
         /// <summary>
@@ -24,6 +27,9 @@ namespace wan24.Core
         /// <param name="origin">Origin</param>
         /// <returns>Position</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long GenericSeek(this Stream stream, in long offset, in SeekOrigin origin) => stream.Position = origin switch
         {
             SeekOrigin.Begin => offset,
@@ -37,13 +43,17 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Byte or <c>-1</c>, if read failed</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
         public static int GenericReadByte(this Stream stream)
         {
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = new(len: 1, clean: false);
+            using RentedMemoryRef<byte> buffer = new(len: 1, clean: false);
             return stream.Read(buffer.Span) == 0 ? -1 : buffer.Span[0];
 #else
             Span<byte> buffer = stackalloc byte[1];
@@ -56,15 +66,20 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
 #if !NO_UNSAFE
         [SkipLocalsInit]
 #endif
         public static void GenericWriteByte(this Stream stream, in byte value)
         {
 #if NO_UNSAFE
-            using RentedArrayRefStruct<byte> buffer = new(len: 1);
-            buffer[0] = value;
-            stream.Write(buffer.Span);
+            using RentedMemoryRef<byte> buffer = new(len: 1);
+            Span<byte> bufferSpan = buffer.Span;
+            bufferSpan[0] = value;
+            stream.Write(bufferSpan);
 #else
             Span<byte> buffer = [value];
             stream.Write(buffer);

@@ -6,7 +6,7 @@ namespace wan24.Core
     /// <summary>
     /// Generic throttling helper (if it's important to throttle more exact, and performance counts less, use <see cref="ExactThrottle"/> instead)
     /// </summary>
-    public class Throttle : DisposableBase, IThrottle
+    public class Throttle : BasicAllDisposableBase, IThrottle
     {
         /// <summary>
         /// Thread synchronization

@@ -8,7 +8,7 @@ namespace wan24.Core
     /// Disposable blocking object pool (disposes items when disposing, if <see cref="IDisposable"/>/<see cref="IAsyncDisposable"/>)
     /// </summary>
     /// <typeparam name="T">Item type (<see cref="IDisposable"/>/<see cref="IAsyncDisposable"/> will be disposed when disposing)</typeparam>
-    public class BlockingObjectPool<T> : DisposableBase, IAsyncObjectPool<T>
+    public class BlockingObjectPool<T> : SimpleDisposableBase, IAsyncObjectPool<T>
     {
         /// <summary>
         /// Pool
@@ -345,7 +345,7 @@ namespace wan24.Core
                     }
                 }
             Pool.Dispose();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
         }
 
         /// <inheritdoc/>

@@ -47,12 +47,10 @@
             int count = workers.Length;
             if (count < 1) return;
             await Task.Yield();
-            using RentedArrayStructSimple<Task> tasks = new(len: count, clean: false)
-            {
-                Clear = true
-            };
-            for (int i = 0; i < count; tasks.Span[i] = WorkAsync(workers[i], cancellationToken), i++) ;
-            await tasks.WaitAll().DynamicContext();
+            using RentedArrayStructSimple<Task> tasks = new(len: count, clean: false);
+            Task[] tasksArray = tasks.Array;
+            for (int i = 0; i < count; tasksArray[i] = WorkAsync(workers[i], cancellationToken), i++) ;
+            await Task.WhenAll(tasks.Array.Enumerate(offset: 0, count)).DynamicContext();
         }
 
         /// <summary>

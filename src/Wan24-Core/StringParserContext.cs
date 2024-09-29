@@ -46,12 +46,12 @@ namespace wan24.Core
         /// <summary>
         /// Parser data
         /// </summary>
-        public required Dictionary<string, string> Data { get; init; } = null!;
+        public required IDictionary<string, string> Data { get; init; } = null!;
 
         /// <summary>
         /// Parsed data (key is the placeholder)
         /// </summary>
-        public required Dictionary<string, string> Parsed { get; init; } = null!;
+        public required IDictionary<string, string> Parsed { get; init; } = null!;
 
         /// <summary>
         /// Current parser round (zero based)

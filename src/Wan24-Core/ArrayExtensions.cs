@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Frozen;
+using System.Collections.Immutable;
 using System.Runtime;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace wan24.Core
 {
@@ -224,25 +224,259 @@ namespace wan24.Core
         /// <param name="arr">Array</param>
         /// <param name="values">Required values (each value should be unique!)</param>
         /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this T[] arr, params T[] values) => ContainsAll((ReadOnlySpan<T>)arr, values);
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this Span<T> arr, params T[] values) => ContainsAll((ReadOnlySpan<T>)arr, values);
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this Memory<T> arr, params T[] values) => ContainsAll((ReadOnlySpan<T>)arr.Span, values);
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this ReadOnlyMemory<T> arr, params T[] values) => ContainsAll(arr.Span, values);
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool ContainsAll<T>(this T[] arr, params T[] values)
+        public static bool ContainsAll<T>(this ReadOnlySpan<T> arr, params T[] values)
         {
             int valuesLen = values.Length;
             if (valuesLen == 0) return true;
             int len = arr.Length;
             if (len < valuesLen) return false;
             bool[] found = new bool[valuesLen];
-            ReadOnlySpan<T> valuesSpan = values;
+            int foundCount = 0;
             for (int i = 0, index; i < len; i++)
             {
-                index = valuesSpan.IndexOf(arr[i]);
-                if (index != -1) found[index] = true;
+                index = Array.IndexOf(values, arr[i]);
+                if (index < 0 || found[index]) continue;
+                found[index] = true;
+                foundCount++;
             }
-            for (int i = 0; i < valuesLen; i++) if (!found[i]) return false;
-            return true;
+            return foundCount == valuesLen;
+        }
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this IList<T> arr, params T[] values)
+        {
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
+            int len = arr.Count;
+            if (len < valuesLen) return false;
+            bool[] found = new bool[valuesLen];
+            int foundCount = 0;
+            for (int i = 0, index; i < len; i++)
+            {
+                index = Array.IndexOf(values, arr[i]);
+                if (index < 0 || found[index]) continue;
+                found[index] = true;
+                foundCount++;
+            }
+            return foundCount == valuesLen;
+        }
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this List<T> arr, params T[] values)
+        {
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
+            int len = arr.Count;
+            if (len < valuesLen) return false;
+            bool[] found = new bool[valuesLen];
+            int foundCount = 0;
+            for (int i = 0, index; i < len; i++)
+            {
+                index = Array.IndexOf(values, arr[i]);
+                if (index < 0 || found[index]) continue;
+                found[index] = true;
+                foundCount++;
+            }
+            return foundCount == valuesLen;
+        }
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this ImmutableArray<T> arr, params T[] values)
+        {
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
+            int len = arr.Length;
+            if (len < valuesLen) return false;
+            bool[] found = new bool[valuesLen];
+            int foundCount = 0;
+            for (int i = 0, index; i < len; i++)
+            {
+                index = Array.IndexOf(values, arr[i]);
+                if (index < 0 || found[index]) continue;
+                found[index] = true;
+                foundCount++;
+            }
+            return foundCount == valuesLen;
+        }
+
+        /// <summary>
+        /// Determine if all values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Required values (each value should be unique!)</param>
+        /// <returns>All contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAll<T>(this FrozenSet<T> arr, params T[] values)
+        {
+            int valuesLen = values.Length;
+            if (valuesLen == 0) return true;
+            int len = arr.Count;
+            if (len < valuesLen) return false;
+            int foundCount = 0;
+            for (int i = 0; i < len; i++)
+                if (Array.IndexOf(values, arr.Items[i]) >= 0)
+                    foundCount++;
+            return foundCount == valuesLen;
+        }
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this T[] arr, params T[] values) => ContainsAny((ReadOnlySpan<T>)arr, values);
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this Span<T> arr, params T[] values) => ContainsAny((ReadOnlySpan<T>)arr, values);
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this Memory<T> arr, params T[] values) => ContainsAny((ReadOnlySpan<T>)arr.Span, values);
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this ReadOnlyMemory<T> arr, params T[] values) => ContainsAny(arr.Span, values);
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this ReadOnlySpan<T> arr, params T[] values)
+        {
+            if (values.Length == 0) return false;
+            for (int i = 0, len = arr.Length; i < len; i++) if (Array.IndexOf(values, arr[i]) >= 0) return true;
+            return false;
         }
 
         /// <summary>
@@ -256,11 +490,64 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool ContainsAny<T>(this T[] arr, params T[] values)
+        public static bool ContainsAny<T>(this IList<T> arr, params T[] values)
         {
             if (values.Length == 0) return false;
-            ReadOnlySpan<T> valuesSpan = values;
-            for (int i = 0, len = arr.Length; i < len; i++) if (valuesSpan.IndexOf(arr[i]) != -1) return true;
+            for (int i = 0, len = arr.Count; i < len; i++) if (Array.IndexOf(values, arr[i]) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this List<T> arr, params T[] values)
+        {
+            if (values.Length == 0) return false;
+            for (int i = 0, len = arr.Count; i < len; i++) if (Array.IndexOf(values, arr[i]) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this ImmutableArray<T> arr, params T[] values)
+        {
+            if (values.Length == 0) return false;
+            for (int i = 0, len = arr.Length; i < len; i++) if (Array.IndexOf(values, arr[i]) >= 0) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if any of the values are contained
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="arr">Array</param>
+        /// <param name="values">Values</param>
+        /// <returns>Any contained?</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsAny<T>(this FrozenSet<T> arr, params T[] values)
+        {
+            if (values.Length == 0) return false;
+            for (int i = 0, len = arr.Count; i < len; i++) if (Array.IndexOf(values, arr.Items[i]) >= 0) return true;
             return false;
         }
 
@@ -298,7 +585,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> enumerable) => new List<T>(enumerable).AsReadOnly();
+        public static ImmutableArray<T> AsReadOnly<T>(this IEnumerable<T> enumerable) => [.. enumerable];
 
         /// <summary>
         /// Clone an array (items will be copied into a new array)
