@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace wan24.Core
@@ -34,6 +36,10 @@ namespace wan24.Core
         /// <typeparam name="T">Structure type</typeparam>
         /// <param name="obj">Structure</param>
         /// <returns>Marshaled size in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetMarshaledSize<T>(this T obj) where T : struct => Marshal.SizeOf(obj);
 
         /// <summary>
@@ -41,6 +47,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="obj">Structure</param>
         /// <returns>Marshaled size in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetMarshaledSize(this object obj) => GetMarshaledSize(obj.GetType());
 
         /// <summary>
@@ -48,6 +58,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="type">Structure type</param>
         /// <returns>Marshaled size in bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetMarshaledSize(this Type type)
         {
             if (!type.IsValueType) throw new ArgumentException("Not a structure type", nameof(type));
@@ -60,6 +74,10 @@ namespace wan24.Core
         /// <typeparam name="T">Structure type</typeparam>
         /// <param name="obj">Structure</param>
         /// <returns>Marshaled bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetMarshalBytes<T>(this T obj) where T : struct
         {
             byte[] res = new byte[Marshal.SizeOf(obj)];
@@ -74,6 +92,10 @@ namespace wan24.Core
         /// <param name="obj">Structure</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of bytes written to the <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetMarshalBytes<T>(this T obj, in byte[] buffer) where T : struct
         {
             int res = Marshal.SizeOf(obj);
@@ -95,6 +117,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="obj">Structure</param>
         /// <returns>Marshaled bytes</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetMarshalBytes(this object obj)
         {
             if (!obj.GetType().IsValueType) throw new ArgumentException("Not a structure", nameof(obj));
@@ -109,6 +135,10 @@ namespace wan24.Core
         /// <param name="obj">Structure</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of bytes written to the <c>buffer</c></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int GetMarshalBytes(this object obj, in byte[] buffer)
         {
             int res = Marshal.SizeOf(obj);
@@ -131,6 +161,10 @@ namespace wan24.Core
         /// <typeparam name="T">Structure type</typeparam>
         /// <param name="bytes">Bytes</param>
         /// <returns>Structure</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T UnmarshalStructure<T>(this byte[] bytes) where T : struct
         {
             if (bytes.Length < Marshal.SizeOf<T>()) throw new ArgumentOutOfRangeException(nameof(bytes));
@@ -151,6 +185,10 @@ namespace wan24.Core
         /// <param name="bytes">Bytes</param>
         /// <param name="type">Structure type</param>
         /// <returns>Structure</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object UnmarshalStructure(this byte[] bytes, in Type type)
         {
             if (!type.IsValueType) throw new ArgumentException("Not a structure type", nameof(type));

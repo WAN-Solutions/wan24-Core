@@ -1,10 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Bound cancellation token source (canceled when a parent token was canceled)
     /// </summary>
+    [Obsolete("Use CancellationTokenSource.CreateLinkedTokenSource instead")]//TODO Remove in v3
     public class BoundCancellationTokenSource : CancellationTokenSource
     {
         /// <summary>
@@ -47,7 +48,7 @@ namespace wan24.Core
         /// <summary>
         /// Bound cancellation token
         /// </summary>
-        public ReadOnlyCollection<CancellationToken> BoundTokens => _BoundTokens.AsReadOnly();
+        public ImmutableArray<CancellationToken> BoundTokens => [.. _BoundTokens];
 
         /// <summary>
         /// Add tokens

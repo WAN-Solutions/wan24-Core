@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="cacheOptions">Cache options</param>
-    public class CacheSwitch<T>(params CacheSwitchOptions<T>[] cacheOptions) : DisposableBase(), ICache<T>
+    public class CacheSwitch<T>(params CacheSwitchOptions<T>[] cacheOptions) : SimpleDisposableBase(), ICache<T>
     {
         /// <summary>
         /// Number of cache options
@@ -24,7 +24,7 @@ namespace wan24.Core
         /// <summary>
         /// Cache options
         /// </summary>
-        public ImmutableArray<CacheSwitchOptions<T>> CacheOptions { get; } = [.. cacheOptions.OrderBy(o => o.MaxItemSize)];
+        public ImmutableArray<CacheSwitchOptions<T>> CacheOptions { get; } = [.. cacheOptions.OrderBy(o => o.MaxItemSize).ThenBy(o => o.CacheType)];
 
         /// <summary>
         /// If to dispose the caches from the <see cref="CacheOptions"/> when disposing
@@ -51,7 +51,7 @@ namespace wan24.Core
                 if (cacheOptions[i].MaxItemSize >= itemSize)
                 {
                     oom = false;
-                    if (cache != -1 && cacheOptions[i].CacheType != cache) continue;
+                    if (cache >= 0 && cacheOptions[i].CacheType != cache) continue;
                     return cacheOptions[i];
                 }
             throw new OutOfMemoryException(
@@ -143,7 +143,7 @@ namespace wan24.Core
             ImmutableArray<CacheSwitchOptions<T>> cacheOptions = CacheOptions;
             for (int i = 0; i < CacheOptionsCount; i++)
             {
-                if ((cache != -1 && cacheOptions[i].CacheType != cache) || (options is not null && options.Size > cacheOptions[i].MaxItemSize))
+                if ((cache >= 0 && cacheOptions[i].CacheType != cache) || (options is not null && options.Size > cacheOptions[i].MaxItemSize))
                     continue;
                 if (cacheOptions[i].Cache.Get(key, entryFactory, options) is ICacheEntry<T> res)
                     return res;
@@ -177,7 +177,7 @@ namespace wan24.Core
             ImmutableArray<CacheSwitchOptions<T>> cacheOptions = CacheOptions;
             for (int i = 0; i < CacheOptionsCount; i++)
             {
-                if ((cache != -1 && cacheOptions[i].CacheType != cache) || (options is not null && options.Size > cacheOptions[i].MaxItemSize))
+                if ((cache >= 0 && cacheOptions[i].CacheType != cache) || (options is not null && options.Size > cacheOptions[i].MaxItemSize))
                     continue;
                 if (await cacheOptions[i].Cache.GetAsync(key, entryFactory, options, cancellationToken).DynamicContext() is ICacheEntry<T> res)
                     return res;
@@ -276,7 +276,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             if (DisposeCaches) await CacheOptions.Select(o => o.Cache).TryDisposeAllAsync().DynamicContext();
         }
     }

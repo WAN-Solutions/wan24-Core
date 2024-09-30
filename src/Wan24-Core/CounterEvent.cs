@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="initialValue">Initial counter value</param>
-    public sealed partial class CounterEvent(in int initialValue = 0) : DisposableBase()
+    public sealed partial class CounterEvent(in int initialValue = 0) : SimpleDisposableBase()
     {
         /// <summary>
         /// Current counter value

@@ -118,6 +118,7 @@
     <h5>Implements</h5>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -306,7 +307,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_BlockingBufferStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BlockingBufferStream : StreamBase, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class BlockingBufferStream : StreamBase, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -365,7 +366,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly RentedArray&lt;byte&gt; Buffer</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly RentedMemory&lt;byte&gt; Buffer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -377,7 +378,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1257,7 +1258,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_Flush.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.Flush%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L230">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L232">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_Flush_" data-uid="wan24.Core.BlockingBufferStream.Flush*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_Flush" data-uid="wan24.Core.BlockingBufferStream.Flush">Flush()</h4>
@@ -1291,7 +1292,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_FlushAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.FlushAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L240">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L242">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_FlushAsync_" data-uid="wan24.Core.BlockingBufferStream.FlushAsync*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_FlushAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.FlushAsync(System.Threading.CancellationToken)">FlushAsync(CancellationToken)</h4>
@@ -1836,7 +1837,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_ReorganizeBufferAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.ReorganizeBufferAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L171">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_ReorganizeBufferAsync_" data-uid="wan24.Core.BlockingBufferStream.ReorganizeBufferAsync*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_ReorganizeBufferAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.ReorganizeBufferAsync(System.Threading.CancellationToken)">ReorganizeBufferAsync(CancellationToken)</h4>
@@ -1902,7 +1903,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_Seek_System_Int64_System_IO_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.Seek(System.Int64%2CSystem.IO.SeekOrigin)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L250">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L252">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_Seek_" data-uid="wan24.Core.BlockingBufferStream.Seek*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_Seek_System_Int64_System_IO_SeekOrigin_" data-uid="wan24.Core.BlockingBufferStream.Seek(System.Int64,System.IO.SeekOrigin)">Seek(long, SeekOrigin)</h4>
@@ -2309,7 +2310,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_WaitData_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.WaitData(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L213">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L215">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_WaitData_" data-uid="wan24.Core.BlockingBufferStream.WaitData*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_WaitData_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.WaitData(System.Threading.CancellationToken)">WaitData(CancellationToken)</h4>
@@ -2343,7 +2344,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_WaitDataAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.WaitDataAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L223">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L225">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_WaitDataAsync_" data-uid="wan24.Core.BlockingBufferStream.WaitDataAsync*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_WaitDataAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.WaitDataAsync(System.Threading.CancellationToken)">WaitDataAsync(CancellationToken)</h4>
@@ -2392,7 +2393,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_WaitSpace_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.WaitSpace(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L193">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L195">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_WaitSpace_" data-uid="wan24.Core.BlockingBufferStream.WaitSpace*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_WaitSpace_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.WaitSpace(System.Threading.CancellationToken)">WaitSpace(CancellationToken)</h4>
@@ -2426,7 +2427,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_BlockingBufferStream_WaitSpaceAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.BlockingBufferStream.WaitSpaceAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L203">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/BlockingBufferStream.cs/#L205">View Source</a>
   </span>
   <a id="wan24_Core_BlockingBufferStream_WaitSpaceAsync_" data-uid="wan24.Core.BlockingBufferStream.WaitSpaceAsync*"></a>
   <h4 id="wan24_Core_BlockingBufferStream_WaitSpaceAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.BlockingBufferStream.WaitSpaceAsync(System.Threading.CancellationToken)">WaitSpaceAsync(CancellationToken)</h4>
@@ -2956,6 +2957,9 @@
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
   <div>
@@ -3116,10 +3120,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

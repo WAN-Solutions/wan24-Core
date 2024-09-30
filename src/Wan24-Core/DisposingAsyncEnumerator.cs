@@ -6,7 +6,7 @@ namespace wan24.Core
     /// Disposing asynchronous enumerator (disposes tagged objects when disposing)
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public sealed class DisposingAsyncEnumerator<T> : DisposableBase, IAsyncEnumerator<T>, IAsyncEnumerable<T>
+    public sealed class DisposingAsyncEnumerator<T> : BasicAllDisposableBase, IAsyncEnumerator<T>, IAsyncEnumerable<T>
     {
         /// <summary>
         /// Enumerable

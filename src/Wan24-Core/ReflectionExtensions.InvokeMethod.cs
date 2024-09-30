@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Immutable;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -39,7 +40,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, params object?[] param)
-            => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param));
+            => mi.InvokeFast(obj, GetCachedParameters(mi).GetDiObjects(param));
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -54,7 +55,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static object? InvokeAuto(this MethodInfo mi, in object? obj, in IServiceProvider serviceProvider, params object?[] param)
-            => mi.InvokeFast(obj, mi.GetParametersCached().GetDiObjects(param, serviceProvider));
+            => mi.InvokeFast(obj, GetCachedParameters(mi).GetDiObjects(param, serviceProvider));
 
         /// <summary>
         /// Invoke a method and complete parameters with default values
@@ -100,7 +101,7 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, params object?[] param)
         {
             await Task.Yield();
-            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await GetCachedParameters(mi).GetDiObjectsAsync(param).DynamicContext()) is not object res) return null;
             return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
@@ -119,7 +120,7 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
-            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await GetCachedParameters(mi).GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
             return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : null;
         }
 
@@ -138,7 +139,7 @@ namespace wan24.Core
         public static async Task<object?> InvokeAutoAsync(this MethodInfo mi, object? obj, IAsyncServiceProvider serviceProvider, params object?[] param)
         {
             await Task.Yield();
-            if (mi.InvokeFast(obj, await mi.GetParametersCached().GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
+            if (mi.InvokeFast(obj, await GetCachedParameters(mi).GetDiObjectsAsync(param, serviceProvider).DynamicContext()) is not object res) return null;
             return res.IsTask() ? await TaskHelper.GetAnyTaskResultAsync(res).DynamicContext() : res;
         }
 
@@ -211,7 +212,7 @@ namespace wan24.Core
                     !mi.IsGenericMethod ||
                     mi.IsConstructedGenericMethod
                 ) &&
-                !mi.GetParametersCached().Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
+                !GetCachedParameters(mi).Any(p => p.ParameterType.GetRealType().IsByRefLike || p.IsOut || p.ParameterType.GetRealType().IsPointer) &&
                 !mi.ReturnType.IsByRef && !mi.ReturnType.GetRealType().IsByRefLike && !mi.ReturnType.GetRealType().IsPointer;
 
 
@@ -228,7 +229,7 @@ namespace wan24.Core
             int hc = mi.GetHashCode();
             if (MethodInvokeDelegateCache.TryGetValue(hc, out Func<object?, object?[], object?>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
-            ParameterInfo[] pis = [..mi.GetParametersCached()];
+            ImmutableArray<ParameterInfo> pis = GetCachedParameters(mi);
             Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
                 parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType.GetRealType());
@@ -315,13 +316,13 @@ namespace wan24.Core
                 if (
                     (name is not null && mi.Name != name) ||
                     (returnType is not null && !MatchReturnType(mi, returnType, exactTypes)) ||
-                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.Method.IsGenericMethodDefinition || mi.GenericArguments.Length != genericArgumentCount.Value))
+                    (genericArgumentCount is not null && (genericArgumentCount.Value != 0 != mi.Method.IsGenericMethodDefinition || mi.GenericArgumentCount != genericArgumentCount.Value))
                     )
                     continue;
                 // Check parameters
                 if (parameterTypes is not null)
                 {
-                    pt = mi.Parameters.Select(p => p.ParameterType).ToArray();
+                    pt = GetCachedParameters(mi).Select(p => p.ParameterType).ToArray();
                     if (pt.Length != parameterTypes.Length) continue;
                     bool isMatch = true;
                     for (int i = 0; i < parameterTypes.Length; i++)

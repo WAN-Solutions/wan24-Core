@@ -121,6 +121,7 @@
     <div><a class="xref" href="wan24.Core.ICopyStream.html">ICopyStream</a></div>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
   </div>
@@ -128,9 +129,6 @@
     <h5>Inherited Members</h5>
     <div>
       <a class="xref" href="wan24.Core.CopyStream-2.html#wan24_Core_CopyStream_2_Cancellation">CopyStream&lt;Stream, Stream&gt;.Cancellation</a>
-    </div>
-    <div>
-      <a class="xref" href="wan24.Core.CopyStream-2.html#wan24_Core_CopyStream_2__Cancellations">CopyStream&lt;Stream, Stream&gt;._Cancellations</a>
     </div>
     <div>
       <a class="xref" href="wan24.Core.CopyStream-2.html#wan24_Core_CopyStream_2_CopyTarget">CopyStream&lt;Stream, Stream&gt;.CopyTarget</a>
@@ -485,7 +483,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_CopyStream_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CopyStream : CopyStream&lt;Stream, Stream&gt;, IStreamWrapper, IStatusProvider, ICopyStream, IStream, IDisposableObject, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class CopyStream : CopyStream&lt;Stream, Stream&gt;, IStreamWrapper, IStatusProvider, ICopyStream, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h5 id="wan24_Core_CopyStream_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -568,6 +566,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -727,10 +728,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

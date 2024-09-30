@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Logger provider
     /// </summary>
-    public sealed class LoggerProvider : DisposableBase, ILoggerProvider
+    public sealed class LoggerProvider : BasicAllDisposableBase, ILoggerProvider
     {
         /// <summary>
         /// Singleton logger instance to use

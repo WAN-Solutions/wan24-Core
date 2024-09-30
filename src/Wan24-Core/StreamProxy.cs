@@ -10,7 +10,7 @@ namespace wan24.Core
     /// <remarks>
     /// Constructor
     /// </remarks>
-    public class StreamProxy : DisposableBase
+    public class StreamProxy : BasicAllDisposableBase
     {
         /// <summary>
         /// Cancellation
@@ -218,7 +218,7 @@ namespace wan24.Core
         {
             try
             {
-                using RentedArrayStructSimple<byte> buffer = new(BufferSize, clean: false);
+                using RentedMemory<byte> buffer = new(BufferSize, clean: false);
                 int red;
                 while (!Cancellation.IsCancellationRequested)
                 {
@@ -275,7 +275,7 @@ namespace wan24.Core
                     await Cancellation.CancelAsync().DynamicContext();
             if (Observer is not null) await Observer.DynamicContext();
             Cancellation.Dispose();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             if (LeaveOpen) return;
             await A.DisposeAsync().DynamicContext();
             await B.DisposeAsync().DynamicContext();
@@ -284,9 +284,9 @@ namespace wan24.Core
         /// <summary>
         /// Delegate for an <see cref="OnError"/> handler
         /// </summary>
-        /// <param name="proyx">Proxy</param>
+        /// <param name="proxy">Proxy</param>
         /// <param name="e">Arguments</param>
-        public delegate void Error_Delegate(StreamProxy proyx, EventArgs e);
+        public delegate void Error_Delegate(StreamProxy proxy, EventArgs e);
         /// <summary>
         /// Raised on error
         /// </summary>

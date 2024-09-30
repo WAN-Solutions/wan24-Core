@@ -1,35 +1,69 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
+using static wan24.Core.Logging;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Base class for a simple disposable type without any extras and only a little overhead for comfort (no support for <see cref="DisposeAttribute"/>!)
     /// </summary>
-    /// <remarks>
-    /// Constructor
-    /// </remarks>
-    public abstract class SimpleDisposableBase() : IDisposableObject
+    public abstract class SimpleDisposableBase : IDisposableObject
     {
         /// <summary>
         /// An object for thread locking
         /// </summary>
         protected readonly object SyncDispose = new();
+        /// <summary>
+        /// Don't count running the finalizer as an error?
+        /// </summary>
+        protected readonly bool AllowFinalizer;
+        /// <summary>
+        /// Stack information
+        /// </summary>
+        protected readonly IStackInfo? StackInfo;
 
         /// <summary>
         /// Destructor
         /// </summary>
         ~SimpleDisposableBase()
         {
-            lock (SyncDispose)
+            if (!AllowFinalizer)
             {
-                if (IsDisposing) return;
-                IsDisposing = true;
+                if (Warning) Logging.WriteWarning($"Disposing {GetType()} from finalizer (shouldn't happen!)");
+                System.Diagnostics.Debugger.Break();
+                if (StackInfo is not null)
+                    ErrorHandling.Handle(new(new StackInfoException(StackInfo, "Destructor called"), tag: this));
             }
+            else
+            {
+                if (Trace) Logging.WriteTrace($"Disposing {GetType()} from finalizer");
+            }
+            if (IsDisposing)
+            {
+                if (Warning) Logging.WriteWarning($"Destructor on {GetType()} called, but seems to be disposed already");
+                return;
+            }
+            IsDisposing = true;
             RaiseOnDisposing();
             Dispose(disposing: false);
             IsDisposed = true;
             RaiseOnDisposed();
         }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="allowFinalizer">If to allow disposing from the finalizer</param>
+        protected SimpleDisposableBase(in bool allowFinalizer = false)
+        {
+            AllowFinalizer = allowFinalizer;
+            if (CreateStackInfo) StackInfo = new StackInfo<SimpleDisposableBase>(this);
+        }
+
+        /// <summary>
+        /// Create a <see cref="StackInfo"/> for every instance?
+        /// </summary>
+        public static bool CreateStackInfo { get; set; }
 
         /// <inheritdoc/>
         public bool IsDisposing { get; protected set; }
@@ -41,7 +75,7 @@ namespace wan24.Core
         /// Dispose
         /// </summary>
         /// <param name="disposing">If disposing</param>
-        protected abstract void Dispose(in bool disposing);
+        protected abstract void Dispose(bool disposing);
 
         /// <summary>
         /// Dispose
@@ -55,6 +89,7 @@ namespace wan24.Core
         /// <inheritdoc/>
         public void Dispose()
         {
+            if (IsDisposing) return;
             lock (SyncDispose)
             {
                 if (IsDisposing) return;
@@ -70,12 +105,13 @@ namespace wan24.Core
         /// <inheritdoc/>
         public async ValueTask DisposeAsync()
         {
+            await Task.Yield();
+            if (IsDisposing) return;
             lock (SyncDispose)
             {
                 if (IsDisposing) return;
                 IsDisposing = true;
             }
-            await Task.Yield();
             RaiseOnDisposing();
             await DisposeCore().DynamicContext();
             IsDisposed = true;
@@ -90,6 +126,9 @@ namespace wan24.Core
         /// <param name="throwException">Throw an exception if disposing/disposed?</param>
         /// <returns>Is not disposing?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected bool EnsureUndisposed(in bool allowDisposing = false, in bool throwException = true)
             => !IsDisposing || (allowDisposing && !IsDisposed) || (throwException ? throw new ObjectDisposedException(GetType().ToString()) : false);
 
@@ -101,6 +140,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T IfUndisposed<T>(in T value, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -113,6 +155,9 @@ namespace wan24.Core
         /// <param name="action">Action</param>
         /// <param name="allowDisposing">Allow disposing state?</param>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected void IfUndisposed(in Action action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -127,6 +172,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T IfUndisposed<T>(in Func<T> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);
@@ -141,6 +189,9 @@ namespace wan24.Core
         /// <param name="allowDisposing">Allow disposing state?</param>
         /// <returns>Return value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         protected T? IfUndisposedNullable<T>(in Func<T?> action, in bool allowDisposing = false)
         {
             EnsureUndisposed(allowDisposing);

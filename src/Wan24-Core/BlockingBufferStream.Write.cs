@@ -26,7 +26,7 @@
                 if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
-                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer[..write].CopyTo(Buffer.Memory.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 WriteOffset += write;
                 _Length += write;
@@ -60,7 +60,7 @@
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
                 if (write == 0) return res;
-                buffer[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer[..write].CopyTo(Buffer.Memory.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 WriteOffset += write;
                 _Length += write;
@@ -97,7 +97,7 @@
                 if (_IsEndOfFile) throw new InvalidOperationException();
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
-                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer.Span[..write].CopyTo(Buffer.Memory.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 WriteOffset += write;
                 _Length += write;
@@ -132,7 +132,7 @@
                 EnsureUndisposed();
                 write = Math.Min(SpaceLeft, buffer.Length);
                 if (write == 0) return res;
-                buffer.Span[..write].CopyTo(Buffer.Span[WriteOffset..]);
+                buffer.Span[..write].CopyTo(Buffer.Memory.Span[WriteOffset..]);
                 buffer = buffer[write..];
                 WriteOffset += write;
                 _Length += write;

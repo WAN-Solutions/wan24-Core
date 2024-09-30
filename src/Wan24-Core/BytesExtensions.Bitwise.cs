@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.Arm;
 using System.Runtime.Intrinsics.X86;
 
@@ -16,6 +17,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] Xor(this byte[] a, in ReadOnlySpan<byte> b)
         {
             Xor(a.AsSpan(), b);
@@ -28,6 +32,9 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> Xor(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
 #if NO_UNSAFE
@@ -114,6 +121,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] And(this byte[] a, in ReadOnlySpan<byte> b)
         {
             And(a.AsSpan(), b);
@@ -126,6 +136,9 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> And(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
 #if NO_UNSAFE
@@ -212,6 +225,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] Or(this byte[] a, in ReadOnlySpan<byte> b)
         {
             Or(a.AsSpan(), b);
@@ -224,6 +240,9 @@ namespace wan24.Core
         /// <param name="a">A</param>
         /// <param name="b">B</param>
         /// <returns>A</returns>
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> Or(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
 #if NO_UNSAFE
@@ -310,6 +329,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] RotatingXor(this byte[] a, in ReadOnlySpan<byte> b)
         {
             RotatingXor(a.AsSpan(), b);
@@ -323,6 +345,9 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static Span<byte> RotatingXor(this Span<byte> a, in ReadOnlySpan<byte> b)
         {
 #if NO_UNSAFE
@@ -348,6 +373,9 @@ namespace wan24.Core
         /// <param name="lenB">B length</param>
         /// <returns>A</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static unsafe byte* RotatingXor(in byte* aPtr, in int lenA, byte* bPtr, in int lenB)
         {
             for (byte* ptrBEnd = bPtr + lenB; bPtr < ptrBEnd; Xor(aPtr, bPtr, Math.Min(lenA, (int)(ptrBEnd - bPtr))), bPtr += lenA) ;

@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// Number of times events have been raised during throttline
+        /// Number of times events have been raised during throttling
         /// </summary>
         public int EventCount => Throttle?.RaisedCount ?? 0;
 
@@ -131,8 +131,8 @@
         {
             EnsureUndisposed();
             EnsureRunning();
-            using Cancellations cancellation = new(cancellationToken, CancelToken);
-            WatcherEvent.Wait(cancellation);
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            WatcherEvent.Wait(cancellation.Token);
             return Last ?? throw new InvalidProgramException();
         }
 
@@ -145,8 +145,8 @@
         {
             EnsureUndisposed();
             EnsureRunning();
-            using Cancellations cancellation = new(cancellationToken, CancelToken);
-            await WatcherEvent.WaitAsync(cancellation).DynamicContext();
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            await WatcherEvent.WaitAsync(cancellation.Token).DynamicContext();
             return Last ?? throw new InvalidProgramException();
         }
 
@@ -226,7 +226,7 @@
             Watcher.Dispose();
             await WatcherEvent.DisposeAsync().DynamicContext();
             if (Throttle is not null) await Throttle.DisposeAsync().DynamicContext();
-            await EventSync.DisposeAsync().DynamicContext();
+            EventSync.Dispose();
         }
 
         /// <summary>

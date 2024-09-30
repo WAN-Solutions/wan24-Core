@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_ApplyAutoItemMoving__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___wan24_Core_SemaphoreSync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.ApplyAutoItemMoving%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2Cwan24.Core.SemaphoreSync%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L215">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L225">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_ApplyAutoItemMoving_" data-uid="wan24.Core.CacheExtensions.ApplyAutoItemMoving*"></a>
   <h4 id="wan24_Core_CacheExtensions_ApplyAutoItemMoving__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___wan24_Core_SemaphoreSync_System_Boolean_" data-uid="wan24.Core.CacheExtensions.ApplyAutoItemMoving``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},wan24.Core.SemaphoreSync,System.Boolean)">ApplyAutoItemMoving&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, SemaphoreSync, bool)</h4>
@@ -208,7 +208,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_ClearAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.ClearAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L133">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L139">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_ClearAsync_" data-uid="wan24.Core.CacheExtensions.ClearAsync*"></a>
   <h4 id="wan24_Core_CacheExtensions_ClearAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___" data-uid="wan24.Core.CacheExtensions.ClearAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}})">ClearAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;)</h4>
@@ -217,7 +217,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task ClearAsync&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task ClearAsync&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -273,7 +274,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_Clear__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.Clear%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L123">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L125">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_Clear_" data-uid="wan24.Core.CacheExtensions.Clear*"></a>
   <h4 id="wan24_Core_CacheExtensions_Clear__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___" data-uid="wan24.Core.CacheExtensions.Clear``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}})">Clear&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;)</h4>
@@ -282,7 +283,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Clear&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static void Clear&lt;T&gt;(this ImmutableArray&lt;ICache&lt;T&gt;&gt; caches)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -323,7 +325,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_GetAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String_wan24_Core_SemaphoreSync_wan24_Core_ICache___0__CacheEntryFactory_Delegate_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.GetAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%2Cwan24.Core.SemaphoreSync%2Cwan24.Core.ICache%7B%60%600%7D.CacheEntryFactory_Delegate%2Cwan24.Core.ICacheEntryOptions%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L67">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_GetAsync_" data-uid="wan24.Core.CacheExtensions.GetAsync*"></a>
   <h4 id="wan24_Core_CacheExtensions_GetAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String_wan24_Core_SemaphoreSync_wan24_Core_ICache___0__CacheEntryFactory_Delegate_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.CacheExtensions.GetAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String,wan24.Core.SemaphoreSync,wan24.Core.ICache{``0}.CacheEntryFactory_Delegate,wan24.Core.ICacheEntryOptions,System.Boolean,System.Boolean,System.Threading.CancellationToken)">GetAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, string, SemaphoreSync, CacheEntryFactory_Delegate?, ICacheEntryOptions?, bool, bool, CancellationToken)</h4>
@@ -431,7 +433,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_Get__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__wan24_Core_SemaphoreSync__wan24_Core_ICache___0__CacheEntryFactory_Delegate__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.Get%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%40%2Cwan24.Core.SemaphoreSync%40%2Cwan24.Core.ICache%7B%60%600%7D.CacheEntryFactory_Delegate%40%2Cwan24.Core.ICacheEntryOptions%40%2CSystem.Boolean%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L22">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L24">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_Get_" data-uid="wan24.Core.CacheExtensions.Get*"></a>
   <h4 id="wan24_Core_CacheExtensions_Get__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__wan24_Core_SemaphoreSync__wan24_Core_ICache___0__CacheEntryFactory_Delegate__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__" data-uid="wan24.Core.CacheExtensions.Get``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String@,wan24.Core.SemaphoreSync@,wan24.Core.ICache{``0}.CacheEntryFactory_Delegate@,wan24.Core.ICacheEntryOptions@,System.Boolean@,System.Boolean@)">Get&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in string, in SemaphoreSync, in CacheEntryFactory_Delegate?, in ICacheEntryOptions?, in bool, in bool)</h4>
@@ -533,7 +535,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryRemove__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryRemove%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.String%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L104">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L106">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_TryRemove_" data-uid="wan24.Core.CacheExtensions.TryRemove*"></a>
   <h4 id="wan24_Core_CacheExtensions_TryRemove__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_String__" data-uid="wan24.Core.CacheExtensions.TryRemove``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.String@)">TryRemove&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in string)</h4>
@@ -605,7 +607,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryStoreAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32_System_String___0_System_Int32_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryStoreAsync%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.Int32%2CSystem.String%2C%60%600%2CSystem.Int32%2Cwan24.Core.ICacheEntryOptions%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L187">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L197">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_TryStoreAsync_" data-uid="wan24.Core.CacheExtensions.TryStoreAsync*"></a>
   <h4 id="wan24_Core_CacheExtensions_TryStoreAsync__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32_System_String___0_System_Int32_wan24_Core_ICacheEntryOptions_System_Boolean_System_Boolean_System_Int32_" data-uid="wan24.Core.CacheExtensions.TryStoreAsync``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.Int32,System.String,``0,System.Int32,wan24.Core.ICacheEntryOptions,System.Boolean,System.Boolean,System.Int32)">TryStoreAsync&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, int, string, T, int, ICacheEntryOptions?, bool, bool, int)</h4>
@@ -719,7 +721,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CacheExtensions_TryStore__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32__System_String____0__System_Int32__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.CacheExtensions.TryStore%60%601(System.Collections.Immutable.ImmutableArray%7Bwan24.Core.ICache%7B%60%600%7D%7D%2CSystem.Int32%40%2CSystem.String%40%2C%60%600%40%2CSystem.Int32%40%2Cwan24.Core.ICacheEntryOptions%40%2CSystem.Boolean%40%2CSystem.Boolean%40%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L152">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CacheExtensions.cs/#L162">View Source</a>
   </span>
   <a id="wan24_Core_CacheExtensions_TryStore_" data-uid="wan24.Core.CacheExtensions.TryStore*"></a>
   <h4 id="wan24_Core_CacheExtensions_TryStore__1_System_Collections_Immutable_ImmutableArray_wan24_Core_ICache___0___System_Int32__System_String____0__System_Int32__wan24_Core_ICacheEntryOptions__System_Boolean__System_Boolean__System_Int32__" data-uid="wan24.Core.CacheExtensions.TryStore``1(System.Collections.Immutable.ImmutableArray{wan24.Core.ICache{``0}},System.Int32@,System.String@,``0@,System.Int32@,wan24.Core.ICacheEntryOptions@,System.Boolean@,System.Boolean@,System.Int32@)">TryStore&lt;T&gt;(ImmutableArray&lt;ICache&lt;T&gt;&gt;, in int, in string, in T, in int, in ICacheEntryOptions?, in bool, in bool, in int)</h4>

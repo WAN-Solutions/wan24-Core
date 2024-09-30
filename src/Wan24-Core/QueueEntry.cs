@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
@@ -99,7 +100,7 @@ namespace wan24.Core
         public DateTime Done { get; protected set; } = DateTime.MinValue;
 
         /// <inheritdoc/>
-        public ReadOnlyCollection<QueueEntryStateChange> Changes => _Changes.AsReadOnly();
+        public ImmutableArray<QueueEntryStateChange> Changes => [.. _Changes];
 
         /// <inheritdoc/>
         public TimeSpan LastProcessingTime => Done == DateTime.MinValue ? TimeSpan.Zero : Done - LastProcessed;

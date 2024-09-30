@@ -982,10 +982,10 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncDisposableExtensions.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__">AsyncHelper.TryDisposeAllAsync(IEnumerable&lt;object&gt;)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDisposeAll_System_Collections_Generic_IEnumerable_System_Object__">DisposableExtensions.TryDisposeAll(IEnumerable&lt;object&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectsTo_System_Collections_Generic_IEnumerable_System_Object__System_Type_">ObjectMappingExtensions.MapObjectsTo(IEnumerable&lt;object&gt;, Type)</a>
@@ -997,6 +997,33 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
       <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AllAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AnyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AnyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XY____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XY?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZ____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZ?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___1____System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SelectAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SelectAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tResult&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_WhereAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.WhereAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.DiHelperExtensions.html#wan24_Core_DiHelperExtensions_GetDiObjects_System_Collections_Generic_IEnumerable_System_Reflection_ParameterInfo__System_Object___System_IServiceProvider_System_Reflection_NullabilityInfoContext_System_Boolean_System_Boolean_">DiHelperExtensions.GetDiObjects(IEnumerable&lt;ParameterInfo&gt;, object?[]?, IServiceProvider?, NullabilityInfoContext?, bool, bool)</a>
   </div>
   <div>
@@ -1006,22 +1033,10 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XY____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XY?&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYInt____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYInt?&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYInt____">EnumerableExtensions.CollectXyInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYInt?&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XY____">EnumerableExtensions.CollectXy&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XY?&gt;)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZ____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyzAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZ?&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">EnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYZInt____">EnumerableExtensions.CollectXyzInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYZInt?&gt;)</a>
@@ -1045,10 +1060,7 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple___1_System_Boolean____System_Threading_CancellationToken_">EnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;(tResult Result, bool Next)&gt;&gt;, CancellationToken)</a>
-  </div>
-  <div>
-      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_ValueTuple___1_System_Boolean___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, (tResult Result, bool Next)&gt;)</a>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_wan24_Core_EnumerableExtensions_ExecuteResult___1___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__1_System_Collections_Generic_IEnumerable___0__System_Type_System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem&gt;(IEnumerable&lt;tItem&gt;, Type, bool)</a>
@@ -1091,6 +1103,9 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallel__1_System_Collections_Generic_IEnumerable___0__System_Action___0___System_Threading_Tasks_ParallelOptions__">ParallelExtensions.ExecuteParallel&lt;T&gt;(IEnumerable&lt;T&gt;, in Action&lt;T&gt;, in ParallelOptions?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.PriorityExtensions.html#wan24_Core_PriorityExtensions_PrioritizeAny__1_System_Collections_Generic_IEnumerable___0__">PriorityExtensions.PrioritizeAny&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
@@ -1186,10 +1201,10 @@ public static implicit operator ConstructorInfo(in ConstructorInfoExt ci)</code>
       <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_IsNullable_System_Reflection_ICustomAttributeProvider_">ReflectionExtensions.IsNullable(ICustomAttributeProvider)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

@@ -39,7 +39,7 @@ namespace wan24.Core
             {
                 // c/... or c\... or c:/... or c:\... -> C...
 #if NO_UNSAFE
-                using RentedArrayRefStruct<char> buffer = new(len: 1, clean: false);
+                using RentedMemoryRef<char> buffer = new(len: 1, clean: false);
                 Span<char> driveLetter = buffer.Span;
 #else
                 Span<char> driveLetter = stackalloc char[1];
@@ -53,7 +53,7 @@ namespace wan24.Core
             {
                 // /c/... or \c\... or /c:/... or \c:\... or /c\... or \c/... or \c:/... or /c:\... -> C...
 #if NO_UNSAFE
-                using RentedArrayRefStruct<char> buffer = new(len: 1, clean: false);
+                using RentedMemoryRef<char> buffer = new(len: 1, clean: false);
                 Span<char> driveLetter = buffer.Span;
 #else
                 Span<char> driveLetter = stackalloc char[1];

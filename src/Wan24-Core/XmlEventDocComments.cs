@@ -24,7 +24,7 @@ namespace wan24.Core
             Type = type;
             EventInfo = eventInfo;
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(eventInfo)}']/summary");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(eventInfo)}']/summary")?.Trim();
         }
 
         /// <summary>

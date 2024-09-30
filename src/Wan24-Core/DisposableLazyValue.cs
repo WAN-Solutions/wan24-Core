@@ -10,7 +10,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="factory">Factory</param>
-    public sealed class DisposableLazyValue<T>(in Func<T> factory) : DisposableBase() where T : IDisposable
+    public sealed class DisposableLazyValue<T>(in Func<T> factory) : SimpleDisposableBase() where T : IDisposable
     {
         /// <summary>
         /// Factory

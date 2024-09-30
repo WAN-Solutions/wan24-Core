@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -14,41 +15,21 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this tItem[] enumerable, Func<tItem, (tResult Result, bool Next)> action)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this tItem[] enumerable, Func<tItem, ExecuteResult<tResult>> action, int offset = 0, int? length = null)
         {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
+            ExecuteResult<tResult> result;
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
             {
-                (result, next) = action(enumerable[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this tItem[] enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -60,130 +41,18 @@ namespace wan24.Core
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
         /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this Memory<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IEnumerable<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action)
         {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = action(enumerable.Span[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this Memory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = await action(enumerable.Span[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ReadOnlyMemory<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = action(enumerable.Span[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this ReadOnlyMemory<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = await action(enumerable.Span[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IEnumerable<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            foreach(tItem item in enumerable)
-            {
-                (result, next) = action(item);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this IEnumerable<tItem> enumerable, 
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action, 
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
+            ExecuteResult<tResult> result;
             foreach (tItem item in enumerable)
             {
-                (result, next) = await action(item, cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
+                result = action(item);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
 
@@ -194,201 +63,101 @@ namespace wan24.Core
         /// <typeparam name="tResult">Result type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this IAsyncEnumerable<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this List<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action, int offset = 0, int? length = null)
+        {
+            ExecuteResult<tResult> result;
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
+            {
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
+            }
+        }
+
+        /// <summary>
+        /// Execute an action for all items
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <typeparam name="tResult">Result type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IList<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action, int offset = 0, int? length = null)
+        {
+            ExecuteResult<tResult> result;
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
+            {
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
+            }
+        }
+
+        /// <summary>
+        /// Execute an action for all items
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <typeparam name="tResult">Result type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this FrozenSet<tItem> enumerable, Func<tItem, ExecuteResult<tResult>> action, int offset = 0, int? length = null)
+        {
+            ExecuteResult<tResult> result;
+            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
+            {
+                result = action(enumerable.Items[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
+            }
+        }
+
+        /// <summary>
+        /// Execute an action for all items
+        /// </summary>
+        /// <typeparam name="tItem">Item type</typeparam>
+        /// <typeparam name="tResult">Result type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="action">Action</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
+        /// <returns>Result</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(
+            this ImmutableArray<tItem> enumerable, 
+            Func<tItem, ExecuteResult<tResult>> action, 
+            int offset = 0, 
+            int? length = null
             )
         {
-            bool next;
-            tResult result;
-            await foreach (tItem item in enumerable.DynamicContext().WithCancellation(cancellationToken))
+            ExecuteResult<tResult> result;
+            for (int i = offset, len = length ?? enumerable.Length; i < len; i++)
             {
-                (result, next) = await action(item, cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this List<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = action(enumerable[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this List<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this IList<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = action(enumerable[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this IList<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this FrozenSet<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = action(enumerable.Items[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this FrozenSet<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Count; i < len; i++)
-            {
-                (result, next) = await action(enumerable.Items[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <returns>Result</returns>
-        public static IEnumerable<tResult> ExecuteForAll<tItem, tResult>(this ImmutableArray<tItem> enumerable, Func<tItem, (tResult Result, bool Next)> action)
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = action(enumerable[i]);
-                if (!next) yield break;
-                yield return result;
-            }
-        }
-
-        /// <summary>
-        /// Execute an action for all items
-        /// </summary>
-        /// <typeparam name="tItem">Item type</typeparam>
-        /// <typeparam name="tResult">Result type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="action">Action</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Result</returns>
-        public static async IAsyncEnumerable<tResult> ExecuteForAllAsync<tItem, tResult>(
-            this ImmutableArray<tItem> enumerable,
-            Func<tItem, CancellationToken, Task<(tResult Result, bool Next)>> action,
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
-        {
-            bool next;
-            tResult result;
-            for (int i = 0, len = enumerable.Length; i < len; i++)
-            {
-                (result, next) = await action(enumerable[i], cancellationToken).DynamicContext();
-                if (!next) yield break;
-                yield return result;
+                result = action(enumerable[i]);
+                if (!result.Next) yield break;
+                if (result) yield return result.Result;
             }
         }
     }

@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <param name="targetLength">Original target stream length from the current backup offset</param>
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <returns>Record or <see langword="null"/> on EOF</returns>
-        public static BackupRecordBase? ReadBackupRecordForward(in Stream backup, in long targetLength, in RentedArray<byte>? buffer = null)
+        public static BackupRecordBase? ReadBackupRecordForward(in Stream backup, in long targetLength, in RentedMemory<byte>? buffer = null)
         {
             if (Debug) Logging.WriteDebug($"Reading next ACID record from offset {backup.Position} (original target stream length {targetLength} byte)");
             if (backup.Position < sizeof(long)) throw new ArgumentException("Invalid offset", nameof(backup));
@@ -21,8 +21,8 @@ namespace wan24.Core
             long offset = backup.Position;
             if (ReadRecordType(backup, allowEof: true) is not IoTypes type) return null;
             if (Trace) Logging.WriteTrace($"Going to read ACID record {type}");
-            using RentedArray<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
-            RentedArray<byte> data = buffer ?? serializerBuffer!;
+            using RentedMemory<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
+            RentedMemory<byte> data = buffer ?? serializerBuffer!.Value;
             switch (type)
             {
                 case IoTypes.Write:
@@ -76,7 +76,7 @@ namespace wan24.Core
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Record or <see langword="null"/> on EOF</returns>
-        public static async Task<BackupRecordBase?> ReadBackupRecordForwardAsync(Stream backup, long targetLength, RentedArray<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task<BackupRecordBase?> ReadBackupRecordForwardAsync(Stream backup, long targetLength, RentedMemory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
             if (Debug) Logging.WriteDebug($"Reading next ACID record from offset {backup.Position} (original target stream length {targetLength} byte)");
             if (backup.Position < sizeof(long)) throw new ArgumentException("Invalid offset", nameof(backup));
@@ -85,8 +85,8 @@ namespace wan24.Core
             long offset = backup.Position;
             if (ReadRecordType(backup, allowEof: true) is not IoTypes type) return null;
             if (Trace) Logging.WriteTrace($"Going to read ACID record {type}");
-            using RentedArray<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
-            RentedArray<byte> data = buffer ?? serializerBuffer!;
+            using RentedMemory<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
+            RentedMemory<byte> data = buffer ?? serializerBuffer!.Value;
             switch (type)
             {
                 case IoTypes.Write:
@@ -138,7 +138,7 @@ namespace wan24.Core
         /// <param name="backup">Backup stream</param>
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <returns>Record or <see langword="null"/> on EOF</returns>
-        public static BackupRecordBase? ReadBackupRecordBackward(in Stream backup, in RentedArray<byte>? buffer = null)
+        public static BackupRecordBase? ReadBackupRecordBackward(in Stream backup, in RentedMemory<byte>? buffer = null)
         {
             ValidateSerializationBuffer(buffer);
             long offset = backup.Position;
@@ -150,8 +150,8 @@ namespace wan24.Core
             backup.Position = offset;
             if (ReadRecordType(backup, allowEof: false) is not IoTypes type) throw new IOException("Failed to read the record type");
             if (Trace) Logging.WriteTrace($"Going to read ACID record {type}");
-            using RentedArray<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
-            RentedArray<byte> data = buffer ?? serializerBuffer!;
+            using RentedMemory<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
+            RentedMemory<byte> data = buffer ?? serializerBuffer!.Value;
             switch (type)
             {
                 case IoTypes.Write:
@@ -205,7 +205,7 @@ namespace wan24.Core
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Record or <see langword="null"/> on EOF</returns>
-        public static async Task<BackupRecordBase?> ReadBackupRecordBackwardAsync(Stream backup, RentedArray<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task<BackupRecordBase?> ReadBackupRecordBackwardAsync(Stream backup, RentedMemory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
             ValidateSerializationBuffer(buffer);
             long offset = backup.Position;
@@ -217,8 +217,8 @@ namespace wan24.Core
             backup.Position = offset;
             if (ReadRecordType(backup, allowEof: false) is not IoTypes type) throw new IOException("Failed to read the record type");
             if (Trace) Logging.WriteTrace($"Going to read ACID record {type}");
-            using RentedArray<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
-            RentedArray<byte> data = buffer ?? serializerBuffer!;
+            using RentedMemory<byte>? serializerBuffer = buffer is null ? new(len: sizeof(long), clean: false) : null;
+            RentedMemory<byte> data = buffer ?? serializerBuffer!.Value;
             switch (type)
             {
                 case IoTypes.Write:

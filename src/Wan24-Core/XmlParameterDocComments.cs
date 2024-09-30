@@ -24,7 +24,7 @@ namespace wan24.Core
             Method = method;
             Parameter = parameter;
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(method.Method)}']/param[@name='{parameter.Name}']");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(method.Method)}']/param[@name='{parameter.Name}']")?.Trim();
         }
 
         /// <summary>

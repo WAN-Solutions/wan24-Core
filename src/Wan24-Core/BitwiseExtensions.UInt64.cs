@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -15,6 +16,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong RotateLeft(this ulong value, in int bits)
         {
             if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
@@ -32,6 +37,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong RotateRight(this ulong value, in int bits)
         {
             if (bits < 0 || bits > 64) throw new ArgumentOutOfRangeException(nameof(bits));
@@ -49,6 +58,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong Or(this ulong value, in ulong other) => value | other;
 
         /// <summary>
@@ -57,6 +70,10 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong And(this ulong value, in ulong other) => value & other;
 
         /// <summary>
@@ -66,6 +83,9 @@ namespace wan24.Core
         /// <param name="other">Other value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong Xor(this ulong value, in ulong other) => value ^ other;
 
         /// <summary>
@@ -75,6 +95,9 @@ namespace wan24.Core
         /// <param name="bits">Bits</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong ShiftLeft(this ulong value, in int bits) => value << bits;
 
         /// <summary>
@@ -93,6 +116,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Has the flags?</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static bool HasFlags(this ulong value, in ulong flags) => (value & flags) == flags;
 
         /// <summary>
@@ -102,6 +128,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong AddFlags(this ulong value, in ulong flags) => value | flags;
 
         /// <summary>
@@ -111,6 +140,9 @@ namespace wan24.Core
         /// <param name="flags">Flags</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ulong RemoveFlags(this ulong value, in ulong flags) => value & ~flags;
 
         /// <summary>
@@ -119,6 +151,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static sbyte ToSByte(this ulong value) => (sbyte)value;
 
         /// <summary>
@@ -127,6 +162,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte ToByte(this ulong value) => (byte)value;
 
         /// <summary>
@@ -135,6 +173,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static short ToShort(this ulong value) => (short)value;
 
         /// <summary>
@@ -143,6 +184,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static ushort ToUShort(this ulong value) => (ushort)value;
 
         /// <summary>
@@ -151,6 +195,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static int ToInt(this ulong value) => (int)value;
 
         /// <summary>
@@ -159,6 +206,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static uint ToUInt(this ulong value) => (uint)value;
 
         /// <summary>
@@ -167,6 +217,9 @@ namespace wan24.Core
         /// <param name="value">Value</param>
         /// <returns>Value</returns>
         [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static long ToLong(this ulong value) => (long)value;
     }
 }

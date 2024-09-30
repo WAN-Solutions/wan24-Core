@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -60,7 +60,7 @@ namespace wan24.Core
         public virtual string? HtmlBody { get; }
 
         /// <inheritdoc/>
-        public virtual ReadOnlyCollection<IEmailAttachment> Attachments => IfUndisposed(() => _Attachments.AsReadOnly());
+        public virtual ImmutableArray<IEmailAttachment> Attachments => IfUndisposed(() => _Attachments.AsReadOnly());
 
         /// <inheritdoc/>
         public virtual IEmail CreateEmail(string fromEmail, string toEmail, Dictionary<string, string>? parserData = null, params IEmailAttachment[] attachments)

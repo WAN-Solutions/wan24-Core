@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -110,7 +111,7 @@ namespace wan24.Core
                 if (temp.Length > 0) temp = [.. temp.AsSpan(1)];
                 ca = new(temp);
             }
-            ReadOnlyCollection<string> values;
+            ImmutableArray<string> values;
             string typeName,
                 propertyName;
             Type? type,
@@ -164,8 +165,12 @@ namespace wan24.Core
                     // Array of JSON encoded items
                     values = ca.All(key);
                     et = prop.PropertyType.GetElementType()!;
-                    arr = Array.CreateInstance(et, values.Count);
-                    for (int i = 0, len = values.Count; i < len; arr.SetValue(JsonHelper.DecodeObject(et, JsonHelper.MayBeJson(values[i]) ? values[i] : JsonHelper.Encode(values[i])), i), i++) ;
+                    arr = Array.CreateInstance(et, values.Length);
+                    for (
+                        int i = 0, len = values.Length; 
+                        i < len; 
+                        arr.SetValue(JsonHelper.DecodeObject(et, JsonHelper.MayBeJson(values[i]) ? values[i] : JsonHelper.Encode(values[i])), i), i++
+                        ) ;
                     value = arr;
                 }
                 else

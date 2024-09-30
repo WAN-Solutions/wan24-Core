@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Stream chunk enumerator
         /// </summary>
-        internal sealed class StreamChunkEnumerator : DisposableBase, IEnumerable<StreamBase>, IEnumerator<StreamBase>
+        internal sealed class StreamChunkEnumerator : BasicDisposableBase, IEnumerable<StreamBase>, IEnumerator<StreamBase>
         {
             /// <summary>
             /// Stream
@@ -48,7 +48,7 @@ namespace wan24.Core
             /// </summary>
             /// <param name="stream">Stream</param>
             /// <param name="chunkSize">Chunk size in bytes</param>
-            internal StreamChunkEnumerator(in Stream stream, in long chunkSize) : base(asyncDisposing: false)
+            internal StreamChunkEnumerator(in Stream stream, in long chunkSize) : base()
             {
                 stream.Position = 0;
                 Stream = stream;

@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface for a throttle
     /// </summary>
-    public interface IThrottle : IWillDispose, IStatusProvider
+    public interface IThrottle : IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider
     {
         /// <summary>
         /// GUID

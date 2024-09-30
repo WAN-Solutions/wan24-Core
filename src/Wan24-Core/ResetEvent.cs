@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Reset event
     /// </summary>
-    public sealed class ResetEvent : DisposableBase
+    public sealed class ResetEvent : BasicAllDisposableBase
     {
         /// <summary>
         /// Thread synchronization object

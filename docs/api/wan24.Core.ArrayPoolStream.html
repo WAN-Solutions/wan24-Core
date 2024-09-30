@@ -1,0 +1,2947 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class ArrayPoolStream | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class ArrayPoolStream | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.ArrayPoolStream">
+
+
+
+  <h1 id="wan24_Core_ArrayPoolStream" data-uid="wan24.Core.ArrayPoolStream" class="text-break">Class ArrayPoolStream</h1>
+  <div class="markdown level0 summary"><p>Array pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject">MarshalByRefObject</a></div>
+    <div class="level2"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></div>
+    <div class="level3"><a class="xref" href="wan24.Core.StreamBase.html">StreamBase</a></div>
+    <div class="level4"><span class="xref">ArrayPoolStream</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
+    <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_SyncObject">StreamBase.SyncObject</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_StackInfo">StreamBase.StackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_CreateStackInfo">StreamBase.CreateStackInfo</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Name">StreamBase.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsClosed">StreamBase.IsClosed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposed">StreamBase.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IsDisposing">StreamBase.IsDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeAsync">StreamBase.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DoClose">StreamBase.DoClose()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureUndisposed_System_Boolean__System_Boolean__">StreamBase.EnsureUndisposed(in bool, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1___0__System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(in T, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed_System_Action__System_Boolean__">StreamBase.IfUndisposed(in Action, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposed__1_System_Func___0___System_Boolean__">StreamBase.IfUndisposed&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_IfUndisposedNullable__1_System_Func___0___System_Boolean__">StreamBase.IfUndisposedNullable&lt;T&gt;(in Func&lt;T&gt;, in bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureSeekable">StreamBase.EnsureSeekable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureWritable">StreamBase.EnsureWritable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_EnsureReadable">StreamBase.EnsureReadable()</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposing">StreamBase.OnDisposing</a>
+    </div>
+    <div>
+      <a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_OnDisposed">StreamBase.OnDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.null">Stream.Null</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.beginread">Stream.BeginRead(byte[], int, int, AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.beginwrite">Stream.BeginWrite(byte[], int, int, AsyncCallback, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copyto#system-io-stream-copyto(system-io-stream)">Stream.CopyTo(Stream)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copyto#system-io-stream-copyto(system-io-stream-system-int32)">Stream.CopyTo(Stream, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream)">Stream.CopyToAsync(Stream)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream-system-int32)">Stream.CopyToAsync(Stream, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream-system-int32-system-threading-cancellationtoken)">Stream.CopyToAsync(Stream, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.copytoasync#system-io-stream-copytoasync(system-io-stream-system-threading-cancellationtoken)">Stream.CopyToAsync(Stream, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.createwaithandle">Stream.CreateWaitHandle()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.dispose#system-io-stream-dispose">Stream.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.endread">Stream.EndRead(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.endwrite">Stream.EndWrite(IAsyncResult)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.flushasync#system-io-stream-flushasync">Stream.FlushAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.objectinvariant">Stream.ObjectInvariant()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readasync#system-io-stream-readasync(system-byte()-system-int32-system-int32)">Stream.ReadAsync(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readatleast">Stream.ReadAtLeast(Span&lt;byte&gt;, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readatleastasync">Stream.ReadAtLeastAsync(Memory&lt;byte&gt;, int, bool, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readexactly#system-io-stream-readexactly(system-byte()-system-int32-system-int32)">Stream.ReadExactly(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readexactly#system-io-stream-readexactly(system-span((system-byte)))">Stream.ReadExactly(Span&lt;byte&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readexactlyasync#system-io-stream-readexactlyasync(system-byte()-system-int32-system-int32-system-threading-cancellationtoken)">Stream.ReadExactlyAsync(byte[], int, int, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readexactlyasync#system-io-stream-readexactlyasync(system-memory((system-byte))-system-threading-cancellationtoken)">Stream.ReadExactlyAsync(Memory&lt;byte&gt;, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.synchronized">Stream.Synchronized(Stream)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.validatebufferarguments">Stream.ValidateBufferArguments(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.validatecopytoarguments">Stream.ValidateCopyToArguments(Stream, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writeasync#system-io-stream-writeasync(system-byte()-system-int32-system-int32)">Stream.WriteAsync(byte[], int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.cantimeout">Stream.CanTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readtimeout">Stream.ReadTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writetimeout">Stream.WriteTimeout</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice">MarshalByRefObject.GetLifetimeService()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice">MarshalByRefObject.InitializeLifetimeService()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.memberwiseclone">MarshalByRefObject.MemberwiseClone(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_ArrayPoolStream_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ArrayPoolStream : StreamBase, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__ctor_System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.%23ctor(System.Buffers.ArrayPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L69">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream__ctor_" data-uid="wan24.Core.ArrayPoolStream.#ctor*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream__ctor_System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.ArrayPoolStream.#ctor(System.Buffers.ArrayPool{System.Byte}@,System.Nullable{System.Int32}@)">ArrayPoolStream(in ArrayPool&lt;byte&gt;?, in int?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayPoolStream(in ArrayPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__ctor_System_Byte____System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.%23ctor(System.Byte%5B%5D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L86">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream__ctor_" data-uid="wan24.Core.ArrayPoolStream.#ctor*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream__ctor_System_Byte____System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.ArrayPoolStream.#ctor(System.Byte[]@,System.Buffers.ArrayPool{System.Byte}@,System.Nullable{System.Int32}@)">ArrayPoolStream(in byte[], in ArrayPool&lt;byte&gt;?, in int?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayPoolStream(in byte[] data, in ArrayPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Initial data (will be copied; stream is writable; initial position will be <code>0</code>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__ctor_System_ReadOnlyMemory_System_Byte___System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.%23ctor(System.ReadOnlyMemory%7BSystem.Byte%7D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L110">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream__ctor_" data-uid="wan24.Core.ArrayPoolStream.#ctor*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream__ctor_System_ReadOnlyMemory_System_Byte___System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.ArrayPoolStream.#ctor(System.ReadOnlyMemory{System.Byte}@,System.Buffers.ArrayPool{System.Byte}@,System.Nullable{System.Int32}@)">ArrayPoolStream(in ReadOnlyMemory&lt;byte&gt;, in ArrayPool&lt;byte&gt;?, in int?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayPoolStream(in ReadOnlyMemory&lt;byte&gt; data, in ArrayPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Initial data (will be copied; stream is writable; initial position will be <code>0</code>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__ctor_System_ReadOnlySpan_System_Byte___System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.%23ctor(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Buffers.ArrayPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L98">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream__ctor_" data-uid="wan24.Core.ArrayPoolStream.#ctor*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream__ctor_System_ReadOnlySpan_System_Byte___System_Buffers_ArrayPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.ArrayPoolStream.#ctor(System.ReadOnlySpan{System.Byte}@,System.Buffers.ArrayPool{System.Byte}@,System.Nullable{System.Int32}@)">ArrayPoolStream(in ReadOnlySpan&lt;byte&gt;, in ArrayPool&lt;byte&gt;?, in int?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayPoolStream(in ReadOnlySpan&lt;byte&gt; data, in ArrayPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Initial data (will be copied; stream is writable; initial position will be <code>0</code>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">bufferSize</span></td>
+        <td><p>Buffer size in bytes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferIndex.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferIndex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L42">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferIndex" data-uid="wan24.Core.ArrayPoolStream.BufferIndex">BufferIndex</h4>
+  <div class="markdown level1 summary"><p>Buffer index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int BufferIndex</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L46">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferOffset" data-uid="wan24.Core.ArrayPoolStream.BufferOffset">BufferOffset</h4>
+  <div class="markdown level1 summary"><p>Buffer byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int BufferOffset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferSequence.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferSequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L34">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferSequence" data-uid="wan24.Core.ArrayPoolStream.BufferSequence">BufferSequence</h4>
+  <div class="markdown level1 summary"><p>Buffer sequence</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ReadOnlySequence&lt;byte&gt; BufferSequence</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.readonlysequence-1">ReadOnlySequence</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Buffers.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Buffers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L26">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_Buffers" data-uid="wan24.Core.ArrayPoolStream.Buffers">Buffers</h4>
+  <div class="markdown level1 summary"><p>Buffers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;byte[]&gt; Buffers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_HasUpdates.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.HasUpdates%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L38">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_HasUpdates" data-uid="wan24.Core.ArrayPoolStream.HasUpdates">HasUpdates</h4>
+  <div class="markdown level1 summary"><p>If having updates, and the <a class="xref" href="wan24.Core.ArrayPoolStream.html#wan24_Core_ArrayPoolStream_BufferSequence">BufferSequence</a> is invalid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool HasUpdates</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_LastBufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.LastBufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L50">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_LastBufferOffset" data-uid="wan24.Core.ArrayPoolStream.LastBufferOffset">LastBufferOffset</h4>
+  <div class="markdown level1 summary"><p>Last buffer byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int LastBufferOffset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Pool.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Pool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L30">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_Pool" data-uid="wan24.Core.ArrayPoolStream.Pool">Pool</h4>
+  <div class="markdown level1 summary"><p>Pool</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ArrayPool&lt;byte&gt; Pool</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_StaticSyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.StaticSyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L21">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream_StaticSyncObject" data-uid="wan24.Core.ArrayPoolStream.StaticSyncObject">StaticSyncObject</h4>
+  <div class="markdown level1 summary"><p>An object for static thread locking</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static readonly object StaticSyncObject</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__BufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream._BufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L54">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream__BufferSize" data-uid="wan24.Core.ArrayPoolStream._BufferSize">_BufferSize</h4>
+  <div class="markdown level1 summary"><p>Buffer size in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int _BufferSize</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__Length.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream._Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L58">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream__Length" data-uid="wan24.Core.ArrayPoolStream._Length">_Length</h4>
+  <div class="markdown level1 summary"><p>Length in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int _Length</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream__Position.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream._Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L62">View Source</a>
+  </span>
+  <h4 id="wan24_Core_ArrayPoolStream__Position" data-uid="wan24.Core.ArrayPoolStream._Position">_Position</h4>
+  <div class="markdown level1 summary"><p>Byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int _Position</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferCount.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L151">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_BufferCount_" data-uid="wan24.Core.ArrayPoolStream.BufferCount*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferCount" data-uid="wan24.Core.ArrayPoolStream.BufferCount">BufferCount</h4>
+  <div class="markdown level1 summary"><p>Current number of buffers</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BufferCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferLength.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferLength%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L146">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_BufferLength_" data-uid="wan24.Core.ArrayPoolStream.BufferLength*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferLength" data-uid="wan24.Core.ArrayPoolStream.BufferLength">BufferLength</h4>
+  <div class="markdown level1 summary"><p>Total buffer length in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BufferLength { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_BufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.BufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L132">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_BufferSize_" data-uid="wan24.Core.ArrayPoolStream.BufferSize*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_BufferSize" data-uid="wan24.Core.ArrayPoolStream.BufferSize">BufferSize</h4>
+  <div class="markdown level1 summary"><p>Buffer size in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BufferSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.CanRead%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L188">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_CanRead_" data-uid="wan24.Core.ArrayPoolStream.CanRead*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_CanRead" data-uid="wan24.Core.ArrayPoolStream.CanRead">CanRead</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets a value indicating whether the current stream supports reading.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanRead { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the stream supports reading; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.canread">Stream.CanRead</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.CanSeek%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L191">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_CanSeek_" data-uid="wan24.Core.ArrayPoolStream.CanSeek*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_CanSeek" data-uid="wan24.Core.ArrayPoolStream.CanSeek">CanSeek</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets a value indicating whether the current stream supports seeking.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanSeek { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the stream supports seeking; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.canseek">Stream.CanSeek</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L194">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_CanWrite_" data-uid="wan24.Core.ArrayPoolStream.CanWrite*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_CanWrite" data-uid="wan24.Core.ArrayPoolStream.CanWrite">CanWrite</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets a value indicating whether the current stream supports writing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool CanWrite { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the stream supports writing; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.canwrite">Stream.CanWrite</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_CleanReturned.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.CleanReturned%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L156">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_CleanReturned_" data-uid="wan24.Core.ArrayPoolStream.CleanReturned*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_CleanReturned" data-uid="wan24.Core.ArrayPoolStream.CleanReturned">CleanReturned</h4>
+  <div class="markdown level1 summary"><p>Clean returned buffers?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CleanReturned { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_DefaultBufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.DefaultBufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L119">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_DefaultBufferSize_" data-uid="wan24.Core.ArrayPoolStream.DefaultBufferSize*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_DefaultBufferSize" data-uid="wan24.Core.ArrayPoolStream.DefaultBufferSize">DefaultBufferSize</h4>
+  <div class="markdown level1 summary"><p>Default buffer size in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int DefaultBufferSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Length.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L197">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Length_" data-uid="wan24.Core.ArrayPoolStream.Length*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Length" data-uid="wan24.Core.ArrayPoolStream.Length">Length</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets the length in bytes of the stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Length { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><p>A long value representing the length of the stream in bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.length">Stream.Length</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>A class derived from <code>Stream</code> does not support seeking and the length is unknown.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Position.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L200">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Position_" data-uid="wan24.Core.ArrayPoolStream.Position*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Position" data-uid="wan24.Core.ArrayPoolStream.Position">Position</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, gets or sets the position within the current stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><p>The current position within the stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.position">Stream.Position</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support seeking.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_SaveOnClose.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.SaveOnClose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L161">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_SaveOnClose_" data-uid="wan24.Core.ArrayPoolStream.SaveOnClose*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_SaveOnClose" data-uid="wan24.Core.ArrayPoolStream.SaveOnClose">SaveOnClose</h4>
+  <div class="markdown level1 summary"><p>Save the data on close?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SaveOnClose { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_SavedData.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.SavedData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L166">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_SavedData_" data-uid="wan24.Core.ArrayPoolStream.SavedData*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_SavedData" data-uid="wan24.Core.ArrayPoolStream.SavedData">SavedData</h4>
+  <div class="markdown level1 summary"><p>Saved data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[]? SavedData { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_State.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L169">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_State_" data-uid="wan24.Core.ArrayPoolStream.State*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_State" data-uid="wan24.Core.ArrayPoolStream.State">State</h4>
+  <div class="markdown level1 summary"><p>Status information</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IEnumerable&lt;Status&gt; State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.Status.html">Status</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Close.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Close%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L403">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Close_" data-uid="wan24.Core.ArrayPoolStream.Close*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Close" data-uid="wan24.Core.ArrayPoolStream.Close">Close()</h4>
+  <div class="markdown level1 summary"><p>Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream. Instead of calling this method, ensure that the stream is properly disposed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Close()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Close">StreamBase.Close()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L411">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Dispose_" data-uid="wan24.Core.ArrayPoolStream.Dispose*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Dispose_System_Boolean_" data-uid="wan24.Core.ArrayPoolStream.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> and optionally releases the managed resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> to release both managed and unmanaged resources; <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_Dispose_System_Boolean_">StreamBase.Dispose(bool)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L423">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_DisposeCore_" data-uid="wan24.Core.ArrayPoolStream.DisposeCore*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_DisposeCore" data-uid="wan24.Core.ArrayPoolStream.DisposeCore">DisposeCore()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task DisposeCore()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.StreamBase.html#wan24_Core_StreamBase_DisposeCore">StreamBase.DisposeCore()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Flush.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Flush%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L258">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Flush_" data-uid="wan24.Core.ArrayPoolStream.Flush*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Flush" data-uid="wan24.Core.ArrayPoolStream.Flush">Flush()</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, clears all buffers for this stream and causes any buffered data to be written to the underlying device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Flush()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.flush">Stream.Flush()</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_FlushAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.FlushAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L261">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_FlushAsync_" data-uid="wan24.Core.ArrayPoolStream.FlushAsync*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_FlushAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.ArrayPoolStream.FlushAsync(System.Threading.CancellationToken)">FlushAsync(CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously clears all buffers for this stream, causes any buffered data to be written to the underlying device, and monitors cancellation requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task FlushAsync(CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>A task that represents the asynchronous flush operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.flushasync#system-io-stream-flushasync(system-threading-cancellationtoken)">Stream.FlushAsync(CancellationToken)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The stream has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L269">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Read_" data-uid="wan24.Core.ArrayPoolStream.Read*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.ArrayPoolStream.Read(System.Byte[],System.Int32,System.Int32)">Read(byte[], int, int)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <code class="paramref">offset</code> and (<code class="paramref">offset</code> + <code class="paramref">count</code> - 1) replaced by the bytes read from the current source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based byte offset in <code class="paramref">buffer</code> at which to begin storing the data read from the current stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The maximum number of bytes to be read from the current stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if <code class="paramref">count</code> is 0 or the end of the stream has been reached.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.read#system-io-stream-read(system-byte()-system-int32-system-int32)">Stream.Read(byte[], int, int)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>The sum of <code class="paramref">offset</code> and <code class="paramref">count</code> is larger than the buffer length.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">buffer</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">offset</code> or <code class="paramref">count</code> is negative.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support reading.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Read_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Read(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L272">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Read_" data-uid="wan24.Core.ArrayPoolStream.Read*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Read_System_Span_System_Byte__" data-uid="wan24.Core.ArrayPoolStream.Read(System.Span{System.Byte})">Read(Span&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Read(Span&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>A region of memory. When this method returns, the contents of this region are replaced by the bytes read from the current source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>The total number of bytes read into the buffer. This can be less than the size of the buffer if that many bytes are not currently available, or zero (0) if the buffer's length is zero or the end of the stream has been reached.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.read#system-io-stream-read(system-span((system-byte)))">Stream.Read(Span&lt;byte&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L331">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_ReadAsync_" data-uid="wan24.Core.ArrayPoolStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.ArrayPoolStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">ReadAsync(byte[], int, int, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task&lt;int&gt; ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The buffer to write the data into.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The byte offset in <code class="paramref">buffer</code> at which to begin writing data from the stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The maximum number of bytes to read.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>A task that represents the asynchronous read operation. The value of the <code class="paramref">TResult</code> parameter contains the total number of bytes read into the buffer. The result value can be less than the number of bytes requested if the number of bytes currently available is less than the requested number, or it can be 0 (zero) if <code class="paramref">count</code> is 0 or if the end of the stream has been reached.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readasync#system-io-stream-readasync(system-byte()-system-int32-system-int32-system-threading-cancellationtoken)">Stream.ReadAsync(byte[], int, int, CancellationToken)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">buffer</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">offset</code> or <code class="paramref">count</code> is negative.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>The sum of <code class="paramref">offset</code> and <code class="paramref">count</code> is larger than the buffer length.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support reading.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The stream has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The stream is currently in use by a previous read operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.ReadAsync(System.Memory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L335">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_ReadAsync_" data-uid="wan24.Core.ArrayPoolStream.ReadAsync*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.ArrayPoolStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">ReadAsync(Memory&lt;byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ValueTask&lt;int&gt; ReadAsync(Memory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.memory-1">Memory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The region of memory to write the data into.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>A task that represents the asynchronous read operation. The value of its <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1.result">Result</a> property contains the total number of bytes read into the buffer. The result value can be less than the length of the buffer if that many bytes are not currently available, or it can be 0 (zero) if the length of the buffer is 0 or if the end of the stream has been reached.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readasync#system-io-stream-readasync(system-memory((system-byte))-system-threading-cancellationtoken)">Stream.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.ReadByte%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L319">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_ReadByte_" data-uid="wan24.Core.ArrayPoolStream.ReadByte*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_ReadByte" data-uid="wan24.Core.ArrayPoolStream.ReadByte">ReadByte()</h4>
+  <div class="markdown level1 summary"><p>Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int ReadByte()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>The unsigned byte cast to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>, or -1 if at the end of the stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.readbyte">Stream.ReadByte()</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support reading.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Seek_System_Int64_System_IO_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Seek(System.Int64%2CSystem.IO.SeekOrigin)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L343">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Seek_" data-uid="wan24.Core.ArrayPoolStream.Seek*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Seek_System_Int64_System_IO_SeekOrigin_" data-uid="wan24.Core.ArrayPoolStream.Seek(System.Int64,System.IO.SeekOrigin)">Seek(long, SeekOrigin)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, sets the position within the current stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long Seek(long offset, SeekOrigin origin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>A byte offset relative to the <code class="paramref">origin</code> parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.seekorigin">SeekOrigin</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td><p>A value of type <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.seekorigin">SeekOrigin</a> indicating the reference point used to obtain the new position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><p>The new position within the current stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.seek">Stream.Seek(long, SeekOrigin)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support seeking, such as if the stream is constructed from a pipe or console output.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_SetLength_System_Int32__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.SetLength(System.Int32%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L474">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_SetLength_" data-uid="wan24.Core.ArrayPoolStream.SetLength*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_SetLength_System_Int32__System_Boolean__" data-uid="wan24.Core.ArrayPoolStream.SetLength(System.Int32@,System.Boolean@)">SetLength(in int, in bool)</h4>
+  <div class="markdown level1 summary"><p>Set a new length</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SetLength(in int value, in bool clear)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>New length in bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">clear</span></td>
+        <td><p>Clear new buffers?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.SetLength(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L350">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_SetLength_" data-uid="wan24.Core.ArrayPoolStream.SetLength*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_SetLength_System_Int64_" data-uid="wan24.Core.ArrayPoolStream.SetLength(System.Int64)">SetLength(long)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, sets the length of the current stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void SetLength(long value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The desired length of the current stream in bytes.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.setlength">Stream.SetLength(long)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L237">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_ToArray_" data-uid="wan24.Core.ArrayPoolStream.ToArray*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_ToArray" data-uid="wan24.Core.ArrayPoolStream.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>Get the written data as a new array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] ToArray()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_ToReadOnlySequence.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.ToReadOnlySequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L250">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_ToReadOnlySequence_" data-uid="wan24.Core.ArrayPoolStream.ToReadOnlySequence*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_ToReadOnlySequence" data-uid="wan24.Core.ArrayPoolStream.ToReadOnlySequence">ToReadOnlySequence()</h4>
+  <div class="markdown level1 summary"><p>Get the written data as read-only sequence</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySequence&lt;byte&gt; ToReadOnlySequence()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.readonlysequence-1">ReadOnlySequence</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><p>Sequence</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterReading.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterReading%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L437">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterReading_" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterReading*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterReading" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterReading">UpdateBufferOffsetAfterReading()</h4>
+  <div class="markdown level1 summary"><p>Update the buffer offset after reading</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateBufferOffsetAfterReading()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterWriting.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterWriting%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L447">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterWriting_" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterWriting*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_UpdateBufferOffsetAfterWriting" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferOffsetAfterWriting">UpdateBufferOffsetAfterWriting()</h4>
+  <div class="markdown level1 summary"><p>Update the buffer offset after writing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateBufferOffsetAfterWriting()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_UpdateBufferSequence.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.UpdateBufferSequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L556">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_UpdateBufferSequence_" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferSequence*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_UpdateBufferSequence" data-uid="wan24.Core.ArrayPoolStream.UpdateBufferSequence">UpdateBufferSequence()</h4>
+  <div class="markdown level1 summary"><p>Update the <a class="xref" href="wan24.Core.ArrayPoolStream.html#wan24_Core_ArrayPoolStream_BufferSequence">BufferSequence</a> (<a class="xref" href="wan24.Core.ArrayPoolStream.html#wan24_Core_ArrayPoolStream_HasUpdates">HasUpdates</a> signals an invalid <a class="xref" href="wan24.Core.ArrayPoolStream.html#wan24_Core_ArrayPoolStream_BufferSequence">BufferSequence</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ReadOnlySequence&lt;byte&gt; UpdateBufferSequence()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.readonlysequence-1">ReadOnlySequence</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><p>Sequence</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L353">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Write_" data-uid="wan24.Core.ArrayPoolStream.Write*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.ArrayPoolStream.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(byte[] buffer, int offset, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>An array of bytes. This method copies <code class="paramref">count</code> bytes from <code class="paramref">buffer</code> to the current stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based byte offset in <code class="paramref">buffer</code> at which to begin copying bytes to the current stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of bytes to be written to the current stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.write#system-io-stream-write(system-byte()-system-int32-system-int32)">Stream.Write(byte[], int, int)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>The sum of <code class="paramref">offset</code> and <code class="paramref">count</code> is greater than the buffer length.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">buffer</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">offset</code> or <code class="paramref">count</code> is negative.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurred, such as the specified file cannot be found.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support writing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.write#system-io-stream-write(system-byte()-system-int32-system-int32)">Write(byte[], int, int)</a> was called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L356">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_Write_" data-uid="wan24.Core.ArrayPoolStream.Write*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.ArrayPoolStream.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
+  <div class="markdown level1 summary"><p>When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Write(ReadOnlySpan&lt;byte&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>A region of memory. This method copies the contents of this region to the current stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.write#system-io-stream-write(system-readonlyspan((system-byte)))">Stream.Write(ReadOnlySpan&lt;byte&gt;)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L390">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_WriteAsync_" data-uid="wan24.Core.ArrayPoolStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.ArrayPoolStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">WriteAsync(byte[], int, int, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The buffer to write data from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The zero-based byte offset in <code class="paramref">buffer</code> from which to begin copying bytes to the stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The maximum number of bytes to write.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>A task that represents the asynchronous write operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writeasync#system-io-stream-writeasync(system-byte()-system-int32-system-int32-system-threading-cancellationtoken)">Stream.WriteAsync(byte[], int, int, CancellationToken)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code class="paramref">buffer</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code class="paramref">offset</code> or <code class="paramref">count</code> is negative.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>The sum of <code class="paramref">offset</code> and <code class="paramref">count</code> is larger than the buffer length.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support writing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The stream has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The stream is currently in use by a previous write operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L394">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_WriteAsync_" data-uid="wan24.Core.ArrayPoolStream.WriteAsync*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.ArrayPoolStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ValueTask WriteAsync(ReadOnlyMemory&lt;byte&gt; buffer, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>The region of memory to write data from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to monitor for cancellation requests. The default value is <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken.none">None</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a></td>
+        <td><p>A task that represents the asynchronous write operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writeasync#system-io-stream-writeasync(system-readonlymemory((system-byte))-system-threading-cancellationtoken)">Stream.WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L379">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_WriteByte_" data-uid="wan24.Core.ArrayPoolStream.WriteByte*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_WriteByte_System_Byte_" data-uid="wan24.Core.ArrayPoolStream.WriteByte(System.Byte)">WriteByte(byte)</h4>
+  <div class="markdown level1 summary"><p>Writes a byte to the current position in the stream and advances the position within the stream by one byte.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WriteByte(byte value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The byte to write to the stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream.writebyte">Stream.WriteByte(byte)</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><p>An I/O error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The stream does not support writing, or the stream is already closed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>Methods were called after the stream was closed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_op_Implicit_wan24_Core_ArrayPoolStream___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.op_Implicit(wan24.Core.ArrayPoolStream%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L583">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_op_Implicit_" data-uid="wan24.Core.ArrayPoolStream.op_Implicit*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_op_Implicit_wan24_Core_ArrayPoolStream___System_Byte__" data-uid="wan24.Core.ArrayPoolStream.op_Implicit(wan24.Core.ArrayPoolStream@)~System.Byte[]">implicit operator byte[](in ArrayPoolStream)</h4>
+  <div class="markdown level1 summary"><p>Cast as new byte array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator byte[](in ArrayPoolStream ms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ArrayPoolStream.html">ArrayPoolStream</a></td>
+        <td><span class="parametername">ms</span></td>
+        <td><p><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ArrayPoolStream_op_Implicit_wan24_Core_ArrayPoolStream___System_Int64.md&amp;value=---%0Auid%3A%20wan24.Core.ArrayPoolStream.op_Implicit(wan24.Core.ArrayPoolStream%40)~System.Int64%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ArrayPoolStream.cs/#L590">View Source</a>
+  </span>
+  <a id="wan24_Core_ArrayPoolStream_op_Implicit_" data-uid="wan24.Core.ArrayPoolStream.op_Implicit*"></a>
+  <h4 id="wan24_Core_ArrayPoolStream_op_Implicit_wan24_Core_ArrayPoolStream___System_Int64" data-uid="wan24.Core.ArrayPoolStream.op_Implicit(wan24.Core.ArrayPoolStream@)~System.Int64">implicit operator long(in ArrayPoolStream)</h4>
+  <div class="markdown level1 summary"><p>Cast as length</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator long(in ArrayPoolStream ms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ArrayPoolStream.html">ArrayPoolStream</a></td>
+        <td><span class="parametername">ms</span></td>
+        <td><p><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.IStream.html">IStream</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_DynamicContext_System_IAsyncDisposable_">AsyncDisposableExtensions.DynamicContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_FixedContext_System_IAsyncDisposable_">AsyncDisposableExtensions.FixedContext(IAsyncDisposable)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_Chunk_System_IO_Stream_System_Int64__">StreamExtensions.Chunk(Stream, in long)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_CopyExactlyPartialTo_System_IO_Stream_System_IO_Stream__System_Int64_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_">StreamExtensions.CopyExactlyPartialTo(Stream, in Stream, long, int?, ProcessingProgress?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_CopyExactlyPartialToAsync_System_IO_Stream_System_IO_Stream_System_Int64_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_">StreamExtensions.CopyExactlyPartialToAsync(Stream, Stream, long, int?, ProcessingProgress?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_CopyPartialTo_System_IO_Stream_System_IO_Stream__System_Int64_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_">StreamExtensions.CopyPartialTo(Stream, in Stream, long, int?, ProcessingProgress?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_CopyPartialToAsync_System_IO_Stream_System_IO_Stream_System_Int64_System_Nullable_System_Int32__wan24_Core_ProcessingProgress_System_Threading_CancellationToken_">StreamExtensions.CopyPartialToAsync(Stream, Stream, long, int?, ProcessingProgress?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GenericCopyTo_System_IO_Stream_System_IO_Stream__System_Int32__wan24_Core_ProcessingProgress_">StreamExtensions.GenericCopyTo(Stream, in Stream, in int, ProcessingProgress?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GenericCopyToAsync_System_IO_Stream_System_IO_Stream_System_Int32_wan24_Core_ProcessingProgress_System_Threading_CancellationToken_">StreamExtensions.GenericCopyToAsync(Stream, Stream, int, ProcessingProgress?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GenericReadByte_System_IO_Stream_">StreamExtensions.GenericReadByte(Stream)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GenericSeek_System_IO_Stream_System_Int64__System_IO_SeekOrigin__">StreamExtensions.GenericSeek(Stream, in long, in SeekOrigin)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GenericWriteByte_System_IO_Stream_System_Byte__">StreamExtensions.GenericWriteByte(Stream, in byte)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_GetRemainingBytes_System_IO_Stream_">StreamExtensions.GetRemainingBytes(Stream)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_Read_System_IO_Stream_System_Int32__">StreamExtensions.Read(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactly_System_IO_Stream_System_Int32__">StreamExtensions.ReadExactly(Stream, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadExactlyAsync_System_IO_Stream_System_Int32_System_Threading_CancellationToken_">StreamExtensions.ReadExactlyAsync(Stream, int, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadToEnd_System_IO_Stream_System_Boolean__wan24_Core_ProcessingProgress__">StreamExtensions.ReadToEnd(Stream, in bool, in ProcessingProgress?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadToEndAsync_System_IO_Stream_System_Boolean_wan24_Core_ProcessingProgress_System_Threading_CancellationToken_">StreamExtensions.ReadToEndAsync(Stream, bool, ProcessingProgress?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadUntil_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_TimeSpan_System_Func_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_Int32_System_Boolean__">StreamExtensions.ReadUntil(Stream, Memory&lt;byte&gt;, int, TimeSpan, Func&lt;Stream, Memory&lt;byte&gt;, int, int, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadUntilAsync_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_TimeSpan_System_Func_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_Int32_System_Threading_CancellationToken_System_Boolean__System_Threading_CancellationToken_">StreamExtensions.ReadUntilAsync(Stream, Memory&lt;byte&gt;, int, TimeSpan, Func&lt;Stream, Memory&lt;byte&gt;, int, int, CancellationToken, bool&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_ReadUntilAsync_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_TimeSpan_System_Func_System_IO_Stream_System_Memory_System_Byte__System_Int32_System_Int32_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">StreamExtensions.ReadUntilAsync(Stream, Memory&lt;byte&gt;, int, TimeSpan, Func&lt;Stream, Memory&lt;byte&gt;, int, int, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteRandom_System_IO_Stream_System_Int64__">StreamExtensions.WriteRandom(Stream, in long)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteRandomAsync_System_IO_Stream_System_Int64_System_Threading_CancellationToken_">StreamExtensions.WriteRandomAsync(Stream, long, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteZero_System_IO_Stream_System_Int64__">StreamExtensions.WriteZero(Stream, in long)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StreamExtensions.html#wan24_Core_StreamExtensions_WriteZeroAsync_System_IO_Stream_System_Int64_System_Threading_CancellationToken_">StreamExtensions.WriteZeroAsync(Stream, long, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CastType__1_System_Object_">ObjectExtensions.CastType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Int32_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, int, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__3___1_System_Func___0___2___System_Collections_Generic_IEqualityComparer___2___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSkip__2___1_System_Int32__">EnumerableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSorting__3___1_System_Func___0___2___System_Boolean__System_Collections_Generic_IComparer___2___">EnumerableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithTake__2___1_System_Int32__">EnumerableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutCondition__2___1_">EnumerableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutDistinct__2___1_">EnumerableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSkip__2___1_">EnumerableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSorting__2___1_">EnumerableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__">ObjectMappingExtensions.CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Int32_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, int, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Collections_Generic_IEqualityComparer___2___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSkip__2___1_System_Int32__">QueryableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSorting__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Boolean__System_Collections_Generic_IComparer___2___">QueryableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithTake__2___1_System_Int32__">QueryableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutCondition__2___1_">QueryableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutDistinct__2___1_">QueryableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSkip__2___1_">QueryableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSorting__2___1_">QueryableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutTake__2___1_">QueryableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

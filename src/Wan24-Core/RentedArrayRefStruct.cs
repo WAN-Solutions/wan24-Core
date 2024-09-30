@@ -31,7 +31,7 @@ namespace wan24.Core
         /// <summary>
         /// Clear the rented array before returning?
         /// </summary>
-        public bool Clear = false;
+        public bool Clear = Settings.ClearBuffers;
 
         /// <summary>
         /// Constructor

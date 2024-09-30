@@ -119,6 +119,7 @@
     <div><a class="xref" href="wan24.Core.IStreamWrapper.html">IStreamWrapper</a></div>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
     <div><a class="xref" href="wan24.Core.IStatusProvider.html">IStatusProvider</a></div>
@@ -377,7 +378,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_AcidStream_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AcidStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, ITransaction where T : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class AcidStream&lt;T&gt; : WrapperStream&lt;T&gt;, IStreamWrapper, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable, IStatusProvider, ITransaction where T : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -474,7 +475,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_SerializationBuffer.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.SerializationBuffer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L12">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L11">View Source</a>
   </span>
   <h4 id="wan24_Core_AcidStream_1_SerializationBuffer" data-uid="wan24.Core.AcidStream`1.SerializationBuffer">SerializationBuffer</h4>
   <div class="markdown level1 summary"><p>Serialization buffer</p>
@@ -482,7 +483,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly RentedArray&lt;byte&gt; SerializationBuffer</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly RentedMemory&lt;byte&gt; SerializationBuffer</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -494,7 +495,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -959,7 +960,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_CommitInt.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.CommitInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L149">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L152">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_CommitInt_" data-uid="wan24.Core.AcidStream`1.CommitInt*"></a>
   <h4 id="wan24_Core_AcidStream_1_CommitInt" data-uid="wan24.Core.AcidStream`1.CommitInt">CommitInt()</h4>
@@ -975,7 +976,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_CommitIntAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.CommitIntAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L189">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_CommitIntAsync_" data-uid="wan24.Core.AcidStream`1.CommitIntAsync*"></a>
   <h4 id="wan24_Core_AcidStream_1_CommitIntAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.CommitIntAsync(System.Threading.CancellationToken)">CommitIntAsync(CancellationToken)</h4>
@@ -1024,7 +1025,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L243">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L246">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_Dispose_" data-uid="wan24.Core.AcidStream`1.Dispose*"></a>
   <h4 id="wan24_Core_AcidStream_1_Dispose_System_Boolean_" data-uid="wan24.Core.AcidStream`1.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -1060,7 +1061,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L270">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L273">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_DisposeCore_" data-uid="wan24.Core.AcidStream`1.DisposeCore*"></a>
   <h4 id="wan24_Core_AcidStream_1_DisposeCore" data-uid="wan24.Core.AcidStream`1.DisposeCore">DisposeCore()</h4>
@@ -1191,19 +1192,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InitializeBackupStream__0__System_IO_Stream__wan24_Core_RentedArray_System_Byte___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InitializeBackupStream(%600%40%2CSystem.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InitializeBackupStream__0__System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InitializeBackupStream(%600%40%2CSystem.IO.Stream%40%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_InitializeBackupStream_" data-uid="wan24.Core.AcidStream`1.InitializeBackupStream*"></a>
-  <h4 id="wan24_Core_AcidStream_1_InitializeBackupStream__0__System_IO_Stream__wan24_Core_RentedArray_System_Byte___System_Boolean__" data-uid="wan24.Core.AcidStream`1.InitializeBackupStream(`0@,System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@,System.Boolean@)">InitializeBackupStream(in T, in Stream, in RentedArray&lt;byte&gt;?, in bool)</h4>
+  <h4 id="wan24_Core_AcidStream_1_InitializeBackupStream__0__System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____System_Boolean__" data-uid="wan24.Core.AcidStream`1.InitializeBackupStream(`0@,System.IO.Stream@,System.Nullable{wan24.Core.RentedMemory{System.Byte}}@,System.Boolean@)">InitializeBackupStream(in T, in Stream, in RentedMemory&lt;byte&gt;?, in bool)</h4>
   <div class="markdown level1 summary"><p>Initialize the backup stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void InitializeBackupStream(in T target, in Stream backup, in RentedArray&lt;byte&gt;? buffer = null, in bool flush = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void InitializeBackupStream(in T target, in Stream backup, in RentedMemory&lt;byte&gt;? buffer = null, in bool flush = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1228,7 +1229,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -1243,19 +1244,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InitializeBackupStreamAsync__0_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InitializeBackupStreamAsync(%600%2CSystem.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InitializeBackupStreamAsync__0_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Boolean_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InitializeBackupStreamAsync(%600%2CSystem.IO.Stream%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%2CSystem.Boolean%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L35">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_InitializeBackupStreamAsync_" data-uid="wan24.Core.AcidStream`1.InitializeBackupStreamAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_InitializeBackupStreamAsync__0_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.InitializeBackupStreamAsync(`0,System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Boolean,System.Threading.CancellationToken)">InitializeBackupStreamAsync(T, Stream, RentedArray&lt;byte&gt;?, bool, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_InitializeBackupStreamAsync__0_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Boolean_System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.InitializeBackupStreamAsync(`0,System.IO.Stream,System.Nullable{wan24.Core.RentedMemory{System.Byte}},System.Boolean,System.Threading.CancellationToken)">InitializeBackupStreamAsync(T, Stream, RentedMemory&lt;byte&gt;?, bool, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Initialize the backup stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task InitializeBackupStreamAsync(T target, Stream backup, RentedArray&lt;byte&gt;? buffer = null, bool flush = true, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task InitializeBackupStreamAsync(T target, Stream backup, RentedMemory&lt;byte&gt;? buffer = null, bool flush = true, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1280,7 +1281,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -1316,19 +1317,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InvestigateBackup_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InvestigateBackup(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InvestigateBackup_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InvestigateBackup(System.IO.Stream%40%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L94">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L95">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_InvestigateBackup_" data-uid="wan24.Core.AcidStream`1.InvestigateBackup*"></a>
-  <h4 id="wan24_Core_AcidStream_1_InvestigateBackup_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.InvestigateBackup(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">InvestigateBackup(in Stream, in RentedArray&lt;byte&gt;?)</h4>
+  <h4 id="wan24_Core_AcidStream_1_InvestigateBackup_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____" data-uid="wan24.Core.AcidStream`1.InvestigateBackup(System.IO.Stream@,System.Nullable{wan24.Core.RentedMemory{System.Byte}}@)">InvestigateBackup(in Stream, in RentedMemory&lt;byte&gt;?)</h4>
   <div class="markdown level1 summary"><p>Investigate a backup stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static long InvestigateBackup(in Stream backup, in RentedArray&lt;byte&gt;? buffer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static long InvestigateBackup(in Stream backup, in RentedMemory&lt;byte&gt;? buffer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1347,7 +1348,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serializer buffer (8 byte required)</p>
 </td>
@@ -1372,19 +1373,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InvestigateBackupAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InvestigateBackupAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_InvestigateBackupAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.InvestigateBackupAsync(System.IO.Stream%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L141">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_InvestigateBackupAsync_" data-uid="wan24.Core.AcidStream`1.InvestigateBackupAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_InvestigateBackupAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.InvestigateBackupAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">InvestigateBackupAsync(Stream, RentedArray&lt;byte&gt;?, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_InvestigateBackupAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.InvestigateBackupAsync(System.IO.Stream,System.Nullable{wan24.Core.RentedMemory{System.Byte}},System.Threading.CancellationToken)">InvestigateBackupAsync(Stream, RentedMemory&lt;byte&gt;?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Investigate a backup stream</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;long&gt; InvestigateBackupAsync(Stream backup, RentedArray&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;long&gt; InvestigateBackupAsync(Stream backup, RentedMemory&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -1403,7 +1404,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serializer buffer (8 byte required)</p>
 </td>
@@ -2054,19 +2055,19 @@
   <div><a class="xref" href="wan24.Core.WrapperStream-1.html#wan24_Core_WrapperStream_1_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_">WrapperStream&lt;T&gt;.ReadAsync(Memory&lt;byte&gt;, CancellationToken)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordBackward_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordBackward(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordBackward_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordBackward(System.IO.Stream%40%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.Records.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadBackupRecordBackward_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackward*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordBackward_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackward(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">ReadBackupRecordBackward(in Stream, in RentedArray&lt;byte&gt;?)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordBackward_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackward(System.IO.Stream@,System.Nullable{wan24.Core.RentedMemory{System.Byte}}@)">ReadBackupRecordBackward(in Stream, in RentedMemory&lt;byte&gt;?)</h4>
   <div class="markdown level1 summary"><p>Read the previous backup record (offset will be at the end of the previous record before the red record)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static AcidStream&lt;T&gt;.BackupRecordBase? ReadBackupRecordBackward(in Stream backup, in RentedArray&lt;byte&gt;? buffer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static AcidStream&lt;T&gt;.BackupRecordBase? ReadBackupRecordBackward(in Stream backup, in RentedMemory&lt;byte&gt;? buffer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2085,7 +2086,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2110,19 +2111,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordBackwardAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordBackwardAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordBackwardAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordBackwardAsync(System.IO.Stream%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.Records.cs/#L208">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadBackupRecordBackwardAsync_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackwardAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordBackwardAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackwardAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadBackupRecordBackwardAsync(Stream, RentedArray&lt;byte&gt;?, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordBackwardAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordBackwardAsync(System.IO.Stream,System.Nullable{wan24.Core.RentedMemory{System.Byte}},System.Threading.CancellationToken)">ReadBackupRecordBackwardAsync(Stream, RentedMemory&lt;byte&gt;?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read the previous backup record (offset will be at the end of the previous record before the red record)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;AcidStream&lt;T&gt;.BackupRecordBase?&gt; ReadBackupRecordBackwardAsync(Stream backup, RentedArray&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;AcidStream&lt;T&gt;.BackupRecordBase?&gt; ReadBackupRecordBackwardAsync(Stream backup, RentedMemory&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2141,7 +2142,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2172,19 +2173,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordForward_System_IO_Stream__System_Int64__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordForward(System.IO.Stream%40%2CSystem.Int64%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordForward_System_IO_Stream__System_Int64__System_Nullable_wan24_Core_RentedMemory_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordForward(System.IO.Stream%40%2CSystem.Int64%40%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.Records.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadBackupRecordForward_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForward*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordForward_System_IO_Stream__System_Int64__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForward(System.IO.Stream@,System.Int64@,wan24.Core.RentedArray{System.Byte}@)">ReadBackupRecordForward(in Stream, in long, in RentedArray&lt;byte&gt;?)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordForward_System_IO_Stream__System_Int64__System_Nullable_wan24_Core_RentedMemory_System_Byte____" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForward(System.IO.Stream@,System.Int64@,System.Nullable{wan24.Core.RentedMemory{System.Byte}}@)">ReadBackupRecordForward(in Stream, in long, in RentedMemory&lt;byte&gt;?)</h4>
   <div class="markdown level1 summary"><p>Read the next backup record (offset will be at the beginning of the next record after the red record)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static AcidStream&lt;T&gt;.BackupRecordBase? ReadBackupRecordForward(in Stream backup, in long targetLength, in RentedArray&lt;byte&gt;? buffer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static AcidStream&lt;T&gt;.BackupRecordBase? ReadBackupRecordForward(in Stream backup, in long targetLength, in RentedMemory&lt;byte&gt;? buffer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2209,7 +2210,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2234,19 +2235,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordForwardAsync_System_IO_Stream_System_Int64_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordForwardAsync(System.IO.Stream%2CSystem.Int64%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadBackupRecordForwardAsync_System_IO_Stream_System_Int64_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadBackupRecordForwardAsync(System.IO.Stream%2CSystem.Int64%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.Records.cs/#L79">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadBackupRecordForwardAsync_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForwardAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordForwardAsync_System_IO_Stream_System_Int64_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForwardAsync(System.IO.Stream,System.Int64,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadBackupRecordForwardAsync(Stream, long, RentedArray&lt;byte&gt;?, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadBackupRecordForwardAsync_System_IO_Stream_System_Int64_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadBackupRecordForwardAsync(System.IO.Stream,System.Int64,System.Nullable{wan24.Core.RentedMemory{System.Byte}},System.Threading.CancellationToken)">ReadBackupRecordForwardAsync(Stream, long, RentedMemory&lt;byte&gt;?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read the next backup record (offset will be at the beginning of the next record after the red record)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;AcidStream&lt;T&gt;.BackupRecordBase?&gt; ReadBackupRecordForwardAsync(Stream backup, long targetLength, RentedArray&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;AcidStream&lt;T&gt;.BackupRecordBase?&gt; ReadBackupRecordForwardAsync(Stream backup, long targetLength, RentedMemory&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2271,7 +2272,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2302,19 +2303,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadLengthFromBackup_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadLengthFromBackup(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadLengthFromBackup_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadLengthFromBackup(System.IO.Stream%40%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L53">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadLengthFromBackup_" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackup*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadLengthFromBackup_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackup(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">ReadLengthFromBackup(in Stream, in RentedArray&lt;byte&gt;?)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadLengthFromBackup_System_IO_Stream__System_Nullable_wan24_Core_RentedMemory_System_Byte____" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackup(System.IO.Stream@,System.Nullable{wan24.Core.RentedMemory{System.Byte}}@)">ReadLengthFromBackup(in Stream, in RentedMemory&lt;byte&gt;?)</h4>
   <div class="markdown level1 summary"><p>Read the original target stream length from the backup</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static long ReadLengthFromBackup(in Stream backup, in RentedArray&lt;byte&gt;? buffer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static long ReadLengthFromBackup(in Stream backup, in RentedMemory&lt;byte&gt;? buffer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2333,7 +2334,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2358,19 +2359,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadLengthFromBackupAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadLengthFromBackupAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadLengthFromBackupAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadLengthFromBackupAsync(System.IO.Stream%2CSystem.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L74">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Backup.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadLengthFromBackupAsync_" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackupAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadLengthFromBackupAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackupAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadLengthFromBackupAsync(Stream, RentedArray&lt;byte&gt;?, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadLengthFromBackupAsync_System_IO_Stream_System_Nullable_wan24_Core_RentedMemory_System_Byte___System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadLengthFromBackupAsync(System.IO.Stream,System.Nullable{wan24.Core.RentedMemory{System.Byte}},System.Threading.CancellationToken)">ReadLengthFromBackupAsync(Stream, RentedMemory&lt;byte&gt;?, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read the original target stream length from the backup</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;long&gt; ReadLengthFromBackupAsync(Stream backup, RentedArray&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;long&gt; ReadLengthFromBackupAsync(Stream backup, RentedMemory&lt;byte&gt;? buffer = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2389,7 +2390,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2420,19 +2421,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveInt_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveInt(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveInt_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveInt(System.IO.Stream%40%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadPositiveInt_" data-uid="wan24.Core.AcidStream`1.ReadPositiveInt*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadPositiveInt_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadPositiveInt(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">ReadPositiveInt(in Stream, in RentedArray&lt;byte&gt;)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadPositiveInt_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadPositiveInt(System.IO.Stream@,wan24.Core.RentedMemory{System.Byte}@)">ReadPositiveInt(in Stream, in RentedMemory&lt;byte&gt;)</h4>
   <div class="markdown level1 summary"><p>Read a positive 32 bit integer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static int ReadPositiveInt(in Stream backup, in RentedArray&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static int ReadPositiveInt(in Stream backup, in RentedMemory&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2451,7 +2452,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2476,19 +2477,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveIntAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveIntAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveIntAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveIntAsync(System.IO.Stream%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L139">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadPositiveIntAsync_" data-uid="wan24.Core.AcidStream`1.ReadPositiveIntAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadPositiveIntAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadPositiveIntAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadPositiveIntAsync(Stream, RentedArray&lt;byte&gt;, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadPositiveIntAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadPositiveIntAsync(System.IO.Stream,wan24.Core.RentedMemory{System.Byte},System.Threading.CancellationToken)">ReadPositiveIntAsync(Stream, RentedMemory&lt;byte&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read a positive 32 bit integer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static Task&lt;int&gt; ReadPositiveIntAsync(Stream backup, RentedArray&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static Task&lt;int&gt; ReadPositiveIntAsync(Stream backup, RentedMemory&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2507,7 +2508,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2538,19 +2539,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveLong_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveLong(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveLong_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveLong(System.IO.Stream%40%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L89">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadPositiveLong_" data-uid="wan24.Core.AcidStream`1.ReadPositiveLong*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadPositiveLong_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadPositiveLong(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">ReadPositiveLong(in Stream, in RentedArray&lt;byte&gt;)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadPositiveLong_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadPositiveLong(System.IO.Stream@,wan24.Core.RentedMemory{System.Byte}@)">ReadPositiveLong(in Stream, in RentedMemory&lt;byte&gt;)</h4>
   <div class="markdown level1 summary"><p>Read a positive 64 bit integer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static long ReadPositiveLong(in Stream backup, in RentedArray&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static long ReadPositiveLong(in Stream backup, in RentedMemory&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2569,7 +2570,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2594,19 +2595,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveLongAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveLongAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadPositiveLongAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadPositiveLongAsync(System.IO.Stream%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L107">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadPositiveLongAsync_" data-uid="wan24.Core.AcidStream`1.ReadPositiveLongAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadPositiveLongAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadPositiveLongAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadPositiveLongAsync(Stream, RentedArray&lt;byte&gt;, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadPositiveLongAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadPositiveLongAsync(System.IO.Stream,wan24.Core.RentedMemory{System.Byte},System.Threading.CancellationToken)">ReadPositiveLongAsync(Stream, RentedMemory&lt;byte&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read a positive 64 bit integer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static Task&lt;long&gt; ReadPositiveLongAsync(Stream backup, RentedArray&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static Task&lt;long&gt; ReadPositiveLongAsync(Stream backup, RentedMemory&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2625,7 +2626,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2712,19 +2713,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadTimestamp_System_IO_Stream__wan24_Core_RentedArray_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadTimestamp(System.IO.Stream%40%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadTimestamp_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadTimestamp(System.IO.Stream%40%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadTimestamp_" data-uid="wan24.Core.AcidStream`1.ReadTimestamp*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadTimestamp_System_IO_Stream__wan24_Core_RentedArray_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadTimestamp(System.IO.Stream@,wan24.Core.RentedArray{System.Byte}@)">ReadTimestamp(in Stream, in RentedArray&lt;byte&gt;)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadTimestamp_System_IO_Stream__wan24_Core_RentedMemory_System_Byte___" data-uid="wan24.Core.AcidStream`1.ReadTimestamp(System.IO.Stream@,wan24.Core.RentedMemory{System.Byte}@)">ReadTimestamp(in Stream, in RentedMemory&lt;byte&gt;)</h4>
   <div class="markdown level1 summary"><p>Read the timestamp</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static DateTime ReadTimestamp(in Stream backup, in RentedArray&lt;byte&gt; buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static DateTime ReadTimestamp(in Stream backup, in RentedMemory&lt;byte&gt; buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2743,7 +2744,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2768,19 +2769,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadTimestampAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadTimestampAsync(System.IO.Stream%2Cwan24.Core.RentedArray%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ReadTimestampAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ReadTimestampAsync(System.IO.Stream%2Cwan24.Core.RentedMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L75">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ReadTimestampAsync_" data-uid="wan24.Core.AcidStream`1.ReadTimestampAsync*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ReadTimestampAsync_System_IO_Stream_wan24_Core_RentedArray_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadTimestampAsync(System.IO.Stream,wan24.Core.RentedArray{System.Byte},System.Threading.CancellationToken)">ReadTimestampAsync(Stream, RentedArray&lt;byte&gt;, CancellationToken)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ReadTimestampAsync_System_IO_Stream_wan24_Core_RentedMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.ReadTimestampAsync(System.IO.Stream,wan24.Core.RentedMemory{System.Byte},System.Threading.CancellationToken)">ReadTimestampAsync(Stream, RentedMemory&lt;byte&gt;, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Read the timestamp</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static Task&lt;DateTime&gt; ReadTimestampAsync(Stream backup, RentedArray&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static Task&lt;DateTime&gt; ReadTimestampAsync(Stream backup, RentedMemory&lt;byte&gt; buffer, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2799,7 +2800,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Serialization buffer (8 byte required)</p>
 </td>
@@ -2898,7 +2899,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_RollbackInt.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.RollbackInt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L222">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L225">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_RollbackInt_" data-uid="wan24.Core.AcidStream`1.RollbackInt*"></a>
   <h4 id="wan24_Core_AcidStream_1_RollbackInt" data-uid="wan24.Core.AcidStream`1.RollbackInt">RollbackInt()</h4>
@@ -2914,7 +2915,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_RollbackIntAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.RollbackIntAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L234">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L237">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_RollbackIntAsync_" data-uid="wan24.Core.AcidStream`1.RollbackIntAsync*"></a>
   <h4 id="wan24_Core_AcidStream_1_RollbackIntAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.RollbackIntAsync(System.Threading.CancellationToken)">RollbackIntAsync(CancellationToken)</h4>
@@ -3278,19 +3279,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ValidateSerializationBuffer_wan24_Core_RentedArray_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ValidateSerializationBuffer(wan24.Core.RentedArray%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_ValidateSerializationBuffer_System_Nullable_wan24_Core_RentedMemory_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.ValidateSerializationBuffer(System.Nullable%7Bwan24.Core.RentedMemory%7BSystem.Byte%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.Static.cs/#L25">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_ValidateSerializationBuffer_" data-uid="wan24.Core.AcidStream`1.ValidateSerializationBuffer*"></a>
-  <h4 id="wan24_Core_AcidStream_1_ValidateSerializationBuffer_wan24_Core_RentedArray_System_Byte__" data-uid="wan24.Core.AcidStream`1.ValidateSerializationBuffer(wan24.Core.RentedArray{System.Byte})">ValidateSerializationBuffer(RentedArray&lt;byte&gt;?)</h4>
+  <h4 id="wan24_Core_AcidStream_1_ValidateSerializationBuffer_System_Nullable_wan24_Core_RentedMemory_System_Byte___" data-uid="wan24.Core.AcidStream`1.ValidateSerializationBuffer(System.Nullable{wan24.Core.RentedMemory{System.Byte}})">ValidateSerializationBuffer(RentedMemory&lt;byte&gt;?)</h4>
   <div class="markdown level1 summary"><p>Validate the given serialization buffer</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static void ValidateSerializationBuffer(RentedArray&lt;byte&gt;? buffer)</code></pre>
+    <pre><code class="lang-csharp hljs">protected static void ValidateSerializationBuffer(RentedMemory&lt;byte&gt;? buffer)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3303,7 +3304,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="wan24.Core.RentedArray-1.html">RentedArray</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.RentedMemory-1.html">RentedMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;?</td>
         <td><span class="parametername">buffer</span></td>
         <td><p>Buffer (8 byte required)</p>
 </td>
@@ -3609,7 +3610,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_WriteLengthBackupRecord_System_Int64__System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.WriteLengthBackupRecord(System.Int64%40%2CSystem.Int64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L79">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L80">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_WriteLengthBackupRecord_" data-uid="wan24.Core.AcidStream`1.WriteLengthBackupRecord*"></a>
   <h4 id="wan24_Core_AcidStream_1_WriteLengthBackupRecord_System_Int64__System_Int64__" data-uid="wan24.Core.AcidStream`1.WriteLengthBackupRecord(System.Int64@,System.Int64@)">WriteLengthBackupRecord(in long, in long)</h4>
@@ -3665,7 +3666,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_WriteLengthBackupRecordAsync_System_Int64_System_Int64_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.WriteLengthBackupRecordAsync(System.Int64%2CSystem.Int64%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L118">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_WriteLengthBackupRecordAsync_" data-uid="wan24.Core.AcidStream`1.WriteLengthBackupRecordAsync*"></a>
   <h4 id="wan24_Core_AcidStream_1_WriteLengthBackupRecordAsync_System_Int64_System_Int64_System_Threading_CancellationToken_" data-uid="wan24.Core.AcidStream`1.WriteLengthBackupRecordAsync(System.Int64,System.Int64,System.Threading.CancellationToken)">WriteLengthBackupRecordAsync(long, long, CancellationToken)</h4>
@@ -3727,7 +3728,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AcidStream_1_WriteWriteBackupRecord_System_ReadOnlySpan_System_Byte___.md&amp;value=---%0Auid%3A%20wan24.Core.AcidStream%601.WriteWriteBackupRecord(System.ReadOnlySpan%7BSystem.Byte%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L19">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AcidStream.Internal.cs/#L18">View Source</a>
   </span>
   <a id="wan24_Core_AcidStream_1_WriteWriteBackupRecord_" data-uid="wan24.Core.AcidStream`1.WriteWriteBackupRecord*"></a>
   <h4 id="wan24_Core_AcidStream_1_WriteWriteBackupRecord_System_ReadOnlySpan_System_Byte___" data-uid="wan24.Core.AcidStream`1.WriteWriteBackupRecord(System.ReadOnlySpan{System.Byte}@)">WriteWriteBackupRecord(in ReadOnlySpan&lt;byte&gt;)</h4>
@@ -3991,6 +3992,9 @@
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
+  </div>
+  <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
   <div>
@@ -4154,10 +4158,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

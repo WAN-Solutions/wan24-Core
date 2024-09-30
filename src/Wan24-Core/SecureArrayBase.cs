@@ -11,9 +11,9 @@ namespace wan24.Core
     /// </summary>
     /// <typeparam name="T">Element type</typeparam>
 #if NO_UNSAFE
-    public abstract class SecureArrayBase<T> : DisposableBase, ISecureArray<T> where T : struct
+    public abstract class SecureArrayBase<T> : BasicAllDisposableBase, ISecureArray<T> where T : struct
 #else
-    public abstract unsafe class SecureArrayBase<T> : DisposableBase, ISecureArray<T> where T : struct
+    public abstract unsafe class SecureArrayBase<T> : BasicDisposableBase, ISecureArray<T> where T : struct
 #endif
     {
         /// <summary>

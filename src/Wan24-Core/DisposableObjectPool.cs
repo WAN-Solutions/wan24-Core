@@ -7,7 +7,7 @@ namespace wan24.Core
     /// Disposable object pool (disposes trashed items)
     /// </summary>
     /// <typeparam name="T">Disposable item type</typeparam>
-    public class DisposableObjectPool<T> : DisposableBase, IObjectPool<T> where T : IDisposable
+    public class DisposableObjectPool<T> : SimpleDisposableBase, IObjectPool<T> where T : IDisposable
     {
         /// <summary>
         /// Pool

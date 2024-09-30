@@ -1,0 +1,745 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Struct RentedMemoryRef&lt;T&gt; | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Struct RentedMemoryRef&lt;T&gt; | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.RentedMemoryRef`1">
+
+
+
+  <h1 id="wan24_Core_RentedMemoryRef_1" data-uid="wan24.Core.RentedMemoryRef`1" class="text-break">Struct RentedMemoryRef&lt;T&gt;</h1>
+  <div class="markdown level0 summary"><p>Pool rented memory (returns the memory to the pool, when disposed)</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.tostring">ValueType.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_RentedMemoryRef_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ref struct RentedMemoryRef&lt;T&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1__ctor_System_Buffers_IMemoryOwner__0___System_Int32__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.%23ctor(System.Buffers.IMemoryOwner%7B%600%7D%40%2CSystem.Int32%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L57">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1__ctor_" data-uid="wan24.Core.RentedMemoryRef`1.#ctor*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1__ctor_System_Buffers_IMemoryOwner__0___System_Int32__System_Boolean__" data-uid="wan24.Core.RentedMemoryRef`1.#ctor(System.Buffers.IMemoryOwner{`0}@,System.Int32@,System.Boolean@)">RentedMemoryRef(in IMemoryOwner&lt;T&gt;, in int, in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedMemoryRef(in IMemoryOwner&lt;T&gt; owner, in int len = 0, in bool clean = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.imemoryowner-1">IMemoryOwner</a>&lt;T&gt;</td>
+        <td><span class="parametername">owner</span></td>
+        <td><p>Ownership</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">clean</span></td>
+        <td><p>Clean the rented array?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1__ctor_System_Int32__System_Buffers_MemoryPool__0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.%23ctor(System.Int32%40%2CSystem.Buffers.MemoryPool%7B%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L26">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1__ctor_" data-uid="wan24.Core.RentedMemoryRef`1.#ctor*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1__ctor_System_Int32__System_Buffers_MemoryPool__0___System_Boolean__" data-uid="wan24.Core.RentedMemoryRef`1.#ctor(System.Int32@,System.Buffers.MemoryPool{`0}@,System.Boolean@)">RentedMemoryRef(in int, in MemoryPool&lt;T&gt;?, in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedMemoryRef(in int len, in MemoryPool&lt;T&gt;? pool = null, in bool clean = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool</a>&lt;T&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">clean</span></td>
+        <td><p>Clean the rented array?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1__ctor_System_Int32__System_Span__0___System_Buffers_MemoryPool__0___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.%23ctor(System.Int32%40%2CSystem.Span%7B%600%7D%40%2CSystem.Buffers.MemoryPool%7B%600%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1__ctor_" data-uid="wan24.Core.RentedMemoryRef`1.#ctor*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1__ctor_System_Int32__System_Span__0___System_Buffers_MemoryPool__0___System_Boolean__" data-uid="wan24.Core.RentedMemoryRef`1.#ctor(System.Int32@,System.Span{`0}@,System.Buffers.MemoryPool{`0}@,System.Boolean@)">RentedMemoryRef(in int, out Span&lt;T&gt;, in MemoryPool&lt;T&gt;?, in bool)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RentedMemoryRef(in int len, out Span&lt;T&gt; span, in MemoryPool&lt;T&gt;? pool = null, in bool clean = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;T&gt;</td>
+        <td><span class="parametername">span</span></td>
+        <td><p>Span</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool</a>&lt;T&gt;</td>
+        <td><span class="parametername">pool</span></td>
+        <td><p>Pool</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">clean</span></td>
+        <td><p>Clean the rented array?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_Clear.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.Clear%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L88">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_Clear_" data-uid="wan24.Core.RentedMemoryRef`1.Clear*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_Clear" data-uid="wan24.Core.RentedMemoryRef`1.Clear">Clear</h4>
+  <div class="markdown level1 summary"><p>If to clear the <a class="xref" href="wan24.Core.RentedMemoryRef-1.html#wan24_Core_RentedMemoryRef_1_Memory">Memory</a> when disposing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Clear { readonly get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_Memory.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.Memory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L68">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_Memory_" data-uid="wan24.Core.RentedMemoryRef`1.Memory*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_Memory" data-uid="wan24.Core.RentedMemoryRef`1.Memory">Memory</h4>
+  <div class="markdown level1 summary"><p>Memory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Memory&lt;T&gt; Memory { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.memory-1">Memory</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_ReadOnlyMemory.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.ReadOnlyMemory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L78">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_ReadOnlyMemory_" data-uid="wan24.Core.RentedMemoryRef`1.ReadOnlyMemory*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_ReadOnlyMemory" data-uid="wan24.Core.RentedMemoryRef`1.ReadOnlyMemory">ReadOnlyMemory</h4>
+  <div class="markdown level1 summary"><p>Memory as read-only</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlyMemory&lt;T&gt; ReadOnlyMemory { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_ReadOnlySpan.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.ReadOnlySpan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L83">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_ReadOnlySpan_" data-uid="wan24.Core.RentedMemoryRef`1.ReadOnlySpan*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_ReadOnlySpan" data-uid="wan24.Core.RentedMemoryRef`1.ReadOnlySpan">ReadOnlySpan</h4>
+  <div class="markdown level1 summary"><p>Span as read-only</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly ReadOnlySpan&lt;T&gt; ReadOnlySpan { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_Span.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.Span%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L73">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_Span_" data-uid="wan24.Core.RentedMemoryRef`1.Span*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_Span" data-uid="wan24.Core.RentedMemoryRef`1.Span">Span</h4>
+  <div class="markdown level1 summary"><p>Span</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly Span&lt;T&gt; Span { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_Dispose.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L93">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_Dispose_" data-uid="wan24.Core.RentedMemoryRef`1.Dispose*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_Dispose" data-uid="wan24.Core.RentedMemoryRef`1.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Int32.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.op_Implicit(wan24.Core.RentedMemoryRef%7B%600%7D%40)~System.Int32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L153">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_op_Implicit_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Int32" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit(wan24.Core.RentedMemoryRef{`0}@)~System.Int32">implicit operator int(in RentedMemoryRef&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as Int32 (length value)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator int(in RentedMemoryRef&lt;T&gt; mem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef</a>&lt;T&gt;</td>
+        <td><span class="parametername">mem</span></td>
+        <td><p>Memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Memory__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.op_Implicit(wan24.Core.RentedMemoryRef%7B%600%7D%40)~System.Memory%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L133">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_op_Implicit_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Memory__0_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit(wan24.Core.RentedMemoryRef{`0}@)~System.Memory{`0}">implicit operator Memory&lt;T&gt;(in RentedMemoryRef&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as memory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator Memory&lt;T&gt;(in RentedMemoryRef&lt;T&gt; mem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef</a>&lt;T&gt;</td>
+        <td><span class="parametername">mem</span></td>
+        <td><p>Memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.memory-1">Memory</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_ReadOnlyMemory__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.op_Implicit(wan24.Core.RentedMemoryRef%7B%600%7D%40)~System.ReadOnlyMemory%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L143">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_op_Implicit_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_ReadOnlyMemory__0_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit(wan24.Core.RentedMemoryRef{`0}@)~System.ReadOnlyMemory{`0}">implicit operator ReadOnlyMemory&lt;T&gt;(in RentedMemoryRef&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as memory</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator ReadOnlyMemory&lt;T&gt;(in RentedMemoryRef&lt;T&gt; mem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef</a>&lt;T&gt;</td>
+        <td><span class="parametername">mem</span></td>
+        <td><p>Memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_ReadOnlySpan__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.op_Implicit(wan24.Core.RentedMemoryRef%7B%600%7D%40)~System.ReadOnlySpan%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L123">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_op_Implicit_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_ReadOnlySpan__0_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit(wan24.Core.RentedMemoryRef{`0}@)~System.ReadOnlySpan{`0}">implicit operator ReadOnlySpan&lt;T&gt;(in RentedMemoryRef&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as span</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator ReadOnlySpan&lt;T&gt;(in RentedMemoryRef&lt;T&gt; mem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef</a>&lt;T&gt;</td>
+        <td><span class="parametername">mem</span></td>
+        <td><p>Memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Span__0_.md&amp;value=---%0Auid%3A%20wan24.Core.RentedMemoryRef%601.op_Implicit(wan24.Core.RentedMemoryRef%7B%600%7D%40)~System.Span%7B%600%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/RentedMemoryRef.cs/#L113">View Source</a>
+  </span>
+  <a id="wan24_Core_RentedMemoryRef_1_op_Implicit_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit*"></a>
+  <h4 id="wan24_Core_RentedMemoryRef_1_op_Implicit_wan24_Core_RentedMemoryRef__0____System_Span__0_" data-uid="wan24.Core.RentedMemoryRef`1.op_Implicit(wan24.Core.RentedMemoryRef{`0}@)~System.Span{`0}">implicit operator Span&lt;T&gt;(in RentedMemoryRef&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Cast as span</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator Span&lt;T&gt;(in RentedMemoryRef&lt;T&gt; mem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.RentedMemoryRef-1.html">RentedMemoryRef</a>&lt;T&gt;</td>
+        <td><span class="parametername">mem</span></td>
+        <td><p>Memory</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

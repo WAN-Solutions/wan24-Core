@@ -24,7 +24,7 @@
         }
 
         /// <inheritdoc/>
-        protected override void Dispose(in bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (RegisteredDisposables.Count > 0)
                 foreach (object obj in RegisteredDisposables)

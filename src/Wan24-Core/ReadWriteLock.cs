@@ -180,7 +180,7 @@
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            await using (Sync.DynamicContext())
+            using (Sync)
             {
                 using SemaphoreSyncContext ssc = await Sync.SyncContextAsync().DynamicContext();
                 ReadLimit?.Dispose();
@@ -214,7 +214,7 @@
         /// </remarks>
         /// <param name="rwLock">Lock</param>
         /// <param name="reading">If reading</param>
-        public sealed class Context(in ReadWriteLock rwLock, in bool reading) : DisposableBase()
+        public sealed class Context(in ReadWriteLock rwLock, in bool reading) : BasicAllDisposableBase()
         {
             /// <summary>
             /// Read (ignores the reader count limit; should only stay alive while the write lock is alive)

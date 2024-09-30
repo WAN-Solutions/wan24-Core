@@ -1,5 +1,7 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Runtime.CompilerServices;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -11,10 +13,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this T[] arr)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this T[] arr, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++) yield return arr[i];
+            for (int i = offset, len = length ?? arr.Length; i < len; i++) yield return arr[i];
         }
 
         /// <summary>
@@ -23,10 +31,16 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="filter">Filter</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this T[] arr, Func<T, bool> filter)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this T[] arr, Func<T, bool> filter, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++)
+            for (int i = offset, len = length ?? arr.Length; i < len; i++)
                 if (filter(arr[i]))
                     yield return arr[i];
         }
@@ -36,18 +50,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this Memory<T> arr) => Enumerate((ReadOnlyMemory<T>)arr);
-
-        /// <summary>
-        /// Enumerate
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this ReadOnlyMemory<T> arr)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this FrozenSet<T> arr, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++) yield return arr.Span[i];
+            for (int i = offset, len = length ?? arr.Count; i < len; i++) yield return arr.Items[i];
         }
 
         /// <summary>
@@ -56,44 +68,16 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="filter">Filter</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this Memory<T> arr, Func<T, bool> filter) => Enumerate((ReadOnlyMemory<T>)arr, filter);
-
-        /// <summary>
-        /// Enumerate
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <param name="filter">Filter</param>
-        /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this ReadOnlyMemory<T> arr, Func<T, bool> filter)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this FrozenSet<T> arr, Func<T, bool> filter, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++)
-                if (filter(arr.Span[i]))
-                    yield return arr.Span[i];
-        }
-
-        /// <summary>
-        /// Enumerate
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this FrozenSet<T> arr)
-        {
-            for (int i = 0, len = arr.Count; i < len; i++) yield return arr.Items[i];
-        }
-
-        /// <summary>
-        /// Enumerate
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <param name="filter">Filter</param>
-        /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this FrozenSet<T> arr, Func<T, bool> filter)
-        {
-            for (int i = 0, len = arr.Count; i < len; i++)
+            for (int i = offset, len = length ?? arr.Count; i < len; i++)
                 if (filter(arr.Items[i]))
                     yield return arr.Items[i];
         }
@@ -103,10 +87,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this List<T> arr)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this List<T> arr, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Count; i < len; i++) yield return arr[i];
+            for (int i = offset, len = length ?? arr.Count; i < len; i++) yield return arr[i];
         }
 
         /// <summary>
@@ -115,10 +105,16 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="filter">Filter</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this List<T> arr, Func<T, bool> filter)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this List<T> arr, Func<T, bool> filter, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Count; i < len; i++)
+            for (int i = offset, len = length ?? arr.Count; i < len; i++)
                 if (filter(arr[i]))
                     yield return arr[i];
         }
@@ -128,10 +124,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this IList<T> arr)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this IList<T> arr, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Count; i < len; i++) yield return arr[i];
+            for (int i = offset, len = length ?? arr.Count; i < len; i++) yield return arr[i];
         }
 
         /// <summary>
@@ -140,10 +142,16 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="filter">Filter</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this IList<T> arr, Func<T, bool> filter)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this IList<T> arr, Func<T, bool> filter, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Count; i < len; i++)
+            for (int i = offset, len = length ?? arr.Count; i < len; i++)
                 if (filter(arr[i]))
                     yield return arr[i];
         }
@@ -153,10 +161,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++) yield return arr[i];
+            for (int i = offset, len = length ?? arr.Length; i < len; i++) yield return arr[i];
         }
 
         /// <summary>
@@ -165,10 +179,16 @@ namespace wan24.Core
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="filter">Filter</param>
+        /// <param name="offset">Offset</param>
+        /// <param name="length">Length</param>
         /// <returns>Items</returns>
-        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr, Func<T, bool> filter)
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static IEnumerable<T> Enumerate<T>(this ImmutableArray<T> arr, Func<T, bool> filter, int offset = 0, int? length = null)
         {
-            for (int i = 0, len = arr.Length; i < len; i++)
+            for (int i = offset, len = length ?? arr.Length; i < len; i++)
                 if (filter(arr[i]))
                     yield return arr[i];
         }

@@ -378,7 +378,7 @@
             if (!LeaveOpen)
                 await _Targets.DisposeAllAsync().DynamicContext();
             _Targets.Clear();
-            await TargetsSync.DisposeAsync().DynamicContext();
+            TargetsSync.Dispose();
         }
 
         /// <summary>

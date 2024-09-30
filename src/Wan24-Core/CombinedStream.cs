@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Immutable;
 
 namespace wan24.Core
 {
@@ -15,6 +15,10 @@ namespace wan24.Core
         /// Can seek?
         /// </summary>
         protected readonly bool _CanSeek;
+        /// <summary>
+        /// Streams
+        /// </summary>
+        protected readonly ImmutableArray<Stream> _Streams;
         /// <summary>
         /// Stream lengths in bytes
         /// </summary>
@@ -55,7 +59,7 @@ namespace wan24.Core
             _CanWrite = _CanSeek && streams.All(s => s.CanWrite);
             Lengths = _CanSeek ? streams.Select(s => s.Length).ToArray() : [];
             _Length = _CanSeek ? Lengths.Sum() : -1;
-            Streams = streams.AsReadOnly();
+            _Streams = streams.AsReadOnly();
             LeaveOpen = leaveOpen;
             ResetPosition = resetPosition;
             if (_CanSeek) _Position = CurrentStream.Position;
@@ -64,12 +68,12 @@ namespace wan24.Core
         /// <summary>
         /// Streams
         /// </summary>
-        public ReadOnlyCollection<Stream> Streams { get; }
+        public ImmutableArray<Stream> Streams => _Streams;
 
         /// <summary>
         /// Current stream
         /// </summary>
-        public Stream CurrentStream => IfUndisposed(Streams[CurrentStreamIndex]);
+        public Stream CurrentStream => IfUndisposed(_Streams[CurrentStreamIndex]);
 
         /// <summary>
         /// Leave the streams open when disposing?
@@ -138,7 +142,7 @@ namespace wan24.Core
             EnsureSeekable();
             ArgumentOutOfRangeException.ThrowIfNegative(position);
             if (position > _Length) return -1;
-            if (position == _Length) return Streams.Count - 1;
+            if (position == _Length) return _Streams.Length - 1;
             long len = 0;
             for (int i = 0; i < Lengths.Length; i++)
             {
@@ -153,7 +157,11 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (!_CanWrite) return;
-            foreach (Stream stream in Streams) stream.Flush();
+            _Streams.ExecuteForAll((s) =>
+            {
+                s.Flush();
+                return new EnumerableExtensions.ExecuteResult<Stream>(s);
+            });
         }
 
         /// <inheritdoc/>
@@ -161,7 +169,11 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (!_CanWrite) return;
-            foreach (Stream stream in Streams) await stream.FlushAsync(cancellationToken).DynamicContext();
+            await _Streams.ExecuteForAllAsync(async (s, ct) =>
+            {
+                await s.FlushAsync(ct).DynamicContext();
+                return new EnumerableExtensions.ExecuteResult<Stream>(s);
+            }, cancellationToken).DiscardAllAsync(dispose: false, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -180,7 +192,7 @@ namespace wan24.Core
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)
                 {
-                    if (CurrentStreamIndex == Streams.Count - 1) break;
+                    if (CurrentStreamIndex == _Streams.Length - 1) break;
                     CurrentStreamIndex++;
                     if (_CanSeek) CurrentStream.Position = 0;
                     read = 1;
@@ -208,7 +220,7 @@ namespace wan24.Core
                 read = (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (read == 0)
                 {
-                    if (CurrentStreamIndex == Streams.Count - 1) break;
+                    if (CurrentStreamIndex == _Streams.Length - 1) break;
                     CurrentStreamIndex++;
                     if (_CanSeek) CurrentStream.Position = 0;
                     read = 1;
@@ -246,10 +258,10 @@ namespace wan24.Core
             EnsureWritable();
             for (int write = 1; buffer.Length > 0 && write > 0;)
             {
-                write = CurrentStreamIndex == Streams.Count - 1 ? buffer.Length : (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
+                write = CurrentStreamIndex == _Streams.Length - 1 ? buffer.Length : (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (write == 0)
                 {
-                    if (CurrentStreamIndex == Streams.Count - 1) break;
+                    if (CurrentStreamIndex == _Streams.Length - 1) break;
                     CurrentStreamIndex++;
                     CurrentStream.Position = 0;
                     write = 1;
@@ -259,7 +271,7 @@ namespace wan24.Core
                 if (_CanSeek) _Position += write;
                 buffer = buffer[write..];
             }
-            if (CurrentStreamIndex == Streams.Count - 1)
+            if (CurrentStreamIndex == _Streams.Length - 1)
             {
                 Lengths = Streams.Select(s => s.Length).ToArray();
                 _Length = Lengths.Sum();
@@ -277,10 +289,10 @@ namespace wan24.Core
             EnsureWritable();
             for (int write = 1; buffer.Length > 0 && write > 0;)
             {
-                write = CurrentStreamIndex == Streams.Count - 1 ? buffer.Length : (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
+                write = CurrentStreamIndex == _Streams.Length - 1 ? buffer.Length : (int)Math.Min(buffer.Length, CurrentStream.GetRemainingBytes());
                 if (write == 0)
                 {
-                    if (CurrentStreamIndex == Streams.Count - 1) break;
+                    if (CurrentStreamIndex == _Streams.Length - 1) break;
                     CurrentStreamIndex++;
                     CurrentStream.Position = 0;
                     write = 1;
@@ -290,9 +302,9 @@ namespace wan24.Core
                 _Position += write;
                 buffer = buffer[write..];
             }
-            if (CurrentStreamIndex == Streams.Count - 1)
+            if (CurrentStreamIndex == _Streams.Length - 1)
             {
-                Lengths = Streams.Select(s => s.Length).ToArray();
+                Lengths = _Streams.Select(s => s.Length).ToArray();
                 _Length = Lengths.Sum();
             }
         }
@@ -301,21 +313,26 @@ namespace wan24.Core
         public override void Close()
         {
             if (!DoClose()) return;
-            if (!LeaveOpen) foreach (Stream stream in Streams) stream.Close();
+            if (!LeaveOpen)
+                _Streams.ExecuteForAll((s) =>
+                {
+                    s.Close();
+                    return new EnumerableExtensions.ExecuteResult<Stream>(s);
+                });
             base.Close();
         }
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
-            if (!LeaveOpen) Streams.DisposeAll();
+            if (!LeaveOpen) _Streams.DisposeAll();
             base.Dispose(disposing);
         }
 
         /// <inheritdoc/>
         protected override async Task DisposeCore()
         {
-            if (!LeaveOpen) await Streams.DisposeAllAsync().DynamicContext();
+            if (!LeaveOpen) await _Streams.DisposeAllAsync().DynamicContext();
             await base.DisposeCore().DynamicContext();
         }
     }

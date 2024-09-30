@@ -22,9 +22,9 @@ namespace wan24.Core
         /// Validate the given serialization buffer
         /// </summary>
         /// <param name="buffer">Buffer (8 byte required)</param>
-        protected static void ValidateSerializationBuffer(RentedArray<byte>? buffer)
+        protected static void ValidateSerializationBuffer(RentedMemory<byte>? buffer)
         {
-            if (buffer is not null && buffer.Length != sizeof(long)) throw new ArgumentException($"{sizeof(long)} byte buffer required", nameof(buffer));
+            if (buffer.HasValue && buffer.Value.Memory.Length != sizeof(long)) throw new ArgumentException($"{sizeof(long)} byte buffer required", nameof(buffer));
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace wan24.Core
         /// <param name="backup">Backup stream</param>
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <returns>Timestamp</returns>
-        protected static DateTime ReadTimestamp(in Stream backup, in RentedArray<byte> buffer)
+        protected static DateTime ReadTimestamp(in Stream backup, in RentedMemory<byte> buffer)
         {
             if (Trace) Logging.WriteTrace("Going to read ACID record time");
             DateTime res = new(ReadPositiveLong(backup, buffer), DateTimeKind.Utc);
@@ -72,7 +72,7 @@ namespace wan24.Core
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Timestamp</returns>
-        protected static async Task<DateTime> ReadTimestampAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
+        protected static async Task<DateTime> ReadTimestampAsync(Stream backup, RentedMemory<byte> buffer, CancellationToken cancellationToken)
         {
             if (Trace) Logging.WriteTrace("Going to read ACID record time");
             DateTime res = new(await ReadPositiveLongAsync(backup, buffer, cancellationToken).DynamicContext(), DateTimeKind.Utc);
@@ -86,11 +86,12 @@ namespace wan24.Core
         /// <param name="backup">Backup stream</param>
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <returns>Timestamp</returns>
-        protected static long ReadPositiveLong(in Stream backup, in RentedArray<byte> buffer)
+        protected static long ReadPositiveLong(in Stream backup, in RentedMemory<byte> buffer)
         {
             if (Trace) Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
-            backup.ReadExactly(buffer.Span);
-            long res = buffer.Span.ToLong();
+            Span<byte> bufferSpan = buffer.Memory.Span;
+            backup.ReadExactly(bufferSpan);
+            long res = bufferSpan.ToLong();
             if (Trace) Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 64 bit integer {res}");
             return res;
@@ -103,11 +104,11 @@ namespace wan24.Core
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Timestamp</returns>
-        protected static async Task<long> ReadPositiveLongAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
+        protected static async Task<long> ReadPositiveLongAsync(Stream backup, RentedMemory<byte> buffer, CancellationToken cancellationToken)
         {
             if (Trace) Logging.WriteTrace($"Going to read positive 64 bit integer from ACID record from offset {backup.Position}");
             await backup.ReadExactlyAsync(buffer.Memory, cancellationToken).DynamicContext();
-            long res = buffer.Span.ToLong();
+            long res = buffer.Memory.Span.ToLong();
             if (Trace) Logging.WriteTrace($"Red positive 64 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 64 bit integer {res}");
             return res;
@@ -119,11 +120,12 @@ namespace wan24.Core
         /// <param name="backup">Backup stream</param>
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <returns>Timestamp</returns>
-        protected static int ReadPositiveInt(in Stream backup, in RentedArray<byte> buffer)
+        protected static int ReadPositiveInt(in Stream backup, in RentedMemory<byte> buffer)
         {
             if (Trace) Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
-            backup.ReadExactly(buffer.Span[..sizeof(int)]);
-            int res = buffer.Span.ToInt();
+            Span<byte> bufferSpan = buffer.Memory.Span;
+            backup.ReadExactly(bufferSpan[..sizeof(int)]);
+            int res = bufferSpan.ToInt();
             if (Trace) Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 32 bit integer {res}");
             return res;
@@ -136,11 +138,11 @@ namespace wan24.Core
         /// <param name="buffer">Serialization buffer (8 byte required)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Timestamp</returns>
-        protected static async Task<int> ReadPositiveIntAsync(Stream backup, RentedArray<byte> buffer, CancellationToken cancellationToken)
+        protected static async Task<int> ReadPositiveIntAsync(Stream backup, RentedMemory<byte> buffer, CancellationToken cancellationToken)
         {
             if (Trace) Logging.WriteTrace($"Going to read positive 32 bit integer from ACID record from offset {backup.Position}");
             await backup.ReadExactlyAsync(buffer.Memory[..sizeof(int)], cancellationToken).DynamicContext();
-            int res = buffer.Span.ToInt();
+            int res = buffer.Memory.Span.ToInt();
             if (Trace) Logging.WriteTrace($"Red positive 32 bit integer {res} from ACID record");
             if (res < 0) throw new InvalidDataException($"Invalid negative 32 bit integer {res}");
             return res;

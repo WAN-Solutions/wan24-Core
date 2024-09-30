@@ -87,7 +87,7 @@ namespace wan24.Core
         /// <summary>
         /// All values
         /// </summary>
-        public static IReadOnlyCollection<T> AllValues
+        public static FrozenSet<T> AllValues
         {
             get
             {
@@ -97,7 +97,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public static IReadOnlyCollection<IEnumeration> AllEnumerationValues
+        public static FrozenSet<IEnumeration> AllEnumerationValues
         {
             get
             {
@@ -107,7 +107,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public static IReadOnlyDictionary<int, string> ValueKeys
+        public static FrozenDictionary<int, string> ValueKeys
         {
             get
             {
@@ -117,7 +117,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        public static IReadOnlyDictionary<string, int> KeyValues
+        public static FrozenDictionary<string, int> KeyValues
         {
             get
             {

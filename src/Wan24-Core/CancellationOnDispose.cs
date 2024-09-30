@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// <see cref="CancellationOnDispose"/> cancels a <see cref="CancellationTokenSource"/> when an object is disposing (or a <see cref="CancellationToken"/> was canceled)
     /// </summary>
-    public sealed class CancellationOnDispose : DisposableBase
+    public sealed class CancellationOnDispose : BasicDisposableBase
     {
         /// <summary>
         /// <see cref="CancellationTokenSource"/>

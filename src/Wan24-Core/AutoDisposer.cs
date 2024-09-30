@@ -8,7 +8,7 @@
     /// Constructor
     /// </remarks>
     /// <param name="obj">Object</param>
-    public class AutoDisposer<T>(in T obj) : DisposableBase()
+    public class AutoDisposer<T>(in T obj) : BasicAllDisposableBase()
     {
         /// <summary>
         /// No usage event (raised when the <see cref="Object"/> isn't in use)
@@ -195,7 +195,7 @@
         /// </remarks>
         /// <param name="disposer">Disposer</param>
         /// <param name="usage">Usage</param>
-        public class Context(in AutoDisposer<T> disposer, in string? usage) : DisposableBase()
+        public class Context(in AutoDisposer<T> disposer, in string? usage) : BasicAllDisposableBase()
         {
             /// <summary>
             /// Disposer

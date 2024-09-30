@@ -241,8 +241,9 @@ namespace wan24.Core
             if (len > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len, clean: false);
-                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
+                using RentedMemoryRef<byte> buffer = new(len, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                return new(bufferSpan[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, bufferSpan)].ToArray());
 #if !NO_UNSAFE
             }
             else
@@ -268,8 +269,9 @@ namespace wan24.Core
             if (len > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<byte> buffer = new(len, clean: false);
-                return new(buffer.Span[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, buffer.Span)].ToArray());
+                using RentedMemoryRef<byte> buffer = new(len, clean: false);
+                Span<byte> bufferSpan = buffer.Span;
+                return new(bufferSpan[..Encoding.UTF8.GetBytes((ReadOnlySpan<char>)arr.Span, bufferSpan)].ToArray());
 #if !NO_UNSAFE
             }
             else

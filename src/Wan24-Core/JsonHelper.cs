@@ -66,10 +66,10 @@ namespace wan24.Core
                 {
                     using MemoryPoolStream ms = new();
                     await JsonSerializer.SerializeAsync(ms, obj, obj?.GetType() ?? typeof(string), prettify ? IntendedOptions : NotIntendedOptions, ct).DynamicContext();
-                    using RentedArrayStructSimple<byte> buffer = new((int)ms.Length, clean: false);
+                    using RentedMemory<byte> buffer = new((int)ms.Length, clean: false);
                     ms.Position = 0;
-                    ms.ReadExactly(buffer.Span);
-                    return Encoding.UTF8.GetString(buffer.Span);
+                    ms.ReadExactly(buffer.Memory.Span);
+                    return Encoding.UTF8.GetString(buffer.Memory.Span);
                 }
                 await JsonSerializer.SerializeAsync(target, obj, obj?.GetType() ?? typeof(string), prettify ? IntendedOptions : NotIntendedOptions, ct).DynamicContext();
                 return string.Empty;

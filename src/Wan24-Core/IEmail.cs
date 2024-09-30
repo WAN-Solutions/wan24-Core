@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Collections.Immutable;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Interface for an email
@@ -28,6 +30,6 @@
         /// <summary>
         /// Attached files
         /// </summary>
-        IReadOnlyCollection<IEmailAttachment> Attachments { get; }
+        ImmutableArray<IEmailAttachment> Attachments { get; }
     }
 }

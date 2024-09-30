@@ -122,6 +122,7 @@
     <div><a class="xref" href="wan24.Core.ICopyStream.html">ICopyStream</a></div>
     <div><a class="xref" href="wan24.Core.IStream.html">IStream</a></div>
     <div><a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a></div>
+    <div><a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
   </div>
@@ -420,7 +421,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_CopyStream_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CopyStream&lt;tStream, tTarget&gt; : WrapperStream&lt;tStream&gt;, IStreamWrapper, IStatusProvider, ICopyStream, IStream, IDisposableObject, IDisposable, IAsyncDisposable where tStream : Stream where tTarget : Stream</code></pre>
+    <pre><code class="lang-csharp hljs">public class CopyStream&lt;tStream, tTarget&gt; : WrapperStream&lt;tStream&gt;, IStreamWrapper, IStatusProvider, ICopyStream, IStream, IDisposableObject, IBasicDisposableObject, IDisposable, IAsyncDisposable where tStream : Stream where tTarget : Stream</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -450,7 +451,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2__ctor__0___1__System_Boolean__System_Boolean__System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.%23ctor(%600%40%2C%601%40%2CSystem.Boolean%40%2CSystem.Boolean%40%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L75">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L71">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2__ctor_" data-uid="wan24.Core.CopyStream`2.#ctor*"></a>
   <h4 id="wan24_Core_CopyStream_2__ctor__0___1__System_Boolean__System_Boolean__System_Threading_CancellationToken__" data-uid="wan24.Core.CopyStream`2.#ctor(`0@,`1@,System.Boolean@,System.Boolean@,System.Threading.CancellationToken@)">CopyStream(in tStream, in tTarget, in bool, in bool, in CancellationToken)</h4>
@@ -535,36 +536,6 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2__Cancellations.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602._Cancellations%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L65">View Source</a>
-  </span>
-  <h4 id="wan24_Core_CopyStream_2__Cancellations" data-uid="wan24.Core.CopyStream`2._Cancellations">_Cancellations</h4>
-  <div class="markdown level1 summary"><p>Cancellations</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Cancellations _Cancellations</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="wan24.Core.Cancellations.html">Cancellations</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
@@ -572,7 +543,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_AutoDispose.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.AutoDispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L108">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L102">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_AutoDispose_" data-uid="wan24.Core.CopyStream`2.AutoDispose*"></a>
   <h4 id="wan24_Core_CopyStream_2_AutoDispose" data-uid="wan24.Core.CopyStream`2.AutoDispose">AutoDispose</h4>
@@ -603,7 +574,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CancelToken.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CancelToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L117">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L111">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CancelToken_" data-uid="wan24.Core.CopyStream`2.CancelToken*"></a>
   <h4 id="wan24_Core_CopyStream_2_CancelToken" data-uid="wan24.Core.CopyStream`2.CancelToken">CancelToken</h4>
@@ -634,7 +605,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_Cancellations.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.Cancellations%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L123">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L117">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_Cancellations_" data-uid="wan24.Core.CopyStream`2.Cancellations*"></a>
   <h4 id="wan24_Core_CopyStream_2_Cancellations" data-uid="wan24.Core.CopyStream`2.Cancellations">Cancellations</h4>
@@ -665,7 +636,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CopyCancellation.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CopyCancellation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L120">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CopyCancellation_" data-uid="wan24.Core.CopyStream`2.CopyCancellation*"></a>
   <h4 id="wan24_Core_CopyStream_2_CopyCancellation" data-uid="wan24.Core.CopyStream`2.CopyCancellation">CopyCancellation</h4>
@@ -696,7 +667,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CopyTarget.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CopyTarget%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L99">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L93">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CopyTarget_" data-uid="wan24.Core.CopyStream`2.CopyTarget*"></a>
   <h4 id="wan24_Core_CopyStream_2_CopyTarget" data-uid="wan24.Core.CopyStream`2.CopyTarget">CopyTarget</h4>
@@ -727,7 +698,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CopyTask.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CopyTask%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L105">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CopyTask_" data-uid="wan24.Core.CopyStream`2.CopyTask*"></a>
   <h4 id="wan24_Core_CopyStream_2_CopyTask" data-uid="wan24.Core.CopyStream`2.CopyTask">CopyTask</h4>
@@ -758,7 +729,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_IsCopyCompleted.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.IsCopyCompleted%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L126">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L120">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_IsCopyCompleted_" data-uid="wan24.Core.CopyStream`2.IsCopyCompleted*"></a>
   <h4 id="wan24_Core_CopyStream_2_IsCopyCompleted" data-uid="wan24.Core.CopyStream`2.IsCopyCompleted">IsCopyCompleted</h4>
@@ -789,7 +760,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L114">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L108">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_LastException_" data-uid="wan24.Core.CopyStream`2.LastException*"></a>
   <h4 id="wan24_Core_CopyStream_2_LastException" data-uid="wan24.Core.CopyStream`2.LastException">LastException</h4>
@@ -820,7 +791,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_LeaveTargetOpen.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.LeaveTargetOpen%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L105">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L99">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_LeaveTargetOpen_" data-uid="wan24.Core.CopyStream`2.LeaveTargetOpen*"></a>
   <h4 id="wan24_Core_CopyStream_2_LeaveTargetOpen" data-uid="wan24.Core.CopyStream`2.LeaveTargetOpen">LeaveTargetOpen</h4>
@@ -853,7 +824,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CancelCopy.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CancelCopy%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L123">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CancelCopy_" data-uid="wan24.Core.CopyStream`2.CancelCopy*"></a>
   <h4 id="wan24_Core_CopyStream_2_CancelCopy" data-uid="wan24.Core.CopyStream`2.CancelCopy">CancelCopy()</h4>
@@ -869,7 +840,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_CancelCopyAsync.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.CancelCopyAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L132">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L126">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_CancelCopyAsync_" data-uid="wan24.Core.CopyStream`2.CancelCopyAsync*"></a>
   <h4 id="wan24_Core_CopyStream_2_CancelCopyAsync" data-uid="wan24.Core.CopyStream`2.CancelCopyAsync">CancelCopyAsync()</h4>
@@ -900,7 +871,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L156">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L150">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_Dispose_" data-uid="wan24.Core.CopyStream`2.Dispose*"></a>
   <h4 id="wan24_Core_CopyStream_2_Dispose_System_Boolean_" data-uid="wan24.Core.CopyStream`2.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -936,7 +907,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L167">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L160">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_DisposeCore_" data-uid="wan24.Core.CopyStream`2.DisposeCore*"></a>
   <h4 id="wan24_Core_CopyStream_2_DisposeCore" data-uid="wan24.Core.CopyStream`2.DisposeCore">DisposeCore()</h4>
@@ -968,7 +939,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_RaiseOnComplete.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.RaiseOnComplete%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L189">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L181">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_RaiseOnComplete_" data-uid="wan24.Core.CopyStream`2.RaiseOnComplete*"></a>
   <h4 id="wan24_Core_CopyStream_2_RaiseOnComplete" data-uid="wan24.Core.CopyStream`2.RaiseOnComplete">RaiseOnComplete()</h4>
@@ -984,7 +955,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_RaiseOnError.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.RaiseOnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L182">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L174">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_RaiseOnError_" data-uid="wan24.Core.CopyStream`2.RaiseOnError*"></a>
   <h4 id="wan24_Core_CopyStream_2_RaiseOnError" data-uid="wan24.Core.CopyStream`2.RaiseOnError">RaiseOnError()</h4>
@@ -1000,7 +971,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_StartCopyAsync.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.StartCopyAsync%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L137">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L131">View Source</a>
   </span>
   <a id="wan24_Core_CopyStream_2_StartCopyAsync_" data-uid="wan24.Core.CopyStream`2.StartCopyAsync*"></a>
   <h4 id="wan24_Core_CopyStream_2_StartCopyAsync" data-uid="wan24.Core.CopyStream`2.StartCopyAsync">StartCopyAsync()</h4>
@@ -1033,7 +1004,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_OnComplete.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.OnComplete%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L185">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L177">View Source</a>
   </span>
   <h4 id="wan24_Core_CopyStream_2_OnComplete" data-uid="wan24.Core.CopyStream`2.OnComplete">OnComplete</h4>
   <div class="markdown level1 summary"><p>Raised on completed</p>
@@ -1063,7 +1034,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CopyStream_2_OnError.md&amp;value=---%0Auid%3A%20wan24.Core.CopyStream%602.OnError%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CopyStream.cs/#L170">View Source</a>
   </span>
   <h4 id="wan24_Core_CopyStream_2_OnError" data-uid="wan24.Core.CopyStream`2.OnError">OnError</h4>
   <div class="markdown level1 summary"><p>Raised on error</p>
@@ -1103,6 +1074,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.IDisposableObject.html">IDisposableObject</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.IBasicDisposableObject.html">IBasicDisposableObject</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
@@ -1262,10 +1236,10 @@
       <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDisposeAsync__1___0_">AsyncHelper.TryDisposeAsync&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="wan24.Core.AsyncHelper.html#wan24_Core_AsyncHelper_TryDispose__1___0_">AsyncHelper.TryDispose&lt;T&gt;(T)</a>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>

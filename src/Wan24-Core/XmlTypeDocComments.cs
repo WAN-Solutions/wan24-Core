@@ -84,7 +84,7 @@ namespace wan24.Core
                 Events = events.ToFrozenSet();
             }
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(type)}']/summary");
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(type)}']/summary")?.Trim();
         }
 
         /// <summary>

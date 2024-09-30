@@ -156,7 +156,7 @@ namespace wan24.Core
         protected override async Task DisposeCore()
         {
             await base.DisposeCore().DynamicContext();
-            await QueueSync.DisposeAsync().DynamicContext();
+            QueueSync.Dispose();
             await QueueEvent.DisposeAsync().DynamicContext();
             await SpaceEvent.DisposeAsync().DynamicContext();
         }

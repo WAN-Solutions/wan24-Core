@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 
 namespace wan24.Core
 {
@@ -63,7 +64,7 @@ namespace wan24.Core
         public virtual string? HtmlBody { get; }
 
         /// <inheritdoc/>
-        public virtual IReadOnlyCollection<IEmailAttachment> Attachments => IfUndisposed(() => _Attachments.AsReadOnly());
+        public virtual ImmutableArray<IEmailAttachment> Attachments => IfUndisposed(() => _Attachments.AsReadOnly());
 
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)

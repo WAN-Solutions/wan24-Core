@@ -45,7 +45,7 @@ namespace wan24.Core
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
             using CancellationTokenSource processing = new();
-            using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, processing.Token);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
             if (Trace) WriteTrace($"TCP port knocking to {target}:{string.Join('/', ports.Select(p => p.ToString()))}");
@@ -114,8 +114,7 @@ namespace wan24.Core
             EnsureValidUris(uris, WebSocketSchemes);
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
-            using CancellationTokenSource processing = new();
-            using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
             ClientWebSocket? client = null;
@@ -128,8 +127,7 @@ namespace wan24.Core
                         client ??= clientFactory?.Invoke(uri) ?? await serviceProvider!.GetServiceAsync(typeof(ClientWebSocket), cancellationToken).DynamicContext() as ClientWebSocket ?? new();
                         continueAt += delay;
                         cancellation.TryReset();
-                        processing.TryReset();
-                        processing.CancelAfter(delay);
+                        cancellation.CancelAfter(delay);
                         if (Trace) WriteTrace($"Call WebSocket \"{uri}\"");
                         try
                         {
@@ -186,8 +184,7 @@ namespace wan24.Core
             EnsureValidUris(uris, HttpSchemes);
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
-            using CancellationTokenSource processing = new();
-            using BoundCancellationTokenSource cancellation = new(cancellationToken, processing.Token);
+            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             using OptionalDisposer clientDisposer = new(client, client is null);
             if (client is null) serviceProvider ??= DiHelper.Instance;
             TimeSpan waitTime;
@@ -199,8 +196,7 @@ namespace wan24.Core
                 {
                     continueAt += delay;
                     cancellation.TryReset();
-                    processing.TryReset();
-                    processing.CancelAfter(delay);
+                    cancellation.CancelAfter(delay);
                     if (Trace) WriteTrace($"Call URI \"{uri}\"");
                     try
                     {

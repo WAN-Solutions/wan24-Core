@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Collections.Frozen;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Interface for an enumeration
@@ -8,15 +10,15 @@
         /// <summary>
         /// All enumeration values
         /// </summary>
-        static IReadOnlyCollection<IEnumeration> AllEnumerationValues => throw new NotImplementedException();
+        static FrozenSet<IEnumeration> AllEnumerationValues => throw new NotImplementedException();
         /// <summary>
         /// Value keys
         /// </summary>
-        static IReadOnlyDictionary<int, string> ValueKeys => throw new NotImplementedException();
+        static FrozenDictionary<int, string> ValueKeys => throw new NotImplementedException();
         /// <summary>
         /// Key values
         /// </summary>
-        static IReadOnlyDictionary<string, int> KeyValues => throw new NotImplementedException();
+        static FrozenDictionary<string, int> KeyValues => throw new NotImplementedException();
         /// <summary>
         /// Value
         /// </summary>

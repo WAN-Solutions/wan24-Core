@@ -120,15 +120,15 @@ namespace wan24.Core
                     }
                     else
                     {
-                        using RentedArrayRefStruct<byte> buffer = new(count);
-                        _Map.AsSpan(offset, (int)(byteCount - offset)).CopyTo(buffer.Span);
-                        return function(buffer.Array.AsMemory(0, buffer.Length));
+                        using RentedMemoryRef<byte> buffer = new(count);
+                        _Map.AsSpan(offset, (int)(byteCount - offset)).CopyTo(buffer);
+                        return function(buffer);
                     }
                 }
                 else
                 {
-                    using RentedArrayRefStruct<byte> buffer = new(count);
-                    return function(buffer.Array.AsMemory(0, buffer.Length));
+                    using RentedMemoryRef<byte> buffer = new(count);
+                    return function(buffer);
                 }
             }
         }

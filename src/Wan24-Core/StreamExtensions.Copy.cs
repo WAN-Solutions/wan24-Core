@@ -18,13 +18,14 @@
             if (count == 0) return 0;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            using RentedArrayRefStruct<byte> buffer = new(bufferSize.Value, clean: false);
+            using RentedMemoryRef<byte> buffer = new(bufferSize.Value, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
             for (int red = 1; count > 0 && red > 0; count -= red)
             {
-                red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
+                red = stream.Read(bufferSpan[..(int)Math.Min(count, bufferSize.Value)]);
                 if (red != 0)
                 {
-                    target.Write(buffer.Span[..red]);
+                    target.Write(bufferSpan[..red]);
                     progress?.Update(red);
                 }
             }
@@ -55,7 +56,7 @@
             if (progress is not null) cancellationToken = progress.GetCancellationToken(cancellationToken);
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            using RentedArrayStructSimple<byte> buffer = new(bufferSize.Value, clean: false);
+            using RentedMemory<byte> buffer = new(bufferSize.Value, clean: false);
             for (int red = 1; count > 0 && red > 0; count -= red)
             {
                 red = await stream.ReadAsync(buffer.Memory[..(int)Math.Min(count, bufferSize.Value)], cancellationToken).DynamicContext();
@@ -82,13 +83,14 @@
             if (count == 0) return;
             bufferSize ??= Settings.BufferSize;
             bufferSize = (int)Math.Min(count, bufferSize.Value);
-            using RentedArrayRefStruct<byte> buffer = new(bufferSize.Value, clean: false);
+            using RentedArray<byte> buffer = new(bufferSize.Value, clean: false);
+            Span<byte> bufferSpan = buffer.Memory.Span;
             for (int red = 1; count > 0 && red > 0; count -= red)
             {
-                red = stream.Read(buffer.Span[..(int)Math.Min(count, bufferSize.Value)]);
+                red = stream.Read(bufferSpan[..(int)Math.Min(count, bufferSize.Value)]);
                 if (red != 0)
                 {
-                    target.Write(buffer.Span[..red]);
+                    target.Write(bufferSpan[..red]);
                     progress?.Update(red);
                 }
             }
@@ -141,13 +143,14 @@
         public static void GenericCopyTo(this Stream stream, in Stream destination, in int bufferSize = 81_920, ProcessingProgress? progress = null)
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(bufferSize, 1);
-            using RentedArrayRefStruct<byte> buffer = new(bufferSize, clean: false);
+            using RentedMemoryRef<byte> buffer = new(bufferSize, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
             for (int red = bufferSize; red == bufferSize;)
             {
-                red = stream.Read(buffer.Span);
+                red = stream.Read(bufferSpan);
                 if (red != 0)
                 {
-                    destination.Write(buffer.Span[..red]);
+                    destination.Write(bufferSpan[..red]);
                     progress?.Update(red);
                 }
             }

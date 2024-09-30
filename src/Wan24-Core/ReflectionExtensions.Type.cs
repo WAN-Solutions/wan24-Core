@@ -69,18 +69,22 @@ namespace wan24.Core
             if (type.IsInterface || type.IsValueType || baseType.IsInterface || baseType.IsValueType)
                 return false;
             bool isGtd = baseType.IsGenericTypeDefinition;
-            for (Type? current = type.BaseType, obj = typeof(object); current is not null && current != obj; current = current.BaseType)
+            for (
+                TypeInfoExt? current = type.BaseType is null ? null : TypeInfoExt.From(type.BaseType), obj = typeof(object);
+                current is not null && current != obj;
+                current = current.Type.BaseType is null ? null : TypeInfoExt.From(current.Type.BaseType)
+                )
                 if (isGtd)
                 {
                     if (
                         !current.IsGenericType ||
-                        (current.IsGenericTypeDefinition && baseType != current) ||
-                        (!current.IsGenericTypeDefinition && baseType != current.GetGenericTypeDefinition())
+                        (current.IsGenericTypeDefinition && baseType != current.Type) ||
+                        (!current.IsGenericTypeDefinition && baseType != current.GetGenericTypeDefinition()!.Type)
                         )
                         continue;
                     return true;
                 }
-                else if (baseType == current)
+                else if (baseType == current.Type)
                 {
                     return true;
                 }
@@ -161,12 +165,12 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Type? GetClosestType(this IEnumerable<Type> types, Type type)
+        public static Type? GetClosestType<T>(this T types, Type type) where T : IEnumerable<Type>
         {
             if ((types.FirstOrDefault(t => t == type) ?? types.FirstOrDefault(t => t.IsAssignableFrom(type))) is Type res) return res;
             if (!type.IsGenericType || type.IsGenericTypeDefinition) return null;
-            Type gtd = type.GetGenericTypeDefinition();
-            return types.FirstOrDefault(t => t.IsGenericTypeDefinition && t == gtd);
+            TypeInfoExt gtd = TypeInfoExt.From(type).GetGenericTypeDefinition() ?? throw new InvalidProgramException();
+            return types.FirstOrDefault(t => t.IsGenericTypeDefinition && t == gtd.Type);
         }
 
         /// <summary>

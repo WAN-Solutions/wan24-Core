@@ -25,16 +25,17 @@ namespace wan24.Core
             if (arr.Length > Settings.StackAllocBorder)
             {
 #endif
-                using RentedArrayRefStruct<byte> random = new(arr.Length, clean: false);
-                RandomNumberGenerator.Fill(random.Span);
+                using RentedMemoryRef<byte> random = new(arr.Length, clean: false);
+                Span<byte> randomSpan = random.Span;
+                RandomNumberGenerator.Fill(randomSpan);
 #if !NO_UNSAFE
                 unsafe
                 {
-                    fixed (byte* r = random.Span)
+                    fixed (byte* r = randomSpan)
                     fixed (char* a = arr)
 #endif
 #if NO_UNSAFE
-                        for (int i = 0, len = arr.Length; i < len; arr[i] = (char)random[i], i++) ;
+                        for (int i = 0, len = arr.Length; i < len; arr[i] = (char)randomSpan[i], i++) ;
 #else
                         for (int i = 0, len = arr.Length; i < len; a[i] = (char)r[i], a[i] = '\0', i++) ;
 #endif
@@ -83,8 +84,9 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static byte[] DecodeBase64(this ReadOnlySpan<char> str)
         {
-            using RentedArrayRefStruct<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
-            return buffer.Span[..DecodeBase64(str, buffer.Span)].ToArray();
+            using RentedMemoryRef<byte> buffer = new(len: Base64.GetMaxDecodedFromUtf8Length(str.Length), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            return bufferSpan[..DecodeBase64(str, bufferSpan)].ToArray();
         }
 
         /// <summary>
@@ -114,8 +116,9 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Tiny method")]
         public static int DecodeBase64(this ReadOnlySpan<char> str, Span<byte> buffer)
         {
-            using RentedArrayRefStruct<byte> bytes = new(len: Encoding.UTF8.GetMaxByteCount(str.Length), clean: false);
-            return bytes.Span[..Encoding.UTF8.GetBytes(str, bytes.Span)].DecodeBase64(buffer);
+            using RentedMemoryRef<byte> bytes = new(len: Encoding.UTF8.GetMaxByteCount(str.Length), clean: false);
+            Span<byte> bytesSpan = bytes.Span;
+            return bytesSpan[..Encoding.UTF8.GetBytes(str, bytesSpan)].DecodeBase64(buffer);
         }
     }
 }

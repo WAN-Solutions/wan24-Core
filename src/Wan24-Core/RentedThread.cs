@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Threading;
 
 namespace wan24.Core
 {
     /// <summary>
     /// Rented thread
     /// </summary>
-    public class RentedThread : DisposableBase, IObjectPoolItem
+    public class RentedThread : SimpleDisposableBase, IObjectPoolItem
     {
         /// <summary>
         /// Thread synchronization
@@ -188,8 +189,8 @@ namespace wan24.Core
                     Contract.Assert(WorkerCompletion is not null);
                     try
                     {
-                        using Cancellations cancellation = new([.. new CancellationToken[] { cts.Token, WorkerCancellation }.RemoveNoneAndDefault()]);
-                        Worker.Invoke(this, cancellation);
+                        using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, WorkerCancellation);
+                        Worker.Invoke(this, cancellation.Token);
                         WorkEvent.Reset();
                         WorkerCompletion.SetResult();
                     }
@@ -233,7 +234,7 @@ namespace wan24.Core
         {
             await WorkEvent.SetAsync().DynamicContext();
             await WorkDoneEvent.WaitAsync().DynamicContext();
-            await Sync.DisposeAsync().DynamicContext();
+            Sync.Dispose();
             ManagedThread.Join();
             await WorkEvent.DisposeAsync().DynamicContext();
             await WorkDoneEvent.DisposeAsync().DynamicContext();

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Frozen;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -93,9 +94,12 @@ namespace wan24.Core
 #endif
         public static bool IsNullable(this ICustomAttributeProvider cap)
         {
-            IEnumerable<Attribute> attributes = cap.GetCustomAttributesCached<Attribute>();
-            if (attributes.Any(a => a is DisallowNullAttribute)) return false;
-            if (attributes.Any(a => a is AllowNullAttribute)) return true;
+            FrozenSet<Attribute> attr = GetCachedAttributes(cap);
+            for (int i = 0, len = attr.Count; i < len; i++)
+            {
+                if (attr.Items[0] is DisallowNullAttribute) return false;
+                if (attr.Items[0] is AllowNullAttribute) return true;
+            }
             return true;
         }
 

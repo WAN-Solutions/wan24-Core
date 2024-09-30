@@ -1,4 +1,5 @@
 ﻿using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -14,6 +15,9 @@ namespace wan24.Core
         /// <param name="prettify">Prettify?</param>
         /// <returns>JSON string</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static string ToJson(this object obj, in bool prettify = false) => JsonHelper.Encode(obj, prettify);
 
         /// <summary>
@@ -23,6 +27,9 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static object? FromJson(this Type type, in string json) => JsonHelper.DecodeObject(type, json);
 
         /// <summary>
@@ -32,6 +39,9 @@ namespace wan24.Core
         /// <param name="json">JSON string</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static T? DecodeJson<T>(this string json) => JsonHelper.Decode<T>(json);
 
         /// <summary>
@@ -44,7 +54,7 @@ namespace wan24.Core
         /// <returns>Value (<see langword="null"/>, if the path doesn't exist or the value type doesn't match)</returns>
         /// <exception cref="ArgumentException">Invalid path</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static T? GetJsonValue<T>(this Dictionary<string, object?> jsonDict, in string path, in char pathSeparator = '.')
+        public static T? GetJsonValue<T>(this IReadOnlyDictionary<string, object?> jsonDict, in string path, in char pathSeparator = '.')
         {
             if (path.Length < 1) throw new ArgumentException("Path required", nameof(path));
             string[] parts = path.Split(pathSeparator);
@@ -52,7 +62,7 @@ namespace wan24.Core
             for (int i = 0, len = parts.Length; i < len; i++)
             {
                 if (parts[i].Length < 1) throw new ArgumentException($"Invalid path element #{i}", nameof(path));
-                if (current is not Dictionary<string, object?> dict)
+                if (current is not IReadOnlyDictionary<string, object?> dict)
                 {
                     current = null;
                     break;
@@ -73,7 +83,7 @@ namespace wan24.Core
         /// <returns>If the value was found (anyway, the value may be <see langword="null"/>)</returns>
         /// <exception cref="ArgumentException">Invalid path</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool TryGetJsonValue<T>(this Dictionary<string, object?> jsonDict, in string path, out T? result, in char pathSeparator = '.')
+        public static bool TryGetJsonValue<T>(this IReadOnlyDictionary<string, object?> jsonDict, in string path, out T? result, in char pathSeparator = '.')
         {
             if (path.Length < 1) throw new ArgumentException("Path required", nameof(path));
             string[] parts = path.Split(pathSeparator);
@@ -82,7 +92,7 @@ namespace wan24.Core
             for (int i = 0, len = parts.Length; i < len; i++)
             {
                 if (parts[i].Length < 1) throw new ArgumentException($"Invalid path element #{i}", nameof(path));
-                if (current is not Dictionary<string, object?> dict)
+                if (current is not IReadOnlyDictionary<string, object?> dict)
                 {
                     current = null;
                     res = false;
@@ -103,7 +113,7 @@ namespace wan24.Core
         /// <returns>If the given path has a value</returns>
         /// <exception cref="ArgumentException">Invalid path</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool HasJsonValue(this Dictionary<string, object?> jsonDict, in string path, in char pathSeparator = '.')
+        public static bool HasJsonValue(this IReadOnlyDictionary<string, object?> jsonDict, in string path, in char pathSeparator = '.')
         {
             if (path.Length < 1) throw new ArgumentException("Path required", nameof(path));
             string[] parts = path.Split(pathSeparator);
@@ -112,7 +122,7 @@ namespace wan24.Core
             for (int i = 0, len = parts.Length; i < len; i++)
             {
                 if (parts[i].Length < 1) throw new ArgumentException($"Invalid path element #{i}", nameof(path));
-                if (current is not Dictionary<string, object?> dict)
+                if (current is not IReadOnlyDictionary<string, object?> dict)
                 {
                     res = false;
                     break;
@@ -133,16 +143,16 @@ namespace wan24.Core
         /// <returns>JSON dictionary</returns>
         /// <exception cref="ArgumentException">An element in the path is not a JSON dictionary, or the path is invalid</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static Dictionary<string, object?> SetJsonValue<T>(this Dictionary<string, object?> jsonDict, in string path, in T value, in char pathSeparator = '.')
+        public static IDictionary<string, object?> SetJsonValue<T>(this IDictionary<string, object?> jsonDict, in string path, in T value, in char pathSeparator = '.')
         {
             if (path.Length < 1) throw new ArgumentException("Path required", nameof(path));
             string[] parts = path.Split(pathSeparator);
             object? current = jsonDict;
-            Dictionary<string, object?> last = jsonDict;
+            IDictionary<string, object?> last = jsonDict;
             for (int i = 0, len = parts.Length - 1; i < len; i++)
             {
                 if (parts[i].Length < 1) throw new ArgumentException($"Invalid path element #{i}", nameof(path));
-                if (current is not Dictionary<string, object?> dict)
+                if (current is not IDictionary<string, object?> dict)
                     throw new ArgumentException($"Path \"{string.Join(pathSeparator, parts.Take(i))}\" is not a JSON dictionary", nameof(path));
                 last = dict;
                 if (!last.TryGetValue(parts[i], out current)) current = last[parts[i]] = new Dictionary<string, object?>();
@@ -162,16 +172,16 @@ namespace wan24.Core
         /// <returns>If the value was set</returns>
         /// <exception cref="ArgumentException">Invalid path</exception>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool TrySetJsonValue<T>(this Dictionary<string, object?> jsonDict, in string path, in T value, in char pathSeparator = '.')
+        public static bool TrySetJsonValue<T>(this IDictionary<string, object?> jsonDict, in string path, in T value, in char pathSeparator = '.')
         {
             if (path.Length < 1) throw new ArgumentException("Path required", nameof(path));
             string[] parts = path.Split(pathSeparator);
             object? current = jsonDict;
-            Dictionary<string, object?> last = jsonDict;
+            IDictionary<string, object?> last = jsonDict;
             for (int i = 0, len = parts.Length - 1; i < len; i++)
             {
                 if (parts[i].Length < 1) throw new ArgumentException($"Invalid path element #{i}", nameof(path));
-                if (current is not Dictionary<string, object?> dict) return false;
+                if (current is not IDictionary<string, object?> dict) return false;
                 last = dict;
                 if (!last.TryGetValue(parts[i], out current)) current = last[parts[i]] = new Dictionary<string, object?>();
             }
@@ -186,7 +196,10 @@ namespace wan24.Core
         /// <param name="jsonDict">JSON dictionary</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static T ToObject<T>(this Dictionary<string, object?> jsonDict)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T ToObject<T>(this IReadOnlyDictionary<string, object?> jsonDict)
         {
             using MemoryPoolStream ms = new();
             JsonHelper.Encode(jsonDict, ms);
@@ -201,7 +214,10 @@ namespace wan24.Core
         /// <param name="type">Object type</param>
         /// <returns>Object</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static object ToObject(this Dictionary<string, object?> jsonDict, in Type type)
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static object ToObject(this IReadOnlyDictionary<string, object?> jsonDict, in Type type)
         {
             using MemoryPoolStream ms = new();
             JsonHelper.Encode(jsonDict, ms);

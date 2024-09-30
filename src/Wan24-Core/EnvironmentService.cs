@@ -32,6 +32,7 @@ namespace wan24.Core
                 yield return new(__("Browser environment"), ENV.IsBrowserEnvironment, __("Is a browser app environment (WASM)?"));
                 yield return new(__("Uptime"), TimeSpan.FromMilliseconds(Environment.TickCount64), __("Operating system uptime since the last restart"));
                 yield return new(__(".NET CLR version"), Environment.Version, __(".NET CLR version"));
+                yield return new(__("CLR platform"), ENV.ClrPlatformTarget, __(".NET CLR platform target"));
                 yield return new(__("CPU cores"), Environment.ProcessorCount, __("Number of CPU cores"));
                 yield return new(__("Process ID"), Environment.ProcessId, __("Current process ID"));
                 yield return new(__("64bit process"), Environment.Is64BitProcess, __("Is a 64bit process?"));
@@ -43,7 +44,7 @@ namespace wan24.Core
                 yield return new(__("Page size"), Environment.SystemPageSize, __("Operating system memory page size in bytes"));
                 yield return new(__("Working set"), Environment.WorkingSet, __("Physical memory mapped to the current process in bytes"));
                 yield return new(__("Buffer size"), Settings.BufferSize, __("Default buffer size in bytes"));
-                yield return new(__("stackalloc border"), Settings.StackAllocBorder, __("Stack allocation limitation border in bytes"));
+                yield return new(__("Allocation"), Settings.StackAllocBorder, __("Stack allocation limitation in bytes"));
                 yield return new(__("App ID"), Settings.AppId, __("App ID"));
                 yield return new(__("App process"), Settings.ProcessId, __("App process ID"));
                 yield return new(__("Create file"), Settings.CreateFileMode, __("Linux create file mode"));
