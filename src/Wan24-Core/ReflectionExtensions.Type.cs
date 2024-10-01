@@ -248,6 +248,8 @@ namespace wan24.Core
         {
             HashSet<Type> baseTypes = [];
             Type[] types;
+            int i,
+                len;
             // Find all base types and interfaces
             foreach (Type type in enumerable)
             {
@@ -255,14 +257,76 @@ namespace wan24.Core
                 if (includeMainType) baseTypes.Add(type);
                 baseTypes.AddRange(types);
                 if (!includeInterfaces) continue;
-                baseTypes.AddRange(type.GetInterfaces());
-                foreach (Type t in types) baseTypes.AddRange(t.GetInterfaces());
+                baseTypes.AddRange(TypeInfoExt.From(type).GetInterfaces());
+                for (i = 0, len = types.Length; i < len; i++)
+                    baseTypes.AddRange(TypeInfoExt.From(types[i]).GetInterfaces());
             }
             // Filter out incompatible base types and interfaces
+            List<Type> baseTypesList = [.. baseTypes];
+            baseTypes.Clear();
+            len = baseTypesList.Count;
+            List<Type> incompatibleTypes = new(len);
             foreach (Type type in enumerable)
-                foreach (Type incompatible in baseTypes.Where(t => !t.IsAssignableFrom(type)).ToArray())
-                    baseTypes.Remove(incompatible);
-            return baseTypes.FirstOrDefault();
+            {
+                for (i = 0, len = baseTypesList.Count; i < len; i++)
+                {
+                    if (baseTypesList[i].IsAssignableFrom(type)) continue;
+                    incompatibleTypes.Add(baseTypesList[i]);
+                }
+                len = incompatibleTypes.Count;
+                if (len == 0) continue;
+                for (i = 0; i < len; baseTypesList.Remove(incompatibleTypes[i]), i++) ;
+                incompatibleTypes.Clear();
+            }
+            return baseTypesList.Count == 0
+                ? null
+                : baseTypesList[0];
+        }
+
+        /// <summary>
+        /// Get the common base type
+        /// </summary>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="includeInterfaces">If interfaces are included</param>
+        /// <param name="includeMainType">If to include the main type</param>
+        /// <returns>Common base type</returns>
+        public static Type[] CommonBaseTypes(this IEnumerable<Type> enumerable, bool includeInterfaces = false, bool includeMainType = true)
+        {
+            HashSet<Type> baseTypes = [];
+            Type[] types;
+            int i,
+                len;
+            // Find all base types and interfaces
+            foreach (Type type in enumerable)
+            {
+                types = [.. type.GetBaseTypes()];
+                if (includeMainType) baseTypes.Add(type);
+                baseTypes.AddRange(types);
+                if (!includeInterfaces) continue;
+                baseTypes.AddRange(TypeInfoExt.From(type).GetInterfaces());
+                for (i = 0, len = types.Length; i < len; i++)
+                    baseTypes.AddRange(TypeInfoExt.From(types[i]).GetInterfaces());
+            }
+            // Filter out incompatible base types and interfaces
+            List<Type> baseTypesList = [.. baseTypes];
+            baseTypes.Clear();
+            len = baseTypesList.Count;
+            List<Type> incompatibleTypes = new(len);
+            foreach (Type type in enumerable)
+            {
+                for (i = 0, len = baseTypesList.Count; i < len; i++)
+                {
+                    if (baseTypesList[i].IsAssignableFrom(type)) continue;
+                    incompatibleTypes.Add(baseTypesList[i]);
+                }
+                len = incompatibleTypes.Count;
+                if (len == 0) continue;
+                for (i = 0; i < len; baseTypesList.Remove(incompatibleTypes[i]), i++) ;
+                incompatibleTypes.Clear();
+            }
+            return baseTypesList.Count == 0
+                ? []
+                : [.. baseTypesList];
         }
 
         /// <summary>

@@ -54,6 +54,10 @@ namespace wan24.Core
         /// </summary>
         private ImmutableArray<Type>? _GenericArguments = null;
         /// <summary>
+        /// Interfaces
+        /// </summary>
+        private FrozenSet<Type>? _Interfaces = null;
+        /// <summary>
         /// If it's a delegate
         /// </summary>
         private bool? _IsDelegate = null;
