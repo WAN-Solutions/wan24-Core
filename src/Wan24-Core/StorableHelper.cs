@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="type">Object type</param>
         /// <param name="key">Storage key</param>
-        /// <param name="tag">Any tagged object</param>
+        /// <param name="tag">Any tagged object (may be the target store, f.e.)</param>
         /// <param name="restoreType">Restore type (if different from <c>type</c>)</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object</returns>
@@ -22,7 +22,7 @@
         /// </summary>
         /// <typeparam name="T">Object type (will be used as restore type, too, if <c>restoreType</c> is <see langword="null"/>)</typeparam>
         /// <param name="key">Storage key</param>
-        /// <param name="tag">Any tagged object</param>
+        /// <param name="tag">Any tagged object (may be the target store, f.e.)</param>
         /// <param name="restoreType">Restore type</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Object</returns>

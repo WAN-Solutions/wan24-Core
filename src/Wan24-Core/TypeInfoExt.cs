@@ -182,6 +182,16 @@ namespace wan24.Core
         public Type? FirstGenericArgument => Type.IsGenericType ? GetGenericArguments()[0] : null;
 
         /// <summary>
+        /// Generic arguments
+        /// </summary>
+        public Type[] Interfaces => [.. GetInterfaces()];
+
+        /// <summary>
+        /// Interface count
+        /// </summary>
+        public int InterfaceCount => GetInterfaces().Count;
+
+        /// <summary>
         /// Attributes
         /// </summary>
         public Attribute[] Attributes => [.. GetAttributes()];
@@ -363,6 +373,16 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public ImmutableArray<Type> GetGenericArguments() => _GenericArguments ??= Type.IsGenericType ? ReflectionExtensions.GetCachedGenericArguments(Type) : [];
+
+        /// <summary>
+        /// Get the interfaces
+        /// </summary>
+        /// <returns>Interfaces</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<Type> GetInterfaces() => _Interfaces ??= Type.GetInterfaces().ToFrozenSet();
 
         /// <summary>
         /// Get the constructors
