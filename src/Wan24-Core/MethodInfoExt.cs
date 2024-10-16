@@ -20,9 +20,9 @@ namespace wan24.Core
     public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
     {
         /// <summary>
-        /// Cache (key is the method hash code)
+        /// Cache (key is the method)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, MethodInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<MethodInfo, MethodInfoExt> Cache = [];
         /// <summary>
         /// Generic methods
         /// </summary>
@@ -283,7 +283,11 @@ namespace wan24.Core
         /// <returns>Constructed generic method</returns>
         public MethodInfoExt MakeGenericMethod(params Type[] genericArguments)
         {
-            if (!Method.IsGenericMethodDefinition) throw new InvalidOperationException();
+            if (!Method.IsGenericMethodDefinition)
+            {
+                Logging.WriteError($"{FullName} isn't a generic method");
+                throw new InvalidOperationException();
+            }
             if (genericArguments.Length != GenericArgumentCount)
                 throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArgumentCount} generic arguments required");
             GenericMethodKey key = new(GetHashCode(), genericArguments);
@@ -402,10 +406,9 @@ namespace wan24.Core
         {
             try
             {
-                int hc = mi.GetHashCode();
-                if (Cache.TryGetValue(hc, out MethodInfoExt? res)) return res;
+                if (Cache.TryGetValue(mi, out MethodInfoExt? res)) return res;
                 res = new(mi, mi.CanCreateMethodInvoker() ? mi.CreateMethodInvoker() : null);
-                Cache.TryAdd(hc, res);
+                Cache.TryAdd(mi, res);
                 return res;
             }
             catch(Exception ex)

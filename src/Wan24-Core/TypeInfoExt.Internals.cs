@@ -13,9 +13,9 @@ namespace wan24.Core
     public partial record class TypeInfoExt
     {
         /// <summary>
-        /// Cached instances (key is the type hash code)
+        /// Cached instances (key is the type)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, TypeInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<Type, TypeInfoExt> Cache = [];
         /// <summary>
         /// Generic methods
         /// </summary>
@@ -99,33 +99,30 @@ namespace wan24.Core
         /// <summary>
         /// Generic type key
         /// </summary>
-        [StructLayout(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Sequential)]
         private readonly record struct GenericTypeKey
         {
             /// <summary>
             /// Hash code
             /// </summary>
-            [FieldOffset(0)]
             public readonly int HashCode;
             /// <summary>
             /// Type
             /// </summary>
-            [FieldOffset(sizeof(int))]
-            public readonly int TypeHashCode;
+            public readonly Type Type;
             /// <summary>
             /// Generic arguments
             /// </summary>
-            [FieldOffset(sizeof(int) << 1)]
             public readonly EquatableArray<Type> GenericArguments;
 
             /// <summary>
             /// Constructor
             /// </summary>
-            /// <param name="typeHashCode">Type hash code (see <see cref="TypeInfoExt.GetHashCode"/>)</param>
+            /// <param name="type">Type</param>
             /// <param name="genericArguments">Generic arguments</param>
-            public GenericTypeKey(in int typeHashCode, in Type[] genericArguments)
+            public GenericTypeKey(in Type type, in Type[] genericArguments)
             {
-                TypeHashCode = typeHashCode;
+                Type = type;
                 GenericArguments = genericArguments;
                 HashCode = base.GetHashCode();
             }
@@ -147,7 +144,7 @@ namespace wan24.Core
         private sealed class EqualityComparer() : IEqualityComparer<GenericTypeKey>
         {
             /// <inheritdoc/>
-            public bool Equals(GenericTypeKey x, GenericTypeKey y) => x.TypeHashCode == y.TypeHashCode && x.GenericArguments == y.GenericArguments;
+            public bool Equals(GenericTypeKey x, GenericTypeKey y) => x.HashCode == y.HashCode && x.Type == y.Type && x.GenericArguments == y.GenericArguments;
 
             /// <inheritdoc/>
             public int GetHashCode([DisallowNull] GenericTypeKey obj) => obj.HashCode;

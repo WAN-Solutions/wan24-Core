@@ -17,9 +17,9 @@ namespace wan24.Core
     public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
     {
         /// <summary>
-        /// Cache (key is the field hash code)
+        /// Cache (key is the field)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FieldInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<FieldInfo, FieldInfoExt> Cache = [];
 
         /// <summary>
         /// If the property is nullable
@@ -195,10 +195,9 @@ namespace wan24.Core
         {
             try
             {
-                int hc = fi.GetHashCode();
-                if (Cache.TryGetValue(hc, out FieldInfoExt? res)) return res;
+                if (Cache.TryGetValue(fi, out FieldInfoExt? res)) return res;
                 res = new(fi, fi.CanCreateFieldGetter() ? fi.CreateFieldGetter() : null, fi.CanCreateFieldSetter() ? fi.CreateFieldSetter() : null);
-                Cache.TryAdd(hc, res);
+                Cache.TryAdd(fi, res);
                 return res;
             }
             catch (Exception ex)

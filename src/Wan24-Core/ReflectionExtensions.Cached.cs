@@ -2,8 +2,9 @@
 using System.Collections.Frozen;
 using System.Collections.Immutable;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime;
+using System.Runtime.CompilerServices;
+using wan24.Core.Enumerables;
 
 namespace wan24.Core
 {
@@ -20,49 +21,49 @@ namespace wan24.Core
         public const BindingFlags DEFAULT_BINDINGS = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
 
         /// <summary>
-        /// <see cref="FieldInfo"/> cache (key is the type hash code)
+        /// <see cref="FieldInfo"/> cache (key is the type)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<FieldInfoExt>> FieldInfoCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<FieldInfoExt>> FieldInfoCache = new();
         /// <summary>
-        /// <see cref="PropertyInfo"/> cache (key is the type hash code)
+        /// <see cref="PropertyInfo"/> cache (key is the type)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<PropertyInfoExt>> PropertyInfoCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<PropertyInfoExt>> PropertyInfoCache = new();
         /// <summary>
-        /// <see cref="MethodInfo"/> cache (key is the type hash code)
+        /// <see cref="MethodInfo"/> cache (key is the type)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<MethodInfoExt>> MethodInfoCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<MethodInfoExt>> MethodInfoCache = new();
         /// <summary>
-        /// <see cref="ConstructorInfo"/> cache (key is the type hash code)
+        /// <see cref="ConstructorInfo"/> cache (key is the type)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<ConstructorInfoExt>> ConstructorInfoCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<ConstructorInfoExt>> ConstructorInfoCache = new();
         /// <summary>
         /// <see cref="EventInfo"/> cache (key is the type hash code)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<EventInfo>> EventInfoCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<EventInfo>> EventInfoCache = new();
         /// <summary>
-        /// <see cref="EventInfo"/> cache (key is the delegate type hash code)
+        /// <see cref="EventInfo"/> cache (key is the delegate type)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<Type>> DelegateCache = new();
+        internal static readonly ConcurrentDictionary<Type, FrozenSet<Type>> DelegateCache = new();
         /// <summary>
-        /// <see cref="ParameterInfo"/> cache (key is the method/constructor hash code)
+        /// <see cref="ParameterInfo"/> cache (key is the method/constructor)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, ImmutableArray<ParameterInfo>> ParameterInfoCache = new();
+        internal static readonly ConcurrentDictionary<MethodBase, ImmutableArray<ParameterInfo>> ParameterInfoCache = new();
         /// <summary>
-        /// Generic <see cref="Type"/> arguments cache (key is the type/method hash code)
+        /// Generic <see cref="Type"/> arguments cache (key is the type/method)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, ImmutableArray<Type>> GenericArgumentsCache = new();
+        internal static readonly ConcurrentDictionary<ICustomAttributeProvider, ImmutableArray<Type>> GenericArgumentsCache = new();
         /// <summary>
-        /// <see cref="Attribute"/> cache (key is the provider hash code)
+        /// <see cref="Attribute"/> cache (key is the provider)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, FrozenSet<Attribute>> AttributeCache = new();
+        internal static readonly ConcurrentDictionary<ICustomAttributeProvider, FrozenSet<Attribute>> AttributeCache = new();
         /// <summary>
-        /// Method invocation delegate cache (key is the <see cref="MethodInfo"/> hash code)
+        /// Method invocation delegate cache (key is the <see cref="MethodInfo"/>)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, Func<object?, object?[], object?>> MethodInvokeDelegateCache = new();
+        internal static readonly ConcurrentDictionary<MethodInfo, Func<object?, object?[], object?>> MethodInvokeDelegateCache = new();
         /// <summary>
-        /// Constructor invocation delegate cache (key is the <see cref="ConstructorInfo"/> hash code)
+        /// Constructor invocation delegate cache (key is the <see cref="ConstructorInfo"/>)
         /// </summary>
-        internal static readonly ConcurrentDictionary<int, Func<object?[], object>> ConstructorInvokeDelegateCache = new();
+        internal static readonly ConcurrentDictionary<ConstructorInfo, Func<object?[], object>> ConstructorInvokeDelegateCache = new();
 
         /// <summary>
         /// Get fields from the cache
@@ -74,13 +75,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<FieldInfoExt> GetFieldsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<FieldInfoExt> GetFieldsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
-            if (fields.Count < 1) return [];
+            if (fields.Count < 1) return new EnumerableAdapter<FieldInfoExt[], FieldInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
                 ? fields.Enumerate()
-                : fields.Enumerate(f => bindingFlags.DoesMatch(f));
+                : fields.Where(f => bindingFlags.DoesMatch(f));
         }
 
         /// <summary>
@@ -94,13 +95,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<FieldInfoExt> GetFieldsCached(this Type type, Func<FieldInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<FieldInfoExt> GetFieldsCached(this Type type, Func<FieldInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
-            if (fields.Count < 1) return [];
+            if (fields.Count < 1) return new EnumerableAdapter<FieldInfoExt[], FieldInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
-                ? fields.Enumerate(filter)
-                : fields.Enumerate(f => bindingFlags.DoesMatch(f) && filter(f));
+                ? fields.Where(filter)
+                : fields.Where(f => bindingFlags.DoesMatch(f) && filter(f));
         }
 
         /// <summary>
@@ -141,13 +142,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
-            if (properties.Count < 1) return [];
+            if (properties.Count < 1) return new EnumerableAdapter<PropertyInfoExt[], PropertyInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
                 ? properties.Enumerate()
-                : properties.Enumerate(p => bindingFlags.DoesMatch(p));
+                : properties.Where(p => bindingFlags.DoesMatch(p));
         }
 
         /// <summary>
@@ -161,13 +162,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, Func<PropertyInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, Func<PropertyInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
-            if (properties.Count < 1) return [];
+            if (properties.Count < 1) return new EnumerableAdapter<PropertyInfoExt[], PropertyInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
-                ? properties.Enumerate(filter)
-                : properties.Enumerate(p => bindingFlags.DoesMatch(p) && filter(p));
+                ? properties.Where(filter)
+                : properties.Where(p => bindingFlags.DoesMatch(p) && filter(p));
         }
 
         /// <summary>
@@ -208,13 +209,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<MethodInfoExt> GetMethodsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<MethodInfoExt> GetMethodsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
-            if (methods.Count < 1) return [];
+            if (methods.Count < 1) return new EnumerableAdapter<MethodInfoExt[], MethodInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
                 ? methods.Enumerate()
-                : methods.Enumerate(m => bindingFlags.DoesMatch(m));
+                : methods.Where(m => bindingFlags.DoesMatch(m));
         }
 
         /// <summary>
@@ -228,13 +229,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<MethodInfoExt> GetMethodsCached(this Type type, Func<MethodInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<MethodInfoExt> GetMethodsCached(this Type type, Func<MethodInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
-            if (methods.Count < 1) return [];
+            if (methods.Count < 1) return new EnumerableAdapter<MethodInfoExt[], MethodInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
-                ? methods.Enumerate(filter)
-                : methods.Enumerate(m => bindingFlags.DoesMatch(m) && filter(m));
+                ? methods.Where(filter)
+                : methods.Where(m => bindingFlags.DoesMatch(m) && filter(m));
         }
 
         /// <summary>
@@ -275,13 +276,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<Type> GetDelegatesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<Type> GetDelegatesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
-            if (delegates.Count < 1) return [];
+            if (delegates.Count < 1) return new EnumerableAdapter<Type[], Type>([]);
             return bindingFlags == ALL_BINDINGS
                 ? delegates.Enumerate()
-                : delegates.Enumerate(d => bindingFlags.DoesMatch(d));
+                : delegates.Where(d => bindingFlags.DoesMatch(d));
         }
 
         /// <summary>
@@ -295,13 +296,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<Type> GetDelegatesCached(this Type type, Func<Type, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<Type> GetDelegatesCached(this Type type, Func<Type, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
-            if (delegates.Count < 1) return [];
+            if (delegates.Count < 1) return new EnumerableAdapter<Type[], Type>([]);
             return bindingFlags == ALL_BINDINGS
-                ? delegates.Enumerate(filter)
-                : delegates.Enumerate(d => bindingFlags.DoesMatch(d) && filter(d));
+                ? delegates.Where(filter)
+                : delegates.Where(d => bindingFlags.DoesMatch(d) && filter(d));
         }
 
         /// <summary>
@@ -342,13 +343,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
-            if (constructors.Count < 1) return [];
+            if (constructors.Count < 1) return new EnumerableAdapter<ConstructorInfoExt[], ConstructorInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
                 ? constructors.Enumerate()
-                : constructors.Enumerate(c => bindingFlags.DoesMatch(c));
+                : constructors.Where(c => bindingFlags.DoesMatch(c));
         }
 
         /// <summary>
@@ -362,13 +363,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, Func<ConstructorInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, Func<ConstructorInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
-            if (constructors.Count < 1) return [];
+            if (constructors.Count < 1) return new EnumerableAdapter<ConstructorInfoExt[], ConstructorInfoExt>([]);
             return bindingFlags == ALL_BINDINGS
-                ? constructors.Enumerate(filter)
-                : constructors.Enumerate(c => bindingFlags.DoesMatch(c) && filter(c));
+                ? constructors.Where(filter)
+                : constructors.Where(c => bindingFlags.DoesMatch(c) && filter(c));
         }
 
         /// <summary>
@@ -395,13 +396,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<EventInfo> GetEventsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<EventInfo> GetEventsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
-            if (events.Count < 1) return [];
+            if (events.Count < 1) return new EnumerableAdapter<EventInfo[], EventInfo>([]);
             return bindingFlags == ALL_BINDINGS
                 ? events.Enumerate()
-                : events.Enumerate(e => bindingFlags.DoesMatch(e));
+                : events.Where(e => bindingFlags.DoesMatch(e));
         }
 
         /// <summary>
@@ -415,13 +416,13 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<EventInfo> GetEventsCached(this Type type, Func<EventInfo, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
+        public static ICoreEnumerable<EventInfo> GetEventsCached(this Type type, Func<EventInfo, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
-            if (events.Count < 1) return [];
+            if (events.Count < 1) return new EnumerableAdapter<EventInfo[], EventInfo>([]);
             return bindingFlags == ALL_BINDINGS
-                ? events.Enumerate(filter)
-                : events.Enumerate(e => bindingFlags.DoesMatch(e) && filter(e));
+                ? events.Where(filter)
+                : events.Where(e => bindingFlags.DoesMatch(e) && filter(e));
         }
 
         /// <summary>
@@ -461,11 +462,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<ParameterInfo> GetParametersCached(this MethodBase method)
+        public static ICoreEnumerable<ParameterInfo> GetParametersCached(this MethodBase method)
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
             return parameters.Length < 1
-                ? []
+                ? new EnumerableAdapter<ParameterInfo[], ParameterInfo>([])
                 : parameters.Enumerate();
         }
 
@@ -479,12 +480,12 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<ParameterInfo> GetParametersCached(this MethodBase method, Func<ParameterInfo, bool> filter)
+        public static ICoreEnumerable<ParameterInfo> GetParametersCached(this MethodBase method, Func<ParameterInfo, bool> filter)
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
             return parameters.Length < 1
-                ? []
-                : parameters.Enumerate(filter);
+                ? new EnumerableAdapter<ParameterInfo[], ParameterInfo>([])
+                : parameters.Where(filter);
         }
 
         /// <summary>
@@ -546,11 +547,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<Type> GetGenericArgumentsCached(this Type type)
+        public static ICoreEnumerable<Type> GetGenericArgumentsCached(this Type type)
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(type);
             return arguments.Length < 1
-                ? []
+                ? new EnumerableAdapter<Type[], Type>([])
                 : arguments.Enumerate();
         }
 
@@ -576,11 +577,11 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<Type> GetGenericArgumentsCached(this MethodInfo mi)
+        public static ICoreEnumerable<Type> GetGenericArgumentsCached(this MethodInfo mi)
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(mi);
             return arguments.Length < 1
-                ? []
+                ? new EnumerableAdapter<Type[], Type>([])
                 : arguments.Enumerate();
         }
 
@@ -642,27 +643,26 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<T> GetCustomAttributesCached<T>(this ICustomAttributeProvider obj) where T : Attribute
+        public static ICoreEnumerable<T> GetCustomAttributesCached<T>(this ICustomAttributeProvider obj) where T : Attribute
         {
             FrozenSet<Attribute> attributes = GetCachedAttributes(obj);
             return attributes.Count < 1
-                ? []
-                : attributes.Enumerate(a => a is T).Cast<T>();
+                ? new EnumerableAdapter<T[], T>([])
+                : attributes.Where(a => a is T).Select(a => (T)a);
         }
 
         /// <summary>
         /// Get cached constructors
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<ConstructorInfoExt> GetCachedConstructors(Type type, in int? typeHashCode = null)
+        public static FrozenSet<ConstructorInfoExt> GetCachedConstructors(Type type)
             => ConstructorInfoCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetConstructors(ALL_BINDINGS).Select(c => ConstructorInfoExt.From(c)).ToFrozenSet()
                 );
 
@@ -670,15 +670,14 @@ namespace wan24.Core
         /// Get cached fields
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<FieldInfoExt> GetCachedFields(Type type, in int? typeHashCode = null)
+        public static FrozenSet<FieldInfoExt> GetCachedFields(Type type)
             => FieldInfoCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetFields(ALL_BINDINGS).Select(f => FieldInfoExt.From(f)).ToFrozenSet()
                 );
 
@@ -686,15 +685,14 @@ namespace wan24.Core
         /// Get cached properties
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<PropertyInfoExt> GetCachedProperties(Type type, in int? typeHashCode = null)
+        public static FrozenSet<PropertyInfoExt> GetCachedProperties(Type type)
             => PropertyInfoCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetProperties(ALL_BINDINGS).Select(p => PropertyInfoExt.From(p)).ToFrozenSet()
                 );
 
@@ -702,15 +700,14 @@ namespace wan24.Core
         /// Get cached methods
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<MethodInfoExt> GetCachedMethods(Type type, in int? typeHashCode = null)
+        public static FrozenSet<MethodInfoExt> GetCachedMethods(Type type)
             => MethodInfoCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetMethods(ALL_BINDINGS).Select(m => MethodInfoExt.From(m)).ToFrozenSet()
                 );
 
@@ -718,15 +715,14 @@ namespace wan24.Core
         /// Get cached parameters
         /// </summary>
         /// <param name="method">Method</param>
-        /// <param name="methodHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static ImmutableArray<ParameterInfo> GetCachedParameters(MethodBase method, in int? methodHashCode = null)
+        public static ImmutableArray<ParameterInfo> GetCachedParameters(MethodBase method)
             => ParameterInfoCache.GetOrAdd(
-                methodHashCode ?? method.GetHashCode(),
+                method,
                 (key) => [.. method.GetParameters()]
                 );
 
@@ -734,15 +730,14 @@ namespace wan24.Core
         /// Get cached methods
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<EventInfo> GetCachedEvents(Type type, in int? typeHashCode = null)
+        public static FrozenSet<EventInfo> GetCachedEvents(Type type)
             => EventInfoCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetEvents(ALL_BINDINGS).ToFrozenSet()
                 );
 
@@ -750,15 +745,14 @@ namespace wan24.Core
         /// Get cached delegates
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<Type> GetCachedDelegates(Type type, in int? typeHashCode = null)
+        public static FrozenSet<Type> GetCachedDelegates(Type type)
             => DelegateCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => type.GetNestedTypes(ALL_BINDINGS).Where(t => t.IsDelegate()).ToFrozenSet()
                 );
 
@@ -766,15 +760,14 @@ namespace wan24.Core
         /// Get cached attributes
         /// </summary>
         /// <param name="provider">Provider</param>
-        /// <param name="providerHashCode">Provider hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static FrozenSet<Attribute> GetCachedAttributes(ICustomAttributeProvider provider, in int? providerHashCode = null)
+        public static FrozenSet<Attribute> GetCachedAttributes(ICustomAttributeProvider provider)
             => AttributeCache.GetOrAdd(
-                providerHashCode ?? provider.GetHashCode(),
+                provider,
                 (key) => provider.GetCustomAttributes(inherit: true).Cast<Attribute>().ToFrozenSet()
                 );
 
@@ -782,15 +775,14 @@ namespace wan24.Core
         /// Get cached generic arguments
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="typeHashCode">Type hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static ImmutableArray<Type> GetCachedGenericArguments(Type type, in int? typeHashCode = null)
+        public static ImmutableArray<Type> GetCachedGenericArguments(Type type)
             => GenericArgumentsCache.GetOrAdd(
-                typeHashCode ?? type.GetHashCode(),
+                type,
                 (key) => [.. type.GetGenericArguments()]
                 );
 
@@ -798,15 +790,14 @@ namespace wan24.Core
         /// Get cached generic arguments
         /// </summary>
         /// <param name="method">Methods</param>
-        /// <param name="typeHashCode">Methods hash code</param>
         /// <returns>Cache contents</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static ImmutableArray<Type> GetCachedGenericArguments(MethodInfo method, in int? typeHashCode = null)
+        public static ImmutableArray<Type> GetCachedGenericArguments(MethodInfo method)
             => GenericArgumentsCache.GetOrAdd(
-                typeHashCode ?? method.GetHashCode(),
+                method,
                 (key) => [.. method.GetGenericArguments()]
                 );
     }

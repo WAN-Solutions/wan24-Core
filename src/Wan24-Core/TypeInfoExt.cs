@@ -355,7 +355,7 @@ namespace wan24.Core
             if (!Type.IsGenericTypeDefinition) throw new InvalidOperationException();
             if (genericArguments.Length != GenericArgumentCount)
                 throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArgumentCount} generic arguments required");
-            GenericTypeKey key = new(GetHashCode(), genericArguments);
+            GenericTypeKey key = new(this, genericArguments);
             if (GenericTypes.TryGetValue(key, out TypeInfoExt? res)) return res;
             res = From(Type.MakeGenericType(genericArguments));
             res._GenericArguments ??= [.. genericArguments];
@@ -518,10 +518,9 @@ namespace wan24.Core
         /// <returns>Type info</returns>
         public static TypeInfoExt From(in Type type)
         {
-            int hc = type.GetHashCode();
-            if (Cache.TryGetValue(hc, out TypeInfoExt? res)) return res;
+            if (Cache.TryGetValue(type, out TypeInfoExt? res)) return res;
             res = new(type);
-            Cache.TryAdd(hc, res);
+            Cache.TryAdd(type, res);
             return res;
         }
     }

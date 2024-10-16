@@ -18,9 +18,9 @@ namespace wan24.Core
     public sealed record class ConstructorInfoExt(in ConstructorInfo Constructor, in Func<object?[], object>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
     {
         /// <summary>
-        /// Cache (key is the constructor hash code)
+        /// Cache (key is the constructor)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, ConstructorInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<ConstructorInfo, ConstructorInfoExt> Cache = [];
 
         /// <summary>
         /// Parameters
@@ -187,10 +187,9 @@ namespace wan24.Core
         /// <returns>Instance</returns>
         public static ConstructorInfoExt From(in ConstructorInfo ci)
         {
-            int hc = ci.GetHashCode();
-            if (Cache.TryGetValue(hc, out ConstructorInfoExt? res)) return res;
+            if (Cache.TryGetValue(ci, out ConstructorInfoExt? res)) return res;
             res = new(ci, ci.CanCreateConstructorInvoker() ? ci.CreateConstructorInvoker() : null);
-            Cache.TryAdd(hc, res);
+            Cache.TryAdd(ci, res);
             return res;
         }
     }

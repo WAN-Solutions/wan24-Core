@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Cache (key is the property hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, PropertyInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<PropertyInfo, PropertyInfoExt> Cache = [];
 
         /// <summary>
         /// If the property is init-only
@@ -298,10 +298,9 @@ namespace wan24.Core
         {
             try
             {
-                int hc = pi.GetHashCode();
-                if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
+                if (Cache.TryGetValue(pi, out PropertyInfoExt? res)) return res;
                 res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
-                Cache.TryAdd(hc, res);
+                Cache.TryAdd(pi, res);
                 return res;
             }
             catch (Exception ex)
