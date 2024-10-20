@@ -95,47 +95,32 @@ namespace wan24.Core
         /// <summary>
         /// Type converter key for <see cref="Registered"/>
         /// </summary>
-        [StructLayout(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Sequential)]
         public readonly record struct TypeConverterKey
         {
             /// <summary>
-            /// Source type hash code
+            /// Source type
             /// </summary>
-            [FieldOffset(0)]
-            public readonly int SourceType;
+            public readonly Type SourceType;
             /// <summary>
-            /// Target type hash code
+            /// Target type
             /// </summary>
-            [FieldOffset(sizeof(int))]
-            public readonly int TargetType;
+            public readonly Type TargetType;
             /// <summary>
             /// Hash code
             /// </summary>
-            [FieldOffset(sizeof(int) << 1)]
             public readonly int HashCode;
 
             /// <summary>
             /// Constructor
             /// </summary>
-            /// <param name="sourceType">Source type hash code</param>
-            /// <param name="targetType">Target type hash code</param>
-            public TypeConverterKey(in int sourceType, in int targetType)
+            /// <param name="sourceType">Source type</param>
+            /// <param name="targetType">Target type</param>
+            public TypeConverterKey(in Type sourceType, in Type targetType)
             {
                 SourceType = sourceType;
                 TargetType = targetType;
-                HashCode = SourceType ^ TargetType;
-            }
-
-            /// <summary>
-            /// Constructor
-            /// </summary>
-            /// <param name="source">Source type</param>
-            /// <param name="target">Target type</param>
-            public TypeConverterKey(in Type source, in Type target)
-            {
-                SourceType = source.GetHashCode();
-                TargetType = target.GetHashCode();
-                HashCode = SourceType ^ TargetType;
+                HashCode = base.GetHashCode();
             }
 
             /// <inheritdoc/>

@@ -29,6 +29,14 @@ namespace wan24.Core
         /// Used file stream pool
         /// </summary>
         private readonly StreamPool<PooledTempFileStream> UsedFileStreamPool;
+        /// <summary>
+        /// Memory limit context
+        /// </summary>
+        private readonly PooledTempStreamMemoryLimit.Context? MemoryLimitContext;
+        /// <summary>
+        /// If the limit is a dynamic shared limit, which defines a total memory limit for all streams
+        /// </summary>
+        private readonly bool IsDynamicSharedLimit;
 
         /// <summary>
         /// Constructor
@@ -36,17 +44,43 @@ namespace wan24.Core
         /// <param name="estimatedLength">Estimated length in bytes</param>
         /// <param name="memoryStreamPool">Memory stream pool to use</param>
         /// <param name="fileStreamPool">File stream pool to use</param>
+        /// <param name="limit">Memory limit (isn't available for browser apps (WASM)!)</param>
+        /// <param name="limitContext">Existing memory limit context (will be disposed; consumed memory should match <see cref="MaxLengthInMemory"/>; isn't available for browser apps 
+        /// (WASM)!)</param>
+        /// <param name="isDynamicSharedLimit">If the memory limit is a dynamic shared limit, which defines a total memory limit for all streams (giving <c>limitContext</c> isn't allowed, 
+        /// if this value is <see langword="true"/>; a dynamic shared memory limit isn't available for browser apps (WASM)!)</param>
         public PooledTempStream(
             in long estimatedLength = 0, 
             in StreamPool<PooledMemoryStream>? memoryStreamPool = null, 
-            in StreamPool<PooledTempFileStream>? fileStreamPool = null
+            in StreamPool<PooledTempFileStream>? fileStreamPool = null,
+            in PooledTempStreamMemoryLimit? limit = null,
+            in PooledTempStreamMemoryLimit.Context? limitContext = null,
+            in bool isDynamicSharedLimit = false
             )
             : base(leaveOpen: true)
         {
+            if ((limit is not null || limitContext is not null) && ENV.IsBrowserApp)
+                throw new PlatformNotSupportedException("Memory limit isn't available for browser apps");
+            if (isDynamicSharedLimit)
+            {
+                if (limitContext is not null)
+                    throw new ArgumentException("Existing memory limit context isn't allowed for a shared dynamic memory limit", nameof(limitContext));
+                if (ENV.IsBrowserApp) throw new PlatformNotSupportedException("Dynamic shared memory limit isn't available for browser apps");
+            }
             UsedMemoryStreamPool = memoryStreamPool ?? MemoryStreamPool;
             UsedFileStreamPool = fileStreamPool ?? FileStreamPool;
-            BaseStream = estimatedLength > MaxLengthInMemory ? UsedFileStreamPool.Rent() : UsedMemoryStreamPool.Rent();
+            IsDynamicSharedLimit = isDynamicSharedLimit;
+            int usedMemory = MaxLengthInMemory;
+            if (!isDynamicSharedLimit) MemoryLimitContext = limitContext ?? limit?.UseMemory(MaxLengthInMemory, out usedMemory);
+            BaseStream = (!isDynamicSharedLimit && usedMemory < MaxLengthInMemory) || estimatedLength > MaxLengthInMemory 
+                ? UsedFileStreamPool.Rent() 
+                : UsedMemoryStreamPool.Rent();
             UseOriginalBeginWrite = true;
+            if (isDynamicSharedLimit && limit is not null && MemoryStream is PooledMemoryStream ms)
+            {
+                MemoryLimitContext = limit.UseMemory((int)ms.BufferLength, out usedMemory);
+                if (usedMemory < ms.BufferLength) CreateTempFile();
+            }
         }
 
         /// <summary>
@@ -151,8 +185,27 @@ namespace wan24.Core
         public override void SetLength(long value)
         {
             EnsureUndisposed();
-            if (IsInMemory && value > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
-            _BaseStream.SetLength(value);
+            PooledMemoryStream? ms = MemoryStream;
+            long len = ms?.Length ?? 0;
+            bool isInMemory = ms is not null,
+                increaseLength = value > len;
+            if (isInMemory && value == len) return;
+            if (!isInMemory || increaseLength || !IsDynamicSharedLimit || MemoryLimitContext is null || ENV.IsBrowserApp)
+            {
+                if (isInMemory && increaseLength)
+                {
+                    HandleLengthChange(value);
+                }
+                else
+                {
+                    _BaseStream.SetLength(value);
+                }
+                return;
+            }
+            long oldBufferLength = ms!.BufferLength;
+            ms.SetLength(value);
+            long newBufferLength = ms.BufferLength;
+            if (newBufferLength < oldBufferLength) MemoryLimitContext.Decrease((int)(oldBufferLength - newBufferLength));
         }
 
         /// <inheritdoc/>
@@ -162,7 +215,7 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
+            HandleLengthChange(Position + buffer.Length);
             _BaseStream.Write(buffer);
         }
 
@@ -170,7 +223,7 @@ namespace wan24.Core
         public override void WriteByte(byte value)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + 1 > MaxLengthInMemory && !ENV.IsBrowserApp) CreateTempFile();
+            HandleLengthChange(Position + 1);
             _BaseStream.WriteByte(value);
         }
 
@@ -182,8 +235,8 @@ namespace wan24.Core
         public override async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (IsInMemory && Position + buffer.Length > MaxLengthInMemory && !ENV.IsBrowserApp) await CreateTempFileAsync(cancellationToken).DynamicContext();
-            await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext(); ;
+            await HandleLengthChangeAsync(Position + buffer.Length, cancellationToken).DynamicContext();
+            await _BaseStream.WriteAsync(buffer, cancellationToken).DynamicContext();
         }
 
         /// <inheritdoc/>
@@ -191,6 +244,7 @@ namespace wan24.Core
         {
             ReturnBaseStream();
             base.Close();
+            if (!IsDisposing) MemoryLimitContext?.Dispose();
         }
 
         /// <inheritdoc/>
@@ -198,13 +252,60 @@ namespace wan24.Core
         {
             ReturnBaseStream();
             base.Dispose(disposing);
+            MemoryLimitContext?.Dispose();
         }
 
         /// <inheritdoc/>
-        protected override Task DisposeCore()
+        protected override async Task DisposeCore()
         {
             ReturnBaseStream();
-            return base.DisposeCore();
+            await base.DisposeCore().DynamicContext();
+            if (MemoryLimitContext is not null) await MemoryLimitContext.DisposeAsync().DynamicContext();
+        }
+
+        /// <summary>
+        /// Handle a stream length change
+        /// </summary>
+        /// <param name="newLength">New length in bytes</param>
+        private void HandleLengthChange(in long newLength)
+        {
+            if (MemoryStream is not PooledMemoryStream ms || newLength <= ms.Length) return;
+            bool isBrowserApp = ENV.IsBrowserApp;
+            if (isBrowserApp || !IsDynamicSharedLimit)
+            {
+                if (!isBrowserApp && newLength > MaxLengthInMemory) CreateTempFile();
+                return;
+            }
+            long oldBufferLength = ms.BufferLength;
+            if (MemoryLimitContext is not null && newLength >= oldBufferLength)
+            {
+                ms.SetLength(newLength);
+                long bufferLengthDiff = ms.BufferLength - oldBufferLength;
+                if (bufferLengthDiff > 0 && !MemoryLimitContext.Increase((int)bufferLengthDiff)) CreateTempFile();
+            }
+        }
+
+        /// <summary>
+        /// Handle a stream length change
+        /// </summary>
+        /// <param name="newLength">New length in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        private async Task HandleLengthChangeAsync(long newLength, CancellationToken cancellationToken = default)
+        {
+            if (MemoryStream is not PooledMemoryStream ms || newLength <= ms.Length) return;
+            bool isBrowserApp = ENV.IsBrowserApp;
+            if (isBrowserApp || !IsDynamicSharedLimit)
+            {
+                if (!isBrowserApp && newLength > MaxLengthInMemory) await CreateTempFileAsync(cancellationToken).DynamicContext();
+                return;
+            }
+            long oldBufferLength = ms.BufferLength;
+            if (MemoryLimitContext is not null && newLength >= oldBufferLength)
+            {
+                ms.SetLength(newLength);
+                long bufferLengthDiff = ms.BufferLength - oldBufferLength;
+                if (bufferLengthDiff > 0 && !MemoryLimitContext.Increase((int)bufferLengthDiff)) await CreateTempFileAsync(cancellationToken).DynamicContext();
+            }
         }
 
         /// <summary>
@@ -213,7 +314,6 @@ namespace wan24.Core
         private void CreateTempFile()
         {
             EnsureUndisposed();
-            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
@@ -222,9 +322,10 @@ namespace wan24.Core
                 PooledTempFileStream fs = UsedFileStreamPool.Rent();
                 try
                 {
-                    CopyTo(fs);
+                    if (ms.Length > 0) CopyTo(fs);
                     BaseStream = fs;
                     UsedMemoryStreamPool.Return(ms);
+                    MemoryLimitContext?.Dispose();
                 }
                 catch
                 {
@@ -245,7 +346,6 @@ namespace wan24.Core
         private async Task CreateTempFileAsync(CancellationToken cancellationToken)
         {
             EnsureUndisposed();
-            if (ENV.IsBrowserApp) return;
             long offset = Position;
             try
             {
@@ -254,9 +354,10 @@ namespace wan24.Core
                 PooledTempFileStream fs = UsedFileStreamPool.Rent();
                 try
                 {
-                    await CopyToAsync(fs, cancellationToken).DynamicContext();
+                    if (ms.Length > 0) await CopyToAsync(fs, cancellationToken).DynamicContext();
                     BaseStream = fs;
                     UsedMemoryStreamPool.Return(ms);
+                    if (MemoryLimitContext is not null) await MemoryLimitContext.DisposeAsync().DynamicContext();
                 }
                 catch
                 {

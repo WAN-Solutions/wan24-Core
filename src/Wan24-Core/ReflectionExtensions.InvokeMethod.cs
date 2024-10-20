@@ -226,8 +226,7 @@ namespace wan24.Core
         {
             if (mi.IsSpecialName) throw new ArgumentException("Non-special method required", nameof(mi));
             if (mi.IsGenericMethod && !mi.IsConstructedGenericMethod) throw new ArgumentException("Constructed generic method required", nameof(mi));
-            int hc = mi.GetHashCode();
-            if (MethodInvokeDelegateCache.TryGetValue(hc, out Func<object?, object?[], object?>? res)) return res;
+            if (MethodInvokeDelegateCache.TryGetValue(mi, out Func<object?, object?[], object?>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
             ImmutableArray<ParameterInfo> pis = GetCachedParameters(mi);
             Expression[] parameters = new Expression[pis.Length];
@@ -281,7 +280,7 @@ namespace wan24.Core
                         ).CompileExt();
                 }
             }
-            MethodInvokeDelegateCache.TryAdd(hc, res);
+            MethodInvokeDelegateCache.TryAdd(mi, res);
             return res;
         }
 

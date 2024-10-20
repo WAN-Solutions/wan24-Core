@@ -14,7 +14,7 @@ namespace Wan24_Core_Tests
             Logging.WriteInfo(XmlDocComments.GetNodeName(typeof(AcidStream).GetProperty(nameof(AcidStream.Backup))!));
         }
 
-        [TestMethod]
+        [TestMethod, Timeout(120000)]
         public void General_Tests()
         {
             XmlDocComments docs = new(typeof(XmlDocComments).Assembly);

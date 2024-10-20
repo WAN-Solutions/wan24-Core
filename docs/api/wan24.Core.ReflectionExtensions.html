@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_ALL_BINDINGS.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.ALL_BINDINGS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L16">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_ReflectionExtensions_ALL_BINDINGS" data-uid="wan24.Core.ReflectionExtensions.ALL_BINDINGS">ALL_BINDINGS</h4>
   <div class="markdown level1 summary"><p>All bindings</p>
@@ -176,7 +176,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_DEFAULT_BINDINGS.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.DEFAULT_BINDINGS%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L21">View Source</a>
   </span>
   <h4 id="wan24_Core_ReflectionExtensions_DEFAULT_BINDINGS" data-uid="wan24.Core.ReflectionExtensions.DEFAULT_BINDINGS">DEFAULT_BINDINGS</h4>
   <div class="markdown level1 summary"><p>Default bindings</p>
@@ -208,7 +208,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_CanConstruct_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.CanConstruct(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeConstructor.cs/#L327">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeConstructor.cs/#L326">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_CanConstruct_" data-uid="wan24.Core.ReflectionExtensions.CanConstruct*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_CanConstruct_System_Type_" data-uid="wan24.Core.ReflectionExtensions.CanConstruct(System.Type)">CanConstruct(Type)</h4>
@@ -617,6 +617,68 @@ public static bool CanCreatePropertySetter(this PropertyInfo pi)</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><p>Common base type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_CommonBaseTypes_System_Collections_Generic_IEnumerable_System_Type__System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.CommonBaseTypes(System.Collections.Generic.IEnumerable%7BSystem.Type%7D%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Type.cs/#L293">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_CommonBaseTypes_" data-uid="wan24.Core.ReflectionExtensions.CommonBaseTypes*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_CommonBaseTypes_System_Collections_Generic_IEnumerable_System_Type__System_Boolean_System_Boolean_" data-uid="wan24.Core.ReflectionExtensions.CommonBaseTypes(System.Collections.Generic.IEnumerable{System.Type},System.Boolean,System.Boolean)">CommonBaseTypes(IEnumerable&lt;Type&gt;, bool, bool)</h4>
+  <div class="markdown level1 summary"><p>Get the common base type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Type[] CommonBaseTypes(this IEnumerable&lt;Type&gt; enumerable, bool includeInterfaces = false, bool includeMainType = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">includeInterfaces</span></td>
+        <td><p>If interfaces are included</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">includeMainType</span></td>
+        <td><p>If to include the main type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>[]</td>
         <td><p>Common base type</p>
 </td>
       </tr>
@@ -2882,20 +2944,20 @@ public static IEnumerable&lt;Type&gt; GetBaseTypes(this Type type)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedAttributes_System_Reflection_ICustomAttributeProvider_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedAttributes(System.Reflection.ICustomAttributeProvider%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedAttributes_System_Reflection_ICustomAttributeProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedAttributes(System.Reflection.ICustomAttributeProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L771">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L764">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedAttributes_" data-uid="wan24.Core.ReflectionExtensions.GetCachedAttributes*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedAttributes_System_Reflection_ICustomAttributeProvider_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedAttributes(System.Reflection.ICustomAttributeProvider,System.Nullable{System.Int32}@)">GetCachedAttributes(ICustomAttributeProvider, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedAttributes_System_Reflection_ICustomAttributeProvider_" data-uid="wan24.Core.ReflectionExtensions.GetCachedAttributes(System.Reflection.ICustomAttributeProvider)">GetCachedAttributes(ICustomAttributeProvider)</h4>
   <div class="markdown level1 summary"><p>Get cached attributes</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;Attribute&gt; GetCachedAttributes(ICustomAttributeProvider provider, in int? providerHashCode = null)</code></pre>
+public static FrozenSet&lt;Attribute&gt; GetCachedAttributes(ICustomAttributeProvider provider)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2911,12 +2973,6 @@ public static FrozenSet&lt;Attribute&gt; GetCachedAttributes(ICustomAttributePro
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.icustomattributeprovider">ICustomAttributeProvider</a></td>
         <td><span class="parametername">provider</span></td>
         <td><p>Provider</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">providerHashCode</span></td>
-        <td><p>Provider hash code</p>
 </td>
       </tr>
     </tbody>
@@ -2939,20 +2995,20 @@ public static FrozenSet&lt;Attribute&gt; GetCachedAttributes(ICustomAttributePro
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedConstructors_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedConstructors(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedConstructors_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedConstructors(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L659">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedConstructors_" data-uid="wan24.Core.ReflectionExtensions.GetCachedConstructors*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedConstructors_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedConstructors(System.Type,System.Nullable{System.Int32}@)">GetCachedConstructors(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedConstructors_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedConstructors(System.Type)">GetCachedConstructors(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached constructors</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;ConstructorInfoExt&gt; GetCachedConstructors(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;ConstructorInfoExt&gt; GetCachedConstructors(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2968,12 +3024,6 @@ public static FrozenSet&lt;ConstructorInfoExt&gt; GetCachedConstructors(Type typ
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -2996,20 +3046,20 @@ public static FrozenSet&lt;ConstructorInfoExt&gt; GetCachedConstructors(Type typ
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedDelegates_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedDelegates(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedDelegates_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedDelegates(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L755">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L749">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedDelegates_" data-uid="wan24.Core.ReflectionExtensions.GetCachedDelegates*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedDelegates_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedDelegates(System.Type,System.Nullable{System.Int32}@)">GetCachedDelegates(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedDelegates_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedDelegates(System.Type)">GetCachedDelegates(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached delegates</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;Type&gt; GetCachedDelegates(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;Type&gt; GetCachedDelegates(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3025,12 +3075,6 @@ public static FrozenSet&lt;Type&gt; GetCachedDelegates(Type type, in int? typeHa
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3053,20 +3097,20 @@ public static FrozenSet&lt;Type&gt; GetCachedDelegates(Type type, in int? typeHa
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedEvents_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedEvents(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedEvents_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedEvents(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L739">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L734">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedEvents_" data-uid="wan24.Core.ReflectionExtensions.GetCachedEvents*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedEvents_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedEvents(System.Type,System.Nullable{System.Int32}@)">GetCachedEvents(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedEvents_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedEvents(System.Type)">GetCachedEvents(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached methods</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;EventInfo&gt; GetCachedEvents(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;EventInfo&gt; GetCachedEvents(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3082,12 +3126,6 @@ public static FrozenSet&lt;EventInfo&gt; GetCachedEvents(Type type, in int? type
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3110,20 +3148,20 @@ public static FrozenSet&lt;EventInfo&gt; GetCachedEvents(Type type, in int? type
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedFields_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedFields(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedFields_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedFields(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L675">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L674">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedFields_" data-uid="wan24.Core.ReflectionExtensions.GetCachedFields*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedFields_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedFields(System.Type,System.Nullable{System.Int32}@)">GetCachedFields(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedFields_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedFields(System.Type)">GetCachedFields(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached fields</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;FieldInfoExt&gt; GetCachedFields(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;FieldInfoExt&gt; GetCachedFields(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3139,12 +3177,6 @@ public static FrozenSet&lt;FieldInfoExt&gt; GetCachedFields(Type type, in int? t
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3167,20 +3199,20 @@ public static FrozenSet&lt;FieldInfoExt&gt; GetCachedFields(Type type, in int? t
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Reflection_MethodInfo_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Reflection.MethodInfo%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Reflection.MethodInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L803">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L796">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Reflection_MethodInfo_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Reflection.MethodInfo,System.Nullable{System.Int32}@)">GetCachedGenericArguments(MethodInfo, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Reflection_MethodInfo_" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Reflection.MethodInfo)">GetCachedGenericArguments(MethodInfo)</h4>
   <div class="markdown level1 summary"><p>Get cached generic arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(MethodInfo method, in int? typeHashCode = null)</code></pre>
+public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(MethodInfo method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3198,12 +3230,6 @@ public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(MethodInfo me
         <td><p>Methods</p>
 </td>
       </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Methods hash code</p>
-</td>
-      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -3224,20 +3250,20 @@ public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(MethodInfo me
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L787">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L781">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Type,System.Nullable{System.Int32}@)">GetCachedGenericArguments(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedGenericArguments_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedGenericArguments(System.Type)">GetCachedGenericArguments(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached generic arguments</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(Type type, in int? typeHashCode = null)</code></pre>
+public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3253,12 +3279,6 @@ public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(Type type, in
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3281,20 +3301,20 @@ public static ImmutableArray&lt;Type&gt; GetCachedGenericArguments(Type type, in
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedMethods_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedMethods(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedMethods_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedMethods(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L707">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L704">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedMethods_" data-uid="wan24.Core.ReflectionExtensions.GetCachedMethods*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedMethods_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedMethods(System.Type,System.Nullable{System.Int32}@)">GetCachedMethods(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedMethods_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedMethods(System.Type)">GetCachedMethods(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached methods</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;MethodInfoExt&gt; GetCachedMethods(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;MethodInfoExt&gt; GetCachedMethods(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3310,12 +3330,6 @@ public static FrozenSet&lt;MethodInfoExt&gt; GetCachedMethods(Type type, in int?
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3338,20 +3352,20 @@ public static FrozenSet&lt;MethodInfoExt&gt; GetCachedMethods(Type type, in int?
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedParameters_System_Reflection_MethodBase_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedParameters(System.Reflection.MethodBase%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedParameters_System_Reflection_MethodBase_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedParameters(System.Reflection.MethodBase)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L723">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L719">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedParameters_" data-uid="wan24.Core.ReflectionExtensions.GetCachedParameters*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedParameters_System_Reflection_MethodBase_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedParameters(System.Reflection.MethodBase,System.Nullable{System.Int32}@)">GetCachedParameters(MethodBase, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedParameters_System_Reflection_MethodBase_" data-uid="wan24.Core.ReflectionExtensions.GetCachedParameters(System.Reflection.MethodBase)">GetCachedParameters(MethodBase)</h4>
   <div class="markdown level1 summary"><p>Get cached parameters</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static ImmutableArray&lt;ParameterInfo&gt; GetCachedParameters(MethodBase method, in int? methodHashCode = null)</code></pre>
+public static ImmutableArray&lt;ParameterInfo&gt; GetCachedParameters(MethodBase method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3367,12 +3381,6 @@ public static ImmutableArray&lt;ParameterInfo&gt; GetCachedParameters(MethodBase
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodbase">MethodBase</a></td>
         <td><span class="parametername">method</span></td>
         <td><p>Method</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">methodHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3395,20 +3403,20 @@ public static ImmutableArray&lt;ParameterInfo&gt; GetCachedParameters(MethodBase
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedProperties_System_Type_System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedProperties(System.Type%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCachedProperties_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCachedProperties(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L691">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L689">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCachedProperties_" data-uid="wan24.Core.ReflectionExtensions.GetCachedProperties*"></a>
-  <h4 id="wan24_Core_ReflectionExtensions_GetCachedProperties_System_Type_System_Nullable_System_Int32___" data-uid="wan24.Core.ReflectionExtensions.GetCachedProperties(System.Type,System.Nullable{System.Int32}@)">GetCachedProperties(Type, in int?)</h4>
+  <h4 id="wan24_Core_ReflectionExtensions_GetCachedProperties_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetCachedProperties(System.Type)">GetCachedProperties(Type)</h4>
   <div class="markdown level1 summary"><p>Get cached properties</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static FrozenSet&lt;PropertyInfoExt&gt; GetCachedProperties(Type type, in int? typeHashCode = null)</code></pre>
+public static FrozenSet&lt;PropertyInfoExt&gt; GetCachedProperties(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3424,12 +3432,6 @@ public static FrozenSet&lt;PropertyInfoExt&gt; GetCachedProperties(Type type, in
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>Type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">typeHashCode</span></td>
-        <td><p>Type hash code</p>
 </td>
       </tr>
     </tbody>
@@ -3527,7 +3529,7 @@ public static Type? GetClosestType&lt;T&gt;(this T types, Type type) where T : I
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetConstructor_System_Type_System_Reflection_BindingFlags__System_Func_wan24_Core_ConstructorInfoExt_System_Boolean___System_Boolean__System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetConstructor(System.Type%2CSystem.Reflection.BindingFlags%40%2CSystem.Func%7Bwan24.Core.ConstructorInfoExt%2CSystem.Boolean%7D%40%2CSystem.Boolean%40%2CSystem.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeConstructor.cs/#L290">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeConstructor.cs/#L289">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetConstructor_" data-uid="wan24.Core.ReflectionExtensions.GetConstructor*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetConstructor_System_Type_System_Reflection_BindingFlags__System_Func_wan24_Core_ConstructorInfoExt_System_Boolean___System_Boolean__System_Type___" data-uid="wan24.Core.ReflectionExtensions.GetConstructor(System.Type,System.Reflection.BindingFlags@,System.Func{wan24.Core.ConstructorInfoExt,System.Boolean}@,System.Boolean@,System.Type[])">GetConstructor(Type, in BindingFlags, in Func&lt;ConstructorInfoExt, bool&gt;?, in bool, params Type?[]?)</h4>
@@ -3602,7 +3604,7 @@ type)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetConstructorCached_System_Type_System_Func_wan24_Core_ConstructorInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetConstructorCached(System.Type%2CSystem.Func%7Bwan24.Core.ConstructorInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L381">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L382">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetConstructorCached_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetConstructorCached_System_Type_System_Func_wan24_Core_ConstructorInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorCached(System.Type,System.Func{wan24.Core.ConstructorInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetConstructorCached(Type, Func&lt;ConstructorInfoExt, bool&gt;, BindingFlags)</h4>
@@ -3665,7 +3667,7 @@ public static ConstructorInfoExt? GetConstructorCached(this Type type, Func&lt;C
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetConstructorsCached_System_Type_System_Func_wan24_Core_ConstructorInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetConstructorsCached(System.Type%2CSystem.Func%7Bwan24.Core.ConstructorInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L361">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L362">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetConstructorsCached_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetConstructorsCached_System_Type_System_Func_wan24_Core_ConstructorInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorsCached(System.Type,System.Func{wan24.Core.ConstructorInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetConstructorsCached(Type, Func&lt;ConstructorInfoExt, bool&gt;, BindingFlags)</h4>
@@ -3675,7 +3677,7 @@ public static ConstructorInfoExt? GetConstructorCached(this Type type, Func&lt;C
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this Type type, Func&lt;ConstructorInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this Type type, Func&lt;ConstructorInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3717,7 +3719,7 @@ public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this T
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a>&gt;</td>
         <td><p>Constructors</p>
 </td>
       </tr>
@@ -3728,7 +3730,7 @@ public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this T
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetConstructorsCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetConstructorsCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L341">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L342">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetConstructorsCached_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetConstructorsCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetConstructorsCached(System.Type,System.Reflection.BindingFlags)">GetConstructorsCached(Type, BindingFlags)</h4>
@@ -3738,7 +3740,7 @@ public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this T
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3774,7 +3776,7 @@ public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this T
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a>&gt;</td>
         <td><p>Constructors</p>
 </td>
       </tr>
@@ -3785,7 +3787,7 @@ public static IEnumerable&lt;ConstructorInfoExt&gt; GetConstructorsCached(this T
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCustomAttributeCached__1_System_Reflection_ICustomAttributeProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCustomAttributeCached%60%601(System.Reflection.ICustomAttributeProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L628">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L629">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCustomAttributeCached_" data-uid="wan24.Core.ReflectionExtensions.GetCustomAttributeCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetCustomAttributeCached__1_System_Reflection_ICustomAttributeProvider_" data-uid="wan24.Core.ReflectionExtensions.GetCustomAttributeCached``1(System.Reflection.ICustomAttributeProvider)">GetCustomAttributeCached&lt;T&gt;(ICustomAttributeProvider)</h4>
@@ -3852,7 +3854,7 @@ public static T? GetCustomAttributeCached&lt;T&gt;(this ICustomAttributeProvider
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetCustomAttributesCached__1_System_Reflection_ICustomAttributeProvider_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetCustomAttributesCached%60%601(System.Reflection.ICustomAttributeProvider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L641">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L642">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetCustomAttributesCached_" data-uid="wan24.Core.ReflectionExtensions.GetCustomAttributesCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetCustomAttributesCached__1_System_Reflection_ICustomAttributeProvider_" data-uid="wan24.Core.ReflectionExtensions.GetCustomAttributesCached``1(System.Reflection.ICustomAttributeProvider)">GetCustomAttributesCached&lt;T&gt;(ICustomAttributeProvider)</h4>
@@ -3862,7 +3864,7 @@ public static T? GetCustomAttributeCached&lt;T&gt;(this ICustomAttributeProvider
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;T&gt; GetCustomAttributesCached&lt;T&gt;(this ICustomAttributeProvider obj) where T : Attribute</code></pre>
+public static ICoreEnumerable&lt;T&gt; GetCustomAttributesCached&lt;T&gt;(this ICustomAttributeProvider obj) where T : Attribute</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -3892,7 +3894,7 @@ public static IEnumerable&lt;T&gt; GetCustomAttributesCached&lt;T&gt;(this ICust
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;T&gt;</td>
         <td><p>Attributes</p>
 </td>
       </tr>
@@ -3919,7 +3921,7 @@ public static IEnumerable&lt;T&gt; GetCustomAttributesCached&lt;T&gt;(this ICust
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetDelegateCached_System_Type_System_Func_System_Type_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetDelegateCached(System.Type%2CSystem.Func%7BSystem.Type%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L328">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L329">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetDelegateCached_" data-uid="wan24.Core.ReflectionExtensions.GetDelegateCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetDelegateCached_System_Type_System_Func_System_Type_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetDelegateCached(System.Type,System.Func{System.Type,System.Boolean},System.Reflection.BindingFlags)">GetDelegateCached(Type, Func&lt;Type, bool&gt;, BindingFlags)</h4>
@@ -3982,7 +3984,7 @@ public static Type? GetDelegateCached(this Type type, Func&lt;Type, bool&gt; fil
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetDelegateCached_System_Type_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetDelegateCached(System.Type%2CSystem.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L314">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L315">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetDelegateCached_" data-uid="wan24.Core.ReflectionExtensions.GetDelegateCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetDelegateCached_System_Type_System_String_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetDelegateCached(System.Type,System.String,System.Reflection.BindingFlags)">GetDelegateCached(Type, string, BindingFlags)</h4>
@@ -4096,7 +4098,7 @@ public static MethodInfo GetDelegateMethod(this Type type)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetDelegatesCached_System_Type_System_Func_System_Type_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetDelegatesCached(System.Type%2CSystem.Func%7BSystem.Type%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L294">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L295">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetDelegatesCached_" data-uid="wan24.Core.ReflectionExtensions.GetDelegatesCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetDelegatesCached_System_Type_System_Func_System_Type_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetDelegatesCached(System.Type,System.Func{System.Type,System.Boolean},System.Reflection.BindingFlags)">GetDelegatesCached(Type, Func&lt;Type, bool&gt;, BindingFlags)</h4>
@@ -4106,7 +4108,7 @@ public static MethodInfo GetDelegateMethod(this Type type)</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Func&lt;Type, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Func&lt;Type, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4148,7 +4150,7 @@ public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Func&lt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
         <td><p>Delegates</p>
 </td>
       </tr>
@@ -4159,7 +4161,7 @@ public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Func&lt
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetDelegatesCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetDelegatesCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L274">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L275">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetDelegatesCached_" data-uid="wan24.Core.ReflectionExtensions.GetDelegatesCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetDelegatesCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetDelegatesCached(System.Type,System.Reflection.BindingFlags)">GetDelegatesCached(Type, BindingFlags)</h4>
@@ -4169,7 +4171,7 @@ public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Func&lt
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4205,7 +4207,7 @@ public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Binding
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
         <td><p>Delegates</p>
 </td>
       </tr>
@@ -4216,7 +4218,7 @@ public static IEnumerable&lt;Type&gt; GetDelegatesCached(this Type type, Binding
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetEventCached_System_Type_System_Func_System_Reflection_EventInfo_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetEventCached(System.Type%2CSystem.Func%7BSystem.Reflection.EventInfo%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L448">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L449">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetEventCached_" data-uid="wan24.Core.ReflectionExtensions.GetEventCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetEventCached_System_Type_System_Func_System_Reflection_EventInfo_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetEventCached(System.Type,System.Func{System.Reflection.EventInfo,System.Boolean},System.Reflection.BindingFlags)">GetEventCached(Type, Func&lt;EventInfo, bool&gt;, BindingFlags)</h4>
@@ -4279,7 +4281,7 @@ public static EventInfo? GetEventCached(this Type type, Func&lt;EventInfo, bool&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetEventCached_System_Type_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetEventCached(System.Type%2CSystem.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L434">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L435">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetEventCached_" data-uid="wan24.Core.ReflectionExtensions.GetEventCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetEventCached_System_Type_System_String_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetEventCached(System.Type,System.String,System.Reflection.BindingFlags)">GetEventCached(Type, string, BindingFlags)</h4>
@@ -4342,7 +4344,7 @@ public static EventInfo? GetEventCached(this Type type, string name, BindingFlag
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetEventsCached_System_Type_System_Func_System_Reflection_EventInfo_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetEventsCached(System.Type%2CSystem.Func%7BSystem.Reflection.EventInfo%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L414">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L415">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetEventsCached_" data-uid="wan24.Core.ReflectionExtensions.GetEventsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetEventsCached_System_Type_System_Func_System_Reflection_EventInfo_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetEventsCached(System.Type,System.Func{System.Reflection.EventInfo,System.Boolean},System.Reflection.BindingFlags)">GetEventsCached(Type, Func&lt;EventInfo, bool&gt;, BindingFlags)</h4>
@@ -4352,7 +4354,7 @@ public static EventInfo? GetEventCached(this Type type, string name, BindingFlag
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Func&lt;EventInfo, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Func&lt;EventInfo, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4394,7 +4396,7 @@ public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Func&
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a>&gt;</td>
         <td><p>Events</p>
 </td>
       </tr>
@@ -4405,7 +4407,7 @@ public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Func&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetEventsCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetEventsCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L394">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L395">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetEventsCached_" data-uid="wan24.Core.ReflectionExtensions.GetEventsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetEventsCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetEventsCached(System.Type,System.Reflection.BindingFlags)">GetEventsCached(Type, BindingFlags)</h4>
@@ -4415,7 +4417,7 @@ public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Func&
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4451,7 +4453,7 @@ public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Bindi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.eventinfo">EventInfo</a>&gt;</td>
         <td><p>Events</p>
 </td>
       </tr>
@@ -4462,7 +4464,7 @@ public static IEnumerable&lt;EventInfo&gt; GetEventsCached(this Type type, Bindi
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetFieldCached_System_Type_System_Func_wan24_Core_FieldInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetFieldCached(System.Type%2CSystem.Func%7Bwan24.Core.FieldInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L127">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetFieldCached_" data-uid="wan24.Core.ReflectionExtensions.GetFieldCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetFieldCached_System_Type_System_Func_wan24_Core_FieldInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetFieldCached(System.Type,System.Func{wan24.Core.FieldInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetFieldCached(Type, Func&lt;FieldInfoExt, bool&gt;, BindingFlags)</h4>
@@ -4525,7 +4527,7 @@ public static FieldInfoExt? GetFieldCached(this Type type, Func&lt;FieldInfoExt,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetFieldCached_System_Type_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetFieldCached(System.Type%2CSystem.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L113">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetFieldCached_" data-uid="wan24.Core.ReflectionExtensions.GetFieldCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetFieldCached_System_Type_System_String_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetFieldCached(System.Type,System.String,System.Reflection.BindingFlags)">GetFieldCached(Type, string, BindingFlags)</h4>
@@ -4588,7 +4590,7 @@ public static FieldInfoExt? GetFieldCached(this Type type, string name, BindingF
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetFieldsCached_System_Type_System_Func_wan24_Core_FieldInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetFieldsCached(System.Type%2CSystem.Func%7Bwan24.Core.FieldInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L93">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetFieldsCached_" data-uid="wan24.Core.ReflectionExtensions.GetFieldsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetFieldsCached_System_Type_System_Func_wan24_Core_FieldInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetFieldsCached(System.Type,System.Func{wan24.Core.FieldInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetFieldsCached(Type, Func&lt;FieldInfoExt, bool&gt;, BindingFlags)</h4>
@@ -4598,7 +4600,7 @@ public static FieldInfoExt? GetFieldCached(this Type type, string name, BindingF
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Func&lt;FieldInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Func&lt;FieldInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4640,7 +4642,7 @@ public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Fu
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a>&gt;</td>
         <td><p>Fields</p>
 </td>
       </tr>
@@ -4651,7 +4653,7 @@ public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Fu
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetFieldsCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetFieldsCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L74">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetFieldsCached_" data-uid="wan24.Core.ReflectionExtensions.GetFieldsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetFieldsCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetFieldsCached(System.Type,System.Reflection.BindingFlags)">GetFieldsCached(Type, BindingFlags)</h4>
@@ -4661,7 +4663,7 @@ public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Fu
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -4697,7 +4699,7 @@ public static IEnumerable&lt;FieldInfoExt&gt; GetFieldsCached(this Type type, Bi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a>&gt;</td>
         <td><p>Fields</p>
 </td>
       </tr>
@@ -4759,7 +4761,7 @@ public static Type GetFinalElementType(this Type type)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentCached_System_Reflection_MethodInfo_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentCached(System.Reflection.MethodInfo%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L593">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L594">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentCached_System_Reflection_MethodInfo_System_Int32__" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCached(System.Reflection.MethodInfo,System.Int32@)">GetGenericArgumentCached(MethodInfo, in int)</h4>
@@ -4816,7 +4818,7 @@ public static Type GetGenericArgumentCached(this MethodInfo mi, in int index)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentCached_System_Type_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentCached(System.Type%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L563">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L564">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentCached_System_Type_System_Int32__" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCached(System.Type,System.Int32@)">GetGenericArgumentCached(Type, in int)</h4>
@@ -4873,7 +4875,7 @@ public static Type GetGenericArgumentCached(this Type type, in int index)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached(System.Reflection.MethodInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L616">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L617">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_System_Reflection_MethodInfo_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached(System.Reflection.MethodInfo)">GetGenericArgumentCountCached(MethodInfo)</h4>
@@ -4924,7 +4926,7 @@ public static int GetGenericArgumentCountCached(this MethodInfo mi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L605">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L606">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentCountCached_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentCountCached(System.Type)">GetGenericArgumentCountCached(Type)</h4>
@@ -4975,7 +4977,7 @@ public static int GetGenericArgumentCountCached(this Type type)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_System_Reflection_MethodInfo_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentsCached(System.Reflection.MethodInfo)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L575">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L576">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_System_Reflection_MethodInfo_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentsCached(System.Reflection.MethodInfo)">GetGenericArgumentsCached(MethodInfo)</h4>
@@ -4985,7 +4987,7 @@ public static int GetGenericArgumentCountCached(this Type type)</code></pre>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this MethodInfo mi)</code></pre>
+public static ICoreEnumerable&lt;Type&gt; GetGenericArgumentsCached(this MethodInfo mi)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5015,7 +5017,7 @@ public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this MethodInfo 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
         <td><p>Generic arguments</p>
 </td>
       </tr>
@@ -5026,7 +5028,7 @@ public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this MethodInfo 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetGenericArgumentsCached(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L545">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L546">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetGenericArgumentsCached_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetGenericArgumentsCached(System.Type)">GetGenericArgumentsCached(Type)</h4>
@@ -5036,7 +5038,7 @@ public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this MethodInfo 
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this Type type)</code></pre>
+public static ICoreEnumerable&lt;Type&gt; GetGenericArgumentsCached(this Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5066,7 +5068,7 @@ public static IEnumerable&lt;Type&gt; GetGenericArgumentsCached(this Type type)<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</td>
         <td><p>Generic arguments</p>
 </td>
       </tr>
@@ -5128,7 +5130,7 @@ public static string? GetGroupName(this PropertyInfo pi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethod_System_Type_System_String__System_Reflection_BindingFlags__System_Func_wan24_Core_MethodInfoExt_System_Boolean___System_Nullable_System_Int32___System_Boolean__System_Type__System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethod(System.Type%2CSystem.String%40%2CSystem.Reflection.BindingFlags%40%2CSystem.Func%7Bwan24.Core.MethodInfoExt%2CSystem.Boolean%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40%2CSystem.Boolean%40%2CSystem.Type%40%2CSystem.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeMethod.cs/#L301">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.InvokeMethod.cs/#L300">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethod_" data-uid="wan24.Core.ReflectionExtensions.GetMethod*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethod_System_Type_System_String__System_Reflection_BindingFlags__System_Func_wan24_Core_MethodInfoExt_System_Boolean___System_Nullable_System_Int32___System_Boolean__System_Type__System_Type___" data-uid="wan24.Core.ReflectionExtensions.GetMethod(System.Type,System.String@,System.Reflection.BindingFlags@,System.Func{wan24.Core.MethodInfoExt,System.Boolean}@,System.Nullable{System.Int32}@,System.Boolean@,System.Type@,System.Type[])">GetMethod(Type, in string?, in BindingFlags, in Func&lt;MethodInfoExt, bool&gt;?, in int?, in bool, in Type?, params Type?[]?)</h4>
@@ -5221,7 +5223,7 @@ type)</p>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethodCached_System_Type_System_Func_wan24_Core_MethodInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethodCached(System.Type%2CSystem.Func%7Bwan24.Core.MethodInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L261">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L262">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethodCached_" data-uid="wan24.Core.ReflectionExtensions.GetMethodCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethodCached_System_Type_System_Func_wan24_Core_MethodInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetMethodCached(System.Type,System.Func{wan24.Core.MethodInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetMethodCached(Type, Func&lt;MethodInfoExt, bool&gt;, BindingFlags)</h4>
@@ -5284,7 +5286,7 @@ public static MethodInfoExt? GetMethodCached(this Type type, Func&lt;MethodInfoE
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethodCached_System_Type_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethodCached(System.Type%2CSystem.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L247">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L248">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethodCached_" data-uid="wan24.Core.ReflectionExtensions.GetMethodCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethodCached_System_Type_System_String_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetMethodCached(System.Type,System.String,System.Reflection.BindingFlags)">GetMethodCached(Type, string, BindingFlags)</h4>
@@ -5347,7 +5349,7 @@ public static MethodInfoExt? GetMethodCached(this Type type, string name, Bindin
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethodsCached_System_Type_System_Func_wan24_Core_MethodInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethodsCached(System.Type%2CSystem.Func%7Bwan24.Core.MethodInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L227">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L228">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethodsCached_" data-uid="wan24.Core.ReflectionExtensions.GetMethodsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethodsCached_System_Type_System_Func_wan24_Core_MethodInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetMethodsCached(System.Type,System.Func{wan24.Core.MethodInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetMethodsCached(Type, Func&lt;MethodInfoExt, bool&gt;, BindingFlags)</h4>
@@ -5357,7 +5359,7 @@ public static MethodInfoExt? GetMethodCached(this Type type, string name, Bindin
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, Func&lt;MethodInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, Func&lt;MethodInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5399,7 +5401,7 @@ public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a>&gt;</td>
         <td><p>Methods</p>
 </td>
       </tr>
@@ -5410,7 +5412,7 @@ public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetMethodsCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetMethodsCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L207">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L208">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetMethodsCached_" data-uid="wan24.Core.ReflectionExtensions.GetMethodsCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetMethodsCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetMethodsCached(System.Type,System.Reflection.BindingFlags)">GetMethodsCached(Type, BindingFlags)</h4>
@@ -5420,7 +5422,7 @@ public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, 
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5456,7 +5458,7 @@ public static IEnumerable&lt;MethodInfoExt&gt; GetMethodsCached(this Type type, 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a>&gt;</td>
         <td><p>Methods</p>
 </td>
       </tr>
@@ -5518,7 +5520,7 @@ public static Type GetNonNullableType(this Type type)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_Func_System_Reflection_ParameterInfo_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase%2CSystem.Func%7BSystem.Reflection.ParameterInfo%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L522">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L523">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParameterCached_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_Func_System_Reflection_ParameterInfo_System_Boolean__" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase,System.Func{System.Reflection.ParameterInfo,System.Boolean})">GetParameterCached(MethodBase, Func&lt;ParameterInfo, bool&gt;)</h4>
@@ -5575,7 +5577,7 @@ public static ParameterInfo? GetParameterCached(this MethodBase method, Func&lt;
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L509">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L510">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParameterCached_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_Int32__" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase,System.Int32@)">GetParameterCached(MethodBase, in int)</h4>
@@ -5632,7 +5634,7 @@ public static ParameterInfo? GetParameterCached(this MethodBase method, in int i
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_String_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L496">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L497">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParameterCached_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParameterCached_System_Reflection_MethodBase_System_String_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCached(System.Reflection.MethodBase,System.String)">GetParameterCached(MethodBase, string)</h4>
@@ -5689,7 +5691,7 @@ public static ParameterInfo? GetParameterCached(this MethodBase method, string n
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParameterCountCached_System_Reflection_MethodBase_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParameterCountCached(System.Reflection.MethodBase)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L534">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L535">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParameterCountCached_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCountCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParameterCountCached_System_Reflection_MethodBase_" data-uid="wan24.Core.ReflectionExtensions.GetParameterCountCached(System.Reflection.MethodBase)">GetParameterCountCached(MethodBase)</h4>
@@ -5791,7 +5793,7 @@ public static ConstructorInfoExt? GetParameterlessConstructor(this Type type)</c
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParametersCached_System_Reflection_MethodBase_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParametersCached(System.Reflection.MethodBase)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L460">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L461">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParametersCached_" data-uid="wan24.Core.ReflectionExtensions.GetParametersCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParametersCached_System_Reflection_MethodBase_" data-uid="wan24.Core.ReflectionExtensions.GetParametersCached(System.Reflection.MethodBase)">GetParametersCached(MethodBase)</h4>
@@ -5801,7 +5803,7 @@ public static ConstructorInfoExt? GetParameterlessConstructor(this Type type)</c
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBase method)</code></pre>
+public static ICoreEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBase method)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5831,7 +5833,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</td>
         <td><p>Parameters</p>
 </td>
       </tr>
@@ -5842,7 +5844,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetParametersCached_System_Reflection_MethodBase_System_Func_System_Reflection_ParameterInfo_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetParametersCached(System.Reflection.MethodBase%2CSystem.Func%7BSystem.Reflection.ParameterInfo%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L478">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L479">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetParametersCached_" data-uid="wan24.Core.ReflectionExtensions.GetParametersCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetParametersCached_System_Reflection_MethodBase_System_Func_System_Reflection_ParameterInfo_System_Boolean__" data-uid="wan24.Core.ReflectionExtensions.GetParametersCached(System.Reflection.MethodBase,System.Func{System.Reflection.ParameterInfo,System.Boolean})">GetParametersCached(MethodBase, Func&lt;ParameterInfo, bool&gt;)</h4>
@@ -5852,7 +5854,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBase method, Func&lt;ParameterInfo, bool&gt; filter)</code></pre>
+public static ICoreEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBase method, Func&lt;ParameterInfo, bool&gt; filter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5888,7 +5890,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</td>
         <td><p>Events</p>
 </td>
       </tr>
@@ -5899,7 +5901,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetPropertiesCached_System_Type_System_Func_wan24_Core_PropertyInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetPropertiesCached(System.Type%2CSystem.Func%7Bwan24.Core.PropertyInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L160">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L161">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetPropertiesCached_" data-uid="wan24.Core.ReflectionExtensions.GetPropertiesCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetPropertiesCached_System_Type_System_Func_wan24_Core_PropertyInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetPropertiesCached(System.Type,System.Func{wan24.Core.PropertyInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetPropertiesCached(Type, Func&lt;PropertyInfoExt, bool&gt;, BindingFlags)</h4>
@@ -5909,7 +5911,7 @@ public static IEnumerable&lt;ParameterInfo&gt; GetParametersCached(this MethodBa
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type type, Func&lt;PropertyInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type type, Func&lt;PropertyInfoExt, bool&gt; filter, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -5951,7 +5953,7 @@ public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type t
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a>&gt;</td>
         <td><p>Properties</p>
 </td>
       </tr>
@@ -5962,7 +5964,7 @@ public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type t
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetPropertiesCached_System_Type_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetPropertiesCached(System.Type%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L140">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetPropertiesCached_" data-uid="wan24.Core.ReflectionExtensions.GetPropertiesCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetPropertiesCached_System_Type_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetPropertiesCached(System.Type,System.Reflection.BindingFlags)">GetPropertiesCached(Type, BindingFlags)</h4>
@@ -5972,7 +5974,7 @@ public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type t
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
+public static ICoreEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type type, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -6008,7 +6010,7 @@ public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type t
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a>&gt;</td>
+        <td><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;<a class="xref" href="wan24.Core.PropertyInfoExt.html">PropertyInfoExt</a>&gt;</td>
         <td><p>Properties</p>
 </td>
       </tr>
@@ -6019,7 +6021,7 @@ public static IEnumerable&lt;PropertyInfoExt&gt; GetPropertiesCached(this Type t
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetPropertyCached_System_Type_System_Func_wan24_Core_PropertyInfoExt_System_Boolean__System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetPropertyCached(System.Type%2CSystem.Func%7Bwan24.Core.PropertyInfoExt%2CSystem.Boolean%7D%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L194">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L195">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetPropertyCached_" data-uid="wan24.Core.ReflectionExtensions.GetPropertyCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetPropertyCached_System_Type_System_Func_wan24_Core_PropertyInfoExt_System_Boolean__System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetPropertyCached(System.Type,System.Func{wan24.Core.PropertyInfoExt,System.Boolean},System.Reflection.BindingFlags)">GetPropertyCached(Type, Func&lt;PropertyInfoExt, bool&gt;, BindingFlags)</h4>
@@ -6082,7 +6084,7 @@ public static PropertyInfoExt? GetPropertyCached(this Type type, Func&lt;Propert
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetPropertyCached_System_Type_System_String_System_Reflection_BindingFlags_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetPropertyCached(System.Type%2CSystem.String%2CSystem.Reflection.BindingFlags)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L180">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Cached.cs/#L181">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetPropertyCached_" data-uid="wan24.Core.ReflectionExtensions.GetPropertyCached*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetPropertyCached_System_Type_System_String_System_Reflection_BindingFlags_" data-uid="wan24.Core.ReflectionExtensions.GetPropertyCached(System.Type,System.String,System.Reflection.BindingFlags)">GetPropertyCached(Type, string, BindingFlags)</h4>
@@ -6145,7 +6147,7 @@ public static PropertyInfoExt? GetPropertyCached(this Type type, string name, Bi
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetRealType_System_Type_.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetRealType(System.Type)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Type.cs/#L273">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.Type.cs/#L337">View Source</a>
   </span>
   <a id="wan24_Core_ReflectionExtensions_GetRealType_" data-uid="wan24.Core.ReflectionExtensions.GetRealType*"></a>
   <h4 id="wan24_Core_ReflectionExtensions_GetRealType_System_Type_" data-uid="wan24.Core.ReflectionExtensions.GetRealType(System.Type)">GetRealType(Type)</h4>
@@ -6187,6 +6189,62 @@ public static Type GetRealType(this Type type)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
         <td><p>Real type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_GetStaticInterfaceMethodImplementation_System_Reflection_MethodInfo_System_Type__.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.GetStaticInterfaceMethodImplementation(System.Reflection.MethodInfo%2CSystem.Type%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.StaticInterfaceMethod.cs/#L16">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_GetStaticInterfaceMethodImplementation_" data-uid="wan24.Core.ReflectionExtensions.GetStaticInterfaceMethodImplementation*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_GetStaticInterfaceMethodImplementation_System_Reflection_MethodInfo_System_Type__" data-uid="wan24.Core.ReflectionExtensions.GetStaticInterfaceMethodImplementation(System.Reflection.MethodInfo,System.Type@)">GetStaticInterfaceMethodImplementation(MethodInfo, in Type)</h4>
+  <div class="markdown level1 summary"><p>Get the static interface method implementation of a target type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MethodInfoExt? GetStaticInterfaceMethodImplementation(this MethodInfo mi, in Type targetType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">mi</span></td>
+        <td><p>Static interface method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target type which implements the interface which defined the method</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MethodInfoExt.html">MethodInfoExt</a></td>
+        <td><p>Traget type method implementation</p>
 </td>
       </tr>
     </tbody>
@@ -7995,6 +8053,224 @@ public static object? InvokeReflectedGeneric(this object obj, string method, Typ
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
         <td><p>Return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod_System_Reflection_MethodInfo_System_Type__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod(System.Reflection.MethodInfo%2CSystem.Type%40%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.StaticInterfaceMethod.cs/#L71">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod_" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod_System_Reflection_MethodInfo_System_Type__System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod(System.Reflection.MethodInfo,System.Type@,System.Object[])">InvokeStaticInterfaceMethod(MethodInfo, in Type, params object?[])</h4>
+  <div class="markdown level1 summary"><p>Invoke a static interface method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static object? InvokeStaticInterfaceMethod(this MethodInfo mi, in Type targetType, params object?[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">mi</span></td>
+        <td><p>Static interface method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target type which implements the interface which defined the method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Parameters</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></td>
+        <td><p>Return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethodNullable__1_System_Reflection_MethodInfo_System_Type__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethodNullable%60%601(System.Reflection.MethodInfo%2CSystem.Type%40%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.StaticInterfaceMethod.cs/#L101">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethodNullable_" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethodNullable*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethodNullable__1_System_Reflection_MethodInfo_System_Type__System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethodNullable``1(System.Reflection.MethodInfo,System.Type@,System.Object[])">InvokeStaticInterfaceMethodNullable&lt;T&gt;(MethodInfo, in Type, params object?[])</h4>
+  <div class="markdown level1 summary"><p>Invoke a static interface method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T? InvokeStaticInterfaceMethodNullable&lt;T&gt;(this MethodInfo mi, in Type targetType, params object?[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">mi</span></td>
+        <td><p>Static interface method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target type which implements the interface which defined the method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Parameters</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Return type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod__1_System_Reflection_MethodInfo_System_Type__System_Object___.md&amp;value=---%0Auid%3A%20wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod%60%601(System.Reflection.MethodInfo%2CSystem.Type%40%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/ReflectionExtensions.StaticInterfaceMethod.cs/#L85">View Source</a>
+  </span>
+  <a id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod_" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod*"></a>
+  <h4 id="wan24_Core_ReflectionExtensions_InvokeStaticInterfaceMethod__1_System_Reflection_MethodInfo_System_Type__System_Object___" data-uid="wan24.Core.ReflectionExtensions.InvokeStaticInterfaceMethod``1(System.Reflection.MethodInfo,System.Type@,System.Object[])">InvokeStaticInterfaceMethod&lt;T&gt;(MethodInfo, in Type, params object?[])</h4>
+  <div class="markdown level1 summary"><p>Invoke a static interface method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static T InvokeStaticInterfaceMethod&lt;T&gt;(this MethodInfo mi, in Type targetType, params object?[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.methodinfo">MethodInfo</a></td>
+        <td><span class="parametername">mi</span></td>
+        <td><p>Static interface method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="parametername">targetType</span></td>
+        <td><p>Target type which implements the interface which defined the method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Parameters</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Return value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Return type</p>
 </td>
       </tr>
     </tbody>

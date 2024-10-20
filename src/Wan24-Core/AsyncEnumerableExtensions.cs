@@ -20,7 +20,11 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static async Task<T[]> ToArrayAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
+        {
+            List<T> items = [];
+            await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken)) items.Add(item);
+            return [.. items];
+        }
 
         /// <summary>
         /// Get as list
@@ -45,30 +49,32 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
-        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Array</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<T[]> ToArrayAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
-            => [.. (await enumerable.ToListAsync(cancellationToken).DynamicContext())];
+        public static async Task<T[]> ToArrayAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable)
+        {
+            List<T> items = [];
+            await foreach (T item in enumerable) items.Add(item);
+            return [.. items];
+        }
 
         /// <summary>
         /// Get as list
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
-        /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>List</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static async Task<List<T>> ToListAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+        public static async Task<List<T>> ToListAsync<T>(this ConfiguredCancelableAsyncEnumerable<T> enumerable)
         {
             List<T> res = [];
-            await foreach (T item in enumerable.WithCancellation(cancellationToken)) res.Add(item);
+            await foreach (T item in enumerable) res.Add(item);
             return res;
         }
 
@@ -440,15 +446,7 @@ namespace wan24.Core
             await foreach (T item in enumerable.DynamicContext().WithCancellation(cancellationToken))
             {
                 res++;
-                if (dispose)
-                    if (item is IAsyncDisposable asyncDisposable)
-                    {
-                        await asyncDisposable.DisposeAsync().DynamicContext();
-                    }
-                    else if (item is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
+                if (dispose && item is not null) await item.TryDisposeAsync().DynamicContext();
             }
             return res;
         }
