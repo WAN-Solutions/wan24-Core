@@ -8,7 +8,7 @@ namespace wan24.Core.Enumerables
     /// <typeparam name="tList">List type</typeparam>
     /// <typeparam name="tItem">Item type</typeparam>
     /// <typeparam name="tResult">Result type</typeparam>
-    public partial class ListWhereSelectEnumerable<tList, tItem, tResult> : ICoreEnumerable<tResult> where tList : IList<tItem>
+    public partial class ListWhereSelectEnumerable<tList, tItem, tResult> : EnumerableBase<tResult>, ICoreEnumerable<tResult> where tList : IList<tItem>
     {
         /// <summary>
         /// List type
@@ -55,7 +55,7 @@ namespace wan24.Core.Enumerables
         /// <param name="selector">Selector</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ListWhereSelectEnumerable(in tList list, in Func<tItem, bool> predicate, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null)
+        public ListWhereSelectEnumerable(in tList list, in Func<tItem, bool> predicate, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null) : base()
         {
             ListType = list.GetType();
             if (TypeInfoExt.From(ListType).ParameterlessConstructor is not ConstructorInfoExt ci || ci.Invoker is null)

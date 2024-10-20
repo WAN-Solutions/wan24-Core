@@ -7,7 +7,7 @@ namespace wan24.Core.Enumerables
     /// <see cref="ImmutableArray{T}"/> WHERE enumerable
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public partial class ImmutableArrayWhereEnumerable<T> : ICoreEnumerable<T>
+    public partial class ImmutableArrayWhereEnumerable<T> : EnumerableBase<T>, ICoreEnumerable<T>
     {
         /// <summary>
         /// Empty
@@ -38,7 +38,7 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ImmutableArrayWhereEnumerable(in ImmutableArray<T> arr, in Func<T, bool> predicate, in int offset = 0, in int? count = null)
+        public ImmutableArrayWhereEnumerable(in ImmutableArray<T> arr, in Func<T, bool> predicate, in int offset = 0, in int? count = null) : base()
         {
             Array = arr;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));

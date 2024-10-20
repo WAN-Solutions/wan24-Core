@@ -7,7 +7,7 @@ namespace wan24.Core.Enumerables
     /// </summary>
     /// <typeparam name="tEnumerable">Enumerable type</typeparam>
     /// <typeparam name="tItem">Item type</typeparam>
-    public class EnumerableAdapter<tEnumerable, tItem>(in tEnumerable enumerable) : ICoreEnumerable<tItem> where tEnumerable : IEnumerable<tItem>
+    public class EnumerableAdapter<tEnumerable, tItem>(in tEnumerable enumerable) : EnumerableBase<tItem>, ICoreEnumerable<tItem> where tEnumerable : IEnumerable<tItem>
     {
         /// <summary>
         /// Enumerable
@@ -115,13 +115,13 @@ namespace wan24.Core.Enumerables
             => Enumerable.FirstAsync(predicate, cancellationToken);
 
         /// <inheritdoc/>
-        public virtual tItem FirstOrDefault(tItem defaultValue) => Enumerable.FirstOrDefault(defaultValue);
+        public override tItem FirstOrDefault(tItem defaultValue) => Enumerable.FirstOrDefault(defaultValue);
 
         /// <inheritdoc/>
-        public virtual tItem FirstOrDefault(Func<tItem, bool> predicate, tItem defaultValue) => Enumerable.FirstOrDefault(predicate, defaultValue);
+        public override tItem FirstOrDefault(Func<tItem, bool> predicate, tItem defaultValue) => Enumerable.FirstOrDefault(predicate, defaultValue);
 
         /// <inheritdoc/>
-        public virtual Task<tItem> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem defaultValue, CancellationToken cancellationToken = default)
+        public override Task<tItem> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem defaultValue, CancellationToken cancellationToken = default)
             => Enumerable.FirstOrDefaultAsync(predicate, defaultValue, cancellationToken);
 
         /// <inheritdoc/>

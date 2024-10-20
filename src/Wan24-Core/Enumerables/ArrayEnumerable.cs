@@ -6,7 +6,7 @@ namespace wan24.Core.Enumerables
     /// Array enumerable
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public partial class ArrayEnumerable<T> : ICoreEnumerable<T>
+    public partial class ArrayEnumerable<T> : EnumerableBase<T>, ICoreEnumerable<T>
     {
         /// <summary>
         /// Empty
@@ -32,7 +32,7 @@ namespace wan24.Core.Enumerables
         /// <param name="arr">Array</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ArrayEnumerable(in T[] arr, in int offset = 0, in int? count = null)
+        public ArrayEnumerable(in T[] arr, in int offset = 0, in int? count = null) : base()
         {
             Array = arr;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));

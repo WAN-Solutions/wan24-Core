@@ -465,7 +465,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual T FirstOrDefault(T defaultValue)
+        public override T FirstOrDefault(T defaultValue)
         {
             Span<T> data = Array;
             for (int i = Offset, len = i + Length; i < len; i++)
@@ -475,7 +475,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual T FirstOrDefault(Func<T, bool> predicate, T defaultValue)
+        public override T FirstOrDefault(Func<T, bool> predicate, T defaultValue)
         {
             Span<T> data = Array;
             T item;
@@ -489,7 +489,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual async Task<T> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T defaultValue, CancellationToken cancellationToken = default)
+        public override async Task<T> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T defaultValue, CancellationToken cancellationToken = default)
         {
             T[] data = Array;
             T item;

@@ -7,7 +7,7 @@ namespace wan24.Core.Enumerables
     /// </summary>
     /// <typeparam name="tList">List type</typeparam>
     /// <typeparam name="tItem">Item type</typeparam>
-    public partial class ListEnumerable<tList, tItem> : ICoreEnumerable<tItem> where tList : IList<tItem>
+    public partial class ListEnumerable<tList, tItem> : EnumerableBase<tItem>, ICoreEnumerable<tItem> where tList : IList<tItem>
     {
         /// <summary>
         /// List type
@@ -44,7 +44,7 @@ namespace wan24.Core.Enumerables
         /// <param name="list">List</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ListEnumerable(in tList list, in int offset = 0, in int? count = null)
+        public ListEnumerable(in tList list, in int offset = 0, in int? count = null) : base()
         {
             ListType = list.GetType();
             if (TypeInfoExt.From(ListType).ParameterlessConstructor is not ConstructorInfoExt ci || ci.Invoker is null)

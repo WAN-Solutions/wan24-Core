@@ -7,7 +7,7 @@ namespace wan24.Core.Enumerables
     /// </summary>
     /// <typeparam name="tItem">Item type</typeparam>
     /// <typeparam name="tResult">Result type</typeparam>
-    public partial class ArraySelectEnumerable<tItem, tResult> : ICoreEnumerable<tResult>
+    public partial class ArraySelectEnumerable<tItem, tResult> : EnumerableBase<tResult>, ICoreEnumerable<tResult>
     {
         /// <summary>
         /// Empty
@@ -38,7 +38,7 @@ namespace wan24.Core.Enumerables
         /// <param name="selector">Predicate</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ArraySelectEnumerable(in tItem[] arr, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null)
+        public ArraySelectEnumerable(in tItem[] arr, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null) : base()
         {
             Array = arr;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));

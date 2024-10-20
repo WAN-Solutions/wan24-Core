@@ -8,7 +8,7 @@ namespace wan24.Core.Enumerables
     /// </summary>
     /// <typeparam name="tItem">Item type</typeparam>
     /// <typeparam name="tResult">Result type</typeparam>
-    public partial class ImmutableArrayWhereSelectEnumerable<tItem, tResult> : ICoreEnumerable<tResult>
+    public partial class ImmutableArrayWhereSelectEnumerable<tItem, tResult> : EnumerableBase<tResult>, ICoreEnumerable<tResult>
     {
         /// <summary>
         /// Empty
@@ -45,6 +45,7 @@ namespace wan24.Core.Enumerables
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
         public ImmutableArrayWhereSelectEnumerable(in ImmutableArray<tItem> arr, in Func<tItem, bool> predicate, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null)
+            : base()
         {
             Array = arr;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));
