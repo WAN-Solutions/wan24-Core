@@ -17,7 +17,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="Method">Method</param>
     /// <param name="Invoker">Invoker delegate</param>
-    public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
+    public sealed record class MethodInfoExt(in MethodInfo Method, Func<object?, object?[], object?>? Invoker) : ICustomAttributeProviderHost, IEnumerable<ParameterInfo>
     {
         /// <summary>
         /// Cache (key is the method)
@@ -275,6 +275,9 @@ namespace wan24.Core
         /// Invoker delegate
         /// </summary>
         public Func<object?, object?[], object?>? Invoker { get; set; } = Invoker;
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Method;
 
         /// <summary>
         /// Construct a generic method

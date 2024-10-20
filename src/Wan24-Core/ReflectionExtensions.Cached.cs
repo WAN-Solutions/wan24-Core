@@ -78,7 +78,7 @@ namespace wan24.Core
         public static ICoreEnumerable<FieldInfoExt> GetFieldsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
-            if (fields.Count < 1) return new EnumerableAdapter<FieldInfoExt[], FieldInfoExt>([]);
+            if (fields.Count < 1) return ArrayEnumerable<FieldInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? fields.Enumerate()
                 : fields.Where(f => bindingFlags.DoesMatch(f));
@@ -98,7 +98,7 @@ namespace wan24.Core
         public static ICoreEnumerable<FieldInfoExt> GetFieldsCached(this Type type, Func<FieldInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<FieldInfoExt> fields = GetCachedFields(type);
-            if (fields.Count < 1) return new EnumerableAdapter<FieldInfoExt[], FieldInfoExt>([]);
+            if (fields.Count < 1) return ArrayEnumerable<FieldInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? fields.Where(filter)
                 : fields.Where(f => bindingFlags.DoesMatch(f) && filter(f));
@@ -145,7 +145,7 @@ namespace wan24.Core
         public static ICoreEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
-            if (properties.Count < 1) return new EnumerableAdapter<PropertyInfoExt[], PropertyInfoExt>([]);
+            if (properties.Count < 1) return ArrayEnumerable<PropertyInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? properties.Enumerate()
                 : properties.Where(p => bindingFlags.DoesMatch(p));
@@ -165,7 +165,7 @@ namespace wan24.Core
         public static ICoreEnumerable<PropertyInfoExt> GetPropertiesCached(this Type type, Func<PropertyInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<PropertyInfoExt> properties = GetCachedProperties(type);
-            if (properties.Count < 1) return new EnumerableAdapter<PropertyInfoExt[], PropertyInfoExt>([]);
+            if (properties.Count < 1) return ArrayEnumerable<PropertyInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? properties.Where(filter)
                 : properties.Where(p => bindingFlags.DoesMatch(p) && filter(p));
@@ -212,7 +212,7 @@ namespace wan24.Core
         public static ICoreEnumerable<MethodInfoExt> GetMethodsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
-            if (methods.Count < 1) return new EnumerableAdapter<MethodInfoExt[], MethodInfoExt>([]);
+            if (methods.Count < 1) return ArrayEnumerable<MethodInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? methods.Enumerate()
                 : methods.Where(m => bindingFlags.DoesMatch(m));
@@ -232,7 +232,7 @@ namespace wan24.Core
         public static ICoreEnumerable<MethodInfoExt> GetMethodsCached(this Type type, Func<MethodInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<MethodInfoExt> methods = GetCachedMethods(type);
-            if (methods.Count < 1) return new EnumerableAdapter<MethodInfoExt[], MethodInfoExt>([]);
+            if (methods.Count < 1) return ArrayEnumerable<MethodInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? methods.Where(filter)
                 : methods.Where(m => bindingFlags.DoesMatch(m) && filter(m));
@@ -279,7 +279,7 @@ namespace wan24.Core
         public static ICoreEnumerable<Type> GetDelegatesCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
-            if (delegates.Count < 1) return new EnumerableAdapter<Type[], Type>([]);
+            if (delegates.Count < 1) return ArrayEnumerable<Type>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? delegates.Enumerate()
                 : delegates.Where(d => bindingFlags.DoesMatch(d));
@@ -299,7 +299,7 @@ namespace wan24.Core
         public static ICoreEnumerable<Type> GetDelegatesCached(this Type type, Func<Type, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<Type> delegates = GetCachedDelegates(type);
-            if (delegates.Count < 1) return new EnumerableAdapter<Type[], Type>([]);
+            if (delegates.Count < 1) return ArrayEnumerable<Type>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? delegates.Where(filter)
                 : delegates.Where(d => bindingFlags.DoesMatch(d) && filter(d));
@@ -346,7 +346,7 @@ namespace wan24.Core
         public static ICoreEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
-            if (constructors.Count < 1) return new EnumerableAdapter<ConstructorInfoExt[], ConstructorInfoExt>([]);
+            if (constructors.Count < 1) return ArrayEnumerable<ConstructorInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? constructors.Enumerate()
                 : constructors.Where(c => bindingFlags.DoesMatch(c));
@@ -366,7 +366,7 @@ namespace wan24.Core
         public static ICoreEnumerable<ConstructorInfoExt> GetConstructorsCached(this Type type, Func<ConstructorInfoExt, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<ConstructorInfoExt> constructors = GetCachedConstructors(type);
-            if (constructors.Count < 1) return new EnumerableAdapter<ConstructorInfoExt[], ConstructorInfoExt>([]);
+            if (constructors.Count < 1) return ArrayEnumerable<ConstructorInfoExt>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? constructors.Where(filter)
                 : constructors.Where(c => bindingFlags.DoesMatch(c) && filter(c));
@@ -399,7 +399,7 @@ namespace wan24.Core
         public static ICoreEnumerable<EventInfo> GetEventsCached(this Type type, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
-            if (events.Count < 1) return new EnumerableAdapter<EventInfo[], EventInfo>([]);
+            if (events.Count < 1) return ArrayEnumerable<EventInfo>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? events.Enumerate()
                 : events.Where(e => bindingFlags.DoesMatch(e));
@@ -419,7 +419,7 @@ namespace wan24.Core
         public static ICoreEnumerable<EventInfo> GetEventsCached(this Type type, Func<EventInfo, bool> filter, BindingFlags bindingFlags = DEFAULT_BINDINGS)
         {
             FrozenSet<EventInfo> events = GetCachedEvents(type);
-            if (events.Count < 1) return new EnumerableAdapter<EventInfo[], EventInfo>([]);
+            if (events.Count < 1) return ArrayEnumerable<EventInfo>.Empty;
             return bindingFlags == ALL_BINDINGS
                 ? events.Where(filter)
                 : events.Where(e => bindingFlags.DoesMatch(e) && filter(e));
@@ -466,7 +466,7 @@ namespace wan24.Core
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
             return parameters.Length < 1
-                ? new EnumerableAdapter<ParameterInfo[], ParameterInfo>([])
+                ? ArrayEnumerable<ParameterInfo>.Empty
                 : parameters.Enumerate();
         }
 
@@ -484,7 +484,7 @@ namespace wan24.Core
         {
             ImmutableArray<ParameterInfo> parameters = GetCachedParameters(method);
             return parameters.Length < 1
-                ? new EnumerableAdapter<ParameterInfo[], ParameterInfo>([])
+                ? ArrayEnumerable<ParameterInfo>.Empty
                 : parameters.Where(filter);
         }
 
@@ -551,7 +551,7 @@ namespace wan24.Core
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(type);
             return arguments.Length < 1
-                ? new EnumerableAdapter<Type[], Type>([])
+                ? ArrayEnumerable<Type>.Empty
                 : arguments.Enumerate();
         }
 
@@ -581,7 +581,7 @@ namespace wan24.Core
         {
             ImmutableArray<Type> arguments = GetCachedGenericArguments(mi);
             return arguments.Length < 1
-                ? new EnumerableAdapter<Type[], Type>([])
+                ? ArrayEnumerable<Type>.Empty
                 : arguments.Enumerate();
         }
 
@@ -647,7 +647,7 @@ namespace wan24.Core
         {
             FrozenSet<Attribute> attributes = GetCachedAttributes(obj);
             return attributes.Count < 1
-                ? new EnumerableAdapter<T[], T>([])
+                ? ArrayEnumerable<T>.Empty
                 : attributes.Where(a => a is T).Select(a => (T)a);
         }
 
@@ -767,7 +767,9 @@ namespace wan24.Core
 #endif
         public static FrozenSet<Attribute> GetCachedAttributes(ICustomAttributeProvider provider)
             => AttributeCache.GetOrAdd(
-                provider,
+                provider is ICustomAttributeProviderHost host
+                    ? host.Hosted
+                    : provider,
                 (key) => provider.GetCustomAttributes(inherit: true).Cast<Attribute>().ToFrozenSet()
                 );
 

@@ -12,7 +12,8 @@ namespace wan24.Core.Enumerables
         /// <typeparam name="tResult2">Result type</typeparam>
         /// <param name="selector">Selector</param>
         /// <returns>Enumerable</returns>
-        public virtual ImmutableArraySelectEnumerable<tItem, tResult2> Select<tResult2>(Func<tResult, tResult2> selector) => new(Array, item => selector(Selector(item)), Offset, Length);
+        public virtual ImmutableArraySelectEnumerable<tItem, tResult2> Select<tResult2>(Func<tResult, tResult2> selector)
+            => new(Array, item => selector(Selector(item)), Offset, Length);
 
         /// <inheritdoc/>
         public virtual int Count() => Length;
@@ -47,8 +48,11 @@ namespace wan24.Core.Enumerables
             bool isItemNull = obj is null;
             tResult item;
             for (int i = Offset, len = i + Length, hc = obj?.GetHashCode() ?? 0; i < len; i++)
-                if ((isItemNull && Selector(data[i]) is null) || (!isItemNull && (item = Selector(data[i])) is not null && hc == item.GetHashCode() && item.Equals(obj)))
+            {
+                item = Selector(data[i]);
+                if ((isItemNull && item is null) || (!isItemNull && item is not null && hc == item.GetHashCode() && item.Equals(obj)))
                     return true;
+            }
             return false;
         }
 
@@ -70,10 +74,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             ImmutableArray<tItem> data = Array;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -102,10 +106,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             ImmutableArray<tItem> data = Array;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -175,7 +179,11 @@ namespace wan24.Core.Enumerables
         public virtual async Task ExecuteForAllAsync(Func<tResult, CancellationToken, Task> action, CancellationToken cancellationToken = default)
         {
             ImmutableArray<tItem> data = Array;
-            for (int i = Offset, len = i + Length; i < len && !cancellationToken.GetIsCancellationRequested(); await action(Selector(data[i]), cancellationToken).DynamicContext(), i++) ;
+            for (
+                int i = Offset, len = i + Length;
+                i < len && !cancellationToken.GetIsCancellationRequested();
+                await action(Selector(data[i]), cancellationToken).DynamicContext(), i++
+                ) ;
         }
 
         /// <inheritdoc/>
@@ -232,7 +240,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), hc = item?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isItemNull = item is null) && seen[j] is null) || (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isItemNull = item is null) && seen[j] is null) ||
+                            (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -261,7 +275,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), key = keySelector(item), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -292,8 +312,18 @@ namespace wan24.Core.Enumerables
             ImmutableArray<tItem> data = Array;
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
-                for (item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                for (
+                    item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0;
+                    j < seenCnt;
+                    j++
+                    )
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -355,7 +385,11 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual async Task<tResult> FirstOrDefaultAsync(Func<tResult, CancellationToken, Task<bool>> predicate, tResult defaultValue, CancellationToken cancellationToken = default)
+        public virtual async Task<tResult> FirstOrDefaultAsync(
+            Func<tResult, CancellationToken, Task<bool>> predicate,
+            tResult defaultValue,
+            CancellationToken cancellationToken = default
+            )
         {
             ImmutableArray<tItem> data = Array;
             tResult item;
@@ -375,7 +409,7 @@ namespace wan24.Core.Enumerables
         /// <returns>Enumerable</returns>
         public virtual ImmutableArraySelectEnumerable<tItem, tResult> Skip(int count)
             => count >= Length
-                ? new([], Selector)
+                ? Empty
                 : count < 1
                     ? this
                     : new(Array, Selector, Offset + count, Length - count);
@@ -388,14 +422,10 @@ namespace wan24.Core.Enumerables
         public virtual ImmutableArraySelectEnumerable<tItem, tResult> SkipWhile(Func<tResult, bool> predicate)
         {
             ImmutableArray<tItem> data = Array;
-            tResult item;
             for (int i = Offset, len = i + Length; i < len; i++)
-            {
-                item = Selector(data[i]);
-                if (!predicate(item))
+                if (!predicate(Selector(data[i])))
                     return new(Array, Selector, i, len - i);
-            }
-            return new([], Selector);
+            return Empty;
         }
 
         /// <summary>
@@ -431,7 +461,7 @@ namespace wan24.Core.Enumerables
         /// <returns>Enumerable</returns>
         public virtual ImmutableArraySelectEnumerable<tItem, tResult> Take(int count)
             => count < 1
-                ? new([], Selector)
+                ? Empty
                 : count < Length
                     ? new(Array, Selector, Offset, count)
                     : this;
@@ -447,7 +477,7 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length; i < len; i++)
                 if (!predicate(Selector(data[i])))
                     return i == Offset
-                        ? new([], Selector)
+                        ? Empty
                         : new(Array, Selector, Offset, i - Offset);
             return this;
         }
@@ -476,8 +506,9 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public tResult[] ToArray()
         {
-            tResult[] res = new tResult[Length];
+            if (Length < 1) return [];
             ImmutableArray<tItem> data = Array;
+            tResult[] res = new tResult[Length];
             for (int i = Offset, len = i + Length; i < len; res[i] = Selector(data[i]), i++) ;
             return res;
         }
@@ -485,6 +516,7 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public int ToBuffer(in Span<tResult> buffer)
         {
+            if (Length < 1) return 0;
             if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
             ImmutableArray<tItem> data = Array;
             for (int i = Offset, len = i + Length; i < len; buffer[i] = Selector(data[i]), i++) ;
@@ -494,6 +526,7 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public List<tResult> ToList()
         {
+            if (Length < 1) return [];
             List<tResult> res = new(Length);
             ImmutableArray<tItem> data = Array;
             for (int i = Offset, len = i + Length; i < len; res.Add(Selector(data[i])), i++) ;

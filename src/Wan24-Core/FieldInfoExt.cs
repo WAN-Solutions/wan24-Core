@@ -14,7 +14,7 @@ namespace wan24.Core
     /// <param name="Field">Field</param>
     /// <param name="Getter">Getter</param>
     /// <param name="Setter">Setter</param>
-    public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
+    public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProviderHost
     {
         /// <summary>
         /// Cache (key is the field)
@@ -114,6 +114,9 @@ namespace wan24.Core
         /// Setter delegate
         /// </summary>
         public Action<object?, object?>? Setter { get; set; } = Setter;
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Field;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]

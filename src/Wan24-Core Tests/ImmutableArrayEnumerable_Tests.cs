@@ -1,17 +1,18 @@
-﻿using wan24.Core;
+﻿using System.Collections.Immutable;
+using wan24.Core;
 using wan24.Core.Enumerables;
 
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ArrayEnumerable_Tests : TestBase
+    public class ImmutableArrayEnumerable_Tests
     {
-        private static readonly int[] TestData = [0, 1, 2, 3, 4];
+        private static readonly ImmutableArray<int> TestData = [0, 1, 2, 3, 4];
 
         [TestMethod]
         public async Task General_TestsAsync()
         {
-            ArrayEnumerable<int> test = new(TestData);
+            ImmutableArrayEnumerable<int> test = new(TestData);
 
             Assert.AreEqual(TestData.Length, test.Count());
             Assert.AreEqual(4, test.Count(i => i > 0));
@@ -93,7 +94,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task Select_TestsAsync()
         {
-            ArraySelectEnumerable<int, int> test = new ArrayEnumerable<int>(TestData).Select(i => 4 - i);
+            ImmutableArraySelectEnumerable<int, int> test = new ImmutableArrayEnumerable<int>(TestData).Select(i => 4 - i);
 
             Assert.AreEqual(TestData.Length, test.Count());
             Assert.AreEqual(4, test.Count(i => i > 0));
@@ -175,7 +176,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task Where_TestsAsync()
         {
-            ArrayWhereEnumerable<int> test = new ArrayEnumerable<int>(TestData).Where(i => i > 0);
+            ImmutableArrayWhereEnumerable<int> test = new ImmutableArrayEnumerable<int>(TestData).Where(i => i > 0);
 
             Assert.AreEqual(TestData.Length - 1, test.Count());
             Assert.AreEqual(3, test.Count(i => i > 1));
@@ -258,7 +259,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public async Task WhereSelect_TestsAsync()
         {
-            ArrayWhereSelectEnumerable<int, int> test = new ArrayEnumerable<int>(TestData).Where(i => i > 0).Select(i => 4 - i);
+            ImmutableArrayWhereSelectEnumerable<int, int> test = new ImmutableArrayEnumerable<int>(TestData).Where(i => i > 0).Select(i => 4 - i);
 
             Assert.AreEqual(TestData.Length - 1, test.Count());
             Assert.AreEqual(3, test.Count(i => i > 0));

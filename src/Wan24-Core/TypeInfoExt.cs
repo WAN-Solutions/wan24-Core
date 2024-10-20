@@ -14,7 +14,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="Type">Type</param>
-    public sealed partial record class TypeInfoExt(in Type Type) : ICustomAttributeProvider, IEnumerable<PropertyInfoExt>
+    public sealed partial record class TypeInfoExt(in Type Type) : ICustomAttributeProviderHost, IEnumerable<PropertyInfoExt>
     {
         /// <summary>
         /// Get a field/property/method/delegate/event by its name
@@ -290,6 +290,9 @@ namespace wan24.Core
         /// Event names
         /// </summary>
         public IEnumerable<string> EventNames => GetDelegates().Select(e => e.Name);
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Type;
 
         /// <summary>
         /// Create an instance

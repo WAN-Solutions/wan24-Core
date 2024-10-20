@@ -10,6 +10,11 @@ namespace wan24.Core.Enumerables
     public partial class ImmutableArrayWhereEnumerable<T> : ICoreEnumerable<T>
     {
         /// <summary>
+        /// Empty
+        /// </summary>
+        public static readonly ImmutableArrayWhereEnumerable<T> Empty = new([], static i => throw new InvalidProgramException());
+
+        /// <summary>
         /// Array
         /// </summary>
         public readonly ImmutableArray<T> Array;
@@ -50,7 +55,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerator<T> GetEnumerator() => new ImmutableArrayEnumerator<T>(Array, Offset, Length);
+        public virtual IEnumerator<T> GetEnumerator() => new ImmutableArrayWhereEnumerator<T>(Array, Predicate, Offset, Length);
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

@@ -19,6 +19,10 @@ namespace wan24.Core.Enumerables
         /// </summary>
         protected readonly ConstructorInfoExt Constructor;
         /// <summary>
+        /// Empty instance
+        /// </summary>
+        protected ListWhereSelectEnumerable<tList, tItem, tResult>? Empty = default;
+        /// <summary>
         /// List
         /// </summary>
         public readonly tList List;
@@ -91,10 +95,14 @@ namespace wan24.Core.Enumerables
         }
 
         /// <summary>
-        /// Create an empty list instance
+        /// Create an empty instance
         /// </summary>
-        /// <returns>Empty list instance</returns>
-        protected virtual tList CreateEmptyInstance()
-            => (tList)(Constructor.Invoker!([]) ?? throw new InvalidProgramException($"Failed to construct empty list of type {ListType}"));
+        /// <returns>Empty instance</returns>
+        protected virtual ListWhereSelectEnumerable<tList, tItem, tResult> CreateEmptyInstance()
+            => Empty ??= new(
+                (tList)(Constructor.Invoker!([]) ?? throw new InvalidProgramException($"Failed to construct empty list of type {ListType}")),
+                i => throw new InvalidProgramException(),
+                i => throw new InvalidProgramException()
+                );
     }
 }

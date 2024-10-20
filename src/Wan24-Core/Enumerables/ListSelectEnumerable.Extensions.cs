@@ -57,8 +57,11 @@ namespace wan24.Core.Enumerables
             bool isItemNull = obj is null;
             tResult item;
             for (int i = Offset, len = i + Length, hc = obj?.GetHashCode() ?? 0; i < len; i++)
-                if ((isItemNull && Selector(data[i]) is null) || (!isItemNull && (item = Selector(data[i])) is not null && hc == item.GetHashCode() && item.Equals(obj)))
+            {
+                item = Selector(data[i]);
+                if ((isItemNull && item is null) || (!isItemNull && item is not null && hc == item.GetHashCode() && item.Equals(obj)))
                     return true;
+            }
             return false;
         }
 
@@ -81,10 +84,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             tList data = List;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -114,10 +117,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             tList data = List;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -211,7 +214,11 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             tList data = List;
-            for (int i = Offset, len = i + Length; i < len && !cancellationToken.GetIsCancellationRequested(); await action(Selector(data[i]), cancellationToken).DynamicContext(), i++) ;
+            for (
+                int i = Offset, len = i + Length;
+                i < len && !cancellationToken.GetIsCancellationRequested();
+                await action(Selector(data[i]), cancellationToken).DynamicContext(), i++
+                ) ;
         }
 
         /// <inheritdoc/>
@@ -272,7 +279,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), hc = item?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isItemNull = item is null) && seen[j] is null) || (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isItemNull = item is null) && seen[j] is null) ||
+                            (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -302,7 +315,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), key = keySelector(item), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -334,8 +353,18 @@ namespace wan24.Core.Enumerables
             tList data = List;
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
-                for (item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                for (
+                    item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0;
+                    j < seenCnt;
+                    j++
+                    )
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -408,7 +437,11 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual async Task<tResult> FirstOrDefaultAsync(Func<tResult, CancellationToken, Task<bool>> predicate, tResult defaultValue, CancellationToken cancellationToken = default)
+        public virtual async Task<tResult> FirstOrDefaultAsync(
+            Func<tResult, CancellationToken, Task<bool>> predicate,
+            tResult defaultValue,
+            CancellationToken cancellationToken = default
+            )
         {
             EnsureInitialListCount();
             tList data = List;
@@ -431,7 +464,7 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             return count >= Length
-                ? new(CreateEmptyInstance(), Selector)
+                ? CreateEmptyInstance()
                 : count < 1
                     ? this
                     : new(List, Selector, Offset + count, Length - count);
@@ -446,14 +479,10 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             tList data = List;
-            tResult item;
             for (int i = Offset, len = i + Length; i < len; i++)
-            {
-                item = Selector(data[i]);
-                if (!predicate(item))
+                if (!predicate(Selector(data[i])))
                     return new(List, Selector, i, len - i);
-            }
-            return new(CreateEmptyInstance(), Selector);
+            return CreateEmptyInstance();
         }
 
         /// <summary>
@@ -492,7 +521,7 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             return count < 1
-                ? new(CreateEmptyInstance(), Selector)
+                ? CreateEmptyInstance()
                 : count < Length
                     ? new(List, Selector, Offset, count)
                     : this;
@@ -510,7 +539,7 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length; i < len; i++)
                 if (!predicate(Selector(data[i])))
                     return i == Offset
-                        ? new(CreateEmptyInstance(), Selector)
+                        ? CreateEmptyInstance()
                         : new(List, Selector, Offset, i - Offset);
             return this;
         }
@@ -541,8 +570,9 @@ namespace wan24.Core.Enumerables
         public tResult[] ToArray()
         {
             EnsureInitialListCount();
-            tResult[] res = new tResult[Length];
+            if (Length < 1) return [];
             tList data = List;
+            tResult[] res = new tResult[Length];
             for (int i = Offset, len = i + Length; i < len; res[i] = Selector(data[i]), i++) ;
             return res;
         }
@@ -551,6 +581,7 @@ namespace wan24.Core.Enumerables
         public int ToBuffer(in Span<tResult> buffer)
         {
             EnsureInitialListCount();
+            if (Length < 1) return 0;
             if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
             tList data = List;
             for (int i = Offset, len = i + Length; i < len; buffer[i] = Selector(data[i]), i++) ;
@@ -561,6 +592,7 @@ namespace wan24.Core.Enumerables
         public List<tResult> ToList()
         {
             EnsureInitialListCount();
+            if (Length < 1) return [];
             List<tResult> res = new(Length);
             tList data = List;
             for (int i = Offset, len = i + Length; i < len; res.Add(Selector(data[i])), i++) ;

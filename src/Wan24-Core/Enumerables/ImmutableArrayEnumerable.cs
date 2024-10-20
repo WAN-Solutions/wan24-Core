@@ -10,6 +10,11 @@ namespace wan24.Core.Enumerables
     public partial class ImmutableArrayEnumerable<T> : ICoreEnumerable<T>
     {
         /// <summary>
+        /// Empty
+        /// </summary>
+        public static readonly ImmutableArrayEnumerable<T> Empty = new([]);
+
+        /// <summary>
         /// Array
         /// </summary>
         public readonly ImmutableArray<T> Array;

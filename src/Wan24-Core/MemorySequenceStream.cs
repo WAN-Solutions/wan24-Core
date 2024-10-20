@@ -127,7 +127,17 @@ namespace wan24.Core
         {
             EnsureUndisposed(allowDisposing: true);
             EnsureSeekable();
-            return this.GenericSeek(offset, origin);
+            long res = origin switch
+            {
+                SeekOrigin.Begin => offset,
+                SeekOrigin.Current => _Position + offset,
+                SeekOrigin.End => _Length + offset,
+                _ => throw new ArgumentException("Invalid seek origin", nameof(origin))
+            };
+            ArgumentOutOfRangeException.ThrowIfNegative(res, nameof(offset));
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(res, _Length, nameof(offset));
+            _Position = res;
+            return res;
         }
 
         /// <inheritdoc/>

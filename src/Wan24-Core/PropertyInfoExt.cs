@@ -15,7 +15,7 @@ namespace wan24.Core
     /// <param name="Property">Property</param>
     /// <param name="Getter">Getter</param>
     /// <param name="Setter">Setter</param>
-    public sealed record class PropertyInfoExt(in PropertyInfo Property, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
+    public sealed record class PropertyInfoExt(in PropertyInfo Property, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProviderHost
     {
         /// <summary>
         /// Cache (key is the property hash code)
@@ -146,6 +146,9 @@ namespace wan24.Core
         /// If the property is nullable
         /// </summary>
         public bool IsNullable => GetIsNullable();
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Property;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]

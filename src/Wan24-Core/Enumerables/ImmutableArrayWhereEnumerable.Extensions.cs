@@ -96,13 +96,13 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             ImmutableArray<T> data = Array;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
             {
                 item = data[i];
                 if (!Predicate(item)) continue;
-                for (j = 0; j < objsLen; j++)
+                for (j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -132,13 +132,13 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             ImmutableArray<T> data = Array;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
+            for (int j, len = i + Length, hc; i < len; i++)
             {
                 item = data[i];
                 if (!Predicate(item)) continue;
-                for (j = 0; j < objsLen; j++)
+                for (j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -299,29 +299,37 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public virtual int DiscardAll(in bool dispose = true)
         {
-            if (!dispose) return Length;
             ImmutableArray<T> data = Array;
             T item;
+            int res = 0;
             for (int i = Offset, len = i + Length; i < len; i++)
             {
                 item = data[i];
-                if (Predicate(item)) item?.TryDispose();
+                if (Predicate(item))
+                {
+                    res++;
+                    item?.TryDispose();
+                }
             }
-            return Length;
+            return res;
         }
 
         /// <inheritdoc/>
         public virtual async Task<int> DiscardAllAsync(bool dispose = true)
         {
-            if (!dispose) return Length;
             ImmutableArray<T> data = Array;
             T item;
+            int res = 0;
             for (int i = Offset, len = i + Length; i < len; i++)
             {
                 item = data[i];
-                if (item is not null && Predicate(item)) await item.TryDisposeAsync().DynamicContext();
+                if (Predicate(item))
+                {
+                    res++;
+                    if (item is not null) await item.TryDisposeAsync().DynamicContext();
+                }
             }
-            return Length;
+            return res;
         }
 
         /// <inheritdoc/>
@@ -502,11 +510,15 @@ namespace wan24.Core.Enumerables
         /// <returns>Enumerable</returns>
         public virtual ImmutableArrayWhereEnumerable<T> Skip(int count)
         {
+            if (count < 1) return this;
+            if (count >= Length) return Empty;
             ImmutableArray<T> data = Array;
             for (int i = Offset, len = i + Length, cnt = 0; i < len; i++)
-                if (Predicate(data[i]) && ++cnt > count)
-                    return new(Array, Predicate, i, len - i);
-            return new([], Predicate);
+                if (Predicate(data[i]) && ++cnt >= count)
+                    return ++i >= len
+                        ? Empty
+                        : new(Array, Predicate, i, len - i);
+            return Empty;
         }
 
         /// <summary>
@@ -518,13 +530,17 @@ namespace wan24.Core.Enumerables
         {
             ImmutableArray<T> data = Array;
             T item;
-            for (int i = Offset, len = i + Length; i < len; i++)
+            for (int i = Offset, len = i + Length, cnt = 0; i < len; i++)
             {
                 item = data[i];
-                if (Predicate(item) && !predicate(item))
-                    return new(Array, Predicate, i, len - i);
+                if (!Predicate(item)) continue;
+                cnt++;
+                if (predicate(item)) continue;
+                return cnt == 1
+                    ? Empty
+                    : new(Array, Predicate, i, len - i);
             }
-            return new([], Predicate);
+            return Empty;
         }
 
         /// <summary>
@@ -539,16 +555,15 @@ namespace wan24.Core.Enumerables
             bool skip = true;
             T item;
             for (int i = Offset, len = i + Length; i < len && !cancellationToken.IsCancellationRequested; i++)
+            {
                 if (skip)
                 {
                     item = data[i];
                     if (!Predicate(item) || await predicate(item, cancellationToken).DynamicContext()) continue;
                     skip = false;
                 }
-                else
-                {
-                    yield return data[i];
-                }
+                yield return data[i];
+            }
         }
 
         /// <summary>
@@ -558,11 +573,13 @@ namespace wan24.Core.Enumerables
         /// <returns>Enumerable</returns>
         public virtual ImmutableArrayWhereEnumerable<T> Take(int count)
         {
+            if (count < 1) return Empty;
+            if (count >= Length) return this;
             ImmutableArray<T> data = Array;
             for (int i = Offset, len = i + Length, cnt = 0; i < len; i++)
                 if (Predicate(data[i]) && ++cnt >= count)
-                    return new(Array, Predicate, Offset, len - i);
-            return new([], Predicate);
+                    return new(Array, Predicate, Offset, i - Offset + 1);
+            return this;
         }
 
         /// <summary>
@@ -574,13 +591,19 @@ namespace wan24.Core.Enumerables
         {
             ImmutableArray<T> data = Array;
             T item;
-            for (int i = Offset, len = i + Length; i < len; i++)
+            for (int i = Offset, len = i + Length, cnt = 0; i < len; i++)
             {
                 item = data[i];
-                if (Predicate(item) && !predicate(item))
-                    return new(Array, Predicate, Offset, len - i);
+                if (!Predicate(item)) continue;
+                cnt++;
+                if (predicate(item)) continue;
+                return cnt == 1
+                    ? Empty
+                    : i == len - 1
+                        ? this
+                        : new(Array, Predicate, Offset, i - Offset);
             }
-            return new([], Predicate);
+            return this;
         }
 
         /// <summary>
@@ -605,18 +628,18 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public T[] ToArray()
         {
-            using RentedArrayRefStruct<T> buffer = new(Length, clean: false);
+            if (Length < 1) return [];
+            using RentedMemoryRef<T> buffer = new(Length, clean: false);
             int len = ToBuffer(buffer.Span);
-            if (len < 1) return [];
-            T[] res = new T[len];
-            buffer.Span[..len].CopyTo(res);
-            return res;
+            return len < 1
+                ? []
+                : buffer.Span[..len].ToArray();
         }
 
         /// <inheritdoc/>
         public int ToBuffer(in Span<T> buffer)
         {
-            if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
+            if (Length < 1) return 0;
             ImmutableArray<T> data = Array;
             T item;
             int res = 0;
@@ -624,6 +647,7 @@ namespace wan24.Core.Enumerables
             {
                 item = data[i];
                 if (!Predicate(item)) continue;
+                if (buffer.Length <= res) throw new OutOfMemoryException("Buffer to small");
                 buffer[res] = item;
                 res++;
             }
@@ -633,6 +657,7 @@ namespace wan24.Core.Enumerables
         /// <inheritdoc/>
         public List<T> ToList()
         {
+            if (Length < 1) return [];
             List<T> res = new(Length);
             ImmutableArray<T> data = Array;
             T item;

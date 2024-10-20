@@ -11,7 +11,8 @@ namespace wan24.Core.Enumerables
         /// <typeparam name="tResult2">Result type</typeparam>
         /// <param name="selector">Selector</param>
         /// <returns>Enumerable</returns>
-        public virtual ArraySelectEnumerable<tItem, tResult2> Select<tResult2>(Func<tResult, tResult2> selector) => new(Array, item => selector(Selector(item)), Offset, Length);
+        public virtual ArraySelectEnumerable<tItem, tResult2> Select<tResult2>(Func<tResult, tResult2> selector)
+            => new(Array, item => selector(Selector(item)), Offset, Length);
 
         /// <inheritdoc/>
         public virtual int Count() => Length;
@@ -46,8 +47,11 @@ namespace wan24.Core.Enumerables
             bool isItemNull = obj is null;
             tResult item;
             for (int i = Offset, len = i + Length, hc = obj?.GetHashCode() ?? 0; i < len; i++)
-                if ((isItemNull && Selector(data[i]) is null) || (!isItemNull && (item = Selector(data[i])) is not null && hc == item.GetHashCode() && item.Equals(obj)))
+            {
+                item = Selector(data[i]);
+                if ((isItemNull && item is null) || (!isItemNull && item is not null && hc == item.GetHashCode() && item.Equals(obj)))
                     return true;
+            }
             return false;
         }
 
@@ -69,10 +73,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             Span<tItem> data = Array;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode()??0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -101,10 +105,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             Span<tItem> data = Array;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
-                for (item = Selector(data[i]), j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, hc; i < len; i++)
+                for (item = Selector(data[i]), j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -174,7 +178,11 @@ namespace wan24.Core.Enumerables
         public virtual async Task ExecuteForAllAsync(Func<tResult, CancellationToken, Task> action, CancellationToken cancellationToken = default)
         {
             tItem[] data = Array;
-            for (int i = Offset, len = i + Length; i < len && !cancellationToken.GetIsCancellationRequested(); await action(Selector(data[i]), cancellationToken).DynamicContext(), i++) ;
+            for (
+                int i = Offset, len = i + Length;
+                i < len && !cancellationToken.GetIsCancellationRequested();
+                await action(Selector(data[i]), cancellationToken).DynamicContext(), i++
+                ) ;
         }
 
         /// <inheritdoc/>
@@ -231,7 +239,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), hc = item?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isItemNull = item is null) && seen[j] is null) || (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isItemNull = item is null) && seen[j] is null) ||
+                            (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -260,7 +274,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = Selector(data[i]), key = keySelector(item), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -291,8 +311,18 @@ namespace wan24.Core.Enumerables
             tItem[] data = Array;
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
-                for (item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isKeyNull = key is null) && seen[j] is null) || (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))))
+                for (
+                    item = Selector(data[i]), key = await keySelector(item, cancellationToken).DynamicContext(), hc = key?.GetHashCode() ?? 0, useItem = true, j = 0;
+                    j < seenCnt;
+                    j++
+                    )
+                    if (
+                        seenHashCodes[j] == hc &&
+                        (
+                            ((isKeyNull = key is null) && seen[j] is null) ||
+                            (!isKeyNull && (seenKey = seen[j]) is not null && seenKey.Equals(key))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -354,7 +384,11 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual async Task<tResult> FirstOrDefaultAsync(Func<tResult, CancellationToken, Task<bool>> predicate, tResult defaultValue, CancellationToken cancellationToken = default)
+        public virtual async Task<tResult> FirstOrDefaultAsync(
+            Func<tResult, CancellationToken, Task<bool>> predicate,
+            tResult defaultValue,
+            CancellationToken cancellationToken = default
+            )
         {
             tItem[] data = Array;
             tResult item;
@@ -387,13 +421,9 @@ namespace wan24.Core.Enumerables
         public virtual ArraySelectEnumerable<tItem, tResult> SkipWhile(Func<tResult, bool> predicate)
         {
             Span<tItem> data = Array;
-            tResult item;
             for (int i = Offset, len = i + Length; i < len; i++)
-            {
-                item = Selector(data[i]);
-                if (!predicate(item))
+                if (!predicate(Selector(data[i])))
                     return new(Array, Selector, i, len - i);
-            }
             return Empty;
         }
 
@@ -404,7 +434,7 @@ namespace wan24.Core.Enumerables
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
         public virtual async IAsyncEnumerable<tResult> SkipWhileAsync(
-            Func<tResult, CancellationToken, Task<bool>> predicate, 
+            Func<tResult, CancellationToken, Task<bool>> predicate,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
@@ -458,7 +488,7 @@ namespace wan24.Core.Enumerables
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
         public virtual async IAsyncEnumerable<tResult> TakeWhileAsync(
-            Func<tResult, CancellationToken, Task<bool>> predicate, 
+            Func<tResult, CancellationToken, Task<bool>> predicate,
             [EnumeratorCancellation] CancellationToken cancellationToken = default
             )
         {
@@ -476,8 +506,8 @@ namespace wan24.Core.Enumerables
         public tResult[] ToArray()
         {
             if (Length < 1) return [];
-            tResult[] res = new tResult[Length];
             Span<tItem> data = Array;
+            tResult[] res = new tResult[Length];
             for (int i = Offset, len = i + Length; i < len; res[i] = Selector(data[i]), i++) ;
             return res;
         }

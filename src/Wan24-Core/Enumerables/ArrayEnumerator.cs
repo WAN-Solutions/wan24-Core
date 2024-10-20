@@ -29,7 +29,7 @@
         {
             Array = arr;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, arr.Length, nameof(offset));
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(offset, arr.Length, nameof(offset));
             StartState = State = offset - 1;
             EndState = offset + (count ?? arr.Length);
             if (EndState > arr.Length)

@@ -95,13 +95,13 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             Span<T> data = Array;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
             {
                 item = data[i];
                 if (!Predicate(item)) continue;
-                for (j = 0; j < objsLen; j++)
+                for (j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -131,13 +131,13 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             Span<T> data = Array;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
+            for (int j, len = i + Length, hc; i < len; i++)
             {
                 item = data[i];
                 if (!Predicate(item)) continue;
-                for (j = 0; j < objsLen; j++)
+                for (j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -577,7 +577,7 @@ namespace wan24.Core.Enumerables
             Span<T> data = Array;
             for (int i = Offset, len = i + Length, cnt = 0; i < len; i++)
                 if (Predicate(data[i]) && ++cnt >= count)
-                    return new(Array, Predicate, Offset, len - i);
+                    return new(Array, Predicate, Offset, i - Offset + 1);
             return this;
         }
 
@@ -598,9 +598,9 @@ namespace wan24.Core.Enumerables
                 if (predicate(item)) continue;
                 return cnt == 1
                     ? Empty
-                    : i == --len
+                    : i == len - 1
                         ? this
-                        : new(Array, Predicate, Offset, len - i);
+                        : new(Array, Predicate, Offset, i - Offset);
             }
             return this;
         }

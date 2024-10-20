@@ -249,11 +249,12 @@ namespace wan24.Core
             bool[] seenArray = seen.Array;// Found object indicators span
             bool isItemNull;// If the current item is NULL
             T item;// Current object
-            int seenCnt = 0;// Number of seen objects
+            int seenCnt = 0,// Number of seen objects
+                hc;// Current object hash code
             await foreach(T current in enumerable.DynamicContext())
-                for (i = 0; i < itemsLen && !cancellationToken.GetIsCancellationRequested(); i++)
+                for (i = 0, hc = current?.GetHashCode() ?? 0; i < itemsLen && !cancellationToken.GetIsCancellationRequested(); i++)
                     if (
-                        !seenArray[i] && hashCodesArray[i] == (current?.GetHashCode() ?? 0) &&
+                        !seenArray[i] && hashCodesArray[i] == hc &&
                         (
                             ((isItemNull = current is null) && items[i] is null) ||
                             (!isItemNull && (item = items[i]) is not null && item.Equals(current))
@@ -288,10 +289,11 @@ namespace wan24.Core
             for (; i < itemsLen; hashCodes[i] = items[i]?.GetHashCode() ?? 0, i++) ;
             bool isItemNull;// If the current item is NULL
             T obj;// Current object
+            int hc;// Current object hash code
             await foreach(T current in enumerable.DynamicContext().WithCancellation(cancellationToken))
-                for (i = 0; i < itemsLen; i++)
+                for (i = 0, hc = current?.GetHashCode() ?? 0; i < itemsLen; i++)
                     if (
-                        hashCodesArray[i] == (current?.GetHashCode() ?? 0) &&
+                        hashCodesArray[i] == hc &&
                         (
                             ((isItemNull = current is null) && items[i] is null) ||
                             (!isItemNull && (obj = items[i]) is not null && obj.Equals(current))

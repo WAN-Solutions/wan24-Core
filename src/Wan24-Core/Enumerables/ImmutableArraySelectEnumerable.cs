@@ -11,6 +11,11 @@ namespace wan24.Core.Enumerables
     public partial class ImmutableArraySelectEnumerable<tItem, tResult> : ICoreEnumerable<tResult>
     {
         /// <summary>
+        /// Empty
+        /// </summary>
+        public static readonly ImmutableArraySelectEnumerable<tItem, tResult> Empty = new([], static i => throw new InvalidProgramException());
+
+        /// <summary>
         /// Array
         /// </summary>
         public readonly ImmutableArray<tItem> Array;

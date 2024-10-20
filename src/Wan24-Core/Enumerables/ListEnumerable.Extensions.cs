@@ -92,10 +92,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             tList data = List;
             i = Offset;
-            for (int j, len = i + Length, seenCnt = 0; i < len; i++)
-                for (item = data[i], j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, seenCnt = 0, hc; i < len; i++)
+                for (item = data[i], j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        !seenSpan[j] && hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        !seenSpan[j] && hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -125,10 +125,10 @@ namespace wan24.Core.Enumerables
                 obj;// Current object
             tList data = List;
             i = Offset;
-            for (int j, len = i + Length; i < len; i++)
-                for (item = data[i], j = 0; j < objsLen; j++)
+            for (int j, len = i + Length, hc; i < len; i++)
+                for (item = data[i], j = 0, hc = item?.GetHashCode() ?? 0; j < objsLen; j++)
                     if (
-                        hashCodesSpan[j] == (item?.GetHashCode() ?? 0) &&
+                        hashCodesSpan[j] == hc &&
                         (
                             ((isItemNull = item is null) && objsSpan[j] is null) ||
                             (!isItemNull && (obj = objsSpan[j]) is not null && obj.Equals(item))
@@ -426,7 +426,7 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             return count >= Length
-                ? new(CreateEmptyInstance())
+                ? CreateEmptyInstance()
                 : count < 1
                     ? this
                     : new(List, Offset + count, Length - count);
@@ -444,7 +444,7 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length; i < len; i++)
                 if (!predicate(data[i]))
                     return new(List, i, len - i);
-            return new(CreateEmptyInstance());
+            return CreateEmptyInstance();
         }
 
         /// <summary>
@@ -453,10 +453,7 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<tItem> SkipWhileAsync(
-            Func<tItem, CancellationToken, Task<bool>> predicate, 
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
+        public virtual async IAsyncEnumerable<tItem> SkipWhileAsync(Func<tItem, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -481,7 +478,7 @@ namespace wan24.Core.Enumerables
         {
             EnsureInitialListCount();
             return count < 1
-                ? new(CreateEmptyInstance())
+                ? CreateEmptyInstance()
                 : count < Length
                     ? new(List, Offset, count)
                     : this;
@@ -499,7 +496,7 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length; i < len; i++)
                 if (!predicate(data[i]))
                     return i == Offset
-                        ? new(CreateEmptyInstance())
+                        ? CreateEmptyInstance()
                         : new(List, Offset, i - Offset);
             return this;
         }
@@ -510,10 +507,7 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<tItem> TakeWhileAsync(
-            Func<tItem, CancellationToken, Task<bool>> predicate, 
-            [EnumeratorCancellation] CancellationToken cancellationToken = default
-            )
+        public virtual async IAsyncEnumerable<tItem> TakeWhileAsync(Func<tItem, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -530,6 +524,7 @@ namespace wan24.Core.Enumerables
         public tItem[] ToArray()
         {
             EnsureInitialListCount();
+            if (Length < 1) return [];
             tItem[] res = new tItem[Length];
             List.CopyTo(res, arrayIndex: 0);
             return res;
@@ -539,6 +534,7 @@ namespace wan24.Core.Enumerables
         public int ToBuffer(in Span<tItem> buffer)
         {
             EnsureInitialListCount();
+            if (Length < 1) return 0;
             if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
             tList data = List;
             for (int i = Offset, len = i + Length; i < len; buffer[i] = data[i], i++) ;
@@ -549,6 +545,7 @@ namespace wan24.Core.Enumerables
         public List<tItem> ToList()
         {
             EnsureInitialListCount();
+            if (Length < 1) return [];
             List<tItem> res = new(Length);
             tList data = List;
             for (int i = Offset, len = i + Length; i < len; res.Add(data[i]), i++) ;

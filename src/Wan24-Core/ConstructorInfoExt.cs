@@ -15,7 +15,7 @@ namespace wan24.Core
     /// </remarks>
     /// <param name="Constructor">Constructor</param>
     /// <param name="Invoker">Invoker delegate</param>
-    public sealed record class ConstructorInfoExt(in ConstructorInfo Constructor, in Func<object?[], object>? Invoker) : ICustomAttributeProvider, IEnumerable<ParameterInfo>
+    public sealed record class ConstructorInfoExt(in ConstructorInfo Constructor, in Func<object?[], object>? Invoker) : ICustomAttributeProviderHost, IEnumerable<ParameterInfo>
     {
         /// <summary>
         /// Cache (key is the constructor)
@@ -112,6 +112,9 @@ namespace wan24.Core
         /// Invoker delegate
         /// </summary>
         public Func<object?[], object>? Invoker { get; set; } = Invoker;
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Constructor;
 
         /// <summary>
         /// Get the parameters

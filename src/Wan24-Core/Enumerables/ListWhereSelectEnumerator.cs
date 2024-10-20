@@ -47,7 +47,7 @@
             List = list;
             ListCount = list.Count;
             ArgumentOutOfRangeException.ThrowIfNegative(offset, nameof(offset));
-            ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(offset, list.Count, nameof(offset));
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(offset, list.Count, nameof(offset));
             StartState = State = offset - 1;
             EndState = offset + (count ?? list.Count);
             if (EndState > list.Count)

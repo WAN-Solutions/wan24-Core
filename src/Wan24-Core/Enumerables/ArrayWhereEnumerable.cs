@@ -54,7 +54,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public virtual IEnumerator<T> GetEnumerator() => new ArrayEnumerator<T>(Array, Offset, Length);
+        public virtual IEnumerator<T> GetEnumerator() => new ArrayWhereEnumerator<T>(Array, Predicate, Offset, Length);
 
         /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

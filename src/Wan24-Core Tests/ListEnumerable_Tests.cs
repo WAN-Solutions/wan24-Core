@@ -4,16 +4,16 @@ using wan24.Core.Enumerables;
 namespace Wan24_Core_Tests
 {
     [TestClass]
-    public class ArrayEnumerable_Tests : TestBase
+    public class ListEnumerable_Tests
     {
-        private static readonly int[] TestData = [0, 1, 2, 3, 4];
+        private static readonly List<int> TestData = [0, 1, 2, 3, 4];
 
         [TestMethod]
         public async Task General_TestsAsync()
         {
-            ArrayEnumerable<int> test = new(TestData);
+            ListEnumerable<List<int>, int> test = new(TestData);
 
-            Assert.AreEqual(TestData.Length, test.Count());
+            Assert.AreEqual(TestData.Count, test.Count());
             Assert.AreEqual(4, test.Count(i => i > 0));
             Assert.AreEqual(1, test.Count(i => i < 1));
             Assert.AreEqual(4, await test.CountAsync((i, ct) => Task.FromResult(i > 0)));
@@ -57,8 +57,8 @@ namespace Wan24_Core_Tests
             Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData));
             Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData));
 
-            Assert.AreEqual(TestData.Length, test.DiscardAll());
-            Assert.AreEqual(TestData.Length, await test.DiscardAllAsync());
+            Assert.AreEqual(TestData.Count, test.DiscardAll());
+            Assert.AreEqual(TestData.Count, await test.DiscardAllAsync());
 
             Assert.IsTrue(test.Distinct().SequenceEqual(TestData));
             Assert.AreEqual(4, test.DistinctBy(i => i < 1 ? i : i - 1).Count());
@@ -85,17 +85,17 @@ namespace Wan24_Core_Tests
 
             Assert.IsTrue(test.ToArray().SequenceEqual(TestData));
             Assert.IsTrue(test.ToList().SequenceEqual(TestData));
-            int[] buffer = new int[TestData.Length];
-            Assert.AreEqual(TestData.Length, test.ToBuffer(buffer));
+            int[] buffer = new int[TestData.Count];
+            Assert.AreEqual(TestData.Count, test.ToBuffer(buffer));
             Assert.IsTrue(buffer.SequenceEqual(TestData));
         }
 
         [TestMethod]
         public async Task Select_TestsAsync()
         {
-            ArraySelectEnumerable<int, int> test = new ArrayEnumerable<int>(TestData).Select(i => 4 - i);
+            ListSelectEnumerable<List<int>, int, int> test = new ListEnumerable<List<int>, int>(TestData).Select(i => 4 - i);
 
-            Assert.AreEqual(TestData.Length, test.Count());
+            Assert.AreEqual(TestData.Count, test.Count());
             Assert.AreEqual(4, test.Count(i => i > 0));
             Assert.AreEqual(1, test.Count(i => i < 1));
             Assert.AreEqual(4, await test.CountAsync((i, ct) => Task.FromResult(i > 0)));
@@ -134,15 +134,15 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(await test.AnyAsync((i, ct) => Task.FromResult(i < 0)));
 
             test.ExecuteForAll(i => { });
-            Assert.IsTrue(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i)).SequenceEqual(TestData.Reverse()));
-            Assert.IsFalse(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i + 1)).SequenceEqual(TestData.Reverse()));
-            Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.Reverse()));
-            Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i)).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsFalse(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i + 1)).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.AsEnumerable().Reverse()));
 
-            Assert.AreEqual(TestData.Length, test.DiscardAll());
-            Assert.AreEqual(TestData.Length, await test.DiscardAllAsync());
+            Assert.AreEqual(TestData.Count, test.DiscardAll());
+            Assert.AreEqual(TestData.Count, await test.DiscardAllAsync());
 
-            Assert.IsTrue(test.Distinct().SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.Distinct().SequenceEqual(TestData.AsEnumerable().Reverse()));
             Assert.AreEqual(4, test.DistinctBy(i => i < 1 ? i : i - 1).Count());
             Assert.AreEqual(4, await test.DistinctByAsync((i, ct) => Task.FromResult(i < 1 ? i : i - 1)).CountAsync());
 
@@ -165,19 +165,19 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(2, test.TakeWhile(i => i > 2).Count());
             Assert.AreEqual(2, await test.TakeWhileAsync((i, ct) => Task.FromResult(i > 2)).CountAsync());
 
-            Assert.IsTrue(test.ToArray().SequenceEqual(TestData.Reverse()));
-            Assert.IsTrue(test.ToList().SequenceEqual(TestData.Reverse()));
-            int[] buffer = new int[TestData.Length];
-            Assert.AreEqual(TestData.Length, test.ToBuffer(buffer));
-            Assert.IsTrue(buffer.SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.ToArray().SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsTrue(test.ToList().SequenceEqual(TestData.AsEnumerable().Reverse()));
+            int[] buffer = new int[TestData.Count];
+            Assert.AreEqual(TestData.Count, test.ToBuffer(buffer));
+            Assert.IsTrue(buffer.SequenceEqual(TestData.AsEnumerable().Reverse()));
         }
 
         [TestMethod]
         public async Task Where_TestsAsync()
         {
-            ArrayWhereEnumerable<int> test = new ArrayEnumerable<int>(TestData).Where(i => i > 0);
+            ListWhereEnumerable<List<int>, int> test = new ListEnumerable<List<int>, int>(TestData).Where(i => i > 0);
 
-            Assert.AreEqual(TestData.Length - 1, test.Count());
+            Assert.AreEqual(TestData.Count - 1, test.Count());
             Assert.AreEqual(3, test.Count(i => i > 1));
             Assert.AreEqual(1, test.Count(i => i < 2));
             Assert.AreEqual(4, await test.CountAsync((i, ct) => Task.FromResult(i > 0)));
@@ -222,8 +222,8 @@ namespace Wan24_Core_Tests
             Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.Skip(1)));
             Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.Skip(1)));
 
-            Assert.AreEqual(TestData.Length - 1, test.DiscardAll());
-            Assert.AreEqual(TestData.Length - 1, await test.DiscardAllAsync());
+            Assert.AreEqual(TestData.Count - 1, test.DiscardAll());
+            Assert.AreEqual(TestData.Count - 1, await test.DiscardAllAsync());
 
             Assert.IsTrue(test.Distinct().SequenceEqual(TestData.Skip(1)));
             Assert.AreEqual(3, test.DistinctBy(i => i < 2 ? i : i - 1).Count());
@@ -250,17 +250,17 @@ namespace Wan24_Core_Tests
 
             Assert.IsTrue(test.ToArray().SequenceEqual(TestData.Skip(1)));
             Assert.IsTrue(test.ToList().SequenceEqual(TestData.Skip(1)));
-            int[] buffer = new int[TestData.Length - 1];
-            Assert.AreEqual(TestData.Length - 1, test.ToBuffer(buffer));
+            int[] buffer = new int[TestData.Count - 1];
+            Assert.AreEqual(TestData.Count - 1, test.ToBuffer(buffer));
             Assert.IsTrue(buffer.SequenceEqual(TestData.Skip(1)));
         }
 
         [TestMethod]
         public async Task WhereSelect_TestsAsync()
         {
-            ArrayWhereSelectEnumerable<int, int> test = new ArrayEnumerable<int>(TestData).Where(i => i > 0).Select(i => 4 - i);
+            ListWhereSelectEnumerable<List<int>, int, int> test = new ListEnumerable<List<int>, int>(TestData).Where(i => i > 0).Select(i => 4 - i);
 
-            Assert.AreEqual(TestData.Length - 1, test.Count());
+            Assert.AreEqual(TestData.Count - 1, test.Count());
             Assert.AreEqual(3, test.Count(i => i > 0));
             Assert.AreEqual(2, test.Count(i => i < 2));
             Assert.AreEqual(3, await test.CountAsync((i, ct) => Task.FromResult(i > 0)));
@@ -305,8 +305,8 @@ namespace Wan24_Core_Tests
             Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.Take(4).Reverse()));
             Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.Take(4).Reverse()));
 
-            Assert.AreEqual(TestData.Length - 1, test.DiscardAll());
-            Assert.AreEqual(TestData.Length - 1, await test.DiscardAllAsync());
+            Assert.AreEqual(TestData.Count - 1, test.DiscardAll());
+            Assert.AreEqual(TestData.Count - 1, await test.DiscardAllAsync());
 
             Assert.IsTrue(test.Distinct().SequenceEqual(TestData.Take(4).Reverse()));
             Assert.AreEqual(3, test.DistinctBy(i => i < 2 ? i : i - 1).Count());
@@ -333,8 +333,8 @@ namespace Wan24_Core_Tests
 
             Assert.IsTrue(test.ToArray().SequenceEqual(TestData.Take(4).Reverse()));
             Assert.IsTrue(test.ToList().SequenceEqual(TestData.Take(4).Reverse()));
-            int[] buffer = new int[TestData.Length - 1];
-            Assert.AreEqual(TestData.Length - 1, test.ToBuffer(buffer));
+            int[] buffer = new int[TestData.Count - 1];
+            Assert.AreEqual(TestData.Count - 1, test.ToBuffer(buffer));
             Assert.IsTrue(buffer.SequenceEqual(TestData.Take(4).Reverse()));
         }
     }
