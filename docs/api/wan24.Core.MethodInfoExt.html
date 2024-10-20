@@ -111,6 +111,7 @@
   </div>
   <div class="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.ICustomAttributeProviderHost.html">ICustomAttributeProviderHost</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.icustomattributeprovider">ICustomAttributeProvider</a></div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.parameterinfo">ParameterInfo</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
@@ -141,7 +142,7 @@
   <h6><strong>Assembly</strong>: wan24Core.dll</h6>
   <h5 id="wan24_Core_MethodInfoExt_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed record MethodInfoExt : ICustomAttributeProvider, IEnumerable&lt;ParameterInfo&gt;, IEnumerable, IEquatable&lt;MethodInfoExt&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record MethodInfoExt : ICustomAttributeProviderHost, ICustomAttributeProvider, IEnumerable&lt;ParameterInfo&gt;, IEnumerable, IEquatable&lt;MethodInfoExt&gt;</code></pre>
   </div>
   <h5 id="wan24_Core_MethodInfoExt_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Constructor</p>
@@ -1013,7 +1014,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_From_System_Reflection_MethodInfo__.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.From(System.Reflection.MethodInfo%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L401">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L408">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_From_" data-uid="wan24.Core.MethodInfoExt.From*"></a>
   <h4 id="wan24_Core_MethodInfoExt_From_System_Reflection_MethodInfo__" data-uid="wan24.Core.MethodInfoExt.From(System.Reflection.MethodInfo@)">From(in MethodInfo)</h4>
@@ -1063,7 +1064,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetCustomAttributes_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetCustomAttributes(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L330">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L337">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetCustomAttributes_" data-uid="wan24.Core.MethodInfoExt.GetCustomAttributes*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetCustomAttributes_System_Boolean_" data-uid="wan24.Core.MethodInfoExt.GetCustomAttributes(System.Boolean)">GetCustomAttributes(bool)</h4>
@@ -1135,7 +1136,7 @@ public object[] GetCustomAttributes(bool inherit)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetCustomAttributes_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetCustomAttributes(System.Type%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L337">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L344">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetCustomAttributes_" data-uid="wan24.Core.MethodInfoExt.GetCustomAttributes*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetCustomAttributes_System_Type_System_Boolean_" data-uid="wan24.Core.MethodInfoExt.GetCustomAttributes(System.Type,System.Boolean)">GetCustomAttributes(Type, bool)</h4>
@@ -1213,7 +1214,7 @@ public object[] GetCustomAttributes(Type attributeType, bool inherit)</code></pr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L351">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L358">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetEnumerator_" data-uid="wan24.Core.MethodInfoExt.GetEnumerator*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetEnumerator" data-uid="wan24.Core.MethodInfoExt.GetEnumerator">GetEnumerator()</h4>
@@ -1245,7 +1246,7 @@ public object[] GetCustomAttributes(Type attributeType, bool inherit)</code></pr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetGenericArguments.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetGenericArguments%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L313">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L320">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetGenericArguments_" data-uid="wan24.Core.MethodInfoExt.GetGenericArguments*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetGenericArguments" data-uid="wan24.Core.MethodInfoExt.GetGenericArguments">GetGenericArguments()</h4>
@@ -1278,7 +1279,7 @@ public ImmutableArray&lt;Type&gt; GetGenericArguments()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetGenericMethodDefinition.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetGenericMethodDefinition%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L323">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L330">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetGenericMethodDefinition_" data-uid="wan24.Core.MethodInfoExt.GetGenericMethodDefinition*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetGenericMethodDefinition" data-uid="wan24.Core.MethodInfoExt.GetGenericMethodDefinition">GetGenericMethodDefinition()</h4>
@@ -1310,7 +1311,7 @@ public ImmutableArray&lt;Type&gt; GetGenericArguments()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_GetParameters.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.GetParameters%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L303">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L310">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_GetParameters_" data-uid="wan24.Core.MethodInfoExt.GetParameters*"></a>
   <h4 id="wan24_Core_MethodInfoExt_GetParameters" data-uid="wan24.Core.MethodInfoExt.GetParameters">GetParameters()</h4>
@@ -1343,7 +1344,7 @@ public ImmutableArray&lt;ParameterInfo&gt; GetParameters()</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_IsDefined_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.IsDefined(System.Type%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L344">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L351">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_IsDefined_" data-uid="wan24.Core.MethodInfoExt.IsDefined*"></a>
   <h4 id="wan24_Core_MethodInfoExt_IsDefined_System_Type_System_Boolean_" data-uid="wan24.Core.MethodInfoExt.IsDefined(System.Type,System.Boolean)">IsDefined(Type, bool)</h4>
@@ -1400,7 +1401,7 @@ public bool IsDefined(Type attributeType, bool inherit)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_MakeGenericMethod_System_Type___.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.MakeGenericMethod(System.Type%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L284">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L287">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_MakeGenericMethod_" data-uid="wan24.Core.MethodInfoExt.MakeGenericMethod*"></a>
   <h4 id="wan24_Core_MethodInfoExt_MakeGenericMethod_System_Type___" data-uid="wan24.Core.MethodInfoExt.MakeGenericMethod(System.Type[])">MakeGenericMethod(params Type[])</h4>
@@ -1452,7 +1453,7 @@ public bool IsDefined(Type attributeType, bool inherit)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_op_Implicit_System_Reflection_MethodInfo___wan24_Core_MethodInfoExt.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.op_Implicit(System.Reflection.MethodInfo%40)~wan24.Core.MethodInfoExt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L380">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L387">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_op_Implicit_" data-uid="wan24.Core.MethodInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_MethodInfoExt_op_Implicit_System_Reflection_MethodInfo___wan24_Core_MethodInfoExt" data-uid="wan24.Core.MethodInfoExt.op_Implicit(System.Reflection.MethodInfo@)~wan24.Core.MethodInfoExt">implicit operator MethodInfoExt(in MethodInfo)</h4>
@@ -1502,7 +1503,7 @@ public static implicit operator MethodInfoExt(in MethodInfo mi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_op_Implicit_wan24_Core_MethodInfoExt___System_Reflection_MethodInfo.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.op_Implicit(wan24.Core.MethodInfoExt%40)~System.Reflection.MethodInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L370">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L377">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_op_Implicit_" data-uid="wan24.Core.MethodInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_MethodInfoExt_op_Implicit_wan24_Core_MethodInfoExt___System_Reflection_MethodInfo" data-uid="wan24.Core.MethodInfoExt.op_Implicit(wan24.Core.MethodInfoExt@)~System.Reflection.MethodInfo">implicit operator MethodInfo(in MethodInfoExt)</h4>
@@ -1552,7 +1553,7 @@ public static implicit operator MethodInfo(in MethodInfoExt mi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MethodInfoExt_op_Implicit_wan24_Core_MethodInfoExt___System_Type.md&amp;value=---%0Auid%3A%20wan24.Core.MethodInfoExt.op_Implicit(wan24.Core.MethodInfoExt%40)~System.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L390">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MethodInfoExt.cs/#L397">View Source</a>
   </span>
   <a id="wan24_Core_MethodInfoExt_op_Implicit_" data-uid="wan24.Core.MethodInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_MethodInfoExt_op_Implicit_wan24_Core_MethodInfoExt___System_Type" data-uid="wan24.Core.MethodInfoExt.op_Implicit(wan24.Core.MethodInfoExt@)~System.Type">implicit operator Type(in MethodInfoExt)</h4>
@@ -1598,6 +1599,9 @@ public static implicit operator Type(in MethodInfoExt mi)</code></pre>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ICustomAttributeProviderHost.html">ICustomAttributeProviderHost</a>
+  </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.icustomattributeprovider">ICustomAttributeProvider</a>
   </div>
@@ -1645,10 +1649,31 @@ public static implicit operator Type(in MethodInfoExt mi)</code></pre>
       <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CountAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.CountAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_DistinctByAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.DistinctByAsync&lt;tItem, tKey&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tKey&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___1____System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_FirstAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.FirstAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_FirstOrDefaultAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean_____0_System_Threading_CancellationToken_">AsyncEnumerableExtensions.FirstOrDefaultAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, T, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SelectAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SelectAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tResult&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SkipWhileAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SkipWhileAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_TakeWhileAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.TakeWhileAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_WhereAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.WhereAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
@@ -1688,6 +1713,9 @@ public static implicit operator Type(in MethodInfoExt mi)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__1_System_Collections_Generic_IEnumerable___0__System_Action___0__">EnumerableExtensions.ExecuteForAll&lt;T&gt;(IEnumerable&lt;T&gt;, Action&lt;T&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_wan24_Core_EnumerableExtensions_ExecuteResult___1___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;)</a>
@@ -1834,6 +1862,12 @@ public static implicit operator Type(in MethodInfoExt mi)</code></pre>
       <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem&gt;(tList, Func&lt;tItem, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__3___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___2____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -1871,6 +1905,51 @@ public static implicit operator Type(in MethodInfoExt mi)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_">EnumerableExtensions.ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtMost__2___0_System_Int32_">EnumerableExtensions.ContainsAtMost&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Contains__2___0___1_">EnumerableExtensions.Contains&lt;tList, tItem&gt;(tList, tItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DistinctBy__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.DistinctBy&lt;tList, tItem, tKey&gt;(tList, Func&lt;tItem, tKey&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Distinct__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Distinct&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Enumerate__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Enumerate&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2___0_System_Action___1__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem&gt;(tList, Action&lt;tItem&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__3___0_System_Func___1_wan24_Core_EnumerableExtensions_ExecuteResult___2___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Select__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Select&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, tResult&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_SkipWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.SkipWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Skip__2___0_System_Int32_">EnumerableExtensions.Skip&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_TakeWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.TakeWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Take__2___0_System_Int32_">EnumerableExtensions.Take&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Where__2___0_System_Func___1_System_Boolean__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Where&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, int, int?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
