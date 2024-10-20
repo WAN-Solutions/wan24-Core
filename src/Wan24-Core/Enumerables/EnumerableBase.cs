@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>Item</returns>
-        public virtual T? FirstOrDefault(Func<T?, bool> predicate) => FirstOrDefault(predicate, default!);
+        public virtual T? FirstOrDefault(Func<T, bool> predicate) => FirstOrDefault(predicate, default!);
 
         /// <summary>
         /// First or default
@@ -43,7 +43,7 @@
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Item</returns>
-        public virtual async Task<T?> FirstOrDefaultAsync(Func<T?, CancellationToken, Task<bool>> predicate, CancellationToken cancellationToken = default)
+        public virtual async Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, CancellationToken cancellationToken = default)
             => await FirstOrDefaultAsync(predicate, default!, cancellationToken).DynamicContext();
 
         /// <summary>
