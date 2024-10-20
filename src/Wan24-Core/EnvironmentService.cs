@@ -21,6 +21,9 @@ namespace wan24.Core
         {
             get
             {
+                ThreadPool.GetAvailableThreads(out int availableWorkerThreads, out int availableCompletionPortThreads);
+                ThreadPool.GetMinThreads(out int minWorkerThreads, out int minCompletionPortThreads);
+                ThreadPool.GetMaxThreads(out int maxWorkerThreads, out int maxCompletionPortThreads);
                 foreach (Status state in base.State) yield return state;
                 yield return new(__("User"), Environment.UserName, __("Current user name"));
                 yield return new(__("Domain"), Environment.UserDomainName, __("Current user domain"));
@@ -43,6 +46,14 @@ namespace wan24.Core
                 yield return new(__("Current folder"), Environment.CurrentDirectory, __("Current folder"));
                 yield return new(__("Page size"), Environment.SystemPageSize, __("Operating system memory page size in bytes"));
                 yield return new(__("Working set"), Environment.WorkingSet, __("Physical memory mapped to the current process in bytes"));
+                yield return new(__("Threads"), ThreadPool.ThreadCount, __("Number of currently existing threads from the thread pool"));
+                yield return new(__("Cmp. threads"), ThreadPool.CompletedWorkItemCount, __("Number of work items that have been processed so far using the thread pool"));
+                yield return new(__("Avail. threads"), availableWorkerThreads, __("Number of available worker threads from the thread pool"));
+                yield return new(__("Avail. cmp. threads"), availableCompletionPortThreads, __("Number of available completion port threads from the thread pool"));
+                yield return new(__("Min. threads"), minWorkerThreads, __("Number of minimum worker threads which are created on demand from the thread pool"));
+                yield return new(__("Min. cmp. threads"), minCompletionPortThreads, __("Number of minimum completion port threads which are created on demand from the thread pool"));
+                yield return new(__("Max. threads"), maxWorkerThreads, __("Maximum number of concurrent thread pool worker thread requests"));
+                yield return new(__("Max. cmp. threads"), maxCompletionPortThreads, __("Maximum number of concurrent thread pool completion port thread requests"));
                 yield return new(__("Buffer size"), Settings.BufferSize, __("Default buffer size in bytes"));
                 yield return new(__("Allocation"), Settings.StackAllocBorder, __("Stack allocation limitation in bytes"));
                 yield return new(__("App ID"), Settings.AppId, __("App ID"));

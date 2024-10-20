@@ -13,7 +13,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(0, IntRange.Zero.From);
                 Assert.AreEqual(0, IntRange.Zero.To);
                 Assert.AreEqual(0, IntRange.Zero[0]);
-                Assert.ThrowsException<ArgumentOutOfRangeException>(() => IntRange.Zero[1]);
+                Assert.ThrowsException<IndexOutOfRangeException>(() => IntRange.Zero[1]);
                 Assert.AreEqual(1, IntRange.Zero.EnumerableRange.Count());
                 Assert.AreEqual(0, IntRange.Zero.EnumerableRange.First());
                 Range range = IntRange.Zero.AsRange;
@@ -49,7 +49,7 @@ namespace Wan24_Core_Tests
                 Assert.AreEqual(int.MinValue, IntRange.MaxValue[0]);
                 Assert.AreEqual(0, IntRange.MaxValue[1L + int.MaxValue]);
                 Assert.AreEqual(int.MaxValue, IntRange.MaxValue[uint.MaxValue]);
-                Assert.ThrowsException<ArgumentOutOfRangeException>(() => IntRange.MaxValue[1L + uint.MaxValue]);
+                Assert.ThrowsException<IndexOutOfRangeException>(() => IntRange.MaxValue[1L + uint.MaxValue]);
                 int[] arr = IntRange.MaxValue.ToArray((long)int.MaxValue + 1, 1);
                 Assert.AreEqual(1, arr.Length);
                 Assert.AreEqual(0, arr[0]);

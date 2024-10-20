@@ -49,6 +49,46 @@ namespace wan24.Core
         /// </summary>
         public PluginLoadContext Context { get; }
 
+        /// <summary>
+        /// Initialize the plugin
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task OnInitAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            TypeInfoExt pluginTypeInfo;
+            IPluginExt plugin;
+            foreach (Type pluginType in Context.Plugins)
+            {
+                if (!typeof(IPluginExt).IsAssignableFrom(pluginType)) continue;
+                pluginTypeInfo = TypeInfoExt.From(pluginType);
+                if (pluginTypeInfo.ParameterlessConstructor is not ConstructorInfoExt ci || ci.Invoker is null)
+                    continue;
+                plugin = ci.Invoker([]) as IPluginExt ?? throw new InvalidProgramException();
+                await plugin.OnInitAsync(cancellationToken).DynamicContext();
+            }
+        }
+
+        /// <summary>
+        /// Unload the plugin
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public virtual async Task OnUnloadAsync(CancellationToken cancellationToken = default)
+        {
+            EnsureUndisposed();
+            TypeInfoExt pluginTypeInfo;
+            IPluginExt plugin;
+            foreach (Type pluginType in Context.Plugins)
+            {
+                if (!typeof(IPluginExt).IsAssignableFrom(pluginType)) continue;
+                pluginTypeInfo = TypeInfoExt.From(pluginType);
+                if (pluginTypeInfo.ParameterlessConstructor is not ConstructorInfoExt ci || ci.Invoker is null)
+                    continue;
+                plugin = ci.Invoker([]) as IPluginExt ?? throw new InvalidProgramException();
+                await plugin.OnUnloadAsync(cancellationToken).DynamicContext();
+            }
+        }
+
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {

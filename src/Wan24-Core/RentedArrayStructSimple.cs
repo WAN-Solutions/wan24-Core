@@ -73,7 +73,7 @@ namespace wan24.Core
 #endif
             get
             {
-                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                if (offset < 0 || offset >= Length) throw new IndexOutOfRangeException(nameof(offset));
                 return Array[offset];
             }
             [TargetedPatchingOptOut("Just a method adapter")]
@@ -82,7 +82,7 @@ namespace wan24.Core
 #endif
             set
             {
-                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                if (offset < 0 || offset >= Length) throw new IndexOutOfRangeException(nameof(offset));
                 Array[offset] = value;
             }
         }

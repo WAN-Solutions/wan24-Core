@@ -15,7 +15,19 @@ namespace wan24.Core
         /// <param name="b">B</param>
         /// <returns>Are equal?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool AreEqual<T>(in T? a, in T? b) => (a is null && b is null) || (a is not null && a.Equals(b));
+        public static bool AreEqual<T>(in T? a, in T? b) => (a is null && b is null) || (a is not null && b is not null && a.Equals(b));
+
+        /// <summary>
+        /// Determine if two values are equal
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="a">A</param>
+        /// <param name="hashCodeA">Hash code of A</param>
+        /// <param name="b">B</param>
+        /// <param name="hashCodeB">Hash code of B</param>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static bool AreEqual<T>(in T? a, in int hashCodeA, in T? b, in int hashCodeB)
+            => hashCodeA == hashCodeB && (a is null && b is null) || (a is not null && b is not null && a.Equals(b));
 
         /// <summary>
         /// Determine if a value is <see langword="null"/>

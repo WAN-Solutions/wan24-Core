@@ -177,7 +177,6 @@ namespace wan24.Core
             Reset();
             return Task.CompletedTask;
         }
-
         /// <inheritdoc/>
         public override int GetHashCode() => base.GetHashCode();
 

@@ -35,7 +35,7 @@ namespace wan24.Core
 #endif
             get => index >= BigInteger.Zero && index < IPAddressCount
                 ? GetIPAddress(BigInteger.Add(MaskedNetwork, index))
-                : throw new ArgumentOutOfRangeException(nameof(index));
+                : throw new IndexOutOfRangeException(nameof(index));
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace wan24.Core
             get
             {
                 BigInteger ipc = IPAddressCount;
-                if (startIndex <= BigInteger.Zero || startIndex >= ipc) throw new ArgumentOutOfRangeException(nameof(startIndex));
+                if (startIndex <= BigInteger.Zero || startIndex >= ipc) throw new IndexOutOfRangeException(nameof(startIndex));
                 if (count == BigInteger.Zero) yield break;
                 BigInteger stop = BigInteger.Add(BigInteger.Add(startIndex, count), BigInteger.One);
-                if (stop > ipc) throw new ArgumentOutOfRangeException(nameof(count));
+                if (stop > ipc) throw new IndexOutOfRangeException(nameof(count));
                 for (
                     BigInteger i = startIndex, network = MaskedNetwork;
                     i != stop;
