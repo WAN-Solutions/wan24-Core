@@ -389,14 +389,14 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(tItem defaultValue)
+        public override tItem? FirstOrDefault(tItem? defaultValue)
         {
             EnsureInitialListCount();
             return Length > 0 ? List[Offset] : defaultValue;
         }
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(Func<tItem, bool> predicate, tItem defaultValue)
+        public override tItem? FirstOrDefault(Func<tItem, bool> predicate, tItem? defaultValue)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -407,7 +407,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<tItem> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem defaultValue, CancellationToken cancellationToken = default)
+        public override async Task<tItem?> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem? defaultValue, CancellationToken cancellationToken = default)
         {
             EnsureInitialListCount();
             tList data = List;
