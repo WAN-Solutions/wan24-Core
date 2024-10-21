@@ -115,14 +115,14 @@ namespace wan24.Core.Enumerables
             => Enumerable.FirstAsync(predicate, cancellationToken);
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(tItem defaultValue) => Enumerable.FirstOrDefault(defaultValue);
+        public override tItem? FirstOrDefault(tItem? defaultValue) => Enumerable.FirstOrDefault(defaultValue);
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(Func<tItem, bool> predicate, tItem defaultValue) => Enumerable.FirstOrDefault(predicate, defaultValue);
+        public override tItem? FirstOrDefault(Func<tItem, bool> predicate, tItem? defaultValue) => Enumerable.FirstOrDefault(predicate!, defaultValue);
 
         /// <inheritdoc/>
-        public override Task<tItem> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem defaultValue, CancellationToken cancellationToken = default)
-            => Enumerable.FirstOrDefaultAsync(predicate, defaultValue, cancellationToken);
+        public override Task<tItem?> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem? defaultValue, CancellationToken cancellationToken = default)
+            => Enumerable.FirstOrDefaultAsync(predicate!, defaultValue, cancellationToken);
 
         /// <inheritdoc/>
         public virtual IEnumerator<tItem> GetEnumerator() => Enumerable.GetEnumerator();

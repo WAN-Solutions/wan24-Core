@@ -10,6 +10,7 @@
  * Distinct(By(Async))
  * First(OrDefault)(Async)
  * (Skip|Take)(While)(Async)
+ * To(Array|Buffer|List)
  */
 
 namespace wan24.Core.Enumerables
