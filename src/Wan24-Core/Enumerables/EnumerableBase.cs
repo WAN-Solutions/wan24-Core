@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        public abstract T FirstOrDefault(T defaultValue);
+        public abstract T? FirstOrDefault(T? defaultValue);
 
         /// <summary>
         /// First or default
@@ -35,7 +35,7 @@
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        public abstract T FirstOrDefault(Func<T, bool> predicate, T defaultValue);
+        public abstract T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue);
 
         /// <summary>
         /// First or default
@@ -53,6 +53,6 @@
         /// <param name="defaultValue">Default</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Item</returns>
-        public abstract Task<T> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T defaultValue, CancellationToken cancellationToken = default);
+        public abstract Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue, CancellationToken cancellationToken = default);
     }
 }

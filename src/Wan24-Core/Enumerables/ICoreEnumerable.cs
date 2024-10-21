@@ -204,7 +204,7 @@ namespace wan24.Core.Enumerables
         /// </summary>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        T FirstOrDefault(T defaultValue);
+        T? FirstOrDefault(T? defaultValue);
         /// <summary>
         /// First or default
         /// </summary>
@@ -217,7 +217,7 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        T FirstOrDefault(Func<T, bool> predicate, T defaultValue);
+        T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue);
         /// <summary>
         /// First or default
         /// </summary>
@@ -232,7 +232,7 @@ namespace wan24.Core.Enumerables
         /// <param name="defaultValue">Default</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Item</returns>
-        Task<T> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T defaultValue, CancellationToken cancellationToken = default);
+        Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue, CancellationToken cancellationToken = default);
         /// <summary>
         /// Skip
         /// </summary>
