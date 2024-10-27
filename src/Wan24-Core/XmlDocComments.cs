@@ -73,10 +73,10 @@ namespace wan24.Core
                     sb.Append(fi.Name);
                     break;
                 case FieldInfoExt fi:
-                    if (fi.Field.DeclaringType is null) throw new ArgumentException($"No declaring type for field {fi.Name.ToQuotedLiteral()}", nameof(member));
+                    if (fi.FieldInfo.DeclaringType is null) throw new ArgumentException($"No declaring type for field {fi.Name.ToQuotedLiteral()}", nameof(member));
                     sb.Append('F');
                     sb.Append(':');
-                    sb.Append(GetGenericName(fi.Field.DeclaringType));
+                    sb.Append(GetGenericName(fi.FieldInfo.DeclaringType));
                     sb.Append('.');
                     sb.Append(fi.Name);
                     break;

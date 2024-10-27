@@ -41,9 +41,9 @@ namespace wan24.Core
         /// <param name="providerType">Instance table provider type</param>
         /// <returns>Instance table field</returns>
         public static FieldInfoExt? FindTableProviderField(Type providerType)
-            => (from field in providerType.GetFieldsCached(BindingFlags.Public | BindingFlags.Static)
-                where field.GetCustomAttributeCached<InstanceTableAttribute>() is not null
-                select field)
+            => (from fieldInfo in providerType.GetFieldsCached(BindingFlags.Public | BindingFlags.Static)
+                where fieldInfo.GetCustomAttributeCached<InstanceTableAttribute>() is not null
+                select fieldInfo)
                 .FirstOrDefault();
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace wan24.Core
         public static object? FindInstance(in Type providerType, in string key)
             => FindTableProviderField(providerType) is not FieldInfoExt fi
                 ? throw new ArgumentException("Not an instance table provider type (instance table field not found)", nameof(providerType))
-                : FindInstance(fi.Field, key);
+                : FindInstance(fi.FieldInfo, key);
 
         /// <summary>
         /// Find an instance

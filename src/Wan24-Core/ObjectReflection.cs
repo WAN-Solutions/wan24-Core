@@ -57,9 +57,9 @@ namespace wan24.Core
             get
             {
                 Dictionary<string, object?> res = [];
-                foreach (FieldInfoExt field in Type.Fields)
-                    if (!field.Field.IsStatic && field.Getter is not null)
-                        res[field.Name] = field.Getter(Object);
+                foreach (FieldInfoExt fieldInfo in Type.Fields)
+                    if (!fieldInfo.FieldInfo.IsStatic && fieldInfo.Getter is not null)
+                        res[fieldInfo.Name] = fieldInfo.Getter(Object);
                 return res;
             }
         }
@@ -112,7 +112,7 @@ namespace wan24.Core
 #endif
         public bool CanGet(in string name) => Type[name] switch
         {
-            FieldInfoExt field when field.Getter is not null => true,
+            FieldInfoExt fieldInfo when fieldInfo.Getter is not null => true,
             PropertyInfoExt prop when prop.Getter is not null => true,
             _ => false
         };
@@ -128,7 +128,7 @@ namespace wan24.Core
 #endif
         public bool CanSet(in string name) => Type[name] switch
         {
-            FieldInfoExt field when field.Setter is not null => true,
+            FieldInfoExt fieldInfo when fieldInfo.Setter is not null => true,
             PropertyInfoExt prop when prop.Setter is not null => true,
             _ => false
         };
@@ -158,8 +158,8 @@ namespace wan24.Core
         {
             switch (Type[name])
             {
-                case FieldInfoExt field when field.Getter is not null:
-                    value = field.Getter(Object);
+                case FieldInfoExt fieldInfo when fieldInfo.Getter is not null:
+                    value = fieldInfo.Getter(Object);
                     return true;
                 case PropertyInfoExt prop when prop.Getter is not null:
                     value = prop.Getter(Object);
@@ -195,8 +195,8 @@ namespace wan24.Core
         {
             switch (Type[name])
             {
-                case FieldInfoExt field when field.Setter is not null:
-                    field.Setter(Object, value);
+                case FieldInfoExt fieldInfo when fieldInfo.Setter is not null:
+                    fieldInfo.Setter(Object, value);
                     return true;
                 case PropertyInfoExt prop when prop.Setter is not null:
                     prop.Setter(Object, value);
