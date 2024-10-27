@@ -3,6 +3,17 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using static wan24.Core.Logging;
 
+//TODO Use new .NET 9 Lock type for SyncObject instead of an object https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-13.0/lock-object
+//TODO With .NET 9 use Task.WhenEach for ExecuteForAllAsync
+//TODO With .NET 9 use ReadOnlySpan<T> (or possibly HashSet<T>) for params where possible
+//TODO With .NET 9 maybe implement HybridCache
+//TODO With .NET 9 maybe use UUID v7
+//TODO With .NET 9 field is a keyword and can't be used as variable name anymore
+//TODO With .NET 9 ref struct can be used in iterators and asynchronous methods
+//TODO .NET 9 allows ref struct generic anti-constraint allows Span-Enumerables!? https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13#allows-ref-struct
+//TODO .NET 9 allows ref struct in interfaces - maybe they can be implemented here and there
+//TODO .NET 9 makes wan24.Core.OrderedDictionary possibly obsolete - check the fact
+
 namespace wan24.Core
 {
     /// <summary>
