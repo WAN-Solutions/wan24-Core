@@ -466,7 +466,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override T FirstOrDefault(T defaultValue)
+        public override T? FirstOrDefault(T? defaultValue)
         {
             ImmutableArray<T> data = Array;
             for (int i = Offset, len = i + Length; i < len; i++)
@@ -476,7 +476,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override T FirstOrDefault(Func<T, bool> predicate, T defaultValue)
+        public override T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue)
         {
             ImmutableArray<T> data = Array;
             T item;
@@ -490,7 +490,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<T> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T defaultValue, CancellationToken cancellationToken = default)
+        public override async Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue, CancellationToken cancellationToken = default)
         {
             ImmutableArray<T> data = Array;
             T item;

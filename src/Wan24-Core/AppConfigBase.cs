@@ -22,7 +22,7 @@ namespace wan24.Core
         /// Applied app configuration
         /// </summary>
         [JsonIgnore]
-        public static IAppConfig? Applied { get; protected set; }
+        public static IAppConfig? Applied { get; set; }
 
         /// <inheritdoc/>
         public abstract void Apply();
