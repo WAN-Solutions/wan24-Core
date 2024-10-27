@@ -22,7 +22,9 @@ namespace wan24.Core
             {typeof(IServiceWorker), typeof(ServiceWorkerTable) },
             {typeof(ITimer), typeof(TimerTable) },
             {typeof(IThrottle), typeof(ThrottleTable) },
-            {typeof(PooledTempStreamMemoryLimit), typeof(PooledTempStreamMemoryLimitTable) }
+            {typeof(PooledTempStreamMemoryLimit), typeof(PooledTempStreamMemoryLimitTable) },
+            {typeof(IPipeline), typeof(PipelineTable) },
+            {typeof(IQueueEventWorker), typeof(QueueEventWorkerTable) }
         };
 
         /// <summary>

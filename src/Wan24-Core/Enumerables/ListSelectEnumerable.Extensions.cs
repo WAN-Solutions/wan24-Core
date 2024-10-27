@@ -415,14 +415,14 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override tResult? FirstOrDefault(tResult? defaultValue)
+        public virtual tResult? FirstOrDefault(tResult? defaultValue = default)
         {
             EnsureInitialListCount();
             return Length > 0 ? Selector(List[Offset]) : defaultValue;
         }
 
         /// <inheritdoc/>
-        public override tResult? FirstOrDefault(Func<tResult, bool> predicate, tResult? defaultValue)
+        public virtual tResult? FirstOrDefault(Func<tResult, bool> predicate, tResult? defaultValue = default)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -437,9 +437,9 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<tResult?> FirstOrDefaultAsync(
+        public virtual async Task<tResult?> FirstOrDefaultAsync(
             Func<tResult, CancellationToken, Task<bool>> predicate,
-            tResult? defaultValue,
+            tResult? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -567,7 +567,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public tResult[] ToArray()
+        public override tResult[] ToArray()
         {
             EnsureInitialListCount();
             if (Length < 1) return [];
@@ -578,7 +578,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public int ToBuffer(in Span<tResult> buffer)
+        public virtual int ToBuffer(in Span<tResult> buffer)
         {
             EnsureInitialListCount();
             if (Length < 1) return 0;
@@ -589,7 +589,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public List<tResult> ToList()
+        public virtual List<tResult> ToList()
         {
             EnsureInitialListCount();
             if (Length < 1) return [];

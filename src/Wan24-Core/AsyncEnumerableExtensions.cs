@@ -1,5 +1,6 @@
 ﻿using System.Runtime;
 using System.Runtime.CompilerServices;
+using wan24.Core.Enumerables;
 
 namespace wan24.Core
 {
@@ -450,5 +451,15 @@ namespace wan24.Core
             }
             return res;
         }
+
+        /// <summary>
+        /// Process the enumeration and get a new basic array enumerable
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="enumerable">Enumerable</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Enumerable</returns>
+        public static async Task<ArrayEnumerable<T>> ProcessAsync<T>(this IAsyncEnumerable<T> enumerable, CancellationToken cancellationToken = default)
+            => new(await enumerable.ToArrayAsync(cancellationToken).DynamicContext());
     }
 }

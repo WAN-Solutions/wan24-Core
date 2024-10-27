@@ -376,7 +376,13 @@ namespace wan24.Core.Enumerables
                 item = data[i];
                 if (!Predicate(item)) continue;
                 for (hc = item?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isItemNull = item is null) && seen[j] is null) || (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))))
+                    if (
+                        seenHashCodes[j] == hc && 
+                        (
+                            ((isItemNull = item is null) && seen[j] is null) || 
+                            (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -498,7 +504,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override tItem? FirstOrDefault(tItem? defaultValue)
+        public virtual tItem? FirstOrDefault(tItem? defaultValue = default)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -509,7 +515,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override tItem? FirstOrDefault(Func<tItem, bool> predicate, tItem? defaultValue)
+        public virtual tItem? FirstOrDefault(Func<tItem, bool> predicate, tItem? defaultValue = default)
         {
             EnsureInitialListCount();
             tList data = List;
@@ -524,7 +530,11 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<tItem?> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem? defaultValue, CancellationToken cancellationToken = default)
+        public virtual async Task<tItem?> FirstOrDefaultAsync(
+            Func<tItem, CancellationToken, Task<bool>> predicate, 
+            tItem? defaultValue = default, 
+            CancellationToken cancellationToken = default
+            )
         {
             EnsureInitialListCount();
             tList data = List;
@@ -586,7 +596,10 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<tItem> SkipWhileAsync(Func<tItem, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        public virtual async IAsyncEnumerable<tItem> SkipWhileAsync(
+            Func<tItem, CancellationToken, Task<bool>> predicate, 
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
         {
             EnsureInitialListCount();
             tList data = List;
@@ -652,7 +665,10 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<tItem> TakeWhileAsync(Func<tItem, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        public virtual async IAsyncEnumerable<tItem> TakeWhileAsync(
+            Func<tItem, CancellationToken, Task<bool>> predicate, 
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
         {
             EnsureInitialListCount();
             tList data = List;
@@ -667,7 +683,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public tItem[] ToArray()
+        public override tItem[] ToArray()
         {
             EnsureInitialListCount();
             if (Length < 1) return [];
@@ -679,7 +695,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public int ToBuffer(in Span<tItem> buffer)
+        public virtual int ToBuffer(in Span<tItem> buffer)
         {
             EnsureInitialListCount();
             if (Length < 1) return 0;
@@ -698,7 +714,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public List<tItem> ToList()
+        public virtual List<tItem> ToList()
         {
             EnsureInitialListCount();
             if (Length < 1) return [];
