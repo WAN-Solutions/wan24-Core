@@ -1,0 +1,2960 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3">
+
+
+
+  <h1 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3" class="text-break">Class ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt;</h1>
+  <div class="markdown level0 summary"><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList&lt;T&gt;</a> WHERE + SELECT enumerable</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="wan24.Core.Enumerables.EnumerableBase-1.html">EnumerableBase</a>&lt;tResult&gt;</div>
+    <div class="level2"><span class="xref">ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable</a>&lt;tResult&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tResult&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="wan24.Core.Enumerables.EnumerableBase-1.html#wan24_Core_Enumerables_EnumerableBase_1_Process">EnumerableBase&lt;tResult&gt;.Process()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="wan24.html">wan24</a>.<a class="xref" href="wan24.Core.html">Core</a>.<a class="xref" href="wan24.Core.Enumerables.html">Enumerables</a></h6>
+  <h6><strong>Assembly</strong>: wan24Core.dll</h6>
+  <h5 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; : EnumerableBase&lt;tResult&gt;, ICoreEnumerable&lt;tResult&gt;, IEnumerable&lt;tResult&gt;, IEnumerable where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tResult</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3__ctor__0__System_Func__1_System_Boolean___System_Func__1__2___System_Int32__System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.%23ctor(%600%40%2CSystem.Func%7B%601%2CSystem.Boolean%7D%40%2CSystem.Func%7B%601%2C%602%7D%40%2CSystem.Int32%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L58">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3__ctor_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.#ctor*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3__ctor__0__System_Func__1_System_Boolean___System_Func__1__2___System_Int32__System_Nullable_System_Int32___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.#ctor(`0@,System.Func{`1,System.Boolean}@,System.Func{`1,`2}@,System.Int32@,System.Nullable{System.Int32}@)">ListWhereSelectEnumerable(in tList, in Func&lt;tItem, bool&gt;, in Func&lt;tItem, tResult&gt;, in int, in int?)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListWhereSelectEnumerable(in tList list, in Func&lt;tItem, bool&gt; predicate, in Func&lt;tItem, tResult&gt; selector, in int offset = 0, in int? count = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">list</span></td>
+        <td><p>List</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, tResult&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>Selector</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Constructor.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Constructor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L20">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Constructor" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Constructor">Constructor</h4>
+  <div class="markdown level1 summary"><p>Parameterless list constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly ConstructorInfoExt Constructor</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Empty.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Empty%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L24">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Empty" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Empty">Empty</h4>
+  <div class="markdown level1 summary"><p>Empty instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt;? Empty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Length.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L40">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Length" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Length">Length</h4>
+  <div class="markdown level1 summary"><p>Length</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Length</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_List.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.List%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L28">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_List" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.List">List</h4>
+  <div class="markdown level1 summary"><p>List</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly tList List</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ListCount.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ListCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L32">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ListCount" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ListCount">ListCount</h4>
+  <div class="markdown level1 summary"><p>Initial list count value</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int ListCount</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ListType.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ListType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L16">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ListType" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ListType">ListType</h4>
+  <div class="markdown level1 summary"><p>List type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Type ListType</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Offset.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Offset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L36">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Offset" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Offset">Offset</h4>
+  <div class="markdown level1 summary"><p>Offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Offset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Predicate.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Predicate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L44">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Predicate" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Predicate">Predicate</h4>
+  <div class="markdown level1 summary"><p>Predicate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;tItem, bool&gt; Predicate</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Selector.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Selector%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L48">View Source</a>
+  </span>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Selector" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Selector">Selector</h4>
+  <div class="markdown level1 summary"><p>Selector</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;tItem, tResult&gt; Selector</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, tResult&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_All_System_Func__2_System_Boolean___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.All(System.Func%7B%602%2CSystem.Boolean%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L186">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_All_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.All*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_All_System_Func__2_System_Boolean___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.All(System.Func{`2,System.Boolean}@)">All(in Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>All</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool All(in Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AllAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.AllAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L201">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AllAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.AllAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AllAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.AllAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">AllAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>All</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;bool&gt; AllAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Any%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L216">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Any*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Any">Any()</h4>
+  <div class="markdown level1 summary"><p>Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Any()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If any</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any_System_Func__2_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Any(System.Func%7B%602%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L227">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Any*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Any_System_Func__2_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Any(System.Func{`2,System.Boolean})">Any(Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Any(Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AnyAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.AnyAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L242">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AnyAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.AnyAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_AnyAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.AnyAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">AnyAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;bool&gt; AnyAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Contains__2_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Contains(%602)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L65">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Contains_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Contains*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Contains__2_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Contains(`2)">Contains(tResult)</h4>
+  <div class="markdown level1 summary"><p>Determine if an item is contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Contains(tResult obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the item is contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAll__2___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ContainsAll(%602%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L85">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAll_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAll*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAll__2___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAll(`2[])">ContainsAll(params tResult[])</h4>
+  <div class="markdown level1 summary"><p>Determine if all items are contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsAll(params tResult[] objs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>tResult[]</td>
+        <td><span class="parametername">objs</span></td>
+        <td><p>Items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If all items are contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAny__2___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ContainsAny(%602%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L126">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAny_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAny*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAny__2___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAny(`2[])">ContainsAny(params tResult[])</h4>
+  <div class="markdown level1 summary"><p>Determine if any item is contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsAny(params tResult[] objs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>tResult[]</td>
+        <td><span class="parametername">objs</span></td>
+        <td><p>Items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If any item is contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtLeast_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ContainsAtLeast(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L162">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtLeast_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAtLeast*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtLeast_System_Int32__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAtLeast(System.Int32@)">ContainsAtLeast(in int)</h4>
+  <div class="markdown level1 summary"><p>Determine if at least N items are contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsAtLeast(in int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If at least <code>count</code> items are contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtMost_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ContainsAtMost(System.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L174">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtMost_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAtMost*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ContainsAtMost_System_Int32__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ContainsAtMost(System.Int32@)">ContainsAtMost(in int)</h4>
+  <div class="markdown level1 summary"><p>Determine if at most N items are contained</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ContainsAtMost(in int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If at most <code>count</code> items are contained</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L21">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Count*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Count">Count()</h4>
+  <div class="markdown level1 summary"><p>Count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int Count()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count_System_Func__2_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Count(System.Func%7B%602%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L33">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Count*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Count_System_Func__2_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Count(System.Func{`2,System.Boolean})">Count(Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int Count(Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CountAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.CountAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L49">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CountAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.CountAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CountAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.CountAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">CountAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; CountAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CreateEmptyInstance.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.CreateEmptyInstance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L101">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CreateEmptyInstance_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.CreateEmptyInstance*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_CreateEmptyInstance" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.CreateEmptyInstance">CreateEmptyInstance()</h4>
+  <div class="markdown level1 summary"><p>Create an empty instance</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; CreateEmptyInstance()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td><p>Empty instance</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAll_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.DiscardAll(System.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L320">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAll_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DiscardAll*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAll_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DiscardAll(System.Boolean@)">DiscardAll(in bool)</h4>
+  <div class="markdown level1 summary"><p>Discard all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int DiscardAll(in bool dispose = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">dispose</span></td>
+        <td><p>If to dispose all disposable items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAllAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.DiscardAllAsync(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L339">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAllAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DiscardAllAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DiscardAllAsync_System_Boolean_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DiscardAllAsync(System.Boolean)">DiscardAllAsync(bool)</h4>
+  <div class="markdown level1 summary"><p>Discard all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;int&gt; DiscardAllAsync(bool dispose = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">dispose</span></td>
+        <td><p>If to dispose all disposable items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</td>
+        <td><p>Number of items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Distinct.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Distinct%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L360">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Distinct_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Distinct*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Distinct" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Distinct">Distinct()</h4>
+  <div class="markdown level1 summary"><p>Distinct</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IEnumerable&lt;tResult&gt; Distinct()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tResult&gt;</td>
+        <td><p>Items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctByAsync__1_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task___0___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.DistinctByAsync%60%601(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7B%60%600%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L439">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctByAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DistinctByAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctByAsync__1_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task___0___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DistinctByAsync``1(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">DistinctByAsync&lt;tKey&gt;(Func&lt;tResult, CancellationToken, Task&lt;tKey&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Distinct</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;tResult&gt; DistinctByAsync&lt;tKey&gt;(Func&lt;tResult, CancellationToken, Task&lt;tKey&gt;&gt; keySelector, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;tKey&gt;&gt;</td>
+        <td><span class="parametername">keySelector</span></td>
+        <td><p>Key selector</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tResult&gt;</td>
+        <td><p>Items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tKey</span></td>
+        <td><p>Key type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctBy__1_System_Func__2___0__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.DistinctBy%60%601(System.Func%7B%602%2C%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L399">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctBy_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DistinctBy*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_DistinctBy__1_System_Func__2___0__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.DistinctBy``1(System.Func{`2,``0})">DistinctBy&lt;tKey&gt;(Func&lt;tResult, tKey&gt;)</h4>
+  <div class="markdown level1 summary"><p>Distinct</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IEnumerable&lt;tResult&gt; DistinctBy&lt;tKey&gt;(Func&lt;tResult, tKey&gt; keySelector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, tKey&gt;</td>
+        <td><span class="parametername">keySelector</span></td>
+        <td><p>Key selector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tResult&gt;</td>
+        <td><p>Items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tKey</span></td>
+        <td><p>Key type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_EnsureInitialListCount.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.EnsureInitialListCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L92">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_EnsureInitialListCount_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.EnsureInitialListCount*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_EnsureInitialListCount" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.EnsureInitialListCount">EnsureInitialListCount()</h4>
+  <div class="markdown level1 summary"><p>Ensure the <a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html#wan24_Core_Enumerables_ListWhereSelectEnumerable_3_List">List</a> has the initial <a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html#wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ListCount">ListCount</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void EnsureInitialListCount()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll_System_Action__2___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ExecuteForAll(System.Action%7B%602%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L257">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAll*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll_System_Action__2___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAll(System.Action{`2}@)">ExecuteForAll(in Action&lt;tResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Execute an action for all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ExecuteForAll(in Action&lt;tResult&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;tResult&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ExecuteForAllAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L287">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAllAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAllAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)">ExecuteForAllAsync(Func&lt;tResult, CancellationToken, Task&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Execute an action for all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task ExecuteForAllAsync(Func&lt;tResult, CancellationToken, Task&gt; action, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync__1_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___0____System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ExecuteForAllAsync%60%601(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7Bwan24.Core.EnumerableExtensions.ExecuteResult%7B%60%600%7D%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L300">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAllAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAllAsync__1_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___0____System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAllAsync``1(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{wan24.Core.EnumerableExtensions.ExecuteResult{``0}}},System.Threading.CancellationToken)">ExecuteForAllAsync&lt;tReturn&gt;(Func&lt;tResult, CancellationToken, Task&lt;ExecuteResult&lt;tReturn&gt;&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Execute an action for all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;tReturn&gt; ExecuteForAllAsync&lt;tReturn&gt;(Func&lt;tResult, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tReturn&gt;&gt;&gt; action, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="wan24.Core.EnumerableExtensions.html">EnumerableExtensions</a>.<a class="xref" href="wan24.Core.EnumerableExtensions.ExecuteResult-1.html">ExecuteResult</a>&lt;tReturn&gt;&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tReturn&gt;</td>
+        <td><p>Return values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tReturn</span></td>
+        <td><p>Return value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll__1_System_Func__2_wan24_Core_EnumerableExtensions_ExecuteResult___0___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ExecuteForAll%60%601(System.Func%7B%602%2Cwan24.Core.EnumerableExtensions.ExecuteResult%7B%60%600%7D%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L270">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAll*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ExecuteForAll__1_System_Func__2_wan24_Core_EnumerableExtensions_ExecuteResult___0___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ExecuteForAll``1(System.Func{`2,wan24.Core.EnumerableExtensions.ExecuteResult{``0}})">ExecuteForAll&lt;tReturn&gt;(Func&lt;tResult, ExecuteResult&lt;tReturn&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Execute an action for all items</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IEnumerable&lt;tReturn&gt; ExecuteForAll&lt;tReturn&gt;(Func&lt;tResult, EnumerableExtensions.ExecuteResult&lt;tReturn&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="wan24.Core.EnumerableExtensions.html">EnumerableExtensions</a>.<a class="xref" href="wan24.Core.EnumerableExtensions.ExecuteResult-1.html">ExecuteResult</a>&lt;tReturn&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Action</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;tReturn&gt;</td>
+        <td><p>Return values</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tReturn</span></td>
+        <td><p>Return value type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.First%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L482">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.First*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.First">First()</h4>
+  <div class="markdown level1 summary"><p>First</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual tResult First()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First_System_Func__2_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.First(System.Func%7B%602%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L493">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.First*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_First_System_Func__2_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.First(System.Func{`2,System.Boolean})">First(Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>First</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual tResult First(Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.FirstAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L511">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">FirstAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>First</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;tResult&gt; FirstAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;tResult&gt;</td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault_System_Func__2_System_Boolean___2_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.FirstOrDefault(System.Func%7B%602%2CSystem.Boolean%7D%2C%602)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L540">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefault*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault_System_Func__2_System_Boolean___2_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefault(System.Func{`2,System.Boolean},`2)">FirstOrDefault(Func&lt;tResult, bool&gt;, tResult?)</h4>
+  <div class="markdown level1 summary"><p>First or default</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual tResult? FirstOrDefault(Func&lt;tResult, bool&gt; predicate, tResult? defaultValue = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault__2_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.FirstOrDefault(%602)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L529">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefault*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefault__2_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefault(`2)">FirstOrDefault(tResult?)</h4>
+  <div class="markdown level1 summary"><p>First or default</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual tResult? FirstOrDefault(tResult? defaultValue = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefaultAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean____2_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.FirstOrDefaultAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2C%602%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L558">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefaultAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefaultAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_FirstOrDefaultAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean____2_System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.FirstOrDefaultAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},`2,System.Threading.CancellationToken)">FirstOrDefaultAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, tResult?, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>First or default</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;tResult?&gt; FirstOrDefaultAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, tResult? defaultValue = default, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tResult</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;tResult&gt;</td>
+        <td><p>Item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_GetEnumerator.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.GetEnumerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.cs/#L80">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_GetEnumerator_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.GetEnumerator*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_GetEnumerator" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IEnumerator&lt;tResult&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;tResult&gt;</td>
+        <td><p>An enumerator that can be used to iterate through the collection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Select__1_System_Func__2___0__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Select%60%601(System.Func%7B%602%2C%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L14">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Select_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Select*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Select__1_System_Func__2___0__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Select``1(System.Func{`2,``0})">Select&lt;tResult2&gt;(Func&lt;tResult, tResult2&gt;)</h4>
+  <div class="markdown level1 summary"><p>Select</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult2&gt; Select&lt;tResult2&gt;(Func&lt;tResult, tResult2&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, tResult2&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>Selector</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult2&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tResult2</span></td>
+        <td><p>Result type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Skip_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Skip(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L584">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Skip_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Skip*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Skip_System_Int32_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Skip(System.Int32)">Skip(int)</h4>
+  <div class="markdown level1 summary"><p>Skip</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; Skip(int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhile_System_Func__2_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.SkipWhile(System.Func%7B%602%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L603">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhile_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.SkipWhile*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhile_System_Func__2_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.SkipWhile(System.Func{`2,System.Boolean})">SkipWhile(Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Skip while</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; SkipWhile(Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhileAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.SkipWhileAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L627">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhileAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.SkipWhileAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_SkipWhileAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.SkipWhileAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">SkipWhileAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Skip while</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;tResult&gt; SkipWhileAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Take_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.Take(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L656">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Take_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Take*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_Take_System_Int32_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.Take(System.Int32)">Take(int)</h4>
+  <div class="markdown level1 summary"><p>Take</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; Take(int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>Count</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhile_System_Func__2_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.TakeWhile(System.Func%7B%602%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L673">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhile_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.TakeWhile*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhile_System_Func__2_System_Boolean__" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.TakeWhile(System.Func{`2,System.Boolean})">TakeWhile(Func&lt;tResult, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Take while</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ListWhereSelectEnumerable&lt;tList, tItem, tResult&gt; TakeWhile(Func&lt;tResult, bool&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ListWhereSelectEnumerable-3.html">ListWhereSelectEnumerable</a>&lt;tList, tItem, tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhileAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.TakeWhileAsync(System.Func%7B%602%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L699">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhileAsync_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.TakeWhileAsync*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_TakeWhileAsync_System_Func__2_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.TakeWhileAsync(System.Func{`2,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">TakeWhileAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Take while</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual IAsyncEnumerable&lt;tResult&gt; TakeWhileAsync(Func&lt;tResult, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;tResult, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;tResult&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L719">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToArray_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToArray*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToArray" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>To array</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override tResult[] ToArray()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>tResult[]</td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="wan24.Core.Enumerables.EnumerableBase-1.html#wan24_Core_Enumerables_EnumerableBase_1_ToArray">EnumerableBase&lt;tResult&gt;.ToArray()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToBuffer_System_Span__2___.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ToBuffer(System.Span%7B%602%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L731">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToBuffer_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToBuffer*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToBuffer_System_Span__2___" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToBuffer(System.Span{`2}@)">ToBuffer(in Span&lt;tResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>To buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual int ToBuffer(in Span&lt;tResult&gt; buffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;tResult&gt;</td>
+        <td><span class="parametername">buffer</span></td>
+        <td><p>Buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of items written to the buffer</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Buffer too small</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToList.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.ListWhereSelectEnumerable%603.ToList%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/ListWhereSelectEnumerable.Extensions.cs/#L750">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToList_" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToList*"></a>
+  <h4 id="wan24_Core_Enumerables_ListWhereSelectEnumerable_3_ToList" data-uid="wan24.Core.Enumerables.ListWhereSelectEnumerable`3.ToList">ToList()</h4>
+  <div class="markdown level1 summary"><p>To list</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual List&lt;tResult&gt; ToList()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;tResult&gt;</td>
+        <td><p>List</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="wan24.Core.Enumerables.ICoreEnumerable-1.html">ICoreEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="wan24.Core.ArrayExtensions.html#wan24_Core_ArrayExtensions_AsReadOnly__1_System_Collections_Generic_IEnumerable___0__">ArrayExtensions.AsReadOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AllAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_AnyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.AnyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XY____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XY?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZ____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZ?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CollectXyzIntAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Nullable_wan24_Core_XYZInt____System_Threading_CancellationToken_">AsyncEnumerableExtensions.CollectXyzIntAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;XYZInt?&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_CountAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.CountAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_DistinctByAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.DistinctByAsync&lt;tItem, tKey&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tKey&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___1____System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_FirstAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.FirstAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_FirstOrDefaultAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean_____0_System_Threading_CancellationToken_">AsyncEnumerableExtensions.FirstOrDefaultAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, T?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SelectAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task___1___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SelectAsync&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, CancellationToken, Task&lt;tResult&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_SkipWhileAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.SkipWhileAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_TakeWhileAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.TakeWhileAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_WhereAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_">AsyncEnumerableExtensions.WhereAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ChunkEnum__1_System_Collections_Generic_IEnumerable___0__System_Int32_">EnumerableExtensions.ChunkEnum&lt;T&gt;(IEnumerable&lt;T&gt;, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYInt____">EnumerableExtensions.CollectXyInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYInt?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXy__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XY____">EnumerableExtensions.CollectXy&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XY?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyzInt__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYZInt____">EnumerableExtensions.CollectXyzInt&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYZInt?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CollectXyz__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Nullable_wan24_Core_XYZ____">EnumerableExtensions.CollectXyz&lt;T&gt;(IEnumerable&lt;T&gt;, in Func&lt;T, XYZ?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAll__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAll&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAny__1_System_Collections_Generic_IEnumerable___0____0___">EnumerableExtensions.ContainsAny&lt;T&gt;(IEnumerable&lt;T&gt;, params T[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CreateBuilder__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.CreateBuilder&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DiscardAll__1_System_Collections_Generic_IEnumerable___0__System_Boolean_">EnumerableExtensions.DiscardAll&lt;T&gt;(IEnumerable&lt;T&gt;, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ElementIndex__1_System_Collections_Generic_IEnumerable___0____0__">EnumerableExtensions.ElementIndex&lt;T&gt;(IEnumerable&lt;T&gt;, in T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__1_System_Collections_Generic_IEnumerable___0__System_Action___0__">EnumerableExtensions.ExecuteForAll&lt;T&gt;(IEnumerable&lt;T&gt;, Action&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2_System_Collections_Generic_IEnumerable___0__System_Func___0_wan24_Core_EnumerableExtensions_ExecuteResult___1___">EnumerableExtensions.ExecuteForAll&lt;tItem, tResult&gt;(IEnumerable&lt;tItem&gt;, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__1_System_Collections_Generic_IEnumerable___0__System_Type_System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem&gt;(IEnumerable&lt;tItem&gt;, Type, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereIsAssignableTo__2_System_Collections_Generic_IEnumerable___0__System_Boolean_">EnumerableExtensions.WhereIsAssignableTo&lt;tItem, tType&gt;(IEnumerable&lt;tItem&gt;, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_WhereNotNull__1_System_Collections_Generic_IEnumerable___0__">EnumerableExtensions.WhereNotNull&lt;T&gt;(IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableList__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableList&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.FreezableExtensions.html#wan24_Core_FreezableExtensions_ToFreezableSet__1_System_Collections_Generic_IEnumerable___0__">FreezableExtensions.ToFreezableSet&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CombineHashCodes__1_System_Collections_Generic_IEnumerable___0__">ObjectExtensions.CombineHashCodes&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2_System_Collections_Generic_IEnumerable___0__System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2_System_Collections_Generic_IEnumerable___0__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(IEnumerable&lt;tSource&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.OptInOutExtensions.html#wan24_Core_OptInOutExtensions_FilterOptInOnly__1_System_Collections_Generic_IEnumerable___0__">OptInOutExtensions.FilterOptInOnly&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.OptInOutExtensions.html#wan24_Core_OptInOutExtensions_FilterOptOut__1_System_Collections_Generic_IEnumerable___0__">OptInOutExtensions.FilterOptOut&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_ValueTuple_System_Boolean___1____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, Task&lt;(bool Yield, tOutput Output)&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_FilterAsync__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.FilterAsync&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, CancellationToken, (bool Yield, tOutput Output)&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_Filter__2_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_Tasks_ParallelLoopState_System_Threading_CancellationToken_System_ValueTuple_System_Boolean___1___System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelAsync.Filter&lt;tInput, tOutput&gt;(IEnumerable&lt;tInput&gt;, Func&lt;tInput, ParallelLoopState, CancellationToken, (bool Yield, tOutput Output)&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelAsync.html#wan24_Core_ParallelAsync_ForEachAsync__1_System_Collections_Generic_IEnumerable___0__System_Func___0_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">ParallelAsync.ForEachAsync&lt;T&gt;(IEnumerable&lt;T&gt;, Func&lt;T, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallel__1_System_Collections_Generic_IEnumerable___0__System_Action___0___System_Threading_Tasks_ParallelOptions__">ParallelExtensions.ExecuteParallel&lt;T&gt;(IEnumerable&lt;T&gt;, in Action&lt;T&gt;, in ParallelOptions?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.PriorityExtensions.html#wan24_Core_PriorityExtensions_PrioritizeAny__1_System_Collections_Generic_IEnumerable___0__">PriorityExtensions.PrioritizeAny&lt;T&gt;(IEnumerable&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.VersioningExtensions.html#wan24_Core_VersioningExtensions_FilterByVersion__1_System_Collections_Generic_IEnumerable___0__System_Int32_System_Boolean_">VersioningExtensions.FilterByVersion&lt;T&gt;(IEnumerable&lt;T&gt;, int, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_CommonBaseType_System_Collections_IEnumerable_System_Boolean__System_Boolean__">EnumerableExtensions.CommonBaseType(IEnumerable, in bool, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumExtensions.html#wan24_Core_EnumExtensions_IsValidEnumerationValue_System_Object_">EnumExtensions.IsValidEnumerationValue(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.JsonExtensions.html#wan24_Core_JsonExtensions_ToJson_System_Object_System_Boolean__">JsonExtensions.ToJson(object, in bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_CastType__1_System_Object_">ObjectExtensions.CastType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ConvertType__1_System_Object_">ObjectExtensions.ConvertType&lt;T&gt;(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In_System_Object_System_Object___">ObjectExtensions.In(object, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Object__">ObjectMappingExtensions.MapObjectTo(object, in object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectTo_System_Object_System_Type__">ObjectMappingExtensions.MapObjectTo(object, in Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Object_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, object, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapObjectToAsync_System_Object_System_Type_System_Threading_CancellationToken_">ObjectMappingExtensions.MapObjectToAsync(object, Type, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_GetValueReflected_System_Object_System_String_">ReflectionExtensions.GetValueReflected(object, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflected_System_Object_System_String_System_Object___">ReflectionExtensions.InvokeReflected(object, string, params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_InvokeReflectedGeneric_System_Object_System_String_System_Type___System_Object___">ReflectionExtensions.InvokeReflectedGeneric(object, string, Type[], params object?[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_Reflect_System_Object_System_Nullable_System_Reflection_BindingFlags__">ReflectionExtensions.Reflect(object, BindingFlags?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ReflectionExtensions.html#wan24_Core_ReflectionExtensions_SetValueReflected_System_Object_System_String_System_Object_">ReflectionExtensions.SetValueReflected(object, string, object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_">StringValueConverter.ConvertObjectToString(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertObjectToString_System_Object_System_String__">StringValueConverter.ConvertObjectToString(object, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertStructInstance_System_Object_">StringValueConverter.ConvertStructInstance(object?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_NamedStringConversion_System_Object_System_String__System_Type_">StringValueConverter.NamedStringConversion(object?, in string, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertStructInstance_System_Object_System_String__">StringValueConverter.TryConvertStructInstance(object?, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryNamedStringConversion_System_Object_System_String__System_Type_System_String__">StringValueConverter.TryNamedStringConversion(object?, in string, Type, out string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_">StructExtensions.GetMarshalBytes(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshalBytes_System_Object_System_Byte____">StructExtensions.GetMarshalBytes(object, in byte[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StructExtensions.html#wan24_Core_StructExtensions_GetMarshaledSize_System_Object_">StructExtensions.GetMarshaledSize(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.TaskExtensions.html#wan24_Core_TaskExtensions_UnwrapFinalResultType_System_Object_">TaskExtensions.UnwrapFinalResultType(object)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem&gt;(tList, Func&lt;tItem, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__3___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___2____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithCondition__2___1_System_Func___0_System_Int32_System_Boolean____">EnumerableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Func&lt;tItem, int, bool&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithDistinct__3___1_System_Func___0___2___System_Collections_Generic_IEqualityComparer___2___">EnumerableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSkip__2___1_System_Int32__">EnumerableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithSorting__3___1_System_Func___0___2___System_Boolean__System_Collections_Generic_IComparer___2___">EnumerableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Func&lt;tItem, tKey&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithTake__2___1_System_Int32__">EnumerableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutCondition__2___1_">EnumerableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutDistinct__2___1_">EnumerableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSkip__2___1_">EnumerableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutSorting__2___1_">EnumerableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_">EnumerableExtensions.ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtMost__2___0_System_Int32_">EnumerableExtensions.ContainsAtMost&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Contains__2___0___1_">EnumerableExtensions.Contains&lt;tList, tItem&gt;(tList, tItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DistinctBy__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.DistinctBy&lt;tList, tItem, tKey&gt;(tList, Func&lt;tItem, tKey&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Distinct__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Distinct&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Enumerate__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Enumerate&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2___0_System_Action___1__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem&gt;(tList, Action&lt;tItem&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__3___0_System_Func___1_wan24_Core_EnumerableExtensions_ExecuteResult___2___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Select__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Select&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, tResult&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_SkipWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.SkipWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Skip__2___0_System_Int32_">EnumerableExtensions.Skip&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_TakeWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.TakeWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Take__2___0_System_Int32_">EnumerableExtensions.Take&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Where__2___0_System_Func___1_System_Boolean__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Where&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_EnsureValidState__1___0_System_Boolean__System_String__">ObjectExtensions.EnsureValidState&lt;T&gt;(T, in bool, in string?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_GetDisplayText__1___0_">ObjectExtensions.GetDisplayText&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_In__1___0_System_Collections_Generic_IEnumerable___0___">ObjectExtensions.In&lt;T&gt;(T, in IEnumerable&lt;T?&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsDisposable__1___0_">ObjectExtensions.IsDisposable&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsTask__1___0_">ObjectExtensions.IsTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_IsValueTask__1___0_">ObjectExtensions.IsValueTask&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToDictionary__1___0_System_Int32__">ObjectExtensions.ToDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_ToOrderedDictionary__1___0_System_Int32__">ObjectExtensions.ToOrderedDictionary&lt;T&gt;(T, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_CreateObjectClone__1___0_System_Boolean_System_Boolean_System_Nullable_System_Boolean__">ObjectMappingExtensions.CreateObjectClone&lt;T&gt;(T, bool, bool, bool?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapToAsync__2___0___1_System_Threading_CancellationToken_">ObjectMappingExtensions.MapToAsync&lt;tSource, tTarget&gt;(tSource, tTarget, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0_">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Int32_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, int, bool&gt;&gt;[])</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__2___1_System_Collections_Generic_IEqualityComparer___0___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder&gt;(tBuilder, in IEqualityComparer&lt;tItem&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithDistinct__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Collections_Generic_IEqualityComparer___2___">QueryableBuilderExtensions.WithDistinct&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in IEqualityComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSkip__2___1_System_Int32__">QueryableBuilderExtensions.WithSkip&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithSorting__3___1_System_Linq_Expressions_Expression_System_Func___0___2____System_Boolean__System_Collections_Generic_IComparer___2___">QueryableBuilderExtensions.WithSorting&lt;tItem, tBuilder, tKey&gt;(tBuilder, in Expression&lt;Func&lt;tItem, tKey&gt;&gt;, in bool, in IComparer&lt;tKey&gt;?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithTake__2___1_System_Int32__">QueryableBuilderExtensions.WithTake&lt;tItem, tBuilder&gt;(tBuilder, in int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutCondition__2___1_">QueryableBuilderExtensions.WithoutCondition&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutDistinct__2___1_">QueryableBuilderExtensions.WithoutDistinct&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSkip__2___1_">QueryableBuilderExtensions.WithoutSkip&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutSorting__2___1_">QueryableBuilderExtensions.WithoutSorting&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithoutTake__2___1_">QueryableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_ConvertToString__1___0_">StringValueConverter.ConvertToString&lt;T&gt;(T)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.StringValueConverter.html#wan24_Core_StringValueConverter_TryConvertToString__1___0_System_String__">StringValueConverter.TryConvertToString&lt;T&gt;(T, out string?)</a>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

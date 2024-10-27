@@ -87,7 +87,7 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                if (offset < 0 || offset >= Length) throw new IndexOutOfRangeException(nameof(offset));
                 return _Array[offset];
             }
             [TargetedPatchingOptOut("Just a method adapter")]
@@ -99,7 +99,7 @@ namespace wan24.Core
                 lock (SyncObject)
                 {
                     EnsureUndisposed();
-                    if (offset < 0 || offset >= Length) throw new ArgumentOutOfRangeException(nameof(offset));
+                    if (offset < 0 || offset >= Length) throw new IndexOutOfRangeException(nameof(offset));
                     _Array[offset] = value;
                 }
             }

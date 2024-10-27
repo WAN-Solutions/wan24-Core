@@ -14,7 +14,7 @@ namespace wan24.Core
     /// Constructor
     /// </remarks>
     /// <param name="Type">Type</param>
-    public sealed partial record class TypeInfoExt(in Type Type) : ICustomAttributeProvider, IEnumerable<PropertyInfoExt>
+    public sealed partial record class TypeInfoExt(in Type Type) : ICustomAttributeProviderHost, IEnumerable<PropertyInfoExt>
     {
         /// <summary>
         /// Get a field/property/method/delegate/event by its name
@@ -182,6 +182,16 @@ namespace wan24.Core
         public Type? FirstGenericArgument => Type.IsGenericType ? GetGenericArguments()[0] : null;
 
         /// <summary>
+        /// Generic arguments
+        /// </summary>
+        public Type[] Interfaces => [.. GetInterfaces()];
+
+        /// <summary>
+        /// Interface count
+        /// </summary>
+        public int InterfaceCount => GetInterfaces().Count;
+
+        /// <summary>
         /// Attributes
         /// </summary>
         public Attribute[] Attributes => [.. GetAttributes()];
@@ -281,6 +291,9 @@ namespace wan24.Core
         /// </summary>
         public IEnumerable<string> EventNames => GetDelegates().Select(e => e.Name);
 
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Type;
+
         /// <summary>
         /// Create an instance
         /// </summary>
@@ -345,7 +358,7 @@ namespace wan24.Core
             if (!Type.IsGenericTypeDefinition) throw new InvalidOperationException();
             if (genericArguments.Length != GenericArgumentCount)
                 throw new ArgumentOutOfRangeException(nameof(genericArguments), $"{GenericArgumentCount} generic arguments required");
-            GenericTypeKey key = new(GetHashCode(), genericArguments);
+            GenericTypeKey key = new(this, genericArguments);
             if (GenericTypes.TryGetValue(key, out TypeInfoExt? res)) return res;
             res = From(Type.MakeGenericType(genericArguments));
             res._GenericArguments ??= [.. genericArguments];
@@ -363,6 +376,16 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public ImmutableArray<Type> GetGenericArguments() => _GenericArguments ??= Type.IsGenericType ? ReflectionExtensions.GetCachedGenericArguments(Type) : [];
+
+        /// <summary>
+        /// Get the interfaces
+        /// </summary>
+        /// <returns>Interfaces</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public FrozenSet<Type> GetInterfaces() => _Interfaces ??= Type.GetInterfaces().ToFrozenSet();
 
         /// <summary>
         /// Get the constructors
@@ -498,10 +521,9 @@ namespace wan24.Core
         /// <returns>Type info</returns>
         public static TypeInfoExt From(in Type type)
         {
-            int hc = type.GetHashCode();
-            if (Cache.TryGetValue(hc, out TypeInfoExt? res)) return res;
+            if (Cache.TryGetValue(type, out TypeInfoExt? res)) return res;
             res = new(type);
-            Cache.TryAdd(hc, res);
+            Cache.TryAdd(type, res);
             return res;
         }
     }

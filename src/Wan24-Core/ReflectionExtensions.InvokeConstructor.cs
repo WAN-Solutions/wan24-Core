@@ -265,15 +265,14 @@ namespace wan24.Core
         {
             if (ci.DeclaringType is null) throw new ArgumentException("Missing declaring type", nameof(ci));
             if (ci.IsGenericMethod && !ci.IsConstructedGenericMethod) throw new ArgumentException("Constructed generic constructor required", nameof(ci));
-            int hc = ci.GetHashCode();
-            if (ConstructorInvokeDelegateCache.TryGetValue(hc, out Func<object?[], object>? res)) return res;
+            if (ConstructorInvokeDelegateCache.TryGetValue(ci, out Func<object?[], object>? res)) return res;
             ParameterExpression paramsArg = Expression.Parameter(typeof(object?[]), "parameters");
-            ImmutableArray<ParameterInfo> pis = GetCachedParameters(ci, hc);
+            ImmutableArray<ParameterInfo> pis = GetCachedParameters(ci);
             Expression[] parameters = new Expression[pis.Length];
             for (int i = 0; i < pis.Length; i++)
                 parameters[i] = Expression.Convert(Expression.ArrayIndex(paramsArg, Expression.Constant(i)), pis[i].ParameterType.GetRealType());
             res = Expression.Lambda<Func<object?[], object>>(Expression.Convert(Expression.New(ci, [.. parameters]), typeof(object)), paramsArg).CompileExt();
-            ConstructorInvokeDelegateCache.TryAdd(hc, res);
+            ConstructorInvokeDelegateCache.TryAdd(ci, res);
             return res;
         }
 

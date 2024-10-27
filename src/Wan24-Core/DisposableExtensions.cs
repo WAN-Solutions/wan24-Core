@@ -156,7 +156,7 @@ namespace wan24.Core
 #endif
         public static FrozenSet<IDisposable> DisposeAll(this FrozenSet<IDisposable> disposables)
         {
-            for (int i = 0, len = disposables.Count; i < len; disposables.Items[i].Dispose(), i++) ;
+            DisposeAll(disposables.Items);
             return disposables;
         }
 
@@ -304,9 +304,6 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void TryDisposeAll(this FrozenSet<object> objects)
-        {
-            for (int i = 0, len = objects.Count; i < len; objects.Items[i].TryDispose(), i++) ;
-        }
+        public static void TryDisposeAll(this FrozenSet<object> objects) => TryDisposeAll(objects.Items);
     }
 }

@@ -110,7 +110,7 @@ namespace wan24.Core
         {
             get
             {
-                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
                 return (int)(From + index);
             }
         }

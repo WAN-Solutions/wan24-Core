@@ -42,7 +42,7 @@ namespace wan24.Core
             if (type.IsGenericTypeDefinition) throw new ArgumentException("Final type required", nameof(type));
             if (interfaceType.IsGenericTypeDefinition) throw new ArgumentException("Final interface type required", nameof(interfaceType));
             // Try the cache, first
-            DiffInterfaceCacheKey key = new(type.GetHashCode(), interfaceType.GetHashCode());
+            DiffInterfaceCacheKey key = new(type, interfaceType);
             if (DiffInterfaceCache.TryGetValue(key, out ICustomAttributeProvider[]? cached))
             {
                 if (cached.Length != 0)
