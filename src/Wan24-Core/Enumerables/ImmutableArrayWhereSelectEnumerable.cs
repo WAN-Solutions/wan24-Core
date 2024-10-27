@@ -13,7 +13,8 @@ namespace wan24.Core.Enumerables
         /// <summary>
         /// Empty
         /// </summary>
-        public static readonly ImmutableArrayWhereSelectEnumerable<tItem, tResult> Empty = new([], static i => throw new InvalidProgramException(), static i => throw new InvalidProgramException());
+        public static readonly ImmutableArrayWhereSelectEnumerable<tItem, tResult> Empty = 
+            new([], static i => throw new InvalidProgramException(), static i => throw new InvalidProgramException());
 
         /// <summary>
         /// Array
@@ -44,7 +45,13 @@ namespace wan24.Core.Enumerables
         /// <param name="selector">Selector</param>
         /// <param name="offset">Offset</param>
         /// <param name="count">Count</param>
-        public ImmutableArrayWhereSelectEnumerable(in ImmutableArray<tItem> arr, in Func<tItem, bool> predicate, in Func<tItem, tResult> selector, in int offset = 0, in int? count = null)
+        public ImmutableArrayWhereSelectEnumerable(
+            in ImmutableArray<tItem> arr, 
+            in Func<tItem, bool> predicate, 
+            in Func<tItem, tResult> selector, 
+            in int offset = 0, 
+            in int? count = null
+            )
             : base()
         {
             Array = arr;

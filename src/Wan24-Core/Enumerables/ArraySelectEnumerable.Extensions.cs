@@ -367,10 +367,10 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override tResult? FirstOrDefault(tResult? defaultValue) => Length > 0 ? Selector(Array[Offset]) : defaultValue;
+        public virtual tResult? FirstOrDefault(tResult? defaultValue = default) => Length > 0 ? Selector(Array[Offset]) : defaultValue;
 
         /// <inheritdoc/>
-        public override tResult? FirstOrDefault(Func<tResult, bool> predicate, tResult? defaultValue)
+        public virtual tResult? FirstOrDefault(Func<tResult, bool> predicate, tResult? defaultValue = default)
         {
             Span<tItem> data = Array;
             tResult item;
@@ -384,9 +384,9 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<tResult?> FirstOrDefaultAsync(
+        public virtual async Task<tResult?> FirstOrDefaultAsync(
             Func<tResult, CancellationToken, Task<bool>> predicate,
-            tResult? defaultValue,
+            tResult? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -503,7 +503,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public tResult[] ToArray()
+        public override tResult[] ToArray()
         {
             if (Length < 1) return [];
             Span<tItem> data = Array;
@@ -513,7 +513,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public int ToBuffer(in Span<tResult> buffer)
+        public virtual int ToBuffer(in Span<tResult> buffer)
         {
             if (Length < 1) return 0;
             if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
@@ -523,7 +523,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public List<tResult> ToList()
+        public virtual List<tResult> ToList()
         {
             if (Length < 1) return [];
             List<tResult> res = new(Length);

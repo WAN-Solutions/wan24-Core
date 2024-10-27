@@ -181,7 +181,11 @@ namespace wan24.Core.Enumerables
         public virtual async Task ExecuteForAllAsync(Func<T, CancellationToken, Task> action, CancellationToken cancellationToken = default)
         {
             T[] data = Array;
-            for (int i = Offset, len = i + Length; i < len && !cancellationToken.GetIsCancellationRequested(); await action(data[i], cancellationToken).DynamicContext(), i++) ;
+            for (
+                int i = Offset, len = i + Length; 
+                i < len && !cancellationToken.GetIsCancellationRequested(); 
+                await action(data[i], cancellationToken).DynamicContext(), i++
+                ) ;
         }
 
         /// <inheritdoc/>
@@ -238,7 +242,13 @@ namespace wan24.Core.Enumerables
             for (int i = Offset, len = i + Length, j, seenCnt = 0, hc; i < len; i++)
             {
                 for (item = data[i], hc = item?.GetHashCode() ?? 0, useItem = true, j = 0; j < seenCnt; j++)
-                    if (seenHashCodes[j] == hc && (((isItemNull = item is null) && seen[j] is null) || (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))))
+                    if (
+                        seenHashCodes[j] == hc && 
+                        (
+                            ((isItemNull = item is null) && seen[j] is null) || 
+                            (!isItemNull && (seenItem = seen[j]) is not null && seenItem.Equals(item))
+                        )
+                        )
                     {
                         useItem = false;
                         break;
@@ -336,10 +346,10 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override T? FirstOrDefault(T? defaultValue) => Length > 0 ? Array[Offset] : defaultValue;
+        public virtual T? FirstOrDefault(T? defaultValue = default) => Length > 0 ? Array[Offset] : defaultValue;
 
         /// <inheritdoc/>
-        public override T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue)
+        public virtual T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue = default)
         {
             Span<T> data = Array;
             for (int i = Offset, len = i + Length; i < len; i++)
@@ -349,7 +359,11 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public override async Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue, CancellationToken cancellationToken = default)
+        public virtual async Task<T?> FirstOrDefaultAsync(
+            Func<T, CancellationToken, Task<bool>> predicate, 
+            T? defaultValue = default, 
+            CancellationToken cancellationToken = default
+            )
         {
             T[] data = Array;
             for (int i = Offset, len = i + Length; i < len && !cancellationToken.GetIsCancellationRequested(); i++)
@@ -390,7 +404,10 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<T> SkipWhileAsync(Func<T, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        public virtual async IAsyncEnumerable<T> SkipWhileAsync(
+            Func<T, CancellationToken, Task<bool>> predicate, 
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
         {
             T[] data = Array;
             bool skip = true;
@@ -439,7 +456,10 @@ namespace wan24.Core.Enumerables
         /// <param name="predicate">Predicate</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Enumerable</returns>
-        public virtual async IAsyncEnumerable<T> TakeWhileAsync(Func<T, CancellationToken, Task<bool>> predicate, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        public virtual async IAsyncEnumerable<T> TakeWhileAsync(
+            Func<T, CancellationToken, Task<bool>> predicate, 
+            [EnumeratorCancellation] CancellationToken cancellationToken = default
+            )
         {
             T[] data = Array;
             T item;
@@ -452,7 +472,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public T[] ToArray()
+        public override T[] ToArray()
         {
             if (Length < 1) return [];
             T[] res = new T[Length];
@@ -461,7 +481,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public int ToBuffer(in Span<T> buffer)
+        public virtual int ToBuffer(in Span<T> buffer)
         {
             if (Length < 1) return 0;
             if (buffer.Length < Length) throw new OutOfMemoryException("Buffer to small");
@@ -470,7 +490,7 @@ namespace wan24.Core.Enumerables
         }
 
         /// <inheritdoc/>
-        public List<T> ToList()
+        public virtual List<T> ToList()
         {
             if (Length < 1) return [];
             List<T> res = new(Length);

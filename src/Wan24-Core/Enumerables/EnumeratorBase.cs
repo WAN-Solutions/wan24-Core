@@ -6,7 +6,10 @@ namespace wan24.Core.Enumerables
     /// Base class for an enumerator
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
-    public abstract class EnumeratorBase<T> : BasicDisposableBase, IEnumerator<T>, IEnumerable<T>
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    public abstract class EnumeratorBase<T>() : BasicDisposableBase(), IEnumerator<T>, IEnumerable<T>
     {
         /// <summary>
         /// Current item
@@ -16,11 +19,6 @@ namespace wan24.Core.Enumerables
         /// Current state
         /// </summary>
         protected int State = 0;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        protected EnumeratorBase() : base() { }
 
         /// <inheritdoc/>
         public virtual T Current => _Current;

@@ -176,6 +176,14 @@ namespace wan24.Core
                 foreach (var kvp in ThrottleTable.Throttles)
                     foreach (Status status in kvp.Value.State)
                         yield return new(status.Name, status.State, status.Description, $"Core\\{__("Throttles")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
+                // Pipelines
+                foreach (var kvp in PipelineTable.Pipelines)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Pipelines")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
+                // Queue event workers
+                foreach (var kvp in QueueEventWorkerTable.Workers)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Queue event workers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)

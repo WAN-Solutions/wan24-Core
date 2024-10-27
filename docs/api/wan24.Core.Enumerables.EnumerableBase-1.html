@@ -108,7 +108,7 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
     <div class="level1"><span class="xref">EnumerableBase&lt;T&gt;</span></div>
-      <div class="level2"><a class="xref" href="wan24.Core.Enumerables.ArrayEnumerable-1.html">ArrayEnumerable&lt;T&gt;</a></div>
+      <div class="level2"><a class="xref" href="wan24.Core.Enumerables.ArrayEnumerable-1.html">ArrayEnumerable</a>&lt;T&gt;</div>
       <div class="level2"><a class="xref" href="wan24.Core.Enumerables.ArraySelectEnumerable-2.html">ArraySelectEnumerable&lt;tItem, tResult&gt;</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.Enumerables.ArrayWhereEnumerable-1.html">ArrayWhereEnumerable&lt;T&gt;</a></div>
       <div class="level2"><a class="xref" href="wan24.Core.Enumerables.ArrayWhereSelectEnumerable-2.html">ArrayWhereSelectEnumerable&lt;tItem, tResult&gt;</a></div>
@@ -196,19 +196,51 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefault%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_Process.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.Process%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L22">View Source</a>
+  </span>
+  <a id="wan24_Core_Enumerables_EnumerableBase_1_Process_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.Process*"></a>
+  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_Process" data-uid="wan24.Core.Enumerables.EnumerableBase`1.Process">Process()</h4>
+  <div class="markdown level1 summary"><p>Process the enumeration and get a new basic array enumerable</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual ArrayEnumerable&lt;T&gt; Process()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.Enumerables.ArrayEnumerable-1.html">ArrayEnumerable</a>&lt;T&gt;</td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L16">View Source</a>
   </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault">FirstOrDefault()</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
+  <a id="wan24_Core_Enumerables_EnumerableBase_1_ToArray_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.ToArray*"></a>
+  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_ToArray" data-uid="wan24.Core.Enumerables.EnumerableBase`1.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>To array</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual T? FirstOrDefault()</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract T[] ToArray()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-condensed">
@@ -220,282 +252,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_System_Func__0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefault(System.Func%7B%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L30">View Source</a>
-  </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_System_Func__0_System_Boolean__" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault(System.Func{`0,System.Boolean})">FirstOrDefault(Func&lt;T, bool&gt;)</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual T? FirstOrDefault(Func&lt;T, bool&gt; predicate)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_System_Func__0_System_Boolean___0_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefault(System.Func%7B%600%2CSystem.Boolean%7D%2C%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L38">View Source</a>
-  </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_System_Func__0_System_Boolean___0_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault(System.Func{`0,System.Boolean},`0)">FirstOrDefault(Func&lt;T, bool&gt;, T?)</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract T? FirstOrDefault(Func&lt;T, bool&gt; predicate, T? defaultValue)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault__0_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefault(%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L23">View Source</a>
-  </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefault__0_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefault(`0)">FirstOrDefault(T?)</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract T? FirstOrDefault(T? defaultValue)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>Item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_System_Func__0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefaultAsync(System.Func%7B%600%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L46">View Source</a>
-  </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefaultAsync*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_System_Func__0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean___System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefaultAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Threading.CancellationToken)">FirstOrDefaultAsync(Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Task&lt;T?&gt; FirstOrDefaultAsync(Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt; predicate, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
-        <td><p>Item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_System_Func__0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean____0_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.Enumerables.EnumerableBase%601.FirstOrDefaultAsync(System.Func%7B%600%2CSystem.Threading.CancellationToken%2CSystem.Threading.Tasks.Task%7BSystem.Boolean%7D%7D%2C%600%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/Enumerables/EnumerableBase.cs/#L56">View Source</a>
-  </span>
-  <a id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefaultAsync*"></a>
-  <h4 id="wan24_Core_Enumerables_EnumerableBase_1_FirstOrDefaultAsync_System_Func__0_System_Threading_CancellationToken_System_Threading_Tasks_Task_System_Boolean____0_System_Threading_CancellationToken_" data-uid="wan24.Core.Enumerables.EnumerableBase`1.FirstOrDefaultAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},`0,System.Threading.CancellationToken)">FirstOrDefaultAsync(Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt;, T?, CancellationToken)</h4>
-  <div class="markdown level1 summary"><p>First or default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract Task&lt;T?&gt; FirstOrDefaultAsync(Func&lt;T, CancellationToken, Task&lt;bool&gt;&gt; predicate, T? defaultValue, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>Cancellation token</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;</td>
-        <td><p>Item</p>
+        <td>T[]</td>
+        <td><p>Array</p>
 </td>
       </tr>
     </tbody>
