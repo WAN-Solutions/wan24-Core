@@ -725,9 +725,9 @@ namespace wan24.Core
         /// <param name="defaultValue">Default value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultValue</c></returns>
-        public static async Task<T> FirstOrDefaultAsync<T>(
+        public static async Task<T?> FirstOrDefaultAsync<T>(
             this IAsyncEnumerable<T> enumerable,
-            T defaultValue,
+            T? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -747,10 +747,10 @@ namespace wan24.Core
         /// <param name="defaultValue">Default value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultValue</c></returns>
-        public static async Task<T> FirstOrDefaultAsync<T>(
+        public static async Task<T?> FirstOrDefaultAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, bool> predicate,
-            T defaultValue,
+            T? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -769,10 +769,10 @@ namespace wan24.Core
         /// <param name="defaultValue">Default value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultValue</c></returns>
-        public static async Task<T> FirstOrDefaultAsync<T>(
+        public static async Task<T?> FirstOrDefaultAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
-            T defaultValue,
+            T? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {
@@ -791,10 +791,10 @@ namespace wan24.Core
         /// <param name="defaultValue">Default value</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>First item or the <c>defaultValue</c></returns>
-        public static async Task<T> FirstOrDefaultAsync<T>(
+        public static async Task<T?> FirstOrDefaultAsync<T>(
             this IEnumerable<T> enumerable,
             Func<T, CancellationToken, Task<bool>> predicate,
-            T defaultValue,
+            T? defaultValue = default,
             CancellationToken cancellationToken = default
             )
         {

@@ -12,7 +12,8 @@ namespace wan24.Core.Enumerables
         /// <summary>
         /// Empty
         /// </summary>
-        public static readonly ArrayWhereSelectEnumerable<tItem, tResult> Empty = new([], static i => throw new InvalidProgramException(), static i => throw new InvalidProgramException());
+        public static readonly ArrayWhereSelectEnumerable<tItem, tResult> Empty = 
+            new([], static i => throw new InvalidProgramException(), static i => throw new InvalidProgramException());
 
         /// <summary>
         /// Array

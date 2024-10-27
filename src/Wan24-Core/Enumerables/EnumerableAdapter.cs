@@ -115,20 +115,25 @@ namespace wan24.Core.Enumerables
             => Enumerable.FirstAsync(predicate, cancellationToken);
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(tItem defaultValue) => Enumerable.FirstOrDefault(defaultValue);
+        public virtual tItem? FirstOrDefault(tItem? defaultValue = default) => Enumerable.FirstOrDefault(defaultValue);
 
         /// <inheritdoc/>
-        public override tItem FirstOrDefault(Func<tItem, bool> predicate, tItem defaultValue) => Enumerable.FirstOrDefault(predicate, defaultValue);
+        public virtual tItem? FirstOrDefault(Func<tItem, bool> predicate, tItem? defaultValue = default) => Enumerable.FirstOrDefault(predicate!, defaultValue);
 
         /// <inheritdoc/>
-        public override Task<tItem> FirstOrDefaultAsync(Func<tItem, CancellationToken, Task<bool>> predicate, tItem defaultValue, CancellationToken cancellationToken = default)
-            => Enumerable.FirstOrDefaultAsync(predicate, defaultValue, cancellationToken);
+        public virtual Task<tItem?> FirstOrDefaultAsync(
+            Func<tItem, CancellationToken, Task<bool>> predicate, 
+            tItem? defaultValue = default, 
+            CancellationToken cancellationToken = default
+            )
+            => Enumerable.FirstOrDefaultAsync(predicate!, defaultValue, cancellationToken);
 
         /// <inheritdoc/>
         public virtual IEnumerator<tItem> GetEnumerator() => Enumerable.GetEnumerator();
 
         /// <inheritdoc/>
-        public virtual ICoreEnumerable<tResult> Select<tResult>(Func<tItem, tResult> selector) => new EnumerableAdapter<IEnumerable<tResult>, tResult>(Enumerable.Select(selector));
+        public virtual ICoreEnumerable<tResult> Select<tResult>(Func<tItem, tResult> selector)
+            => new EnumerableAdapter<IEnumerable<tResult>, tResult>(Enumerable.Select(selector));
 
         /// <inheritdoc/>
         public virtual ICoreEnumerable<tItem> Skip(int count) => new EnumerableAdapter<IEnumerable<tItem>, tItem>(Enumerable.Skip(count));
@@ -154,7 +159,7 @@ namespace wan24.Core.Enumerables
         public virtual ICoreEnumerable<tItem> Where(Func<tItem, bool> predicate) => new EnumerableAdapter<IEnumerable<tItem>, tItem>(Enumerable.Where(predicate));
 
         /// <inheritdoc/>
-        public virtual tItem[] ToArray() => Enumerable.ToArray();
+        public override tItem[] ToArray() => Enumerable.ToArray();
 
         /// <inheritdoc/>
         public virtual int ToBuffer(in Span<tItem> buffer)

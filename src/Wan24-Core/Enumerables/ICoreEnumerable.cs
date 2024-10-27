@@ -10,6 +10,8 @@
  * Distinct(By(Async))
  * First(OrDefault)(Async)
  * (Skip|Take)(While)(Async)
+ * To(Array|Buffer|List)
+ * Process
  */
 
 namespace wan24.Core.Enumerables
@@ -197,34 +199,16 @@ namespace wan24.Core.Enumerables
         /// <summary>
         /// First or default
         /// </summary>
-        /// <returns>Item</returns>
-        T? FirstOrDefault();
-        /// <summary>
-        /// First or default
-        /// </summary>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        T? FirstOrDefault(T? defaultValue);
-        /// <summary>
-        /// First or default
-        /// </summary>
-        /// <param name="predicate">Predicate</param>
-        /// <returns>Item</returns>
-        T? FirstOrDefault(Func<T, bool> predicate);
+        T? FirstOrDefault(T? defaultValue = default);
         /// <summary>
         /// First or default
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultValue">Default</param>
         /// <returns>Item</returns>
-        T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue);
-        /// <summary>
-        /// First or default
-        /// </summary>
-        /// <param name="predicate">Predicate</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>Item</returns>
-        Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, CancellationToken cancellationToken = default);
+        T? FirstOrDefault(Func<T, bool> predicate, T? defaultValue = default);
         /// <summary>
         /// First or default
         /// </summary>
@@ -232,7 +216,7 @@ namespace wan24.Core.Enumerables
         /// <param name="defaultValue">Default</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Item</returns>
-        Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue, CancellationToken cancellationToken = default);
+        Task<T?> FirstOrDefaultAsync(Func<T, CancellationToken, Task<bool>> predicate, T? defaultValue = default, CancellationToken cancellationToken = default);
         /// <summary>
         /// Skip
         /// </summary>
@@ -288,5 +272,10 @@ namespace wan24.Core.Enumerables
         /// </summary>
         /// <returns>List</returns>
         List<T> ToList();
+        /// <summary>
+        /// Process the enumeration and get a new basic array enumerable
+        /// </summary>
+        /// <returns>Enumerable</returns>
+        ArrayEnumerable<T> Process();
     }
 }
