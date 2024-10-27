@@ -34,6 +34,12 @@ namespace wan24.Core
         /// <summary>
         /// Field
         /// </summary>
+        [Obsolete("Use FieldInfo instead")]
+        public FieldInfoExt Field => FieldInfo;//TODO Remove in v3
+
+        /// <summary>
+        /// Field
+        /// </summary>
         public FieldInfoExt FieldInfo { get; }
 
         /// <summary>

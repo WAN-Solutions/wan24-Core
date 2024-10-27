@@ -34,7 +34,7 @@ namespace wan24.Core
         /// Field
         /// </summary>
         [Obsolete("Use FieldInfo instead")]
-        public FieldInfo Field => FieldInfo;
+        public FieldInfo Field => FieldInfo;//TODO Remove in v3
 
         /// <summary>
         /// Field
