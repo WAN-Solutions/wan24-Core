@@ -1061,6 +1061,15 @@ restrictions for this)</p>
       <h5><a class="xref" href="wan24.Core.PerformanceStream-1.html">PerformanceStream&lt;T&gt;</a></h5>
       <section><p>Performance stream (stores time statistical information during I/O operations excluding seeking or stream length changes)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.PipelineBase-2.html">PipelineBase&lt;tContext, tFinal&gt;</a></h5>
+      <section><p>Base class for a pipeline</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineContextBase-2.html">PipelineContextBase&lt;tPipeline, tFinal&gt;</a></h5>
+      <section><p>Base class for a pipeline context</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineContext-1.html">PipelineContext&lt;T&gt;</a></h5>
+      <section><p>Pipeline context</p>
+</section>
       <h5><a class="xref" href="wan24.Core.PipelineElementBase.html">PipelineElementBase</a></h5>
       <section><p>Base class for a pipeline stream element</p>
 </section>
@@ -1075,6 +1084,9 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PipelineElementStream.html">PipelineElementStream</a></h5>
       <section><p>Pipeline stream element which processes a stream in chunks</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineResult.html">PipelineResult</a></h5>
+      <section><p>Pipeline result</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PipelineResultBase.html">PipelineResultBase</a></h5>
       <section><p>Base class for a pipeline stream element processor result</p>
@@ -1108,6 +1120,12 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PipelineStreamTable.html">PipelineStreamTable</a></h5>
       <section><p><a class="xref" href="wan24.Core.PipelineStream.html">PipelineStream</a> table</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineTable.html">PipelineTable</a></h5>
+      <section><p>Pipeline table</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Pipeline-1.html">Pipeline&lt;T&gt;</a></h5>
+      <section><p>Pipeline</p>
 </section>
       <h5><a class="xref" href="wan24.Core.Plugin.html">Plugin</a></h5>
       <section><p>Plugin</p>
@@ -1216,6 +1234,13 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.QueueEntry-1.html">QueueEntry&lt;T&gt;</a></h5>
       <section><p>Queue entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.QueueEventWorkerBase-1.html">QueueEventWorkerBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a queue event worker (works on the next item when idle or getting a signal; may process items in parallel, depending on the time an event was raised,
+and if any upcoming item is available for processing at that time)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.QueueEventWorkerTable.html">QueueEventWorkerTable</a></h5>
+      <section><p>Queue event worker table</p>
 </section>
       <h5><a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a></h5>
       <section><p>Base class for a <a class="xref" href="wan24.Core.PriorityQueueWorker-1.html">PriorityQueueWorker&lt;T&gt;</a> priority (to be compared using <a class="xref" href="wan24.Core.QueueItemPriorityComparer.html">QueueItemPriorityComparer</a>)</p>
@@ -1623,6 +1648,9 @@ Structs
       <h5><a class="xref" href="wan24.Core.IpSubNets.html">IpSubNets</a></h5>
       <section><p>Read-only IP sub-net list</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.MacAddress.html">MacAddress</a></h5>
+      <section><p>Physical ethernet MAC address (48 bit = 6 bytes)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ObjectMapping.SourcePropertyInfo.html">ObjectMapping.SourcePropertyInfo</a></h5>
       <section><p>Source property info</p>
 </section>
@@ -1909,6 +1937,9 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></h5>
       <section><p>Interface for a parallel queue worker</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IPipeline.html">IPipeline</a></h5>
+      <section><p>Interface for a pipeline</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IPipelineElementObject.html">IPipelineElementObject</a></h5>
       <section><p>Interface for a pipeline stream element which can process an object instance</p>
 </section>
@@ -1953,6 +1984,9 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IQueueEntry.html">IQueueEntry</a></h5>
       <section><p>Interface for a queue entry</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IQueueEventWorker.html">IQueueEventWorker</a></h5>
+      <section><p>Interface for a queue event worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IQueueItemPriority.html">IQueueItemPriority</a></h5>
       <section><p>Interface for a queue item priority (see <a class="xref" href="wan24.Core.QueueItemPriorityBase.html">QueueItemPriorityBase</a>)</p>
@@ -2310,6 +2344,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelTransaction.Rollback_Delegate.html">ParallelTransaction.Rollback_Delegate</a></h5>
       <section><p>Delegate for a rollback action</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.PipelineBase-2.Pipeline_Delegate.html">PipelineBase&lt;tContext, tFinal&gt;.Pipeline_Delegate</a></h5>
+      <section><p>Delegate for a pipeline method</p>
 </section>
       <h5><a class="xref" href="wan24.Core.PipelineStream.Error_Delegate.html">PipelineStream.Error_Delegate</a></h5>
       <section><p>Delegate for an <a class="xref" href="wan24.Core.PipelineStream.html#wan24_Core_PipelineStream_OnError">OnError</a> event handler</p>
