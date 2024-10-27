@@ -15,12 +15,12 @@ namespace wan24.Core
     /// <param name="Property">Property</param>
     /// <param name="Getter">Getter</param>
     /// <param name="Setter">Setter</param>
-    public sealed record class PropertyInfoExt(in PropertyInfo Property, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
+    public sealed record class PropertyInfoExt(in PropertyInfo Property, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProviderHost
     {
         /// <summary>
         /// Cache (key is the property hash code)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, PropertyInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<PropertyInfo, PropertyInfoExt> Cache = [];
 
         /// <summary>
         /// If the property is init-only
@@ -146,6 +146,9 @@ namespace wan24.Core
         /// If the property is nullable
         /// </summary>
         public bool IsNullable => GetIsNullable();
+
+        /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Property;
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
@@ -298,10 +301,9 @@ namespace wan24.Core
         {
             try
             {
-                int hc = pi.GetHashCode();
-                if (Cache.TryGetValue(hc, out PropertyInfoExt? res)) return res;
+                if (Cache.TryGetValue(pi, out PropertyInfoExt? res)) return res;
                 res ??= new(pi, pi.CanCreatePropertyGetter() ? pi.CreatePropertyGetter() : null, pi.CanCreatePropertySetter() ? pi.CreatePropertySetter() : null);
-                Cache.TryAdd(hc, res);
+                Cache.TryAdd(pi, res);
                 return res;
             }
             catch (Exception ex)

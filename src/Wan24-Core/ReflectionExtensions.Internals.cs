@@ -58,29 +58,27 @@ namespace wan24.Core
         /// <summary>
         /// <see cref="DiffInterfaceCache"/> key
         /// </summary>
-        [StructLayout(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Sequential)]
         private readonly record struct DiffInterfaceCacheKey
         {
             /// <summary>
             /// Type hash code
             /// </summary>
-            [FieldOffset(0)]
-            public readonly int TypeHashCode;
+            public readonly Type Type;
             /// <summary>
             /// Interface hash code
             /// </summary>
-            [FieldOffset(sizeof(int))]
-            public readonly int InterfaceTypeHashCode;
+            public readonly Type InterfaceType;
 
             /// <summary>
             /// Constructor
             /// </summary>
-            /// <param name="typeHashCode">Type hash code</param>
-            /// <param name="interfaceTypeHashCode">Interface hash code</param>
-            public DiffInterfaceCacheKey(in int typeHashCode, in int interfaceTypeHashCode)
+            /// <param name="type">Type hash code</param>
+            /// <param name="interfaceType">Interface hash code</param>
+            public DiffInterfaceCacheKey(in Type type, in Type interfaceType)
             {
-                TypeHashCode = typeHashCode;
-                InterfaceTypeHashCode = interfaceTypeHashCode;
+                Type = type;
+                InterfaceType = interfaceType;
             }
         }
     }

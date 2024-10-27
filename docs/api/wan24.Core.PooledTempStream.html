@@ -296,19 +296,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream__ctor_System_Int64__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.%23ctor(System.Int64%40%2Cwan24.Core.StreamPool%7Bwan24.Core.PooledMemoryStream%7D%40%2Cwan24.Core.StreamPool%7Bwan24.Core.PooledTempFileStream%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream__ctor_System_Int64__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___wan24_Core_PooledTempStreamMemoryLimit__wan24_Core_PooledTempStreamMemoryLimit_Context__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.%23ctor(System.Int64%40%2Cwan24.Core.StreamPool%7Bwan24.Core.PooledMemoryStream%7D%40%2Cwan24.Core.StreamPool%7Bwan24.Core.PooledTempFileStream%7D%40%2Cwan24.Core.PooledTempStreamMemoryLimit%40%2Cwan24.Core.PooledTempStreamMemoryLimit.Context%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L39">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L52">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream__ctor_" data-uid="wan24.Core.PooledTempStream.#ctor*"></a>
-  <h4 id="wan24_Core_PooledTempStream__ctor_System_Int64__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___" data-uid="wan24.Core.PooledTempStream.#ctor(System.Int64@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@)">PooledTempStream(in long, in StreamPool&lt;PooledMemoryStream&gt;?, in StreamPool&lt;PooledTempFileStream&gt;?)</h4>
+  <h4 id="wan24_Core_PooledTempStream__ctor_System_Int64__wan24_Core_StreamPool_wan24_Core_PooledMemoryStream___wan24_Core_StreamPool_wan24_Core_PooledTempFileStream___wan24_Core_PooledTempStreamMemoryLimit__wan24_Core_PooledTempStreamMemoryLimit_Context__System_Boolean__" data-uid="wan24.Core.PooledTempStream.#ctor(System.Int64@,wan24.Core.StreamPool{wan24.Core.PooledMemoryStream}@,wan24.Core.StreamPool{wan24.Core.PooledTempFileStream}@,wan24.Core.PooledTempStreamMemoryLimit@,wan24.Core.PooledTempStreamMemoryLimit.Context@,System.Boolean@)">PooledTempStream(in long, in StreamPool&lt;PooledMemoryStream&gt;?, in StreamPool&lt;PooledTempFileStream&gt;?, in PooledTempStreamMemoryLimit?, in Context?, in bool)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PooledTempStream(in long estimatedLength = 0, in StreamPool&lt;PooledMemoryStream&gt;? memoryStreamPool = null, in StreamPool&lt;PooledTempFileStream&gt;? fileStreamPool = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public PooledTempStream(in long estimatedLength = 0, in StreamPool&lt;PooledMemoryStream&gt;? memoryStreamPool = null, in StreamPool&lt;PooledTempFileStream&gt;? fileStreamPool = null, in PooledTempStreamMemoryLimit? limit = null, in PooledTempStreamMemoryLimit.Context? limitContext = null, in bool isDynamicSharedLimit = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -338,6 +338,26 @@
         <td><p>File stream pool to use</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.PooledTempStreamMemoryLimit.html">PooledTempStreamMemoryLimit</a></td>
+        <td><span class="parametername">limit</span></td>
+        <td><p>Memory limit (isn't available for browser apps (WASM)!)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="wan24.Core.PooledTempStreamMemoryLimit.html">PooledTempStreamMemoryLimit</a>.<a class="xref" href="wan24.Core.PooledTempStreamMemoryLimit.Context.html">Context</a></td>
+        <td><span class="parametername">limitContext</span></td>
+        <td><p>Existing memory limit context (will be disposed; consumed memory should match <a class="xref" href="wan24.Core.PooledTempStream.html#wan24_Core_PooledTempStream_MaxLengthInMemory">MaxLengthInMemory</a>; isn't available for browser apps
+(WASM)!)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">isDynamicSharedLimit</span></td>
+        <td><p>If the memory limit is a dynamic shared limit, which defines a total memory limit for all streams (giving <code>limitContext</code> isn't allowed,
+if this value is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>; a dynamic shared memory limit isn't available for browser apps (WASM)!)</p>
+</td>
+      </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
@@ -347,7 +367,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanRead%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L176">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_CanRead_" data-uid="wan24.Core.PooledTempStream.CanRead*"></a>
   <h4 id="wan24_Core_PooledTempStream_CanRead" data-uid="wan24.Core.PooledTempStream.CanRead">CanRead</h4>
@@ -381,7 +401,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanSeek%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L145">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L179">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_CanSeek_" data-uid="wan24.Core.PooledTempStream.CanSeek*"></a>
   <h4 id="wan24_Core_PooledTempStream_CanSeek" data-uid="wan24.Core.PooledTempStream.CanSeek">CanSeek</h4>
@@ -415,7 +435,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L148">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_CanWrite_" data-uid="wan24.Core.PooledTempStream.CanWrite*"></a>
   <h4 id="wan24_Core_PooledTempStream_CanWrite" data-uid="wan24.Core.PooledTempStream.CanWrite">CanWrite</h4>
@@ -449,7 +469,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L109">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L143">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_FileStream_" data-uid="wan24.Core.PooledTempStream.FileStream*"></a>
   <h4 id="wan24_Core_PooledTempStream_FileStream" data-uid="wan24.Core.PooledTempStream.FileStream">FileStream</h4>
@@ -480,7 +500,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStreamCapacity.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStreamCapacity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L99">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_FileStreamCapacity_" data-uid="wan24.Core.PooledTempStream.FileStreamCapacity*"></a>
   <h4 id="wan24_Core_PooledTempStream_FileStreamCapacity" data-uid="wan24.Core.PooledTempStream.FileStreamCapacity">FileStreamCapacity</h4>
@@ -511,7 +531,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_FileStreamPool.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.FileStreamPool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L85">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L119">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_FileStreamPool_" data-uid="wan24.Core.PooledTempStream.FileStreamPool*"></a>
   <h4 id="wan24_Core_PooledTempStream_FileStreamPool" data-uid="wan24.Core.PooledTempStream.FileStreamPool">FileStreamPool</h4>
@@ -542,7 +562,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_IsInMemory.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.IsInMemory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L118">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L152">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_IsInMemory_" data-uid="wan24.Core.PooledTempStream.IsInMemory*"></a>
   <h4 id="wan24_Core_PooledTempStream_IsInMemory" data-uid="wan24.Core.PooledTempStream.IsInMemory">IsInMemory</h4>
@@ -573,7 +593,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_LeaveOpen.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.LeaveOpen%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L135">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L169">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_LeaveOpen_" data-uid="wan24.Core.PooledTempStream.LeaveOpen*"></a>
   <h4 id="wan24_Core_PooledTempStream_LeaveOpen" data-uid="wan24.Core.PooledTempStream.LeaveOpen">LeaveOpen</h4>
@@ -606,7 +626,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_MaxLengthInMemory.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MaxLengthInMemory%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L55">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L89">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_MaxLengthInMemory_" data-uid="wan24.Core.PooledTempStream.MaxLengthInMemory*"></a>
   <h4 id="wan24_Core_PooledTempStream_MaxLengthInMemory" data-uid="wan24.Core.PooledTempStream.MaxLengthInMemory">MaxLengthInMemory</h4>
@@ -637,7 +657,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryPoolCapacity.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryPoolCapacity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L60">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L94">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_MemoryPoolCapacity_" data-uid="wan24.Core.PooledTempStream.MemoryPoolCapacity*"></a>
   <h4 id="wan24_Core_PooledTempStream_MemoryPoolCapacity" data-uid="wan24.Core.PooledTempStream.MemoryPoolCapacity">MemoryPoolCapacity</h4>
@@ -668,7 +688,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryStream.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryStream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L100">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L134">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_MemoryStream_" data-uid="wan24.Core.PooledTempStream.MemoryStream*"></a>
   <h4 id="wan24_Core_PooledTempStream_MemoryStream" data-uid="wan24.Core.PooledTempStream.MemoryStream">MemoryStream</h4>
@@ -699,7 +719,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_MemoryStreamPool.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.MemoryStreamPool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L70">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L104">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_MemoryStreamPool_" data-uid="wan24.Core.PooledTempStream.MemoryStreamPool*"></a>
   <h4 id="wan24_Core_PooledTempStream_MemoryStreamPool" data-uid="wan24.Core.PooledTempStream.MemoryStreamPool">MemoryStreamPool</h4>
@@ -730,7 +750,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_State.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L125">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_State_" data-uid="wan24.Core.PooledTempStream.State*"></a>
   <h4 id="wan24_Core_PooledTempStream_State" data-uid="wan24.Core.PooledTempStream.State">State</h4>
@@ -765,7 +785,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_Close.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Close%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L190">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L243">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_Close_" data-uid="wan24.Core.PooledTempStream.Close*"></a>
   <h4 id="wan24_Core_PooledTempStream_Close" data-uid="wan24.Core.PooledTempStream.Close">Close()</h4>
@@ -783,7 +803,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L197">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L251">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_Dispose_" data-uid="wan24.Core.PooledTempStream.Dispose*"></a>
   <h4 id="wan24_Core_PooledTempStream_Dispose_System_Boolean_" data-uid="wan24.Core.PooledTempStream.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -819,7 +839,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L204">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L259">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_DisposeCore_" data-uid="wan24.Core.PooledTempStream.DisposeCore*"></a>
   <h4 id="wan24_Core_PooledTempStream_DisposeCore" data-uid="wan24.Core.PooledTempStream.DisposeCore">DisposeCore()</h4>
@@ -851,7 +871,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.SetLength(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L151">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L185">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_SetLength_" data-uid="wan24.Core.PooledTempStream.SetLength*"></a>
   <h4 id="wan24_Core_PooledTempStream_SetLength_System_Int64_" data-uid="wan24.Core.PooledTempStream.SetLength(System.Int64)">SetLength(long)</h4>
@@ -913,7 +933,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L159">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L212">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_Write_" data-uid="wan24.Core.PooledTempStream.Write*"></a>
   <h4 id="wan24_Core_PooledTempStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.PooledTempStream.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
@@ -1002,7 +1022,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L162">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L215">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_Write_" data-uid="wan24.Core.PooledTempStream.Write*"></a>
   <h4 id="wan24_Core_PooledTempStream_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.PooledTempStream.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -1038,7 +1058,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L178">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L231">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_WriteAsync_" data-uid="wan24.Core.PooledTempStream.WriteAsync*"></a>
   <h4 id="wan24_Core_PooledTempStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.PooledTempStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">WriteAsync(byte[], int, int, CancellationToken)</h4>
@@ -1149,7 +1169,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L182">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L235">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_WriteAsync_" data-uid="wan24.Core.PooledTempStream.WriteAsync*"></a>
   <h4 id="wan24_Core_PooledTempStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.PooledTempStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -1207,7 +1227,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PooledTempStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.PooledTempStream.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L170">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PooledTempStream.cs/#L223">View Source</a>
   </span>
   <a id="wan24_Core_PooledTempStream_WriteByte_" data-uid="wan24.Core.PooledTempStream.WriteByte*"></a>
   <h4 id="wan24_Core_PooledTempStream_WriteByte_System_Byte_" data-uid="wan24.Core.PooledTempStream.WriteByte(System.Byte)">WriteByte(byte)</h4>
@@ -1441,6 +1461,12 @@
       <a class="xref" href="wan24.Core.AsyncDisposableExtensions.html#wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_">AsyncDisposableExtensions.TryDisposeAsync&lt;T&gt;(T)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__2___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem&gt;(tList, Func&lt;tItem, CancellationToken, Task&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.AsyncEnumerableExtensions.html#wan24_Core_AsyncEnumerableExtensions_ExecuteForAllAsync__3___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_Task_wan24_Core_EnumerableExtensions_ExecuteResult___2____System_Int32_System_Nullable_System_Int32__System_Threading_CancellationToken_">AsyncEnumerableExtensions.ExecuteForAllAsync&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, CancellationToken, Task&lt;EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;&gt;, int, int?, CancellationToken)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.DisposableExtensions.html#wan24_Core_DisposableExtensions_TryDispose__1___0_">DisposableExtensions.TryDispose&lt;T&gt;(T)</a>
   </div>
   <div>
@@ -1478,6 +1504,51 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_">EnumerableExtensions.ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtMost__2___0_System_Int32_">EnumerableExtensions.ContainsAtMost&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Contains__2___0___1_">EnumerableExtensions.Contains&lt;tList, tItem&gt;(tList, tItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_DistinctBy__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.DistinctBy&lt;tList, tItem, tKey&gt;(tList, Func&lt;tItem, tKey&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Distinct__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Distinct&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Enumerate__2___0_System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Enumerate&lt;tList, tItem&gt;(tList, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__2___0_System_Action___1__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem&gt;(tList, Action&lt;tItem&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__3___0_System_Func___1_wan24_Core_EnumerableExtensions_ExecuteResult___2___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Select__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Select&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, tResult&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_SkipWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.SkipWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Skip__2___0_System_Int32_">EnumerableExtensions.Skip&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_TakeWhile__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.TakeWhile&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Take__2___0_System_Int32_">EnumerableExtensions.Take&lt;tList, tItem&gt;(tList, int)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Where__2___0_System_Func___1_System_Boolean__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Where&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, int, int?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectExtensions.html#wan24_Core_ObjectExtensions_Do__2___0_System_Func___0___1___">ObjectExtensions.Do&lt;tObject, tReturn&gt;(tObject, in Func&lt;tObject, tReturn&gt;)</a>

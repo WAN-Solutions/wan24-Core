@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <PackageId>wan24-Core-Validation</PackageId>
     <Title>wan24-Core-Validation</Title>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <Authors>nd1012</Authors>
     <Company>Andreas Zimmermann, wan24.de</Company>
     <Product>wan24-Core</Product>
@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <PackageReference Include="ObjectValidation" Version="2.8.0" Condition="'$(Configuration)' != 'Trunk'" />
-    <PackageReference Include="wan24-Core" Version="2.38.0" Condition="'$(Configuration)' != 'Trunk'" />
+    <PackageReference Include="wan24-Core" Version="2.42.0" Condition="'$(Configuration)' != 'Trunk'" />
   </ItemGroup>
 
   <ItemGroup>

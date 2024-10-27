@@ -22,8 +22,8 @@ namespace wan24.Core
             get
             {
                 EnsureUndisposed();
-                ArgumentOutOfRangeException.ThrowIfNegative(index, nameof(index));
-                if (!_RunningActions.TryGetValue(index, out RunningAction? action)) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0) throw new IndexOutOfRangeException(nameof(index));
+                if (!_RunningActions.TryGetValue(index, out RunningAction? action)) throw new IndexOutOfRangeException(nameof(index));
                 return action.Completion.Task;
             }
         }

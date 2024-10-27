@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Collections.Frozen;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 
@@ -58,9 +59,15 @@ namespace wan24.Core
                     _ProcessableTypes = [];
                     return _ProcessableTypes.Value;
                 }
+                FrozenSet<Type> interfaceTypes = TypeInfoExt.From(GetType()).GetInterfaces();
                 List<Type> types = [];
-                foreach (Type objectInterface in GetType().GetInterfaces().Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IPipelineElementObject<>)))
-                    objectInterface.GetGenericArgumentCached(index: 0);
+                TypeInfoExt typeInfo;
+                for (int i = 0, len = interfaceTypes.Count; i < len; i++)
+                {
+                    typeInfo = TypeInfoExt.From(interfaceTypes.Items[i]);
+                    if (typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition()?.Type == typeof(IPipelineElementObject<>))
+                        types.Add(typeInfo.GetGenericArguments()[0]);
+                }
                 _ProcessableTypes = [.. types];
                 return _ProcessableTypes.Value;
             }

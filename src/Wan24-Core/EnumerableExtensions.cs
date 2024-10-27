@@ -323,15 +323,7 @@ namespace wan24.Core
             foreach (T item in enumerable)
             {
                 res++;
-                if (dispose)
-                    if (item is IDisposable disposable)
-                    {
-                        disposable.Dispose();
-                    }
-                    else if (item is IAsyncDisposable asyncDisposable)
-                    {
-                        asyncDisposable.DisposeAsync().AsTask().GetAwaiter().GetResult();
-                    }
+                if (dispose) item?.TryDispose();
             }
             return res;
         }

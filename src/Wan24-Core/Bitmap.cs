@@ -59,7 +59,7 @@ namespace wan24.Core
             {
                 lock (SyncObject)
                 {
-                    if (offset < 0 || offset >= BitCount) throw new ArgumentOutOfRangeException(nameof(offset));
+                    if (offset < 0 || offset >= BitCount) throw new IndexOutOfRangeException(nameof(offset));
                     long byteOffset = offset >> 3;
                     return ((_Map[byteOffset] >> (int)(offset - (byteOffset << 3))) & 1) == 1;
                 }
@@ -68,7 +68,7 @@ namespace wan24.Core
             {
                 lock (SyncObject)
                 {
-                    if (offset < 0 || offset >= BitCount) throw new ArgumentOutOfRangeException(nameof(offset));
+                    if (offset < 0 || offset >= BitCount) throw new IndexOutOfRangeException(nameof(offset));
                     long byteOffset = offset >> 3;
                     int bit = 1 << (int)(offset - (byteOffset << 3));
                     if (value)

@@ -14,12 +14,12 @@ namespace wan24.Core
     /// <param name="Field">Field</param>
     /// <param name="Getter">Getter</param>
     /// <param name="Setter">Setter</param>
-    public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProvider
+    public sealed record class FieldInfoExt(in FieldInfo Field, in Func<object?, object?>? Getter, in Action<object?, object?>? Setter) : ICustomAttributeProviderHost
     {
         /// <summary>
-        /// Cache (key is the field hash code)
+        /// Cache (key is the field)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FieldInfoExt> Cache = [];
+        private static readonly ConcurrentDictionary<FieldInfo, FieldInfoExt> Cache = [];
 
         /// <summary>
         /// If the property is nullable
@@ -116,6 +116,9 @@ namespace wan24.Core
         public Action<object?, object?>? Setter { get; set; } = Setter;
 
         /// <inheritdoc/>
+        ICustomAttributeProvider ICustomAttributeProviderHost.Hosted => Field;
+
+        /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -195,10 +198,9 @@ namespace wan24.Core
         {
             try
             {
-                int hc = fi.GetHashCode();
-                if (Cache.TryGetValue(hc, out FieldInfoExt? res)) return res;
+                if (Cache.TryGetValue(fi, out FieldInfoExt? res)) return res;
                 res = new(fi, fi.CanCreateFieldGetter() ? fi.CreateFieldGetter() : null, fi.CanCreateFieldSetter() ? fi.CreateFieldSetter() : null);
-                Cache.TryAdd(hc, res);
+                Cache.TryAdd(fi, res);
                 return res;
             }
             catch (Exception ex)

@@ -19,6 +19,9 @@ namespace wan24.Core
         {
             get
             {
+                ThreadPool.GetAvailableThreads(out int availableWorkerThreads, out int availableCompletionPortThreads);
+                ThreadPool.GetMinThreads(out int minWorkerThreads, out int minCompletionPortThreads);
+                ThreadPool.GetMaxThreads(out int maxWorkerThreads, out int maxCompletionPortThreads);
                 yield return new(__("App path"), ENV.App, __("App assembly path"), "Core");
                 yield return new(__("App folder"), ENV.AppFolder, __("App folder"), "Core");
                 yield return new(__("App command"), ENV.AppCommand, __("App command"), "Core");
@@ -47,6 +50,14 @@ namespace wan24.Core
                 yield return new(__("Current folder"), Environment.CurrentDirectory, __("Current folder"), "Core");
                 yield return new(__("Page size"), Environment.SystemPageSize, __("Operating system memory page size in bytes"), "Core");
                 yield return new(__("Working set"), Environment.WorkingSet, __("Physical memory mapped to the current process in bytes"), "Core");
+                yield return new(__("Threads"), ThreadPool.ThreadCount, __("Number of currently existing threads from the thread pool"), "Core");
+                yield return new(__("Cmp. threads"), ThreadPool.CompletedWorkItemCount, __("Number of work items that have been processed so far using the thread pool"), "Core");
+                yield return new(__("Avail. threads"), availableWorkerThreads, __("Number of available worker threads from the thread pool"), "Core");
+                yield return new(__("Avail. cmp. threads"), availableCompletionPortThreads, __("Number of available completion port threads from the thread pool"), "Core");
+                yield return new(__("Min. threads"), minWorkerThreads, __("Number of minimum worker threads which are created on demand from the thread pool"), "Core");
+                yield return new(__("Min. cmp. threads"), minCompletionPortThreads, __("Number of minimum completion port threads which are created on demand from the thread pool"), "Core");
+                yield return new(__("Max. threads"), maxWorkerThreads, __("Maximum number of concurrent thread pool worker thread requests"), "Core");
+                yield return new(__("Max. cmp. threads"), maxCompletionPortThreads, __("Maximum number of concurrent thread pool completion port thread requests"), "Core");
                 yield return new(__("Buffer size"), Settings.BufferSize, __("Default buffer size in bytes"), "Core");
                 yield return new(__("Allocation"), Settings.StackAllocBorder, __("Stack allocation limitation in bytes"), "Core");
                 yield return new(__("App ID"), Settings.AppId, __("App ID"), "Core");
@@ -116,6 +127,10 @@ namespace wan24.Core
                         yield return new(__("Capacity"), kvp.Value.Capacity, __("Pool item capacity"), group);
                         yield return new(__("Available"), kvp.Value.Available, __("Number of currently available items"), group);
                     }
+                // Pooled temp stream memory limits
+                foreach(var kvp in PooledTempStreamMemoryLimitTable.Limits)
+                    foreach(Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Temp stream memory limits")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // In-memory caches
                 foreach (var kvp in InMemoryCacheTable.Caches)
                     foreach (Status status in kvp.Value.State)
@@ -161,6 +176,14 @@ namespace wan24.Core
                 foreach (var kvp in ThrottleTable.Throttles)
                     foreach (Status status in kvp.Value.State)
                         yield return new(status.Name, status.State, status.Description, $"Core\\{__("Throttles")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
+                // Pipelines
+                foreach (var kvp in PipelineTable.Pipelines)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Pipelines")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
+                // Queue event workers
+                foreach (var kvp in QueueEventWorkerTable.Workers)
+                    foreach (Status status in kvp.Value.State)
+                        yield return new(status.Name, status.State, status.Description, $"Core\\{__("Queue event workers")}\\{(kvp.Value.Name ?? kvp.Key).NormalizeStatusGroupName().CombineStatusGroupNames(status.Group)}");
                 // Other states
                 foreach (KeyValuePair<string, IEnumerable<Status>> kvp in Providers)
                     foreach (Status status in kvp.Value)

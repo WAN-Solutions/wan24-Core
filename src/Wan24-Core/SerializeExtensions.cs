@@ -12,21 +12,21 @@ namespace wan24.Core
     public static class SerializeExtensions
     {
         /// <summary>
-        /// <see cref="Deserialize_Delegate"/> (key is the method hash code)
+        /// <see cref="Deserialize_Delegate"/> (key is the method)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, Deserialize_Delegate> DeserializeDelegates = [];
+        private static readonly ConcurrentDictionary<MethodInfo, Deserialize_Delegate> DeserializeDelegates = [];
         /// <summary>
-        /// <see cref="Deserialize_Delegate"/> (key is the method hash code)
+        /// <see cref="Deserialize_Delegate"/> (key is the method)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, TryDeserialize_Delegate> TryDeserializeDelegates = [];
+        private static readonly ConcurrentDictionary<MethodInfo, TryDeserialize_Delegate> TryDeserializeDelegates = [];
         /// <summary>
-        /// <see cref="Deserialize_Delegate"/> (key is the method hash code)
+        /// <see cref="Deserialize_Delegate"/> (key is the method)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, ParseObject_Delegate> ParseObjectDelegates = [];
+        private static readonly ConcurrentDictionary<MethodInfo, ParseObject_Delegate> ParseObjectDelegates = [];
         /// <summary>
-        /// <see cref="Deserialize_Delegate"/> (key is the method hash code)
+        /// <see cref="Deserialize_Delegate"/> (key is the method)
         /// </summary>
-        private static readonly ConcurrentDictionary<int, TryParseObject_Delegate> TryParseObjectDelegates = [];
+        private static readonly ConcurrentDictionary<MethodInfo, TryParseObject_Delegate> TryParseObjectDelegates = [];
 
         /// <summary>
         /// Determine if a type can be deserialized using <see cref="DeserializeFrom(Type, in ReadOnlySpan{byte})"/>
@@ -58,10 +58,10 @@ namespace wan24.Core
                 throw new InvalidOperationException($"{type} isn't an {typeof(ISerializeBinary)}");
             MethodInfoExt mi = type.GetMethodCached(nameof(ISerializeBinary.DeserializeFrom), BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"{type} doesn't implement {typeof(ISerializeBinary)}.{nameof(ISerializeBinary.DeserializeFrom)}");
-            if (!DeserializeDelegates.TryGetValue(mi.GetHashCode(), out Deserialize_Delegate? method))
+            if (!DeserializeDelegates.TryGetValue(mi, out Deserialize_Delegate? method))
             {
                 method = mi.Method.CreateDelegate<Deserialize_Delegate>();
-                DeserializeDelegates.TryAdd(mi.GetHashCode(), method);
+                DeserializeDelegates.TryAdd(mi, method);
             }
             return method(buffer) ?? throw new InvalidDataException("NULL deserialized");
         }
@@ -83,10 +83,10 @@ namespace wan24.Core
                 return false;
             try
             {
-                if (!TryDeserializeDelegates.TryGetValue(mi.GetHashCode(), out TryDeserialize_Delegate? method))
+                if (!TryDeserializeDelegates.TryGetValue(mi, out TryDeserialize_Delegate? method))
                 {
                     method = mi.Method.CreateDelegate<TryDeserialize_Delegate>();
-                    TryDeserializeDelegates.TryAdd(mi.GetHashCode(), method);
+                    TryDeserializeDelegates.TryAdd(mi, method);
                 }
                 return method(buffer, out result);
             }
@@ -139,10 +139,10 @@ namespace wan24.Core
             }
             MethodInfoExt mi = type.GetMethodCached(nameof(ISerializeString.ParseObject), BindingFlags.Public | BindingFlags.Static)
                 ?? throw new InvalidProgramException($"{type} doesn't implement {typeof(ISerializeString)}.{nameof(ISerializeString.ParseObject)}");
-            if (!ParseObjectDelegates.TryGetValue(mi.GetHashCode(), out ParseObject_Delegate? method))
+            if (!ParseObjectDelegates.TryGetValue(mi, out ParseObject_Delegate? method))
             {
                 method = mi.Method.CreateDelegate<ParseObject_Delegate>();
-                ParseObjectDelegates.TryAdd(mi.GetHashCode(), method);
+                ParseObjectDelegates.TryAdd(mi, method);
             }
             return method(str) ?? throw new InvalidDataException("NULL deserialized");
         }
@@ -168,10 +168,10 @@ namespace wan24.Core
                 return false;
             try
             {
-                if (!TryParseObjectDelegates.TryGetValue(mi.GetHashCode(), out TryParseObject_Delegate? method))
+                if (!TryParseObjectDelegates.TryGetValue(mi, out TryParseObject_Delegate? method))
                 {
                     method = mi.Method.CreateDelegate<TryParseObject_Delegate>();
-                    TryParseObjectDelegates.TryAdd(mi.GetHashCode(), method);
+                    TryParseObjectDelegates.TryAdd(mi, method);
                 }
                 return method(str, out result);
             }
