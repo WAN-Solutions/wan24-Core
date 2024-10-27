@@ -12,6 +12,8 @@ using static wan24.Core.Logging;
 //TODO .NET 9 allows ref struct generic anti-constraint allows Span-Enumerables!? https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13#allows-ref-struct
 //TODO .NET 9 allows ref struct in interfaces - maybe they can be implemented here and there
 //TODO .NET 9 makes wan24.Core.OrderedDictionary possibly obsolete - check the fact
+//TODO Support for AVX10.1
+//TODO With .NET 9 Convert.FromHexString supports Span
 
 namespace wan24.Core
 {
