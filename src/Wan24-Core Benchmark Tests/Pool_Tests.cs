@@ -88,7 +88,7 @@ namespace Wan24_Core_Benchmark_Tests
             ms.Write(TestData);
             ms.Position = 0;
             ms.ReadByte();
-            ms.Read(TestBuffer);
+            _ = ms.Read(TestBuffer);
             ms.ReadByte();
         }
 
@@ -97,7 +97,7 @@ namespace Wan24_Core_Benchmark_Tests
         {
             using ArrayPoolStream ms = new(TestData);
             ms.ReadByte();
-            ms.Read(TestBuffer);
+            _ = ms.Read(TestBuffer);
             ms.ReadByte();
         }
 
@@ -108,7 +108,7 @@ namespace Wan24_Core_Benchmark_Tests
             ms.Write(TestData);
             ms.Position = 0;
             ms.ReadByte();
-            ms.Read(TestBuffer);
+            _ = ms.Read(TestBuffer);
             ms.ReadByte();
         }
 
@@ -126,7 +126,7 @@ namespace Wan24_Core_Benchmark_Tests
         {
             using MemoryPoolStream ms = new(TestData, writable: false);
             ms.ReadByte();
-            ms.Read(TestBuffer);
+            _ = ms.Read(TestBuffer);
             ms.ReadByte();
         }
 
@@ -141,21 +141,21 @@ namespace Wan24_Core_Benchmark_Tests
         public void RecyclableReadOnly()
         {
             TestRecyclableStream.Position = 0;
-            TestRecyclableStream.Read(TestBuffer);
+            _ = TestRecyclableStream.Read(TestBuffer);
         }
 
         [Benchmark]
         public void ArrayReadOnly()
         {
             TestArrayStream.Position = 0;
-            TestArrayStream.Read(TestBuffer);
+            _ = TestArrayStream.Read(TestBuffer);
         }
 
         [Benchmark]
         public void MemoryReadOnly()
         {
             TestMemoryStream.Position = 0;
-            TestMemoryStream.Read(TestBuffer);
+            _ = TestMemoryStream.Read(TestBuffer);
         }
 
         [Benchmark]
