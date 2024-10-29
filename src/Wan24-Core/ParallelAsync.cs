@@ -41,9 +41,7 @@ namespace wan24.Core
             }
             finally
             {
-#pragma warning disable CA2016 // Forward cancellation token
-                await processor.StopAsync().DynamicContext();
-#pragma warning restore CA2016 // Forward cancellation token
+                await processor.StopAsync(CancellationToken.None).DynamicContext();
             }
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {
@@ -87,9 +85,7 @@ namespace wan24.Core
             }
             finally
             {
-#pragma warning disable CA2016 // Forward cancellation token
-                await processor.StopAsync().DynamicContext();
-#pragma warning restore CA2016 // Forward cancellation token
+                await processor.StopAsync(CancellationToken.None).DynamicContext();
             }
             if (processor.Processed != enqueued)//FIXME Happens during running the tests on Linux from time to time!?
             {

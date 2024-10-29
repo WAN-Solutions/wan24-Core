@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Immutable;
+using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -57,9 +58,14 @@ namespace wan24.Core
             get
             {
                 Dictionary<string, object?> res = [];
-                foreach (FieldInfoExt fieldInfo in Type.Fields)
+                ImmutableArray<FieldInfoExt> fields = Type.GetFields().Items;
+                FieldInfoExt fieldInfo;
+                for(int i = 0, len = fields.Length; i < len; i++)
+                {
+                    fieldInfo = fields[i];
                     if (!fieldInfo.FieldInfo.IsStatic && fieldInfo.Getter is not null)
                         res[fieldInfo.Name] = fieldInfo.Getter(Object);
+                }
                 return res;
             }
         }
@@ -76,9 +82,14 @@ namespace wan24.Core
             get
             {
                 Dictionary<string, object?> res = [];
-                foreach (PropertyInfoExt prop in Type.Properties)
+                ImmutableArray<PropertyInfoExt> properties = Type.GetProperties().Items;
+                PropertyInfoExt prop;
+                for (int i = 0, len = properties.Length; i < len; i++)
+                {
+                    prop = properties[i];
                     if (prop.Getter is not null && !prop.Property.GetMethod!.IsStatic)
                         res[prop.Name] = prop.Getter(Object);
+                }
                 return res;
             }
         }
@@ -156,18 +167,23 @@ namespace wan24.Core
 #endif
         public bool TryGet(in string name, out object? value)
         {
-            switch (Type[name])
+            try
             {
-                case FieldInfoExt fieldInfo when fieldInfo.Getter is not null:
-                    value = fieldInfo.Getter(Object);
-                    return true;
-                case PropertyInfoExt prop when prop.Getter is not null:
-                    value = prop.Getter(Object);
-                    return true;
-                default:
-                    value = null;
-                    return false;
+                switch (Type[name])
+                {
+                    case FieldInfoExt fieldInfo when fieldInfo.Getter is not null:
+                        value = fieldInfo.Getter(Object);
+                        return true;
+                    case PropertyInfoExt prop when prop.Getter is not null:
+                        value = prop.Getter(Object);
+                        return true;
+                }
             }
+            catch
+            {
+            }
+            value = null;
+            return false;
         }
 
         /// <summary>
@@ -193,17 +209,22 @@ namespace wan24.Core
 #endif
         public bool TrySet(in string name, in object? value)
         {
-            switch (Type[name])
+            try
             {
-                case FieldInfoExt fieldInfo when fieldInfo.Setter is not null:
-                    fieldInfo.Setter(Object, value);
-                    return true;
-                case PropertyInfoExt prop when prop.Setter is not null:
-                    prop.Setter(Object, value);
-                    return true;
-                default:
-                    return false;
+                switch (Type[name])
+                {
+                    case FieldInfoExt fieldInfo when fieldInfo.Setter is not null:
+                        fieldInfo.Setter(Object, value);
+                        return true;
+                    case PropertyInfoExt prop when prop.Setter is not null:
+                        prop.Setter(Object, value);
+                        return true;
+                }
             }
+            catch
+            {
+            }
+            return false;
         }
 
         /// <summary>
@@ -281,7 +302,7 @@ namespace wan24.Core
             }
             catch
             {
-                res.TryDispose();
+                await res.TryDisposeAsync().DynamicContext();
                 throw;
             }
             return res;
