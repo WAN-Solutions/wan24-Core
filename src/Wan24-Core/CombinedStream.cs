@@ -57,7 +57,7 @@ namespace wan24.Core
             if (streams.Any(s => !s.CanRead)) throw new ArgumentException("Readable streams required", nameof(streams));
             _CanSeek = resetPosition && streams.All(s => s.CanSeek);
             _CanWrite = _CanSeek && streams.All(s => s.CanWrite);
-            Lengths = _CanSeek ? streams.Select(s => s.Length).ToArray() : [];
+            Lengths = _CanSeek ? [.. streams.Select(s => s.Length)] : [];
             _Length = _CanSeek ? Lengths.Sum() : -1;
             _Streams = streams.AsReadOnly();
             LeaveOpen = leaveOpen;
@@ -273,7 +273,7 @@ namespace wan24.Core
             }
             if (CurrentStreamIndex == _Streams.Length - 1)
             {
-                Lengths = Streams.Select(s => s.Length).ToArray();
+                Lengths = [.. Streams.Select(s => s.Length)];
                 _Length = Lengths.Sum();
             }
         }
@@ -304,7 +304,7 @@ namespace wan24.Core
             }
             if (CurrentStreamIndex == _Streams.Length - 1)
             {
-                Lengths = _Streams.Select(s => s.Length).ToArray();
+                Lengths = [.. _Streams.Select(s => s.Length)];
                 _Length = Lengths.Sum();
             }
         }

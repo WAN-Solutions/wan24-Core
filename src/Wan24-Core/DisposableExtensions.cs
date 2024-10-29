@@ -28,28 +28,14 @@ namespace wan24.Core
         /// <summary>
         /// Dispose all
         /// </summary>
+        /// <typeparam name="T">List type</typeparam>
         /// <param name="disposables">Disposables</param>
         /// <returns>Disposed disposables</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IList<IDisposable> DisposeAll(this IList<IDisposable> disposables)
-        {
-            for (int i = 0, len = disposables.Count; i < len; disposables[i].Dispose(), i++) ;
-            return disposables;
-        }
-
-        /// <summary>
-        /// Dispose all
-        /// </summary>
-        /// <param name="disposables">Disposables</param>
-        /// <returns>Disposed disposables</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static List<IDisposable> DisposeAll(this List<IDisposable> disposables)
+        public static T DisposeAll<T>(this T disposables) where T : IList<IDisposable>
         {
             for (int i = 0, len = disposables.Count; i < len; disposables[i].Dispose(), i++) ;
             return disposables;
@@ -265,20 +251,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void TryDisposeAll(this IList<object> objects)
-        {
-            for (int i = 0, len = objects.Count; i < len; objects[i].TryDispose(), i++) ;
-        }
-
-        /// <summary>
-        /// Try to dispose disposable objects
-        /// </summary>
-        /// <param name="objects">Objects</param>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static void TryDisposeAll(this List<object> objects)
+        public static void TryDisposeAll<T>(this T objects) where T : IList<object>
         {
             for (int i = 0, len = objects.Count; i < len; objects[i].TryDispose(), i++) ;
         }
