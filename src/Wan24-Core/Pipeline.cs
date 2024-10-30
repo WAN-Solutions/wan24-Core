@@ -111,6 +111,7 @@ namespace wan24.Core
             ImmutableArray<Pipeline_Delegate> methods = Methods.Frozen ?? throw new InvalidProgramException();
             int i = 0;
             if (!Contexts.Add(context)) throw new ArgumentException("Double context", nameof(context));
+            PipelineResult? result = null;
             try
             {
                 for (int len = methods.Length; i < len && !cancellationToken.GetIsCancellationRequested(); i++)
@@ -134,7 +135,7 @@ namespace wan24.Core
                         break;
                     method = null;
                 }
-                return new()
+                return result = new()
                 {
                     Runtime = context.Runtime,
                     DidFinish = method is null,
@@ -150,7 +151,7 @@ namespace wan24.Core
                 context.LastException = ex;
                 if (!await HandleExceptionAsync(context, method).DynamicContext())
                     throw;
-                return new()
+                return result = new()
                 {
                     Runtime = context.Runtime,
                     DidFinish = false,
@@ -166,7 +167,7 @@ namespace wan24.Core
             {
                 Contexts.Remove(context);
                 await context.TryDisposeAsync().DynamicContext();
-                await FinalizeProcessingAsync(context).DynamicContext();
+                await FinalizeProcessingAsync(context, result).DynamicContext();
             }
         }
 
@@ -190,7 +191,8 @@ namespace wan24.Core
         /// Finalize processing (called from a finally block, after the context was disposed)
         /// </summary>
         /// <param name="context">Context (disposed already!)</param>
-        protected virtual Task FinalizeProcessingAsync(tContext context) => Task.CompletedTask;
+        /// <param name="result">Result (if <see langword="null"/>, <c>context.LastException</c> has the exception which will be thrown to the initial code)</param>
+        protected virtual Task FinalizeProcessingAsync(tContext context, PipelineResult? result) => Task.CompletedTask;
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync() => await CancelToken.WaitHandle.WaitAsync().DynamicContext();
