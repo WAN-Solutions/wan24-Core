@@ -24,11 +24,11 @@
         /// <summary>
         /// Event handlers
         /// </summary>
-        HashSet<EventHandler_Delegate> EventHandlers { get; }
+        ConcurrentHashSet<EventHandler_Delegate> EventHandlers { get; }
         /// <summary>
         /// Event handlers
         /// </summary>
-        HashSet<EventHandlerAsync_Delegate> AsyncEventHandlers { get; }
+        ConcurrentHashSet<EventHandlerAsync_Delegate> AsyncEventHandlers { get; }
         /// <summary>
         /// Detach all event handlers
         /// </summary>

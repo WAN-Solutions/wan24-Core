@@ -37,3 +37,7 @@ This should solve the problem, if you don't want to use .NET LINQ, too. To do so
 ## `ICoreEnumerable<T>`
 
 The `ICoreEnumerable<T>` interface does implement `IEnumerable<T>` and is being used for any `wan24-Core` enumerable type in case you need a common interface which avoids having to fall back to .NET enumerables - example: A method which does return a `wan24-Core` enumerable may return an `ArrayEnumerable<T>` or an `ArrayWhereEnumerable<T>` and uses `ICoreEnumerable<T>` as return type, which is a common interface for the two possible return types.
+
+## Asynchronous object enumerable
+
+The non-generic `IAsyncEnumerable` interface for enumerating objects is missing in .NET. If you need to enumerate objects you can use the `AsyncObject(Enumerable|Enumerator)<T>`.

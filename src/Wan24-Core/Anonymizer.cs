@@ -78,7 +78,7 @@ namespace wan24.Core
                 0 => parts[0],
                 1 => $"x@{parts[1]}",
                 2 => $"x{parts[0][1]}@{parts[1]}",
-                _ => $"x{parts[0][1..(parts[0].Length - 2)]}x",
+                _ => $"x{parts[0][1..(parts[0].Length - 2)]}x@{parts[1]}",
             };
         }
 

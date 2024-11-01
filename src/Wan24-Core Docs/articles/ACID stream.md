@@ -15,12 +15,14 @@ await using(acidStream)
 
 The `AcidFileStream` does in this example use the file `/path/to/.acid.file.ext` as backup. The `Create(Async)` method will also try to perform a previously failed rollback, if an existing backup file was found. Have a look at this methods source code, if you'd like to know how the ACID stream is being handled for that in detail.
 
+**NOTE**: On any writing I/O operation which fails, the ACID stream will try to rollback the stream to a safe state. In case this isn't possible because of underlying I/O device or filesystem errors, an `AcidException` with an `AggregateException` which contains the original I/O exceptions will be thrown. If the rollback succeed, only the original I/O exception is being thrown.
+
 ## Automatic rollback of a backup at a later time
 
 If a rollback failed, you can run it at any time later:
 
 ```cs
-await AcidStream<Stream>.PerformRollback(acidStream);
+await AcidStream<Stream>.PerformRollbackAsync(acidStream);
 ```
 
 This requires the backup not to be corrupted in any way.
