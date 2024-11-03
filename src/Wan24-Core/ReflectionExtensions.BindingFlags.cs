@@ -49,10 +49,10 @@ namespace wan24.Core
                     declaringType = o.DeclaringType;
                     break;
                 case FieldInfoExt o:
-                    isPublic = o.Field.IsPublic;
-                    isStatic = o.Field.IsStatic;
-                    isProtected = !isPublic && o.Field.IsFamily;
-                    declaringType = o.Field.DeclaringType;
+                    isPublic = o.FieldInfo.IsPublic;
+                    isStatic = o.FieldInfo.IsStatic;
+                    isProtected = !isPublic && o.FieldInfo.IsFamily;
+                    declaringType = o.FieldInfo.DeclaringType;
                     break;
                 case PropertyInfo o:
                     {
@@ -143,8 +143,8 @@ namespace wan24.Core
                     res |= o.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
                     break;
                 case FieldInfoExt o:
-                    res |= o.Field.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
-                    res |= o.Field.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
+                    res |= o.FieldInfo.IsPublic ? BindingFlags.Public : BindingFlags.NonPublic;
+                    res |= o.FieldInfo.IsStatic ? BindingFlags.Static : BindingFlags.Instance;
                     break;
                 case PropertyInfo o:
                     {

@@ -156,6 +156,18 @@
 <p>Sometimes it may be helpful to have an objects instance creation stack trace, if an instance is being disposed from the finalizer, which shouldn't happen. For this you can set the static <code>CreateStackInfo</code> property value to <code>true</code>. If the finalizer runs, an error including the stack trace will be reported to <code>ErrorHandling</code>. Please note that this comes with a huge overhead, which should only be accepted for debugging purposes.</p>
 <h2 id="extension-methods">Extension methods</h2>
 <p>For disposing a list of enumerables, use <code>DisposeAll(Async)</code>. For an object, which may be a disposable or not, use <code>TryDispose(Async)</code> - for a list of objects use <code>TryDisposeAll(Async)</code>.</p>
+<h2 id="automatic-disposing">Automatic disposing</h2>
+<p>Using the <code>AutoDisposer&lt;T&gt;</code> you can implement automatic disposing for any disposable type:</p>
+<pre><code class="lang-cs">AutoDisposer&lt;AnyType&gt; autoDisposer = new(disposable);
+using AutoDisposer&lt;AnyType&gt;.Context context = autoDisposer.UseObject();
+// You can now use the context.Object, which will be released when the context is being disposed
+</code></pre>
+<p>To enable disposing the <code>disposable</code>, once it's not in use anymore:</p>
+<pre><code class="lang-cs">autoDisposer.ShouldDispose = true;
+</code></pre>
+<p>If the last usage context was disposed, <code>autoDisposer</code> and <code>disposable</code> will be disposed, too.</p>
+<p>The auto-disposer also supports an asynchronous API and asynchronous disposing. It's also possible to use the managed disposable exclusive (blocking) by using the <code>UseObjectExclusive(Async)</code> method for creating a context.</p>
+<p><strong>WARNING</strong>: DO NOT dispose the <code>autoDisposer</code> manual. You should always use the <code>ShouldDispose</code> property or <code>SetShouldDisposeAsync</code> method and let the automatic disposing happen! If you dispose the instance manually, running object usages may fail!</p>
 
 </article>
                 </div>

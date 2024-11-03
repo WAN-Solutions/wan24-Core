@@ -36,3 +36,25 @@ Sometimes it may be helpful to have an objects instance creation stack trace, if
 ## Extension methods
 
 For disposing a list of enumerables, use `DisposeAll(Async)`. For an object, which may be a disposable or not, use `TryDispose(Async)` - for a list of objects use `TryDisposeAll(Async)`.
+
+## Automatic disposing
+
+Using the `AutoDisposer<T>` you can implement automatic disposing for any disposable type:
+
+```cs
+AutoDisposer<AnyType> autoDisposer = new(disposable);
+using AutoDisposer<AnyType>.Context context = autoDisposer.UseObject();
+// You can now use the context.Object, which will be released when the context is being disposed
+```
+
+To enable disposing the `disposable`, once it's not in use anymore:
+
+```cs
+autoDisposer.ShouldDispose = true;
+```
+
+If the last usage context was disposed, `autoDisposer` and `disposable` will be disposed, too.
+
+The auto-disposer also supports an asynchronous API and asynchronous disposing. It's also possible to use the managed disposable exclusive (blocking) by using the `UseObjectExclusive(Async)` method for creating a context.
+
+**WARNING**: DO NOT dispose the `autoDisposer` manual. You should always use the `ShouldDispose` property or `SetShouldDisposeAsync` method and let the automatic disposing happen! If you dispose the instance manually, running object usages may fail!

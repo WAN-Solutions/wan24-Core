@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Value management | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Value management | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Docs/articles/Value management.md/#L1" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="value-management">Value management</h1>
+
+<h2 id="thread-safe-value">Thread-safe value</h2>
+<p>Using the <code>(Disposable)ThreadSafeValue&lt;T&gt;</code> you can make getting/setting a value thread-safe. Getting is synchronous, while setting may be synchronous or asynchronous:</p>
+<pre><code class="lang-cs">using ThreadSafeValue&lt;AnyType&gt; threadSafeValue = new(value);
+
+// Getter
+_ = threadSafeValue.Value;
+
+// Synchronous setter
+threadSafeValue.Value = newValue;
+
+// Asynchronous setter
+await threadSafeValue.SetValueAsync(newValue);
+</code></pre>
+<h2 id="lazy-value">Lazy value</h2>
+<p>A lazy value serves a value which will be created on the first request. Based on the value, you should use one of these types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LazyValue&lt;T&gt;</code></td>
+<td>Simple implementation for any non-disposable value</td>
+</tr>
+<tr>
+<td><code>DisposableLazyValue&lt;T&gt;</code></td>
+<td>Simple implementation for any synchronous disposable value</td>
+</tr>
+<tr>
+<td><code>AsyncDisposableLazyValue&lt;T&gt;</code></td>
+<td>Simple implementation for any asynchronous disposable value</td>
+</tr>
+</tbody>
+</table>
+<p>Value serving is thread-safe. The types which serve a disposable value needs to be disposed in any case.</p>
+<h2 id="timeout-value">Timeout value</h2>
+<p>Using the <code>TimeoutValue&lt;T&gt;</code> type you can make a value to invalidate, if it wasn't accessed within a timeout. This can help to dispose large objects which aren't being used frequently, but should stay for some time in memory, once created. The value creation is lazy when accessed for the first time, or after an old value was disposed already.</p>
+<pre><code class="lang-cs">AnyType AnyTypeFactory() =&gt; new();
+using TimeoutValue&lt;AnyType&gt; timeoutValue = new(AnyTypeFactory, TimeSpan.FromSeconds(10));
+AnyType value1 = timeoutValue.Value,
+	value2;
+Thread.Sleep(11000);// Wait for the timeout
+value2 = timeoutValue.Value;
+Assert.AreNotEqual(value1, value2);
+</code></pre>
+<h2 id="volatile-value">Volatile value</h2>
+<p>The <code>VolatileValueBase&lt;T&gt;</code> helps to make any value volatile:</p>
+<pre><code class="lang-cs">public class YourVolatileValue : VolatileValueBase&lt;AnyType&gt;
+{
+	public YourVolatileValue() : base() =&gt; SetCurrentValue();
+
+	protected override async void SetCurrentValue()
+	{
+		await Task.Yield();
+		try
+		{
+			AnyValue oldValue,
+				newValue;
+			while(EnsureUndisposed(throwException: false))
+			{
+				// Code which may wait for a trigger to create a value
+				if(_CurrentValue.Task.IsCompleted)
+				{
+					oldValue = (await ResetAsync(Cancellation.Token)).Task.Result;
+					// Code which invalidates the old value
+				}
+				// Code which produces a new value
+				ValueCreated = DateTime.Now;
+				_CurrentValue.TrySetResult(newValue);
+			}
+		}
+		catch(ObjectDisposedException) when(IsDisposing)
+		{
+		}
+		catch(OperationCanceledException) when(Cancellation.IsCancellationRequested)
+		{
+		}
+		catch
+		{
+			// Error handling
+		}
+	}
+}
+
+using YourVolatileValue volatileValue = new();
+_ = await volatileValue.CurrentValue;
+</code></pre>
+<p>Code which accesses <code>volatileValue.CurrentValue</code> has to wait until the value is available and is guaranteed to get the latest available value always, while the previous value is guaranteed to become invalidated as soon as a new value will become available. There are many more use cases - this is just for an example.</p>
+<h3 id="lazy-volatile-value">Lazy volatile value</h3>
+<p>The <code>LazyVolatileValueBase&lt;T&gt;</code> uses a request event as trigger for producing a value:</p>
+<pre><code class="lang-cs">public class YourVolatileValue : LazyVolatileValueBase&lt;AnyType&gt;
+{
+	public YourVolatileValue() : base() =&gt; SetCurrentValue();
+
+	protected override async void SetCurrentValue()
+	{
+		await Task.Yield();
+		try
+		{
+			AnyValue oldValue,
+				newValue;
+			while(EnsureUndisposed(throwException: false))
+			{
+				await ValueRequestEvent.WaitAsync();
+				if(_CurrentValue.Task.IsCompleted)
+				{
+					oldValue = (await ResetAsync(Cancellation.Token)).Task.Result;
+					// Code which invalidates the old value
+				}
+				// Code which produces a new value
+				ValueCreated = DateTime.Now;
+				_CurrentValue.TrySetResult(newValue);
+			}
+		}
+		catch(ObjectDisposedException) when(IsDisposing)
+		{
+		}
+		catch(OperationCanceledException) when(Cancellation.IsCancellationRequested)
+		{
+		}
+		catch
+		{
+			// Error handling
+		}
+	}
+}
+
+using YourVolatileValue volatileValue = new();
+_ = await volatileValue.CurrentValue;
+</code></pre>
+<p>This would ensure that every access to <code>volatileValue.CurrentValue</code> triggers producing a new value.</p>
+<h3 id="lazy-volatile-timeout-value">Lazy volatile timeout value</h3>
+<p>The <code>LazyVolatileValueBase&lt;T&gt;</code> uses a request event as trigger for producing a value and discards it when there was no other access within a timeout:</p>
+<pre><code class="lang-cs">public class YourVolatileValue : LazyVolatileTimeoutValueBase&lt;AnyType&gt;
+{
+	public YourVolatileValue(TimeSpan timeout) : base(timeout) =&gt; SetCurrentValue();
+
+	protected override async void SetCurrentValue()
+	{
+		await Task.Yield();
+		try
+		{
+			AnyValue newValue;
+			while(EnsureUndisposed(throwException: false))
+			{
+				await ValueRequestEvent.WaitAsync();
+				if(_CurrentValue.Task.IsCompleted)
+				{
+					Timer.Stop();
+					await ResetAsync(Cancellation.Token);
+				}
+				// Code which produces a new value
+				ValueCreated = DateTime.Now;
+				_CurrentValue.TrySetResult(newValue);
+				Timer.Start();
+			}
+		}
+		catch(ObjectDisposedException) when(IsDisposing)
+		{
+		}
+		catch(OperationCanceledException) when(Cancellation.IsCancellationRequested)
+		{
+		}
+		catch
+		{
+			// Error handling
+		}
+	}
+
+	// Overriding this method is optional
+	protected override void HandleTimeout(Timeout timer, EventArgs e)
+	{
+		try
+		{
+			AnyType oldValue = Reset().Task.Result;
+			// Code which invalidates the old value
+		}
+		catch(Exception ex)
+		{
+			ErrorHandling.Handle(new(&quot;Lazy volatile timeout value failed to handle a timeout&quot;, ex, tag: this));
+		}
+	}
+}
+
+using YourVolatileValue volatileValue = new(TimeSpan.FromSeconds(10));
+AnyType value1 = await volatileValue.CurrentValue,
+	value2;
+await Task.Delay(11000);// Wait for the timeout
+value2 = await volatileValue.CurrentValue;
+Assert.AreNotEqual(value1, value2);
+</code></pre>
+<p>This would ensure that a new value has to be created, if the existing value wasn't used again within 10 seconds.</p>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

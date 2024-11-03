@@ -421,26 +421,15 @@ namespace wan24.Core
         /// <summary>
         /// Count
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <returns>Number of items</returns>
         [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int Count<T>(this List<T> arr) => arr.Count;
-
-        /// <summary>
-        /// Count
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <returns>Number of items</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static int Count<T>(this IList<T> arr) => arr.Count;
+        public static int Count<tList, tItem>(this tList arr) where tList : IList<tItem> => arr.Count;
 
         /// <summary>
         /// Count
@@ -891,14 +880,15 @@ namespace wan24.Core
         /// <summary>
         /// First
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <returns>First item</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T First<T>(this List<T> arr)
+        public static tItem First<tList, tItem>(this tList arr) where tList : IList<tItem>
         {
             if (arr.Count < 1) throw new InvalidOperationException("Sequence contains no elements");
             return arr[0];
@@ -907,7 +897,8 @@ namespace wan24.Core
         /// <summary>
         /// First
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <returns>First item</returns>
@@ -915,48 +906,9 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T First<T>(this List<T> arr, Func<T, bool> predicate)
+        public static tItem First<tList, tItem>(this tList arr, Func<tItem, bool> predicate) where tList : IList<tItem>
         {
-            T item;
-            for (int i = 0, len = arr.Count; i < len; i++)
-            {
-                item = arr[i];
-                if (predicate(item))
-                    return item;
-            }
-            throw new InvalidOperationException("Sequence contains no elements");
-        }
-
-        /// <summary>
-        /// First
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <returns>First item</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static T First<T>(this IList<T> arr)
-        {
-            if (arr.Count < 1) throw new InvalidOperationException("Sequence contains no elements");
-            return arr[0];
-        }
-
-        /// <summary>
-        /// First
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <param name="predicate">Predicate</param>
-        /// <returns>First item</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static T First<T>(this IList<T> arr, Func<T, bool> predicate)
-        {
-            T item;
+            tItem item;
             for (int i = 0, len = arr.Count; i < len; i++)
             {
                 item = arr[i];
@@ -1072,7 +1024,8 @@ namespace wan24.Core
         /// <summary>
         /// First or the default
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="defaultResult">Default result</param>
         /// <returns>First item or the <c>defaultResult</c></returns>
@@ -1080,13 +1033,14 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T? FirstOrDefault<T>(this List<T> arr, T? defaultResult = default)
+        public static tItem? FirstOrDefault<tList, tItem>(this tList arr, tItem? defaultResult = default) where tList : IList<tItem>
             => arr.Count < 1 ? defaultResult : arr[0];
 
         /// <summary>
         /// First or the default
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List typoe</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="arr">Array</param>
         /// <param name="predicate">Predicate</param>
         /// <param name="defaultResult">Default result</param>
@@ -1095,47 +1049,9 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T? FirstOrDefault<T>(this List<T> arr, Func<T, bool> predicate, T? defaultResult = default)
+        public static tItem? FirstOrDefault<tList, tItem>(this tList arr, Func<tItem, bool> predicate, tItem? defaultResult = default) where tList : IList<tItem>
         {
-            T item;
-            for (int i = 0, len = arr.Count; i < len; i++)
-            {
-                item = arr[i];
-                if (predicate(item))
-                    return item;
-            }
-            return defaultResult;
-        }
-
-        /// <summary>
-        /// First or the default
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <param name="defaultResult">Default result</param>
-        /// <returns>First item or the <c>defaultResult</c></returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static T? FirstOrDefault<T>(this IList<T> arr, T? defaultResult = default)
-            => arr.Count < 1 ? defaultResult : arr[0];
-
-        /// <summary>
-        /// First or the default
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="arr">Array</param>
-        /// <param name="predicate">Predicate</param>
-        /// <param name="defaultResult">Default result</param>
-        /// <returns>First item or the <c>defaultResult</c></returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static T? FirstOrDefault<T>(this IList<T> arr, Func<T, bool> predicate, T? defaultResult = default)
-        {
-            T item;
+            tItem item;
             for (int i = 0, len = arr.Count; i < len; i++)
             {
                 item = arr[i];
@@ -1205,7 +1121,8 @@ namespace wan24.Core
         /// <summary>
         /// All
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <param name="offset">Offset</param>
@@ -1215,28 +1132,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool All<T>(this List<T> enumerable, in Func<T, bool> predicate, int offset = 0, int? length = null)
-        {
-            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
-                if (!predicate(enumerable[i]))
-                    return false;
-            return true;
-        }
-
-        /// <summary>
-        /// All
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="predicate">Predicate</param>
-        /// <param name="offset">Offset</param>
-        /// <param name="length">Length</param>
-        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool All<T>(this IList<T> enumerable, in Func<T, bool> predicate, int offset = 0, int? length = null)
+        public static bool All<tList, tItem>(this tList enumerable, in Func<tItem, bool> predicate, int offset = 0, int? length = null) where tList : IList<tItem>
         {
             for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
                 if (!predicate(enumerable[i]))
@@ -1304,7 +1200,8 @@ namespace wan24.Core
         /// <summary>
         /// Any
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <param name="predicate">Predicate</param>
         /// <param name="offset">Offset</param>
@@ -1314,28 +1211,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool Any<T>(this List<T> enumerable, in Func<T, bool> predicate, int offset = 0, int? length = null)
-        {
-            for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
-                if (predicate(enumerable[i]))
-                    return true;
-            return false;
-        }
-
-        /// <summary>
-        /// Any
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <param name="predicate">Predicate</param>
-        /// <param name="offset">Offset</param>
-        /// <param name="length">Length</param>
-        /// <returns>If the predicate returned <see langword="true"/> for all items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool Any<T>(this IList<T> enumerable, in Func<T, bool> predicate, int offset = 0, int? length = null)
+        public static bool Any<tList, tItem>(this tList enumerable, in Func<tItem, bool> predicate, int offset = 0, int? length = null) where tList : IList<tItem>
         {
             for (int i = offset, len = length ?? enumerable.Count; i < len; i++)
                 if (predicate(enumerable[i]))
@@ -1382,25 +1258,14 @@ namespace wan24.Core
         /// <summary>
         /// Any
         /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
+        /// <typeparam name="tList">List type</typeparam>
+        /// <typeparam name="tItem">Item type</typeparam>
         /// <param name="enumerable">Enumerable</param>
         /// <returns>If the enumerable contains any items</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static bool Any<T>(this List<T> enumerable) => enumerable.Count > 0;
-
-        /// <summary>
-        /// Any
-        /// </summary>
-        /// <typeparam name="T">Item type</typeparam>
-        /// <param name="enumerable">Enumerable</param>
-        /// <returns>If the enumerable contains any items</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool Any<T>(this IList<T> enumerable) => enumerable.Count > 0;
+        public static bool Any<tList, tItem>(this tList enumerable) where tList : IList<tItem> => enumerable.Count > 0;
     }
 }

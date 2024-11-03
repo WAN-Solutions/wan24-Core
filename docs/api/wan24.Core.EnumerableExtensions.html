@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1157">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1073">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_All__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``1(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;T&gt;(FrozenSet&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -228,180 +228,10 @@ public static bool All&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable, in Func&lt;T
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%601(System.Collections.Generic.IList%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1235">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_All__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;T&gt;(IList&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
-  <div class="markdown level1 summary"><p>All</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool All&lt;T&gt;(this IList&lt;T&gt; enumerable, in Func&lt;T, bool&gt; predicate, int offset = 0, int? length = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Offset</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Length</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%601(System.Collections.Generic.List%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1214">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_All__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;T&gt;(List&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
-  <div class="markdown level1 summary"><p>All</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool All&lt;T&gt;(this List&lt;T&gt; enumerable, in Func&lt;T, bool&gt; predicate, int offset = 0, int? length = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Offset</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Length</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1172">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1088">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_All__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;T&gt;(ImmutableArray&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -486,7 +316,7 @@ public static bool All&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable, in Func
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__1___0___System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%601(%60%600%5B%5D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1193">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1109">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_All__1___0___System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``1(``0[],System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;T&gt;(T[], in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -568,10 +398,100 @@ public static bool All&lt;T&gt;(this T[] enumerable, in Func&lt;T, bool&gt; pred
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_All__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.All%60%602(%60%600%2CSystem.Func%7B%60%601%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1131">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_All_" data-uid="wan24.Core.EnumerableExtensions.All*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_All__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.All``2(``0,System.Func{``1,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">All&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</h4>
+  <div class="markdown level1 summary"><p>All</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool All&lt;tList, tItem&gt;(this tList enumerable, in Func&lt;tItem, bool&gt; predicate, int offset = 0, int? length = null) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Frozen_FrozenSet___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1352">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1228">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Frozen_FrozenSet___0__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Frozen.FrozenSet{``0})">Any&lt;T&gt;(FrozenSet&lt;T&gt;)</h4>
@@ -638,7 +558,7 @@ public static bool Any&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1256">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1152">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;T&gt;(FrozenSet&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -720,314 +640,10 @@ public static bool Any&lt;T&gt;(this FrozenSet&lt;T&gt; enumerable, in Func&lt;T
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1400">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Generic.IList{``0})">Any&lt;T&gt;(IList&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Any</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool Any&lt;T&gt;(this IList&lt;T&gt; enumerable)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the enumerable contains any items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Generic.IList%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1334">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;T&gt;(IList&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
-  <div class="markdown level1 summary"><p>Any</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool Any&lt;T&gt;(this IList&lt;T&gt; enumerable, in Func&lt;T, bool&gt; predicate, int offset = 0, int? length = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Offset</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Length</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1388">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Generic.List{``0})">Any&lt;T&gt;(List&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Any</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool Any&lt;T&gt;(this List&lt;T&gt; enumerable)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the enumerable contains any items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Generic.List%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1313">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;T&gt;(List&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
-  <div class="markdown level1 summary"><p>Any</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static bool Any&lt;T&gt;(this List&lt;T&gt; enumerable, in Func&lt;T, bool&gt; predicate, int offset = 0, int? length = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">enumerable</span></td>
-        <td><p>Enumerable</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">offset</span></td>
-        <td><p>Offset</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Length</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Immutable_ImmutableArray___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1364">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1240">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Immutable_ImmutableArray___0__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Immutable.ImmutableArray{``0})">Any&lt;T&gt;(ImmutableArray&lt;T&gt;)</h4>
@@ -1094,7 +710,7 @@ public static bool Any&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable)</code><
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1271">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1167">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;T&gt;(ImmutableArray&lt;T&gt;, in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -1179,7 +795,7 @@ public static bool Any&lt;T&gt;(this ImmutableArray&lt;T&gt; enumerable, in Func
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1___0___.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(%60%600%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1376">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1252">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1___0___" data-uid="wan24.Core.EnumerableExtensions.Any``1(``0[])">Any&lt;T&gt;(T[])</h4>
@@ -1246,7 +862,7 @@ public static bool Any&lt;T&gt;(this T[] enumerable)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__1___0___System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%601(%60%600%5B%5D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1292">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1188">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Any__1___0___System_Func___0_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``1(``0[],System.Func{``0,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;T&gt;(T[], in Func&lt;T, bool&gt;, int, int?)</h4>
@@ -1321,6 +937,168 @@ public static bool Any&lt;T&gt;(this T[] enumerable, in Func&lt;T, bool&gt; pred
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__2___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%602(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1265">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_Any__2___0_" data-uid="wan24.Core.EnumerableExtensions.Any``2(``0)">Any&lt;tList, tItem&gt;(tList)</h4>
+  <div class="markdown level1 summary"><p>Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool Any&lt;tList, tItem&gt;(this tList enumerable) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the enumerable contains any items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Any__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Any%60%602(%60%600%2CSystem.Func%7B%60%601%2CSystem.Boolean%7D%40%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1210">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_Any_" data-uid="wan24.Core.EnumerableExtensions.Any*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_Any__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Any``2(``0,System.Func{``1,System.Boolean}@,System.Int32,System.Nullable{System.Int32})">Any&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</h4>
+  <div class="markdown level1 summary"><p>Any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static bool Any&lt;tList, tItem&gt;(this tList enumerable, in Func&lt;tItem, bool&gt; predicate, int offset = 0, int? length = null) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">enumerable</span></td>
+        <td><p>Enumerable</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Offset</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">length</span></td>
+        <td><p>Length</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>If the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> for all items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
         <td><p>Item type</p>
 </td>
       </tr>
@@ -1966,7 +1744,7 @@ public static bool ContainsAny&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable, pa
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtLeast__1_System_Collections_Frozen_FrozenSet___0__System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtLeast%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L559">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L548">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtLeast_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtLeast__1_System_Collections_Frozen_FrozenSet___0__System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast``1(System.Collections.Frozen.FrozenSet{``0},System.Int32)">ContainsAtLeast&lt;T&gt;(FrozenSet&lt;T&gt;, int)</h4>
@@ -2039,7 +1817,7 @@ public static bool ContainsAtLeast&lt;T&gt;(this FrozenSet&lt;T&gt; arr, int cou
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtLeast__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtLeast%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L572">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L561">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtLeast_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtLeast__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast``1(System.Collections.Immutable.ImmutableArray{``0},System.Int32)">ContainsAtLeast&lt;T&gt;(ImmutableArray&lt;T&gt;, int)</h4>
@@ -2112,7 +1890,7 @@ public static bool ContainsAtLeast&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, in
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtLeast__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtLeast%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L585">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L574">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtLeast_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtLeast__1___0___System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast``1(``0[],System.Int32)">ContainsAtLeast&lt;T&gt;(T[], int)</h4>
@@ -2185,7 +1963,7 @@ public static bool ContainsAtLeast&lt;T&gt;(this T[] arr, int count)</code></pre
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtLeast%60%602(%60%600%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L599">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L588">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtLeast_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtLeast``2(``0,System.Int32)">ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</h4>
@@ -2263,7 +2041,7 @@ public static bool ContainsAtLeast&lt;tList, tItem&gt;(this tList arr, int count
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtMost__1_System_Collections_Frozen_FrozenSet___0__System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtMost%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L612">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L601">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtMost_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtMost__1_System_Collections_Frozen_FrozenSet___0__System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost``1(System.Collections.Frozen.FrozenSet{``0},System.Int32)">ContainsAtMost&lt;T&gt;(FrozenSet&lt;T&gt;, int)</h4>
@@ -2336,7 +2114,7 @@ public static bool ContainsAtMost&lt;T&gt;(this FrozenSet&lt;T&gt; arr, int coun
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtMost__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtMost%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L625">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L614">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtMost_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtMost__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost``1(System.Collections.Immutable.ImmutableArray{``0},System.Int32)">ContainsAtMost&lt;T&gt;(ImmutableArray&lt;T&gt;, int)</h4>
@@ -2409,7 +2187,7 @@ public static bool ContainsAtMost&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, int
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtMost__1___0___System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtMost%60%601(%60%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L638">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L627">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtMost_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtMost__1___0___System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost``1(``0[],System.Int32)">ContainsAtMost&lt;T&gt;(T[], int)</h4>
@@ -2482,7 +2260,7 @@ public static bool ContainsAtMost&lt;T&gt;(this T[] arr, int count)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_ContainsAtMost__2___0_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.ContainsAtMost%60%602(%60%600%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L652">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L641">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_ContainsAtMost_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_ContainsAtMost__2___0_System_Int32_" data-uid="wan24.Core.EnumerableExtensions.ContainsAtMost``2(``0,System.Int32)">ContainsAtMost&lt;tList, tItem&gt;(tList, int)</h4>
@@ -2560,7 +2338,7 @@ public static bool ContainsAtMost&lt;tList, tItem&gt;(this tList arr, int count)
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Contains__1_System_Collections_Frozen_FrozenSet___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Contains%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L506">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L495">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Contains_" data-uid="wan24.Core.EnumerableExtensions.Contains*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Contains__1_System_Collections_Frozen_FrozenSet___0____0_" data-uid="wan24.Core.EnumerableExtensions.Contains``1(System.Collections.Frozen.FrozenSet{``0},``0)">Contains&lt;T&gt;(FrozenSet&lt;T&gt;, T)</h4>
@@ -2633,7 +2411,7 @@ public static bool Contains&lt;T&gt;(this FrozenSet&lt;T&gt; arr, T item)</code>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Contains__1_System_Collections_Immutable_ImmutableArray___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Contains%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L519">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L508">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Contains_" data-uid="wan24.Core.EnumerableExtensions.Contains*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Contains__1_System_Collections_Immutable_ImmutableArray___0____0_" data-uid="wan24.Core.EnumerableExtensions.Contains``1(System.Collections.Immutable.ImmutableArray{``0},``0)">Contains&lt;T&gt;(ImmutableArray&lt;T&gt;, T)</h4>
@@ -2706,7 +2484,7 @@ public static bool Contains&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, T item)</
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Contains__1___0_____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Contains%60%601(%60%600%5B%5D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L532">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L521">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Contains_" data-uid="wan24.Core.EnumerableExtensions.Contains*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Contains__1___0_____0_" data-uid="wan24.Core.EnumerableExtensions.Contains``1(``0[],``0)">Contains&lt;T&gt;(T[], T)</h4>
@@ -2779,7 +2557,7 @@ public static bool Contains&lt;T&gt;(this T[] arr, T item)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Contains__2___0___1_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Contains%60%602(%60%600%2C%60%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L546">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L535">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Contains_" data-uid="wan24.Core.EnumerableExtensions.Contains*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Contains__2___0___1_" data-uid="wan24.Core.EnumerableExtensions.Contains``2(``0,``1)">Contains&lt;tList, tItem&gt;(tList, tItem)</h4>
@@ -2924,7 +2702,7 @@ public static int Count&lt;T&gt;(this FrozenSet&lt;T&gt; arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L452">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L441">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Count__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.Count``1(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,System.Boolean})">Count&lt;T&gt;(FrozenSet&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
@@ -2972,140 +2750,6 @@ public static int Count&lt;T&gt;(this FrozenSet&lt;T&gt; arr, Func&lt;T, bool&gt
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><p>Number of items for which the predicate returned <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L439">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Count__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.EnumerableExtensions.Count``1(System.Collections.Generic.IList{``0})">Count&lt;T&gt;(IList&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Count</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static int Count&lt;T&gt;(this IList&lt;T&gt; arr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>Number of items</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L427">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_Count__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.EnumerableExtensions.Count``1(System.Collections.Generic.List{``0})">Count&lt;T&gt;(List&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Count</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
-public static int Count&lt;T&gt;(this List&lt;T&gt; arr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>Number of items</p>
 </td>
       </tr>
     </tbody>
@@ -3198,7 +2842,7 @@ public static int Count&lt;T&gt;(this ImmutableArray&lt;T&gt; arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L465">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L454">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Count__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.Count``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean})">Count&lt;T&gt;(ImmutableArray&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
@@ -3338,7 +2982,7 @@ public static int Count&lt;T&gt;(this T[] arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__1___0___System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%601(%60%600%5B%5D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L478">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L467">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Count__1___0___System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.Count``1(``0[],System.Func{``0,System.Boolean})">Count&lt;T&gt;(T[], Func&lt;T, bool&gt;)</h4>
@@ -3408,10 +3052,82 @@ public static int Count&lt;T&gt;(this T[] arr, Func&lt;T, bool&gt; predicate)</c
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__2___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%602(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L428">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_Count__2___0_" data-uid="wan24.Core.EnumerableExtensions.Count``2(``0)">Count&lt;tList, tItem&gt;(tList)</h4>
+  <div class="markdown level1 summary"><p>Count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static int Count&lt;tList, tItem&gt;(this tList arr) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Number of items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Count%60%602(%60%600%2CSystem.Func%7B%60%601%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L492">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L481">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Count_" data-uid="wan24.Core.EnumerableExtensions.Count*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.Count``2(``0,System.Func{``1,System.Boolean})">Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</h4>
@@ -3696,7 +3412,7 @@ public static int DiscardAll&lt;T&gt;(this IEnumerable&lt;T&gt; enumerable, bool
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_DistinctBy__2_System_Collections_Frozen_FrozenSet___0__System_Func___0___1__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.DistinctBy%60%602(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2C%60%601%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L746">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L735">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_DistinctBy_" data-uid="wan24.Core.EnumerableExtensions.DistinctBy*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_DistinctBy__2_System_Collections_Frozen_FrozenSet___0__System_Func___0___1__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.DistinctBy``2(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,``1},System.Int32,System.Nullable{System.Int32})">DistinctBy&lt;tItem, tKey&gt;(FrozenSet&lt;tItem&gt;, Func&lt;tItem, tKey&gt;, int, int?)</h4>
@@ -3786,7 +3502,7 @@ public static IEnumerable&lt;tItem&gt; DistinctBy&lt;tItem, tKey&gt;(this Frozen
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_DistinctBy__2_System_Collections_Immutable_ImmutableArray___0__System_Func___0___1__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.DistinctBy%60%602(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2C%60%601%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L729">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L718">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_DistinctBy_" data-uid="wan24.Core.EnumerableExtensions.DistinctBy*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_DistinctBy__2_System_Collections_Immutable_ImmutableArray___0__System_Func___0___1__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.DistinctBy``2(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,``1},System.Int32,System.Nullable{System.Int32})">DistinctBy&lt;tItem, tKey&gt;(ImmutableArray&lt;tItem&gt;, Func&lt;tItem, tKey&gt;, int, int?)</h4>
@@ -3876,7 +3592,7 @@ public static IEnumerable&lt;tItem&gt; DistinctBy&lt;tItem, tKey&gt;(this Immuta
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_DistinctBy__2___0___System_Func___0___1__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.DistinctBy%60%602(%60%600%5B%5D%2CSystem.Func%7B%60%600%2C%60%601%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L763">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L752">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_DistinctBy_" data-uid="wan24.Core.EnumerableExtensions.DistinctBy*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_DistinctBy__2___0___System_Func___0___1__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.DistinctBy``2(``0[],System.Func{``0,``1},System.Int32,System.Nullable{System.Int32})">DistinctBy&lt;tItem, tKey&gt;(tItem[], Func&lt;tItem, tKey&gt;, int, int?)</h4>
@@ -3966,7 +3682,7 @@ public static IEnumerable&lt;tItem&gt; DistinctBy&lt;tItem, tKey&gt;(this tItem[
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_DistinctBy__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.DistinctBy%60%603(%60%600%2CSystem.Func%7B%60%601%2C%60%602%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L781">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L770">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_DistinctBy_" data-uid="wan24.Core.EnumerableExtensions.DistinctBy*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_DistinctBy__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.DistinctBy``3(``0,System.Func{``1,``2},System.Int32,System.Nullable{System.Int32})">DistinctBy&lt;tList, tItem, tKey&gt;(tList, Func&lt;tItem, tKey&gt;, int, int?)</h4>
@@ -4061,7 +3777,7 @@ public static IEnumerable&lt;tItem&gt; DistinctBy&lt;tList, tItem, tKey&gt;(this
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Distinct__1_System_Collections_Frozen_FrozenSet___0__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Distinct%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L681">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L670">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Distinct_" data-uid="wan24.Core.EnumerableExtensions.Distinct*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Distinct__1_System_Collections_Frozen_FrozenSet___0__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Distinct``1(System.Collections.Frozen.FrozenSet{``0},System.Int32,System.Nullable{System.Int32})">Distinct&lt;T&gt;(FrozenSet&lt;T&gt;, int, int?)</h4>
@@ -4140,7 +3856,7 @@ public static IEnumerable&lt;T&gt; Distinct&lt;T&gt;(this FrozenSet&lt;T&gt; arr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Distinct__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Distinct%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L666">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L655">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Distinct_" data-uid="wan24.Core.EnumerableExtensions.Distinct*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Distinct__1_System_Collections_Immutable_ImmutableArray___0__System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Distinct``1(System.Collections.Immutable.ImmutableArray{``0},System.Int32,System.Nullable{System.Int32})">Distinct&lt;T&gt;(ImmutableArray&lt;T&gt;, int, int?)</h4>
@@ -4219,7 +3935,7 @@ public static IEnumerable&lt;T&gt; Distinct&lt;T&gt;(this ImmutableArray&lt;T&gt
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Distinct__1___0___System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Distinct%60%601(%60%600%5B%5D%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L696">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L685">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Distinct_" data-uid="wan24.Core.EnumerableExtensions.Distinct*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Distinct__1___0___System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Distinct``1(``0[],System.Int32,System.Nullable{System.Int32})">Distinct&lt;T&gt;(T[], int, int?)</h4>
@@ -4298,7 +4014,7 @@ public static IEnumerable&lt;T&gt; Distinct&lt;T&gt;(this T[] arr, int offset = 
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_Distinct__2___0_System_Int32_System_Nullable_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.Distinct%60%602(%60%600%2CSystem.Int32%2CSystem.Nullable%7BSystem.Int32%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L712">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L701">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_Distinct_" data-uid="wan24.Core.EnumerableExtensions.Distinct*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_Distinct__2___0_System_Int32_System_Nullable_System_Int32__" data-uid="wan24.Core.EnumerableExtensions.Distinct``2(``0,System.Int32,System.Nullable{System.Int32})">Distinct&lt;tList, tItem&gt;(tList, int, int?)</h4>
@@ -5557,7 +5273,7 @@ public static IEnumerable&lt;tResult&gt; ExecuteForAll&lt;tList, tItem, tResult&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L990">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L942">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,System.Boolean},``0)">FirstOrDefault&lt;T&gt;(FrozenSet&lt;T&gt;, Func&lt;T, bool&gt;, T?)</h4>
@@ -5636,7 +5352,7 @@ public static T? FirstOrDefault&lt;T&gt;(this FrozenSet&lt;T&gt; arr, Func&lt;T,
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Frozen_FrozenSet___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L976">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L928">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Frozen_FrozenSet___0____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Frozen.FrozenSet{``0},``0)">FirstOrDefault&lt;T&gt;(FrozenSet&lt;T&gt;, T?)</h4>
@@ -5706,314 +5422,10 @@ public static T? FirstOrDefault&lt;T&gt;(this FrozenSet&lt;T&gt; arr, T? default
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Generic.IList%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1132">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean},``0)">FirstOrDefault&lt;T&gt;(IList&lt;T&gt;, Func&lt;T, bool&gt;, T?)</h4>
-  <div class="markdown level1 summary"><p>First or the default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T? FirstOrDefault&lt;T&gt;(this IList&lt;T&gt; arr, Func&lt;T, bool&gt; predicate, T? defaultResult = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultResult</span></td>
-        <td><p>Default result</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item or the <code>defaultResult</code></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IList___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Generic.IList%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1117">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_IList___0____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Generic.IList{``0},``0)">FirstOrDefault&lt;T&gt;(IList&lt;T&gt;, T?)</h4>
-  <div class="markdown level1 summary"><p>First or the default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T? FirstOrDefault&lt;T&gt;(this IList&lt;T&gt; arr, T? defaultResult = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultResult</span></td>
-        <td><p>Default result</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item or the <code>defaultResult</code></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Generic.List%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1094">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean},``0)">FirstOrDefault&lt;T&gt;(List&lt;T&gt;, Func&lt;T, bool&gt;, T?)</h4>
-  <div class="markdown level1 summary"><p>First or the default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T? FirstOrDefault&lt;T&gt;(this List&lt;T&gt; arr, Func&lt;T, bool&gt; predicate, T? defaultResult = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultResult</span></td>
-        <td><p>Default result</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item or the <code>defaultResult</code></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_List___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Generic.List%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1079">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Generic_List___0____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Generic.List{``0},``0)">FirstOrDefault&lt;T&gt;(List&lt;T&gt;, T?)</h4>
-  <div class="markdown level1 summary"><p>First or the default</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T? FirstOrDefault&lt;T&gt;(this List&lt;T&gt; arr, T? defaultResult = default)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultResult</span></td>
-        <td><p>Default result</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item or the <code>defaultResult</code></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1018">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L970">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean},``0)">FirstOrDefault&lt;T&gt;(ImmutableArray&lt;T&gt;, Func&lt;T, bool&gt;, T?)</h4>
@@ -6092,7 +5504,7 @@ public static T? FirstOrDefault&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, Func&
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Immutable_ImmutableArray___0____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1003">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L955">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1_System_Collections_Immutable_ImmutableArray___0____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(System.Collections.Immutable.ImmutableArray{``0},``0)">FirstOrDefault&lt;T&gt;(ImmutableArray&lt;T&gt;, T?)</h4>
@@ -6165,7 +5577,7 @@ public static T? FirstOrDefault&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, T? de
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1___0___System_Func___0_System_Boolean____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(%60%600%5B%5D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1056">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1008">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1___0___System_Func___0_System_Boolean____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(``0[],System.Func{``0,System.Boolean},``0)">FirstOrDefault&lt;T&gt;(T[], Func&lt;T, bool&gt;, T?)</h4>
@@ -6244,7 +5656,7 @@ public static T? FirstOrDefault&lt;T&gt;(this T[] arr, Func&lt;T, bool&gt; predi
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__1___0_____0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%601(%60%600%5B%5D%2C%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1041">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L993">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__1___0_____0_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``1(``0[],``0)">FirstOrDefault&lt;T&gt;(T[], T?)</h4>
@@ -6314,10 +5726,172 @@ public static T? FirstOrDefault&lt;T&gt;(this T[] arr, T? defaultResult = defaul
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__2___0_System_Func___1_System_Boolean____1_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%602(%60%600%2CSystem.Func%7B%60%601%2CSystem.Boolean%7D%2C%60%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1048">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__2___0_System_Func___1_System_Boolean____1_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``2(``0,System.Func{``1,System.Boolean},``1)">FirstOrDefault&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, tItem?)</h4>
+  <div class="markdown level1 summary"><p>First or the default</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static tItem? FirstOrDefault&lt;tList, tItem&gt;(this tList arr, Func&lt;tItem, bool&gt; predicate, tItem? defaultResult = default) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><span class="parametername">defaultResult</span></td>
+        <td><p>Default result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><p>First item or the <code>defaultResult</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List typoe</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_FirstOrDefault__2___0___1_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.FirstOrDefault%60%602(%60%600%2C%60%601)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L1032">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_FirstOrDefault_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_FirstOrDefault__2___0___1_" data-uid="wan24.Core.EnumerableExtensions.FirstOrDefault``2(``0,``1)">FirstOrDefault&lt;tList, tItem&gt;(tList, tItem?)</h4>
+  <div class="markdown level1 summary"><p>First or the default</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static tItem? FirstOrDefault&lt;tList, tItem&gt;(this tList arr, tItem? defaultResult = default) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><span class="parametername">defaultResult</span></td>
+        <td><p>Default result</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><p>First item or the <code>defaultResult</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Frozen_FrozenSet___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L794">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L783">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Frozen_FrozenSet___0__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Frozen.FrozenSet{``0})">First&lt;T&gt;(FrozenSet&lt;T&gt;)</h4>
@@ -6384,7 +5958,7 @@ public static T First&lt;T&gt;(this FrozenSet&lt;T&gt; arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Frozen.FrozenSet%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L807">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L796">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Frozen_FrozenSet___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Frozen.FrozenSet{``0},System.Func{``0,System.Boolean})">First&lt;T&gt;(FrozenSet&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
@@ -6454,290 +6028,10 @@ public static T First&lt;T&gt;(this FrozenSet&lt;T&gt; arr, Func&lt;T, bool&gt; 
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_IList___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Generic.IList%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L936">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_IList___0__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Generic.IList{``0})">First&lt;T&gt;(IList&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>First</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T First&lt;T&gt;(this IList&lt;T&gt; arr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Generic.IList%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L953">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_IList___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Generic.IList{``0},System.Func{``0,System.Boolean})">First&lt;T&gt;(IList&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
-  <div class="markdown level1 summary"><p>First</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T First&lt;T&gt;(this IList&lt;T&gt; arr, Func&lt;T, bool&gt; predicate)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_List___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Generic.List%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L897">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_List___0__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Generic.List{``0})">First&lt;T&gt;(List&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>First</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T First&lt;T&gt;(this List&lt;T&gt; arr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Generic.List%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L914">View Source</a>
-  </span>
-  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
-  <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Generic_List___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">First&lt;T&gt;(List&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
-  <div class="markdown level1 summary"><p>First</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static T First&lt;T&gt;(this List&lt;T&gt; arr, Func&lt;T, bool&gt; predicate)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
-        <td><span class="parametername">arr</span></td>
-        <td><p>Array</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
-        <td><span class="parametername">predicate</span></td>
-        <td><p>Predicate</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>First item</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Item type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Immutable_ImmutableArray___0__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L819">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L808">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Immutable_ImmutableArray___0__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Immutable.ImmutableArray{``0})">First&lt;T&gt;(ImmutableArray&lt;T&gt;)</h4>
@@ -6804,7 +6098,7 @@ public static T First&lt;T&gt;(this ImmutableArray&lt;T&gt; arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(System.Collections.Immutable.ImmutableArray%7B%60%600%7D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L836">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L825">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1_System_Collections_Immutable_ImmutableArray___0__System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,System.Boolean})">First&lt;T&gt;(ImmutableArray&lt;T&gt;, Func&lt;T, bool&gt;)</h4>
@@ -6877,7 +6171,7 @@ public static T First&lt;T&gt;(this ImmutableArray&lt;T&gt; arr, Func&lt;T, bool
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1___0___.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(%60%600%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L858">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L847">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1___0___" data-uid="wan24.Core.EnumerableExtensions.First``1(``0[])">First&lt;T&gt;(T[])</h4>
@@ -6944,7 +6238,7 @@ public static T First&lt;T&gt;(this T[] arr)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__1___0___System_Func___0_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%601(%60%600%5B%5D%2CSystem.Func%7B%60%600%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L875">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L864">View Source</a>
   </span>
   <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
   <h4 id="wan24_Core_EnumerableExtensions_First__1___0___System_Func___0_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``1(``0[],System.Func{``0,System.Boolean})">First&lt;T&gt;(T[], Func&lt;T, bool&gt;)</h4>
@@ -7007,6 +6301,156 @@ public static T First&lt;T&gt;(this T[] arr, Func&lt;T, bool&gt; predicate)</cod
     <tbody>
       <tr>
         <td><span class="parametername">T</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__2___0_.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%602(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L887">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_First__2___0_" data-uid="wan24.Core.EnumerableExtensions.First``2(``0)">First&lt;tList, tItem&gt;(tList)</h4>
+  <div class="markdown level1 summary"><p>First</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static tItem First&lt;tList, tItem&gt;(this tList arr) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><p>First item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
+        <td><p>Item type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_EnumerableExtensions_First__2___0_System_Func___1_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.EnumerableExtensions.First%60%602(%60%600%2CSystem.Func%7B%60%601%2CSystem.Boolean%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/EnumerableExtensions.Linq.cs/#L905">View Source</a>
+  </span>
+  <a id="wan24_Core_EnumerableExtensions_First_" data-uid="wan24.Core.EnumerableExtensions.First*"></a>
+  <h4 id="wan24_Core_EnumerableExtensions_First__2___0_System_Func___1_System_Boolean__" data-uid="wan24.Core.EnumerableExtensions.First``2(``0,System.Func{``1,System.Boolean})">First&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>First</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static tItem First&lt;tList, tItem&gt;(this tList arr, Func&lt;tItem, bool&gt; predicate) where tList : IList&lt;tItem&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tList</span></td>
+        <td><span class="parametername">arr</span></td>
+        <td><p>Array</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;tItem, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">tItem</span></td>
+        <td><p>First item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">tList</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">tItem</span></td>
         <td><p>Item type</p>
 </td>
       </tr>

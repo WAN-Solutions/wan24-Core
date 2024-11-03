@@ -1,7 +1,7 @@
 ﻿namespace wan24.Core
 {
     /// <summary>
-    /// Read/write lock (allows multiple reader, but only sequential writing)
+    /// Read/write lock (allows multiple reader, but only isolated writing)
     /// </summary>
     /// <remarks>
     /// Constructor
@@ -65,7 +65,7 @@
             ReadLimit?.Wait(cancellationToken);
             try
             {
-                while (true)
+                while (EnsureUndisposed())
                 {
                     NoWriteEvent.Wait(cancellationToken);
                     ReadEvent.Wait(cancellationToken);
@@ -81,6 +81,7 @@
             {
                 ReadLimit?.Release();
             }
+            throw new InvalidProgramException();
         }
 
         /// <summary>
@@ -95,7 +96,7 @@
             if (ReadLimit is not null) await ReadLimit.WaitAsync(cancellationToken).DynamicContext();
             try
             {
-                while (true)
+                while (EnsureUndisposed())
                 {
                     await NoWriteEvent.WaitAsync(cancellationToken).DynamicContext();
                     await ReadEvent.WaitAsync(cancellationToken).DynamicContext();
@@ -111,6 +112,7 @@
             {
                 ReadLimit?.Release();
             }
+            throw new InvalidProgramException();
         }
 
         /// <summary>
@@ -122,17 +124,19 @@
         {
             EnsureUndisposed();
             RaiseOnWriteRequested();
-            while (true)
+            while (EnsureUndisposed())
             {
+                ReadEvent.Wait(cancellationToken);
                 NoReadEvent.Wait(cancellationToken);
                 WriteEvent.Wait(cancellationToken);
                 using SemaphoreSyncContext ssc = Sync.SyncContext(cancellationToken);
-                if (!WriteEvent.IsSet) continue;
+                if (!WriteEvent.IsSet || !NoWriteEvent.IsSet || !ReadEvent.IsSet || !NoReadEvent.IsSet) continue;
                 ReadEvent.Reset(CancellationToken.None);
                 WriteEvent.Reset(CancellationToken.None);
                 NoWriteEvent.Reset(CancellationToken.None);
                 return CreateContext(reading: false);
             }
+            throw new InvalidProgramException();
         }
 
         /// <summary>
@@ -145,17 +149,19 @@
             EnsureUndisposed();
             await Task.Yield();
             RaiseOnWriteRequested();
-            while (true)
+            while (EnsureUndisposed())
             {
+                await ReadEvent.WaitAsync(cancellationToken).DynamicContext();
                 await NoReadEvent.WaitAsync(cancellationToken).DynamicContext();
                 await WriteEvent.WaitAsync(cancellationToken).DynamicContext();
                 using SemaphoreSyncContext ssc = await Sync.SyncContextAsync(cancellationToken).DynamicContext();
-                if (!WriteEvent.IsSet) continue;
+                if (!WriteEvent.IsSet || !NoWriteEvent.IsSet || !ReadEvent.IsSet || !NoReadEvent.IsSet) continue;
                 await ReadEvent.ResetAsync(CancellationToken.None).DynamicContext();
                 await WriteEvent.ResetAsync(CancellationToken.None).DynamicContext();
                 await NoWriteEvent.ResetAsync(CancellationToken.None).DynamicContext();
                 return CreateContext(reading: false);
             }
+            throw new InvalidProgramException();
         }
 
         /// <summary>
@@ -223,6 +229,7 @@
             public Context Read()
             {
                 EnsureUndisposed();
+                if (Reading) throw new InvalidOperationException();
                 RwLock.WriteEvent.Reset();
                 RwLock.ActiveReaderCount++;
                 RwLock.NoReadEvent.Reset();
@@ -283,7 +290,7 @@
                     if (--RwLock.ActiveReaderCount < 1)
                     {
                         RwLock.NoReadEvent.Set();
-                        if(RwLock.NoWriteEvent.IsSet) RwLock.WriteEvent.Set();
+                        if (RwLock.NoWriteEvent.IsSet) RwLock.WriteEvent.Set();
                     }
                 }
                 else

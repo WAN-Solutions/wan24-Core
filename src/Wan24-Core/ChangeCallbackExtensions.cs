@@ -55,27 +55,14 @@ namespace wan24.Core
         /// <summary>
         /// Invoke all callbacks
         /// </summary>
+        /// <typeparam name="T">List type</typeparam>
         /// <param name="callbacks">Callbacks</param>
         /// <param name="state">State</param>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Invoke(this IList<ChangeCallback> callbacks, in object? state = null)
-        {
-            for (int i = 0, len = callbacks.Count; i < len; callbacks[i].Invoke(state), i++) ;
-        }
-
-        /// <summary>
-        /// Invoke all callbacks
-        /// </summary>
-        /// <param name="callbacks">Callbacks</param>
-        /// <param name="state">State</param>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static void Invoke(this List<ChangeCallback> callbacks, in object? state = null)
+        public static void Invoke<T>(this T callbacks, in object? state = null) where T : IList<ChangeCallback>
         {
             for (int i = 0, len = callbacks.Count; i < len; callbacks[i].Invoke(state), i++) ;
         }
@@ -99,14 +86,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="callbacks">Callbacks</param>
         /// <param name="state">State</param>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static void Invoke(this FrozenSet<ChangeCallback> callbacks, in object? state = null)
-        {
-            for (int i = 0, len = callbacks.Count; i < len; callbacks.Items[i].Invoke(state), i++) ;
-        }
+        public static void Invoke(this FrozenSet<ChangeCallback> callbacks, in object? state = null) => Invoke(callbacks.Items, state);
 
         /// <summary>
         /// Invoke all callbacks

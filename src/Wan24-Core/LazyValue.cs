@@ -36,6 +36,7 @@ namespace wan24.Core
         {
             get
             {
+                if (HasValue) return _Value!;
                 lock (SyncObject)
                 {
                     if (HasValue) return _Value!;

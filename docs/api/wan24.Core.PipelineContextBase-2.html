@@ -245,7 +245,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_CancelToken.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.CancelToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L73">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_CancelToken_" data-uid="wan24.Core.PipelineContextBase`2.CancelToken*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_CancelToken" data-uid="wan24.Core.PipelineContextBase`2.CancelToken">CancelToken</h4>
@@ -373,7 +373,7 @@
   </span>
   <a id="wan24_Core_PipelineContextBase_2_Data_" data-uid="wan24.Core.PipelineContextBase`2.Data*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_Data" data-uid="wan24.Core.PipelineContextBase`2.Data">Data</h4>
-  <div class="markdown level1 summary"><p>Any tagged data (values will be disposed)</p>
+  <div class="markdown level1 summary"><p>Any tagged data (values will be disposed, if <a class="xref" href="wan24.Core.PipelineContextBase-2.html#wan24_Core_PipelineContextBase_2_DisposeData">DisposeData</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, which is the default)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -391,6 +391,37 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_DisposeData.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.DisposeData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L73">View Source</a>
+  </span>
+  <a id="wan24_Core_PipelineContextBase_2_DisposeData_" data-uid="wan24.Core.PipelineContextBase`2.DisposeData*"></a>
+  <h4 id="wan24_Core_PipelineContextBase_2_DisposeData" data-uid="wan24.Core.PipelineContextBase`2.DisposeData">DisposeData</h4>
+  <div class="markdown level1 summary"><p>If <a class="xref" href="wan24.Core.PipelineContextBase-2.html#wan24_Core_PipelineContextBase_2_Data">Data</a> values should be disposed, when disposing the context</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DisposeData { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -422,6 +453,37 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_LastException.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.LastException%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L88">View Source</a>
+  </span>
+  <a id="wan24_Core_PipelineContextBase_2_LastException_" data-uid="wan24.Core.PipelineContextBase`2.LastException*"></a>
+  <h4 id="wan24_Core_PipelineContextBase_2_LastException" data-uid="wan24.Core.PipelineContextBase`2.LastException">LastException</h4>
+  <div class="markdown level1 summary"><p>Exception catched by the pipeline processor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Exception? LastException { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -555,7 +617,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_Result.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.Result%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L78">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L83">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_Result_" data-uid="wan24.Core.PipelineContextBase`2.Result*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_Result" data-uid="wan24.Core.PipelineContextBase`2.Result">Result</h4>
@@ -619,7 +681,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L81">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_Dispose_" data-uid="wan24.Core.PipelineContextBase`2.Dispose*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_Dispose_System_Boolean_" data-uid="wan24.Core.PipelineContextBase`2.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -655,7 +717,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L84">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_DisposeCore_" data-uid="wan24.Core.PipelineContextBase`2.DisposeCore*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_DisposeCore" data-uid="wan24.Core.PipelineContextBase`2.DisposeCore">DisposeCore()</h4>
@@ -690,7 +752,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_op_Implicit_wan24_Core_PipelineContextBase__0__1____System_Threading_CancellationToken.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.op_Implicit(wan24.Core.PipelineContextBase%7B%600%2C%601%7D%40)~System.Threading.CancellationToken%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L96">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L114">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_op_Implicit_" data-uid="wan24.Core.PipelineContextBase`2.op_Implicit*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_op_Implicit_wan24_Core_PipelineContextBase__0__1____System_Threading_CancellationToken" data-uid="wan24.Core.PipelineContextBase`2.op_Implicit(wan24.Core.PipelineContextBase{`0,`1}@)~System.Threading.CancellationToken">implicit operator CancellationToken(in PipelineContextBase&lt;tPipeline, tFinal&gt;)</h4>
@@ -739,7 +801,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_PipelineContextBase_2_op_Implicit_wan24_Core_PipelineContextBase__0__1____System_TimeSpan.md&amp;value=---%0Auid%3A%20wan24.Core.PipelineContextBase%602.op_Implicit(wan24.Core.PipelineContextBase%7B%600%2C%601%7D%40)~System.TimeSpan%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/PipelineContext.cs/#L108">View Source</a>
   </span>
   <a id="wan24_Core_PipelineContextBase_2_op_Implicit_" data-uid="wan24.Core.PipelineContextBase`2.op_Implicit*"></a>
   <h4 id="wan24_Core_PipelineContextBase_2_op_Implicit_wan24_Core_PipelineContextBase__0__1____System_TimeSpan" data-uid="wan24.Core.PipelineContextBase`2.op_Implicit(wan24.Core.PipelineContextBase{`0,`1}@)~System.TimeSpan">implicit operator TimeSpan(in PipelineContextBase&lt;tPipeline, tFinal&gt;)</h4>
@@ -924,6 +986,15 @@
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_All__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.All&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Any__2___0_">EnumerableExtensions.Any&lt;tList, tItem&gt;(tList)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Any__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Any&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_">EnumerableExtensions.ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</a>
   </div>
   <div>
@@ -931,6 +1002,9 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Contains__2___0___1_">EnumerableExtensions.Contains&lt;tList, tItem&gt;(tList, tItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
@@ -949,6 +1023,18 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__3___0_System_Func___1_wan24_Core_EnumerableExtensions_ExecuteResult___2___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_FirstOrDefault__2___0_System_Func___1_System_Boolean____1_">EnumerableExtensions.FirstOrDefault&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, tItem?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_FirstOrDefault__2___0___1_">EnumerableExtensions.FirstOrDefault&lt;tList, tItem&gt;(tList, tItem?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_First__2___0_">EnumerableExtensions.First&lt;tList, tItem&gt;(tList)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_First__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.First&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Select__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Select&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, tResult&gt;, int, int?)</a>
@@ -1009,6 +1095,12 @@
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallelAsync__2___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask__System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelExtensions.ExecuteParallelAsync&lt;tList, tItem&gt;(tList, Func&lt;tItem, CancellationToken, ValueTask&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallel__2___0_System_Action___1__System_Threading_Tasks_ParallelOptions__">ParallelExtensions.ExecuteParallel&lt;tList, tItem&gt;(tList, Action&lt;tItem&gt;, in ParallelOptions?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>

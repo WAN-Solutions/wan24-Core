@@ -32,18 +32,24 @@ namespace wan24.Core
             List<object?> valueList = new(values ?? []),
                 res = [];
             int i,
-                len = valueList.Count,
+                len,
                 current = -1;
+            List<Type?> valueTypes = values is null ? [] : new(values.Length);
+            if (values is not null)
+                for (i = 0, len = values.Length; i < len; valueTypes.Add(values[i]?.GetType().GetNonNullableType().GetRealType()), i++) ;
+            len = valueList.Count;
             object? value;
             bool found,
                 nullable;
-            Type paramType;
+            Type paramType,
+                realType;
             nic ??= new();
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
                 current++;
-                paramType = pi.ParameterType.GetNonNullableType();
+                paramType = pi.ParameterType.GetNonNullableType().GetRealType();
+                realType = pi.ParameterType.GetRealType();
                 nullable = paramType != pi.ParameterType || pi.IsNullable(nic);
                 if (valuesAreOrdered)
                 {
@@ -54,9 +60,9 @@ namespace wan24.Core
                             if (!nullable)
                                 throw new ArgumentNullException(pi.Name);
                         }
-                        else if (!paramType.IsAssignableFrom(valueList[current]!.GetType().GetNonNullableType()))
+                        else if (!paramType.IsAssignableFrom(valueTypes[current]))
                         {
-                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
+                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueTypes[current]} given)", pi.Name);
                         }
                         res.Add(valueList[current]);
                         continue;
@@ -66,9 +72,20 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !paramType.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
+                        if (
+                            (
+                                valueList[i] is null && 
+                                !nullable
+                            ) || 
+                            (
+                                valueList[i] is not null && 
+                                !paramType.IsAssignableFrom(valueTypes[i]) &&
+                                !realType.IsAssignableFrom(valueTypes[i])
+                            )
+                            ) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
+                        valueTypes.RemoveAt(i);
                         len--;
                         found = true;
                         break;
@@ -115,18 +132,24 @@ namespace wan24.Core
             List<object?> valueList = new(values ?? []),
                 res = [];
             int i,
-                len = valueList.Count,
+                len,
                 current = -1;
+            List<Type?> valueTypes = values is null ? [] : new(values.Length);
+            if (values is not null)
+                for (i = 0, len = values.Length; i < len; valueTypes.Add(values[i]?.GetType().GetNonNullableType().GetRealType()), i++) ;
+            len = valueList.Count;
             ITryAsyncResult di;
             bool found,
                 nullable;
-            Type paramType;
+            Type paramType,
+                realType;
             nic ??= new();
             foreach (ParameterInfo pi in parameters)
             {
                 found = false;
                 current++;
-                paramType = pi.ParameterType.GetNonNullableType();
+                paramType = pi.ParameterType.GetNonNullableType().GetRealType();
+                realType = pi.ParameterType.GetRealType();
                 nullable = paramType != pi.ParameterType || pi.IsNullable(nic);
                 if (valuesAreOrdered)
                 {
@@ -137,9 +160,9 @@ namespace wan24.Core
                             if (!nullable)
                                 throw new ArgumentNullException(pi.Name);
                         }
-                        else if (!paramType.IsAssignableFrom(valueList[current]!.GetType().GetNonNullableType()))
+                        else if (!paramType.IsAssignableFrom(valueTypes[current]) && !realType.IsAssignableFrom(valueTypes[current]))
                         {
-                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueList[current]!.GetType()} given)", pi.Name);
+                            throw new ArgumentException($"{pi.ParameterType} value type expected ({valueTypes[current]} given)", pi.Name);
                         }
                         res.Add(valueList[current]);
                         continue;
@@ -149,9 +172,20 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !paramType.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
+                        if (
+                            (
+                                valueList[i] is null &&
+                                !nullable
+                            ) ||
+                            (
+                                valueList[i] is not null &&
+                                !paramType.IsAssignableFrom(valueTypes[i]) &&
+                                !realType.IsAssignableFrom(valueTypes[i])
+                            )
+                            ) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
+                        valueTypes.RemoveAt(i);
                         len--;
                         found = true;
                         break;
@@ -195,18 +229,24 @@ namespace wan24.Core
             List<object?> valueList = new(values ?? []),
                 res = [];
             int i,
-                len = valueList.Count,
+                len,
                 index = 0;
+            List<Type?> valueTypes = values is null ? [] : new(values.Length);
+            if (values is not null)
+                for (i = 0, len = values.Length; i < len; valueTypes.Add(values[i]?.GetType().GetNonNullableType().GetRealType()), i++) ;
+            len = valueList.Count;
 #pragma warning disable IDE0018 // Declare inline
             object? value;
 #pragma warning restore IDE0018 // Declare inline
             bool found,
                 nullable;
-            Type current;
+            Type current,
+                real;
             foreach (Type type in types)
             {
                 found = false;
-                current = type.GetNonNullableType();
+                current = type.GetNonNullableType().GetRealType();
+                real = type.GetRealType();
                 nullable = current != type || type.IsNullable();
                 if (valuesAreOrdered)
                 {
@@ -214,8 +254,8 @@ namespace wan24.Core
                     {
                         if (valueList[index] is null && !nullable)
                             throw new ArgumentNullException(nameof(values), $"{type} value type expected (NULL given)");
-                        if (valueList[index] is not null && !current.IsAssignableFrom(valueList[index]!.GetType().GetNonNullableType()))
-                            throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
+                        if (valueList[index] is not null && !current.IsAssignableFrom(valueTypes[index]) && !real.IsAssignableFrom(valueTypes[index]))
+                            throw new ArgumentException($"{type} value type expected ({valueTypes[index]} given)", nameof(values));
                         res.Add(valueList[index]);
                         found = true;
                     }
@@ -224,9 +264,20 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !current.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
+                        if (
+                            (
+                                valueList[i] is null &&
+                                !nullable
+                            ) ||
+                            (
+                                valueList[i] is not null &&
+                                !current.IsAssignableFrom(valueTypes[i]) &&
+                                !real.IsAssignableFrom(valueTypes[i])
+                            )
+                            ) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
+                        valueTypes.RemoveAt(i);
                         len--;
                         found = true;
                         break;
@@ -265,16 +316,22 @@ namespace wan24.Core
             List<object?> valueList = new(values ?? []),
                 res = [];
             int i,
-                len = valueList.Count,
+                len,
                 index = 0;
+            List<Type?> valueTypes = values is null ? [] : new(values.Length);
+            if (values is not null)
+                for (i = 0, len = values.Length; i < len; valueTypes.Add(values[i]?.GetType().GetNonNullableType().GetRealType()), i++) ;
+            len = valueList.Count;
             ITryAsyncResult di;
             bool found,
                 nullable;
-            Type current;
+            Type current,
+                real;
             foreach (Type type in types)
             {
                 found = false;
-                current = type.GetNonNullableType();
+                current = type.GetNonNullableType().GetRealType();
+                real = type.GetRealType();
                 nullable = current != type || type.IsNullable();
                 if (valuesAreOrdered)
                 {
@@ -282,8 +339,8 @@ namespace wan24.Core
                     {
                         if (valueList[index] is null && !nullable)
                             throw new ArgumentNullException(nameof(values), $"{type} value type expected (NULL given)");
-                        if (valueList[index] is not null && !current.IsAssignableFrom(valueList[index]!.GetType().GetNonNullableType()))
-                            throw new ArgumentException($"{type} value type expected ({valueList[index]!.GetType()} given)", nameof(values));
+                        if (valueList[index] is not null && !current.IsAssignableFrom(valueTypes[index]) && !real.IsAssignableFrom(valueTypes[index]))
+                            throw new ArgumentException($"{type} value type expected ({valueTypes[index]} given)", nameof(values));
                         res.Add(valueList[index]);
                         found = true;
                     }
@@ -292,9 +349,20 @@ namespace wan24.Core
                 {
                     for (i = 0; i < len; i++)
                     {
-                        if (valueList[i] is null || !current.IsAssignableFrom(valueList[i]!.GetType().GetNonNullableType())) continue;
+                        if (
+                            (
+                                valueList[i] is null &&
+                                !nullable
+                            ) ||
+                            (
+                                valueList[i] is not null &&
+                                !current.IsAssignableFrom(valueTypes[i]) &&
+                                !real.IsAssignableFrom(valueTypes[i])
+                            )
+                            ) continue;
                         res.Add(valueList[i]);
                         valueList.RemoveAt(i);
+                        valueTypes.RemoveAt(i);
                         len--;
                         found = true;
                         break;

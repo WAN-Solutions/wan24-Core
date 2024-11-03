@@ -127,7 +127,7 @@ namespace wan24.Core
             => LockAsync(obj.Key, timeout, tag);
 
         /// <summary>
-        /// Create am object lock asynchronous
+        /// Create an object lock asynchronous
         /// </summary>
         /// <param name="key">Object key</param>
         /// <param name="tag">Tagged object</param>

@@ -63,9 +63,14 @@
         public PipelineBase<tFinal, tPipeline>.Pipeline_Delegate? NextMethod { get; set; }
 
         /// <summary>
-        /// Any tagged data (values will be disposed)
+        /// Any tagged data (values will be disposed, if <see cref="DisposeData"/> is <see langword="true"/>, which is the default)
         /// </summary>
         public Dictionary<string, object?> Data { get; } = [];
+
+        /// <summary>
+        /// If <see cref="Data"/> values should be disposed, when disposing the context
+        /// </summary>
+        public bool DisposeData { get; init; } = true;
 
         /// <summary>
         /// Cancellation token
@@ -77,11 +82,24 @@
         /// </summary>
         public object? Result { get; set; }
 
-        /// <inheritdoc/>
-        protected override void Dispose(bool disposing) => Data.Values.Where(v => v is not null)!.TryDisposeAll();
+        /// <summary>
+        /// Exception catched by the pipeline processor
+        /// </summary>
+        public Exception? LastException { get; set; }
 
         /// <inheritdoc/>
-        protected override async Task DisposeCore() => await Data.Values.Where(v => v is not null)!.TryDisposeAllAsync().DynamicContext();
+        protected override void Dispose(bool disposing)
+        {
+            Finished = DateTime.Now;
+            if (DisposeData) Data.Values.WhereNotNull().TryDisposeAll();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            Finished = DateTime.Now;
+            if (DisposeData) await Data.Values.WhereNotNull().TryDisposeAllAsync().DynamicContext();
+        }
 
         /// <summary>
         /// Cast as <see cref="Runtime"/>
