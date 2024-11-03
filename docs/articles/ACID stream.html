@@ -109,9 +109,10 @@ await using(acidStream)
 }
 </code></pre>
 <p>The <code>AcidFileStream</code> does in this example use the file <code>/path/to/.acid.file.ext</code> as backup. The <code>Create(Async)</code> method will also try to perform a previously failed rollback, if an existing backup file was found. Have a look at this methods source code, if you'd like to know how the ACID stream is being handled for that in detail.</p>
+<p><strong>NOTE</strong>: On any writing I/O operation which fails, the ACID stream will try to rollback the stream to a safe state. In case this isn't possible because of underlying I/O device or filesystem errors, an <code>AcidException</code> with an <code>AggregateException</code> which contains the original I/O exceptions will be thrown. If the rollback succeed, only the original I/O exception is being thrown.</p>
 <h2 id="automatic-rollback-of-a-backup-at-a-later-time">Automatic rollback of a backup at a later time</h2>
 <p>If a rollback failed, you can run it at any time later:</p>
-<pre><code class="lang-cs">await AcidStream&lt;Stream&gt;.PerformRollback(acidStream);
+<pre><code class="lang-cs">await AcidStream&lt;Stream&gt;.PerformRollbackAsync(acidStream);
 </code></pre>
 <p>This requires the backup not to be corrupted in any way.</p>
 <h2 id="manual-backup-investigation-corrupted-backup-handling">Manual backup investigation (corrupted backup handling)</h2>

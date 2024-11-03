@@ -171,7 +171,7 @@ namespace wan24.Core
                     }
                     catch (Exception ex2)
                     {
-                        throw new AcidException("Rollback during failed commit operation failed, too", new AggregateException(ex, ex2));
+                        throw new AcidException("Rollback during failed commit operation failed, too", ex.Append(ex2));
                     }
                 }
                 else
@@ -208,7 +208,7 @@ namespace wan24.Core
                     }
                     catch (Exception ex2)
                     {
-                        throw new AcidException("Rollback during failed write IO operation failed, too", new AggregateException(ex, ex2));
+                        throw new AcidException("Rollback during failed write IO operation failed, too", ex.Append(ex2));
                     }
                 }
                 else

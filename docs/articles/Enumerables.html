@@ -113,8 +113,20 @@ Assert.AreEqual(6, enumerable2.First());// .NET
 <p>As you can see, the <code>wan24-Core</code> enumerable was processed partial before the source was changed, which results in an incompatibility to the .NET enumerable. To be sure that you work with .NET enumerables, you should call <code>AsEnumerable</code> on the source, first. As soon as you called any .NET enumerable extension method on a <code>wan24-Core</code> enumerable, the possibly pre-processed enumeration will be processed from .NET as you know it.</p>
 <p>To ensure that an enumeration like <code>...Where(...).Select(...)</code> has been fully processed, you can call the <code>Process</code> method for creating a new array of the result at that time and work with a new <code>ArrayEnumerable&lt;T&gt;</code> instance.</p>
 <p>The implementation of enumerables by <code>wan24-Core</code> can speed up enumerations, when compared to .NET processing times, but you'll need to evaluate, if partial pre-processing of the enumeration does fit your business logic for each case to avoid a surprise for special cases. In most cases <code>wan24-Core</code> enumerables will work as expected from your code.</p>
+<p><strong>TIP</strong>: If the code can't see that you want to use <code>wan24-Core</code> enumerables instead of the .NET LINQ extension methods, you can place the <code>using wan24.Core;</code> statement within the namespace:</p>
+<pre><code class="lang-cs">//using wan24.Core;// &lt;-- Remove this line from here
+
+namespace Your.NameSpace
+{
+	using wan24.Core;// &lt;-- Place the statement here instead
+	...
+}
+</code></pre>
+<p>This should solve the problem, if you don't want to use .NET LINQ, too. To do so, you'll need to separate code into partial classes / code files.</p>
 <h2 id="icoreenumerablet"><code>ICoreEnumerable&lt;T&gt;</code></h2>
 <p>The <code>ICoreEnumerable&lt;T&gt;</code> interface does implement <code>IEnumerable&lt;T&gt;</code> and is being used for any <code>wan24-Core</code> enumerable type in case you need a common interface which avoids having to fall back to .NET enumerables - example: A method which does return a <code>wan24-Core</code> enumerable may return an <code>ArrayEnumerable&lt;T&gt;</code> or an <code>ArrayWhereEnumerable&lt;T&gt;</code> and uses <code>ICoreEnumerable&lt;T&gt;</code> as return type, which is a common interface for the two possible return types.</p>
+<h2 id="asynchronous-object-enumerable">Asynchronous object enumerable</h2>
+<p>The non-generic <code>IAsyncEnumerable</code> interface for enumerating objects is missing in .NET. If you need to enumerate objects you can use the <code>AsyncObject(Enumerable|Enumerator)&lt;T&gt;</code>.</p>
 
 </article>
                 </div>

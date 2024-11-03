@@ -377,7 +377,7 @@ namespace Wan24_Core_Tests
         public void CreateInstanceFieldGetter_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(TestField3)) ?? throw new InvalidProgramException();
-            Func<object?, object?> getter = fi.Field.CreateInstanceFieldGetter();
+            Func<object?, object?> getter = fi.FieldInfo.CreateInstanceFieldGetter();
             TestField3 = true;
             object? ret = getter(this);
             Assert.IsNotNull(ret);
@@ -388,7 +388,7 @@ namespace Wan24_Core_Tests
         public void CreateStaticFieldGetter_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static|BindingFlags.NonPublic) ?? throw new InvalidProgramException();
-            Func<object?> getter = fi.Field.CreateStaticFieldGetter();
+            Func<object?> getter = fi.FieldInfo.CreateStaticFieldGetter();
             StaticTestField = true;
             object? ret = getter();
             Assert.IsNotNull(ret);
@@ -399,7 +399,7 @@ namespace Wan24_Core_Tests
         public void CreateStaticFieldGetter2_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
-            Func<object?, object?> getter = fi.Field.CreateStaticFieldGetter2();
+            Func<object?, object?> getter = fi.FieldInfo.CreateStaticFieldGetter2();
             StaticTestField = true;
             object? ret = getter(null);
             Assert.IsNotNull(ret);
@@ -410,7 +410,7 @@ namespace Wan24_Core_Tests
         public void CreateInstanceFieldSetter_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(TestField3)) ?? throw new InvalidProgramException();
-            Action<object?, object?> setter = fi.Field.CreateInstanceFieldSetter();
+            Action<object?, object?> setter = fi.FieldInfo.CreateInstanceFieldSetter();
             TestField3 = false;
             setter(this, true);
             Assert.IsTrue(TestField3);
@@ -420,7 +420,7 @@ namespace Wan24_Core_Tests
         public void CreateStaticFieldSetter_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
-            Action<object?> setter = fi.Field.CreateStaticFieldSetter();
+            Action<object?> setter = fi.FieldInfo.CreateStaticFieldSetter();
             StaticTestField = false;
             setter(true);
             Assert.IsTrue(StaticTestField);
@@ -430,7 +430,7 @@ namespace Wan24_Core_Tests
         public void CreateStaticFieldSetter2_Tests()
         {
             FieldInfoExt fi = typeof(ReflectionExtensions_Tests).GetFieldCached(nameof(StaticTestField), BindingFlags.Static | BindingFlags.NonPublic) ?? throw new InvalidProgramException();
-            Action<object?, object?> setter = fi.Field.CreateStaticFieldSetter2();
+            Action<object?, object?> setter = fi.FieldInfo.CreateStaticFieldSetter2();
             StaticTestField = false;
             setter(null, true);
             Assert.IsTrue(StaticTestField);

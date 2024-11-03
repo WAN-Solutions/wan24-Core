@@ -70,7 +70,7 @@ namespace wan24.Core
             PropertyInfoExt pi;
             if (ProviderKey.Length > 0)
             {
-                instance = InstanceTables.FindInstance(fi.Field, ProviderKey);
+                instance = InstanceTables.FindInstance(fi.FieldInfo, ProviderKey);
                 if (instance is null)
                     throw new InvalidOperationException("The object instance with the given key wasn't found in the instance provider table");
                 if (!valueType.IsAssignableFrom(instance.GetType()))

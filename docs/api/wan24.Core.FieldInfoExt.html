@@ -161,7 +161,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FieldInfoExt(in FieldInfo Field, in Func&lt;object?, object?&gt;? Getter, in Action&lt;object?, object?&gt;? Setter)</code></pre>
+    <pre><code class="lang-csharp hljs">public FieldInfoExt(in FieldInfo FieldInfo, in Func&lt;object?, object?&gt;? Getter, in Action&lt;object?, object?&gt;? Setter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -175,7 +175,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></td>
-        <td><span class="parametername">Field</span></td>
+        <td><span class="parametername">FieldInfo</span></td>
         <td><p>Field</p>
 </td>
       </tr>
@@ -203,7 +203,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_Bindings.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.Bindings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L53">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L59">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_Bindings_" data-uid="wan24.Core.FieldInfoExt.Bindings*"></a>
   <h4 id="wan24_Core_FieldInfoExt_Bindings" data-uid="wan24.Core.FieldInfoExt.Bindings">Bindings</h4>
@@ -234,7 +234,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_DeclaringType.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.DeclaringType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L70">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L76">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_DeclaringType_" data-uid="wan24.Core.FieldInfoExt.DeclaringType*"></a>
   <h4 id="wan24_Core_FieldInfoExt_DeclaringType" data-uid="wan24.Core.FieldInfoExt.DeclaringType">DeclaringType</h4>
@@ -274,7 +274,39 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FieldInfo Field { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Use FieldInfo instead&quot;)]
+public FieldInfo Field { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_FieldInfo.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.FieldInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L42">View Source</a>
+  </span>
+  <a id="wan24_Core_FieldInfoExt_FieldInfo_" data-uid="wan24.Core.FieldInfoExt.FieldInfo*"></a>
+  <h4 id="wan24_Core_FieldInfoExt_FieldInfo" data-uid="wan24.Core.FieldInfoExt.FieldInfo">FieldInfo</h4>
+  <div class="markdown level1 summary"><p>Field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FieldInfo FieldInfo { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-condensed">
@@ -296,7 +328,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_FieldType.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.FieldType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L82">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L88">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_FieldType_" data-uid="wan24.Core.FieldInfoExt.FieldType*"></a>
   <h4 id="wan24_Core_FieldInfoExt_FieldType" data-uid="wan24.Core.FieldInfoExt.FieldType">FieldType</h4>
@@ -327,7 +359,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_FullName.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.FullName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L47">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_FullName_" data-uid="wan24.Core.FieldInfoExt.FullName*"></a>
   <h4 id="wan24_Core_FieldInfoExt_FullName" data-uid="wan24.Core.FieldInfoExt.FullName">FullName</h4>
@@ -358,7 +390,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_Getter.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.Getter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L111">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L117">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_Getter_" data-uid="wan24.Core.FieldInfoExt.Getter*"></a>
   <h4 id="wan24_Core_FieldInfoExt_Getter" data-uid="wan24.Core.FieldInfoExt.Getter">Getter</h4>
@@ -389,7 +421,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_IsInitOnly.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.IsInitOnly%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L94">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L100">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_IsInitOnly_" data-uid="wan24.Core.FieldInfoExt.IsInitOnly*"></a>
   <h4 id="wan24_Core_FieldInfoExt_IsInitOnly" data-uid="wan24.Core.FieldInfoExt.IsInitOnly">IsInitOnly</h4>
@@ -420,7 +452,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_IsNullable.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.IsNullable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L106">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L112">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_IsNullable_" data-uid="wan24.Core.FieldInfoExt.IsNullable*"></a>
   <h4 id="wan24_Core_FieldInfoExt_IsNullable" data-uid="wan24.Core.FieldInfoExt.IsNullable">IsNullable</h4>
@@ -451,7 +483,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_Name.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L58">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L64">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_Name_" data-uid="wan24.Core.FieldInfoExt.Name*"></a>
   <h4 id="wan24_Core_FieldInfoExt_Name" data-uid="wan24.Core.FieldInfoExt.Name">Name</h4>
@@ -482,7 +514,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_Setter.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.Setter%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L122">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_Setter_" data-uid="wan24.Core.FieldInfoExt.Setter*"></a>
   <h4 id="wan24_Core_FieldInfoExt_Setter" data-uid="wan24.Core.FieldInfoExt.Setter">Setter</h4>
@@ -515,7 +547,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_From_System_Reflection_FieldInfo__.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.From(System.Reflection.FieldInfo%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L197">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L203">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_From_" data-uid="wan24.Core.FieldInfoExt.From*"></a>
   <h4 id="wan24_Core_FieldInfoExt_From_System_Reflection_FieldInfo__" data-uid="wan24.Core.FieldInfoExt.From(System.Reflection.FieldInfo@)">From(in FieldInfo)</h4>
@@ -565,7 +597,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_GetCustomAttributes_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.GetCustomAttributes(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L122">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L128">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_GetCustomAttributes_" data-uid="wan24.Core.FieldInfoExt.GetCustomAttributes*"></a>
   <h4 id="wan24_Core_FieldInfoExt_GetCustomAttributes_System_Boolean_" data-uid="wan24.Core.FieldInfoExt.GetCustomAttributes(System.Boolean)">GetCustomAttributes(bool)</h4>
@@ -637,7 +669,7 @@ public object[] GetCustomAttributes(bool inherit)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_GetCustomAttributes_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.GetCustomAttributes(System.Type%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L129">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L135">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_GetCustomAttributes_" data-uid="wan24.Core.FieldInfoExt.GetCustomAttributes*"></a>
   <h4 id="wan24_Core_FieldInfoExt_GetCustomAttributes_System_Type_System_Boolean_" data-uid="wan24.Core.FieldInfoExt.GetCustomAttributes(System.Type,System.Boolean)">GetCustomAttributes(Type, bool)</h4>
@@ -715,7 +747,7 @@ public object[] GetCustomAttributes(Type attributeType, bool inherit)</code></pr
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_IsDefined_System_Type_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.IsDefined(System.Type%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L136">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L142">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_IsDefined_" data-uid="wan24.Core.FieldInfoExt.IsDefined*"></a>
   <h4 id="wan24_Core_FieldInfoExt_IsDefined_System_Type_System_Boolean_" data-uid="wan24.Core.FieldInfoExt.IsDefined(System.Type,System.Boolean)">IsDefined(Type, bool)</h4>
@@ -774,11 +806,11 @@ public bool IsDefined(Type attributeType, bool inherit)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_op_Implicit_System_Reflection_FieldInfo___wan24_Core_FieldInfoExt.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.op_Implicit(System.Reflection.FieldInfo%40)~wan24.Core.FieldInfoExt%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L176">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L182">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_op_Implicit_" data-uid="wan24.Core.FieldInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_FieldInfoExt_op_Implicit_System_Reflection_FieldInfo___wan24_Core_FieldInfoExt" data-uid="wan24.Core.FieldInfoExt.op_Implicit(System.Reflection.FieldInfo@)~wan24.Core.FieldInfoExt">implicit operator FieldInfoExt(in FieldInfo)</h4>
-  <div class="markdown level1 summary"><p>Cast from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></p>
+  <div class="markdown level1 summary"><p>Cast from <a class="xref" href="wan24.Core.FieldInfoExt.html#wan24_Core_FieldInfoExt_FieldInfo">FieldInfo</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -799,7 +831,7 @@ public static implicit operator FieldInfoExt(in FieldInfo fi)</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></td>
         <td><span class="parametername">fi</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></p>
+        <td><p><a class="xref" href="wan24.Core.FieldInfoExt.html#wan24_Core_FieldInfoExt_FieldInfo">FieldInfo</a></p>
 </td>
       </tr>
     </tbody>
@@ -824,11 +856,11 @@ public static implicit operator FieldInfoExt(in FieldInfo fi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_op_Implicit_wan24_Core_FieldInfoExt___System_Reflection_FieldInfo.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.op_Implicit(wan24.Core.FieldInfoExt%40)~System.Reflection.FieldInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L166">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L172">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_op_Implicit_" data-uid="wan24.Core.FieldInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_FieldInfoExt_op_Implicit_wan24_Core_FieldInfoExt___System_Reflection_FieldInfo" data-uid="wan24.Core.FieldInfoExt.op_Implicit(wan24.Core.FieldInfoExt@)~System.Reflection.FieldInfo">implicit operator FieldInfo(in FieldInfoExt)</h4>
-  <div class="markdown level1 summary"><p>Cast as <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.fieldinfo">FieldInfo</a></p>
+  <div class="markdown level1 summary"><p>Cast as <a class="xref" href="wan24.Core.FieldInfoExt.html#wan24_Core_FieldInfoExt_FieldInfo">FieldInfo</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -874,7 +906,7 @@ public static implicit operator FieldInfo(in FieldInfoExt fi)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_FieldInfoExt_op_Implicit_wan24_Core_FieldInfoExt___System_Type.md&amp;value=---%0Auid%3A%20wan24.Core.FieldInfoExt.op_Implicit(wan24.Core.FieldInfoExt%40)~System.Type%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L186">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/FieldInfoExt.cs/#L192">View Source</a>
   </span>
   <a id="wan24_Core_FieldInfoExt_op_Implicit_" data-uid="wan24.Core.FieldInfoExt.op_Implicit*"></a>
   <h4 id="wan24_Core_FieldInfoExt_op_Implicit_wan24_Core_FieldInfoExt___System_Type" data-uid="wan24.Core.FieldInfoExt.op_Implicit(wan24.Core.FieldInfoExt@)~System.Type">implicit operator Type(in FieldInfoExt)</h4>
@@ -1063,6 +1095,15 @@ public static implicit operator Type(in FieldInfoExt fi)</code></pre>
       <a class="xref" href="wan24.Core.EnumerableBuilderExtensions.html#wan24_Core_EnumerableBuilderExtensions_WithoutTake__2___1_">EnumerableBuilderExtensions.WithoutTake&lt;tItem, tBuilder&gt;(tBuilder)</a>
   </div>
   <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_All__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.All&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Any__2___0_">EnumerableExtensions.Any&lt;tList, tItem&gt;(tList)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Any__2___0_System_Func___1_System_Boolean___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Any&lt;tList, tItem&gt;(tList, in Func&lt;tItem, bool&gt;, int, int?)</a>
+  </div>
+  <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ContainsAtLeast__2___0_System_Int32_">EnumerableExtensions.ContainsAtLeast&lt;tList, tItem&gt;(tList, int)</a>
   </div>
   <div>
@@ -1070,6 +1111,9 @@ public static implicit operator Type(in FieldInfoExt fi)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Contains__2___0___1_">EnumerableExtensions.Contains&lt;tList, tItem&gt;(tList, tItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Count__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.Count&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
@@ -1088,6 +1132,18 @@ public static implicit operator Type(in FieldInfoExt fi)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_ExecuteForAll__3___0_System_Func___1_wan24_Core_EnumerableExtensions_ExecuteResult___2___System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.ExecuteForAll&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, EnumerableExtensions.ExecuteResult&lt;tResult&gt;&gt;, int, int?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_FirstOrDefault__2___0_System_Func___1_System_Boolean____1_">EnumerableExtensions.FirstOrDefault&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;, tItem?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_FirstOrDefault__2___0___1_">EnumerableExtensions.FirstOrDefault&lt;tList, tItem&gt;(tList, tItem?)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_First__2___0_">EnumerableExtensions.First&lt;tList, tItem&gt;(tList)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_First__2___0_System_Func___1_System_Boolean__">EnumerableExtensions.First&lt;tList, tItem&gt;(tList, Func&lt;tItem, bool&gt;)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.EnumerableExtensions.html#wan24_Core_EnumerableExtensions_Select__3___0_System_Func___1___2__System_Int32_System_Nullable_System_Int32__">EnumerableExtensions.Select&lt;tList, tItem, tResult&gt;(tList, Func&lt;tItem, tResult&gt;, int, int?)</a>
@@ -1148,6 +1204,12 @@ public static implicit operator Type(in FieldInfoExt fi)</code></pre>
   </div>
   <div>
       <a class="xref" href="wan24.Core.ObjectMappingExtensions.html#wan24_Core_ObjectMappingExtensions_MapTo__2___0___1__">ObjectMappingExtensions.MapTo&lt;tSource, tTarget&gt;(tSource, in tTarget)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallelAsync__2___0_System_Func___1_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask__System_Threading_Tasks_ParallelOptions_System_Threading_CancellationToken_">ParallelExtensions.ExecuteParallelAsync&lt;tList, tItem&gt;(tList, Func&lt;tItem, CancellationToken, ValueTask&gt;, ParallelOptions?, CancellationToken)</a>
+  </div>
+  <div>
+      <a class="xref" href="wan24.Core.ParallelExtensions.html#wan24_Core_ParallelExtensions_ExecuteParallel__2___0_System_Action___1__System_Threading_Tasks_ParallelOptions__">ParallelExtensions.ExecuteParallel&lt;tList, tItem&gt;(tList, Action&lt;tItem&gt;, in ParallelOptions?)</a>
   </div>
   <div>
       <a class="xref" href="wan24.Core.QueryableBuilderExtensions.html#wan24_Core_QueryableBuilderExtensions_WithCondition__2___1_System_Linq_Expressions_Expression_System_Func___0_System_Boolean_____">QueryableBuilderExtensions.WithCondition&lt;tItem, tBuilder&gt;(tBuilder, params Expression&lt;Func&lt;tItem, bool&gt;&gt;[])</a>

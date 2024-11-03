@@ -36,6 +36,8 @@ namespace wan24.Core
         {
             get
             {
+                EnsureUndisposed();
+                if (HasValue) return _Value!;
                 lock (SyncObject)
                 {
                     EnsureUndisposed();

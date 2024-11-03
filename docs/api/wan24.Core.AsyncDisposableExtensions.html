@@ -146,7 +146,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Frozen_FrozenSet_System_IAsyncDisposable__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Frozen.FrozenSet%7BSystem.IAsyncDisposable%7D%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L142">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L117">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Frozen_FrozenSet_System_IAsyncDisposable__System_Boolean_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Frozen.FrozenSet{System.IAsyncDisposable},System.Boolean)">DisposeAllAsync(FrozenSet&lt;IAsyncDisposable&gt;, bool)</h4>
@@ -155,7 +155,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
 public static Task DisposeAllAsync(this FrozenSet&lt;IAsyncDisposable&gt; disposables, bool parallel = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -255,122 +255,10 @@ public static Task DisposeAllAsync(this IEnumerable&lt;IAsyncDisposable&gt; disp
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Generic_IList_System_IAsyncDisposable__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Generic.IList%7BSystem.IAsyncDisposable%7D%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L64">View Source</a>
-  </span>
-  <a id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync*"></a>
-  <h4 id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Generic_IList_System_IAsyncDisposable__System_Boolean_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Generic.IList{System.IAsyncDisposable},System.Boolean)">DisposeAllAsync(IList&lt;IAsyncDisposable&gt;, bool)</h4>
-  <div class="markdown level1 summary"><p>Dispose all</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static Task DisposeAllAsync(this IList&lt;IAsyncDisposable&gt; disposables, bool parallel = false)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>&gt;</td>
-        <td><span class="parametername">disposables</span></td>
-        <td><p>Disposables</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">parallel</span></td>
-        <td><p>Dispose parallel?</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Generic_List_System_IAsyncDisposable__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Generic.List%7BSystem.IAsyncDisposable%7D%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L90">View Source</a>
-  </span>
-  <a id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync*"></a>
-  <h4 id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Generic_List_System_IAsyncDisposable__System_Boolean_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Generic.List{System.IAsyncDisposable},System.Boolean)">DisposeAllAsync(List&lt;IAsyncDisposable&gt;, bool)</h4>
-  <div class="markdown level1 summary"><p>Dispose all</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static Task DisposeAllAsync(this List&lt;IAsyncDisposable&gt; disposables, bool parallel = false)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a>&gt;</td>
-        <td><span class="parametername">disposables</span></td>
-        <td><p>Disposables</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">parallel</span></td>
-        <td><p>Dispose parallel?</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Immutable_ImmutableArray_System_IAsyncDisposable__System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Immutable.ImmutableArray%7BSystem.IAsyncDisposable%7D%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L116">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L91">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_System_Collections_Immutable_ImmutableArray_System_IAsyncDisposable__System_Boolean_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync(System.Collections.Immutable.ImmutableArray{System.IAsyncDisposable},System.Boolean)">DisposeAllAsync(ImmutableArray&lt;IAsyncDisposable&gt;, bool)</h4>
@@ -418,6 +306,78 @@ public static Task DisposeAllAsync(this ImmutableArray&lt;IAsyncDisposable&gt; d
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_DisposeAllAsync__1___0_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.DisposeAllAsync%60%601(%60%600%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L65">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync*"></a>
+  <h4 id="wan24_Core_AsyncDisposableExtensions_DisposeAllAsync__1___0_System_Boolean_" data-uid="wan24.Core.AsyncDisposableExtensions.DisposeAllAsync``1(``0,System.Boolean)">DisposeAllAsync&lt;T&gt;(T, bool)</h4>
+  <div class="markdown level1 summary"><p>Dispose all</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task DisposeAllAsync&lt;T&gt;(this T disposables, bool parallel = false) where T : IList&lt;IAsyncDisposable&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">disposables</span></td>
+        <td><p>Disposables</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">parallel</span></td>
+        <td><p>Dispose parallel?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>List type</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -528,7 +488,7 @@ public static ConfiguredAsyncDisposable FixedContext(this IAsyncDisposable dispo
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Frozen_FrozenSet_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Frozen.FrozenSet%7BSystem.Object%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L264">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L207">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Frozen_FrozenSet_System_Object__" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Frozen.FrozenSet{System.Object})">TryDisposeAllAsync(FrozenSet&lt;object&gt;)</h4>
@@ -537,7 +497,7 @@ public static ConfiguredAsyncDisposable FixedContext(this IAsyncDisposable dispo
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
 public static Task TryDisposeAllAsync(this FrozenSet&lt;object&gt; objects)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -578,7 +538,7 @@ public static Task TryDisposeAllAsync(this FrozenSet&lt;object&gt; objects)</cod
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.IEnumerable%7BSystem.Object%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L199">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L159">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IEnumerable_System_Object__" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.IEnumerable{System.Object})">TryDisposeAllAsync(IEnumerable&lt;object&gt;)</h4>
@@ -625,110 +585,10 @@ public static Task TryDisposeAllAsync(this IEnumerable&lt;object&gt; objects)</c
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IList_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.IList%7BSystem.Object%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L210">View Source</a>
-  </span>
-  <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
-  <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_IList_System_Object__" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.IList{System.Object})">TryDisposeAllAsync(IList&lt;object&gt;)</h4>
-  <div class="markdown level1 summary"><p>Try to dispose disposable objects</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static Task TryDisposeAllAsync(this IList&lt;object&gt; objects)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td><span class="parametername">objects</span></td>
-        <td><p>Objects</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_List_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.List%7BSystem.Object%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L228">View Source</a>
-  </span>
-  <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
-  <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Generic_List_System_Object__" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Generic.List{System.Object})">TryDisposeAllAsync(List&lt;object&gt;)</h4>
-  <div class="markdown level1 summary"><p>Try to dispose disposable objects</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
-public static Task TryDisposeAllAsync(this List&lt;object&gt; objects)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>&gt;</td>
-        <td><span class="parametername">objects</span></td>
-        <td><p>Objects</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Immutable_ImmutableArray_System_Object__.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Immutable.ImmutableArray%7BSystem.Object%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L246">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L189">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_System_Collections_Immutable_ImmutableArray_System_Object__" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync(System.Collections.Immutable.ImmutableArray{System.Object})">TryDisposeAllAsync(ImmutableArray&lt;object&gt;)</h4>
@@ -775,10 +635,76 @@ public static Task TryDisposeAllAsync(this ImmutableArray&lt;object&gt; objects)
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L171">View Source</a>
+  </span>
+  <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync*"></a>
+  <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAllAsync__1___0_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAllAsync``1(``0)">TryDisposeAllAsync&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Try to dispose disposable objects</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static Task TryDisposeAllAsync&lt;T&gt;(this T objects) where T : IList&lt;object&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">objects</span></td>
+        <td><p>Objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>List type</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_.md&amp;value=---%0Auid%3A%20wan24.Core.AsyncDisposableExtensions.TryDisposeAsync%60%601(%60%600)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L169">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/AsyncDisposableExtensions.cs/#L129">View Source</a>
   </span>
   <a id="wan24_Core_AsyncDisposableExtensions_TryDisposeAsync_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAsync*"></a>
   <h4 id="wan24_Core_AsyncDisposableExtensions_TryDisposeAsync__1___0_" data-uid="wan24.Core.AsyncDisposableExtensions.TryDisposeAsync``1(``0)">TryDisposeAsync&lt;T&gt;(T)</h4>

@@ -74,10 +74,10 @@ namespace wan24.Core
                     typeof(T).GetFieldCached(
                         name,
                         BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public
-                        ) is FieldInfoExt field
-                        ? field.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
-                            field.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
-                            field.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
+                        ) is FieldInfoExt fieldInfo
+                        ? fieldInfo.GetCustomAttributeCached<DisplayTextAttribute>()?.DisplayText ??
+                            fieldInfo.GetCustomAttributeCached<DisplayNameAttribute>()?.DisplayName ??
+                            fieldInfo.GetCustomAttributeCached<EnumMemberAttribute>()?.Value ??
                             name
                         : name
                     )
@@ -153,7 +153,7 @@ namespace wan24.Core
                                 valueParam,
                                 resultVar
                                 ),
-                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
+                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.FieldInfo ?? throw new InvalidProgramException()),
                             Expression.Call(
                                 valueParam,
                                 typeof(T).GetMethodsCached().FirstOrDefault(m => m.Name == nameof(ToString) && m.ParameterCount == 0)?.Method
@@ -182,7 +182,7 @@ namespace wan24.Core
                                 valueParam,
                                 resultVar
                                 ),
-                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.Field ?? throw new InvalidProgramException()),
+                            Expression.Field(resultVar, typeof(EnumValue).GetFieldCached(nameof(EnumValue.Name))?.FieldInfo ?? throw new InvalidProgramException()),
                             Expression.Constant(value: null, typeof(string))
                             )
                         ),

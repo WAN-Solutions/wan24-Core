@@ -93,13 +93,13 @@ namespace wan24.Core
         /// Set a new property value (will invoke callbacks and call <see cref="RaisePropertyChanged(string?)"/>)
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
-        /// <param name="field">Internal property field</param>
+        /// <param name="instanceField">Internal property field</param>
         /// <param name="value">New value</param>
         /// <param name="propertyName">Property name</param>
-        protected virtual void SetNewPropertyValue<T>(ref T field, in T value, in string propertyName)
+        protected virtual void SetNewPropertyValue<T>(ref T instanceField, in T value, in string propertyName)
         {
             RaisePropertyChanging(propertyName);
-            field = value;
+            instanceField = value;
             InvokeCallbacks();
             RaisePropertyChanged(propertyName);
         }

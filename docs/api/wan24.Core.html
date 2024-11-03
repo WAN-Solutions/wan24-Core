@@ -332,6 +332,16 @@ Classes
       <h5><a class="xref" href="wan24.Core.ChecksumTransform.html">ChecksumTransform</a></h5>
       <section><p>Checksum hash algorithm</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ChunkStream.html">ChunkStream</a></h5>
+      <section><p>Chunk stream (writes data in chunks including chunk meta data; an existing stream can't be extended; not seekable during writing)</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ChunkStreamEventArgs.html">ChunkStreamEventArgs</a></h5>
+      <section><p>Chunk stream event arguments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ChunkStream-2.html">ChunkStream&lt;tStream, tFinal&gt;</a></h5>
+      <section><p>Chunk stream (writes data in chunks including chunk meta data; an existing stream can't be extended; not seekable during writing; extending type needs to have a
+constructor which uses the <a class="xref" href="wan24.Core.ConstructorAttribute.html">ConstructorAttribute</a>)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ChunkedFileStream.html">ChunkedFileStream</a></h5>
       <section><p>Chunked file stream helper</p>
 </section>
@@ -379,6 +389,9 @@ Classes
 </section>
       <h5><a class="xref" href="wan24.Core.ConsoleLogger.html">ConsoleLogger</a></h5>
       <section><p>Console logger</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ConstructorAttribute.html">ConstructorAttribute</a></h5>
+      <section><p>Attribute for a constructor to use in a context</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ConstructorInfoExt.html">ConstructorInfoExt</a></h5>
       <section><p>Extended constructor information</p>
@@ -1261,7 +1274,7 @@ and if any upcoming item is available for processing at that time)</p>
       <section><p>Random stream (uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.randomnumbergenerator">RandomNumberGenerator</a> for reading random bytes into the given buffers)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ReadWriteLock.html">ReadWriteLock</a></h5>
-      <section><p>Read/write lock (allows multiple reader, but only sequential writing)</p>
+      <section><p>Read/write lock (allows multiple reader, but only isolated writing)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ReadWriteLock.Context.html">ReadWriteLock.Context</a></h5>
       <section><p>Read/write lock context</p>
@@ -2114,6 +2127,9 @@ Enums
       <h5><a class="xref" href="wan24.Core.CacheEventReasons.html">CacheEventReasons</a></h5>
       <section><p>Cache event reasons enumeration</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ChunkTypes.html">ChunkTypes</a></h5>
+      <section><p>Chunk type enumeration</p>
+</section>
       <h5><a class="xref" href="wan24.Core.FileSystemEventTypes.html">FileSystemEventTypes</a></h5>
       <section><p>File system event type flags</p>
 </section>
@@ -2173,6 +2189,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.BytesExtensions.Clear_Delegate.html">BytesExtensions.Clear_Delegate</a></h5>
       <section><p>Delegate for a byte clearing handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ChunkStream-2.ChunkStreamEvent_Delegate.html">ChunkStream&lt;tStream, tFinal&gt;.ChunkStreamEvent_Delegate</a></h5>
+      <section><p>Delegate for an event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ChunkedStream.AsyncDeleteChunk_Delegate.html">ChunkedStream.AsyncDeleteChunk_Delegate</a></h5>
       <section><p>Delegate for deleting a chunk</p>

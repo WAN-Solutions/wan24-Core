@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -311,7 +310,7 @@ namespace wan24.Core
         /// <param name="count">Count</param>
         /// <param name="cancellationToken">Cancellation</param>
         /// <returns>If contains at least <c>count</c></returns>
-        public static async Task<bool> ContainsAtLeast<T>(
+        public static async Task<bool> ContainsAtLeastAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             int count,
             CancellationToken cancellationToken = default
@@ -332,7 +331,7 @@ namespace wan24.Core
         /// <param name="count">Count</param>
         /// <param name="cancellationToken">Cancellation</param>
         /// <returns>If contains at most <c>count</c></returns>
-        public static async Task<bool> ContainsAtMost<T>(
+        public static async Task<bool> ContainsAtMostAsync<T>(
             this IAsyncEnumerable<T> enumerable,
             int count,
             CancellationToken cancellationToken = default
