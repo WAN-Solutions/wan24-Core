@@ -139,9 +139,7 @@ namespace wan24.Core
                     if (ProcessCount >= Threads) await Processing.ResetAsync().DynamicContext();
                     await Busy.ResetAsync().DynamicContext();
                 }
-#pragma warning disable CS4014 // Not waiting for the task
-                Process(task, CancelToken).DynamicContext();
-#pragma warning restore CS4014 // Not waiting for the task
+                _ = Process(task, CancelToken).DynamicContext();
             }
         }
 
@@ -152,6 +150,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         protected async Task Process(Task_Delegate task, CancellationToken cancellationToken)
         {
+            await Task.Yield();
             try
             {
                 await task(cancellationToken).DynamicContext();

@@ -101,9 +101,9 @@ namespace wan24.Core
 #endif
         public static object? GetValueFast(this FieldInfo fi, in object? obj)
         {
-            FieldInfoExt field = FieldInfoExt.From(fi);
-            if (field.Getter is null) throw new InvalidOperationException("The field has no usable getter");
-            return field.Getter(obj);
+            FieldInfoExt fieldInfo = FieldInfoExt.From(fi);
+            if (fieldInfo.Getter is null) throw new InvalidOperationException("The field has no usable getter");
+            return fieldInfo.Getter(obj);
         }
 
         /// <summary>
@@ -134,9 +134,9 @@ namespace wan24.Core
 #endif
         public static void SetValueFast(this FieldInfo fi, in object? obj, in object? value)
         {
-            FieldInfoExt field = FieldInfoExt.From(fi);
-            if (field.Setter is null) throw new InvalidOperationException("The field has no usable setter");
-            field.Setter(obj, value);
+            FieldInfoExt fieldInfo = FieldInfoExt.From(fi);
+            if (fieldInfo.Setter is null) throw new InvalidOperationException("The field has no usable setter");
+            fieldInfo.Setter(obj, value);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
@@ -88,7 +87,7 @@ namespace wan24.Core
         public virtual async Task<PipelineResult> ProcessAsync(tContext context, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            if (context.IsDisposing) throw new ObjectDisposedException(context.GetType().ToString());
+            ObjectDisposedException.ThrowIf(context.IsDisposing, context);
             if (context.CancelToken.IsEqualTo(default))
             {
                 context.CancelToken = cancellationToken;
@@ -112,6 +111,7 @@ namespace wan24.Core
             ImmutableArray<Pipeline_Delegate> methods = Methods.Frozen ?? throw new InvalidProgramException();
             int i = 0;
             if (!Contexts.Add(context)) throw new ArgumentException("Double context", nameof(context));
+            PipelineResult? result = null;
             try
             {
                 for (int len = methods.Length; i < len && !cancellationToken.GetIsCancellationRequested(); i++)
@@ -135,8 +135,7 @@ namespace wan24.Core
                         break;
                     method = null;
                 }
-                context.Finished = DateTime.Now;
-                return new()
+                return result = new()
                 {
                     Runtime = context.Runtime,
                     DidFinish = method is null,
@@ -149,10 +148,10 @@ namespace wan24.Core
             }
             catch (Exception ex)
             {
-                context.Finished = DateTime.Now;
-                if (!await HandleExceptionAsync(context, method, ex).DynamicContext())
+                context.LastException = ex;
+                if (!await HandleExceptionAsync(context, method).DynamicContext())
                     throw;
-                return new()
+                return result = new()
                 {
                     Runtime = context.Runtime,
                     DidFinish = false,
@@ -168,6 +167,7 @@ namespace wan24.Core
             {
                 Contexts.Remove(context);
                 await context.TryDisposeAsync().DynamicContext();
+                await FinalizeProcessingAsync(context, result).DynamicContext();
             }
         }
 
@@ -179,14 +179,20 @@ namespace wan24.Core
         protected virtual async Task<bool> RunMethodAsync(tContext context) => await context.CurrentMethod(context).DynamicContext();
 
         /// <summary>
-        /// Handle an exception
+        /// Handle an exception (which was set to <see cref="PipelineContextBase{tPipeline, tFinal}.LastException"/>)
         /// </summary>
         /// <param name="context">Context</param>
         /// <param name="method">Executing method</param>
-        /// <param name="ex">Exception</param>
         /// <returns>If the exception was handled (won't be thrown, if <see langword="true"/>)</returns>
-        protected virtual Task<bool> HandleExceptionAsync(tContext context, Pipeline_Delegate? method, Exception ex)
+        protected virtual Task<bool> HandleExceptionAsync(tContext context, Pipeline_Delegate? method)
             => Task.FromResult(false);
+
+        /// <summary>
+        /// Finalize processing (called from a finally block, after the context was disposed)
+        /// </summary>
+        /// <param name="context">Context (disposed already!)</param>
+        /// <param name="result">Result (if <see langword="null"/>, <c>context.LastException</c> has the exception which will be thrown to the initial code)</param>
+        protected virtual Task FinalizeProcessingAsync(tContext context, PipelineResult? result) => Task.CompletedTask;
 
         /// <inheritdoc/>
         protected override async Task WorkerAsync() => await CancelToken.WaitHandle.WaitAsync().DynamicContext();

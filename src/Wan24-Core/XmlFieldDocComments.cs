@@ -16,14 +16,14 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="field">Field</param>
+        /// <param name="fieldInfo">Field</param>
         /// <param name="xml">XML documentation comments</param>
-        internal XmlFieldDocComments(in XmlTypeDocComments type, in FieldInfoExt field, in XPathNavigator? xml)
+        internal XmlFieldDocComments(in XmlTypeDocComments type, in FieldInfoExt fieldInfo, in XPathNavigator? xml)
         {
             Type = type;
-            Field = field;
+            FieldInfo = fieldInfo;
             if (xml is null) return;
-            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(field)}']/summary")?.Trim();
+            Description = XmlDocComments.GetNodeValue(xml, XPath = $"/doc/members/member[@name='{XmlDocComments.GetNodeName(fieldInfo)}']/summary")?.Trim();
         }
 
         /// <summary>
@@ -34,7 +34,13 @@ namespace wan24.Core
         /// <summary>
         /// Field
         /// </summary>
-        public FieldInfoExt Field { get; }
+        [Obsolete("Use FieldInfo instead")]
+        public FieldInfoExt Field => FieldInfo;//TODO Remove in v3
+
+        /// <summary>
+        /// Field
+        /// </summary>
+        public FieldInfoExt FieldInfo { get; }
 
         /// <summary>
         /// Description

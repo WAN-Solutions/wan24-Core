@@ -57,10 +57,10 @@ namespace Wan24_Core_Benchmark_Tests
         private bool TestMethod(bool param) => param;
 
         [Benchmark]
-        public void NetStaticFieldGetter() => StaticField.Field.GetValue(obj: null);
+        public void NetStaticFieldGetter() => StaticField.FieldInfo.GetValue(obj: null);
 
         [Benchmark]
-        public void NetStaticFieldSetter() => StaticField.Field.SetValue(obj: null, value: true);
+        public void NetStaticFieldSetter() => StaticField.FieldInfo.SetValue(obj: null, value: true);
 
         [Benchmark]
         public void FastStaticFieldGetter() => StaticField.Getter!(null);
@@ -69,10 +69,10 @@ namespace Wan24_Core_Benchmark_Tests
         public void FastStaticFieldSetter() => StaticField.Setter!(null, true);
 
         [Benchmark]
-        public void NetFieldGetter() => Field.Field.GetValue(this);
+        public void NetFieldGetter() => Field.FieldInfo.GetValue(this);
 
         [Benchmark]
-        public void NetFieldSetter() => Field.Field.SetValue(this, value: true);
+        public void NetFieldSetter() => Field.FieldInfo.SetValue(this, value: true);
 
         [Benchmark]
         public void FastFieldGetter() => Field.Getter!(this);

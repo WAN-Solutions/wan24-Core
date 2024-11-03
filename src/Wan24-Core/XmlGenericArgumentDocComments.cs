@@ -51,7 +51,7 @@ namespace wan24.Core
         public XmlMethodDocComments? Method { get; }
 
         /// <summary>
-        /// Field
+        /// Argument
         /// </summary>
         public Type Argument { get; }
 

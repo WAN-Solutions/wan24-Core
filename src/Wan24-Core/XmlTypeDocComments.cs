@@ -51,13 +51,13 @@ namespace wan24.Core
                 // Constants
                 HashSet<XmlFieldDocComments> constants = [];
                 foreach (FieldInfoExt fi in type.GetFieldsCached(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(f => f.Field.DeclaringType == type && f.Field.IsLiteral))
+                    .Where(f => f.FieldInfo.DeclaringType == type && f.FieldInfo.IsLiteral))
                     constants.Add(new(this, fi, xml));
                 Constants = constants.ToFrozenSet();
                 // Fields
                 HashSet<XmlFieldDocComments> fields = [];
                 foreach (FieldInfoExt fi in type.GetFieldsCached(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
-                    .Where(f => f.Field.DeclaringType == type && !f.Field.IsLiteral && !f.Name.StartsWith('<') && f.GetCustomAttributeCached<CompilerGeneratedAttribute>() is null))
+                    .Where(f => f.FieldInfo.DeclaringType == type && !f.FieldInfo.IsLiteral && !f.Name.StartsWith('<') && f.GetCustomAttributeCached<CompilerGeneratedAttribute>() is null))
                     fields.Add(new(this, fi, xml));
                 Fields = fields.ToFrozenSet();
                 // Properties

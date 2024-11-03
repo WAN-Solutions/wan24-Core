@@ -157,7 +157,10 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool ContainsValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
-            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+        {
+            bool valueIsNull = value is null;
+            return dict.Values.Any(v => (valueIsNull && v is null) || (!valueIsNull && v is not null && v.Equals(value)));
+        }
 
         /// <summary>
         /// Determine if a value is contained
@@ -172,7 +175,10 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool ContainsValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
-            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+        {
+            bool valueIsNull = value is null;
+            return dict.Values.Any(v => (valueIsNull && v is null) || (!valueIsNull && v is not null && v.Equals(value)));
+        }
 
         /// <summary>
         /// Determine if a value is contained
@@ -187,7 +193,10 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool ContainsValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
-            => dict.Values.Any(v => (v is null && value is null) || (v is not null && v.Equals(value)));
+        {
+            bool valueIsNull = value is null;
+            return dict.Values.Any(v => (valueIsNull && v is null) || (!valueIsNull && v is not null && v.Equals(value)));
+        }
 
         /// <summary>
         /// Get the first key of a value
@@ -264,8 +273,9 @@ namespace wan24.Core
 #endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                 {
                     key = kvp.Key;
                     return true;
@@ -289,8 +299,9 @@ namespace wan24.Core
 #endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                 {
                     key = kvp.Key;
                     return true;
@@ -314,8 +325,9 @@ namespace wan24.Core
 #endif
         public static bool TryGetKeyOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, in tValue value, [MaybeNullWhen(returnValue: false)] out tKey key) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                 {
                     key = kvp.Key;
                     return true;
@@ -338,8 +350,9 @@ namespace wan24.Core
 #endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                     yield return kvp.Key;
         }
 
@@ -357,8 +370,9 @@ namespace wan24.Core
 #endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this FrozenDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                     yield return kvp.Key;
         }
 
@@ -376,8 +390,9 @@ namespace wan24.Core
 #endif
         public static IEnumerable<tKey> GetKeysOfValue<tKey, tValue>(this IReadOnlyDictionary<tKey, tValue> dict, tValue value) where tKey : notnull
         {
+            bool valueIsNull = value is null;
             foreach (KeyValuePair<tKey, tValue> kvp in dict)
-                if (kvp.Value?.Equals(value) ?? value is null)
+                if (kvp.Value?.Equals(value) ?? valueIsNull)
                     yield return kvp.Key;
         }
     }

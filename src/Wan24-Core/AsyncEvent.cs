@@ -24,11 +24,11 @@ namespace wan24.Core
         /// <summary>
         /// Event handlers
         /// </summary>
-        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> EventHandlers = [];
+        private readonly ConcurrentHashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> EventHandlers = [];
         /// <summary>
         /// Event handlers
         /// </summary>
-        private readonly HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers = [];
+        private readonly ConcurrentHashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> AsyncEventHandlers = [];
         /// <summary>
         /// Sender
         /// </summary>
@@ -81,61 +81,46 @@ namespace wan24.Core
         CancellationToken? IAsyncEvent<tSender, tArgs>.Cancellation { get => Cancellation; set => Cancellation = value; }
 
         /// <inheritdoc/>
-        HashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> IAsyncEvent<tSender, tArgs>.EventHandlers => EventHandlers;
+        ConcurrentHashSet<IAsyncEvent<tSender, tArgs>.EventHandler_Delegate> IAsyncEvent<tSender, tArgs>.EventHandlers => EventHandlers;
 
         /// <inheritdoc/>
-        HashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> IAsyncEvent<tSender, tArgs>.AsyncEventHandlers => AsyncEventHandlers;
+        ConcurrentHashSet<IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate> IAsyncEvent<tSender, tArgs>.AsyncEventHandlers => AsyncEventHandlers;
 
         /// <summary>
         /// Add an event handler
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Added?</returns>
-        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
-        {
-            lock (SyncObject) return EventHandlers.Add(handler);
-        }
+        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler) => EventHandlers.Add(handler);
 
         /// <summary>
         /// Add an event handler
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Added?</returns>
-        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
-        {
-            lock (SyncObject) return AsyncEventHandlers.Add(handler);
-        }
+        public bool Listen(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler) => AsyncEventHandlers.Add(handler);
 
         /// <summary>
         /// Detach an event handler
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Detached?</returns>
-        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler)
-        {
-            lock (SyncObject) return EventHandlers.Remove(handler);
-        }
+        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler) => EventHandlers.Remove(handler);
 
         /// <summary>
         /// Detach an event handler
         /// </summary>
         /// <param name="handler">Handler</param>
         /// <returns>Detached?</returns>
-        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler)
-        {
-            lock (SyncObject) return AsyncEventHandlers.Remove(handler);
-        }
+        public bool Detach(in IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler) => AsyncEventHandlers.Remove(handler);
 
         /// <summary>
         /// Detach all event handlers
         /// </summary>
         private void DetachAll()
         {
-            lock (SyncObject)
-            {
-                EventHandlers.Clear();
-                AsyncEventHandlers.Clear();
-            }
+            EventHandlers.Clear();
+            AsyncEventHandlers.Clear();
         }
 
         /// <summary>
@@ -193,7 +178,7 @@ namespace wan24.Core
             }
             {
                 IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate[] handlers;
-                lock (SyncObject) handlers = [.. AsyncEventHandlers];
+                handlers = [.. AsyncEventHandlers];
                 foreach (IAsyncEvent<tSender, tArgs>.EventHandlerAsync_Delegate handler in handlers)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -211,7 +196,7 @@ namespace wan24.Core
             }
             {
                 IAsyncEvent<tSender, tArgs>.EventHandler_Delegate[] handlers;
-                lock (SyncObject) handlers = [.. EventHandlers];
+                handlers = [.. EventHandlers];
                 foreach (IAsyncEvent<tSender, tArgs>.EventHandler_Delegate handler in handlers)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
