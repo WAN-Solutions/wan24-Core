@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Collections | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Collections | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Docs/articles/Collections.md/#L1" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="collections">Collections</h1>
+
+<h2 id="concurrent-collections">Concurrent collections</h2>
+<p>There are some concurrent collections, which you may want to use. They're nothing special, but just ensure thread-safe writinbg operations using <code>lock</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</code></td>
+</tr>
+<tr>
+<td><code>ConcurrentHashSet&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>ConcurrentList&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>ConcurrentObjectDictionary&lt;tKey, tValue&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="freezable-collections">Freezable collections</h2>
+<p>Using those freezable collections you can freeze and unfreeze the managed data:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Extension</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FreezableDictionary&lt;tKey, tValue&gt;</code></td>
+<td><code>ToFreezableDictionary</code></td>
+<td><code>FrozenDictionary&lt;tKey, tValue&gt;</code></td>
+</tr>
+<tr>
+<td><code>FreezableList&lt;T&gt;</code></td>
+<td><code>ToFreezableList</code></td>
+<td><code>ImmutableArray&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>FreezableOrderedDictionary&lt;tKey, tValue&gt;</code></td>
+<td><code>ToFreezableOrderedDictionary</code></td>
+<td><code>ImmutableArray&lt;KeyValuePair&lt;tKey, tValue&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><code>FreezableSet&lt;T&gt;</code></td>
+<td><code>ToFreezableSet</code></td>
+<td><code>FrozenSet&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-cs">FreezableList list = new();
+
+// Freeze the current state
+list.Add(item);
+list.Freeze();
+
+// Frozen means read-only!
+list.Add(item);// This will throw!
+
+// Unfreeze
+list.Unfreeze();
+list.Add(item);// This won't throw
+</code></pre>
+<h2 id="ordered-dictionary">Ordered dictionary</h2>
+<p>The <code>OrderedDictionary&lt;tKey, tValue&gt;</code> remembers the order in which items were added, to make them accessable using their index as well.</p>
+<h2 id="change-token-and-observable-collections">Change token and observable collections</h2>
+<p>These collections can notify your code about changes using events and callbacks:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Implementations</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ChangeTokenCollection&lt;T&gt;</code></td>
+<td><code>IChangeToken</code>, <code>INotifyPropertyChanged</code>, <code>INotifyPropertyChanging</code>, <code>INotifyCollectionChanged</code>, <code>IObserver&lt;T&gt;</code></td>
+<td>Item observing change token collection</td>
+</tr>
+<tr>
+<td><code>ChangeTokenDictionary&lt;tKey, tValue&gt;</code></td>
+<td><code>IChangeToken</code>, <code>INotifyPropertyChanged</code>, <code>INotifyPropertyChanging</code>, <code>INotifyCollectionChanged</code>, <code>IObserver&lt;tValue&gt;</code></td>
+<td>Value observing change token dictionary</td>
+</tr>
+<tr>
+<td><code>ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</code></td>
+<td><code>IChangeToken</code>, <code>INotifyPropertyChanged</code>, <code>INotifyPropertyChanging</code>, <code>INotifyCollectionChanged</code>, <code>IObserver&lt;tValue&gt;</code></td>
+<td>Concurrent value observing change token dictionary</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extensions">Extensions</h2>
+<p>There are some extenion methods which can make your life with collections more easy:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AddRange(Async)</code></td>
+<td>Add a list of items</td>
+</tr>
+<tr>
+<td><code>Move(Index/Item)(Up/Down)</code></td>
+<td>Move an item at an index up (decrease its index) or down (increase its index)</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>
