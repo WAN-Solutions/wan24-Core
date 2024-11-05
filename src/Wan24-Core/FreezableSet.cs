@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Frozen;
+using System.Diagnostics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -9,6 +10,7 @@ namespace wan24.Core
     /// Freezable set
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
+    [DebuggerDisplay("Count = {Count}")]
     public class FreezableSet<T> : ISet<T>, IReadOnlySet<T>, IReadOnlyCollection<T>
     {
         /// <summary>

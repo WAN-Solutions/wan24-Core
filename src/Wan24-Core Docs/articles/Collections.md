@@ -1,5 +1,9 @@
 # Collections
 
+## Ordered dictionary
+
+The `OrderedDictionary<tKey, tValue>` remembers the order in which items were added, to make them accessable using their index as well.
+
 ## Concurrent collections
 
 There are some concurrent collections, which you may want to use. They're nothing special, but just ensure thread-safe writinbg operations using `lock`:
@@ -10,6 +14,8 @@ There are some concurrent collections, which you may want to use. They're nothin
 | `ConcurrentHashSet<T>` |
 | `ConcurrentList<T>` |
 | `ConcurrentObjectDictionary<tKey, tValue>` |
+
+There is no concurrent dictionary implementation which uses locks, because the .NET implementation has some concurrent dictionary specific methods which are way more faster than using `lock`.
 
 ## Freezable collections
 
@@ -38,10 +44,6 @@ list.Add(item);// This will throw!
 list.Unfreeze();
 list.Add(item);// This won't throw
 ```
-
-## Ordered dictionary
-
-The `OrderedDictionary<tKey, tValue>` remembers the order in which items were added, to make them accessable using their index as well.
 
 ## Change token and observable collections
 

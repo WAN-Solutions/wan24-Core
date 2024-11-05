@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 
 namespace wan24.Core
 {
@@ -6,6 +7,7 @@ namespace wan24.Core
     /// Concurrent list
     /// </summary>
     /// <typeparam name="T">Item type</typeparam>
+    [DebuggerDisplay("Count = {Count}")]
     public class ConcurrentList<T> : IList<T>, IReadOnlyList<T>
     {
         /// <summary>
