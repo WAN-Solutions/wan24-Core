@@ -133,11 +133,17 @@ namespace wan24.Core
                 {
                     if (Queue.Count == 0)
                         continue;
-                    task = Queue.Dequeue();
-                    if (Queue.Count < Capacity)
-                        await SpaceEvent.SetAsync(CancellationToken.None).DynamicContext();
-                    if(Queue.Count==0)
-                        await QueueEvent.ResetAsync(CancellationToken.None).DynamicContext();
+                    try
+                    {
+                        if (!Queue.TryDequeue(out task, out _)) continue;
+                    }
+                    finally
+                    {
+                        if (Queue.Count < Capacity)
+                            await SpaceEvent.SetAsync(CancellationToken.None).DynamicContext();
+                        if (Queue.Count == 0)
+                            await QueueEvent.ResetAsync(CancellationToken.None).DynamicContext();
+                    }
                 }
                 await task(CancelToken).DynamicContext();
             }

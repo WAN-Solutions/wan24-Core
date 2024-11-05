@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
-using System.Threading.Channels;
 using static wan24.Core.TranslationHelper;
 
 namespace wan24.Core
@@ -12,16 +12,16 @@ namespace wan24.Core
     /// <remarks>
     /// Constructor
     /// </remarks>
-    /// <param name="capacity">Capacity</param>
-    public class QueueWorker(in int capacity) : HostedServiceBase(), IQueueWorker
+    public class ConcurrentQueueWorker() : HostedServiceBase(), IConcurrentQueueWorker
     {
         /// <summary>
         /// Queue
         /// </summary>
-        protected readonly Channel<Task_Delegate> Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
-        {
-            FullMode = BoundedChannelFullMode.Wait
-        });
+        protected readonly ConcurrentQueue<Task_Delegate> Queue = new();
+        /// <summary>
+        /// Item event (raised when there are queued items)
+        /// </summary>
+        protected readonly ResetEvent ItemEvent = new();
 
         /// <summary>
         /// GUID
@@ -29,7 +29,7 @@ namespace wan24.Core
         public string GUID { get; } = Guid.NewGuid().ToString();
 
         /// <inheritdoc/>
-        public int Queued => Queue.Reader.Count;
+        public int Queued => Queue.Count;
 
         /// <inheritdoc/>
         public virtual IEnumerable<Status> State
@@ -52,29 +52,22 @@ namespace wan24.Core
         public object SyncRoot => throw new NotSupportedException();
 
         /// <inheritdoc/>
-        public async ValueTask EnqueueAsync(Task_Delegate task, CancellationToken cancellationToken = default)
-        {
-            EnsureUndisposed();
-            await RunEvent.WaitAsync(cancellationToken).DynamicContext();
-            await Queue.Writer.WriteAsync(task, cancellationToken).DynamicContext();
-        }
-
-        /// <inheritdoc/>
-        public bool TryEnqueue(Task_Delegate task, CancellationToken cancellationToken = default)
+        public void Enqueue(Task_Delegate task, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
             RunEvent.Wait(cancellationToken);
-            return RunEvent.IsSet && Queue.Writer.TryWrite(task);
+            Queue.Enqueue(task);
+            ItemEvent.Set(CancellationToken.None);
         }
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public async ValueTask<int> EnqueueRangeAsync(IEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
+        public int EnqueueRange(IEnumerable<Task_Delegate> tasks, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
             foreach (Task_Delegate task in tasks)
             {
-                await EnqueueAsync(task, cancellationToken).DynamicContext();
+                Enqueue(task, cancellationToken);
                 enqueued++;
             }
             return enqueued;
@@ -87,20 +80,24 @@ namespace wan24.Core
             int enqueued = 0;
             await foreach (Task_Delegate task in tasks.DynamicContext().WithCancellation(cancellationToken))
             {
-                await EnqueueAsync(task, cancellationToken).DynamicContext();
+                Enqueue(task, cancellationToken);
                 enqueued++;
             }
             return enqueued;
         }
 
         /// <inheritdoc/>
-        public bool TryAdd(Task_Delegate item) => TryEnqueue(item);
+        public bool TryAdd(Task_Delegate item)
+        {
+            Enqueue(item);
+            return true;
+        }
 
         /// <inheritdoc/>
         public bool TryTake([MaybeNullWhen(false)] out Task_Delegate item)
         {
             EnsureUndisposed();
-            return Queue.Reader.TryRead(out item);
+            return Queue.TryDequeue(out item);
         }
 
         /// <inheritdoc/>
@@ -121,8 +118,29 @@ namespace wan24.Core
         /// <inheritdoc/>
         protected override async Task WorkerAsync()
         {
-            while (!Cancellation!.IsCancellationRequested)
-                await (await Queue.Reader.ReadAsync(Cancellation!.Token).DynamicContext())(Cancellation!.Token).DynamicContext();
+            while (!CancelToken.IsCancellationRequested)
+                if (Queue.TryDequeue(out Task_Delegate? task))
+                {
+                    await task(CancelToken).DynamicContext();
+                }
+                else
+                {
+                    await ItemEvent.WaitAndResetAsync(CancelToken).DynamicContext();
+                }
+        }
+
+        /// <inheritdoc/>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            ItemEvent.Dispose();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task DisposeCore()
+        {
+            await base.DisposeCore().DynamicContext();
+            await ItemEvent.DisposeAsync().DynamicContext();
         }
 
         /// <summary>
@@ -136,6 +154,6 @@ namespace wan24.Core
         /// </summary>
         /// <param name="worker">Worker</param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator int(in QueueWorker worker) => worker.Queued;
+        public static implicit operator int(in ConcurrentQueueWorker worker) => worker.Queued;
     }
 }

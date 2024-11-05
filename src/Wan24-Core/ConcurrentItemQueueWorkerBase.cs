@@ -9,26 +9,21 @@ namespace wan24.Core
     /// <remarks>
     /// Constructor
     /// </remarks>
-    /// <param name="capacity">Capacity</param>
-    public abstract class ItemQueueWorkerBase<T>(in int capacity) : QueueWorker(capacity), IItemQueueWorker<T>
+    public abstract class ConcurrentItemQueueWorkerBase<T>() : ConcurrentQueueWorker(), IConcurrentItemQueueWorker<T>
     {
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public ValueTask EnqueueAsync(T item, CancellationToken cancellationToken = default)
-            => EnqueueAsync(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
-
-        /// <inheritdoc/>
-        [TargetedPatchingOptOut("Just a method adapter")]
-        public bool TryEnqueue(T item) => TryEnqueue(async (ct) => await ProcessItem(item, ct).DynamicContext());
+        public void Enqueue(T item, CancellationToken cancellationToken = default)
+            => Enqueue(async (ct) => await ProcessItem(item, ct).DynamicContext(), cancellationToken);
 
         /// <inheritdoc/>
         [TargetedPatchingOptOut("Tiny method")]
-        public async ValueTask<int> EnqueueRangeAsync(IEnumerable<T> items, CancellationToken cancellationToken = default)
+        public int EnqueueRange(IEnumerable<T> items, CancellationToken cancellationToken = default)
         {
             int enqueued = 0;
             foreach (T item in items)
             {
-                await EnqueueAsync(item, cancellationToken).DynamicContext();
+                Enqueue(item, cancellationToken);
                 enqueued++;
             }
             return enqueued;
@@ -41,7 +36,7 @@ namespace wan24.Core
             int enqueued = 0;
             await foreach (T item in items.WithCancellation(cancellationToken).ConfigureAwait(continueOnCapturedContext: false))
             {
-                await EnqueueAsync(item, cancellationToken).DynamicContext();
+                Enqueue(item, cancellationToken);
                 enqueued++;
             }
             return enqueued;
