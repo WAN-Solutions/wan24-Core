@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -7,12 +6,12 @@ using System.Diagnostics.CodeAnalysis;
 namespace wan24.Core
 {
     /// <summary>
-    /// Concurrent change token dictionary (observes values; don't forget to dispose!)
+    /// Concurrent change token lock dictionary (observes values; don't forget to dispose!)
     /// </summary>
     /// <typeparam name="tKey">Key type</typeparam>
     /// <typeparam name="tValue">Value type</typeparam>
     [DebuggerDisplay("Count = {Count}")]
-    public sealed partial class ConcurrentChangeTokenDictionary<tKey, tValue> : DisposableChangeToken<ConcurrentChangeTokenDictionary<tKey, tValue>>,
+    public sealed partial class ConcurrentChangeTokenLockDictionary<tKey, tValue> : DisposableChangeToken<ConcurrentChangeTokenDictionary<tKey, tValue>>,
         ICollection<KeyValuePair<tKey, tValue>>,
         IEnumerable<KeyValuePair<tKey, tValue>>,
         IEnumerable,
@@ -34,12 +33,12 @@ namespace wan24.Core
         /// <summary>
         /// Dictionary
         /// </summary>
-        private readonly ConcurrentDictionary<tKey, tValue> Dict;
+        private readonly ConcurrentLockDictionary<tKey, tValue> Dict;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ConcurrentChangeTokenDictionary() : base()
+        public ConcurrentChangeTokenLockDictionary() : base()
         {
             Disposable = new((disposing) => Clear());
             Dict = [];
@@ -50,7 +49,7 @@ namespace wan24.Core
         /// Constructor
         /// </summary>
         /// <param name="dict">Dictionary to observe</param>
-        public ConcurrentChangeTokenDictionary(in ConcurrentDictionary<tKey, tValue> dict) : base()
+        public ConcurrentChangeTokenLockDictionary(in ConcurrentLockDictionary<tKey, tValue> dict) : base()
         {
             Disposable = new((disposing) => Clear());
             Dict = dict;
@@ -60,13 +59,12 @@ namespace wan24.Core
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="concurrencyLevel">Concurrency level</param>
         /// <param name="capacity">Initial capacity</param>
-        public ConcurrentChangeTokenDictionary(in int concurrencyLevel, in int capacity) : base()
+        public ConcurrentChangeTokenLockDictionary(in int capacity) : base()
         {
             Disposable = new((disposing) => Clear());
-            Dict = new(concurrencyLevel, capacity);
-            Subscriptions = new(concurrencyLevel, capacity);
+            Dict = new(capacity);
+            Subscriptions = new(capacity);
         }
 
         /// <inheritdoc/>

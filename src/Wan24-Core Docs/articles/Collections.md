@@ -13,9 +13,10 @@ There are some concurrent collections, which you may want to use. They're nothin
 | `ConcurrentChangeTokenDictionary<tKey, tValue>` |
 | `ConcurrentHashSet<T>` |
 | `ConcurrentList<T>` |
-| `ConcurrentObjectDictionary<tKey, tValue>` |
+| `ConcurrentObjectDictionary<T>` |
+| `ConcurrentLockDictionary<tKey, tValue>` |
 
-There is no concurrent dictionary implementation which uses locks, because the .NET implementation has some concurrent dictionary specific methods which are way more faster than using `lock`.
+The `ConcurrentLockDictionary<tKey, tValue>` offers faster writings, but the .NET `ConcurrentDictionary<tKey, tValue>` uses faster lock free readings.
 
 ## Freezable collections
 
@@ -54,6 +55,7 @@ These collections can notify your code about changes using events and callbacks:
 | `ChangeTokenCollection<T>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<T>` | Item observing change token collection |
 | `ChangeTokenDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Value observing change token dictionary |
 | `ConcurrentChangeTokenDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Concurrent value observing change token dictionary |
+| `ConcurrentChangeTokenLockDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Concurrent value observing change token dictionary |
 
 ## Extensions
 

@@ -65,3 +65,14 @@ using RentedMemory<byte> buffer = new(len: 32);
 **NOTE**: Only the rented memory will be accessable, but not the underlying array. If you need an array, use a `RentedArray<T>` instead. Otherwise you should prefer the `RentedMemory<T>`.
 
 **CAUTION**: After an instance was disposed, it shouldn't be accessed anymore, because the rented memory was returned to the pool and may be used from other code already.
+
+## Pinned array
+
+Array pinning avoids moving the allocated memory by the CLR and allows unsafe access - example:
+
+```cs
+using PinnedArray<byte> pinnedBuffer = new(buffer);
+byte* ptr = (byte*)pinnedBuffer.Pointer;
+```
+
+The pin will be released as soon as the `PinnedArray<T>` instance was disposed.
