@@ -97,9 +97,7 @@ namespace wan24.Core
                 cancellationToken = context.CancelToken;
             }
             await RunEvent.WaitAsync(cancellationToken).DynamicContext();
-            using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(
-                [.. CancellationTokenExtensions.RemoveDoubles([cancellationToken, context.CancelToken, CancelToken])]
-                );
+            using CancellationTokenSource cts = cancellationToken.CombineWith(context.CancelToken, CancelToken);
             cancellationToken = cts.Token;
             context.CancelToken = cancellationToken;
             cancellationToken.ThrowIfCancellationRequested();
