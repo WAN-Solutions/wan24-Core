@@ -48,7 +48,7 @@ namespace wan24.Core
         public void Add(in IHostedService service, in CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
-            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            using CancellationTokenSource cancellation = cancellationToken.CombineWith(CancelToken);
             using SemaphoreSyncContext ssc = ServicesSync.SyncContext(cancellation.Token);
             EnsureUndisposed();
             cancellation.Token.ThrowIfCancellationRequested();
@@ -66,7 +66,7 @@ namespace wan24.Core
             EnsureUndisposed();
             using SemaphoreSyncContext ssc = await ServicesSync.SyncContextAsync(cancellationToken).DynamicContext();
             EnsureUndisposed();
-            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
+            using CancellationTokenSource cancellation = cancellationToken.CombineWith(CancelToken);
             cancellation.Token.ThrowIfCancellationRequested();
             _Services.Add(service);
             if (IsRunning && service is IServiceWorker sw && !sw.IsRunning) await sw.StartAsync(cancellation.Token).DynamicContext();

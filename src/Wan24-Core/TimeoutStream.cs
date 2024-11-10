@@ -68,8 +68,7 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                cancellation.CancelAfter(WriteTimeout);
+                using CancellationTokenSource cancellation = cancellationToken.CombineWith(WriteTimeout);
                 try
                 {
                     await Target.FlushAsync(cancellation.Token).DynamicContext();
@@ -90,8 +89,7 @@
         {
             if (_ReadTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                cancellation.CancelAfter(WriteTimeout);
+                using CancellationTokenSource cancellation = cancellationToken.CombineWith(WriteTimeout);
                 try
                 {
                     return await Target.ReadAsync(buffer, offset, count, cancellation.Token).DynamicContext();
@@ -112,8 +110,7 @@
         {
             if (_ReadTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                cancellation.CancelAfter(WriteTimeout);
+                using CancellationTokenSource cancellation = cancellationToken.CombineWith(WriteTimeout);
                 try
                 {
                     return await Target.ReadAsync(buffer, cancellation.Token).DynamicContext();
@@ -134,8 +131,7 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                cancellation.CancelAfter(WriteTimeout);
+                using CancellationTokenSource cancellation = cancellationToken.CombineWith(WriteTimeout);
                 try
                 {
                     await Target.WriteAsync(buffer, offset, count, cancellation.Token).DynamicContext();
@@ -156,8 +152,7 @@
         {
             if (_WriteTimeout != TimeSpan.Zero)
             {
-                using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-                cancellation.CancelAfter(WriteTimeout);
+                using CancellationTokenSource cancellation = cancellationToken.CombineWith(WriteTimeout);
                 try
                 {
                     await Target.WriteAsync(buffer, cancellation.Token).DynamicContext();

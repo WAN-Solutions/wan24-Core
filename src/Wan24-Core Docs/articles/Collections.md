@@ -1,5 +1,9 @@
 # Collections
 
+## Ordered dictionary
+
+The `OrderedDictionary<tKey, tValue>` remembers the order in which items were added, to make them accessable using their index as well.
+
 ## Concurrent collections
 
 There are some concurrent collections, which you may want to use. They're nothing special, but just ensure thread-safe writinbg operations using `lock`:
@@ -9,7 +13,10 @@ There are some concurrent collections, which you may want to use. They're nothin
 | `ConcurrentChangeTokenDictionary<tKey, tValue>` |
 | `ConcurrentHashSet<T>` |
 | `ConcurrentList<T>` |
-| `ConcurrentObjectDictionary<tKey, tValue>` |
+| `ConcurrentObjectDictionary<T>` |
+| `ConcurrentLockDictionary<tKey, tValue>` |
+
+The `ConcurrentLockDictionary<tKey, tValue>` offers faster writings, but the .NET `ConcurrentDictionary<tKey, tValue>` uses faster lock free readings.
 
 ## Freezable collections
 
@@ -39,10 +46,6 @@ list.Unfreeze();
 list.Add(item);// This won't throw
 ```
 
-## Ordered dictionary
-
-The `OrderedDictionary<tKey, tValue>` remembers the order in which items were added, to make them accessable using their index as well.
-
 ## Change token and observable collections
 
 These collections can notify your code about changes using events and callbacks:
@@ -52,6 +55,7 @@ These collections can notify your code about changes using events and callbacks:
 | `ChangeTokenCollection<T>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<T>` | Item observing change token collection |
 | `ChangeTokenDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Value observing change token dictionary |
 | `ConcurrentChangeTokenDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Concurrent value observing change token dictionary |
+| `ConcurrentChangeTokenLockDictionary<tKey, tValue>` | `IChangeToken`, `INotifyPropertyChanged`, `INotifyPropertyChanging`, `INotifyCollectionChanged`, `IObserver<tValue>` | Concurrent value observing change token dictionary |
 
 ## Extensions
 

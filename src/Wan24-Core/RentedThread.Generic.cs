@@ -189,7 +189,7 @@ namespace wan24.Core
                     Contract.Assert(WorkerCompletion is not null);
                     try
                     {
-                        using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cts.Token, WorkerCancellation);
+                        using CancellationTokenSource cancellation = cts.Token.CombineWith(WorkerCancellation);
                         T value = Worker.Invoke(this, cancellation.Token);
                         WorkEvent.Reset();
                         WorkerCompletion.SetResult(value);
