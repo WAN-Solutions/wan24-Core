@@ -369,8 +369,14 @@ constructor which uses the <a class="xref" href="wan24.Core.ConstructorAttribute
       <h5><a class="xref" href="wan24.Core.ConcurrentChangeTokenDictionary-2.html">ConcurrentChangeTokenDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Concurrent change token dictionary (observes values; don't forget to dispose!)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentChangeTokenLockDictionary-2.html">ConcurrentChangeTokenLockDictionary&lt;tKey, tValue&gt;</a></h5>
+      <section><p>Concurrent change token lock dictionary (observes values; don't forget to dispose!)</p>
+</section>
       <h5><a class="xref" href="wan24.Core.ConcurrentHashSet-1.html">ConcurrentHashSet&lt;T&gt;</a></h5>
       <section><p>Concurrent hash set</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentItemQueueWorkerBase-1.html">ConcurrentItemQueueWorkerBase&lt;T&gt;</a></h5>
+      <section><p>Base class for an item queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ConcurrentList-1.html">ConcurrentList&lt;T&gt;</a></h5>
       <section><p>Concurrent list</p>
@@ -378,8 +384,14 @@ constructor which uses the <a class="xref" href="wan24.Core.ConstructorAttribute
       <h5><a class="xref" href="wan24.Core.ConcurrentList-1.ConcurrentListEnumerator.html">ConcurrentList&lt;T&gt;.ConcurrentListEnumerator</a></h5>
       <section><p>Concurrent enumerator</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentLockDictionary-2.html">ConcurrentLockDictionary&lt;tKey, tValue&gt;</a></h5>
+      <section><p>Concurrent dictionary using a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary&lt;TKey, TValue&gt;</a> and <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/statements/lock">lock</a></p>
+</section>
       <h5><a class="xref" href="wan24.Core.ConcurrentObjectDictionary-1.html">ConcurrentObjectDictionary&lt;T&gt;</a></h5>
       <section><p>Object dictionary</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentQueueWorker.html">ConcurrentQueueWorker</a></h5>
+      <section><p>Queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ConfigEventArgs.html">ConfigEventArgs</a></h5>
       <section><p>Configuration event arguments</p>
@@ -661,6 +673,9 @@ synchronized (adding target streams while reading/seeking may cause an overall r
 </section>
       <h5><a class="xref" href="wan24.Core.ExpressionHelper.html">ExpressionHelper</a></h5>
       <section><p>Expression helper</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Fallback.html">Fallback</a></h5>
+      <section><p>Fallback helper</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FieldInfoExt.html">FieldInfoExt</a></h5>
       <section><p>Extended field information</p>
@@ -1040,6 +1055,12 @@ restrictions for this)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelAsync.html">ParallelAsync</a></h5>
       <section><p>Asynchronous parallel execution</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ParallelConcurrentItemQueueWorkerBase-1.html">ParallelConcurrentItemQueueWorkerBase&lt;T&gt;</a></h5>
+      <section><p>Base class for a parallel item queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.ParallelConcurrentQueueWorker.html">ParallelConcurrentQueueWorker</a></h5>
+      <section><p>Parallel queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.ParallelExtensions.html">ParallelExtensions</a></h5>
       <section><p>Parallel extensions</p>
@@ -1845,6 +1866,12 @@ Interfaces
       <h5><a class="xref" href="wan24.Core.ICache-1.html">ICache&lt;T&gt;</a></h5>
       <section><p>Interface for a cache</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.IConcurrentItemQueueWorker-1.html">IConcurrentItemQueueWorker&lt;T&gt;</a></h5>
+      <section><p>Interface for an item queue worker</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IConcurrentQueueWorker.html">IConcurrentQueueWorker</a></h5>
+      <section><p>Interface for a queue worker</p>
+</section>
       <h5><a class="xref" href="wan24.Core.IConfigOption.html">IConfigOption</a></h5>
       <section><p>Interface for a configuration option</p>
 </section>
@@ -1952,6 +1979,9 @@ Interfaces
 </section>
       <h5><a class="xref" href="wan24.Core.IOverridableConfig.html">IOverridableConfig</a></h5>
       <section><p>Interface for an overridable configuration</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.IParallelConcurrentQueueWorker.html">IParallelConcurrentQueueWorker</a></h5>
+      <section><p>Interface for a parallel queue worker</p>
 </section>
       <h5><a class="xref" href="wan24.Core.IParallelQueueWorker.html">IParallelQueueWorker</a></h5>
       <section><p>Interface for a parallel queue worker</p>
@@ -2205,6 +2235,9 @@ Delegates
       <h5><a class="xref" href="wan24.Core.ChunkedStream.StreamFactory_Delegate.html">ChunkedStream.StreamFactory_Delegate</a></h5>
       <section><p>Delegate for a chunk stream factory</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.ConcurrentQueueWorker.Task_Delegate.html">ConcurrentQueueWorker.Task_Delegate</a></h5>
+      <section><p>Delegate for a task</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CounterEvent.Condition_Delegate.html">CounterEvent.Condition_Delegate</a></h5>
       <section><p>Delegate for a condition (<a class="xref" href="wan24.Core.CounterEvent.html">CounterEvent</a> instance is locked during the condition is evaluated)</p>
 </section>
@@ -2231,6 +2264,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ErrorHandling.ErrorHandler_Delegate.html">ErrorHandling.ErrorHandler_Delegate</a></h5>
       <section><p>Delegate for an error handler</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.Fallback.ExceptionHandler_Delegate.html">Fallback.ExceptionHandler_Delegate</a></h5>
+      <section><p>Delegate for an exception handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FileSystemEvents.FileSystemEvents_Delegate.html">FileSystemEvents.FileSystemEvents_Delegate</a></h5>
       <section><p>Delegate for an event hander</p>
