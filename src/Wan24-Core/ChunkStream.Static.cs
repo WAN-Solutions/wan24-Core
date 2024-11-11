@@ -118,7 +118,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="containsChunkSizeHeader">If the chunk size is contained at the beginning of the stream</param>
-        /// <param name="chunkSize">Chunk size in bytes</param>
+        /// <param name="chunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
         /// <param name="clearBuffers">If to clear buffers (if <see langword="null"/>, <see cref="Settings.ClearBuffers"/> will be used)</param>
         /// <param name="leaveOpen">If to leave the base stream open when disposing</param>
         /// <returns>Instance</returns>
@@ -134,8 +134,9 @@ namespace wan24.Core
             {
                 using RentedMemoryRef<byte> buffer = new(sizeof(int), clean: false);
                 baseStream.ReadExactly(buffer.Span);
+                int maxChunkSize = chunkSize;
                 chunkSize = buffer.Span.ToInt();
-                if (chunkSize < 1) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
+                if (chunkSize < 1 || (maxChunkSize > 0 && chunkSize > maxChunkSize)) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
             }
             else
             {
@@ -167,7 +168,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="containsChunkSizeHeader">If the chunk size is contained at the beginning of the stream</param>
-        /// <param name="chunkSize">Chunk size in bytes</param>
+        /// <param name="chunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
         /// <param name="clearBuffers">If to clear buffers (if <see langword="null"/>, <see cref="Settings.ClearBuffers"/> will be used)</param>
         /// <param name="leaveOpen">If to leave the base stream open when disposing</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -185,8 +186,9 @@ namespace wan24.Core
             {
                 using RentedMemory<byte> buffer = new(sizeof(int), clean: false);
                 await baseStream.ReadExactlyAsync(buffer.Memory, cancellationToken).DynamicContext();
+                int maxChunkSize = chunkSize;
                 chunkSize = buffer.Memory.Span.ToInt();
-                if (chunkSize < 1) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
+                if (chunkSize < 1 || (maxChunkSize > 0 && chunkSize > maxChunkSize)) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
             }
             else
             {
