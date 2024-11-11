@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace wan24.Core
 {
     /// <summary>
     /// Chunk stream (writes data in chunks including chunk meta data; an existing stream can't be extended; not seekable during writing)
@@ -128,12 +130,20 @@
         /// <summary>
         /// If the stream was writable at any time
         /// </summary>
-        public bool WasWritable => Buffer is not null;
+        public bool WasWritable
+        {
+            [MemberNotNullWhen(returnValue: true, nameof(Buffer))]
+            get => Buffer is not null;
+        }
 
         /// <summary>
         /// If it's required to flush the final chunk
         /// </summary>
-        public bool NeedsFinalFlush => Buffer is not null && !IsFlushedFinally;
+        public bool NeedsFinalFlush
+        {
+            [MemberNotNullWhen(returnValue: true, nameof(Buffer))]
+            get => Buffer is not null && !IsFlushedFinally;
+        }
 
         /// <inheritdoc/>
         public override bool CanRead => IfUndisposed(() => !NeedsFinalFlush && BaseStream.CanRead, allowDisposing: true);
@@ -142,7 +152,11 @@
         public override bool CanSeek => IfUndisposed(() => _Length > -1 && RedAll && CanRead && BaseStream.CanSeek, allowDisposing: true);
 
         /// <inheritdoc/>
-        public override sealed bool CanWrite => IfUndisposed(() => Buffer is not null && !IsFlushedFinally, allowDisposing: true);
+        public override sealed bool CanWrite
+        {
+            [MemberNotNullWhen(returnValue: true, nameof(Buffer))]
+            get => IfUndisposed(() => Buffer is not null && !IsFlushedFinally, allowDisposing: true);
+        }
 
         /// <inheritdoc/>
         public override sealed long Length
@@ -245,6 +259,16 @@
             Buffer!.Dispose();
             RaiseOnChunkWritten(LastChunk, chunkType, len);
             await FlushAsync(cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Discard the buffered data of the current chunk
+        /// </summary>
+        public virtual void DiscardChunkBuffer()
+        {
+            EnsureUndisposed();
+            EnsureWritable();
+            Buffer!.SetLength(0);
         }
 
         /// <inheritdoc/>

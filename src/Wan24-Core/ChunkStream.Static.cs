@@ -118,14 +118,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="containsChunkSizeHeader">If the chunk size is contained at the beginning of the stream</param>
-        /// <param name="chunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
+        /// <param name="maxChunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
         /// <param name="clearBuffers">If to clear buffers (if <see langword="null"/>, <see cref="Settings.ClearBuffers"/> will be used)</param>
         /// <param name="leaveOpen">If to leave the base stream open when disposing</param>
         /// <returns>Instance</returns>
         public static tFinal FromExisting(
             in tStream baseStream,
             in bool containsChunkSizeHeader = true,
-            int chunkSize = 0,
+            int maxChunkSize = 0,
             in bool? clearBuffers = null,
             in bool leaveOpen = false
             )
@@ -134,20 +134,20 @@ namespace wan24.Core
             {
                 using RentedMemoryRef<byte> buffer = new(sizeof(int), clean: false);
                 baseStream.ReadExactly(buffer.Span);
-                int maxChunkSize = chunkSize;
-                chunkSize = buffer.Span.ToInt();
-                if (chunkSize < 1 || (maxChunkSize > 0 && chunkSize > maxChunkSize)) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
+                int max = maxChunkSize;
+                maxChunkSize = buffer.Span.ToInt();
+                if (maxChunkSize < 1 || (max > 0 && maxChunkSize > max)) throw new InvalidDataException($"Invalid chunk size {maxChunkSize}");
             }
             else
             {
-                ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, other: 1, nameof(chunkSize));
+                ArgumentOutOfRangeException.ThrowIfLessThan(maxChunkSize, other: 1, nameof(maxChunkSize));
             }
             NullabilityInfoContext nic = new();
             tFinal res = (tFinal)FinalConstructorInfo.Invoker!(
                 FinalConstructorInfo.GetParameters().GetDiObjects(
                     [
                         baseStream,
-                        chunkSize,
+                        maxChunkSize,
                         false,
                         containsChunkSizeHeader,
                         clearBuffers,
@@ -168,7 +168,7 @@ namespace wan24.Core
         /// </summary>
         /// <param name="baseStream">Base stream</param>
         /// <param name="containsChunkSizeHeader">If the chunk size is contained at the beginning of the stream</param>
-        /// <param name="chunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
+        /// <param name="maxChunkSize">Chunk size in bytes (is the maximum, when reading the chunk size header!)</param>
         /// <param name="clearBuffers">If to clear buffers (if <see langword="null"/>, <see cref="Settings.ClearBuffers"/> will be used)</param>
         /// <param name="leaveOpen">If to leave the base stream open when disposing</param>
         /// <param name="cancellationToken">Cancellation token</param>
@@ -176,7 +176,7 @@ namespace wan24.Core
         public static async Task<tFinal> FromExistingAsync(
             tStream baseStream,
             bool containsChunkSizeHeader = true,
-            int chunkSize = 0,
+            int maxChunkSize = 0,
             bool? clearBuffers = null,
             bool leaveOpen = false,
             CancellationToken cancellationToken = default
@@ -186,20 +186,20 @@ namespace wan24.Core
             {
                 using RentedMemory<byte> buffer = new(sizeof(int), clean: false);
                 await baseStream.ReadExactlyAsync(buffer.Memory, cancellationToken).DynamicContext();
-                int maxChunkSize = chunkSize;
-                chunkSize = buffer.Memory.Span.ToInt();
-                if (chunkSize < 1 || (maxChunkSize > 0 && chunkSize > maxChunkSize)) throw new InvalidDataException($"Invalid chunk size {chunkSize}");
+                int max = maxChunkSize;
+                maxChunkSize = buffer.Memory.Span.ToInt();
+                if (maxChunkSize < 1 || (max > 0 && maxChunkSize > max)) throw new InvalidDataException($"Invalid chunk size {maxChunkSize}");
             }
             else
             {
-                ArgumentOutOfRangeException.ThrowIfLessThan(chunkSize, other: 1, nameof(chunkSize));
+                ArgumentOutOfRangeException.ThrowIfLessThan(maxChunkSize, other: 1, nameof(maxChunkSize));
             }
             NullabilityInfoContext nic = new();
             tFinal res = (tFinal)FinalConstructorInfo.Invoker!(
                 await FinalConstructorInfo.GetParameters().GetDiObjectsAsync(
                     [
                         baseStream,
-                        chunkSize,
+                        maxChunkSize,
                         false,
                         containsChunkSizeHeader,
                         clearBuffers,
