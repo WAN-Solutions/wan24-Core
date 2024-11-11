@@ -23,7 +23,7 @@ namespace Wan24_Core_Benchmark_Tests
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentDict[i] = true, i++) ;
             HugeConcurrentLockDict = new(ushort.MaxValue << 3);
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentLockDict[i] = true, i++) ;
-            RandomIndex = Enumerable.Range(0, ushort.MaxValue << 3).OrderBy(i => RandomNumberGenerator.GetInt32(int.MaxValue)).ToImmutableArray();
+            RandomIndex = [.. Enumerable.Range(0, ushort.MaxValue << 3).OrderBy(i => RandomNumberGenerator.GetInt32(int.MaxValue))];
         }
 
         [Benchmark]
