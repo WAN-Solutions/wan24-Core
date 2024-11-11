@@ -19,7 +19,7 @@ namespace Wan24_Core_Benchmark_Tests
         {
             HugeDict = new(ushort.MaxValue << 3);
             for (int i = 0; i < ushort.MaxValue << 3; HugeDict[i] = true, i++) ;
-            HugeConcurrentDict = [];
+            HugeConcurrentDict = new(Environment.ProcessorCount, ushort.MaxValue << 3);
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentDict[i] = true, i++) ;
             HugeConcurrentLockDict = new(ushort.MaxValue << 3);
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentLockDict[i] = true, i++) ;
