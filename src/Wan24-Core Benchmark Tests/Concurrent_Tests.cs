@@ -13,6 +13,7 @@ namespace Wan24_Core_Benchmark_Tests
         private static readonly Dictionary<int, bool> HugeDict;
         private static readonly ConcurrentDictionary<int, bool> HugeConcurrentDict;
         private static readonly ConcurrentLockDictionary<int, bool> HugeConcurrentLockDict;
+        private static readonly AsyncConcurrentDictionary<int, bool> HugeAsyncConcurrentDict;
         private static readonly ImmutableArray<int> RandomIndex;
 
         static Concurrent_Tests()
@@ -23,6 +24,7 @@ namespace Wan24_Core_Benchmark_Tests
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentDict[i] = true, i++) ;
             HugeConcurrentLockDict = new(ushort.MaxValue << 3);
             for (int i = 0; i < ushort.MaxValue << 3; HugeConcurrentLockDict[i] = true, i++) ;
+            HugeAsyncConcurrentDict = new(Enumerable.Range(0, ushort.MaxValue << 3).Select(i => new KeyValuePair<int, bool>(i, true)));
             RandomIndex = [.. Enumerable.Range(0, ushort.MaxValue << 3).OrderBy(i => RandomNumberGenerator.GetInt32(int.MaxValue))];
         }
 
@@ -61,6 +63,18 @@ namespace Wan24_Core_Benchmark_Tests
         }
 
         [Benchmark]
+        public async Task AsyncConcurrentDictionary()
+        {
+            AsyncConcurrentDictionary<int, bool> dict = new();
+            await Parallel.ForAsync(
+                0,
+                ushort.MaxValue,
+                ParallelOptions,
+                async (i, ct) => await dict.AddOrUpdateAsync(0, key => true, (key, value) => !value, ct).DynamicContext()
+                );
+        }
+
+        [Benchmark]
         public void DictionaryManyItems()
         {
             Dictionary<int, bool> dict = HugeDict;
@@ -95,6 +109,18 @@ namespace Wan24_Core_Benchmark_Tests
         }
 
         [Benchmark]
+        public async Task AsyncConcurrentDictionaryManyItems()
+        {
+            AsyncConcurrentDictionary<int, bool> dict = HugeAsyncConcurrentDict;
+            await Parallel.ForAsync(
+                0,
+                ushort.MaxValue << 3,
+                ParallelOptions,
+                async (i, ct) => await dict.AddOrUpdateAsync(i, key => true, (key, value) => !value, ct).DynamicContext()
+                ).DynamicContext();
+        }
+
+        [Benchmark]
         public void DictionaryManyItemsRnd()
         {
             Dictionary<int, bool> dict = HugeDict;
@@ -124,6 +150,17 @@ namespace Wan24_Core_Benchmark_Tests
                 ParallelOptions,
                 i => dict.AddOrUpdate(i, key => true, (key, value) => !value)
                 );
+        }
+
+        [Benchmark]
+        public async Task AsyncConcurrentDictionaryManyItemsRnd()
+        {
+            AsyncConcurrentDictionary<int, bool> dict = HugeAsyncConcurrentDict;
+            await Parallel.ForEachAsync(
+                RandomIndex,
+                ParallelOptions,
+                async (i, ct) => await dict.AddOrUpdateAsync(i, key => true, (key, value) => !value, ct).DynamicContext()
+                ).DynamicContext();
         }
     }
 }

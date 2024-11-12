@@ -16,7 +16,7 @@ There are some concurrent collections, which you may want to use. They're nothin
 | `ConcurrentObjectDictionary<T>` |
 | `ConcurrentLockDictionary<tKey, tValue>` |
 
-The `ConcurrentLockDictionary<tKey, tValue>` offers faster writings, but the .NET `ConcurrentDictionary<tKey, tValue>` uses faster lock free readings.
+The `ConcurrentLockDictionary<tKey, tValue>` offers faster writings, but the .NET `ConcurrentDictionary<tKey, tValue>` uses faster lock free readings. Because of the item access and locking implementation of the `ConcurrentDictionary<tKey, tValue>`, it has a huge performance advantage when reading/writing many items in random access, or if the instance is going to be used for reading mostly. A disadvantage of the `ConcurrentDictionary<tKey, tValue>` is the required memory, and the slower access when managing only a small amount of items or running on a CPU with not so many cores.
 
 ## Freezable collections
 
