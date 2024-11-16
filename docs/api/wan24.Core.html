@@ -152,6 +152,9 @@ Classes
       <h5><a class="xref" href="wan24.Core.ArrayPoolStream.html">ArrayPoolStream</a></h5>
       <section><p>Array pool stream (stores in arrays from an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.arraypool-1">ArrayPool&lt;T&gt;</a>)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.AsyncConcurrentDictionary-2.html">AsyncConcurrentDictionary&lt;tKey, tValue&gt;</a></h5>
+      <section><p>Asynchronous concurrent dictionary</p>
+</section>
       <h5><a class="xref" href="wan24.Core.AsyncDisposableExtensions.html">AsyncDisposableExtensions</a></h5>
       <section><p>Asynchronous disposable extensions</p>
 </section>
@@ -420,8 +423,17 @@ constructor which uses the <a class="xref" href="wan24.Core.ConstructorAttribute
       <h5><a class="xref" href="wan24.Core.CopyStream-2.html">CopyStream&lt;tStream, tTarget&gt;</a></h5>
       <section><p>Copy stream (copies the wrapped stream to a target stream using a background task)</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.CountEvent.html">CountEvent</a></h5>
+      <section><p>Count event (used to wait for a number of events until cancellation (or timeout))</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.CountEvent.CountEventArgs.html">CountEvent.CountEventArgs</a></h5>
+      <section><p><a class="xref" href="wan24.Core.CountEvent.html#wan24_Core_CountEvent_OnCount">OnCount</a> event arguments</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.CountEvent.Counter.html">CountEvent.Counter</a></h5>
+      <section><p>Counter</p>
+</section>
       <h5><a class="xref" href="wan24.Core.CounterEvent.html">CounterEvent</a></h5>
-      <section><p>Counter event</p>
+      <section><p>Counter event (used to count events and raise an event after a number of events or perform actions depending on the current event count)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.CounterEvent.CountEventArgs.html">CounterEvent.CountEventArgs</a></h5>
       <section><p>Arguments for the <a class="xref" href="wan24.Core.CounterEvent.html#wan24_Core_CounterEvent_OnCount">OnCount</a> event</p>
@@ -726,7 +738,7 @@ synchronized (adding target streams while reading/seeking may cause an overall r
       <section><p>Freezable list</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FreezableMemoryPoolStream.html">FreezableMemoryPoolStream</a></h5>
-      <section><p>Freezable memory pool stream</p>
+      <section><p>Freezable memory pool stream (stores in memory from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.FreezableOrderedDictionary-2.html">FreezableOrderedDictionary&lt;tKey, tValue&gt;</a></h5>
       <section><p>Freezable ordered dictionary</p>
@@ -926,7 +938,7 @@ factory (see <a class="xref" href="wan24.Core.MapAttribute.html#wan24_Core_MapAt
       <section><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a> extensions</p>
 </section>
       <h5><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></h5>
-      <section><p>Memory pool stream (stores in arrays from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
+      <section><p>Memory pool stream (stores in memory from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
 </section>
       <h5><a class="xref" href="wan24.Core.MemorySequenceSegment-1.html">MemorySequenceSegment&lt;T&gt;</a></h5>
       <section><p>Memory sequence segment</p>
@@ -2160,6 +2172,9 @@ Enums
       <h5><a class="xref" href="wan24.Core.ChunkTypes.html">ChunkTypes</a></h5>
       <section><p>Chunk type enumeration</p>
 </section>
+      <h5><a class="xref" href="wan24.Core.CountEvent.Methods.html">CountEvent.Methods</a></h5>
+      <section><p>Wait methods enumeration</p>
+</section>
       <h5><a class="xref" href="wan24.Core.FileSystemEventTypes.html">FileSystemEventTypes</a></h5>
       <section><p>File system event type flags</p>
 </section>
@@ -2237,6 +2252,9 @@ Delegates
 </section>
       <h5><a class="xref" href="wan24.Core.ConcurrentQueueWorker.Task_Delegate.html">ConcurrentQueueWorker.Task_Delegate</a></h5>
       <section><p>Delegate for a task</p>
+</section>
+      <h5><a class="xref" href="wan24.Core.CountEvent.Count_Delegate.html">CountEvent.Count_Delegate</a></h5>
+      <section><p>Delegate for an <a class="xref" href="wan24.Core.CountEvent.html#wan24_Core_CountEvent_OnCount">OnCount</a> event handler</p>
 </section>
       <h5><a class="xref" href="wan24.Core.CounterEvent.Condition_Delegate.html">CounterEvent.Condition_Delegate</a></h5>
       <section><p>Delegate for a condition (<a class="xref" href="wan24.Core.CounterEvent.html">CounterEvent</a> instance is locked during the condition is evaluated)</p>
