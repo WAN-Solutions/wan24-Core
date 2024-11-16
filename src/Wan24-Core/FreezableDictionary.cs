@@ -3,6 +3,7 @@ using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime;
+using System.Diagnostics;
 
 namespace wan24.Core
 {
@@ -11,6 +12,7 @@ namespace wan24.Core
     /// </summary>
     /// <typeparam name="tKey">Key type</typeparam>
     /// <typeparam name="tValue">Value type</typeparam>
+    [DebuggerDisplay("Count = {Count}")]
     public class FreezableDictionary<tKey, tValue> : IDictionary<tKey, tValue>, IReadOnlyDictionary<tKey, tValue>, IDictionary
         where tKey : notnull
     {

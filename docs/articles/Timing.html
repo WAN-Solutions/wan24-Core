@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Timing | wan24-Core </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Timing | wan24-Core ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <!-- Header required for docfx anchor scroll to work -->
+        <header id="head"></header>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="" class="logomark">
+              <span class="brand-title"></span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="" class="logomark">
+                          <span class="brand-title"></span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  (c) 2023 Andreas Zimmermann, wan24.de
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core Docs/articles/Timing.md/#L1" class="contribution-link">Edit this page</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="timing">Timing</h1>
+
+<h2 id="asynchronous-timer">Asynchronous timer</h2>
+<p>The <code>AsyncTimer</code> uses <code>Task.Delay</code> to run an action in an interval - example:</p>
+<pre><code class="lang-cs">using AsyncTimer timer = new(TimeSpan.FromSeconds(10), async (timer) =&gt; 
+{
+	// Perform the timed action here
+});
+await timer.StartAsync();
+</code></pre>
+<p><strong>NOTE</strong>: The <code>AsyncTimer</code> is a hosted service.</p>
+<h2 id="delaying-code">Delaying code</h2>
+<p>Delayed action execution:</p>
+<pre><code class="lang-cs">_ = Timeout.RunAction(TimeSpan.FromSeconds(10), () =&gt; 
+{
+	// Action executed after 10 seconds
+});
+</code></pre>
+<p>Wait for a condition to become true:</p>
+<pre><code class="lang-cs">await Timeout.WaitConditionAsync(TimeSpan.FromMilliSeconds(50), async (ct) =&gt; 
+{
+	// Return TRUE, if the condition is met - FALSE otherwise
+});
+</code></pre>
+<p>Using <code>Timeout</code> as hosted service (just as you'd use a .NET <code>Timer</code>):</p>
+<pre><code class="lang-cs">Timeout timeout = new(TimeSpan.FromSeconds(1), autoReset: true);
+timeout.OnTimeout += (timer, e) =&gt; 
+{
+	// Action to run in an interval of one second
+};
+// Add timeout as hosted service
+</code></pre>
+<h2 id="timed-service">Timed service</h2>
+<p>The <code>TimedHostedServiceBase</code> is an abstract hosted service, which runs an action in an interval in three modes:</p>
+<ol>
+<li>Restart the timer after the action was done (not exact execution timing is the default mode)</li>
+<li>Reset the timeout for the next run after an action was done, to match the exact next execution time</li>
+<li>Reset the timeout for the next run after an action was done, to match the exact next execution time, and ensure the exact number of executions, if an execution did run longer than the defined interval</li>
+</ol>
+<p>Example:</p>
+<pre><code class="lang-cs">public class YourType : TimedHostedServiceBase
+{
+	public YourType() : base(interval: 1000) { }
+
+	protected override async Task TimedWorkerAsync()
+	{
+		// Action to execute when the timer elapsed
+	}
+}
+</code></pre>
+<p><code>YourType</code> is a hosted service.</p>
+<p>Using the <code>SetTimerAsync</code> the timer can be reset at runtime. The use cases of the <code>TimedHostedServiceBase</code> are various.</p>
+<h2 id="dynamic-code-execution-delay">Dynamic code execution delay</h2>
+<p>Using the <code>Delay</code> you can delay code execution and prevent dead-locks, for example.</p>
+<p>Code which wants other code to wait:</p>
+<pre><code class="lang-cs">Delay delay = new(TimeSpan.FromSeconds(3));
+try
+{
+	// Code to run, while other code is waiting
+	await delay.CompleteAsync();
+}
+catch(Exception ex)
+{
+	// The exception will be thrown at executing code
+	await delay.FailAsync(ex);
+}
+</code></pre>
+<p>The delay will be completed from the <code>DelayService</code> after 3 seconds, or when the example code called <code>CompleteAsync</code> - whatever comes first.</p>
+<p>Code which is required to wait:</p>
+<pre><code class="lang-cs">try
+{
+	await delay.Task;
+	// Code to run when the delay was completed
+}
+catch(ObjectDisposedException)
+{
+	// The delay was disposed without completion
+}
+catch(OperationCanceledException)
+{
+	// The delay was cancelled (or failed without an exception)
+}
+catch(Exception ex)
+{
+	// The delay failed with an exception
+}
+</code></pre>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>(c) 2023 Andreas Zimmermann, wan24.de</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

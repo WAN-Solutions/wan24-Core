@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Runtime;
 
 namespace wan24.Core
@@ -7,6 +8,7 @@ namespace wan24.Core
     /// Object dictionary
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [DebuggerDisplay("Count = {Count}")]
     public class ConcurrentObjectDictionary<T> : ConcurrentDictionary<T, object?> where T : notnull
     {
         /// <summary>

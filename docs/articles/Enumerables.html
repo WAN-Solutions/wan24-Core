@@ -127,6 +127,21 @@ namespace Your.NameSpace
 <p>The <code>ICoreEnumerable&lt;T&gt;</code> interface does implement <code>IEnumerable&lt;T&gt;</code> and is being used for any <code>wan24-Core</code> enumerable type in case you need a common interface which avoids having to fall back to .NET enumerables - example: A method which does return a <code>wan24-Core</code> enumerable may return an <code>ArrayEnumerable&lt;T&gt;</code> or an <code>ArrayWhereEnumerable&lt;T&gt;</code> and uses <code>ICoreEnumerable&lt;T&gt;</code> as return type, which is a common interface for the two possible return types.</p>
 <h2 id="asynchronous-object-enumerable">Asynchronous object enumerable</h2>
 <p>The non-generic <code>IAsyncEnumerable</code> interface for enumerating objects is missing in .NET. If you need to enumerate objects you can use the <code>AsyncObject(Enumerable|Enumerator)&lt;T&gt;</code>.</p>
+<h2 id="object-disposing-enumerator">Object disposing enumerator</h2>
+<p>Use the <code>DisposingAsyncEnumerator&lt;T&gt;</code> for disposing disposable objects as soon as the enumerator is disposing - example:</p>
+<pre><code class="lang-cs">foreach(T item in new DisposingAsyncEnumerator&lt;T&gt;(asyncEnumerable, disposable1, disposable2, ...))
+{
+	// ...
+}
+</code></pre>
+<p>After the <code>foreach</code> loop finished, <code>disposable1</code> and <code>disposable2</code> will be disposed.</p>
+<h2 id="enumerate-an-asynchronous-enumerable-synchronous">Enumerate an asynchronous enumerable synchronous</h2>
+<p>The <code>SyncEnumerator&lt;T&gt;</code> type allows synchronous enumeration of an asynchronous enumerable:</p>
+<pre><code class="lang-cs">foreach(T item in new SyncEnumerator&lt;T&gt;(asyncEnumerable.GetAsyncEnumerator()))
+{
+	// ...
+}
+</code></pre>
 
 </article>
                 </div>

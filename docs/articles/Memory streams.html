@@ -128,6 +128,7 @@
 </tbody>
 </table>
 <p>Asynchronous methods fall back to the synchronous methods, since the memory access isn't an operation which offers any asynchronous benefits.</p>
+<p>Using the constructor which has the <code>returnData</code> parameter you can also use unpooled initialization data (which may be overwritten), if you set the value to <code>false</code>. If the value is <code>true</code>, the given array/memory in <code>data</code> should have been rented from the used pool before, and will be returned to that pool when disposing.</p>
 <h2 id="streaming-a-memory-sequence">Streaming a memory sequence</h2>
 <p>Use the <code>MemorySequenceStream</code> for streaming a read-only memory sequence easily:</p>
 <pre><code class="lang-cs">using MemorySequenceStream mss = new(memorySequence);

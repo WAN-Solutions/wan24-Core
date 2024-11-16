@@ -9,21 +9,19 @@ namespace wan24.Core
     /// <summary>
     /// Queue worker
     /// </summary>
-    public class QueueWorker : HostedServiceBase, IQueueWorker
+    /// <remarks>
+    /// Constructor
+    /// </remarks>
+    /// <param name="capacity">Capacity</param>
+    public class QueueWorker(in int capacity) : HostedServiceBase(), IQueueWorker
     {
         /// <summary>
         /// Queue
         /// </summary>
-        protected readonly Channel<Task_Delegate> Queue;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public QueueWorker(in int capacity) : base()
-            => Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
-                {
-                    FullMode = BoundedChannelFullMode.Wait
-                });
+        protected readonly Channel<Task_Delegate> Queue = Channel.CreateBounded<Task_Delegate>(new BoundedChannelOptions(capacity)
+        {
+            FullMode = BoundedChannelFullMode.Wait
+        });
 
         /// <summary>
         /// GUID

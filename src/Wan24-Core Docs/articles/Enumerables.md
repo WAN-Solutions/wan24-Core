@@ -41,3 +41,27 @@ The `ICoreEnumerable<T>` interface does implement `IEnumerable<T>` and is being 
 ## Asynchronous object enumerable
 
 The non-generic `IAsyncEnumerable` interface for enumerating objects is missing in .NET. If you need to enumerate objects you can use the `AsyncObject(Enumerable|Enumerator)<T>`.
+
+## Object disposing enumerator
+
+Use the `DisposingAsyncEnumerator<T>` for disposing disposable objects as soon as the enumerator is disposing - example:
+
+```cs
+foreach(T item in new DisposingAsyncEnumerator<T>(asyncEnumerable, disposable1, disposable2, ...))
+{
+	// ...
+}
+```
+
+After the `foreach` loop finished, `disposable1` and `disposable2` will be disposed.
+
+## Enumerate an asynchronous enumerable synchronous
+
+The `SyncEnumerator<T>` type allows synchronous enumeration of an asynchronous enumerable:
+
+```cs
+foreach(T item in new SyncEnumerator<T>(asyncEnumerable.GetAsyncEnumerator()))
+{
+	// ...
+}
+```

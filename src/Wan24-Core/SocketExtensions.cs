@@ -15,7 +15,7 @@ namespace wan24.Core
         private static readonly RentedMemory<byte> OneByteWasteBuffer = new(len: 1);
 
         /// <summary>
-        /// Determine if a socket is connected (may return <see langword="false"/>, if even if connected - not 100% safe...)
+        /// Determine if a socket is connected (may return <see langword="false"/>, if even if connected - not 100% (thread-)safe...)
         /// </summary>
         /// <param name="socket">Socket</param>
         /// <returns>Is connected?</returns>
@@ -27,7 +27,12 @@ namespace wan24.Core
         {
             try
             {
-                return socket.Connected && !(socket.Poll(microSeconds: 1, SelectMode.SelectRead) && socket.Receive(OneByteWasteBuffer.Memory.Span, SocketFlags.Peek) == 0);
+                return !(
+                        socket.Poll(microSeconds: 1, SelectMode.SelectRead) &&
+                        socket.Receive(OneByteWasteBuffer.Memory.Span, SocketFlags.Peek) == 0 &&
+                        socket.Available == 0
+                    ) &&
+                    socket.Connected;
             }
             catch
             {

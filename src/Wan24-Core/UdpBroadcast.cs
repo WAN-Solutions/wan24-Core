@@ -96,8 +96,7 @@ namespace wan24.Core
 #pragma warning restore CA1416 // Supported on Windows only
             listener.Client.DontFragment = true;
             ConfigureBroadcastListener(listener);
-            using CancellationTokenSource cancellations = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            cancellations.CancelAfter(timeout);
+            using CancellationTokenSource cancellations = cancellationToken.CombineWith(timeout);
             List<T?> res = [];
             Func<Task> receiver = async () =>
             {

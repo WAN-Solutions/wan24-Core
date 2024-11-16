@@ -190,7 +190,7 @@ namespace wan24.Core
         public virtual InMemoryCacheEntry<T>[] Clear(in bool disposeItems = false)
         {
             EnsureUndisposed(allowDisposing: true);
-            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).Where(e => e is not null)];
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).WhereNotNull()];
             if (disposeItems)
                 foreach (InMemoryCacheEntry<T> entry in res)
                     DisposeItem(entry.Item);
@@ -205,7 +205,7 @@ namespace wan24.Core
             )
         {
             EnsureUndisposed(allowDisposing: true);
-            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).Where(e => e is not null)];
+            InMemoryCacheEntry<T>[] res = [.. Cache.Values.Select(e => TryRemoveInt(e.Key, CacheEventReasons.UserAction)).WhereNotNull()];
             if (disposeItems)
                 foreach (InMemoryCacheEntry<T> entry in res)
                     await DisposeItemAsync(entry.Item).DynamicContext();

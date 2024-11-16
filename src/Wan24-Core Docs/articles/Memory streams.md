@@ -13,6 +13,8 @@ You can use any pool stream as you'd use the `MemoryStream`. For accessing the b
 
 Asynchronous methods fall back to the synchronous methods, since the memory access isn't an operation which offers any asynchronous benefits.
 
+Using the constructor which has the `returnData` parameter you can also use unpooled initialization data (which may be overwritten), if you set the value to `false`. If the value is `true`, the given array/memory in `data` should have been rented from the used pool before, and will be returned to that pool when disposing.
+
 ## Streaming a memory sequence
 
 Use the `MemorySequenceStream` for streaming a read-only memory sequence easily:

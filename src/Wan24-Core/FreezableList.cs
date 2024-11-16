@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using System.Runtime;
+using System.Diagnostics;
 
 namespace wan24.Core
 {
@@ -9,6 +10,7 @@ namespace wan24.Core
     /// Freezable list
     /// </summary>
     /// <typeparam name="T">Value type</typeparam>
+    [DebuggerDisplay("Count = {Count}")]
     public class FreezableList<T>
         : ICollection<T>,
             IEnumerable<T>,

@@ -45,7 +45,7 @@ namespace wan24.Core
             cancellationToken.ThrowIfCancellationRequested();
             if (delay <= TimeSpan.Zero) delay = TimeSpan.FromMilliseconds(20);
             using CancellationTokenSource processing = new();
-            using CancellationTokenSource cancellation = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, processing.Token);
+            using CancellationTokenSource cancellation = cancellationToken.CombineWith(processing.Token);
             TimeSpan waitTime;
             DateTime continueAt = DateTime.Now;
             if (Trace) WriteTrace($"TCP port knocking to {target}:{string.Join('/', ports.Select(p => p.ToString()))}");
