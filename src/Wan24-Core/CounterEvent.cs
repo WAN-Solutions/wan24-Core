@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace wan24.Core
 {
     /// <summary>
-    /// Counter event
+    /// Counter event (used to count events and raise an event after a number of events or perform actions depending on the current event count)
     /// </summary>
     /// <remarks>
     /// Constructor

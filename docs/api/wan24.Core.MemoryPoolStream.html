@@ -101,7 +101,7 @@
 
 
   <h1 id="wan24_Core_MemoryPoolStream" data-uid="wan24.Core.MemoryPoolStream" class="text-break">Class MemoryPoolStream</h1>
-  <div class="markdown level0 summary"><p>Memory pool stream (stores in arrays from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
+  <div class="markdown level0 summary"><p>Memory pool stream (stores in memory from a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.memorypool-1">MemoryPool&lt;T&gt;</a>)</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -309,19 +309,19 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Buffers_IMemoryOwner_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Buffers.IMemoryOwner%7BSystem.Byte%7D%40%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Buffers_IMemoryOwner_System_Byte___System_Boolean__System_Int32_System_Buffers_MemoryPool_System_Byte__System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Buffers.IMemoryOwner%7BSystem.Byte%7D%40%2CSystem.Boolean%40%2CSystem.Int32%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L90">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L33">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream__ctor_" data-uid="wan24.Core.MemoryPoolStream.#ctor*"></a>
-  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Buffers_IMemoryOwner_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___System_Boolean__" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Buffers.IMemoryOwner{System.Byte}@,System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@,System.Boolean@)">MemoryPoolStream(in IMemoryOwner&lt;byte&gt;, in MemoryPool&lt;byte&gt;?, in int?, in bool)</h4>
+  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Buffers_IMemoryOwner_System_Byte___System_Boolean__System_Int32_System_Buffers_MemoryPool_System_Byte__System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Buffers.IMemoryOwner{System.Byte}@,System.Boolean@,System.Int32,System.Buffers.MemoryPool{System.Byte},System.Nullable{System.Int32}@)">MemoryPoolStream(in IMemoryOwner&lt;byte&gt;, in bool, int, MemoryPool&lt;byte&gt;?, in int?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryPoolStream(in IMemoryOwner&lt;byte&gt; data, in MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null, in bool writable = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public MemoryPoolStream(in IMemoryOwner&lt;byte&gt; data, in bool returnData, int len = -1, MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -336,7 +336,20 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.imemoryowner-1">IMemoryOwner</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Initial data (will be disposed; stream is writable; initial position will be <code>0</code>)</p>
+        <td><p>Initial data (will be returned to the pool, if <code>returnData</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>; may be overwritten; initial position
+will be <code>0</code>)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">returnData</span></td>
+        <td><p>If to return the <code>data</code> to the pool when disposing (if <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, <code>data</code> may not be a rented array)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">len</span></td>
+        <td><p>Number of bytes to take from <code>data</code>, or <code>-1</code> to take all</p>
 </td>
       </tr>
       <tr>
@@ -351,29 +364,23 @@
         <td><p>Buffer size in bytes</p>
 </td>
       </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">writable</span></td>
-        <td><p>If writable</p>
-</td>
-      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Buffers_MemoryPool_System_Byte__System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Buffers.MemoryPool%7BSystem.Byte%7D%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L72">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L15">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream__ctor_" data-uid="wan24.Core.MemoryPoolStream.#ctor*"></a>
-  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@)">MemoryPoolStream(in MemoryPool&lt;byte&gt;?, in int?)</h4>
+  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Buffers_MemoryPool_System_Byte__System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Buffers.MemoryPool{System.Byte},System.Nullable{System.Int32}@)">MemoryPoolStream(MemoryPool&lt;byte&gt;?, in int?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryPoolStream(in MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public MemoryPoolStream(MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -401,19 +408,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Byte____System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Byte%5B%5D%40%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_Byte____System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.Byte%5B%5D%40%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L112">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L86">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream__ctor_" data-uid="wan24.Core.MemoryPoolStream.#ctor*"></a>
-  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Byte____System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___System_Boolean__" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Byte[]@,System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@,System.Boolean@)">MemoryPoolStream(in byte[], in MemoryPool&lt;byte&gt;?, in int?, in bool)</h4>
+  <h4 id="wan24_Core_MemoryPoolStream__ctor_System_Byte____System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.Byte[]@,System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@)">MemoryPoolStream(in byte[], in MemoryPool&lt;byte&gt;?, in int?)</h4>
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryPoolStream(in byte[] data, in MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null, in bool writable = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public MemoryPoolStream(in byte[] data, in MemoryPool&lt;byte&gt;? pool = null, in int? bufferSize = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -428,7 +435,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Initial data (will be copied, if writable; stream is writable; initial position will be <code>0</code>)</p>
+        <td><p>Initial data (will be copied; initial position will be <code>0</code>)</p>
 </td>
       </tr>
       <tr>
@@ -443,12 +450,6 @@
         <td><p>Buffer size in bytes</p>
 </td>
       </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">writable</span></td>
-        <td><p>If writable</p>
-</td>
-      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
@@ -456,7 +457,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_ReadOnlyMemory_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.ReadOnlyMemory%7BSystem.Byte%7D%40%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L155">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream__ctor_" data-uid="wan24.Core.MemoryPoolStream.#ctor*"></a>
   <h4 id="wan24_Core_MemoryPoolStream__ctor_System_ReadOnlyMemory_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.ReadOnlyMemory{System.Byte}@,System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@)">MemoryPoolStream(in ReadOnlyMemory&lt;byte&gt;, in MemoryPool&lt;byte&gt;?, in int?)</h4>
@@ -480,7 +481,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlymemory-1">ReadOnlyMemory</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Initial data (will be copied; stream is writable; initial position will be <code>0</code>)</p>
+        <td><p>Initial data (will be copied; initial position will be <code>0</code>)</p>
 </td>
       </tr>
       <tr>
@@ -502,7 +503,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__ctor_System_ReadOnlySpan_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.%23ctor(System.ReadOnlySpan%7BSystem.Byte%7D%40%2CSystem.Buffers.MemoryPool%7BSystem.Byte%7D%40%2CSystem.Nullable%7BSystem.Int32%7D%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L143">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L66">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream__ctor_" data-uid="wan24.Core.MemoryPoolStream.#ctor*"></a>
   <h4 id="wan24_Core_MemoryPoolStream__ctor_System_ReadOnlySpan_System_Byte___System_Buffers_MemoryPool_System_Byte___System_Nullable_System_Int32___" data-uid="wan24.Core.MemoryPoolStream.#ctor(System.ReadOnlySpan{System.Byte}@,System.Buffers.MemoryPool{System.Byte}@,System.Nullable{System.Int32}@)">MemoryPoolStream(in ReadOnlySpan&lt;byte&gt;, in MemoryPool&lt;byte&gt;?, in int?)</h4>
@@ -526,7 +527,7 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
         <td><span class="parametername">data</span></td>
-        <td><p>Initial data (will be copied; stream is writable; initial position will be <code>0</code>)</p>
+        <td><p>Initial data (will be copied; initial position will be <code>0</code>)</p>
 </td>
       </tr>
       <tr>
@@ -550,10 +551,10 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferIndex.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferIndex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L45">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L35">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_BufferIndex" data-uid="wan24.Core.MemoryPoolStream.BufferIndex">BufferIndex</h4>
-  <div class="markdown level1 summary"><p>Buffer index</p>
+  <div class="markdown level1 summary"><p>Buffer index (current reading/writing offset)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -580,10 +581,10 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L49">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L39">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_BufferOffset" data-uid="wan24.Core.MemoryPoolStream.BufferOffset">BufferOffset</h4>
-  <div class="markdown level1 summary"><p>Buffer byte offset</p>
+  <div class="markdown level1 summary"><p>Buffer byte offset (current reading/writing offset)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -610,7 +611,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferSequence.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferSequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L37">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L27">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_BufferSequence" data-uid="wan24.Core.MemoryPoolStream.BufferSequence">BufferSequence</h4>
   <div class="markdown level1 summary"><p>Buffer sequence</p>
@@ -640,7 +641,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Buffers.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Buffers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L25">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L11">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_Buffers" data-uid="wan24.Core.MemoryPoolStream.Buffers">Buffers</h4>
   <div class="markdown level1 summary"><p>Buffers</p>
@@ -667,18 +668,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_HasUpdates.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.HasUpdates%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_HasLengthChanged.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.HasLengthChanged%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L41">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L31">View Source</a>
   </span>
-  <h4 id="wan24_Core_MemoryPoolStream_HasUpdates" data-uid="wan24.Core.MemoryPoolStream.HasUpdates">HasUpdates</h4>
-  <div class="markdown level1 summary"><p>If having updates, and the <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a> is invalid</p>
+  <h4 id="wan24_Core_MemoryPoolStream_HasLengthChanged" data-uid="wan24.Core.MemoryPoolStream.HasLengthChanged">HasLengthChanged</h4>
+  <div class="markdown level1 summary"><p>If having a new length, and the <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a> is invalid</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool HasUpdates</code></pre>
+    <pre><code class="lang-csharp hljs">protected bool HasLengthChanged</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -697,40 +698,10 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_LastBufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.LastBufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L53">View Source</a>
-  </span>
-  <h4 id="wan24_Core_MemoryPoolStream_LastBufferOffset" data-uid="wan24.Core.MemoryPoolStream.LastBufferOffset">LastBufferOffset</h4>
-  <div class="markdown level1 summary"><p>Last buffer byte offset</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected int LastBufferOffset</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Pool.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Pool%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L29">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L23">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_Pool" data-uid="wan24.Core.MemoryPoolStream.Pool">Pool</h4>
   <div class="markdown level1 summary"><p>Pool</p>
@@ -757,10 +728,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ReturnFirstBuffer.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ReturnFirstBuffer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L19">View Source</a>
+  </span>
+  <h4 id="wan24_Core_MemoryPoolStream_ReturnFirstBuffer" data-uid="wan24.Core.MemoryPoolStream.ReturnFirstBuffer">ReturnFirstBuffer</h4>
+  <div class="markdown level1 summary"><p>If to return the first buffer to the pool when disposing</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly bool ReturnFirstBuffer</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_StaticSyncObject.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.StaticSyncObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L20">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Static.cs/#L17">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream_StaticSyncObject" data-uid="wan24.Core.MemoryPoolStream.StaticSyncObject">StaticSyncObject</h4>
   <div class="markdown level1 summary"><p>An object for static thread locking</p>
@@ -787,10 +788,40 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_TotalBufferLengths.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.TotalBufferLengths%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L15">View Source</a>
+  </span>
+  <h4 id="wan24_Core_MemoryPoolStream_TotalBufferLengths" data-uid="wan24.Core.MemoryPoolStream.TotalBufferLengths">TotalBufferLengths</h4>
+  <div class="markdown level1 summary"><p>Total buffer lengths in bytes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly List&lt;long&gt; TotalBufferLengths</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__BufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._BufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L57">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L51">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream__BufferSize" data-uid="wan24.Core.MemoryPoolStream._BufferSize">_BufferSize</h4>
   <div class="markdown level1 summary"><p>Buffer size in bytes</p>
@@ -817,18 +848,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__LastBufferIndex.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._LastBufferIndex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L33">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L43">View Source</a>
   </span>
-  <h4 id="wan24_Core_MemoryPoolStream__CanWrite" data-uid="wan24.Core.MemoryPoolStream._CanWrite">_CanWrite</h4>
-  <div class="markdown level1 summary"><p>If writable</p>
+  <h4 id="wan24_Core_MemoryPoolStream__LastBufferIndex" data-uid="wan24.Core.MemoryPoolStream._LastBufferIndex">_LastBufferIndex</h4>
+  <div class="markdown level1 summary"><p>Last buffer index</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly bool _CanWrite</code></pre>
+    <pre><code class="lang-csharp hljs">protected int _LastBufferIndex</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-condensed">
@@ -840,7 +871,37 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__LastBufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._LastBufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L47">View Source</a>
+  </span>
+  <h4 id="wan24_Core_MemoryPoolStream__LastBufferOffset" data-uid="wan24.Core.MemoryPoolStream._LastBufferOffset">_LastBufferOffset</h4>
+  <div class="markdown level1 summary"><p>Last buffer byte offset (EOF)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int _LastBufferOffset</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -850,7 +911,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__Length.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L61">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L55">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream__Length" data-uid="wan24.Core.MemoryPoolStream._Length">_Length</h4>
   <div class="markdown level1 summary"><p>Length in bytes</p>
@@ -880,7 +941,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream__Position.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream._Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L65">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L59">View Source</a>
   </span>
   <h4 id="wan24_Core_MemoryPoolStream__Position" data-uid="wan24.Core.MemoryPoolStream._Position">_Position</h4>
   <div class="markdown level1 summary"><p>Byte offset</p>
@@ -912,7 +973,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferCount.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L196">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L30">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_BufferCount_" data-uid="wan24.Core.MemoryPoolStream.BufferCount*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_BufferCount" data-uid="wan24.Core.MemoryPoolStream.BufferCount">BufferCount</h4>
@@ -943,7 +1004,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferLength.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferLength%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L191">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L25">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_BufferLength_" data-uid="wan24.Core.MemoryPoolStream.BufferLength*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_BufferLength" data-uid="wan24.Core.MemoryPoolStream.BufferLength">BufferLength</h4>
@@ -974,7 +1035,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_BufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.BufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L177">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L11">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_BufferSize_" data-uid="wan24.Core.MemoryPoolStream.BufferSize*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_BufferSize" data-uid="wan24.Core.MemoryPoolStream.BufferSize">BufferSize</h4>
@@ -1005,7 +1066,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_CanRead.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.CanRead%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L234">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L89">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_CanRead_" data-uid="wan24.Core.MemoryPoolStream.CanRead*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_CanRead" data-uid="wan24.Core.MemoryPoolStream.CanRead">CanRead</h4>
@@ -1039,7 +1100,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_CanSeek.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.CanSeek%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L237">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L92">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_CanSeek_" data-uid="wan24.Core.MemoryPoolStream.CanSeek*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_CanSeek" data-uid="wan24.Core.MemoryPoolStream.CanSeek">CanSeek</h4>
@@ -1073,7 +1134,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_CanWrite.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.CanWrite%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L240">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L95">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_CanWrite_" data-uid="wan24.Core.MemoryPoolStream.CanWrite*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_CanWrite" data-uid="wan24.Core.MemoryPoolStream.CanWrite">CanWrite</h4>
@@ -1107,11 +1168,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_CleanReturned.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.CleanReturned%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L201">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L45">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_CleanReturned_" data-uid="wan24.Core.MemoryPoolStream.CleanReturned*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_CleanReturned" data-uid="wan24.Core.MemoryPoolStream.CleanReturned">CleanReturned</h4>
-  <div class="markdown level1 summary"><p>Clean returned buffers?</p>
+  <div class="markdown level1 summary"><p>If to clean returned buffers</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1138,7 +1199,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_DefaultBufferSize.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.DefaultBufferSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L164">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Static.cs/#L22">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_DefaultBufferSize_" data-uid="wan24.Core.MemoryPoolStream.DefaultBufferSize*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_DefaultBufferSize" data-uid="wan24.Core.MemoryPoolStream.DefaultBufferSize">DefaultBufferSize</h4>
@@ -1166,10 +1227,72 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_LastBufferIndex.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.LastBufferIndex%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L35">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_LastBufferIndex_" data-uid="wan24.Core.MemoryPoolStream.LastBufferIndex*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_LastBufferIndex" data-uid="wan24.Core.MemoryPoolStream.LastBufferIndex">LastBufferIndex</h4>
+  <div class="markdown level1 summary"><p>Index of the last used buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastBufferIndex { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_LastBufferOffset.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.LastBufferOffset%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L40">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_LastBufferOffset_" data-uid="wan24.Core.MemoryPoolStream.LastBufferOffset*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_LastBufferOffset" data-uid="wan24.Core.MemoryPoolStream.LastBufferOffset">LastBufferOffset</h4>
+  <div class="markdown level1 summary"><p>Byte offset in the last used buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int LastBufferOffset { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Length.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Length%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L243">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L98">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Length_" data-uid="wan24.Core.MemoryPoolStream.Length*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Length" data-uid="wan24.Core.MemoryPoolStream.Length">Length</h4>
@@ -1224,7 +1347,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Position.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Position%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L246">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L101">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Position_" data-uid="wan24.Core.MemoryPoolStream.Position*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Position" data-uid="wan24.Core.MemoryPoolStream.Position">Position</h4>
@@ -1281,14 +1404,45 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ReturnUnusedBuffers.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ReturnUnusedBuffers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L50">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_ReturnUnusedBuffers_" data-uid="wan24.Core.MemoryPoolStream.ReturnUnusedBuffers*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_ReturnUnusedBuffers" data-uid="wan24.Core.MemoryPoolStream.ReturnUnusedBuffers">ReturnUnusedBuffers</h4>
+  <div class="markdown level1 summary"><p>If to return unused buffers to the pool (otherwise they'll be kept within this stream for later writing operations)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReturnUnusedBuffers { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_SaveOnClose.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.SaveOnClose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L206">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L55">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_SaveOnClose_" data-uid="wan24.Core.MemoryPoolStream.SaveOnClose*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_SaveOnClose" data-uid="wan24.Core.MemoryPoolStream.SaveOnClose">SaveOnClose</h4>
-  <div class="markdown level1 summary"><p>Save the data on close?</p>
+  <div class="markdown level1 summary"><p>Save the data to <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SavedData">SavedData</a> on close?</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1315,11 +1469,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_SavedData.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.SavedData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L211">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L60">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_SavedData_" data-uid="wan24.Core.MemoryPoolStream.SavedData*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_SavedData" data-uid="wan24.Core.MemoryPoolStream.SavedData">SavedData</h4>
-  <div class="markdown level1 summary"><p>Saved data</p>
+  <div class="markdown level1 summary"><p>Saved data (available after this stream was closed, if <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_SaveOnClose">SaveOnClose</a> was <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -1346,7 +1500,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_State.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.State%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L214">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Properties.cs/#L63">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_State_" data-uid="wan24.Core.MemoryPoolStream.State*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_State" data-uid="wan24.Core.MemoryPoolStream.State">State</h4>
@@ -1379,7 +1533,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Close.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Close%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L452">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L322">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Close_" data-uid="wan24.Core.MemoryPoolStream.Close*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Close" data-uid="wan24.Core.MemoryPoolStream.Close">Close()</h4>
@@ -1397,7 +1551,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Dispose(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L460">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L62">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Dispose_" data-uid="wan24.Core.MemoryPoolStream.Dispose*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Dispose_System_Boolean_" data-uid="wan24.Core.MemoryPoolStream.Dispose(System.Boolean)">Dispose(bool)</h4>
@@ -1433,7 +1587,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_DisposeCore.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.DisposeCore%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L472">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L69">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_DisposeCore_" data-uid="wan24.Core.MemoryPoolStream.DisposeCore*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_DisposeCore" data-uid="wan24.Core.MemoryPoolStream.DisposeCore">DisposeCore()</h4>
@@ -1465,7 +1619,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Flush.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Flush%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L304">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L138">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Flush_" data-uid="wan24.Core.MemoryPoolStream.Flush*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Flush" data-uid="wan24.Core.MemoryPoolStream.Flush">Flush()</h4>
@@ -1499,7 +1653,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_FlushAsync_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.FlushAsync(System.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L307">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L141">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_FlushAsync_" data-uid="wan24.Core.MemoryPoolStream.FlushAsync*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_FlushAsync_System_Threading_CancellationToken_" data-uid="wan24.Core.MemoryPoolStream.FlushAsync(System.Threading.CancellationToken)">FlushAsync(CancellationToken)</h4>
@@ -1564,10 +1718,126 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_GetBufferIndex_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.GetBufferIndex(System.Int64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L223">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_GetBufferIndex_" data-uid="wan24.Core.MemoryPoolStream.GetBufferIndex*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_GetBufferIndex_System_Int64__" data-uid="wan24.Core.MemoryPoolStream.GetBufferIndex(System.Int64@)">GetBufferIndex(in long)</h4>
+  <div class="markdown level1 summary"><p>Get the last used buffer index for a stream byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int GetBufferIndex(in long offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Stream byte offset</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><p>Buffer index or <code>-1</code>, if the <code>len</code> exceeds the currently used buffers total length</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_GetBufferIndexAndOffset_System_Int64__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.GetBufferIndexAndOffset(System.Int64%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L243">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_GetBufferIndexAndOffset_" data-uid="wan24.Core.MemoryPoolStream.GetBufferIndexAndOffset*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_GetBufferIndexAndOffset_System_Int64__" data-uid="wan24.Core.MemoryPoolStream.GetBufferIndexAndOffset(System.Int64@)">GetBufferIndexAndOffset(in long)</h4>
+  <div class="markdown level1 summary"><p>Get the last used buffer index for a stream byte offset</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected (int BufferIndex, int BufferOffset) GetBufferIndexAndOffset(in long offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>Stream byte offset</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.bufferindex">BufferIndex</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.bufferoffset">BufferOffset</a>)</td>
+        <td><p>Buffer index or <code>-1</code>, if the <code>len</code> exceeds the currently used buffers total length, and the offset (or <code>-1</code>)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Optimize.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Optimize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L117">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_Optimize_" data-uid="wan24.Core.MemoryPoolStream.Optimize*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_Optimize" data-uid="wan24.Core.MemoryPoolStream.Optimize">Optimize()</h4>
+  <div class="markdown level1 summary"><p>Optimize</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Optimize()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Read_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Read(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L315">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L149">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Read_" data-uid="wan24.Core.MemoryPoolStream.Read*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Read_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.MemoryPoolStream.Read(System.Byte[],System.Int32,System.Int32)">Read(byte[], int, int)</h4>
@@ -1672,7 +1942,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Read_System_Span_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Read(System.Span%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L318">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L152">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Read_" data-uid="wan24.Core.MemoryPoolStream.Read*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Read_System_Span_System_Byte__" data-uid="wan24.Core.MemoryPoolStream.Read(System.Span{System.Byte})">Read(Span&lt;byte&gt;)</h4>
@@ -1724,7 +1994,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ReadAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L377">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L198">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_ReadAsync_" data-uid="wan24.Core.MemoryPoolStream.ReadAsync*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_ReadAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.MemoryPoolStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">ReadAsync(byte[], int, int, CancellationToken)</h4>
@@ -1835,7 +2105,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ReadAsync(System.Memory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L381">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L207">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_ReadAsync_" data-uid="wan24.Core.MemoryPoolStream.ReadAsync*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_ReadAsync_System_Memory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.MemoryPoolStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">ReadAsync(Memory&lt;byte&gt;, CancellationToken)</h4>
@@ -1893,7 +2163,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ReadByte.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ReadByte%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L365">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L177">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_ReadByte_" data-uid="wan24.Core.MemoryPoolStream.ReadByte*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_ReadByte" data-uid="wan24.Core.MemoryPoolStream.ReadByte">ReadByte()</h4>
@@ -1948,7 +2218,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Seek_System_Int64_System_IO_SeekOrigin_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Seek(System.Int64%2CSystem.IO.SeekOrigin)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L389">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L216">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Seek_" data-uid="wan24.Core.MemoryPoolStream.Seek*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Seek_System_Int64_System_IO_SeekOrigin_" data-uid="wan24.Core.MemoryPoolStream.Seek(System.Int64,System.IO.SeekOrigin)">Seek(long, SeekOrigin)</h4>
@@ -2029,19 +2299,19 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_SetLength_System_Int32__System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.SetLength(System.Int32%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_SetLength_System_Int32_System_Boolean__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.SetLength(System.Int32%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L523">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L116">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_SetLength_" data-uid="wan24.Core.MemoryPoolStream.SetLength*"></a>
-  <h4 id="wan24_Core_MemoryPoolStream_SetLength_System_Int32__System_Boolean__" data-uid="wan24.Core.MemoryPoolStream.SetLength(System.Int32@,System.Boolean@)">SetLength(in int, in bool)</h4>
+  <h4 id="wan24_Core_MemoryPoolStream_SetLength_System_Int32_System_Boolean__" data-uid="wan24.Core.MemoryPoolStream.SetLength(System.Int32,System.Boolean@)">SetLength(int, in bool)</h4>
   <div class="markdown level1 summary"><p>Set a new length</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetLength(in int value, in bool clear)</code></pre>
+    <pre><code class="lang-csharp hljs">protected void SetLength(int value, in bool clear)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-condensed">
@@ -2072,7 +2342,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_SetLength_System_Int64_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.SetLength(System.Int64)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L396">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L224">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_SetLength_" data-uid="wan24.Core.MemoryPoolStream.SetLength*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_SetLength_System_Int64_" data-uid="wan24.Core.MemoryPoolStream.SetLength(System.Int64)">SetLength(long)</h4>
@@ -2134,7 +2404,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ToArray.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ToArray%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L283">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L92">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_ToArray_" data-uid="wan24.Core.MemoryPoolStream.ToArray*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_ToArray" data-uid="wan24.Core.MemoryPoolStream.ToArray">ToArray()</h4>
@@ -2166,7 +2436,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_ToReadOnlySequence.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.ToReadOnlySequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L296">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L105">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_ToReadOnlySequence_" data-uid="wan24.Core.MemoryPoolStream.ToReadOnlySequence*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_ToReadOnlySequence" data-uid="wan24.Core.MemoryPoolStream.ToReadOnlySequence">ToReadOnlySequence()</h4>
@@ -2195,30 +2465,14 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterReading.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterReading%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L486">View Source</a>
-  </span>
-  <a id="wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterReading_" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterReading*"></a>
-  <h4 id="wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterReading" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterReading">UpdateBufferOffsetAfterReading()</h4>
-  <div class="markdown level1 summary"><p>Update the buffer offset after reading</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void UpdateBufferOffsetAfterReading()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterWriting.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterWriting%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L496">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L78">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterWriting_" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterWriting*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_UpdateBufferOffsetAfterWriting" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferOffsetAfterWriting">UpdateBufferOffsetAfterWriting()</h4>
-  <div class="markdown level1 summary"><p>Update the buffer offset after writing</p>
+  <div class="markdown level1 summary"><p>Update the buffer indexes and offsets after writing and ensure there's buffer space for writing more</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2230,11 +2484,11 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_UpdateBufferSequence.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.UpdateBufferSequence%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L607">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Internals.cs/#L262">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_UpdateBufferSequence_" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferSequence*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_UpdateBufferSequence" data-uid="wan24.Core.MemoryPoolStream.UpdateBufferSequence">UpdateBufferSequence()</h4>
-  <div class="markdown level1 summary"><p>Update the <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a> (<a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_HasUpdates">HasUpdates</a> signals an invalid <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a>)</p>
+  <div class="markdown level1 summary"><p>Update the <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a> (<a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_HasLengthChanged">HasLengthChanged</a> signals an invalid <a class="xref" href="wan24.Core.MemoryPoolStream.html#wan24_Core_MemoryPoolStream_BufferSequence">BufferSequence</a>)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
@@ -2262,7 +2516,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Write_System_Byte___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Write(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L399">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L232">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Write_" data-uid="wan24.Core.MemoryPoolStream.Write*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Write_System_Byte___System_Int32_System_Int32_" data-uid="wan24.Core.MemoryPoolStream.Write(System.Byte[],System.Int32,System.Int32)">Write(byte[], int, int)</h4>
@@ -2351,7 +2605,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_Write_System_ReadOnlySpan_System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.Write(System.ReadOnlySpan%7BSystem.Byte%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L402">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L235">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_Write_" data-uid="wan24.Core.MemoryPoolStream.Write*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_Write_System_ReadOnlySpan_System_Byte__" data-uid="wan24.Core.MemoryPoolStream.Write(System.ReadOnlySpan{System.Byte})">Write(ReadOnlySpan&lt;byte&gt;)</h4>
@@ -2387,7 +2641,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.WriteAsync(System.Byte%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L438">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L302">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_WriteAsync_" data-uid="wan24.Core.MemoryPoolStream.WriteAsync*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_WriteAsync_System_Byte___System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="wan24.Core.MemoryPoolStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">WriteAsync(byte[], int, int, CancellationToken)</h4>
@@ -2498,7 +2752,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.WriteAsync(System.ReadOnlyMemory%7BSystem.Byte%7D%2CSystem.Threading.CancellationToken)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L442">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L312">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_WriteAsync_" data-uid="wan24.Core.MemoryPoolStream.WriteAsync*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_WriteAsync_System_ReadOnlyMemory_System_Byte__System_Threading_CancellationToken_" data-uid="wan24.Core.MemoryPoolStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">WriteAsync(ReadOnlyMemory&lt;byte&gt;, CancellationToken)</h4>
@@ -2556,7 +2810,7 @@
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_WriteByte_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.WriteByte(System.Byte)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L426">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L285">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_WriteByte_" data-uid="wan24.Core.MemoryPoolStream.WriteByte*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_WriteByte_System_Byte_" data-uid="wan24.Core.MemoryPoolStream.WriteByte(System.Byte)">WriteByte(byte)</h4>
@@ -2617,10 +2871,60 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Buffers_ReadOnlySequence_System_Byte_.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream%40)~System.Buffers.ReadOnlySequence%7BSystem.Byte%7D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Static.cs/#L43">View Source</a>
+  </span>
+  <a id="wan24_Core_MemoryPoolStream_op_Implicit_" data-uid="wan24.Core.MemoryPoolStream.op_Implicit*"></a>
+  <h4 id="wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Buffers_ReadOnlySequence_System_Byte_" data-uid="wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream@)~System.Buffers.ReadOnlySequence{System.Byte}">implicit operator ReadOnlySequence&lt;byte&gt;(in MemoryPoolStream)</h4>
+  <div class="markdown level1 summary"><p>Cast as sequence</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static implicit operator ReadOnlySequence&lt;byte&gt;(in MemoryPoolStream ms)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></td>
+        <td><span class="parametername">ms</span></td>
+        <td><p><a class="xref" href="wan24.Core.MemoryPoolStream.html">MemoryPoolStream</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.buffers.readonlysequence-1">ReadOnlySequence</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Byte__.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream%40)~System.Byte%5B%5D%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L634">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Static.cs/#L36">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_op_Implicit_" data-uid="wan24.Core.MemoryPoolStream.op_Implicit*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Byte__" data-uid="wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream@)~System.Byte[]">implicit operator byte[](in MemoryPoolStream)</h4>
@@ -2670,7 +2974,7 @@ public static implicit operator byte[](in MemoryPoolStream ms)</code></pre>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Int64.md&amp;value=---%0Auid%3A%20wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream%40)~System.Int64%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.cs/#L641">View Source</a>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/MemoryPoolStream.Static.cs/#L50">View Source</a>
   </span>
   <a id="wan24_Core_MemoryPoolStream_op_Implicit_" data-uid="wan24.Core.MemoryPoolStream.op_Implicit*"></a>
   <h4 id="wan24_Core_MemoryPoolStream_op_Implicit_wan24_Core_MemoryPoolStream___System_Int64" data-uid="wan24.Core.MemoryPoolStream.op_Implicit(wan24.Core.MemoryPoolStream@)~System.Int64">implicit operator long(in MemoryPoolStream)</h4>

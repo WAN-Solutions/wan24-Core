@@ -138,8 +138,7 @@ namespace wan24.Core
             try
             {
                 await UdpClient.SendAsync(data, target, cancellationToken).DynamicContext();
-                using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, CancelToken);
-                cts.CancelAfter(ResponseTimeout);
+                using CancellationTokenSource cts = cancellationToken.CombineWith(ResponseTimeout, CancelToken);
                 try
                 {
                     return await tcs.Task.WaitAsync(cts.Token).DynamicContext();
@@ -234,8 +233,7 @@ namespace wan24.Core
             EnsureUndisposed();
             await fallbackConnection.WriteAsync(data, cancellationToken).DynamicContext();
             int len = 0;
-            using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            cts.CancelAfter(ResponseTimeout);
+            using CancellationTokenSource cts = cancellationToken.CombineWith(ResponseTimeout, CancelToken);
             try
             {
                 while (len < response.Length)

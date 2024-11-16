@@ -84,7 +84,7 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static IEnumerable<CancellationToken> RemoveNoneAndDefaultAnd(this IEnumerable<CancellationToken> tokens, params CancellationToken[] removeTokens)
-            => Remove(tokens, [default, CancellationToken.None, ..removeTokens]);
+            => Remove(tokens, [default, CancellationToken.None, .. removeTokens]);
 
         /// <summary>
         /// Remove the default and <see cref="CancellationToken.None"/> cancellation tokens
@@ -110,5 +110,120 @@ namespace wan24.Core
 #endif
         public static IEnumerable<CancellationToken> RemoveDoubles(this IEnumerable<CancellationToken> tokens)
             => new HashSet<CancellationToken>().AddRange(tokens);
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, params CancellationToken[] cancellationTokens)
+        {
+            CancellationToken[] tokens = [cancellationToken, .. cancellationTokens];
+            return CancellationTokenSource.CreateLinkedTokenSource([.. tokens.RemoveDoubles().RemoveNoneAndDefault()]);
+        }
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="timeout">Timeout to cancellation</param>
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in TimeSpan timeout, params CancellationToken[] cancellationTokens)
+        {
+            CancellationToken[] tokens = [cancellationToken, .. cancellationTokens];
+            CancellationTokenSource res = CancellationTokenSource.CreateLinkedTokenSource([.. tokens.RemoveDoubles().RemoveNoneAndDefault()]);
+            res.CancelAfter(timeout);
+            return res;
+        }
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this IEnumerable<CancellationToken> cancellationTokens)
+            => CancellationTokenSource.CreateLinkedTokenSource([.. cancellationTokens.RemoveDoubles().RemoveNoneAndDefault()]);
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="timeout">Timeout to cancellation</param>
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this IEnumerable<CancellationToken> cancellationTokens, in TimeSpan timeout)
+        {
+            CancellationTokenSource res = CancellationTokenSource.CreateLinkedTokenSource([.. cancellationTokens.RemoveDoubles().RemoveNoneAndDefault()]);
+            res.CancelAfter(timeout);
+            return res;
+        }
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="timeout">Timeout to cancellation in ms</param>
+        /// <param name="cancellationTokens">Cancellation tokens</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this IEnumerable<CancellationToken> cancellationTokens, in int timeout)
+        {
+            CancellationTokenSource res = CancellationTokenSource.CreateLinkedTokenSource([.. cancellationTokens.RemoveDoubles().RemoveNoneAndDefault()]);
+            res.CancelAfter(timeout);
+            return res;
+        }
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="timeout">Timeout to cancellation</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in TimeSpan timeout)
+        {
+            CancellationTokenSource res = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            res.CancelAfter(timeout);
+            return res;
+        }
+
+        /// <summary>
+        /// Combine cancellation tokens
+        /// </summary>
+        /// <param name="timeout">Timeout to cancellation in ms</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Combined cancellation token source</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in int timeout)
+        {
+            CancellationTokenSource res = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            res.CancelAfter(timeout);
+            return res;
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace wan24.Core
         public bool IsSynchronized => false;
 
         /// <inheritdoc/>
-        public object SyncRoot => ((ICollection)Dict).SyncRoot;
+        public object SyncRoot => SyncObject;
 
         /// <inheritdoc/>
         public bool IsDisposing => Disposable.IsDisposing;

@@ -192,7 +192,7 @@ namespace wan24.Core
                     yield return ei;
                 }
             }
-            if (useCache) DiffInterfaceCache.TryAdd(key, [.. res]);
+            if (useCache) DiffInterfaceCache.TryAdd(key, [.. res!]);
         }
     }
 }

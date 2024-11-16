@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -13,6 +14,7 @@ namespace wan24.Core
     /// <typeparam name="tKey">Key type</typeparam>
     /// <typeparam name="tValue">Value type</typeparam>
     [Serializable]
+    [DebuggerDisplay("Count = {Count}")]
     public class OrderedDictionary<tKey, tValue> : IOrderedDictionary<tKey, tValue> where tKey : notnull
     {
         /// <summary>

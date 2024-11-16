@@ -143,6 +143,405 @@
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L154">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable{System.Threading.CancellationToken})">CombineWith(IEnumerable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Just a method adapter&quot;)]
+public static CancellationTokenSource CombineWith(this IEnumerable&lt;CancellationToken&gt; cancellationTokens)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>&gt;</td>
+        <td><span class="parametername">cancellationTokens</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable%7BSystem.Threading.CancellationToken%7D%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L184">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__System_Int32__" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable{System.Threading.CancellationToken},System.Int32@)">CombineWith(IEnumerable&lt;CancellationToken&gt;, in int)</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this IEnumerable&lt;CancellationToken&gt; cancellationTokens, in int timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>&gt;</td>
+        <td><span class="parametername">cancellationTokens</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout to cancellation in ms</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__System_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable%7BSystem.Threading.CancellationToken%7D%2CSystem.TimeSpan%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L167">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Collections_Generic_IEnumerable_System_Threading_CancellationToken__System_TimeSpan__" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Collections.Generic.IEnumerable{System.Threading.CancellationToken},System.TimeSpan@)">CombineWith(IEnumerable&lt;CancellationToken&gt;, in TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this IEnumerable&lt;CancellationToken&gt; cancellationTokens, in TimeSpan timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>&gt;</td>
+        <td><span class="parametername">cancellationTokens</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout to cancellation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_Int32__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken%2CSystem.Int32%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L218">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_Int32__" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken,System.Int32@)">CombineWith(CancellationToken, in int)</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in int timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout to cancellation in ms</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_Threading_CancellationToken___.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken%2CSystem.Threading.CancellationToken%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L120">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_Threading_CancellationToken___" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken,System.Threading.CancellationToken[])">CombineWith(CancellationToken, params CancellationToken[])</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, params CancellationToken[] cancellationTokens)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>[]</td>
+        <td><span class="parametername">cancellationTokens</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_TimeSpan__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken%2CSystem.TimeSpan%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L201">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_TimeSpan__" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken,System.TimeSpan@)">CombineWith(CancellationToken, in TimeSpan)</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in TimeSpan timeout)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout to cancellation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_TimeSpan__System_Threading_CancellationToken___.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken%2CSystem.TimeSpan%40%2CSystem.Threading.CancellationToken%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WAN-Solutions/wan24-Core/blob/main/src/Wan24-Core/CancellationTokenExtensions.cs/#L137">View Source</a>
+  </span>
+  <a id="wan24_Core_CancellationTokenExtensions_CombineWith_" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith*"></a>
+  <h4 id="wan24_Core_CancellationTokenExtensions_CombineWith_System_Threading_CancellationToken_System_TimeSpan__System_Threading_CancellationToken___" data-uid="wan24.Core.CancellationTokenExtensions.CombineWith(System.Threading.CancellationToken,System.TimeSpan@,System.Threading.CancellationToken[])">CombineWith(CancellationToken, in TimeSpan, params CancellationToken[])</h4>
+  <div class="markdown level1 summary"><p>Combine cancellation tokens</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[TargetedPatchingOptOut(&quot;Tiny method&quot;)]
+public static CancellationTokenSource CombineWith(this CancellationToken cancellationToken, in TimeSpan timeout, params CancellationToken[] cancellationTokens)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>Cancellation token</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>Timeout to cancellation</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>[]</td>
+        <td><span class="parametername">cancellationTokens</span></td>
+        <td><p>Cancellation tokens</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></td>
+        <td><p>Combined cancellation token source</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WAN-Solutions/wan24-Core/new/main/apiSpec/new?filename=wan24_Core_CancellationTokenExtensions_EnsureNotDefault_System_Threading_CancellationToken_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20wan24.Core.CancellationTokenExtensions.EnsureNotDefault(System.Threading.CancellationToken%2CSystem.Threading.CancellationToken%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
