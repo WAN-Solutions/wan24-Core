@@ -116,7 +116,7 @@ namespace wan24.Core
         }
 
         /// <inheritdoc/>
-        LocalizedString IStringLocalizer.this[string name, params object[] arguments] => new(name,this[name, [..arguments.Select(a=>a.ToString())]]);
+        LocalizedString IStringLocalizer.this[string name, params object[] arguments] => new(name,this[name, [..arguments.Select(a=>a.ToString()??string.Empty)]]);
 
         /// <inheritdoc/>
         LocalizedString IStringLocalizer.this[string name] => new(name, this[name]);
