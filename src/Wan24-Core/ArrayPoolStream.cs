@@ -12,12 +12,13 @@ namespace wan24.Core
         /// </summary>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public ArrayPoolStream(in ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
+        public ArrayPoolStream(ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
         {
-            Pool = pool ?? ArrayPool<byte>.Shared;
+            Pool = pool ??= ArrayPool<byte>.Shared;
             if (bufferSize.HasValue) BufferSize = bufferSize.Value;
-            Buffers = [Pool.Rent(BufferSize)];
-            HasUpdates = false;
+            byte[] buffer = pool.Rent(bufferSize ?? BufferSize);
+            Buffers = [buffer];
+            TotalBufferLengths = [buffer.Length];
         }
 
         /// <summary>
@@ -26,29 +27,33 @@ namespace wan24.Core
         /// <param name="data">Initial data (will be returned to the pool, if <c>returnData</c> is <see langword="true"/>; may be overwritten; initial position 
         /// will be <c>0</c>)</param>
         /// <param name="returnData">If to return the <c>data</c> to the pool when disposing (if <see langword="false"/>, <c>data</c> may not be a rented array)</param>
-        /// <param name="len">Number of bytes to take from <c>data</c></param>
+        /// <param name="len">Number of bytes to take from <c>data</c>, or <c>-1</c> to take all</param>
         /// <param name="pool">Pool</param>
         /// <param name="bufferSize">Buffer size in bytes</param>
-        public ArrayPoolStream(in byte[] data, in bool returnData, in int len = -1, in ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
+        public ArrayPoolStream(in byte[] data, in bool returnData, int len = -1, ArrayPool<byte>? pool = null, in int? bufferSize = null) : base()
         {
-            ArgumentOutOfRangeException.ThrowIfLessThan(data.Length, other: 1, nameof(data));
-            if (len >= 0) ArgumentOutOfRangeException.ThrowIfGreaterThan(len, data.Length, nameof(len));
+            int dataLen = data.Length;
+            ArgumentOutOfRangeException.ThrowIfLessThan(dataLen, other: 1, nameof(data));
+            if (len > 0) ArgumentOutOfRangeException.ThrowIfGreaterThan(len, dataLen, nameof(len));
             ReturnFirstBuffer = returnData;
-            Pool = pool ?? ArrayPool<byte>.Shared;
+            Pool = pool ??= ArrayPool<byte>.Shared;
             if (bufferSize.HasValue) BufferSize = bufferSize.Value;
-            _Length = len < 0 ? data.Length : len;
-            if (_Length == data.Length)
+            len = _Length = len < 0 ? dataLen : len;
+            HasLengthChanged = true;
+            if (len == dataLen)
             {
-                Buffers = [data, Pool.Rent(BufferSize)];
-                BufferIndex = 1;
-                LastBufferOffset = 0;
-                HasUpdates = true;
+                // Use the whole given data and add a spare buffer
+                byte[] buffer = pool.Rent(bufferSize ?? BufferSize);
+                Buffers = [data, buffer];
+                TotalBufferLengths = [len, len + buffer.Length];
+                _LastBufferIndex = 1;
             }
             else
             {
+                // Use the partial given data as buffer
                 Buffers = [data];
-                LastBufferOffset = _Length;
-                HasUpdates = _Length != 0;
+                TotalBufferLengths = [dataLen];
+                _LastBufferOffset = len;
             }
         }
 
@@ -86,9 +91,9 @@ namespace wan24.Core
         /// <returns>Array</returns>
         public byte[] ToArray()
         {
-            EnsureUndisposed();
+            EnsureUndisposed(allowDisposing: true);
             if (_Length == 0) return [];
-            return HasUpdates
+            return HasLengthChanged
                 ? UpdateBufferSequence().ToArray()
                 : BufferSequence.ToArray();
         }
@@ -101,7 +106,33 @@ namespace wan24.Core
         {
             EnsureUndisposed();
             if (_Length == 0) return ReadOnlySequence<byte>.Empty;
-            return HasUpdates ? UpdateBufferSequence() : BufferSequence;
+            return HasLengthChanged 
+                ? UpdateBufferSequence() 
+                : BufferSequence;
+        }
+
+        /// <summary>
+        /// Optimize
+        /// </summary>
+        public void Optimize()
+        {
+            EnsureUndisposed();
+            List<byte[]> buffers = Buffers;
+            int len = buffers.Count,
+                firstRemoved = _LastBufferIndex + 2;
+            if (firstRemoved > len) return;
+            ArrayPool<byte> pool = Pool;
+            if (CleanReturned)
+            {
+                byte[] buffer;
+                for (int i = firstRemoved; i < len; buffer = buffers[i], buffer.Clear(), pool.Return(buffer), i++) ;
+            }
+            else
+            {
+                for (int i = firstRemoved; i < len; pool.Return(buffers[i]), i++) ;
+            }
+            buffers.RemoveRange(firstRemoved, len - firstRemoved);
+            TotalBufferLengths.RemoveRange(firstRemoved, len - firstRemoved);
         }
 
         /// <inheritdoc/>
@@ -122,46 +153,24 @@ namespace wan24.Core
         public override int Read(Span<byte> buffer)
         {
             EnsureUndisposed();
-            if (_Position == _Length) return 0;
+            EnsureReadable();
+            int pos = _Position,
+                length = _Length;
+            if (pos == length) return 0;
             int len = buffer.Length;
             if (len == 0) return 0;
-            int newPos = _Position + len;
+            long newPos = (long)pos + len;
             // Reduce the target buffer length, if required
-            if (newPos > _Length)
+            if (newPos > length)
             {
-                len = _Length - _Position;
+                len = length - pos;
                 buffer = buffer[..len];
-                newPos = _Length;
+                newPos = length;
             }
             // Copy the sequence to the buffer
-            if (HasUpdates) UpdateBufferSequence();
-            (len == _Length ? BufferSequence : BufferSequence.Slice(_Position, len)).CopyTo(buffer);
-            // Update the buffer index and offset
-            if (newPos == _Length)
-            {
-                // Red to the end
-                _Position = newPos;
-                BufferIndex = Buffers.Count - 1;
-                BufferOffset = LastBufferOffset;
-            }
-            else
-            {
-                // Forward buffer index and offset
-                newPos -= _Position;
-                _Position += newPos;
-                for (int i = 0, dataLen, forward; newPos != 0; newPos -= forward, BufferIndex++, BufferOffset = 0, i++)
-                {
-                    dataLen = i == 0
-                        ? Buffers[BufferIndex].Length - BufferOffset
-                        : Buffers[BufferIndex].Length;
-                    forward = newPos > dataLen
-                        ? dataLen
-                        : newPos;
-                    BufferOffset += forward;
-                    if (BufferOffset != dataLen) break;
-                }
-                UpdateBufferOffsetAfterReading();
-            }
+            if (HasLengthChanged) UpdateBufferSequence();
+            (len == length ? BufferSequence : BufferSequence.Slice(pos, len)).CopyTo(buffer);
+            Position = newPos;
             return len;
         }
 
@@ -169,22 +178,37 @@ namespace wan24.Core
         public override int ReadByte()
         {
             EnsureUndisposed();
-            if (_Position == _Length) return -1;
-            int res = Buffers[BufferIndex][BufferOffset];
-            BufferOffset++;
-            _Position++;
-            UpdateBufferOffsetAfterReading();
+            EnsureReadable();
+            int pos = _Position;
+            if (pos == _Length) return -1;
+            int bufferIndex = BufferIndex,
+                bufferOffset = BufferOffset;
+            byte[] buffer = Buffers[bufferIndex];
+            int res = buffer[bufferOffset];
+            _Position = pos + 1;
+            BufferOffset = ++bufferOffset;
+            if (bufferOffset >= buffer.Length)
+            {
+                BufferIndex = bufferIndex + 1;
+                BufferOffset = 0;
+            }
             return res;
         }
 
         /// <inheritdoc/>
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => await ReadAsync(buffer.AsMemory(offset, count), cancellationToken).DynamicContext();
+        public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            EnsureReadable();
+            cancellationToken.ThrowIfCancellationRequested();
+            return Task.FromResult(Read(buffer.AsSpan(offset, count)));
+        }
 
         /// <inheritdoc/>
         public override ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureReadable();
             cancellationToken.ThrowIfCancellationRequested();
             return ValueTask.FromResult(Read(buffer.Span));
         }
@@ -193,11 +217,17 @@ namespace wan24.Core
         public override long Seek(long offset, SeekOrigin origin)
         {
             EnsureUndisposed();
+            EnsureSeekable();
             return this.GenericSeek(offset, origin);
         }
 
         /// <inheritdoc/>
-        public override void SetLength(long value) => SetLength((int)value, clear: true);
+        public override void SetLength(long value)
+        {
+            EnsureUndisposed();
+            EnsureWritable();
+            SetLength((int)value, clear: true);
+        }
 
         /// <inheritdoc/>
         public override void Write(byte[] buffer, int offset, int count) => Write(buffer.AsSpan(offset, count));
@@ -206,44 +236,84 @@ namespace wan24.Core
         public override void Write(ReadOnlySpan<byte> buffer)
         {
             EnsureUndisposed();
+            EnsureWritable();
             int len = buffer.Length;
             if (len == 0) return;
-            if (int.MaxValue - len < _Position) throw new OutOfMemoryException();
-            int newLen = _Position + len;
-            if (newLen > _Length) SetLength(newLen, clear: false);
-            Span<byte> data;
-            for (int written = 0, chunk, dataLen; written != len; written += chunk, BufferIndex++, BufferOffset = 0)
+            int pos = _Position;
+            if (int.MaxValue - len < pos) throw new OutOfMemoryException();
+            int newPos = pos + len,
+                bufferIndex = BufferIndex,
+                bufferOffset = BufferOffset;
+            bool extended = newPos > _Length;
+            if (extended) SetLength(newPos, clear: false);
+            List<byte[]> buffers = Buffers;
+            Span<byte> data = buffers[bufferIndex];
+            int chunk = data.Length - bufferOffset,
+                written;
+            // Fill up the current buffer
+            if (chunk > 0)
             {
-                data = Buffers[BufferIndex].AsSpan();
-                dataLen = data.Length;
-                chunk = Math.Min(dataLen - BufferOffset, len - written);
-                buffer.Slice(written, chunk).CopyTo(data[BufferOffset..]);
-                _Position += chunk;
-                BufferOffset += chunk;
-                if (BufferOffset != dataLen) break;
+                written = Math.Min(chunk, len);
+                buffer[..written].CopyTo(data[bufferOffset..]);
             }
-            UpdateBufferOffsetAfterWriting();
+            else
+            {
+                written = 0;
+            }
+            // Continue writing to the next buffers
+            if (len != written)
+            {
+                for (
+                    ;
+                    len != written;
+                    bufferIndex++, 
+                        data = buffers[bufferIndex], 
+                        chunk = Math.Min(data.Length, len - written), 
+                        buffer.Slice(written, chunk).CopyTo(data), 
+                        written += chunk
+                    ) ;
+                (BufferIndex, BufferOffset) = (bufferIndex, chunk);
+            }
+            else
+            {
+                BufferOffset = bufferOffset + written;
+            }
+            _Position = newPos;
+            if (!extended) UpdateBufferOffsetAfterWriting();
         }
 
         /// <inheritdoc/>
         public override void WriteByte(byte value)
         {
             EnsureUndisposed();
-            if (_Position == int.MaxValue) throw new OutOfMemoryException();
-            if (++_Position > _Length) SetLength(_Position, clear: false);
+            EnsureWritable();
+            int pos = _Position;
+            if (pos == int.MaxValue) throw new OutOfMemoryException();
+            int newPos = pos + 1,
+                bufferOffset = BufferOffset;
+            bool extended = newPos > _Length;
+            if (extended) SetLength(newPos, clear: false);
             Buffers[BufferIndex][BufferOffset] = value;
-            BufferOffset++;
-            UpdateBufferOffsetAfterWriting();
+            _Position = newPos;
+            BufferOffset = bufferOffset + 1;
+            if (!extended) UpdateBufferOffsetAfterWriting();
         }
 
         /// <inheritdoc/>
-        public override async Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-            => await WriteAsync(buffer.AsMemory(offset, count), cancellationToken).DynamicContext();
+        public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        {
+            EnsureUndisposed();
+            EnsureWritable();
+            cancellationToken.ThrowIfCancellationRequested();
+            Write(buffer.AsSpan(offset, count));
+            return Task.CompletedTask;
+        }
 
         /// <inheritdoc/>
         public override ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
         {
             EnsureUndisposed();
+            EnsureWritable();
             cancellationToken.ThrowIfCancellationRequested();
             Write(buffer.Span);
             return ValueTask.CompletedTask;

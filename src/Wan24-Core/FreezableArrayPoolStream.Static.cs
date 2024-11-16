@@ -4,7 +4,7 @@ using System.Runtime;
 namespace wan24.Core
 {
     // Static
-    public partial class ArrayPoolStream
+    public partial class FreezableArrayPoolStream
     {
         /// <summary>
         /// Default buffer size in bytes
@@ -32,22 +32,22 @@ namespace wan24.Core
         /// <summary>
         /// Cast as new byte array
         /// </summary>
-        /// <param name="ms"><see cref="ArrayPoolStream"/></param>
+        /// <param name="ms"><see cref="FreezableArrayPoolStream"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator byte[](in ArrayPoolStream ms) => ms.ToArray();
+        public static implicit operator byte[](in FreezableArrayPoolStream ms) => ms.ToArray();
 
         /// <summary>
         /// Cast as sequence
         /// </summary>
-        /// <param name="ms"><see cref="ArrayPoolStream"/></param>
+        /// <param name="ms"><see cref="FreezableArrayPoolStream"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator ReadOnlySequence<byte>(in ArrayPoolStream ms) => ms.ToReadOnlySequence();
+        public static implicit operator ReadOnlySequence<byte>(in FreezableArrayPoolStream ms) => ms.ToReadOnlySequence();
 
         /// <summary>
         /// Cast as length
         /// </summary>
-        /// <param name="ms"><see cref="ArrayPoolStream"/></param>
+        /// <param name="ms"><see cref="FreezableArrayPoolStream"/></param>
         [TargetedPatchingOptOut("Just a method adapter")]
-        public static implicit operator long(in ArrayPoolStream ms) => ms._Length;
+        public static implicit operator long(in FreezableArrayPoolStream ms) => ms._Length;
     }
 }

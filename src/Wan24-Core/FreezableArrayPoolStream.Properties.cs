@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     // Properties
-    public partial class ArrayPoolStream
+    public partial class FreezableArrayPoolStream
     {
         /// <summary>
         /// Buffer size in bytes
@@ -82,6 +82,7 @@ namespace wan24.Core
                 yield return new(__("Offset"), BufferOffset, __("Byte offset of the current buffer"));
                 yield return new(__("Clean"), CleanReturned, __("If returned buffers are being cleaned"));
                 yield return new(__("Return"), ReturnUnusedBuffers, __("If unused buffers are being returned to the pool"));
+                yield return new(__("Frozen"), Buffers.IsFrozen, __("If the buffers are frozen"));
             }
         }
 
@@ -92,7 +93,7 @@ namespace wan24.Core
         public override bool CanSeek => true;
 
         /// <inheritdoc/>
-        public override bool CanWrite => true;
+        public override bool CanWrite => !Buffers.IsFrozen;
 
         /// <inheritdoc/>
         public override long Length => _Length;

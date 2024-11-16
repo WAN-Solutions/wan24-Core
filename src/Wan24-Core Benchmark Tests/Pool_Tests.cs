@@ -30,7 +30,7 @@ namespace Wan24_Core_Benchmark_Tests
             TestArrayStream = new(TestData);
             TestArrayStream.Freeze();
             Contract.Assert(!TestArrayStream.CanWrite);
-            TestMemoryStream = new(TestData, writable: false);
+            TestMemoryStream = new(new MemoryOwner<byte>(TestData), returnData: true);
             Contract.Assert(!TestMemoryStream.CanWrite);
         }
 
@@ -124,7 +124,7 @@ namespace Wan24_Core_Benchmark_Tests
         [Benchmark]
         public void MemoryRead()
         {
-            using MemoryPoolStream ms = new(TestData, writable: false);
+            using MemoryPoolStream ms = new(new MemoryOwner<byte>(TestData), returnData: true);
             ms.ReadByte();
             ms.Read(TestBuffer);
             ms.ReadByte();

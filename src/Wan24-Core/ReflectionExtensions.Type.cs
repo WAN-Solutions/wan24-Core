@@ -339,5 +339,27 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Type GetRealType(this Type type) => !type.IsArray && !type.IsEnum && !type.IsPointer && type.HasElementType ? type.GetElementType()! : type;
+
+        /// <summary>
+        /// Determine if a type is disposable
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If disposable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsDisposable(this Type type) => typeof(IDisposable).IsAssignableFrom(type) || typeof(IAsyncDisposable).IsAssignableFrom(type);
+
+        /// <summary>
+        /// Determine if a type may be disposable
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If possibly disposable</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool MayBeDisposable(this Type type) => type.IsInterface || !type.IsSealed || IsDisposable(type);
     }
 }

@@ -3,16 +3,16 @@
 namespace wan24.Core
 {
     // Internals
-    public partial class ArrayPoolStream
+    public partial class FreezableMemoryPoolStream
     {
         /// <summary>
         /// Buffers
         /// </summary>
-        protected readonly List<byte[]> Buffers;
+        protected readonly FreezableList<IMemoryOwner<byte>> Buffers;
         /// <summary>
         /// Total buffer lengths in bytes
         /// </summary>
-        protected readonly List<long> TotalBufferLengths;
+        protected readonly FreezableList<long> TotalBufferLengths;
         /// <summary>
         /// If to return the first buffer to the pool when disposing
         /// </summary>
@@ -20,7 +20,7 @@ namespace wan24.Core
         /// <summary>
         /// Pool
         /// </summary>
-        protected readonly ArrayPool<byte> Pool;
+        protected readonly MemoryPool<byte> Pool;
         /// <summary>
         /// Buffer sequence
         /// </summary>
@@ -77,12 +77,12 @@ namespace wan24.Core
         /// </summary>
         protected void UpdateBufferOffsetAfterWriting()
         {
-            List<byte[]> buffers = Buffers;
+            FreezableList<IMemoryOwner<byte>> buffers = Buffers;
             int bufferIndex = BufferIndex,
                 bufferOffset = BufferOffset,
                 lastBufferIndex = _LastBufferIndex;
             // Write to the next buffer, if possible
-            if (bufferOffset >= buffers[bufferIndex].Length)
+            if (bufferOffset >= buffers[bufferIndex].Memory.Length)
             {
                 BufferIndex = ++bufferIndex;
                 BufferOffset = bufferOffset = 0;
@@ -90,10 +90,10 @@ namespace wan24.Core
             // Add a new buffer, if required
             if (bufferIndex >= buffers.Count)
             {
-                byte[] buffer = Pool.Rent(BufferSize);
+                IMemoryOwner<byte> buffer = Pool.Rent(BufferSize);
                 buffers.Add(buffer);
-                List<long> totalBufferLengths = TotalBufferLengths;
-                totalBufferLengths.Add(totalBufferLengths[^1] + buffer.Length);
+                FreezableList<long> totalBufferLengths = TotalBufferLengths;
+                totalBufferLengths.Add(totalBufferLengths[^1] + buffer.Memory.Length);
             }
             // Update the last buffer index and offset, if required
             if (bufferIndex < lastBufferIndex) return;
@@ -133,7 +133,7 @@ namespace wan24.Core
                 HasLengthChanged = false;
                 return;
             }
-            List<long> totalBufferLengths = TotalBufferLengths;
+            FreezableList<long> totalBufferLengths = TotalBufferLengths;
             if (value < totalBufferLengths[^1])
             {
                 // Delete some data as required
@@ -150,28 +150,28 @@ namespace wan24.Core
                 if (prevLastBufferIndex < lastBufferIndex && ReturnUnusedBuffers) Optimize();
                 if (clear && value > length)
                 {
-                    List<byte[]> buffers = Buffers;
-                    byte[] buffer;
+                    FreezableList<IMemoryOwner<byte>> buffers = Buffers;
+                    IMemoryOwner<byte> buffer;
                     value -= length;
                     for (int i = prevLastBufferIndex, bufferLen, offset, count; i <= lastBufferIndex && value > 0; value -= count, i++)
                     {
                         buffer = buffers[i];
-                        bufferLen = buffer.Length;
+                        bufferLen = buffer.Memory.Length;
                         offset = i == prevLastBufferIndex
                             ? prevLastBufferOffset
                             : 0;
                         count = i == lastBufferIndex
                             ? lastBufferOffset - offset
                             : bufferLen - offset;
-                        buffer.AsSpan(offset, count).Clear();
+                        buffer.Memory.Span.Slice(offset, count).Clear();
                     }
                 }
             }
             else
             {
                 // Add buffers as required
-                List<byte[]> buffers = Buffers;
-                ArrayPool<byte> pool = Pool;
+                FreezableList<IMemoryOwner<byte>> buffers = Buffers;
+                MemoryPool<byte> pool = Pool;
                 int add = value - length,
                     lastBufferIndex = _LastBufferIndex,
                     lastBufferOffset = _LastBufferOffset,
@@ -179,10 +179,10 @@ namespace wan24.Core
                     bufferSize = BufferSize,
                     bufferIndex,
                     bufferLen;
-                byte[] buffer = buffers[lastBufferIndex];
-                bufferLen = buffer.Length;
+                IMemoryOwner<byte> buffer = buffers[lastBufferIndex];
+                bufferLen = buffer.Memory.Length;
                 lastBufferChunk = bufferLen - lastBufferOffset;
-                if (clear) Array.Clear(buffer, lastBufferOffset, lastBufferChunk);
+                if (clear) buffer.Memory.Slice(lastBufferOffset, lastBufferChunk).Span.Clear();
                 add -= lastBufferChunk;
                 bufferIndex = lastBufferIndex;
                 for (int len = buffers.Count; ; add -= lastBufferOffset)
@@ -192,7 +192,7 @@ namespace wan24.Core
                     {
                         // Add a new buffer
                         buffer = pool.Rent(bufferSize);
-                        bufferLen = buffer.Length;
+                        bufferLen = buffer.Memory.Length;
                         buffers.Add(buffer);
                         totalBufferLengths.Add(totalBufferLengths[^1] + bufferLen);
                         len++;
@@ -201,10 +201,10 @@ namespace wan24.Core
                     {
                         // Use the next spare buffer
                         buffer = buffers[bufferIndex];
-                        bufferLen = buffer.Length;
+                        bufferLen = buffer.Memory.Length;
                     }
                     lastBufferOffset = Math.Min(add, bufferLen);
-                    if (clear) (lastBufferOffset == bufferLen ? buffer : buffer.AsSpan(0, add)).Clear();
+                    if (clear) (lastBufferOffset == bufferLen ? buffer.Memory.Span : buffer.Memory.Span[..add]).Clear();
                     if (lastBufferOffset == add) break;
                 }
                 (_LastBufferIndex, _LastBufferOffset) = (bufferIndex, lastBufferOffset);
@@ -222,7 +222,7 @@ namespace wan24.Core
         /// <returns>Buffer index or <c>-1</c>, if the <c>len</c> exceeds the currently used buffers total length</returns>
         protected int GetBufferIndex(in long offset)
         {
-            List<long> totalBufferLengths = TotalBufferLengths;
+            FreezableList<long> totalBufferLengths = TotalBufferLengths;
             long total;
             for (int res = 0, buffers = totalBufferLengths.Count; res < buffers; res++)
             {
@@ -242,14 +242,14 @@ namespace wan24.Core
         /// <returns>Buffer index or <c>-1</c>, if the <c>len</c> exceeds the currently used buffers total length, and the offset (or <c>-1</c>)</returns>
         protected (int BufferIndex, int BufferOffset) GetBufferIndexAndOffset(in long offset)
         {
-            List<long> totalBufferLengths = TotalBufferLengths;
+            FreezableList<long> totalBufferLengths = TotalBufferLengths;
             long total;
             for (int res = 0, buffers = totalBufferLengths.Count; res < buffers; res++)
             {
                 total = totalBufferLengths[res];
                 if (total < offset) continue;
                 return total > offset
-                    ? (res, (int)(offset - total + Buffers[res].Length))
+                    ? (res, (int)(offset - total + Buffers[res].Memory.Length))
                     : (res + 1, 0);
             }
             return (-1, -1);
@@ -271,17 +271,17 @@ namespace wan24.Core
                     return res;
                 }
                 int len = Buffers.Count - 1;
-                List<byte[]> buffers = Buffers;
+                FreezableList<IMemoryOwner<byte>> buffers = Buffers;
                 if (len == 0)
                 {
-                    BufferSequence = res = new(buffers[0].AsMemory(0, _LastBufferOffset));
+                    BufferSequence = res = new(buffers[0].Memory[.._LastBufferOffset]);
                 }
                 else
                 {
                     int lastBufferOffset = _LastBufferOffset;
-                    MemorySequenceSegment<byte> first = new(buffers[0]),
+                    MemorySequenceSegment<byte> first = new(buffers[0].Memory),
                         last = first;
-                    for (int i = 1; i <= len; last = last.Append(i == len ? buffers[i].AsMemory(0, lastBufferOffset) : buffers[i]), i++) ;
+                    for (int i = 1; i <= len; last = last.Append(i == len ? buffers[i].Memory[..lastBufferOffset] : buffers[i].Memory), i++) ;
                     BufferSequence = res = new(first, startIndex: 0, last, endIndex: lastBufferOffset);
                 }
                 return res;
@@ -297,19 +297,29 @@ namespace wan24.Core
         /// </summary>
         private void ReturnBuffersOnDisposing()
         {
-            ArrayPool<byte> pool = Pool;
-            List<byte[]> buffers = Buffers;
+            FreezableList<IMemoryOwner<byte>> buffers = Buffers;
             if (CleanReturned)
             {
-                byte[] buffer;
-                for (int i = ReturnFirstBuffer ? 0 : 1, len = buffers.Count; i < len; buffer = buffers[i], buffer.Clear(), pool.Return(buffer), i++) ;
+                IMemoryOwner<byte> buffer;
+                for (int i = ReturnFirstBuffer ? 0 : 1, len = buffers.Count; i < len; buffer = buffers[i], buffer.Memory.Span.Clean(), buffer.Dispose(), i++) ;
+            }
+            else if (ReturnFirstBuffer)
+            {
+                buffers.DisposeAll();
+            }
+            else if(buffers.IsFrozen)
+            {
+                buffers.Frozen!.Value[1..].DisposeAll();
             }
             else
             {
-                for (int i = ReturnFirstBuffer ? 0 : 1, len = buffers.Count; i < len; pool.Return(buffers[i]), i++) ;
+                for (int i = 1, len = buffers.Count; i < len; buffers[i].Dispose(), i++) ;
             }
+            if (buffers.IsFrozen) buffers.Unfreeze();
             buffers.Clear();
-            TotalBufferLengths.Clear();
+            FreezableList<long> totalBufferLengths = TotalBufferLengths;
+            if (totalBufferLengths.IsFrozen) totalBufferLengths.Unfreeze();
+            totalBufferLengths.Clear();
         }
     }
 }

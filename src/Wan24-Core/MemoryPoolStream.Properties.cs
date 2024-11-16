@@ -3,7 +3,7 @@
 namespace wan24.Core
 {
     // Properties
-    public partial class ArrayPoolStream
+    public partial class MemoryPoolStream
     {
         /// <summary>
         /// Buffer size in bytes
