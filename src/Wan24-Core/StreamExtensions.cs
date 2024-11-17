@@ -300,7 +300,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of red bytes into the buffer</returns>
         public static async Task<int> ReadDataWithLengthInfoAsync<T>(
-            this T stream, 
+            this T stream,
             Memory<byte> buffer,
             CancellationToken cancellationToken = default
             )
@@ -313,5 +313,19 @@ namespace wan24.Core
             await stream.ReadExactlyAsync(buffer[..res], cancellationToken).DynamicContext();
             return res;
         }
+
+        /// <summary>
+        /// Read the stream to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        public static void ReadToEnd(this Stream stream) => stream.CopyTo(Stream.Null);
+
+        /// <summary>
+        /// Read the stream to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task ReadToEndAsync(this Stream stream, CancellationToken cancellationToken = default)
+            => await stream.CopyToAsync(Stream.Null, cancellationToken).DynamicContext();
     }
 }
