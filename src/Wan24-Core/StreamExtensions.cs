@@ -318,6 +318,10 @@ namespace wan24.Core
         /// Read the stream to the end
         /// </summary>
         /// <param name="stream">Stream</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static void ReadToEnd(this Stream stream) => stream.CopyTo(Stream.Null);
 
         /// <summary>
@@ -325,6 +329,10 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static async Task ReadToEndAsync(this Stream stream, CancellationToken cancellationToken = default)
             => await stream.CopyToAsync(Stream.Null, cancellationToken).DynamicContext();
     }
