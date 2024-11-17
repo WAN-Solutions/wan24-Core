@@ -546,6 +546,70 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
+        public static byte[] GetBytes(this Half value)
+        {
+            byte[] res = new byte[2];
+            BinaryPrimitives.WriteHalfLittleEndian(res, value);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this Half value, in byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Span<byte> GetBytes(this Half value, in Span<byte> target)
+        {
+            BinaryPrimitives.WriteHalfLittleEndian(target, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Memory<byte> GetBytes(this Half value, in Memory<byte> target)
+        {
+            BinaryPrimitives.WriteHalfLittleEndian(target.Span, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static byte[] GetBytes(this float value)
         {
             byte[] res = new byte[sizeof(float)];

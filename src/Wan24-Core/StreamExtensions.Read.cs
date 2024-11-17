@@ -1,4 +1,7 @@
-﻿namespace wan24.Core
+﻿using System.Runtime.CompilerServices;
+using System.Runtime;
+
+namespace wan24.Core
 {
     // Read
     public static partial class StreamExtensions
@@ -224,6 +227,130 @@
                 if (res == buffer.Length || !await condition(stream, buffer, red, res, cancellationToken).DynamicContext()) return res;
             }
             return res;
+        }
+
+        /// <summary>
+        /// Read a stream with length information (8 byte)
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static PartialStream<T> ReadStreamWithLengthInfo<T>(this T stream) where T : Stream
+        {
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(long));
+            Span<byte> bufferSpan = buffer.Span;
+            stream.ReadExactly(bufferSpan);
+            return new(stream, bufferSpan.ToLong(), leaveOpen: true);
+        }
+
+        /// <summary>
+        /// Read a stream with length information (8 byte)
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static async Task<PartialStream<T>> ReadStreamWithLengthInfoAsync<T>(this T stream, CancellationToken cancellationToken = default) where T : Stream
+        {
+            using RentedMemory<byte> buffer = new(len: sizeof(long));
+            Memory<byte> bufferMem = buffer.Memory;
+            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
+            return new(stream, bufferMem.Span.ToLong(), leaveOpen: true);
+        }
+
+        /// <summary>
+        /// Read data with length information (4 byte)
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of red bytes into the buffer</returns>
+        public static int ReadDataWithLengthInfo<T>(this T stream, Span<byte> buffer) where T : Stream
+        {
+            using RentedMemoryRef<byte> buffer2 = new(len: sizeof(int));
+            Span<byte> bufferSpan = buffer2.Span;
+            stream.ReadExactly(bufferSpan);
+            int res = bufferSpan.ToInt();
+            stream.ReadExactly(buffer[..res]);
+            return res;
+        }
+
+        /// <summary>
+        /// Read data with length information (4 byte)
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of red bytes into the buffer</returns>
+        public static async Task<int> ReadDataWithLengthInfoAsync<T>(
+            this T stream,
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default
+            )
+            where T : Stream
+        {
+            using RentedMemory<byte> buffer2 = new(len: sizeof(int));
+            Memory<byte> bufferMem = buffer2.Memory;
+            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
+            int res = bufferMem.Span.ToInt();
+            await stream.ReadExactlyAsync(buffer[..res], cancellationToken).DynamicContext();
+            return res;
+        }
+
+        /// <summary>
+        /// Read the stream to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void ReadToEnd(this Stream stream) => stream.CopyTo(Stream.Null);
+
+        /// <summary>
+        /// Read the stream to the end
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static async Task ReadToEndAsync(this Stream stream, CancellationToken cancellationToken = default)
+            => await stream.CopyToAsync(Stream.Null, cancellationToken).DynamicContext();
+
+        /// <summary>
+        /// Read a stream with length information or chunked
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static Stream ReadStream(this Stream stream)
+        {
+            int type = stream.ReadByte();
+            return type switch
+            {
+                0 => stream.ReadStreamWithLengthInfo(),
+                1 => ChunkStream.FromExisting(new CutStream(stream, leaveOpen: true)),
+                _ => throw new InvalidDataException($"Invalid stream type #{type}"),
+            };
+        }
+
+        /// <summary>
+        /// Read a stream with length information or chunked
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static async Task<Stream> ReadStreamAsync(this Stream stream, CancellationToken cancellationToken = default)
+        {
+            int type = stream.ReadByte();
+            return type switch
+            {
+                0 => await stream.ReadStreamWithLengthInfoAsync(cancellationToken).DynamicContext(),
+                1 => await ChunkStream.FromExistingAsync(new CutStream(stream, leaveOpen: true), cancellationToken: cancellationToken).DynamicContext(),
+                _ => throw new InvalidDataException($"Invalid stream type #{type}"),
+            };
         }
     }
 }

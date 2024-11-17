@@ -314,6 +314,28 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
+        public static Half ToHalf(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadHalfLittleEndian(bits);
+
+        /// <summary>
+        /// Get a float
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Half ToHalf(this Span<byte> bits) => ToHalf((ReadOnlySpan<byte>)bits);
+
+        /// <summary>
+        /// Get a float
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         public static float ToFloat(this ReadOnlySpan<byte> bits) => BinaryPrimitives.ReadSingleLittleEndian(bits);
 
         /// <summary>
