@@ -189,15 +189,16 @@ namespace wan24.Core
         /// Read an UTF-8 encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static int ReadString(this Stream stream, in Span<char> str, in int minLen = 0)
+        public static int ReadString(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
         {
             int len = Encoding.UTF8.GetMaxByteCount(str.Length);
             using RentedMemoryRef<byte> buffer = new(len, clean: false);
             Span<byte> bufferSpan = buffer.Span;
-            int red = stream.ReadDataWithLengthInfo(bufferSpan);
+            int red = stream.ReadDataWithLengthInfo(version, bufferSpan);
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.UTF8.GetDecoder();
             decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -209,16 +210,68 @@ namespace wan24.Core
         /// Read an UTF-8 encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static int ReadStringNullable(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
+        {
+            int len = Encoding.UTF8.GetMaxByteCount(str.Length);
+            using RentedMemoryRef<byte> buffer = new(len, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            int red = stream.ReadDataNullableWithLengthInfo(version, bufferSpan);
+            if (red < 0) return -1;
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.UTF8.GetDecoder();
+            decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"UTF-8 decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an UTF-8 encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static async Task<int> ReadStringAsync(this Stream stream, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
+        public static async Task<int> ReadStringAsync(this Stream stream, int version, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
         {
             int len = Encoding.UTF8.GetMaxByteCount(str.Length);
             using RentedMemory<byte> buffer = new(len, clean: false);
             Memory<byte> bufferMem = buffer.Memory;
-            int red = await stream.ReadDataWithLengthInfoAsync(bufferMem, cancellationToken).DynamicContext();
+            int red = await stream.ReadDataWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.UTF8.GetDecoder();
+            decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"UTF-8 decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an UTF-8 encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static async Task<int> ReadStringNullableAsync(
+            this Stream stream, 
+            int version, 
+            Memory<char> str,
+            int minLen = 0, 
+            CancellationToken cancellationToken = default
+            )
+        {
+            int len = Encoding.UTF8.GetMaxByteCount(str.Length);
+            using RentedMemory<byte> buffer = new(len, clean: false);
+            Memory<byte> bufferMem = buffer.Memory;
+            int red = await stream.ReadDataNullableWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < 0) return -1;
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.UTF8.GetDecoder();
             decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -230,15 +283,17 @@ namespace wan24.Core
         /// Read an Unicode encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static int ReadString16(this Stream stream, in Span<char> str, in int minLen = 0)
+        public static int ReadString16(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
         {
             int len = Encoding.Unicode.GetMaxByteCount(str.Length);
             using RentedMemoryRef<byte> buffer = new(len, clean: false);
             Span<byte> bufferSpan = buffer.Span;
-            int red = stream.ReadDataWithLengthInfo(bufferSpan);
+            int red = stream.ReadDataWithLengthInfo(version, bufferSpan);
+            if (red < 0) return -1;
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.Unicode.GetDecoder();
             decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -250,16 +305,17 @@ namespace wan24.Core
         /// Read an Unicode encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static async Task<int> ReadString16Async(this Stream stream, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
+        public static async Task<int> ReadString16Async(this Stream stream, int version, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
         {
             int len = Encoding.Unicode.GetMaxByteCount(str.Length);
             using RentedMemory<byte> buffer = new(len, clean: false);
             Memory<byte> bufferMem = buffer.Memory;
-            int red = await stream.ReadDataWithLengthInfoAsync(bufferMem, cancellationToken).DynamicContext();
+            int red = await stream.ReadDataWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.Unicode.GetDecoder();
             decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -271,15 +327,16 @@ namespace wan24.Core
         /// Read an UTF-32 encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static int ReadString32(this Stream stream, in Span<char> str, in int minLen = 0)
+        public static int ReadString32(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
         {
             int len = Encoding.UTF32.GetMaxByteCount(str.Length);
             using RentedMemoryRef<byte> buffer = new(len, clean: false);
             Span<byte> bufferSpan = buffer.Span;
-            int red = stream.ReadDataWithLengthInfo(bufferSpan);
+            int red = stream.ReadDataWithLengthInfo(version, bufferSpan);
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.UTF32.GetDecoder();
             decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -291,16 +348,17 @@ namespace wan24.Core
         /// Read an UTF-32 encoded string with length information
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of characters written to the buffer</returns>
-        public static async Task<int> ReadString32Async(this Stream stream, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
+        public static async Task<int> ReadString32Async(this Stream stream, int version, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
         {
             int len = Encoding.UTF32.GetMaxByteCount(str.Length);
             using RentedMemory<byte> buffer = new(len, clean: false);
             Memory<byte> bufferMem = buffer.Memory;
-            int red = await stream.ReadDataWithLengthInfoAsync(bufferMem, cancellationToken).DynamicContext();
+            int red = await stream.ReadDataWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.UTF32.GetDecoder();
             decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);

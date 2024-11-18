@@ -1,5 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime;
+using System.Diagnostics.SymbolStore;
+using System.Threading;
 
 namespace wan24.Core
 {
@@ -230,72 +232,151 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Read a stream with length information (8 byte)
+        /// Read a stream with length information
         /// </summary>
         /// <typeparam name="T">Source stream type</typeparam>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
-        public static PartialStream<T> ReadStreamWithLengthInfo<T>(this T stream) where T : Stream
+        public static PartialStream<T> ReadStreamWithLengthInfo<T>(this T stream, in int version) where T : Stream
         {
-            using RentedMemoryRef<byte> buffer = new(len: sizeof(long));
-            Span<byte> bufferSpan = buffer.Span;
-            stream.ReadExactly(bufferSpan);
-            return new(stream, bufferSpan.ToLong(), leaveOpen: true);
+            long len = stream.ReadNumeric<long>(version);
+            if (len < 0) throw new InvalidDataException($"Invalid stream length {len} bytes");
+            return new(stream, len, leaveOpen: true);
         }
 
         /// <summary>
-        /// Read a stream with length information (8 byte)
+        /// Read a stream with length information
         /// </summary>
         /// <typeparam name="T">Source stream type</typeparam>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static PartialStream<T>? ReadStreamNullableWithLengthInfo<T>(this T stream, in int version) where T : Stream
+        {
+            long? len = stream.ReadNumericNullable<long>(version);
+            if (len.HasValue && len.Value < 0) throw new InvalidDataException($"Invalid stream length {len} bytes");
+            return len.HasValue
+                ? new(stream, len.Value, leaveOpen: true)
+                : null;
+        }
+
+        /// <summary>
+        /// Read a stream with length information
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
-        public static async Task<PartialStream<T>> ReadStreamWithLengthInfoAsync<T>(this T stream, CancellationToken cancellationToken = default) where T : Stream
+        public static async Task<PartialStream<T>> ReadStreamWithLengthInfoAsync<T>(this T stream, int version, CancellationToken cancellationToken = default)
+            where T : Stream
         {
-            using RentedMemory<byte> buffer = new(len: sizeof(long));
-            Memory<byte> bufferMem = buffer.Memory;
-            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
-            return new(stream, bufferMem.Span.ToLong(), leaveOpen: true);
+            long len = await stream.ReadNumericAsync<long>(version, cancellationToken: cancellationToken).DynamicContext();
+            if (len < 0) throw new InvalidDataException($"Invalid stream length {len} bytes");
+            return new(stream, len, leaveOpen: true);
         }
 
         /// <summary>
-        /// Read data with length information (4 byte)
+        /// Read a stream with length information
         /// </summary>
         /// <typeparam name="T">Source stream type</typeparam>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Partial stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static async Task<PartialStream<T>?> ReadStreamNullableWithLengthInfoAsync<T>(this T stream, int version, CancellationToken cancellationToken = default)
+            where T : Stream
+        {
+            long? len = await stream.ReadNumericNullableAsync<long>(version, cancellationToken: cancellationToken).DynamicContext();
+            if (len.HasValue && len.Value < 0) throw new InvalidDataException($"Invalid stream length {len} bytes");
+            return len.HasValue
+                ? new(stream, len.Value, leaveOpen: true)
+                : null;
+        }
+
+        /// <summary>
+        /// Read data with length information
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Number of red bytes into the buffer</returns>
-        public static int ReadDataWithLengthInfo<T>(this T stream, Span<byte> buffer) where T : Stream
+        public static int ReadDataWithLengthInfo<T>(this T stream, in int version, in Span<byte> buffer) where T : Stream
         {
-            using RentedMemoryRef<byte> buffer2 = new(len: sizeof(int));
-            Span<byte> bufferSpan = buffer2.Span;
-            stream.ReadExactly(bufferSpan);
-            int res = bufferSpan.ToInt();
+            int res = stream.ReadNumeric<int>(version);
+            if (res < 0) throw new InvalidDataException($"Invalid data length {res} bytes");
+            if (res > buffer.Length) throw new OutOfMemoryException($"Buffer too small for {res} bytes");
             stream.ReadExactly(buffer[..res]);
             return res;
         }
 
         /// <summary>
-        /// Read data with length information (4 byte)
+        /// Read data with length information
         /// </summary>
         /// <typeparam name="T">Source stream type</typeparam>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Number of red bytes into the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static int ReadDataNullableWithLengthInfo<T>(this T stream, in int version, in Span<byte> buffer) where T : Stream
+        {
+            int? res = stream.ReadNumericNullable<int>(version);
+            if (!res.HasValue) return -1;
+            if (res.Value < 0) throw new InvalidDataException($"Invalid data length {res} bytes");
+            if (res.Value > buffer.Length) throw new OutOfMemoryException($"Buffer too small for {res} bytes");
+            stream.ReadExactly(buffer[..res.Value]);
+            return res.Value;
+        }
+
+        /// <summary>
+        /// Read data with length information
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of red bytes into the buffer</returns>
         public static async Task<int> ReadDataWithLengthInfoAsync<T>(
             this T stream,
+            int version,
             Memory<byte> buffer,
             CancellationToken cancellationToken = default
             )
             where T : Stream
         {
-            using RentedMemory<byte> buffer2 = new(len: sizeof(int));
-            Memory<byte> bufferMem = buffer2.Memory;
-            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
-            int res = bufferMem.Span.ToInt();
+            int res = await stream.ReadNumericAsync<int>(version, cancellationToken: cancellationToken).DynamicContext();
+            if (res < 0) throw new InvalidDataException($"Invalid data length {res} bytes");
+            if (res > buffer.Length) throw new OutOfMemoryException($"Buffer too small for {res} bytes");
             await stream.ReadExactlyAsync(buffer[..res], cancellationToken).DynamicContext();
             return res;
+        }
+
+        /// <summary>
+        /// Read data with length information
+        /// </summary>
+        /// <typeparam name="T">Source stream type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of red bytes into the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static async Task<int> ReadDataNullableWithLengthInfoAsync<T>(
+            this T stream,
+            int version,
+            Memory<byte> buffer,
+            CancellationToken cancellationToken = default
+            )
+            where T : Stream
+        {
+            int? res = await stream.ReadNumericNullableAsync<int>(version, cancellationToken: cancellationToken).DynamicContext();
+            if (!res.HasValue) return -1;
+            if (res.Value < 0) throw new InvalidDataException($"Invalid data length {res} bytes");
+            if (res.Value > buffer.Length) throw new OutOfMemoryException($"Buffer too small for {res} bytes");
+            await stream.ReadExactlyAsync(buffer[..res.Value], cancellationToken).DynamicContext();
+            return res.Value;
         }
 
         /// <summary>
@@ -324,13 +405,14 @@ namespace wan24.Core
         /// Read a stream with length information or chunked
         /// </summary>
         /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
-        public static Stream ReadStream(this Stream stream)
+        public static Stream ReadStream(this Stream stream, in int version)
         {
             int type = stream.ReadByte();
             return type switch
             {
-                0 => stream.ReadStreamWithLengthInfo(),
+                0 => stream.ReadStreamWithLengthInfo(version),
                 1 => ChunkStream.FromExisting(new CutStream(stream, leaveOpen: true)),
                 _ => throw new InvalidDataException($"Invalid stream type #{type}"),
             };
@@ -340,15 +422,53 @@ namespace wan24.Core
         /// Read a stream with length information or chunked
         /// </summary>
         /// <param name="stream">Stream</param>
-        /// <param name="cancellationToken">Cancellation token</param>
+        /// <param name="version">Data structure version</param>
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
-        public static async Task<Stream> ReadStreamAsync(this Stream stream, CancellationToken cancellationToken = default)
+        public static Stream? ReadStreamNullable(this Stream stream, in int version)
         {
             int type = stream.ReadByte();
             return type switch
             {
-                0 => await stream.ReadStreamWithLengthInfoAsync(cancellationToken).DynamicContext(),
+                0 => stream.ReadStreamWithLengthInfo(version),
+                1 => ChunkStream.FromExisting(new CutStream(stream, leaveOpen: true)),
+                2 => null,
+                _ => throw new InvalidDataException($"Invalid stream type #{type}"),
+            };
+        }
+
+        /// <summary>
+        /// Read a stream with length information or chunked
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static async Task<Stream> ReadStreamAsync(this Stream stream, int version, CancellationToken cancellationToken = default)
+        {
+            int type = stream.ReadByte();
+            return type switch
+            {
+                0 => await stream.ReadStreamWithLengthInfoAsync(version, cancellationToken).DynamicContext(),
                 1 => await ChunkStream.FromExistingAsync(new CutStream(stream, leaveOpen: true), cancellationToken: cancellationToken).DynamicContext(),
+                _ => throw new InvalidDataException($"Invalid stream type #{type}"),
+            };
+        }
+
+        /// <summary>
+        /// Read a stream with length information or chunked
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
+        public static async Task<Stream?> ReadStreamNullableAsync(this Stream stream, int version, CancellationToken cancellationToken = default)
+        {
+            int type = stream.ReadByte();
+            return type switch
+            {
+                0 => await stream.ReadStreamWithLengthInfoAsync(version, cancellationToken).DynamicContext(),
+                1 => await ChunkStream.FromExistingAsync(new CutStream(stream, leaveOpen: true), cancellationToken: cancellationToken).DynamicContext(),
+                2 => null,
                 _ => throw new InvalidDataException($"Invalid stream type #{type}"),
             };
         }
