@@ -49,6 +49,14 @@ namespace wan24.Core
             => cancellationToken.IsEqualTo(default) ? alternate : cancellationToken;
 
         /// <summary>
+        /// Determine if a cancellation token is the <see langword="default"/> or <see cref="CancellationToken.None"/>
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public static bool IsNoneOrDefault(this CancellationToken cancellationToken)
+            => cancellationToken.IsEqualTo(default) || cancellationToken.IsEqualTo(CancellationToken.None);
+
+        /// <summary>
         /// Determine if a cancellation token is equal to another cancellation token
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>

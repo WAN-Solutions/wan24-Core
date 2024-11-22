@@ -37,6 +37,7 @@
 | `DataEventStream` | Blocks reading from the base stream until getting an event |
 | `PreBufferingStream` | Pre-reads from another stream into a blocking buffer |
 | `BiDirectionalStream` | Uses a stream for reading, and another stream for writing operations |
+| `CancellationStream` | Supports cancellation during I/O operations |
 
 Those specialized streams got more detailed usage articles (see the index at the left):
 

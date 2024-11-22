@@ -1,6 +1,8 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime;
 using System.Runtime.CompilerServices;
+using wan24.Core.Enumerables;
 
 namespace wan24.Core
 {
@@ -9,6 +11,15 @@ namespace wan24.Core
     /// </summary>
     public static class ArrayExtensions
     {
+        /// <summary>
+        /// Flag argument prefix
+        /// </summary>
+        public const string FLAG_PREFIX = "-";
+        /// <summary>
+        /// Key/value argument prefix
+        /// </summary>
+        public const string VALUE_PREFIX = "--";
+
         /// <summary>
         /// Ensure valid offset/length
         /// </summary>
@@ -268,6 +279,146 @@ namespace wan24.Core
             T[] res = new T[arr.Length];
             Array.Copy(arr, res, arr.Length);
             return res;
+        }
+
+        /// <summary>
+        /// Determine if a flag is contained
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="prefix">Prefix (default is <see cref="FLAG_PREFIX"/>)</param>
+        /// <returns>If the flag is contained</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsFlag(this string[] args, string name, string? prefix = null) => args.Any(v => v == $"{prefix ?? FLAG_PREFIX}{name}");
+
+        /// <summary>
+        /// Determine if a value is contained
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>If a value is contained</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool ContainsValue(this string[] args, string name, string? prefix = null) => args.Any(v => v == $"{prefix ?? VALUE_PREFIX}{name}");
+
+        /// <summary>
+        /// Determine if a value is a multiple value
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>If a value is a multiple value</returns>
+        public static bool IsMultiValue(this string[] args, string name, string? prefix = null)
+        {
+            string key = $"{prefix ?? VALUE_PREFIX}{name}";
+            ArrayEnumerable<string> enumerable = args.Enumerate(args.IndexOf(key) + 1);
+            return enumerable.Any(v => v == key) || (enumerable.Skip(1).FirstOrDefault() is string value && !value.StartsWith((prefix ?? VALUE_PREFIX)[0]));
+        }
+
+        /// <summary>
+        /// Get a single value
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>Single value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static string GetSingleValue(this string[] args, in string name, in string? prefix = null)
+            => args[args.IndexOf($"{prefix ?? VALUE_PREFIX}{name}") + 1];
+
+        /// <summary>
+        /// Get a possible multiple value
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>Values (may be empty)</returns>
+        public static string[] GetMultiValues(this string[] args, in string name, string? prefix = null)
+        {
+            prefix ??= VALUE_PREFIX;
+            ArrayEnumerable<string> enumerable = args.Enumerate(args.IndexOf($"{prefix}{name}") + 1);
+            char pre = prefix[0];
+            return [enumerable.First(), .. enumerable.Skip(1).TakeWhile(v => !v.StartsWith(pre))];
+        }
+
+        /// <summary>
+        /// Try getting a single value
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="value">Value</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>If succeed</returns>
+        public static bool TryGetSingleValue(this string[] args, in string name, [NotNullWhen(returnValue: true)] out string? value, in string? prefix = null)
+        {
+            value = ContainsValue(args, name, prefix)
+                ? GetSingleValue(args, name, prefix)
+                : null;
+            return value is not null;
+        }
+
+        /// <summary>
+        /// Try getting multiple values
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="name">Name</param>
+        /// <param name="values">Values (may be empty)</param>
+        /// <param name="prefix">Prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>If succeed</returns>
+        public static bool TryGetMultiValue(this string[] args, in string name, [NotNullWhen(returnValue: true)] out string[]? values, in string? prefix = null)
+        {
+            values = ContainsValue(args, name, prefix)
+                ? GetMultiValues(args, name, prefix)
+                : null;
+            return values is not null;
+        }
+
+        /// <summary>
+        /// Determine if CLI arguments are valid (using valid prefixes and having at last one value for each non-flag key)
+        /// </summary>
+        /// <param name="args">Arguments</param>
+        /// <param name="flagPrefix">Flag prefix (default is <see cref="FLAG_PREFIX"/>)</param>
+        /// <param name="valuePrefix">Value prefix (default is <see cref="VALUE_PREFIX"/>)</param>
+        /// <returns>If valid</returns>
+        public static bool AreArgumentsValid(this string[] args, string? flagPrefix = null, string? valuePrefix = null)
+        {
+            flagPrefix ??= FLAG_PREFIX;
+            valuePrefix ??= VALUE_PREFIX;
+            bool requireValue = false,
+                allowValue = false;
+            string arg = string.Empty;
+            for (int i = 0, len = args.Length; i < len; i++)
+            {
+                if (requireValue) arg = args[i];
+                if (!requireValue && arg.StartsWith(valuePrefix))
+                {
+                    requireValue = flagPrefix != valuePrefix;
+                    allowValue = !requireValue;
+                }
+                else if (!requireValue && arg.StartsWith(flagPrefix))
+                {
+                    allowValue = false;
+                }
+                else if (requireValue)
+                {
+                    requireValue = false;
+                    allowValue = true;
+                }
+                else if (!allowValue)
+                {
+                    return false;
+                }
+            }
+            return !requireValue;
         }
     }
 }
