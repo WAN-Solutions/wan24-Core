@@ -70,57 +70,6 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Determine if a string contains only ASCII characters
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="allowControl">If to allow control characters</param>
-        /// <returns>If the string contains only ASCII characters</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsAscii(this string str, in bool allowControl = true) => IsAscii((ReadOnlySpan<char>)str, allowControl);
-
-        /// <summary>
-        /// Determine if a string contains only ASCII characters
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="allowControl">If to allow control characters</param>
-        /// <returns>If the string contains only ASCII characters</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsAscii(this ReadOnlySpan<char> str, in bool allowControl = true)
-        {
-            int i = -1,
-                len = str.Length;
-            if (allowControl)
-            {
-#if NO_UNSAFE
-                while (++i != len && (str[i] <= 128 || str[i] >= 160)) ;
-#else
-                unsafe
-                {
-                    fixed (char* chrPtr = str) while (++i != len && (chrPtr[i] <= 128 || chrPtr[i] >= 160)) ;
-                }
-#endif
-            }
-            else
-            {
-#if NO_UNSAFE
-                while (++i != len && (str[i] < 128 || str[i] >= 160) && str[i] > 31) ;
-#else
-                unsafe
-                {
-                    fixed (char* chrPtr = str) while (++i != len && (chrPtr[i] < 128 || chrPtr[i] >= 160) && chrPtr[i] > 31) ;
-                }
-#endif
-            }
-            return i == len;
-        }
-
-        /// <summary>
         /// Try to match a string with a regular expression
         /// </summary>
         /// <param name="str">String</param>
@@ -343,75 +292,25 @@ namespace wan24.Core
         }
 
         /// <summary>
-        /// Determine if a string is a flag/value key
-        /// </summary>
-        /// <param name="str">STring</param>
-        /// <param name="flagPrefix">Flag prefix (default is <see cref="ArrayExtensions.FLAG_PREFIX"/>)</param>
-        /// <param name="valuePrefix">Value prefix (default is <see cref="ArrayExtensions.VALUE_PREFIX"/>)</param>
-        /// <returns>If is a flag/value key</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsArgumentKey(this ReadOnlySpan<char> str, in string? flagPrefix = null, in string? valuePrefix = null)
-            => str.StartsWith(flagPrefix ?? ArrayExtensions.FLAG_PREFIX) || str.StartsWith(valuePrefix ?? ArrayExtensions.VALUE_PREFIX);
-
-        /// <summary>
-        /// Determine if a string is a flag/value key
-        /// </summary>
-        /// <param name="str">STring</param>
-        /// <param name="flagPrefix">Flag prefix (default is <see cref="ArrayExtensions.FLAG_PREFIX"/>)</param>
-        /// <param name="valuePrefix">Value prefix (default is <see cref="ArrayExtensions.VALUE_PREFIX"/>)</param>
-        /// <returns>If is a flag/value key</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static bool IsArgumentKey(this string str, in string? flagPrefix = null, in string? valuePrefix = null)
-            => IsArgumentKey((ReadOnlySpan<char>)str, flagPrefix, valuePrefix);
-
-        /// <summary>
-        /// Get an argument name
-        /// </summary>
-        /// <param name="str">Argument flag/value key (see also <see cref="IsArgumentKey(ReadOnlySpan{char}, in string?, in string?)"/>)</param>
-        /// <param name="flagPrefix">Flag prefix (default is <see cref="ArrayExtensions.FLAG_PREFIX"/>)</param>
-        /// <param name="valuePrefix">Value prefix (default is <see cref="ArrayExtensions.VALUE_PREFIX"/>)</param>
-        /// <returns>Argument name</returns>
-        /// <exception cref="ArgumentException">Not a flag/value key</exception>
-        public static ReadOnlySpan<char> GetArgumentName(this ReadOnlySpan<char> str, string? flagPrefix = null, string? valuePrefix = null)
-        {
-            flagPrefix ??= ArrayExtensions.FLAG_PREFIX;
-            valuePrefix ??= ArrayExtensions.VALUE_PREFIX;
-            if (str.StartsWith(valuePrefix)) return str[valuePrefix.Length..];
-            if (str.StartsWith(flagPrefix)) return str[valuePrefix.Length..];
-            throw new ArgumentException("Not a flag/value key", nameof(str));
-        }
-
-        /// <summary>
-        /// Get an argument name
-        /// </summary>
-        /// <param name="str">Argument flag/value key (see also <see cref="IsArgumentKey(ReadOnlySpan{char}, in string?, in string?)"/>)</param>
-        /// <param name="flagPrefix">Flag prefix (default is <see cref="ArrayExtensions.FLAG_PREFIX"/>)</param>
-        /// <param name="valuePrefix">Value prefix (default is <see cref="ArrayExtensions.VALUE_PREFIX"/>)</param>
-        /// <returns>Argument name</returns>
-        /// <exception cref="ArgumentException">Not a flag/value key</exception>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static ReadOnlySpan<char> GetArgumentName(this string str, string? flagPrefix = null, string? valuePrefix = null)
-            => GetArgumentName((ReadOnlySpan<char>)str, flagPrefix, valuePrefix);
-
-        /// <summary>
         /// Determine if a string contains control characters
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>If control characters are contained</returns>
         public static bool ContainsControlCharacters(this ReadOnlySpan<char> str)
         {
+#if NO_UNSAFE
             for (int i = 0, len = str.Length; i < len; i++)
                 if (char.IsControl(str[i]))
                     return true;
+#else
+            unsafe
+            {
+                fixed (char* charPtr = str)
+                    for (int i = 0, len = str.Length; i < len; i++)
+                        if (char.IsControl(charPtr[i]))
+                            return true;
+            }
+#endif
             return false;
         }
 
@@ -420,10 +319,23 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>If control characters are contained</returns>
-        [TargetedPatchingOptOut("Just a method adapter")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ContainsControlCharacters(this string str)
+        {
+#if NO_UNSAFE
+            ReadOnlySpan<char> strSpan = str;
+            for (int i = 0, len = strSpan.Length; i < len; i++)
+                if (char.IsControl(strSpan[i]))
+                    return true;
+#else
+            unsafe
+            {
+                fixed (char* charPtr = str)
+                    for (int i = 0, len = str.Length; i < len; i++)
+                        if (char.IsControl(charPtr[i]))
+                            return true;
+            }
 #endif
-        public static bool ContainsControlCharacters(this string str) => ContainsControlCharacters((ReadOnlySpan<char>)str);
+            return false;
+        }
     }
 }
