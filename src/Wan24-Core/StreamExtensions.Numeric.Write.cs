@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -397,6 +398,34 @@ namespace wan24.Core
             Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..sizeof(decimal)] : buffer2!.Value.Memory;
             value.GetBytes(bufferMem.Span);
             await stream.WriteAsync(bufferMem, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Write a big integer
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+        public static void Write(this Stream stream, in BigInteger value)
+        {
+            using RentedMemoryRef<byte> buffer = new(value.GetByteCount(), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            if (!value.TryWriteBytes(bufferSpan, out int len)) throw new InvalidProgramException("Failed to write the big integer into a buffer");
+            stream.WriteWithLengthInfo(bufferSpan[..len]);
+        }
+
+        /// <summary>
+        /// Write a big integer
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WriteAsync(this Stream stream, BigInteger value, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        {
+            using RentedMemory<byte>? buffer2 = buffer.HasValue ? null : new(value.GetByteCount(), clean: false);
+            Memory<byte> bufferMem = buffer ?? buffer2!.Value.Memory;
+            if (!value.TryWriteBytes(bufferMem.Span, out int len)) throw new OutOfMemoryException("Buffer too small");
+            await stream.WriteWithLengthInfoAsync(bufferMem[..len], cancellationToken).DynamicContext();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -405,6 +406,33 @@ namespace wan24.Core
             Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..sizeof(decimal)] : buffer2!.Value.Memory;
             await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
             return bufferMem.Span.ToDecimal();
+        }
+
+        /// <summary>
+        /// Read a big integer
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer (limits the maximum red data structure length)</param>
+        /// <returns>Value</returns>
+        public static BigInteger ReadBigInteger(this Stream stream, in int version, in Memory<byte> buffer)
+        {
+            stream.ReadDataWithLengthInfo(version, buffer.Span);
+            return new(buffer.Span);
+        }
+
+        /// <summary>
+        /// Read a big integer
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer (limits the maximum red data structure length)</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Value</returns>
+        public static async Task<BigInteger> ReadBigIntegerAsync(this Stream stream, int version, Memory<byte> buffer, CancellationToken cancellationToken = default)
+        {
+            await stream.ReadDataWithLengthInfoAsync(version, buffer, cancellationToken).DynamicContext();
+            return new(buffer.Span);
         }
     }
 }

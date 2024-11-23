@@ -1,4 +1,6 @@
-﻿namespace wan24.Core
+﻿using System.Numerics;
+
+namespace wan24.Core
 {
     /// <summary>
     /// <see cref="NumericTypes"/> extensions
@@ -6,9 +8,18 @@
     public static class NumericTypesExtensions
     {
         /// <summary>
+        /// Minimum numeric value that fits into a <see cref="NumericTypes"/> value
+        /// </summary>
+        public const int MIN_VALUE = -1;
+        /// <summary>
+        /// Maximum numeric value that fits into a <see cref="NumericTypes"/> value
+        /// </summary>
+        public const int MAX_VALUE = 198;
+
+        /// <summary>
         /// Get the default value of a numeric type
         /// </summary>
-        /// <param name="type">Type (must not be <see cref="NumericTypes.None"/> or contain value flags)</param>
+        /// <param name="type">Type</param>
         /// <returns>Default value</returns>
         /// <exception cref="ArgumentException">Unsupported numeric type</exception>
         public static object GetDefault(this NumericTypes type)
@@ -18,21 +29,22 @@
                 NumericTypes.Short => default(short),
                 NumericTypes.Int => default(int),
                 NumericTypes.Long => default(long),
-                NumericTypes.Half => default(Half),
+                NumericTypes.Half => Half.Zero,
                 NumericTypes.Float => default(float),
                 NumericTypes.Double => default(double),
-                NumericTypes.Decimal => default(decimal),
+                NumericTypes.Decimal => decimal.Zero,
                 NumericTypes.Byte => default(byte),
                 NumericTypes.UShort => default(ushort),
                 NumericTypes.UInt => default(uint),
                 NumericTypes.ULong => default(ulong),
+                NumericTypes.BigInteger => BigInteger.Zero,
                 _ => throw new ArgumentException($"Unsupported type #{(byte)type}")
             };
 
         /// <summary>
         /// Get the CLR type
         /// </summary>
-        /// <param name="type">Type (must not contain value flags)</param>
+        /// <param name="type">Type</param>
         /// <returns>CLR type or <see cref="void"/></returns>
         public static Type GetClrType(this NumericTypes type)
             => type.GetTypeGroup() switch
@@ -49,6 +61,7 @@
                 NumericTypes.UShort => typeof(ushort),
                 NumericTypes.UInt => typeof(uint),
                 NumericTypes.ULong => typeof(ulong),
+                NumericTypes.BigInteger => typeof(BigInteger),
                 _ => typeof(void)
             };
 
@@ -57,7 +70,7 @@
         /// </summary>
         /// <typeparam name="T">Number type</typeparam>
         /// <param name="value">Numeric value</param>
-        /// <param name="type">Type (must not be <see cref="NumericTypes.None"/> or contain value flags)</param>
+        /// <param name="type">Type</param>
         /// <returns>Casted numeric type</returns>
         /// <exception cref="ArgumentException">Unsupported numeric type</exception>
         public static object CastNumericValue<T>(this T value, in NumericTypes type) where T : struct, IConvertible
@@ -75,6 +88,7 @@
                 NumericTypes.UShort => value is ushort ? value : value.CastType<ushort>(),
                 NumericTypes.UInt => value is uint ? value : value.CastType<uint>(),
                 NumericTypes.ULong => value is ulong ? value : value.CastType<ulong>(),
+                NumericTypes.BigInteger => value is BigInteger ? value : value.CastType<BigInteger>(),
                 _ => throw new ArgumentException($"Unsupported type #{(byte)type}")
             };
 
@@ -82,11 +96,11 @@
         /// Cast a number to the numeric type
         /// </summary>
         /// <param name="value">Numeric value</param>
-        /// <param name="type">Type (must not be <see cref="NumericTypes.None"/> or contain value flags)</param>
+        /// <param name="type">Type</param>
         /// <returns>Casted numeric type</returns>
         /// <exception cref="ArgumentException">Unsupported numeric type</exception>
         public static object CastNumericValue(this object value, in NumericTypes type)
-            => type switch
+            => type.GetTypeGroup() switch
             {
                 NumericTypes.SByte => value is sbyte ? value : value.CastType<sbyte>(),
                 NumericTypes.Short => value is short ? value : value.CastType<short>(),
@@ -100,6 +114,7 @@
                 NumericTypes.UShort => value is ushort ? value : value.CastType<ushort>(),
                 NumericTypes.UInt => value is uint ? value : value.CastType<uint>(),
                 NumericTypes.ULong => value is ulong ? value : value.CastType<ulong>(),
+                NumericTypes.BigInteger => value is BigInteger ? value : value.CastType<BigInteger>(),
                 _ => throw new ArgumentException($"Unsupported type #{(byte)type}")
             };
 
@@ -108,32 +123,26 @@
         /// </summary>
         /// <typeparam name="T">Number type</typeparam>
         /// <param name="value">Value</param>
-        /// <returns>Numeric type (may contain value flags)</returns>
+        /// <returns>Numeric type</returns>
         public static NumericTypes GetNumericType<T>(this T value) where T : struct, IConvertible
             => value switch
             {
-                sbyte v when v == default(sbyte) => NumericTypes.Zero,
-                sbyte v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                sbyte v when IsValueNumericType(v) => GetValueNumericType(v),
                 sbyte v when v == sbyte.MinValue => NumericTypes.SByteMin,
-                sbyte v when v == sbyte.MaxValue => NumericTypes.SByteMax,
                 sbyte => NumericTypes.SByte,
-                short v when v == default(short) => NumericTypes.Zero,
-                short v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                short v when IsValueNumericType(v) => GetValueNumericType(v),
                 short v when v == short.MinValue => NumericTypes.ShortMin,
                 short v when v == short.MaxValue => NumericTypes.ShortMax,
                 short => NumericTypes.Short,
-                int v when v == default => NumericTypes.Zero,
-                int v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                int v when IsValueNumericType(v) => GetValueNumericType(v),
                 int v when v == int.MinValue => NumericTypes.IntMin,
                 int v when v == int.MaxValue => NumericTypes.IntMax,
                 int => NumericTypes.Int,
-                long v when v == default => NumericTypes.Zero,
-                long v when IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                long v when v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 long v when v == long.MinValue => NumericTypes.LongMin,
                 long v when v == long.MaxValue => NumericTypes.LongMax,
                 long => NumericTypes.Long,
-                Half v when v == default => NumericTypes.Zero,//TODO Is Half.Zero == default?
-                Half v when Half.IsInteger(v) && !Half.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                Half v when Half.IsInteger(v) && IsValueNumericType((int)v) => GetValueNumericType((int)v),
                 Half v when v == Half.E => NumericTypes.HalfE,
                 Half v when v == Half.Epsilon => NumericTypes.HalfEpsilon,
                 Half v when v == Half.MaxValue => NumericTypes.HalfMax,
@@ -141,61 +150,52 @@
                 Half v when v == Half.MultiplicativeIdentity => NumericTypes.HalfMultiplicativeIdentity,
                 Half v when Half.IsNaN(v) => NumericTypes.HalfNaN,
                 Half v when v == Half.NegativeInfinity => NumericTypes.HalfNegativeInfinity,
-                Half v when v == Half.NegativeOne => NumericTypes.HalfNegativeOne,//TODO Is Half.NegativeOne == -1?
                 Half v when v == Half.NegativeZero => NumericTypes.HalfNegativeZero,
-                Half v when v == Half.One => NumericTypes.Number1,//TODO Is Half.One == 1?
-                Half v when v == Half.Pi => NumericTypes.HalfPi,//TODO Can cast from double.Pi -> Half.Pi?
+                Half v when v == Half.Pi => NumericTypes.HalfPi,
                 Half v when v == Half.PositiveInfinity => NumericTypes.HalfPositiveInfinity,
                 Half v when v == Half.Tau => NumericTypes.HalfTau,
                 Half v when v == Half.Zero => NumericTypes.Zero,
                 Half => NumericTypes.Half,
-                float v when v == default => NumericTypes.Zero,
-                float v when float.IsInteger(v) && !float.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                float v when float.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 float v when v == float.E => NumericTypes.FloatE,
                 float v when v == float.Epsilon => NumericTypes.FloatEpsilon,
                 float v when v == float.MaxValue => NumericTypes.FloatMax,
                 float v when v == float.MinValue => NumericTypes.FloatMin,
                 float v when float.IsNaN(v) => NumericTypes.FloatNaN,
                 float v when v == float.NegativeInfinity => NumericTypes.FloatNegativeInfinity,
-                float v when v == float.NegativeZero => NumericTypes.FloatNegativeZero,
                 float v when v == float.Pi => NumericTypes.FloatPi,
                 float v when v == float.PositiveInfinity => NumericTypes.FloatPositiveInfinity,
                 float v when v == float.Tau => NumericTypes.FloatTau,
                 float => NumericTypes.Float,
-                double v when v == default => NumericTypes.Zero,
-                double v when double.IsInteger(v) && !double.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
-                double v when v == double.E => NumericTypes.FloatE,
-                double v when v == double.Epsilon => NumericTypes.FloatEpsilon,
-                double v when v == double.MaxValue => NumericTypes.FloatMax,
-                double v when v == double.MinValue => NumericTypes.FloatMin,
-                double v when double.IsNaN(v) => NumericTypes.FloatNaN,
-                double v when v == double.NegativeInfinity => NumericTypes.FloatNegativeInfinity,
-                double v when v == double.NegativeZero => NumericTypes.FloatNegativeZero,
-                double v when v == double.Pi => NumericTypes.FloatPi,
-                double v when v == double.PositiveInfinity => NumericTypes.FloatPositiveInfinity,
-                double v when v == double.Tau => NumericTypes.FloatTau,
+                double v when double.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
+                double v when v == double.E => NumericTypes.DoubleE,
+                double v when v == double.Epsilon => NumericTypes.DoubleEpsilon,
+                double v when v == double.MaxValue => NumericTypes.DoubleMax,
+                double v when v == double.MinValue => NumericTypes.DoubleMin,
+                double v when double.IsNaN(v) => NumericTypes.DoubleNaN,
+                double v when v == double.NegativeInfinity => NumericTypes.DoubleNegativeInfinity,
+                double v when v == double.Pi => NumericTypes.DoublePi,
+                double v when v == double.PositiveInfinity => NumericTypes.DoublePositiveInfinity,
+                double v when v == double.Tau => NumericTypes.DoubleTau,
                 double => NumericTypes.Double,
-                decimal v when v == default => NumericTypes.Decimal | NumericTypes.Zero,
-                decimal v when v > 1 && v < 515 => GetValueNumericType((int)v),
+                decimal v when decimal.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 decimal v when v == decimal.MinValue => NumericTypes.DecimalMin,
                 decimal v when v == decimal.MaxValue => NumericTypes.DecimalMax,
-                decimal v when v == decimal.MinusOne => NumericTypes.DecimalNegativeOne,
-                decimal v when v == decimal.One => NumericTypes.DecimalOne,
                 decimal => NumericTypes.Decimal,
-                byte v when v == default(byte) => NumericTypes.Zero,
-                byte v => GetValueNumericType(v),
-                ushort v when v == default(ushort) => NumericTypes.Zero,
-                ushort v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                byte v when IsValueNumericType(v) => GetValueNumericType(v),
+                byte v when v == byte.MaxValue => NumericTypes.ByteMax,
+                byte => NumericTypes.Byte,
+                ushort v when IsValueNumericType(v) => GetValueNumericType(v),
                 ushort v when v == ushort.MaxValue => NumericTypes.UShortMax,
                 ushort => NumericTypes.UShort,
-                uint v when v == default => NumericTypes.Zero,
-                uint v when v < 515 => GetValueNumericType((int)v),
+                uint v when v <= MAX_VALUE => GetValueNumericType((int)v),
                 uint v when v == uint.MaxValue => NumericTypes.UIntMax,
                 uint => NumericTypes.UInt,
-                ulong v when v == default => NumericTypes.Zero,
-                ulong v when v < 515 => GetValueNumericType((int)v),
+                ulong v when v <= MAX_VALUE => GetValueNumericType((int)v),
                 ulong v when v == ulong.MaxValue => NumericTypes.ULongMax,
                 ulong => NumericTypes.ULong,
+                BigInteger v when v >= MIN_VALUE && v <= MAX_VALUE && IsValueNumericType((int)v) => GetValueNumericType((int)v),
+                BigInteger => NumericTypes.BigInteger,
                 _ => NumericTypes.None
             };
 
@@ -207,28 +207,22 @@
         public static NumericTypes GetNumericType(this object value)
             => value switch
             {
-                sbyte v when v == default(sbyte) => NumericTypes.Zero,
-                sbyte v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                sbyte v when IsValueNumericType(v) => GetValueNumericType(v),
                 sbyte v when v == sbyte.MinValue => NumericTypes.SByteMin,
-                sbyte v when v == sbyte.MaxValue => NumericTypes.SByteMax,
                 sbyte => NumericTypes.SByte,
-                short v when v == default(short) => NumericTypes.Zero,
-                short v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                short v when IsValueNumericType(v) => GetValueNumericType(v),
                 short v when v == short.MinValue => NumericTypes.ShortMin,
                 short v when v == short.MaxValue => NumericTypes.ShortMax,
                 short => NumericTypes.Short,
-                int v when v == default => NumericTypes.Zero,
-                int v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                int v when IsValueNumericType(v) => GetValueNumericType(v),
                 int v when v == int.MinValue => NumericTypes.IntMin,
                 int v when v == int.MaxValue => NumericTypes.IntMax,
                 int => NumericTypes.Int,
-                long v when v == default => NumericTypes.Zero,
-                long v when IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                long v when v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 long v when v == long.MinValue => NumericTypes.LongMin,
                 long v when v == long.MaxValue => NumericTypes.LongMax,
                 long => NumericTypes.Long,
-                Half v when v == default => NumericTypes.Zero,//TODO Is Half.Zero == default?
-                Half v when Half.IsInteger(v) && !Half.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                Half v when Half.IsInteger(v) && IsValueNumericType((int)v) => GetValueNumericType((int)v),
                 Half v when v == Half.E => NumericTypes.HalfE,
                 Half v when v == Half.Epsilon => NumericTypes.HalfEpsilon,
                 Half v when v == Half.MaxValue => NumericTypes.HalfMax,
@@ -236,61 +230,52 @@
                 Half v when v == Half.MultiplicativeIdentity => NumericTypes.HalfMultiplicativeIdentity,
                 Half v when Half.IsNaN(v) => NumericTypes.HalfNaN,
                 Half v when v == Half.NegativeInfinity => NumericTypes.HalfNegativeInfinity,
-                Half v when v == Half.NegativeOne => NumericTypes.HalfNegativeOne,//TODO Is Half.NegativeOne == -1?
                 Half v when v == Half.NegativeZero => NumericTypes.HalfNegativeZero,
-                Half v when v == Half.One => NumericTypes.Number1,//TODO Is Half.One == 1?
-                Half v when v == Half.Pi => NumericTypes.HalfPi,//TODO Can cast from double.Pi -> Half.Pi?
+                Half v when v == Half.Pi => NumericTypes.HalfPi,
                 Half v when v == Half.PositiveInfinity => NumericTypes.HalfPositiveInfinity,
                 Half v when v == Half.Tau => NumericTypes.HalfTau,
                 Half v when v == Half.Zero => NumericTypes.Zero,
                 Half => NumericTypes.Half,
-                float v when v == default => NumericTypes.Zero,
-                float v when float.IsInteger(v) && !float.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
+                float v when float.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 float v when v == float.E => NumericTypes.FloatE,
                 float v when v == float.Epsilon => NumericTypes.FloatEpsilon,
                 float v when v == float.MaxValue => NumericTypes.FloatMax,
                 float v when v == float.MinValue => NumericTypes.FloatMin,
                 float v when float.IsNaN(v) => NumericTypes.FloatNaN,
                 float v when v == float.NegativeInfinity => NumericTypes.FloatNegativeInfinity,
-                float v when v == float.NegativeZero => NumericTypes.FloatNegativeZero,
                 float v when v == float.Pi => NumericTypes.FloatPi,
                 float v when v == float.PositiveInfinity => NumericTypes.FloatPositiveInfinity,
                 float v when v == float.Tau => NumericTypes.FloatTau,
                 float => NumericTypes.Float,
-                double v when v == default => NumericTypes.Zero,
-                double v when double.IsInteger(v) && !double.IsNegative(v) && IsNonZeroValueNumericType((int)v) => GetValueNumericType((int)v),
-                double v when v == double.E => NumericTypes.FloatE,
-                double v when v == double.Epsilon => NumericTypes.FloatEpsilon,
-                double v when v == double.MaxValue => NumericTypes.FloatMax,
-                double v when v == double.MinValue => NumericTypes.FloatMin,
-                double v when double.IsNaN(v) => NumericTypes.FloatNaN,
-                double v when v == double.NegativeInfinity => NumericTypes.FloatNegativeInfinity,
-                double v when v == double.NegativeZero => NumericTypes.FloatNegativeZero,
-                double v when v == double.Pi => NumericTypes.FloatPi,
-                double v when v == double.PositiveInfinity => NumericTypes.FloatPositiveInfinity,
-                double v when v == double.Tau => NumericTypes.FloatTau,
+                double v when double.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
+                double v when v == double.E => NumericTypes.DoubleE,
+                double v when v == double.Epsilon => NumericTypes.DoubleEpsilon,
+                double v when v == double.MaxValue => NumericTypes.DoubleMax,
+                double v when v == double.MinValue => NumericTypes.DoubleMin,
+                double v when double.IsNaN(v) => NumericTypes.DoubleNaN,
+                double v when v == double.NegativeInfinity => NumericTypes.DoubleNegativeInfinity,
+                double v when v == double.Pi => NumericTypes.DoublePi,
+                double v when v == double.PositiveInfinity => NumericTypes.DoublePositiveInfinity,
+                double v when v == double.Tau => NumericTypes.DoubleTau,
                 double => NumericTypes.Double,
-                decimal v when v == default => NumericTypes.Decimal | NumericTypes.Zero,
-                decimal v when v > 1 && v < 515 => GetValueNumericType((int)v),
+                decimal v when decimal.IsInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE => GetValueNumericType((int)v),
                 decimal v when v == decimal.MinValue => NumericTypes.DecimalMin,
                 decimal v when v == decimal.MaxValue => NumericTypes.DecimalMax,
-                decimal v when v == decimal.MinusOne => NumericTypes.DecimalNegativeOne,
-                decimal v when v == decimal.One => NumericTypes.DecimalOne,
                 decimal => NumericTypes.Decimal,
-                byte v when v == default(byte) => NumericTypes.Zero,
-                byte v => GetValueNumericType(v),
-                ushort v when v == default(ushort) => NumericTypes.Zero,
-                ushort v when IsNonZeroValueNumericType(v) => GetValueNumericType(v),
+                byte v when IsValueNumericType(v) => GetValueNumericType(v),
+                byte v when v == byte.MaxValue => NumericTypes.ByteMax,
+                byte => NumericTypes.Byte,
+                ushort v when IsValueNumericType(v) => GetValueNumericType(v),
                 ushort v when v == ushort.MaxValue => NumericTypes.UShortMax,
                 ushort => NumericTypes.UShort,
-                uint v when v == default => NumericTypes.Zero,
-                uint v when v < 515 => GetValueNumericType((int)v),
+                uint v when v <= MAX_VALUE => GetValueNumericType((int)v),
                 uint v when v == uint.MaxValue => NumericTypes.UIntMax,
                 uint => NumericTypes.UInt,
-                ulong v when v == default => NumericTypes.Zero,
-                ulong v when v < 515 => GetValueNumericType((int)v),
+                ulong v when v <= MAX_VALUE => GetValueNumericType((int)v),
                 ulong v when v == ulong.MaxValue => NumericTypes.ULongMax,
                 ulong => NumericTypes.ULong,
+                BigInteger v when v >= MIN_VALUE && v <= MAX_VALUE && IsValueNumericType((int)v) => GetValueNumericType((int)v),
+                BigInteger => NumericTypes.BigInteger,
                 _ => NumericTypes.None
             };
 
@@ -300,7 +285,7 @@
         /// <param name="type">Type</param>
         /// <returns>If unsigned</returns>
         public static bool IsUnsigned(this NumericTypes type)
-            => (type & ~NumericTypes.FLAGS) switch
+            => type.GetTypeGroup() switch
             {
                 NumericTypes.Byte
                     or NumericTypes.UShort
@@ -333,6 +318,13 @@
         public static bool IsDecimal(this NumericTypes type) => type.GetTypeGroup() == NumericTypes.Decimal;
 
         /// <summary>
+        /// Determine if the type group is a decimal
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If is a decimal</returns>
+        public static bool IsBigInteger(this NumericTypes type) => type.GetTypeGroup() == NumericTypes.BigInteger;
+
+        /// <summary>
         /// Get the numeric type
         /// </summary>
         /// <param name="type">Type</param>
@@ -351,6 +343,7 @@
             if (type == typeof(ushort)) return NumericTypes.UShort;
             if (type == typeof(uint)) return NumericTypes.UInt;
             if (type == typeof(ulong)) return NumericTypes.ULong;
+            if (type == typeof(BigInteger)) return NumericTypes.BigInteger;
             return NumericTypes.None;
         }
 
@@ -371,7 +364,14 @@
                 if (v < (double)Half.MinValue || v > (double)Half.MaxValue) return NumericTypes.Float;
                 return NumericTypes.Half;
             }
-            if (!res.IsUnsigned())
+            bool hugeValue = false;
+            if (res.IsBigInteger())
+            {
+                BigInteger v = value.CastType<BigInteger>();
+                if (v < long.MinValue || v > ulong.MaxValue) return NumericTypes.BigInteger;
+                if (v > long.MaxValue) hugeValue = true;
+            }
+            if (!res.IsUnsigned() && !hugeValue)
             {
                 long v = value.CastType<long>();
                 if (v < 0)
@@ -379,7 +379,7 @@
                     if (v < int.MinValue) return NumericTypes.Long;
                     if (v < short.MinValue) return NumericTypes.Int;
                     if (v < sbyte.MinValue) return NumericTypes.Short;
-                    return NumericTypes.Byte;
+                    return NumericTypes.SByte;
                 }
             }
             {
@@ -434,14 +434,13 @@
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>Data structure length in bytes (excluding the numeric type enumeration value length of one byte)</returns>
-        /// <exception cref="ArgumentException">Unsupported numeric type</exception>
+        /// <exception cref="ArgumentException">Unsupported numeric type (like <see cref="NumericTypes.BigInteger"/>, which has a variable data structure length)</exception>
         public static int GetDataStructureLength(this NumericTypes type)
-            => type == NumericTypes.None || (type.HasValue() && type != NumericTypes.DoubleNumber)
+            => type == NumericTypes.None || type.HasValue()
                 ? default
                 : type.GetTypeGroup() switch
                 {
                     NumericTypes.Byte or NumericTypes.SByte => sizeof(byte),
-                    NumericTypes.Short when type.IsPositiveNumericNonConstantValue() => sizeof(byte),
                     NumericTypes.Short or NumericTypes.UShort or NumericTypes.Half => sizeof(short),
                     NumericTypes.Int or NumericTypes.UInt or NumericTypes.Float => sizeof(int),
                     NumericTypes.Long or NumericTypes.ULong or NumericTypes.Double => sizeof(long),
@@ -457,16 +456,19 @@
         public static NumericTypes GetTypeGroup(this NumericTypes type)
             => (type & ~NumericTypes.FLAGS) switch
             {
+                NumericTypes.Zero
+                    or NumericTypes.One
+                    or NumericTypes.MinusOne
+                    => NumericTypes.Int,
                 NumericTypes.SByte
                     or NumericTypes.SByteMin
-                    or NumericTypes.SByteMax
                     => NumericTypes.SByte,
                 NumericTypes.Byte
                     or NumericTypes.ByteMax
                     => NumericTypes.Byte,
                 NumericTypes.Short
-                    or NumericTypes.SByteMin
-                    or NumericTypes.SByteMax
+                    or NumericTypes.ShortMin
+                    or NumericTypes.ShortMax
                     => NumericTypes.Short,
                 NumericTypes.UShort
                     or NumericTypes.UShortMax
@@ -493,7 +495,6 @@
                     or NumericTypes.HalfMultiplicativeIdentity
                     or NumericTypes.HalfNaN
                     or NumericTypes.HalfNegativeInfinity
-                    or NumericTypes.HalfNegativeOne
                     or NumericTypes.HalfNegativeZero
                     or NumericTypes.HalfPi
                     or NumericTypes.HalfPositiveInfinity
@@ -506,7 +507,6 @@
                     or NumericTypes.FloatMin
                     or NumericTypes.FloatNaN
                     or NumericTypes.FloatNegativeInfinity
-                    or NumericTypes.FloatNegativeZero
                     or NumericTypes.FloatPi
                     or NumericTypes.FloatPositiveInfinity
                     or NumericTypes.FloatTau
@@ -526,11 +526,10 @@
                 NumericTypes.Decimal
                     or NumericTypes.DecimalMax
                     or NumericTypes.DecimalMin
-                    or NumericTypes.DecimalNegativeOne
-                    or NumericTypes.DecimalOne
                     => NumericTypes.ULong,
-                _ => type.IsPositiveNumericNonConstantValue()
-                    ? NumericTypes.Short
+                NumericTypes.BigInteger => NumericTypes.BigInteger,
+                _ => (type & NumericTypes.Number70To198) == NumericTypes.Number70To198 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
+                    ? NumericTypes.Int
                     : NumericTypes.None
             };
 
@@ -543,7 +542,8 @@
             => (type & ~NumericTypes.FLAGS) switch
             {
                 NumericTypes.Zero
-                    or NumericTypes.SByteMax
+                    or NumericTypes.One
+                    or NumericTypes.MinusOne
                     or NumericTypes.SByteMin
                     or NumericTypes.ByteMax
                     or NumericTypes.IntMax
@@ -559,7 +559,6 @@
                     or NumericTypes.HalfMultiplicativeIdentity
                     or NumericTypes.HalfNaN
                     or NumericTypes.HalfNegativeInfinity
-                    or NumericTypes.HalfNegativeOne
                     or NumericTypes.HalfNegativeZero
                     or NumericTypes.HalfPi
                     or NumericTypes.HalfPositiveInfinity
@@ -569,7 +568,6 @@
                     or NumericTypes.FloatMin
                     or NumericTypes.FloatNaN
                     or NumericTypes.FloatNegativeInfinity
-                    or NumericTypes.FloatNegativeZero
                     or NumericTypes.FloatPi
                     or NumericTypes.FloatPositiveInfinity
                     or NumericTypes.FloatTau
@@ -585,41 +583,22 @@
                     or NumericTypes.DoubleTau
                     or NumericTypes.DecimalMax
                     or NumericTypes.DecimalMin
-                    or NumericTypes.DecimalNegativeOne
-                    or NumericTypes.DecimalOne
-                    or NumericTypes.DoubleNumber
                     => true,
-                _ => (type & ~NumericTypes.FLAGS) >= NumericTypes.NumberMinus1
+                _ => (type & NumericTypes.Number70To198) == NumericTypes.Number70To198 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
             };
-
-        /// <summary>
-        /// If the next byte is required to get the value by <see cref="GetValue(NumericTypes, in byte?)"/>
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>If the next byte is required</returns>
-        public static bool RequiresNextByte(this NumericTypes type) => type == NumericTypes.DoubleNumber;
-
-        /// <summary>
-        /// Determine if a type is a positive (non-zero) numeric non-constant value (1..514)
-        /// </summary>
-        /// <param name="type">Type</param>
-        /// <returns>If a type is a non-zero numeric non-constant value</returns>
-        public static bool IsPositiveNumericNonConstantValue(this NumericTypes type)
-            => type == NumericTypes.DoubleNumber || type >= NumericTypes.Number1;
 
         /// <summary>
         /// Get the final numeric value of a type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <param name="nextByte">The next byte (required, if <c>type</c> equals <see cref="NumericTypes.DoubleNumber"/>)</param>
         /// <returns>Numeric value</returns>
         /// <exception cref="ArgumentException">Type can't be resolved to a final numeric value</exception>
-        public static object GetValue(this NumericTypes type, in byte? nextByte = null)
+        public static object GetValue(this NumericTypes type)
             => type switch
             {
                 NumericTypes.Zero => 0,
-                NumericTypes.NumberMinus1 => -1,
-                NumericTypes.SByteMax => sbyte.MaxValue,
+                NumericTypes.One => 1,
+                NumericTypes.MinusOne => -1,
                 NumericTypes.SByteMin => sbyte.MinValue,
                 NumericTypes.ByteMax => byte.MaxValue,
                 NumericTypes.ShortMax => short.MaxValue,
@@ -638,7 +617,6 @@
                 NumericTypes.HalfMultiplicativeIdentity => Half.MultiplicativeIdentity,
                 NumericTypes.HalfNaN => Half.NaN,
                 NumericTypes.HalfNegativeInfinity => Half.NegativeInfinity,
-                NumericTypes.HalfNegativeOne => Half.NegativeOne,
                 NumericTypes.HalfNegativeZero => Half.NegativeZero,
                 NumericTypes.HalfPi => Half.Pi,
                 NumericTypes.HalfPositiveInfinity => Half.PositiveInfinity,
@@ -649,7 +627,6 @@
                 NumericTypes.FloatMin => float.MinValue,
                 NumericTypes.FloatNaN => float.NaN,
                 NumericTypes.FloatNegativeInfinity => float.NegativeInfinity,
-                NumericTypes.FloatNegativeZero => float.NegativeZero,
                 NumericTypes.FloatPi => float.Pi,
                 NumericTypes.FloatPositiveInfinity => float.PositiveInfinity,
                 NumericTypes.FloatTau => float.Tau,
@@ -665,38 +642,37 @@
                 NumericTypes.DoubleTau => double.Tau,
                 NumericTypes.DecimalMax => decimal.MaxValue,
                 NumericTypes.DecimalMin => decimal.MinValue,
-                NumericTypes.DecimalNegativeOne => decimal.MinusOne,
-                NumericTypes.DecimalOne => decimal.One,
-                NumericTypes.DoubleNumber => nextByte.HasValue
-                    ? nextByte.Value + 130
-                    : throw new ArgumentNullException(nameof(nextByte)),
-                _ => (type & ~NumericTypes.FLAGS) >= NumericTypes.NumberMinus1
-                    ? (type & NumericTypes.DoubleNumber) == NumericTypes.DoubleNumber
-                        ? ((byte)type - (byte)NumericTypes.Number1 + 1) << 1
-                        : (byte)type - (byte)NumericTypes.Number1 + 1
-                    : throw new ArgumentException($"Numeric type {type} has no final numeric value which can be resolved", nameof(type))
+                _ => (type & NumericTypes.Number70To198) == NumericTypes.Number70To198
+                    ? (int)(type & ~NumericTypes.Number70To198) + 67
+                    : type >= NumericTypes.Number2
+                        ? (int)type - (int)NumericTypes.Number2 + 2
+                        : throw new ArgumentException($"Numeric type {type} has no final numeric value which can be resolved", nameof(type))
             };
 
         /// <summary>
-        /// Determine if the value is a non-zero <see cref="NumericTypes"/> value (1..514)
+        /// Determine if the value is a <see cref="NumericTypes"/> value (<see cref="MIN_VALUE"/> to <see cref="MAX_VALUE"/>)
         /// </summary>
         /// <param name="value">Value</param>
-        /// <returns>If the value is a non-zero <see cref="NumericTypes"/> value</returns>
-        public static bool IsNonZeroValueNumericType(this int value) => value > 0 && value < 515;
+        /// <returns>If the value is a <see cref="NumericTypes"/> value</returns>
+        public static bool IsValueNumericType(this int value) => value >= MIN_VALUE && value <= MAX_VALUE;
 
         /// <summary>
         /// Get the values <see cref="NumericTypes"/> value
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns><see cref="NumericTypes"/> value</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Value isn't in the range of 1-514</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Value isn't in the range of <see cref="MIN_VALUE"/> to <see cref="MAX_VALUE"/></exception>
         public static NumericTypes GetValueNumericType(this int value)
         {
-            if (!value.IsNonZeroValueNumericType()) throw new ArgumentOutOfRangeException(nameof(value));
-            if (value > 129) return NumericTypes.DoubleNumber;
-            return (value & 1) == 1
-                ? (NumericTypes)(value + (byte)NumericTypes.Number1 - 1)
-                : (NumericTypes)((value >> 1) + (byte)NumericTypes.Number1 - 1) | NumericTypes.DoubleNumber;
+            if (!value.IsValueNumericType()) throw new ArgumentOutOfRangeException(nameof(value));
+            return value switch
+            {
+                -1 => NumericTypes.MinusOne,
+                0 => NumericTypes.Zero,
+                1 => NumericTypes.One,
+                _ when value < 70 => (NumericTypes)(value - 2 + (int)NumericTypes.Number2),
+                _ => (NumericTypes)(value - 70) | NumericTypes.Number70To198
+            };
         }
     }
 }
