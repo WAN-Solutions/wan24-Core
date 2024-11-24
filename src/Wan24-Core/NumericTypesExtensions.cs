@@ -356,26 +356,41 @@ namespace wan24.Core
         public static NumericTypes GetFittingType<T>(this T value) where T : struct, IConvertible
         {
             NumericTypes res = value.GetNumericType();
-            if (res == NumericTypes.None || res.HasValue() || res.IsDecimal()) return res;
+            if (res == NumericTypes.None || res.HasValue()) return res;
+            bool hugeValue = false;// TRUE for an integer value which exceeds the Int64 maximum value
+            // Floating point
             if (res.IsFloatingPoint())
             {
                 double v = value.CastType<double>();
-                if (v < float.MinValue || v > float.MaxValue) return NumericTypes.Double;
-                if (v < (double)Half.MinValue || v > (double)Half.MaxValue) return NumericTypes.Float;
-                return NumericTypes.Half;
+                if (!double.IsInteger(v) || v < long.MinValue || v > ulong.MaxValue)
+                {
+                    if (v < float.MinValue || v > float.MaxValue) return NumericTypes.Double;
+                    if (v < (double)Half.MinValue || v > (double)Half.MaxValue) return NumericTypes.Float;
+                    return NumericTypes.Half;
+                }
+                if (v > long.MaxValue) hugeValue = true;
             }
-            bool hugeValue = false;
+            // Decimal
+            if (res.IsDecimal())
+            {
+                decimal v = value.CastType<decimal>();
+                if (!decimal.IsInteger(v) || v < long.MinValue || v > ulong.MaxValue) return NumericTypes.Decimal;
+                if (v > long.MaxValue) hugeValue = true;
+            }
+            // Big integer
             if (res.IsBigInteger())
             {
                 BigInteger v = value.CastType<BigInteger>();
                 if (v < long.MinValue || v > ulong.MaxValue) return NumericTypes.BigInteger;
                 if (v > long.MaxValue) hugeValue = true;
             }
+            // Integer
             if (!res.IsUnsigned() && !hugeValue)
             {
                 long v = value.CastType<long>();
                 if (v < 0)
                 {
+                    // Negative
                     if (v < int.MinValue) return NumericTypes.Long;
                     if (v < short.MinValue) return NumericTypes.Int;
                     if (v < sbyte.MinValue) return NumericTypes.Short;
@@ -383,6 +398,7 @@ namespace wan24.Core
                 }
             }
             {
+                // Positive
                 ulong v = value.CastType<ulong>();
                 if (v > long.MaxValue) return NumericTypes.ULong;
                 if (v > uint.MaxValue) return NumericTypes.Long;

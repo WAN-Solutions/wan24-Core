@@ -634,17 +634,17 @@
         /// <summary>
         /// <c>67</c>
         /// </summary>
-        [DisplayText("Number 66")]
+        [DisplayText("Number 67")]
         Number67 = 125,
         /// <summary>
         /// <c>68</c>
         /// </summary>
-        [DisplayText("Number 66")]
+        [DisplayText("Number 68")]
         Number68 = 126,
         /// <summary>
         /// <c>69</c>
         /// </summary>
-        [DisplayText("Number 66")]
+        [DisplayText("Number 69")]
         Number69 = 127,
         /// <summary>
         /// <c>70..198</c> (<c>(((int)enumValue) &amp; ~128) + 70</c>)
