@@ -111,7 +111,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public static explicit operator CliArguments(in Dictionary<string, IEnumerable<string>> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.AsReadOnly()));
+                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.ToImmutableArray()));
 
         /// <summary>
         /// Cast from dictionary
@@ -120,7 +120,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public static explicit operator CliArguments(in Dictionary<string, string[]> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.AsReadOnly()));
+                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, [.. kvp.Value]));
 
         /// <summary>
         /// Cast from dictionary
@@ -145,7 +145,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public static explicit operator CliArguments(in OrderedDictionary<string, IEnumerable<string>> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.AsReadOnly()));
+                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.ToImmutableArray()));
 
         /// <summary>
         /// Cast from dictionary
@@ -154,7 +154,7 @@ namespace wan24.Core
         [TargetedPatchingOptOut("Just a method adapter")]
         public static explicit operator CliArguments(in OrderedDictionary<string, string[]> dict)
             => new(from kvp in dict
-                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, kvp.Value.AsReadOnly()));
+                   select new KeyValuePair<string, ImmutableArray<string>>(kvp.Key, [.. kvp.Value]));
 
         /// <summary>
         /// Cast from dictionary

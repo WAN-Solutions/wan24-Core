@@ -59,7 +59,7 @@ namespace wan24.Core
             _CanWrite = _CanSeek && streams.All(s => s.CanWrite);
             Lengths = _CanSeek ? [.. streams.Select(s => s.Length)] : [];
             _Length = _CanSeek ? Lengths.Sum() : -1;
-            _Streams = streams.AsReadOnly();
+            _Streams = [.. streams];
             LeaveOpen = leaveOpen;
             ResetPosition = resetPosition;
             if (_CanSeek) _Position = CurrentStream.Position;
