@@ -205,6 +205,6 @@ namespace wan24.Core
         /// <param name="names">Additional status group names (should be normalized!)</param>
         /// <returns>Combined name</returns>
         public static string CombineStatusGroupNames(this string name, params string?[] names)
-            => string.Join('\\', [name, .. names.Where(n => !string.IsNullOrWhiteSpace(n))]);
+            => string.Join('\\', new string[] { name }.Concat(names.Where(n => !string.IsNullOrWhiteSpace(n))));
     }
 }

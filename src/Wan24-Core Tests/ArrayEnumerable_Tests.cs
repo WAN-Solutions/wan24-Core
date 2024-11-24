@@ -134,15 +134,15 @@ namespace Wan24_Core_Tests
             Assert.IsFalse(await test.AnyAsync((i, ct) => Task.FromResult(i < 0)));
 
             test.ExecuteForAll(i => { });
-            Assert.IsTrue(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i)).SequenceEqual(TestData.Reverse()));
-            Assert.IsFalse(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i + 1)).SequenceEqual(TestData.Reverse()));
-            Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.Reverse()));
-            Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i)).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsFalse(test.ExecuteForAll(i => new EnumerableExtensions.ExecuteResult<int>(i + 1)).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsTrue((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i))).ToListAsync()).SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsFalse((await test.ExecuteForAllAsync((i, ct) => Task.FromResult(new EnumerableExtensions.ExecuteResult<int>(i + 1))).ToListAsync()).SequenceEqual(TestData.AsEnumerable().Reverse()));
 
             Assert.AreEqual(TestData.Length, test.DiscardAll());
             Assert.AreEqual(TestData.Length, await test.DiscardAllAsync());
 
-            Assert.IsTrue(test.Distinct().SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.Distinct().SequenceEqual(TestData.AsEnumerable().Reverse()));
             Assert.AreEqual(4, test.DistinctBy(i => i < 1 ? i : i - 1).Count());
             Assert.AreEqual(4, await test.DistinctByAsync((i, ct) => Task.FromResult(i < 1 ? i : i - 1)).CountAsync());
 
@@ -165,11 +165,11 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(2, test.TakeWhile(i => i > 2).Count());
             Assert.AreEqual(2, await test.TakeWhileAsync((i, ct) => Task.FromResult(i > 2)).CountAsync());
 
-            Assert.IsTrue(test.ToArray().SequenceEqual(TestData.Reverse()));
-            Assert.IsTrue(test.ToList().SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(test.ToArray().SequenceEqual(TestData.AsEnumerable().Reverse()));
+            Assert.IsTrue(test.ToList().SequenceEqual(TestData.AsEnumerable().Reverse()));
             int[] buffer = new int[TestData.Length];
             Assert.AreEqual(TestData.Length, test.ToBuffer(buffer));
-            Assert.IsTrue(buffer.SequenceEqual(TestData.Reverse()));
+            Assert.IsTrue(buffer.SequenceEqual(TestData.AsEnumerable().Reverse()));
         }
 
         [TestMethod]
