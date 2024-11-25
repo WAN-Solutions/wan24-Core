@@ -133,5 +133,64 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static ICollection<T> MoveItemDown<T>(this ICollection<T> collection, in T item) => MoveIndexDown(collection, collection.ElementIndex(item));
+
+        /// <summary>
+        /// Create an array
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="firstItem">First item</param>
+        /// <param name="followingItems">Following items</param>
+        /// <returns>Array</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T[] CreateArray<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+
+        /// <summary>
+        /// Create a list
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="firstItem">First item</param>
+        /// <param name="followingItems">Following items</param>
+        /// <returns>List</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static List<T> CreateList<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+
+        /// <summary>
+        /// Create a hash set
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="firstItem">First item</param>
+        /// <param name="followingItems">Following items</param>
+        /// <returns>Hash set</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static HashSet<T> CreateHashSet<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+
+        /// <summary>
+        /// Create a dictionary
+        /// </summary>
+        /// <typeparam name="tKey">Key type</typeparam>
+        /// <typeparam name="tValue">Value type</typeparam>
+        /// <param name="firstItem">First item</param>
+        /// <param name="followingItems">Following items</param>
+        /// <returns>Dictionary</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Dictionary<tKey, tValue> CreateDictionary<tKey,tValue>(this KeyValuePair<tKey, tValue> firstItem, params KeyValuePair<tKey, tValue>[] followingItems)
+            where tKey: notnull
+        {
+            Dictionary<tKey, tValue> res = new(followingItems.Length + 1);
+            res.AddRange([firstItem, ..followingItems]);
+            return res;
+        }
     }
 }
