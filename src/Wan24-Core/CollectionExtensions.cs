@@ -145,7 +145,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static T[] CreateArray<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+        public static T[] CreateArrayWith<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
 
         /// <summary>
         /// Create a list
@@ -158,7 +158,7 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static List<T> CreateList<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+        public static List<T> CreateListWith<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
 
         /// <summary>
         /// Create a hash set
@@ -171,25 +171,25 @@ namespace wan24.Core
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static HashSet<T> CreateHashSet<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
+        public static HashSet<T> CreateHashSetWith<T>(this T firstItem, params T[] followingItems) => [firstItem, .. followingItems];
 
         /// <summary>
         /// Create a dictionary
         /// </summary>
         /// <typeparam name="tKey">Key type</typeparam>
         /// <typeparam name="tValue">Value type</typeparam>
-        /// <param name="firstItem">First item</param>
-        /// <param name="followingItems">Following items</param>
+        /// <param name="item">Item</param>
+        /// <param name="moreItems">More items</param>
         /// <returns>Dictionary</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Dictionary<tKey, tValue> CreateDictionary<tKey,tValue>(this KeyValuePair<tKey, tValue> firstItem, params KeyValuePair<tKey, tValue>[] followingItems)
+        public static Dictionary<tKey, tValue> CreateDictionaryWith<tKey,tValue>(this KeyValuePair<tKey, tValue> item, params KeyValuePair<tKey, tValue>[] moreItems)
             where tKey: notnull
         {
-            Dictionary<tKey, tValue> res = new(followingItems.Length + 1);
-            res.AddRange([firstItem, ..followingItems]);
+            Dictionary<tKey, tValue> res = new(moreItems.Length + 1);
+            res.AddRange([item, ..moreItems]);
             return res;
         }
     }
