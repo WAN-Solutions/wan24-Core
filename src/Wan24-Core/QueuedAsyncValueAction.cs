@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace wan24.Core
+﻿namespace wan24.Core
 {
     /// <summary>
     /// Queued asynchronous action
@@ -9,24 +7,64 @@ namespace wan24.Core
     /// <remarks>
     /// Constructor
     /// </remarks>
-    /// <param name="action">Action</param>
-    /// <param name="cancellationToken">Cancellation token</param>
-    [StructLayout(LayoutKind.Sequential)]
-    public readonly struct QueuedAsyncValueAction<T>(in Func<QueuedAsyncValueAction<T>, CancellationToken, Task<T>> action, in CancellationToken cancellationToken = default)
-        : IDisposable
+    /// <param name="Action">Action</param>
+    /// <param name="CancellationToken">Cancellation token</param>
+    public sealed record class QueuedAsyncValueAction<T>(
+        in Func<QueuedAsyncValueAction<T>, CancellationToken, Task<T>> Action, 
+        in CancellationToken CancellationToken = default
+        )
+        : SimpleDisposableRecordBase()
     {
         /// <summary>
         /// Action
         /// </summary>
-        public readonly Func<QueuedAsyncValueAction<T>, CancellationToken, Task<T>> Action = action;
+        private readonly Func<QueuedAsyncValueAction<T>, CancellationToken, Task<T>> Action = Action;
         /// <summary>
         /// Cancellation token
         /// </summary>
-        public readonly CancellationToken CancelToken = cancellationToken;
+        private readonly CancellationToken CancelToken = CancellationToken;
         /// <summary>
         /// Completion
         /// </summary>
-        public readonly TaskCompletionSource<T> Completion = new();
+        private readonly TaskCompletionSource<T> Completion = new();
+
+        /// <summary>
+        /// Name
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// Tage
+        /// </summary>
+        public object? Tag { get; set; }
+
+        /// <summary>
+        /// Task
+        /// </summary>
+        public Task Task => Completion.Task;
+
+        /// <summary>
+        /// Creation time
+        /// </summary>
+        public DateTime Created { get; } = DateTime.Now;
+
+        /// <summary>
+        /// Execution time
+        /// </summary>
+        public DateTime Executed { get; private set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// Done time
+        /// </summary>
+        public DateTime Done { get; private set; } = DateTime.MinValue;
+
+        /// <summary>
+        /// Runtime
+        /// </summary>
+        public TimeSpan Runtime
+            => Executed == DateTime.MinValue || Done == DateTime.MinValue
+                ? TimeSpan.Zero
+                : Done - Executed;
 
         /// <summary>
         /// Execute the action (needs to be called from the queue worker)
@@ -36,6 +74,8 @@ namespace wan24.Core
         {
             try
             {
+                EnsureUndisposed();
+                Executed = DateTime.Now;
                 CancelToken.ThrowIfCancellationRequested();
                 using CancellationTokenSource cts = CancellationTokenSource.CreateLinkedTokenSource(
                     [..new CancellationToken[]
@@ -45,23 +85,20 @@ namespace wan24.Core
                     }.RemoveNoneAndDefault()
                         .RemoveDoubles()]
                     );
-                if (Completion.Task.IsCompleted)
-                {
-                    await Completion.Task.DynamicContext();
-                }
-                else
-                {
-                    Completion.SetResult(await Action(this, cts.Token).DynamicContext());
-                }
+                Completion.SetResult(await Action(this, cts.Token).DynamicContext());
             }
             catch (Exception ex)
             {
                 Completion.TrySetException(ex);
             }
+            finally
+            {
+                Done = DateTime.Now;
+            }
         }
 
         /// <inheritdoc/>
-        public void Dispose()
+        protected override void Dispose(bool disposing)
         {
             if (!Completion.Task.IsCompleted) Completion.TrySetException(new ObjectDisposedException(GetType().ToString()));
         }
