@@ -85,5 +85,11 @@ namespace Wan24_Core_Tests
             Assert.AreEqual(100L, ms1.Position);
             Assert.AreEqual(75L, ms2.Position);
         }
+
+        [TestMethod]
+        public void Serialization_Tests()
+        {
+
+        }
     }
 }

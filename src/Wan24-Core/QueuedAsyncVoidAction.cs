@@ -22,7 +22,7 @@
         /// <summary>
         /// Completion
         /// </summary>
-        private readonly TaskCompletionSource Completion = new();
+        private readonly TaskCompletionSource Completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
 
         /// <summary>
         /// Name
@@ -82,11 +82,12 @@
                         .RemoveDoubles()]
                     );
                 await Action(this, cts.Token).DynamicContext();
-                Completion.SetResult();
+                Completion.TrySetResult();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Completion.TrySetException(ex);
+                throw;
             }
             finally
             {

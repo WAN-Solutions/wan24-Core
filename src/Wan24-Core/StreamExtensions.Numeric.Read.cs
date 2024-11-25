@@ -11,6 +11,24 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="version">Data structure version</param>
+        /// <returns>Value</returns>
+        public static sbyte ReadOneSByte(this Stream stream, int version)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(sbyte), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(sbyte)];
+#endif
+            stream.ReadExactly(bufferSpan);
+            return (sbyte)bufferSpan[0];
+        }
+
+        /// <summary>
+        /// Read one signed byte
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Value</returns>
@@ -20,6 +38,24 @@ namespace wan24.Core
             Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..sizeof(sbyte)] : buffer2!.Value.Memory;
             await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
             return (sbyte)bufferMem.Span[0];
+        }
+
+        /// <summary>
+        /// Read one unsigned byte
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <returns>Value</returns>
+        public static byte ReadOneByte(this Stream stream, int version)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(byte), clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(byte)];
+#endif
+            stream.ReadExactly(bufferSpan);
+            return bufferSpan[0];
         }
 
         /// <summary>

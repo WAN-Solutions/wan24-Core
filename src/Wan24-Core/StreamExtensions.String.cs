@@ -27,7 +27,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                stream.WriteNumericNullable<int>(value: default);
+                stream.Write((byte)NumericTypes.None);
                 return;
             }
             stream.Write(str.Value.Span);
@@ -59,7 +59,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                await stream.WriteNumericNullableAsync<int>(value: default, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
             await stream.WriteAsync(str.Value, buffer, cancellationToken).DynamicContext();
@@ -87,7 +87,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                stream.WriteNumericNullable<int>(value: default);
+                stream.Write((byte)NumericTypes.None);
                 return;
             }
             stream.Write16(str.Value.Span);
@@ -119,7 +119,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                await stream.WriteNumericNullableAsync<int>(value: default, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
             await stream.Write16Async(str.Value, buffer, cancellationToken).DynamicContext();
@@ -147,7 +147,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                stream.WriteNumericNullable<int>(value: default);
+                stream.Write((byte)NumericTypes.None);
                 return;
             }
             stream.Write32(str.Value.Span);
@@ -179,7 +179,7 @@ namespace wan24.Core
         {
             if (!str.HasValue)
             {
-                await stream.WriteNumericNullableAsync<int>(value: default, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
             await stream.Write32Async(str.Value, buffer, cancellationToken).DynamicContext();

@@ -115,7 +115,7 @@ stream.Position = 0;
 anyInteger = stream.ReadNumeric<int>(version: 1);
 ```
 
-If the value of `anyInteger` is `198`, for example, only one byte will be written. One byte is required to store the smallest value fitting written numeric data structure type, and may hold numeric values from `-1` to `198`, as well as all `Half`, `float`, `double`, `decimal` and `BigInteger` special values. That means, an integer value of `199` would produce two bytes, while `65535` fits into one byte, because the value is equal to `ushort.MaxValue`, which can be defined using the numeric type byte (`NumericTypes`) only. The `NumericTypesExtensions` has some useful helpers for working with the information a `NumericTypes` value includes.
+If the value of `anyInteger` is `198`, for example, only one byte will be written. One byte is required to store the smallest value fitting written numeric data structure type, and may hold numeric values from `-1` to `199`, as well as all `Half`, `float`, `double`, `decimal` and `BigInteger` special values. That means, an integer value of `199` would produce two bytes, while `65535` fits into one byte, because the value is equal to `ushort.MaxValue`, which can be defined using the numeric type byte (`NumericTypes`) only. The `NumericTypesExtensions` has some useful helpers for working with the information a `NumericTypes` value includes.
 
 **NOTE**: For deserializing a possible `BigInteger`, a buffer is required, which limits the maximum allowed big integer binary data structure length.
 
@@ -134,6 +134,6 @@ In total the serializer differs between those numeric types:
 
 Any integer value (no matter which was the original type), which fits into a `NumericTypes` value, will be resolved to `int` (but may be casted to any other numeric CLR target type).
 
-In short: Using `NumericTypes` a number may be stored "compressed" for any value which exceeds the numeric range of `-1` to `198` and fits into any smaller .NET numeric data type, but it's a trade-off: If the original data type is the best value fitting .NET numeric data type already, and its value can't be defined by a `NumericTypes` value, it's required to store only one more byte than without the benefit of a possible compression.
+In short: Using `NumericTypes` a number may be stored "compressed" for any value which exceeds the numeric range of `-1` to `199` and fits into any smaller .NET numeric data type, but it's a trade-off: If the original data type is the best value fitting .NET numeric data type already, and its value can't be defined by a `NumericTypes` value, it's required to store only one more byte than without the benefit of a possible compression.
 
 **NOTE**: Internal the serializer methods use the `WriteNumeric` and `ReadNumeric` methods when writing length information, f.e.. When writing nullable values with length information, `NumericTypes.None` will be used for a `null` value.

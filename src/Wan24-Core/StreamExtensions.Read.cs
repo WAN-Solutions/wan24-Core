@@ -407,7 +407,7 @@ namespace wan24.Core
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
         public static Stream ReadStream(this Stream stream, in int version)
         {
-            int type = stream.ReadByte();
+            int type = stream.ReadOneByte(version);
             return type switch
             {
                 0 => stream.ReadStreamWithLengthInfo(version),
@@ -424,7 +424,7 @@ namespace wan24.Core
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
         public static Stream? ReadStreamNullable(this Stream stream, in int version)
         {
-            int type = stream.ReadByte();
+            int type = stream.ReadOneByte(version);
             return type switch
             {
                 0 => stream.ReadStreamWithLengthInfo(version),
@@ -443,7 +443,7 @@ namespace wan24.Core
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
         public static async Task<Stream> ReadStreamAsync(this Stream stream, int version, CancellationToken cancellationToken = default)
         {
-            int type = stream.ReadByte();
+            int type = stream.ReadOneByte(version);
             return type switch
             {
                 0 => await stream.ReadStreamWithLengthInfoAsync(version, cancellationToken).DynamicContext(),
@@ -461,7 +461,7 @@ namespace wan24.Core
         /// <returns>Red stream (must be fully red before reading more from <c>stream</c>)</returns>
         public static async Task<Stream?> ReadStreamNullableAsync(this Stream stream, int version, CancellationToken cancellationToken = default)
         {
-            int type = stream.ReadByte();
+            int type = stream.ReadOneByte(version);
             return type switch
             {
                 0 => await stream.ReadStreamWithLengthInfoAsync(version, cancellationToken).DynamicContext(),

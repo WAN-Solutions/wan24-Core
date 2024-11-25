@@ -26,7 +26,7 @@
         /// <summary>
         /// Completion
         /// </summary>
-        private readonly TaskCompletionSource<T> Completion = new();
+        private readonly TaskCompletionSource<T> Completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
 
         /// <summary>
         /// Name
@@ -41,7 +41,7 @@
         /// <summary>
         /// Task
         /// </summary>
-        public Task Task => Completion.Task;
+        public Task<T> Task => Completion.Task;
 
         /// <summary>
         /// Creation time
@@ -70,7 +70,8 @@
         /// Execute the action (needs to be called from the queue worker)
         /// </summary>
         /// <param name="cancellationToken">Cancellation token</param>
-        public async Task ExecuteAsync(CancellationToken cancellationToken)
+        /// <returns>Return value</returns>
+        public async Task<T> ExecuteAsync(CancellationToken cancellationToken)
         {
             try
             {
@@ -85,11 +86,14 @@
                     }.RemoveNoneAndDefault()
                         .RemoveDoubles()]
                     );
-                Completion.SetResult(await Action(this, cts.Token).DynamicContext());
+                T ret = await Action(this, cts.Token).DynamicContext();
+                Completion.TrySetResult(ret);
+                return ret;
             }
             catch (Exception ex)
             {
                 Completion.TrySetException(ex);
+                throw;
             }
             finally
             {
