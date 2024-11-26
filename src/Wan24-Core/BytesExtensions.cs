@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Numerics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -306,6 +307,50 @@ namespace wan24.Core
         public static ulong ToULong(this Span<byte> bits) => ToULong((ReadOnlySpan<byte>)bits);
 
         /// <summary>
+        /// Get an Int128
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Int128 ToInt128(this ReadOnlySpan<byte> bits) => ToBinaryInteger<Int128>(bits, isUnsigned: false);
+
+        /// <summary>
+        /// Get an Int128
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Int128 ToInt128(this Span<byte> bits) => ToInt128((ReadOnlySpan<byte>)bits);
+
+        /// <summary>
+        /// Get an UInt128
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static UInt128 ToUInt128(this ReadOnlySpan<byte> bits) => ToBinaryInteger<UInt128>(bits, isUnsigned: true);
+
+        /// <summary>
+        /// Get an UInt128
+        /// </summary>
+        /// <param name="bits">Bits</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static UInt128 ToUInt128(this Span<byte> bits) => ToUInt128((ReadOnlySpan<byte>)bits);
+
+        /// <summary>
         /// Get a float
         /// </summary>
         /// <param name="bits">Bits</param>
@@ -419,6 +464,32 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static decimal ToDecimal(this Span<byte> bits) => ToDecimal((ReadOnlySpan<byte>)bits);
+
+        /// <summary>
+        /// Get a binary integer from little endian
+        /// </summary>
+        /// <typeparam name="T">Binary integer type</typeparam>
+        /// <param name="bits">Bits</param>
+        /// <param name="isUnsigned">If unsigned</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T ToBinaryInteger<T>(this ReadOnlySpan<byte> bits, in bool isUnsigned) where T : IBinaryInteger<T> => T.ReadLittleEndian(bits, isUnsigned);
+
+        /// <summary>
+        /// Get a binary integer from little endian
+        /// </summary>
+        /// <typeparam name="T">Binary integer type</typeparam>
+        /// <param name="bits">Bits</param>
+        /// <param name="isUnsigned">If unsigned</param>
+        /// <returns>Value</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T ToBinaryInteger<T>(this Span<byte> bits, in bool isUnsigned) where T : IBinaryInteger<T> => T.ReadLittleEndian(bits, isUnsigned);
 
         /// <summary>
         /// Clear the array

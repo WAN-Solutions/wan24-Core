@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Numerics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -64,10 +65,13 @@ namespace wan24.Core
                 uint => true,
                 long => false,
                 ulong => true,
+                Int128 => false,
+                UInt128 => true,
                 Half => false,
                 float => false,
                 double => false,
                 decimal => false,
+                BigInteger => false,
                 _ => throw new ArgumentException($"Not a supported numeric type {type}")
             };
 
@@ -91,10 +95,13 @@ namespace wan24.Core
                     uint => true,
                     long => true,
                     ulong => true,
+                    Int128 => true,
+                    UInt128 => true,
                     Half => true,
                     float => true,
                     double => true,
                     decimal => true,
+                    BigInteger => true,
                     _ => false
                 };
             }
@@ -125,25 +132,21 @@ namespace wan24.Core
                     uint => true,
                     long => true,
                     ulong => true,
+                    Int128 => true,
+                    UInt128 => true,
                     Half => true,
                     float => true,
                     double => true,
                     decimal => true,
+                    BigInteger => true,
                     _ => false
                 } && value switch
                 {
-                    sbyte => false,
                     byte => true,
-                    short => false,
                     ushort => true,
-                    int => false,
                     uint => true,
-                    long => false,
                     ulong => true,
-                    Half => false,
-                    float => false,
-                    double => false,
-                    decimal => false,
+                    UInt128 => true,
                     _ => false
                 };
             }
@@ -534,6 +537,134 @@ namespace wan24.Core
         public static Memory<byte> GetBytes(this ulong value, in Memory<byte> target)
         {
             BinaryPrimitives.WriteUInt64LittleEndian(target.Span, value);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this Int128 value)
+        {
+            byte[] res = new byte[sizeof(ulong) << 1];
+            GetBytes(value, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this Int128 value, in byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Span<byte> GetBytes(this Int128 value, in Span<byte> target)
+        {
+            ((IBinaryInteger<Int128>)value).WriteLittleEndian(target);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Memory<byte> GetBytes(this Int128 value, in Memory<byte> target)
+        {
+            GetBytes(value, target.Span);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this UInt128 value)
+        {
+            byte[] res = new byte[sizeof(ulong) << 1];
+            GetBytes(value, res);
+            return res;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this UInt128 value, in byte[] target)
+        {
+            GetBytes(value, target.AsSpan());
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target span</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Span<byte> GetBytes(this UInt128 value, in Span<byte> target)
+        {
+            ((IBinaryInteger<UInt128>)value).WriteLittleEndian(target);
+            return target;
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="value">Value</param>
+        /// <param name="target">Target memory</param>
+        /// <returns>Bytes (endian converted)</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Memory<byte> GetBytes(this UInt128 value, in Memory<byte> target)
+        {
+            GetBytes(value, target.Span);
             return target;
         }
 

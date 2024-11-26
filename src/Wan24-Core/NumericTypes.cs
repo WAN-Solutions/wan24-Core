@@ -122,539 +122,539 @@
         [DisplayText("Unsigned long maximum value")]
         ULongMax = 22,
         /// <summary>
+        /// <see cref="Int128"/>
+        /// </summary>
+        [DisplayText("Signed 128 bit integer")]
+        Int128 = 23,
+        /// <summary>
+        /// <see cref="Int128.MinValue"/>
+        /// </summary>
+        [DisplayText("Signed 128 bit integer minimum value")]
+        Int128Min = 24,
+        /// <summary>
+        /// <see cref="Int128.MaxValue"/>
+        /// </summary>
+        [DisplayText("Signed 128 bit integer maximum value")]
+        Int128Max = 25,
+        /// <summary>
+        /// <see cref="UInt128"/>
+        /// </summary>
+        [DisplayText("Unsigned 128 bit integer")]
+        UInt128 = 26,
+        /// <summary>
+        /// <see cref="UInt128.MaxValue"/>
+        /// </summary>
+        [DisplayText("Unsigned 128 bit integer maximum value")]
+        UInt128Max = 27,
+        /// <summary>
         /// <see cref="System.Half"/>
         /// </summary>
         [DisplayText("Half floating point")]
-        Half = 23,
+        Half = 28,
         /// <summary>
         /// <see cref="Half.MinValue"/>
         /// </summary>
         [DisplayText("Half minimum value")]
-        HalfMin = 24,
+        HalfMin = 29,
         /// <summary>
         /// <see cref="Half.MaxValue"/>
         /// </summary>
         [DisplayText("Half maximum value")]
-        HalfMax = 25,
+        HalfMax = 30,
         /// <summary>
         /// <see cref="Half.E"/>
         /// </summary>
         [DisplayText("Half E")]
-        HalfE = 26,
+        HalfE = 31,
         /// <summary>
         /// <see cref="Half.Epsilon"/>
         /// </summary>
         [DisplayText("Half Epsilon")]
-        HalfEpsilon = 27,
+        HalfEpsilon = 32,
         /// <summary>
         /// <see cref="Half.NaN"/>
         /// </summary>
         [DisplayText("Half not a number")]
-        HalfNaN = 28,
+        HalfNaN = 33,
         /// <summary>
         /// <see cref="Half.NegativeInfinity"/>
         /// </summary>
         [DisplayText("Half negative infinity")]
-        HalfNegativeInfinity = 29,
-        /// <summary>
-        /// <see cref="Half.NegativeZero"/>
-        /// </summary>
-        [DisplayText("Half negative zero")]
-        HalfNegativeZero = 30,
+        HalfNegativeInfinity = 34,
         /// <summary>
         /// <see cref="Half.Pi"/>
         /// </summary>
         [DisplayText("Half Pi")]
-        HalfPi = 31,
+        HalfPi = 35,
         /// <summary>
         /// <see cref="Half.PositiveInfinity"/>
         /// </summary>
         [DisplayText("Half positive infinity")]
-        HalfPositiveInfinity = 32,
+        HalfPositiveInfinity = 36,
         /// <summary>
         /// <see cref="Half.Tau"/>
         /// </summary>
         [DisplayText("Half TAU constant")]
-        HalfTau = 33,
+        HalfTau = 37,
         /// <summary>
         /// <see cref="float"/>
         /// </summary>
         [DisplayText("Floating point")]
-        Float = 34,
+        Float = 38,
         /// <summary>
         /// <see cref="float.MinValue"/>
         /// </summary>
         [DisplayText("Floating point minimum value")]
-        FloatMin = 35,
+        FloatMin = 39,
         /// <summary>
         /// <see cref="float.MaxValue"/>
         /// </summary>
         [DisplayText("Floating point maximum value")]
-        FloatMax = 36,
+        FloatMax = 40,
         /// <summary>
         /// <see cref="float.E"/>
         /// </summary>
         [DisplayText("Floating point E constant")]
-        FloatE = 37,
+        FloatE = 41,
         /// <summary>
         /// <see cref="float.Epsilon"/>
         /// </summary>
         [DisplayText("Floating point Epsilon")]
-        FloatEpsilon = 38,
+        FloatEpsilon = 42,
         /// <summary>
         /// <see cref="float.NaN"/>
         /// </summary>
         [DisplayText("Floating point not a number")]
-        FloatNaN = 39,
+        FloatNaN = 43,
         /// <summary>
         /// <see cref="float.NegativeInfinity"/>
         /// </summary>
         [DisplayText("Floating point negative infinity")]
-        FloatNegativeInfinity = 40,
+        FloatNegativeInfinity = 44,
         /// <summary>
         /// <see cref="float.Pi"/>
         /// </summary>
         [DisplayText("Floating point Pi")]
-        FloatPi = 41,
+        FloatPi = 45,
         /// <summary>
         /// <see cref="float.PositiveInfinity"/>
         /// </summary>
         [DisplayText("Floating point positive infinity")]
-        FloatPositiveInfinity = 42,
+        FloatPositiveInfinity = 46,
         /// <summary>
         /// <see cref="float.Tau"/>
         /// </summary>
         [DisplayText("Floating point TAU constant")]
-        FloatTau = 43,
+        FloatTau = 47,
         /// <summary>
         /// <see cref="double"/>
         /// </summary>
         [DisplayText("Double floating point")]
-        Double = 44,
+        Double = 48,
         /// <summary>
         /// <see cref="double.MinValue"/>
         /// </summary>
         [DisplayText("Double minimum value")]
-        DoubleMin = 45,
+        DoubleMin = 49,
         /// <summary>
         /// <see cref="double.MaxValue"/>
         /// </summary>
         [DisplayText("Double maximum value")]
-        DoubleMax = 46,
+        DoubleMax = 50,
         /// <summary>
         /// <see cref="double.E"/>
         /// </summary>
         [DisplayText("Double E constant")]
-        DoubleE = 47,
+        DoubleE = 51,
         /// <summary>
         /// <see cref="double.Epsilon"/>
         /// </summary>
         [DisplayText("Double Epsilon")]
-        DoubleEpsilon = 48,
+        DoubleEpsilon = 52,
         /// <summary>
         /// <see cref="double.NaN"/>
         /// </summary>
         [DisplayText("Double not a number")]
-        DoubleNaN = 49,
+        DoubleNaN = 53,
         /// <summary>
         /// <see cref="double.NegativeInfinity"/>
         /// </summary>
         [DisplayText("Doublew negative infinity")]
-        DoubleNegativeInfinity = 50,
+        DoubleNegativeInfinity = 54,
         /// <summary>
         /// <see cref="double.NegativeZero"/>
         /// </summary>
         [DisplayText("Double negative zero")]
-        DoubleNegativeZero = 51,
+        DoubleNegativeZero = 55,
         /// <summary>
         /// <see cref="double.Pi"/>
         /// </summary>
         [DisplayText("Double Pi")]
-        DoublePi = 52,
+        DoublePi = 56,
         /// <summary>
         /// <see cref="double.PositiveInfinity"/>
         /// </summary>
         [DisplayText("Double positive infinity")]
-        DoublePositiveInfinity = 53,
+        DoublePositiveInfinity = 57,
         /// <summary>
         /// <see cref="double.Tau"/>
         /// </summary>
         [DisplayText("Double TAU constant")]
-        DoubleTau = 54,
+        DoubleTau = 58,
         /// <summary>
         /// <see cref="decimal"/>
         /// </summary>
         [DisplayText("Decimal")]
-        Decimal = 55,
+        Decimal = 59,
         /// <summary>
         /// <see cref="decimal.MinValue"/>
         /// </summary>
         [DisplayText("Decimal minimum value")]
-        DecimalMin = 56,
+        DecimalMin = 60,
         /// <summary>
         /// <see cref="decimal.MaxValue"/>
         /// </summary>
         [DisplayText("Decimal maximum value")]
-        DecimalMax = 57,
+        DecimalMax = 61,
         /// <summary>
         /// <see cref="System.Numerics.BigInteger"/> (signed little endian)
         /// </summary>
         [DisplayText("Big integer")]
-        BigInteger = 58,
+        BigInteger = 62,
         /// <summary>
         /// <c>2</c>
         /// </summary>
         [DisplayText("Number 2")]
-        Number2 = 59,
+        Number2 = 63,
         /// <summary>
         /// <c>3</c>
         /// </summary>
         [DisplayText("Number 3")]
-        Number3 = 60,
+        Number3 = 64,
         /// <summary>
         /// <c>4</c>
         /// </summary>
         [DisplayText("Number 4")]
-        Number4 = 61,
+        Number4 = 65,
         /// <summary>
         /// <c>5</c>
         /// </summary>
         [DisplayText("Number 5")]
-        Number5 = 62,
+        Number5 = 66,
         /// <summary>
         /// <c>6</c>
         /// </summary>
         [DisplayText("Number 6")]
-        Number6 = 63,
+        Number6 = 67,
         /// <summary>
         /// <c>7</c>
         /// </summary>
         [DisplayText("Number 7")]
-        Number7 = 64,
+        Number7 = 68,
         /// <summary>
         /// <c>8</c>
         /// </summary>
         [DisplayText("Number 8")]
-        Number8 = 65,
+        Number8 = 69,
         /// <summary>
         /// <c>9</c>
         /// </summary>
         [DisplayText("Number 9")]
-        Number9 = 66,
+        Number9 = 70,
         /// <summary>
         /// <c>10</c>
         /// </summary>
         [DisplayText("Number 10")]
-        Number10 = 67,
+        Number10 = 71,
         /// <summary>
         /// <c>11</c>
         /// </summary>
         [DisplayText("Number 11")]
-        Number11 = 68,
+        Number11 = 72,
         /// <summary>
         /// <c>12</c>
         /// </summary>
         [DisplayText("Number 12")]
-        Number12 = 69,
+        Number12 = 73,
         /// <summary>
         /// <c>13</c>
         /// </summary>
         [DisplayText("Number 13")]
-        Number13 = 70,
+        Number13 = 74,
         /// <summary>
         /// <c>14</c>
         /// </summary>
         [DisplayText("Number 14")]
-        Number14 = 71,
+        Number14 = 75,
         /// <summary>
         /// <c>15</c>
         /// </summary>
         [DisplayText("Number 15")]
-        Number15 = 72,
+        Number15 = 76,
         /// <summary>
         /// <c>16</c>
         /// </summary>
         [DisplayText("Number 16")]
-        Number16 = 73,
+        Number16 = 77,
         /// <summary>
         /// <c>17</c>
         /// </summary>
         [DisplayText("Number 17")]
-        Number17 = 74,
+        Number17 = 78,
         /// <summary>
         /// <c>18</c>
         /// </summary>
         [DisplayText("Number 18")]
-        Number18 = 75,
+        Number18 = 79,
         /// <summary>
         /// <c>19</c>
         /// </summary>
         [DisplayText("Number 19")]
-        Number19 = 76,
+        Number19 = 80,
         /// <summary>
         /// <c>20</c>
         /// </summary>
         [DisplayText("Number 20")]
-        Number20 = 77,
+        Number20 = 81,
         /// <summary>
         /// <c>21</c>
         /// </summary>
         [DisplayText("Number 21")]
-        Number21 = 78,
+        Number21 = 82,
         /// <summary>
         /// <c>22</c>
         /// </summary>
         [DisplayText("Number 22")]
-        Number22 = 79,
+        Number22 = 83,
         /// <summary>
         /// <c>23</c>
         /// </summary>
         [DisplayText("Number 23")]
-        Number23 = 80,
+        Number23 = 84,
         /// <summary>
         /// <c>24</c>
         /// </summary>
         [DisplayText("Number 24")]
-        Number24 = 81,
+        Number24 = 85,
         /// <summary>
         /// <c>25</c>
         /// </summary>
         [DisplayText("Number 25")]
-        Number25 = 82,
+        Number25 = 86,
         /// <summary>
         /// <c>26</c>
         /// </summary>
         [DisplayText("Number 26")]
-        Number26 = 83,
+        Number26 = 87,
         /// <summary>
         /// <c>27</c>
         /// </summary>
         [DisplayText("Number 27")]
-        Number27 = 84,
+        Number27 = 88,
         /// <summary>
         /// <c>28</c>
         /// </summary>
         [DisplayText("Number 28")]
-        Number28 = 85,
+        Number28 = 89,
         /// <summary>
         /// <c>29</c>
         /// </summary>
         [DisplayText("Number 29")]
-        Number29 = 86,
+        Number29 = 90,
         /// <summary>
         /// <c>30</c>
         /// </summary>
         [DisplayText("Number 30")]
-        Number30 = 87,
+        Number30 = 91,
         /// <summary>
         /// <c>31</c>
         /// </summary>
         [DisplayText("Number 31")]
-        Number31 = 88,
+        Number31 = 92,
         /// <summary>
         /// <c>32</c>
         /// </summary>
         [DisplayText("Number 32")]
-        Number32 = 89,
+        Number32 = 93,
         /// <summary>
         /// <c>33</c>
         /// </summary>
         [DisplayText("Number 33")]
-        Number33 = 90,
+        Number33 = 94,
         /// <summary>
         /// <c>34</c>
         /// </summary>
         [DisplayText("Number 34")]
-        Number34 = 91,
+        Number34 = 95,
         /// <summary>
         /// <c>35</c>
         /// </summary>
         [DisplayText("Number 35")]
-        Number35 = 92,
+        Number35 = 96,
         /// <summary>
         /// <c>36</c>
         /// </summary>
         [DisplayText("Number 36")]
-        Number36 = 93,
+        Number36 = 97,
         /// <summary>
         /// <c>37</c>
         /// </summary>
         [DisplayText("Number 37")]
-        Number37 = 94,
+        Number37 = 98,
         /// <summary>
         /// <c>38</c>
         /// </summary>
         [DisplayText("Number 38")]
-        Number38 = 95,
+        Number38 = 99,
         /// <summary>
         /// <c>39</c>
         /// </summary>
         [DisplayText("Number 39")]
-        Number39 = 96,
+        Number39 = 100,
         /// <summary>
         /// <c>40</c>
         /// </summary>
         [DisplayText("Number 40")]
-        Number40 = 97,
+        Number40 = 101,
         /// <summary>
         /// <c>41</c>
         /// </summary>
         [DisplayText("Number 41")]
-        Number41 = 98,
+        Number41 = 102,
         /// <summary>
         /// <c>42</c>
         /// </summary>
         [DisplayText("Number 42")]
-        Number42 = 99,
+        Number42 = 103,
         /// <summary>
         /// <c>43</c>
         /// </summary>
         [DisplayText("Number 43")]
-        Number43 = 100,
+        Number43 = 104,
         /// <summary>
         /// <c>44</c>
         /// </summary>
         [DisplayText("Number 44")]
-        Number44 = 101,
+        Number44 = 105,
         /// <summary>
         /// <c>45</c>
         /// </summary>
         [DisplayText("Number 45")]
-        Number45 = 102,
+        Number45 = 106,
         /// <summary>
         /// <c>46</c>
         /// </summary>
         [DisplayText("Number 46")]
-        Number46 = 103,
+        Number46 = 107,
         /// <summary>
         /// <c>47</c>
         /// </summary>
         [DisplayText("Number 47")]
-        Number47 = 104,
+        Number47 = 108,
         /// <summary>
         /// <c>48</c>
         /// </summary>
         [DisplayText("Number 48")]
-        Number48 = 105,
+        Number48 = 109,
         /// <summary>
         /// <c>49</c>
         /// </summary>
         [DisplayText("Number 49")]
-        Number49 = 106,
+        Number49 = 110,
         /// <summary>
         /// <c>50</c>
         /// </summary>
         [DisplayText("Number 50")]
-        Number50 = 107,
+        Number50 = 111,
         /// <summary>
         /// <c>51</c>
         /// </summary>
         [DisplayText("Number 51")]
-        Number51 = 108,
+        Number51 = 112,
         /// <summary>
         /// <c>52</c>
         /// </summary>
         [DisplayText("Number 52")]
-        Number52 = 109,
+        Number52 = 113,
         /// <summary>
         /// <c>53</c>
         /// </summary>
         [DisplayText("Number 53")]
-        Number53 = 110,
+        Number53 = 114,
         /// <summary>
         /// <c>54</c>
         /// </summary>
         [DisplayText("Number 54")]
-        Number54 = 111,
+        Number54 = 115,
         /// <summary>
         /// <c>55</c>
         /// </summary>
         [DisplayText("Number 55")]
-        Number55 = 112,
+        Number55 = 116,
         /// <summary>
         /// <c>56</c>
         /// </summary>
         [DisplayText("Number 56")]
-        Number56 = 113,
+        Number56 = 117,
         /// <summary>
         /// <c>57</c>
         /// </summary>
         [DisplayText("Number 57")]
-        Number57 = 114,
+        Number57 = 118,
         /// <summary>
         /// <c>58</c>
         /// </summary>
         [DisplayText("Number 58")]
-        Number58 = 115,
+        Number58 = 119,
         /// <summary>
         /// <c>59</c>
         /// </summary>
         [DisplayText("Number 59")]
-        Number59 = 116,
+        Number59 = 120,
         /// <summary>
         /// <c>60</c>
         /// </summary>
         [DisplayText("Number 60")]
-        Number60 = 117,
+        Number60 = 121,
         /// <summary>
         /// <c>61</c>
         /// </summary>
         [DisplayText("Number 61")]
-        Number61 = 118,
+        Number61 = 122,
         /// <summary>
         /// <c>62</c>
         /// </summary>
         [DisplayText("Number 62")]
-        Number62 = 119,
+        Number62 = 123,
         /// <summary>
         /// <c>63</c>
         /// </summary>
         [DisplayText("Number 63")]
-        Number63 = 120,
+        Number63 = 124,
         /// <summary>
         /// <c>64</c>
         /// </summary>
         [DisplayText("Number 64")]
-        Number64 = 121,
+        Number64 = 125,
         /// <summary>
         /// <c>65</c>
         /// </summary>
         [DisplayText("Number 65")]
-        Number65 = 122,
+        Number65 = 126,
         /// <summary>
-        /// <c>66</c>
+        /// <c>65</c>
         /// </summary>
         [DisplayText("Number 66")]
-        Number66 = 123,
+        Number66 = 127,
         /// <summary>
-        /// <c>67</c>
+        /// <c>67..194</c> (<c>(((int)enumValue) &amp; ~128) + 68</c>)
         /// </summary>
-        [DisplayText("Number 67")]
-        Number67 = 124,
-        /// <summary>
-        /// <c>68</c>
-        /// </summary>
-        [DisplayText("Number 68")]
-        Number68 = 125,
-        /// <summary>
-        /// <c>69</c>
-        /// </summary>
-        [DisplayText("Number 69")]
-        Number69 = 126,
-        /// <summary>
-        /// <c>70</c>
-        /// </summary>
-        [DisplayText("Number 70")]
-        Number70 = 127,
-        /// <summary>
-        /// <c>71..199</c> (<c>(((int)enumValue) &amp; ~128) + 71</c>)
-        /// </summary>
-        [DisplayText("Number 71..199")]
-        Number71To199 = 128,
+        [DisplayText("Number 67..194")]
+        Number67To194 = 128,
         /// <summary>
         /// All flags
         /// </summary>
         [DisplayText("All flags")]
-        FLAGS = Number71To199
+        FLAGS = Number67To194
     }
 }

@@ -6,6 +6,27 @@ namespace wan24.Core
     public static partial class NumericTypesExtensions
     {
         /// <summary>
+        /// Maximum supported non-integer <see cref="Half"/> value
+        /// </summary>
+        public static readonly Half MaxNonIntHalf = (Half)Math.Pow(2, 10) - Half.Tau;
+        /// <summary>
+        /// Maximum supported non-integer <see cref="float"/> value
+        /// </summary>
+        public static readonly float MaxNonIntFloat = (float)Math.Pow(2, 23) - float.Tau;
+        /// <summary>
+        /// Maximum supported non-integer <see cref="double"/> value
+        /// </summary>
+        public static readonly double MaxNonIntDouble = Math.Pow(2, 52) - double.Tau;
+        /// <summary>
+        /// Minimum supported non-integer <see cref="decimal"/> value
+        /// </summary>
+        public static readonly decimal MinNonIntDecimal = decimal.MinValue + decimal.One / new decimal(lo: 1, mid: 0, hi: 0, isNegative: false, scale: 28);
+        /// <summary>
+        /// Maximum supported non-integer <see cref="decimal"/> value
+        /// </summary>
+        public static readonly decimal MaxNonIntDecimal = decimal.MaxValue - decimal.One / new decimal(lo: 1, mid: 0, hi: 0, isNegative: false, scale: 28);
+
+        /// <summary>
         /// Get the numeric type of a number
         /// </summary>
         /// <typeparam name="T">Number type</typeparam>
@@ -27,6 +48,8 @@ namespace wan24.Core
                     or ushort
                     or uint
                     or ulong
+                    or Int128
+                    or UInt128
                     or Half
                     => GetNumericType((object)value),
                 _ => NumericTypes.None
@@ -53,7 +76,7 @@ namespace wan24.Core
                 if (v == short.MaxValue) return NumericTypes.ShortMax;
                 if (v > short.MinValue && v < short.MaxValue) return NumericTypes.Short;
                 if (v == ushort.MaxValue) return NumericTypes.UShortMax;
-                if (v > 0 && v < ushort.MaxValue) return NumericTypes.UInt;
+                if (v > 0 && v < ushort.MaxValue) return NumericTypes.UShort;
                 if (v == int.MinValue) return NumericTypes.IntMin;
                 if (v == int.MaxValue) return NumericTypes.IntMax;
                 return NumericTypes.Int;
@@ -90,17 +113,30 @@ namespace wan24.Core
                     if (v == long.MinValue) return NumericTypes.LongMin;
                     if (v == long.MaxValue) return NumericTypes.LongMax;
                     if (v > long.MinValue && v < long.MaxValue) return NumericTypes.Long;
-                    if (v == ulong.MaxValue) return NumericTypes.ULongMax;
                     if (v > 0 && v < ulong.MaxValue) return NumericTypes.ULong;
-                    return NumericTypes.BigInteger;
+                }
+                else
+                {
+                    if (v >= (double)(Half.Zero - MaxNonIntHalf) && v <= (double)MaxNonIntHalf)
+                    {
+                        if (v == (double)Half.MinValue) return NumericTypes.HalfMin;
+                        if (v == (double)Half.MaxValue) return NumericTypes.HalfMax;
+                        return NumericTypes.Half;
+                    }
+                    if (v >= 0 - MaxNonIntFloat && v <= MaxNonIntFloat)
+                    {
+                        if (v == float.MinValue) return NumericTypes.FloatMin;
+                        if (v == float.MaxValue) return NumericTypes.FloatMax;
+                        return NumericTypes.Float;
+                    }
                 }
                 return NumericTypes.Double;
             }
             if (type == typeof(decimal))
             {
                 decimal v = (decimal)value;
-                if (v == decimal.MaxValue) return NumericTypes.DoubleMax;
-                if (v == decimal.MinValue) return NumericTypes.DoubleMin;
+                if (v == decimal.MaxValue) return NumericTypes.DecimalMax;
+                if (v == decimal.MinValue) return NumericTypes.DecimalMin;
                 if (decimal.IsInteger(v))
                 {
                     if (v > int.MinValue && v < int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
@@ -123,7 +159,6 @@ namespace wan24.Core
                     if (v > long.MinValue && v < long.MaxValue) return NumericTypes.Long;
                     if (v == ulong.MaxValue) return NumericTypes.ULongMax;
                     if (v > 0 && v < ulong.MaxValue) return NumericTypes.ULong;
-                    return NumericTypes.BigInteger;
                 }
                 return NumericTypes.Decimal;
             }
@@ -141,7 +176,7 @@ namespace wan24.Core
                 if (v == float.Tau) return NumericTypes.FloatTau;
                 if (float.IsInteger(v))
                 {
-                    if (v > int.MinValue && v > int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
+                    if (v > int.MinValue && v < int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
                     if (v == sbyte.MinValue) return NumericTypes.SByteMin;
                     if (v > sbyte.MinValue && v < sbyte.MaxValue) return NumericTypes.SByte;
                     if (v == byte.MaxValue) return NumericTypes.ByteMax;
@@ -154,8 +189,16 @@ namespace wan24.Core
                     if (v == int.MinValue) return NumericTypes.IntMin;
                     if (v == int.MaxValue) return NumericTypes.IntMax;
                     if (v > int.MinValue && v < int.MaxValue) return NumericTypes.Int;
-                    if (v == uint.MaxValue) return NumericTypes.UIntMax;
                     if (v > 0 && v < uint.MaxValue) return NumericTypes.UInt;
+                }
+                else
+                {
+                    if (v >= (float)(Half.Zero - MaxNonIntHalf) && v <= (float)MaxNonIntHalf)
+                    {
+                        if (v == (double)Half.MinValue) return NumericTypes.HalfMin;
+                        if (v == (double)Half.MaxValue) return NumericTypes.HalfMax;
+                        return NumericTypes.Half;
+                    }
                 }
                 return NumericTypes.Float;
             }
@@ -203,26 +246,44 @@ namespace wan24.Core
             if (type == typeof(BigInteger))
             {
                 BigInteger v = (BigInteger)value;
+                int len = v.GetByteCount();
                 if (v > int.MinValue && v < int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
                 if (v == sbyte.MinValue) return NumericTypes.SByteMin;
                 if (v < 0 && v > sbyte.MinValue) return NumericTypes.SByte;
                 if (v == byte.MaxValue) return NumericTypes.ByteMax;
                 if (v > 0 && v < byte.MaxValue) return NumericTypes.Byte;
-                if (v == short.MinValue) return NumericTypes.ShortMin;
-                if (v == short.MaxValue) return NumericTypes.ShortMax;
-                if (v > short.MinValue && v < short.MaxValue) return NumericTypes.Short;
-                if (v == ushort.MaxValue) return NumericTypes.UShortMax;
-                if (v > 0 && v < ushort.MaxValue) return NumericTypes.UShort;
-                if (v == int.MinValue) return NumericTypes.IntMin;
-                if (v == int.MaxValue) return NumericTypes.IntMax;
-                if (v > int.MinValue && v < int.MaxValue) return NumericTypes.Int;
-                if (v == uint.MaxValue) return NumericTypes.UIntMax;
-                if (v > 0 && v < uint.MaxValue) return NumericTypes.UInt;
-                if (v == long.MinValue) return NumericTypes.LongMin;
-                if (v == long.MaxValue) return NumericTypes.LongMax;
-                if (v > long.MinValue && v < long.MaxValue) return NumericTypes.Long;
-                if (v == ulong.MaxValue) return NumericTypes.ULongMax;
-                if (v > 0 && v < ulong.MaxValue) return NumericTypes.ULong;
+                if (len >= sizeof(short))
+                {
+                    if (v == short.MinValue) return NumericTypes.ShortMin;
+                    if (v == short.MaxValue) return NumericTypes.ShortMax;
+                    if (v > short.MinValue && v < short.MaxValue) return NumericTypes.Short;
+                    if (v == ushort.MaxValue) return NumericTypes.UShortMax;
+                    if (v > 0 && v < ushort.MaxValue) return NumericTypes.UShort;
+                    if (len >= sizeof(int))
+                    {
+                        if (v == int.MinValue) return NumericTypes.IntMin;
+                        if (v == int.MaxValue) return NumericTypes.IntMax;
+                        if (v > int.MinValue && v < int.MaxValue) return NumericTypes.Int;
+                        if (v == uint.MaxValue) return NumericTypes.UIntMax;
+                        if (v > 0 && v < uint.MaxValue) return NumericTypes.UInt;
+                        if (len >= sizeof(long))
+                        {
+                            if (v == long.MinValue) return NumericTypes.LongMin;
+                            if (v == long.MaxValue) return NumericTypes.LongMax;
+                            if (v > long.MinValue && v < long.MaxValue) return NumericTypes.Long;
+                            if (v == ulong.MaxValue) return NumericTypes.ULongMax;
+                            if (v > 0 && v < ulong.MaxValue) return NumericTypes.ULong;
+                            if (len >= sizeof(ulong) << 1)
+                            {
+                                if (v == Int128.MinValue) return NumericTypes.Int128Min;
+                                if (v == Int128.MaxValue) return NumericTypes.Int128Max;
+                                if (v > Int128.MinValue && v < Int128.MaxValue) return NumericTypes.Int128;
+                                if (v == UInt128.MaxValue) return NumericTypes.UInt128Max;
+                                if (v > 0 && v < UInt128.MaxValue) return NumericTypes.UInt128;
+                            }
+                        }
+                    }
+                }
                 return NumericTypes.BigInteger;
             }
             if (type == typeof(sbyte))
@@ -277,6 +338,55 @@ namespace wan24.Core
                 if (v == ulong.MaxValue) return NumericTypes.ULongMax;
                 return NumericTypes.ULong;
             }
+            if (type == typeof(Int128))
+            {
+                Int128 v = (Int128)value;
+                if (v > int.MinValue && v < int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
+                if (v == sbyte.MinValue) return NumericTypes.SByteMin;
+                if (v < 0 && v > sbyte.MinValue) return NumericTypes.SByte;
+                if (v == byte.MaxValue) return NumericTypes.ByteMax;
+                if (v > 0 && v < byte.MaxValue) return NumericTypes.Byte;
+                if (v == short.MinValue) return NumericTypes.ShortMin;
+                if (v == short.MaxValue) return NumericTypes.ShortMax;
+                if (v > short.MinValue && v < short.MaxValue) return NumericTypes.Short;
+                if (v == ushort.MaxValue) return NumericTypes.UShortMax;
+                if (v > 0 && v < ushort.MaxValue) return NumericTypes.UShort;
+                if (v == int.MinValue) return NumericTypes.IntMin;
+                if (v == int.MaxValue) return NumericTypes.IntMax;
+                if (v > int.MinValue && v < int.MaxValue) return NumericTypes.Int;
+                if (v == uint.MaxValue) return NumericTypes.UShortMax;
+                if (v == long.MinValue) return NumericTypes.LongMin;
+                if (v == long.MaxValue) return NumericTypes.LongMax;
+                if (v > long.MinValue && v < long.MaxValue) return NumericTypes.Long;
+                if (v == ulong.MaxValue) return NumericTypes.ULongMax;
+                if (v > 0 && v < ulong.MaxValue) return NumericTypes.ULong;
+                if (v == Int128.MinValue) return NumericTypes.Int128Min;
+                if (v == Int128.MaxValue) return NumericTypes.Int128Max;
+                return NumericTypes.Int128;
+            }
+            if (type == typeof(UInt128))
+            {
+                UInt128 v = (UInt128)value;
+                if (v < int.MaxValue && IsValueNumericType((int)v)) return GetValueNumericType((int)v);
+                if (v == byte.MaxValue) return NumericTypes.ByteMax;
+                if (v < byte.MaxValue) return NumericTypes.Byte;
+                if (v == (ulong)short.MaxValue) return NumericTypes.ShortMax;
+                if (v < (ulong)short.MaxValue) return NumericTypes.Short;
+                if (v == ushort.MaxValue) return NumericTypes.UShortMax;
+                if (v < ushort.MaxValue) return NumericTypes.UShort;
+                if (v == int.MaxValue) return NumericTypes.IntMax;
+                if (v < int.MaxValue) return NumericTypes.Int;
+                if (v == uint.MaxValue) return NumericTypes.UIntMax;
+                if (v < uint.MaxValue) return NumericTypes.UInt;
+                if (v == long.MaxValue) return NumericTypes.LongMax;
+                if (v < long.MaxValue) return NumericTypes.Long;
+                if (v == ulong.MaxValue) return NumericTypes.ULongMax;
+                if (v < ulong.MaxValue) return NumericTypes.ULong;
+                if (v == (UInt128)Int128.MaxValue) return NumericTypes.Int128Max;
+                if (v < (UInt128)Int128.MaxValue) return NumericTypes.Int128;
+                if (v == UInt128.MaxValue) return NumericTypes.UInt128Max;
+                return NumericTypes.UInt128;
+            }
             if (type == typeof(Half))
             {
                 Half v = (Half)value;
@@ -286,7 +396,6 @@ namespace wan24.Core
                 if (v == Half.MaxValue) return NumericTypes.HalfMax;
                 if (v == Half.MinValue) return NumericTypes.HalfMin;
                 if (v == Half.NegativeInfinity) return NumericTypes.HalfNegativeInfinity;
-                if (v == Half.NegativeZero) return NumericTypes.HalfNegativeZero;
                 if (v == Half.Pi) return NumericTypes.HalfPi;
                 if (v == Half.PositiveInfinity) return NumericTypes.HalfPositiveInfinity;
                 if (v == Half.Tau) return NumericTypes.HalfTau;

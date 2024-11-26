@@ -89,7 +89,7 @@ namespace Wan24_Core_Tests
         [TestMethod]
         public void Serialization_Tests()
         {
-
+            //TODO Write tests
         }
     }
 }

@@ -297,6 +297,80 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Read a signed Int128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <returns>Value</returns>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
+        public static Int128 ReadInt128(this Stream stream, int version)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(ulong) << 1, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(ulong) << 1];
+#endif
+            stream.ReadExactly(bufferSpan);
+            return bufferSpan.ToInt128();
+        }
+
+        /// <summary>
+        /// Read a signed Int128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Value</returns>
+        public static async Task<Int128> ReadInt128Async(this Stream stream, int version, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        {
+            using RentedMemory<byte>? buffer2 = buffer.HasValue ? null : new(len: sizeof(ulong) << 1, clean: false);
+            Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..(sizeof(ulong) << 1)] : buffer2!.Value.Memory;
+            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
+            return bufferMem.Span.ToInt128();
+        }
+
+        /// <summary>
+        /// Read an unsigned UInt128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <returns>Value</returns>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
+        public static UInt128 ReadUInt128(this Stream stream, int version)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(ulong) << 1, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(ulong) << 1];
+#endif
+            stream.ReadExactly(bufferSpan);
+            return bufferSpan.ToUInt128();
+        }
+
+        /// <summary>
+        /// Read an unsigned UInt128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Value</returns>
+        public static async Task<UInt128> ReadUInt128Async(this Stream stream, int version, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        {
+            using RentedMemory<byte>? buffer2 = buffer.HasValue ? null : new(len: sizeof(ulong) << 1, clean: false);
+            Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..(sizeof(ulong) << 1)] : buffer2!.Value.Memory;
+            await stream.ReadExactlyAsync(bufferMem, cancellationToken).DynamicContext();
+            return bufferMem.Span.ToUInt128();
+        }
+
+        /// <summary>
         /// Read a half
         /// </summary>
         /// <param name="stream">Stream</param>

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using wan24.Core;
 
 namespace Wan24_Core_Tests
@@ -45,6 +44,8 @@ namespace Wan24_Core_Tests
             Assert.AreEqual((uint)value, ((uint)value).GetBytes().AsSpan().ToUInt());
             Assert.AreEqual(value, ((long)value).GetBytes().AsSpan().ToLong());
             Assert.AreEqual((ulong)value, ((ulong)value).GetBytes().AsSpan().ToULong());
+            Assert.AreEqual((Int128)value, ((Int128)value).GetBytes().AsSpan().ToULong());
+            Assert.AreEqual((UInt128)value, ((UInt128)value).GetBytes().AsSpan().ToULong());
             Assert.AreEqual(value, ((float)value).GetBytes().AsSpan().ToFloat());
             Assert.AreEqual(value, ((double)value).GetBytes().AsSpan().ToDouble());
             Assert.AreEqual(value, ((decimal)value).GetBytes().AsSpan().ToDecimal());
@@ -61,6 +62,8 @@ namespace Wan24_Core_Tests
             Assert.AreEqual((uint)value, ((uint)value).GetBytes(buffer.AsSpan()).ToUInt());
             Assert.AreEqual(value, ((long)value).GetBytes(buffer.AsSpan()).ToLong());
             Assert.AreEqual((ulong)value, ((ulong)value).GetBytes(buffer.AsSpan()).ToULong());
+            Assert.AreEqual((Int128)value, ((Int128)value).GetBytes(buffer.AsSpan()).ToULong());
+            Assert.AreEqual((UInt128)value, ((UInt128)value).GetBytes(buffer.AsSpan()).ToULong());
             Assert.AreEqual(value, ((float)value).GetBytes(buffer.AsSpan()).ToFloat());
             Assert.AreEqual(value, ((double)value).GetBytes(buffer.AsSpan()).ToDouble());
             Assert.AreEqual(value, ((decimal)value).GetBytes(buffer.AsSpan()).ToDecimal());
@@ -77,6 +80,8 @@ namespace Wan24_Core_Tests
             Assert.AreEqual((uint)value, ((uint)value).GetBytes(buffer.AsMemory()).Span.ToUInt());
             Assert.AreEqual(value, ((long)value).GetBytes(buffer.AsMemory()).Span.ToLong());
             Assert.AreEqual((ulong)value, ((ulong)value).GetBytes(buffer.AsMemory()).Span.ToULong());
+            Assert.AreEqual((Int128)value, ((Int128)value).GetBytes(buffer.AsMemory()).Span.ToULong());
+            Assert.AreEqual((UInt128)value, ((UInt128)value).GetBytes(buffer.AsMemory()).Span.ToULong());
             Assert.AreEqual(value, ((float)value).GetBytes(buffer.AsMemory()).Span.ToFloat());
             Assert.AreEqual(value, ((double)value).GetBytes(buffer.AsMemory()).Span.ToDouble());
             Assert.AreEqual(value, ((decimal)value).GetBytes(buffer.AsMemory()).Span.ToDecimal());

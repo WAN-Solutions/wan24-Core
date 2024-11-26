@@ -104,7 +104,9 @@ Depending on the desired encoding, you can use these methods for writing/reading
 
 ### Numbers
 
-For all .NET numeric types you'll find a `Write` method, and a `Read[TYPE]` method as well. Using the `WriteNumeric` and `ReadNumeric` methods you could safe some space, because those methods will write the least required information only, and read back to the desired type - example:
+For all .NET numeric CLR types you'll find a `Write` method, and a `Read[TYPE]` method as well.
+
+Using the `WriteNumeric` and `ReadNumeric` methods you could safe some space, because those methods will write the least required information only, and read back to the desired type - example:
 
 ```cs
 // Writing
@@ -115,25 +117,41 @@ stream.Position = 0;
 anyInteger = stream.ReadNumeric<int>(version: 1);
 ```
 
-If the value of `anyInteger` is `198`, for example, only one byte will be written. One byte is required to store the smallest value fitting written numeric data structure type, and may hold numeric values from `-1` to `199`, as well as all `Half`, `float`, `double`, `decimal` and `BigInteger` special values. That means, an integer value of `199` would produce two bytes, while `65535` fits into one byte, because the value is equal to `ushort.MaxValue`, which can be defined using the numeric type byte (`NumericTypes`) only. The `NumericTypesExtensions` has some useful helpers for working with the information a `NumericTypes` value includes.
+If the value of `anyInteger` is `194`, for example, only one byte will be written. One byte is required to store the smallest value fitting written numeric data structure type, and may hold numeric values from `-1` to `194`, as well as all integer and floating point special values (like min./max. or Pi). That means, an integer value of `199` would produce two bytes, while `65535` fits into one byte, because the value is equal to `ushort.MaxValue`, which can be defined using the numeric type byte (`NumericTypes`) only. The `NumericTypesExtensions` has some useful helpers for working with the information a `NumericTypes` value includes.
 
 **NOTE**: For deserializing a possible `BigInteger`, a buffer is required, which limits the maximum allowed big integer binary data structure length.
 
-All values will be written in little endian order, signed or unsigned as required. They'll deserialize on a big endian system without any problem, 'cause the serialization will convert the endian, if required.
+All values will be written in little endian order, signed or unsigned as required. They'll deserialize on a big endian system without any problem, 'cause the serialization will convert the endian as required.
 
-**CAUTION**: Number serialization isn't lossless: 1st you'll loose the original type information (the reading code defines the accepted numeric type, which may have to be casted), 2nd a `double` value, which may be more precise in original, but fits into the `Half` range by discarding some precision, will be stored as `Half` and loose the `double` precision. Also a floating point value like `Half`, `float` and `double` may be different after deserializing, when the deserializing code runs on a CPU with a different floating point precision.
+**CAUTION**: Number serialization isn't lossless: 1st you'll loose the original type information (the reading code defines the accepted numeric type, which may have to be casted), 2nd a `double` value, which may be more precise in original, but fits into the `Half` range by discarding some precision, will be stored as `Half` and loose the `double` precision (f.e.). Also a floating point value like `Half`, `float` and `double` may be different after deserializing, when the deserializing code runs on a CPU with a different floating point precision.
 
 In total the serializer differs between those numeric types:
 
-- Numeric values which can be defined using a `NumericTypes` value
+- Numeric values which can be defined using a `NumericTypes` value only
 - A `decimal` which exceeds the `long` and `ulong` ranges or is a non-integer value, will be written 1:1
-- A `BigInteger` which exceeds the `long` and `ulong` ranges, will be written 1:1
+- A `BigInteger` which exceeds the `long`, `ulong`, `Int128` and `UInt128` ranges, will be written 1:1
 - Non-integer or `long` and `ulong` ranges exceeding floating point (`double` -> `float` -> `Half`)
-- Negative integer (`long` -> `int` -> `short` -> `sbyte`)
-- Positive integer (`ulong` -> `int` -> `uint` -> `ushort` -> `short` -> `byte` -> `sbyte`)
+- Negative integer (`Int128` -> `long` -> `int` -> `short` -> `sbyte`)
+- Positive integer (`UInt128` -> `ulong` -> `Int128` -> `int` -> `uint` -> `ushort` -> `short` -> `byte` -> `sbyte`)
 
-Any integer value (no matter which was the original type), which fits into a `NumericTypes` value, will be resolved to `int` (but may be casted to any other numeric CLR target type).
+Any integer value (no matter which was the original type), which fits into a `NumericTypes` value, will be resolved to the `int` CLR type (but may be casted to the requested numeric CLR target type).
 
-In short: Using `NumericTypes` a number may be stored "compressed" for any value which exceeds the numeric range of `-1` to `199` and fits into any smaller .NET numeric data type, but it's a trade-off: If the original data type is the best value fitting .NET numeric data type already, and its value can't be defined by a `NumericTypes` value, it's required to store only one more byte than without the benefit of a possible compression.
+In short: Using `NumericTypes` a number may be stored "compressed" for any value which exceeds the numeric range of `-1` to `194` and fits into any smaller .NET numeric data type, but it's a trade-off: If the original data type is the best value fitting .NET numeric data type already, and its value can't be defined by a `NumericTypes` value, it's required to store only one more byte than without the benefit of a possible compression.
 
 **NOTE**: Internal the serializer methods use the `WriteNumeric` and `ReadNumeric` methods when writing length information, f.e.. When writing nullable values with length information, `NumericTypes.None` will be used for a `null` value.
+
+### Serialize complex types using the `ISerializeStream` interface
+
+Types which implement the `ISerializeStream<T>` interface can be (de)serialized to/from any `Stream` and implement a `GetBytes` method also:
+
+```cs
+// (De)Serialize to/from a stream
+serializableObject.SerializeTo(stream);
+serializableObject = ISerializeStream<StreamSerializableType>.DeserializeFrom(stream, version: 1);
+
+// (De)Serialize to/from a buffer
+byte[] buffer = serializableObject.GetBytes();
+serializableObject = ISerializeStream<StreamSerializableType>.FromBytes(buffer, version: 1);
+```
+
+The `StreamSerializableType` could extend the `(Disposable)SerializeStream(Record)Base<T>` base type, which implements the interface and also allows to manage an object version number, which will be serialized to the stream, too, and allows revision-safe deserialization. It's also possible to cast an instance implicit to and from serialized data.

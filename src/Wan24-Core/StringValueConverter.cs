@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Text;
+using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -64,10 +65,13 @@ namespace wan24.Core
             ValueConverter[typeof(int)] = (t, s) => s is not null && int.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(ulong)] = (t, s) => s is not null && ulong.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(long)] = (t, s) => s is not null && long.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(UInt128)] = (t, s) => s is not null && UInt128.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(Int128)] = (t, s) => s is not null && Int128.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(Half)] = (t, s) => s is not null && Half.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(float)] = (t, s) => s is not null && float.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(double)] = (t, s) => s is not null && double.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(decimal)] = (t, s) => s is not null && decimal.TryParse(s, out var res) ? res : null;
+            ValueConverter[typeof(BigInteger)] = (t, s) => s is not null && BigInteger.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(DateTime)] = (t, s) => s is not null && DateTime.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(DateOnly)] = (t, s) => s is not null && DateOnly.TryParse(s, out var res) ? res : null;
             ValueConverter[typeof(TimeOnly)] = (t, s) => s is not null && TimeOnly.TryParse(s, out var res) ? res : null;
@@ -136,10 +140,13 @@ namespace wan24.Core
             StringConverter[typeof(int)] = (t, v) => v?.ToString();
             StringConverter[typeof(ulong)] = (t, v) => v?.ToString();
             StringConverter[typeof(long)] = (t, v) => v?.ToString();
+            StringConverter[typeof(UInt128)] = (t, v) => v?.ToString();
+            StringConverter[typeof(Int128)] = (t, v) => v?.ToString();
             StringConverter[typeof(Half)] = (t, v) => v?.ToString();
             StringConverter[typeof(float)] = (t, v) => v?.ToString();
             StringConverter[typeof(double)] = (t, v) => v?.ToString();
             StringConverter[typeof(decimal)] = (t, v) => v?.ToString();
+            StringConverter[typeof(BigInteger)] = (t, v) => v?.ToString();
             StringConverter[typeof(DateTime)] = (t, v) => v?.ToString();
             StringConverter[typeof(DateOnly)] = (t, v) => v?.ToString();
             StringConverter[typeof(TimeOnly)] = (t, v) => v?.ToString();

@@ -28,6 +28,8 @@ namespace wan24.Core
                 case NumericTypes.UInt: stream.Write(value.CastType(type).CastType<uint>()); break;
                 case NumericTypes.Long: stream.Write(value.CastType(type).CastType<long>()); break;
                 case NumericTypes.ULong: stream.Write(value.CastType(type).CastType<ulong>()); break;
+                case NumericTypes.Int128: stream.Write(value.CastType(type).CastType<Int128>()); break;
+                case NumericTypes.UInt128: stream.Write(value.CastType(type).CastType<UInt128>()); break;
                 case NumericTypes.Half: stream.Write(value.CastType(type).CastType<Half>()); break;
                 case NumericTypes.Float: stream.Write(value.CastType(type).CastType<float>()); break;
                 case NumericTypes.Double: stream.Write(value.CastType(type).CastType<double>()); break;
@@ -89,6 +91,8 @@ namespace wan24.Core
                 case NumericTypes.UInt: await stream.WriteAsync(value.CastType(type).CastType<uint>(), buffer, cancellationToken).DynamicContext(); break;
                 case NumericTypes.Long: await stream.WriteAsync(value.CastType(type).CastType<long>(), buffer, cancellationToken).DynamicContext(); break;
                 case NumericTypes.ULong: await stream.WriteAsync(value.CastType(type).CastType<ulong>(), buffer, cancellationToken).DynamicContext(); break;
+                case NumericTypes.Int128: await stream.WriteAsync(value.CastType(type).CastType<Int128>(), buffer, cancellationToken).DynamicContext(); break;
+                case NumericTypes.UInt128: await stream.WriteAsync(value.CastType(type).CastType<UInt128>(), buffer, cancellationToken).DynamicContext(); break;
                 case NumericTypes.Half: await stream.WriteAsync(value.CastType(type).CastType<Half>(), buffer, cancellationToken).DynamicContext(); break;
                 case NumericTypes.Float: await stream.WriteAsync(value.CastType(type).CastType<float>(), buffer, cancellationToken).DynamicContext(); break;
                 case NumericTypes.Double: await stream.WriteAsync(value.CastType(type).CastType<double>(), buffer, cancellationToken).DynamicContext(); break;
@@ -152,6 +156,8 @@ namespace wan24.Core
                 NumericTypes.UInt => stream.ReadUInteger(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Long => stream.ReadLong(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.ULong => stream.ReadULong(version).CastType(requestedType).CastType<T>(),
+                NumericTypes.Int128 => stream.ReadInt128(version).CastType(requestedType).CastType<T>(),
+                NumericTypes.UInt128 => stream.ReadUInt128(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Half => stream.ReadHalf(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Float => stream.ReadFloat(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Double => stream.ReadDouble(version).CastType(requestedType).CastType<T>(),
@@ -187,6 +193,8 @@ namespace wan24.Core
                 NumericTypes.UInt => stream.ReadUInteger(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Long => stream.ReadLong(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.ULong => stream.ReadULong(version).CastType(requestedType).CastType<T>(),
+                NumericTypes.Int128 => stream.ReadInt128(version).CastType(requestedType).CastType<T>(),
+                NumericTypes.UInt128 => stream.ReadUInt128(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Half => stream.ReadHalf(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Float => stream.ReadFloat(version).CastType(requestedType).CastType<T>(),
                 NumericTypes.Double => stream.ReadDouble(version).CastType(requestedType).CastType<T>(),
@@ -222,6 +230,8 @@ namespace wan24.Core
                 NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
+                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
+                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
@@ -259,6 +269,8 @@ namespace wan24.Core
                 NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
+                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
+                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),
                 NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastType(requestedType).CastType<T>(),

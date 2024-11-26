@@ -4,13 +4,13 @@
     public static partial class NumericTypesExtensions
     {
         /// <summary>
-        /// Minimum numeric value that fits into a <see cref="NumericTypes"/> value
+        /// Minimum numeric value that fits into a <see cref="NumericTypes"/> value (-1)
         /// </summary>
         public const int MIN_VALUE = -1;
         /// <summary>
-        /// Maximum numeric value that fits into a <see cref="NumericTypes"/> value
+        /// Maximum numeric value that fits into a <see cref="NumericTypes"/> value (194)
         /// </summary>
-        public const int MAX_VALUE = 199;
+        public const int MAX_VALUE = 194;
 
         /// <summary>
         /// Determine if the type resolves to the final numeric value
@@ -31,13 +31,15 @@
                     or NumericTypes.LongMax
                     or NumericTypes.LongMin
                     or NumericTypes.ULongMax
+                    or NumericTypes.Int128Min
+                    or NumericTypes.Int128Max
+                    or NumericTypes.UIntMax
                     or NumericTypes.HalfE
                     or NumericTypes.HalfEpsilon
                     or NumericTypes.HalfMax
                     or NumericTypes.HalfMin
                     or NumericTypes.HalfNaN
                     or NumericTypes.HalfNegativeInfinity
-                    or NumericTypes.HalfNegativeZero
                     or NumericTypes.HalfPi
                     or NumericTypes.HalfPositiveInfinity
                     or NumericTypes.FloatE
@@ -62,7 +64,7 @@
                     or NumericTypes.DecimalMax
                     or NumericTypes.DecimalMin
                     => true,
-                _ => (type & NumericTypes.Number71To199) == NumericTypes.Number71To199 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
+                _ => (type & NumericTypes.Number67To194) == NumericTypes.Number67To194 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
             };
 
         /// <summary>
@@ -88,13 +90,15 @@
                 NumericTypes.LongMax => long.MaxValue,
                 NumericTypes.LongMin => long.MinValue,
                 NumericTypes.ULongMax => ulong.MaxValue,
+                NumericTypes.Int128Max => Int128.MaxValue,
+                NumericTypes.Int128Min=> Int128.MinValue,
+                NumericTypes.UInt128Max => UInt128.MaxValue,
                 NumericTypes.HalfE => Half.E,
                 NumericTypes.HalfEpsilon => Half.Epsilon,
                 NumericTypes.HalfMax => Half.MaxValue,
                 NumericTypes.HalfMin => Half.MinValue,
                 NumericTypes.HalfNaN => Half.NaN,
                 NumericTypes.HalfNegativeInfinity => Half.NegativeInfinity,
-                NumericTypes.HalfNegativeZero => Half.NegativeZero,
                 NumericTypes.HalfPi => Half.Pi,
                 NumericTypes.HalfPositiveInfinity => Half.PositiveInfinity,
                 NumericTypes.HalfTau => Half.Tau,
@@ -119,8 +123,8 @@
                 NumericTypes.DoubleTau => double.Tau,
                 NumericTypes.DecimalMax => decimal.MaxValue,
                 NumericTypes.DecimalMin => decimal.MinValue,
-                _ => (type & NumericTypes.Number71To199) == NumericTypes.Number71To199
-                    ? (int)(type & ~NumericTypes.Number71To199) + 71
+                _ => (type & NumericTypes.Number67To194) == NumericTypes.Number67To194
+                    ? (int)(type & ~NumericTypes.Number67To194) + 67
                     : type >= NumericTypes.Number2
                         ? (int)type - (int)NumericTypes.Number2 + 2
                         : throw new ArgumentException($"Numeric type {type} has no final numeric value which can be resolved", nameof(type))
@@ -147,8 +151,8 @@
                 -1 => NumericTypes.MinusOne,
                 0 => NumericTypes.Zero,
                 1 => NumericTypes.One,
-                _ when value < 71 => (NumericTypes)(value - 2 + (int)NumericTypes.Number2),
-                _ => (NumericTypes)(value - 71) | NumericTypes.Number71To199
+                _ when value < 67 => (NumericTypes)(value - 2 + (int)NumericTypes.Number2),
+                _ => (NumericTypes)(value - 67) | NumericTypes.Number67To194
             };
         }
     }

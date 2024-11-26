@@ -261,6 +261,76 @@ namespace wan24.Core
         }
 
         /// <summary>
+        /// Write a signed Int128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
+        public static void Write(this Stream stream, in Int128 value)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(ulong) << 1, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(ulong) << 1];
+#endif
+            value.GetBytes(bufferSpan);
+            stream.Write(bufferSpan);
+        }
+
+        /// <summary>
+        /// Write a signed Int128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WriteAsync(this Stream stream, Int128 value, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        {
+            using RentedMemory<byte>? buffer2 = buffer.HasValue ? null : new(len: sizeof(ulong) << 1, clean: false);
+            Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..(sizeof(ulong) << 1)] : buffer2!.Value.Memory;
+            value.GetBytes(bufferMem.Span);
+            await stream.WriteAsync(bufferMem, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
+        /// Write an unsigned UInt128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+#if !NO_UNSAFE
+        [SkipLocalsInit]
+#endif
+        public static void Write(this Stream stream, in UInt128 value)
+        {
+#if NO_UNSAFE
+            using RentedMemoryRef<byte> buffer = new(len: sizeof(ulong) << 1, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+#else
+            Span<byte> bufferSpan = stackalloc byte[sizeof(ulong) << 1];
+#endif
+            value.GetBytes(bufferSpan);
+            stream.Write(bufferSpan);
+        }
+
+        /// <summary>
+        /// Write an unsigned UInt128
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="value">Value</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        public static async Task WriteAsync(this Stream stream, UInt128 value, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        {
+            using RentedMemory<byte>? buffer2 = buffer.HasValue ? null : new(len: sizeof(ulong) << 1, clean: false);
+            Memory<byte> bufferMem = buffer.HasValue ? buffer.Value[..(sizeof(ulong) << 1)] : buffer2!.Value.Memory;
+            value.GetBytes(bufferMem.Span);
+            await stream.WriteAsync(bufferMem, cancellationToken).DynamicContext();
+        }
+
+        /// <summary>
         /// Write a half
         /// </summary>
         /// <param name="stream">Stream</param>

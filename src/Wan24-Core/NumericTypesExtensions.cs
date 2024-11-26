@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
 
+//TODO Add support for (U)Int128
+
 namespace wan24.Core
 {
     /// <summary>
@@ -20,6 +22,7 @@ namespace wan24.Core
                 NumericTypes.Short => default(short),
                 NumericTypes.Int => default(int),
                 NumericTypes.Long => default(long),
+                NumericTypes.Int128 => default(Int128),
                 NumericTypes.Half => Half.Zero,
                 NumericTypes.Float => default(float),
                 NumericTypes.Double => default(double),
@@ -28,6 +31,7 @@ namespace wan24.Core
                 NumericTypes.UShort => default(ushort),
                 NumericTypes.UInt => default(uint),
                 NumericTypes.ULong => default(ulong),
+                NumericTypes.UInt128 => default(UInt128),
                 NumericTypes.BigInteger => BigInteger.Zero,
                 _ => throw new ArgumentException($"Unsupported type #{(byte)type}")
             };
@@ -44,6 +48,7 @@ namespace wan24.Core
                 NumericTypes.Short => typeof(short),
                 NumericTypes.Int => typeof(int),
                 NumericTypes.Long => typeof(long),
+                NumericTypes.Int128 => typeof(Int128),
                 NumericTypes.Half => typeof(Half),
                 NumericTypes.Float => typeof(float),
                 NumericTypes.Double => typeof(double),
@@ -52,6 +57,7 @@ namespace wan24.Core
                 NumericTypes.UShort => typeof(ushort),
                 NumericTypes.UInt => typeof(uint),
                 NumericTypes.ULong => typeof(ulong),
+                NumericTypes.UInt128 => typeof(UInt128),
                 NumericTypes.BigInteger => typeof(BigInteger),
                 _ => typeof(void)
             };
@@ -68,6 +74,7 @@ namespace wan24.Core
                     or NumericTypes.UShort
                     or NumericTypes.UInt
                     or NumericTypes.ULong
+                    or NumericTypes.UInt128
                     => true,
                 _ => false
             };
@@ -112,6 +119,7 @@ namespace wan24.Core
             if (type == typeof(short)) return NumericTypes.Short;
             if (type == typeof(int)) return NumericTypes.Int;
             if (type == typeof(long)) return NumericTypes.Long;
+            if (type == typeof(Int128)) return NumericTypes.Int128;
             if (type == typeof(Half)) return NumericTypes.Half;
             if (type == typeof(float)) return NumericTypes.Float;
             if (type == typeof(double)) return NumericTypes.Double;
@@ -120,6 +128,7 @@ namespace wan24.Core
             if (type == typeof(ushort)) return NumericTypes.UShort;
             if (type == typeof(uint)) return NumericTypes.UInt;
             if (type == typeof(ulong)) return NumericTypes.ULong;
+            if (type == typeof(UInt128)) return NumericTypes.UInt128;
             if (type == typeof(BigInteger)) return NumericTypes.BigInteger;
             return NumericTypes.None;
         }
@@ -139,6 +148,7 @@ namespace wan24.Core
                     NumericTypes.Short or NumericTypes.UShort or NumericTypes.Half => sizeof(short),
                     NumericTypes.Int or NumericTypes.UInt or NumericTypes.Float => sizeof(int),
                     NumericTypes.Long or NumericTypes.ULong or NumericTypes.Double => sizeof(long),
+                    NumericTypes.Int128 or NumericTypes.UInt128 => sizeof(ulong) << 1,
                     NumericTypes.Decimal => sizeof(decimal),
                     _ => throw new ArgumentException($"Unsupported numeric type #{type}", nameof(type))
                 };
@@ -179,9 +189,16 @@ namespace wan24.Core
                     or NumericTypes.LongMin
                     or NumericTypes.LongMax
                     => NumericTypes.Long,
+                NumericTypes.Int128
+                    or NumericTypes.Int128Min
+                    or NumericTypes.Int128Max
+                    => NumericTypes.Int128,
                 NumericTypes.ULong
                     or NumericTypes.ULongMax
                     => NumericTypes.ULong,
+                NumericTypes.UInt128
+                    or NumericTypes.UInt128Max
+                    => NumericTypes.UInt128,
                 NumericTypes.Half
                     or NumericTypes.HalfE
                     or NumericTypes.HalfEpsilon
@@ -189,7 +206,6 @@ namespace wan24.Core
                     or NumericTypes.HalfMin
                     or NumericTypes.HalfNaN
                     or NumericTypes.HalfNegativeInfinity
-                    or NumericTypes.HalfNegativeZero
                     or NumericTypes.HalfPi
                     or NumericTypes.HalfPositiveInfinity
                     or NumericTypes.HalfTau
@@ -222,7 +238,7 @@ namespace wan24.Core
                     or NumericTypes.DecimalMin
                     => NumericTypes.Decimal,
                 NumericTypes.BigInteger => NumericTypes.BigInteger,
-                _ => (type & NumericTypes.Number71To199) == NumericTypes.Number71To199 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
+                _ => (type & NumericTypes.Number67To194) == NumericTypes.Number67To194 || (type & ~NumericTypes.FLAGS) >= NumericTypes.Number2
                     ? NumericTypes.Int
                     : NumericTypes.None
             };
