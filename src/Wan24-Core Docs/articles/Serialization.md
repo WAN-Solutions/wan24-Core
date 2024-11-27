@@ -154,4 +154,4 @@ byte[] buffer = serializableObject.GetBytes();
 serializableObject = ISerializeStream<StreamSerializableType>.FromBytes(buffer, version: 1);
 ```
 
-The `StreamSerializableType` could extend the `(Disposable)SerializeStream(Record)Base<T>` base type, which implements the interface and also allows to manage an object version number, which will be serialized to the stream, too, and allows revision-safe deserialization. It's also possible to cast an instance implicit to and from serialized data.
+The `StreamSerializableType` could extend the `(Disposable)SerializeStream(Record)Base<T>` base type, which implements the interface and also allows to manage an object version number, which will be serialized to the stream, too, and allows revision-safe deserialization. It's also possible to cast an instance implicit to and from serialized data. If you don't want to extend that base type, you can also implement the interface fully over the methods from `SerializeStreamHelper` (which is being used by `(Disposable)SerializeStream(Record)Base<T>` per default), which allow automatic object serialization also.

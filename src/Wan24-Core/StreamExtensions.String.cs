@@ -23,14 +23,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="str">String</param>
-        public static void Write(this Stream stream, in ReadOnlyMemory<char>? str)
+        public static void Write(this Stream stream, in string? str)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 stream.Write((byte)NumericTypes.None);
                 return;
             }
-            stream.Write(str.Value.Span);
+            stream.Write(str.AsSpan());
         }
 
         /// <summary>
@@ -55,14 +55,14 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task WriteAsync(this Stream stream, ReadOnlyMemory<char>? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task WriteAsync(this Stream stream, string? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
-            await stream.WriteAsync(str.Value, buffer, cancellationToken).DynamicContext();
+            await stream.WriteAsync(str.AsMemory(), buffer, cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -83,14 +83,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="str">String</param>
-        public static void Write16(this Stream stream, in ReadOnlyMemory<char>? str)
+        public static void Write16(this Stream stream, in string? str)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 stream.Write((byte)NumericTypes.None);
                 return;
             }
-            stream.Write16(str.Value.Span);
+            stream.Write16(str.AsSpan());
         }
 
         /// <summary>
@@ -115,14 +115,14 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task Write16Async(this Stream stream, ReadOnlyMemory<char>? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task Write16Async(this Stream stream, string? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
-            await stream.Write16Async(str.Value, buffer, cancellationToken).DynamicContext();
+            await stream.Write16Async(str.AsMemory(), buffer, cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -143,14 +143,14 @@ namespace wan24.Core
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <param name="str">String</param>
-        public static void Write32(this Stream stream, in ReadOnlyMemory<char>? str)
+        public static void Write32(this Stream stream, in string? str)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 stream.Write((byte)NumericTypes.None);
                 return;
             }
-            stream.Write32(str.Value.Span);
+            stream.Write32(str.AsSpan());
         }
 
         /// <summary>
@@ -175,14 +175,14 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task Write32Async(this Stream stream, ReadOnlyMemory<char>? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task Write32Async(this Stream stream, string? str, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
-            if (!str.HasValue)
+            if (str is null)
             {
                 await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return;
             }
-            await stream.Write32Async(str.Value, buffer, cancellationToken).DynamicContext();
+            await stream.Write32Async(str.AsMemory(), buffer, cancellationToken).DynamicContext();
         }
 
         /// <summary>
@@ -308,6 +308,28 @@ namespace wan24.Core
         /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static int ReadString16Nullable(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
+        {
+            int len = Encoding.Unicode.GetMaxByteCount(str.Length);
+            using RentedMemoryRef<byte> buffer = new(len, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            int red = stream.ReadDataNullableWithLengthInfo(version, bufferSpan);
+            if (red < 0) return -1;
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.Unicode.GetDecoder();
+            decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"Unicode decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an Unicode encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of characters written to the buffer</returns>
         public static async Task<int> ReadString16Async(this Stream stream, int version, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
@@ -316,6 +338,35 @@ namespace wan24.Core
             using RentedMemory<byte> buffer = new(len, clean: false);
             Memory<byte> bufferMem = buffer.Memory;
             int red = await stream.ReadDataWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.Unicode.GetDecoder();
+            decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"Unicode decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an Unicode encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static async Task<int> ReadString16NullableAsync(
+            this Stream stream,
+            int version,
+            Memory<char> str,
+            int minLen = 0,
+            CancellationToken cancellationToken = default
+            )
+        {
+            int len = Encoding.Unicode.GetMaxByteCount(str.Length);
+            using RentedMemory<byte> buffer = new(len, clean: false);
+            Memory<byte> bufferMem = buffer.Memory;
+            int red = await stream.ReadDataNullableWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < 0) return -1;
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.Unicode.GetDecoder();
             decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
@@ -351,6 +402,28 @@ namespace wan24.Core
         /// <param name="version">Data structure version</param>
         /// <param name="str">String buffer</param>
         /// <param name="minLen">Minimum length in bytes</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static int ReadString32Nullable(this Stream stream, in int version, in Span<char> str, in int minLen = 0)
+        {
+            int len = Encoding.UTF32.GetMaxByteCount(str.Length);
+            using RentedMemoryRef<byte> buffer = new(len, clean: false);
+            Span<byte> bufferSpan = buffer.Span;
+            int red = stream.ReadDataNullableWithLengthInfo(version, bufferSpan);
+            if (red < 0) return -1;
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.UTF32.GetDecoder();
+            decoder.Convert(bufferSpan[..red], str, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"UTF-32 decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an UTF-32 encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Number of characters written to the buffer</returns>
         public static async Task<int> ReadString32Async(this Stream stream, int version, Memory<char> str, int minLen = 0, CancellationToken cancellationToken = default)
@@ -359,6 +432,35 @@ namespace wan24.Core
             using RentedMemory<byte> buffer = new(len, clean: false);
             Memory<byte> bufferMem = buffer.Memory;
             int red = await stream.ReadDataWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
+            Decoder decoder = Encoding.UTF32.GetDecoder();
+            decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);
+            if (!completed || bytesUsed != red) throw new InvalidDataException($"UTF-32 decoder used {bytesUsed} of {red} bytes");
+            return res;
+        }
+
+        /// <summary>
+        /// Read an UTF-32 encoded string with length information
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="str">String buffer</param>
+        /// <param name="minLen">Minimum length in bytes</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Number of characters written to the buffer or <c>-1</c>, if <see langword="null"/></returns>
+        public static async Task<int> ReadString32NullableAsync(
+            this Stream stream,
+            int version,
+            Memory<char> str,
+            int minLen = 0,
+            CancellationToken cancellationToken = default
+            )
+        {
+            int len = Encoding.UTF32.GetMaxByteCount(str.Length);
+            using RentedMemory<byte> buffer = new(len, clean: false);
+            Memory<byte> bufferMem = buffer.Memory;
+            int red = await stream.ReadDataNullableWithLengthInfoAsync(version, bufferMem, cancellationToken).DynamicContext();
+            if (red < 0) return -1;
             if (red < minLen) throw new InvalidDataException($"Red {red} bytes (min. {minLen} expected)");
             Decoder decoder = Encoding.UTF32.GetDecoder();
             decoder.Convert(bufferMem.Span[..red], str.Span, flush: true, out int bytesUsed, out int res, out bool completed);

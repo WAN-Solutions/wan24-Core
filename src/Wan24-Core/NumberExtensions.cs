@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Binary;
+using System.Collections.Immutable;
 using System.Numerics;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -10,6 +11,37 @@ namespace wan24.Core
     /// </summary>
     public static class NumberExtensions
     {
+        /// <summary>
+        /// Numeric types
+        /// </summary>
+        public static readonly ImmutableArray<Type> NumericTypes = [
+            typeof(sbyte),
+            typeof(byte),
+            typeof(short),
+            typeof(ushort),
+            typeof(int),
+            typeof(uint),
+            typeof(long),
+            typeof(ulong),
+            typeof(Int128),
+            typeof(UInt128),
+            typeof(float),
+            typeof(double),
+            typeof(decimal),
+            typeof(BigInteger)
+            ];
+        /// <summary>
+        /// Unsigned numeric types
+        /// </summary>
+        public static readonly ImmutableArray<Type> UnsignedNumericTypes = [
+            typeof(byte),
+            typeof(short),
+            typeof(ushort),
+            typeof(uint),
+            typeof(ulong),
+            typeof(UInt128),
+            ];
+
         /// <summary>
         /// Determine if a numeric value is unsigned (works for enumerations, too)
         /// </summary>
@@ -81,35 +113,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Is a numeric type?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNumeric(this Type type)
-        {
-            try
-            {
-                return type.IsValueType && typeof(IConvertible).IsAssignableFrom(type) && Activator.CreateInstance(type) switch
-                {
-                    sbyte => true,
-                    byte => true,
-                    short => true,
-                    ushort => true,
-                    int => true,
-                    uint => true,
-                    long => true,
-                    ulong => true,
-                    Int128 => true,
-                    UInt128 => true,
-                    Half => true,
-                    float => true,
-                    double => true,
-                    decimal => true,
-                    BigInteger => true,
-                    _ => false
-                };
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        public static bool IsNumeric(this Type type) => NumericTypes.Contains(type);
 
         /// <summary>
         /// Determine if a type is numeric and unsigned
@@ -117,44 +121,7 @@ namespace wan24.Core
         /// <param name="type">Type</param>
         /// <returns>Is an unsigned numeric type?</returns>
         [TargetedPatchingOptOut("Tiny method")]
-        public static bool IsNumericAndUnsigned(this Type type)
-        {
-            try
-            {
-                object? value;
-                return type.IsValueType && typeof(IConvertible).IsAssignableFrom(type) && (value = Activator.CreateInstance(type)) switch
-                {
-                    sbyte => true,
-                    byte => true,
-                    short => true,
-                    ushort => true,
-                    int => true,
-                    uint => true,
-                    long => true,
-                    ulong => true,
-                    Int128 => true,
-                    UInt128 => true,
-                    Half => true,
-                    float => true,
-                    double => true,
-                    decimal => true,
-                    BigInteger => true,
-                    _ => false
-                } && value switch
-                {
-                    byte => true,
-                    ushort => true,
-                    uint => true,
-                    ulong => true,
-                    UInt128 => true,
-                    _ => false
-                };
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        public static bool IsNumericAndUnsigned(this Type type) => UnsignedNumericTypes.Contains(type);
 
         /// <summary>
         /// Get bytes

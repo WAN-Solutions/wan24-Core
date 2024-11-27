@@ -445,7 +445,7 @@ namespace Wan24_Core_Tests
             {
                 try
                 {
-                    castedValue = data.Item1.CastType(data.Item2);
+                    castedValue = data.Item1.CastNumericValue(data.Item2);
                 }
                 catch (Exception ex)
                 {

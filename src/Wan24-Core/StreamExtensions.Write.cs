@@ -108,7 +108,7 @@ namespace wan24.Core
         {
             if(other is null)
             {
-                stream.Write((byte)NumericTypes.None);
+                stream.Write((long)-1);
             }
             else
             {
@@ -167,7 +167,7 @@ namespace wan24.Core
         {
             if(other is null)
             {
-                await stream.WriteAsync((byte)NumericTypes.None, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((long)-1, cancellationToken: cancellationToken).DynamicContext();
             }
             else
             {
@@ -182,12 +182,7 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         public static void WriteWithLengthInfo(this Stream stream, in ReadOnlySpan<byte> data)
         {
-            using (RentedMemoryRef<byte> buffer = new(len: sizeof(int), clean: false))
-            {
-                Span<byte> bufferSpan = buffer.Span;
-                data.Length.GetBytes(bufferSpan);
-                stream.Write(bufferSpan);
-            }
+            stream.WriteNumeric(data.Length);
             stream.Write(data);
         }
 
@@ -204,7 +199,7 @@ namespace wan24.Core
             }
             else
             {
-                stream.WriteNumericNullable<int>(value: null);
+                stream.Write((byte)NumericTypes.None);
             }
         }
 
@@ -217,12 +212,7 @@ namespace wan24.Core
         /// <returns>Number of written bytes including length information (4 bytes)</returns>
         public static async Task<long> WriteWithLengthInfoAsync(this Stream stream, ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default)
         {
-            using (RentedMemory<byte> buffer = new(len: sizeof(int), clean: false))
-            {
-                Memory<byte> bufferMem = buffer.Memory;
-                data.Length.GetBytes(bufferMem.Span);
-                await stream.WriteAsync(bufferMem, cancellationToken).DynamicContext();
-            }
+            await stream.WriteNumericAsync(data.Length, cancellationToken: cancellationToken).DynamicContext();
             await stream.WriteAsync(data, cancellationToken).DynamicContext();
             return data.Length + sizeof(int);
         }
@@ -241,7 +231,7 @@ namespace wan24.Core
             }
             else
             {
-                await stream.WriteNumericNullableAsync<int>(value: null, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, cancellationToken: cancellationToken).DynamicContext();
             }
         }
 
@@ -252,12 +242,7 @@ namespace wan24.Core
         /// <param name="data">Data</param>
         public static void WriteWithLengthInfo(this Stream stream, in ReadOnlySequence<byte> data)
         {
-            using (RentedMemoryRef<byte> buffer = new(len: sizeof(long), clean: false))
-            {
-                Span<byte> bufferSpan = buffer.Span;
-                data.Length.GetBytes(bufferSpan);
-                stream.Write(bufferSpan);
-            }
+            stream.WriteNumeric(data.Length);
             using MemorySequenceStream ms = new(data);
             ms.CopyTo(stream);
         }
@@ -275,7 +260,7 @@ namespace wan24.Core
             }
             else
             {
-                stream.WriteNumericNullable<int>(value: null);
+                stream.Write((byte)NumericTypes.None);
             }
         }
 
@@ -287,12 +272,7 @@ namespace wan24.Core
         /// <param name="cancellationToken">Cancellation token</param>
         public static async Task WriteWithLengthInfoAsync(this Stream stream, ReadOnlySequence<byte> data, CancellationToken cancellationToken = default)
         {
-            using (RentedMemory<byte> buffer = new(len: sizeof(long), clean: false))
-            {
-                Memory<byte> bufferMem = buffer.Memory;
-                data.Length.GetBytes(bufferMem.Span);
-                await stream.WriteAsync(bufferMem, cancellationToken).DynamicContext();
-            }
+            await stream.WriteNumericAsync(data.Length, cancellationToken: cancellationToken).DynamicContext();
             using MemorySequenceStream ms = new(data);
             await ms.CopyToAsync(stream, cancellationToken).DynamicContext();
         }
@@ -311,7 +291,7 @@ namespace wan24.Core
             }
             else
             {
-                await stream.WriteNumericNullableAsync<int>(value: null, cancellationToken: cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, cancellationToken: cancellationToken).DynamicContext();
             }
         }
 
