@@ -3,26 +3,8 @@
     /// <summary>
     /// Interface for an object which (de)serializes to/from a <see cref="Stream"/>
     /// </summary>
-    public interface ISerializeStream : ISerializeBinary //TODO Implement ISerializeBinary
+    public interface ISerializeStream
     {
-        /// <inheritdoc/>
-        byte[] ISerializeBinary.GetBytes()
-        {
-            using MemoryPoolStream ms = new();
-            SerializeTo(ms);
-            return ms.ToArray();
-        }
-        /// <inheritdoc/>
-        int ISerializeBinary.GetBytes(in Span<byte> buffer)
-        {
-            using MemoryPoolStream ms = new();
-            using LimitedLengthStream lengthLimited = new(ms, buffer.Length);
-            SerializeTo(lengthLimited);
-            ms.Position = 0;
-            int len = (int)ms.Length;
-            ms.ReadExactly(buffer[..len]);
-            return len;
-        }
         /// <summary>
         /// Get the serialized bytes of this instance
         /// </summary>

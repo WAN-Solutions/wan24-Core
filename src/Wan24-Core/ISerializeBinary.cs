@@ -5,7 +5,7 @@ namespace wan24.Core
     /// <summary>
     /// Interface for a type which can serialize binary
     /// </summary>
-    public interface ISerializeBinary //TODO Implement ISerializeStream
+    public interface ISerializeBinary
     {
         /// <summary>
         /// Maximum binary structure size in bytes for all instances (or <see langword="null"/>, if the size is too variable)
