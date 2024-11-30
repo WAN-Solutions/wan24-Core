@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 
 namespace wan24.Core
@@ -90,5 +91,22 @@ namespace wan24.Core
             stream.Write(buffer);
 #endif
         }
+
+        /// <summary>
+        /// Ensure having a non-<see langword="null"/> value
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="index">Index</param>
+        /// <param name="arg">Argument name</param>
+        /// <returns>Non-<see langword="null"/> value</returns>
+        /// <exception cref="ArgumentException">Unexpected <see langword="null"/> value</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        private static T EnsureNonNullValue<T>(in T? value, in object index, in string arg)
+            => value ?? throw new ArgumentException($"Unexpected NULL value at index {index.ToString()?.ToQuotedLiteral()}", arg);
     }
 }
