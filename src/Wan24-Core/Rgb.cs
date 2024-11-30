@@ -121,7 +121,13 @@ namespace wan24.Core
         public static int? MaxStructureSize => BINARY_SIZE;
 
         /// <inheritdoc/>
+        public static bool IsFixedStructureSize => true;
+
+        /// <inheritdoc/>
         public static int? MaxStringSize => 13;
+
+        /// <inheritdoc/>
+        public static bool IsFixedStringSize => false;
 
         /// <inheritdoc/>
         public int? StructureSize => BINARY_SIZE;

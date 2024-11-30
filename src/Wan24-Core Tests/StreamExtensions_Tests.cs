@@ -88,7 +88,7 @@ namespace Wan24_Core_Tests
         }
 
         [TestMethod]
-        public void Serialization_Tests()
+        public void BasicSerialization_Tests()
         {
             //TODO Write more tests
             int version = 1;
@@ -162,18 +162,29 @@ namespace Wan24_Core_Tests
                 // JSON
                 new("test",stream=>stream.WriteJson("test"),stream=>stream.ReadJson<string>(version, new byte[16]),null),
                 new(null,stream=>stream.WriteJsonNullable<string>(null),stream=>stream.ReadJsonNullable<string>(version, new byte[1]),1),
+                // Enum
+                new(OptInOut.OptOut,stream=>stream.Write(OptInOut.OptOut),stream=>stream.ReadEnum<OptInOut>(version),1),
+                new(null,stream=>stream.WriteNullable((OptInOut?)null),stream=>stream.ReadEnumNullable<OptInOut>(version),1),
             })
             {
-                data.Item2(ms);
-                Assert.AreEqual(ms.Length, ms.Position, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
-                if (data.Item4.HasValue)
-                    Assert.AreEqual(data.Item4.Value, ms.Length, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
-                ms.Position = 0;
-                obj = data.Item3(ms);
-                Assert.AreEqual(data.Item1, obj, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
-                Assert.AreEqual(ms.Length, ms.Position, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
-                ms.SetLength(0);
-                index++;
+                try
+                {
+                    data.Item2(ms);
+                    Assert.AreEqual(ms.Length, ms.Position, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
+                    if (data.Item4.HasValue)
+                        Assert.AreEqual(data.Item4.Value, ms.Length, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
+                    ms.Position = 0;
+                    obj = data.Item3(ms);
+                    Assert.AreEqual(data.Item1, obj, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
+                    Assert.AreEqual(ms.Length, ms.Position, $"{data.Item1?.GetType().ToString() ?? "NULL"} at #{index}");
+                    ms.SetLength(0);
+                    index++;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"{data.Item1} at index #{index} exception: {ex}");
+                    throw;
+                }
             }
         }
     }

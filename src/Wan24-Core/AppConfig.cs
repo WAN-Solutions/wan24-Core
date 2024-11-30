@@ -113,7 +113,7 @@ namespace wan24.Core
             if (AppCommand is not null) ENV.AppCommand = AppCommand;
             if (DefaultCliArguments is not null) ENV._CliArguments = ENV._CliArguments.Length == 0
                     ? [.. DefaultCliArguments, .. ENV._CliArguments]
-                    : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.AsSpan(1)];
+                    : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.Skip(1)];
             if (AutoCreateObjectMappings.HasValue) ObjectMapping.AutoCreate = AutoCreateObjectMappings.Value;
             List<string> args = new(Properties.Count);
             foreach (var kvp in Properties)
@@ -167,7 +167,7 @@ namespace wan24.Core
             if (AppCommand is not null) ENV.AppCommand = AppCommand;
             if (DefaultCliArguments is not null) ENV._CliArguments = ENV._CliArguments.Length == 0
                     ? [.. DefaultCliArguments, .. ENV._CliArguments]
-                    : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.AsSpan(1)];
+                    : [ENV._CliArguments[0], .. DefaultCliArguments, .. ENV._CliArguments.Skip(1)];
             if (AutoCreateObjectMappings.HasValue) ObjectMapping.AutoCreate = AutoCreateObjectMappings.Value;
             List<string> args = new(Properties.Count);
             foreach (var kvp in Properties)

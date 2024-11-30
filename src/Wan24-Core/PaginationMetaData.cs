@@ -91,7 +91,13 @@ namespace wan24.Core
         static int? ISerializeBinary.MaxStructureSize => STRUCTURE_SIZE;
 
         /// <inheritdoc/>
+        static bool ISerializeBinary.IsFixedStructureSize => true;
+
+        /// <inheritdoc/>
         static int? ISerializeString.MaxStringSize => null;
+
+        /// <inheritdoc/>
+        static bool ISerializeString.IsFixedStringSize => false;
 
         /// <summary>
         /// Total number of pages

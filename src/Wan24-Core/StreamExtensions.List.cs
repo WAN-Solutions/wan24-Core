@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -6,146 +9,125 @@ namespace wan24.Core
     public static partial class StreamExtensions
     {
         /// <summary>
-        /// Write a list
+        /// Write an <see cref="IList"/>
         /// </summary>
         /// <typeparam name="T">List type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="list">List</param>
-        public static void Write<T>(this Stream stream, in T list) where T : IList
+        /// <param name="useInterfaces">If to use supported interfaces (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        /// <param name="useItemInterfaces">If to use supported interfaces for items (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        public static void Write<T>(this Stream stream, in T list, in bool? useInterfaces = null, in bool? useItemInterfaces = null) where T : IList
         {
-            if (
-                TypeInfoExt.From(list.GetType())
-                    .GetInterfaces()
-                    .FirstOrDefault(i => i.IsGenericType && typeof(IList<>).IsAssignableFrom(i.GetGenericTypeDefinition())) is Type genericType
-                    )
+            if (typeof(T).FindGenericType(typeof(IList<>)) is not null)
             {
-                typeof(StreamExtensions)
-                    .GetMethodsCached()
-                    .Where(
-                        m => m.Name == nameof(Write) &&
-                            m.IsGenericMethod &&
-                            m.GenericArgumentCount == 1 &&
-                            m.ParameterCount == 2 &&
-                            m[1].ParameterType.IsGenericType &&
-                            m[1].ParameterType.GetGenericTypeDefinition() == typeof(IList<>)
-                        )
-                    .First()
-                    .MakeGenericMethod(TypeInfoExt.From(genericType).FirstGenericArgument ?? throw new InvalidProgramException())
-                    .Invoker!(null, [stream, list]);
+                WriteList(stream, (dynamic)list, useInterfaces, useItemInterfaces);
                 return;
             }
-            stream.Write((byte)NumericTypes.None);
-            int len = list.Count;
-            stream.WriteNumeric(len);
-            if (len == 0) return;
-            object item;
-            for (int i = 0; i < len; i++)
-            {
-                item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                //TODO Write any object
-            }
+            stream.Write(list, static (stream, item) => { });//TODO Write any object
         }
+
         /// <summary>
-        /// Write a list
+        /// Write an <see cref="IList{T}"/>
         /// </summary>
         /// <typeparam name="T">Item type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="list">List</param>
-        public static void Write<T>(this Stream stream, in IList<T> list)
+        /// <param name="useInterfaces">If to use supported interfaces (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        /// <param name="useItemInterfaces">If to use supported interfaces for items (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static void WriteList<T>(this Stream stream, IList<T> list, in bool? useInterfaces = null, in bool? useItemInterfaces = null)
+            => stream.Write(list, useInterfaces, useItemInterfaces);
+
+        /// <summary>
+        /// Write an <see cref="IList{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="list">List</param>
+        /// <param name="useInterfaces">If to use supported interfaces (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        /// <param name="useItemInterfaces">If to use supported interfaces for items (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
+        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
+        public static void Write<T>(this Stream stream, in IList<T> list, in bool? useInterfaces = null, in bool? useItemInterfaces = null)
         {
-            stream.Write(typeof(T));
+            Type type = typeof(T);
+            stream.Write(type);
             int len = list.Count;
             stream.WriteNumeric(len);
-            if (len == 0) return;
-            T item;
-            if (!typeof(T).CanConstruct())
-            {
-                for (int i = 0; i < len; i++)
-                {
-                    item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                    //TODO Write any object
-                }
-                return;
-            }
-            bool isSealedType = typeof(T).IsSealed;
-            SerializedObjectTypes objType = typeof(T).GetSerializedType();
-            switch (objType)
-            {
-                case SerializedObjectTypes.Numeric:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        //TODO Write numeric value
-                    }
-                    break;
-                case SerializedObjectTypes.String:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        stream.Write(item.CastType<string>());
-                    }
-                    break;
-                case SerializedObjectTypes.Boolean:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        stream.Write(item.CastType<bool>());
-                    }
-                    break;
-                case SerializedObjectTypes.Type:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        stream.Write(item.CastType<Type>());
-                    }
-                    break;
-                case SerializedObjectTypes.Array:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        stream.Write((IList)item);
-                    }
-                    break;
-                case SerializedObjectTypes.Dictionary:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        //TODO Write dictionary value
-                    }
-                    break;
-                case SerializedObjectTypes.Stream:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        stream.Write(item.CastType<Stream>());
-                    }
-                    break;
-                case SerializedObjectTypes.Serializable:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        if (!isSealedType) stream.Write(item.GetType());
-                        ((ISerializeStream)item).SerializeTo(stream);
-                    }
-                    break;
-                case SerializedObjectTypes.Enumerable:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        //TODO Write enumerable value
-                    }
-                    break;
-                case SerializedObjectTypes.Json:
-                    for (int i = 0; i < len; i++)
-                    {
-                        item = list[i] ?? throw new ArgumentException($"List contains NULL item at index #{i}", nameof(list));
-                        if (!isSealedType) stream.Write(item.GetType());
-                        stream.WriteJson(item);
-                    }
-                    break;
-                default:
-                    throw new InvalidProgramException($"Failed to determine valid serialized object type ({objType}) for {typeof(T)}");
-            }
+            if (len < 1) return;
+            SerializedObjectTypes objType = type.GetSerializedType(useInterfaces ?? type.IsInterface);
+            using RentedMemory<byte>? buffer = objType == SerializedObjectTypes.SerializeBinary
+                ? new(type.GetMaxStructureSize() ?? Settings.BufferSize, clean: false)
+                : null;
+            stream.Write(
+                list,
+                StreamHelper.GetWriter<T>(objType, useInterfaces, useItemInterfaces, buffer),
+                includeItemType: false,
+                includeCount: false
+                );
         }
+
+        /// <summary>
+        /// Write an <see cref="IList"/>
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="list">List</param>
+        /// <param name="writer">Writer</param>
+        /// <param name="includeItemType">If to include the item type</param>
+        /// <param name="includeCount">If to include the count</param>
+        public static void Write<T>(this Stream stream, in T list, in Action<Stream, object> writer, in bool includeItemType = true, in bool includeCount = true)
+            where T : IList
+        {
+            if (includeItemType) stream.Write((byte)NumericTypes.None);
+            int len = list.Count;
+            if (includeCount) stream.WriteNumeric(len);
+            if (len < 1) return;
+            string listArgName = nameof(list);
+            for (int i = 0; i < len; writer(stream, EnsureNonNullValue(list[i], i, listArgName)), i++) ;
+        }
+
+        /// <summary>
+        /// Write an <see cref="IList{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="stream">Stream</param>
+        /// <param name="list">List</param>
+        /// <param name="writer">Writer</param>
+        /// <param name="includeItemType">If to include the item type</param>
+        /// <param name="includeCount">If to include the count</param>
+        public static void Write<T>(this Stream stream, in IList<T> list, in Action<Stream, T> writer, in bool includeItemType = true, in bool includeCount = true)
+        {
+            if (includeItemType) stream.Write(typeof(T));
+            int len = list.Count;
+            if (includeCount) stream.WriteNumeric(len);
+            if (len < 1) return;
+            string listArgName = nameof(list);
+            for (int i = 0; i < len; writer(stream, EnsureNonNullValue(list[i], i, listArgName)), i++) ;
+        }
+
+        /// <summary>
+        /// Ensure having a non-<see langword="null"/> value
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="index">Index</param>
+        /// <param name="arg">Argument name</param>
+        /// <returns>Non-<see langword="null"/> value</returns>
+        /// <exception cref="ArgumentException">Unexpected <see langword="null"/> value</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        [return: NotNull]
+        private static T EnsureNonNullValue<T>(in T? value, in object index, in string arg)
+            => value ?? throw new ArgumentException($"Unexpected NULL value at index {index.ToString()?.ToQuotedLiteral()}", arg);
     }
 }

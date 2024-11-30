@@ -97,7 +97,13 @@ namespace wan24.Core
         public static int? MaxStructureSize => SERIALIZED_STRUCTURE_SIZE;
 
         /// <inheritdoc/>
+        public static bool IsFixedStructureSize => true;
+
+        /// <inheritdoc/>
         public static int? MaxStringSize => MAX_STRING_SIZE;
+
+        /// <inheritdoc/>
+        public static bool IsFixedStringSize => true;
 
         /// <summary>
         /// MSB MAC address (RFC 2469)

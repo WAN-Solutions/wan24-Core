@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ namespace wan24.Core
         /// <summary>
         /// CLI Arguments
         /// </summary>
-        internal static string[] _CliArguments;
+        internal static ImmutableArray<string> _CliArguments;
         /// <summary>
         /// CLR platform target
         /// </summary>
@@ -36,6 +37,7 @@ namespace wan24.Core
             IsPrivileged = Environment.IsPrivilegedProcess;
             if (!IsBrowserEnvironment)
             {
+                _CliArguments = [.. Environment.GetCommandLineArgs()];
                 string? app = Assembly.GetEntryAssembly()?.Location;
                 if (string.IsNullOrWhiteSpace(app))
                 {
@@ -54,7 +56,7 @@ namespace wan24.Core
                         {
                             try
                             {
-                                app = Environment.GetCommandLineArgs().FirstOrDefault();
+                                app = _CliArguments.FirstOrDefault();
                                 if (string.IsNullOrWhiteSpace(app) || !File.Exists(app)) app = null;
                             }
                             catch
@@ -70,7 +72,6 @@ namespace wan24.Core
                 AppCommand = app.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
                     ? IsWindows ? $"dotnet {app}" : $"/usr/bin/dotnet {app}"
                     : app;
-                _CliArguments = Environment.GetCommandLineArgs();
             }
             else
             {
@@ -101,9 +102,9 @@ namespace wan24.Core
         public static string AppCommand { get; set; }
 
         /// <summary>
-        /// (A copy of) CLI arguments
+        /// CLI arguments
         /// </summary>
-        public static string[] CliArguments => [.. _CliArguments];
+        public static ImmutableArray<string> CliArguments => [.. _CliArguments];
 
         /// <summary>
         /// If there are any CLI arguments (excluding the first argument, which should be the assembly filename)

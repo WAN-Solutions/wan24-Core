@@ -12,7 +12,7 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <returns>Numeric type</returns>
-        public static NumericTypes WriteNumeric<T>(this Stream stream, in T value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+        public static NumericTypes WriteNumeric<T>(this Stream stream, T value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             NumericTypes type = value.GetNumericType();
             if (type == NumericTypes.None) throw new ArgumentException("Not a number", nameof(value));
@@ -47,7 +47,7 @@ namespace wan24.Core
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <returns>Numeric type</returns>
-        public static NumericTypes WriteNumericNullable<T>(this Stream stream, in T? value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+        public static NumericTypes WriteNumericNullable<T>(this Stream stream, T? value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             if (!value.HasValue)
             {

@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Collections.Frozen;
+using System.Collections.Immutable;
+using System.Reflection;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 
@@ -361,5 +364,111 @@ namespace wan24.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static bool MayBeDisposable(this Type type) => type.IsInterface || !type.IsSealed || IsDisposable(type);
+
+        /// <summary>
+        /// Determine if the type is a list type (see <see cref="IList"/> or <see cref="IList{T}"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a list type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsList(this Type type) => typeof(IList).IsAssignableFrom(type) || type.FindGenericType(typeof(IList<>)) is not null;
+
+        /// <summary>
+        /// Determine if the type is a generic list type (see <see cref="IList{T}"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a generic list type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsGenericList(this Type type) => type.FindGenericType(typeof(IList<>)) is not null;
+
+        /// <summary>
+        /// Determine if the type is a dictionary type (see <see cref="IDictionary"/> or <see cref="IDictionary{TKey, TValue}"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a dictionary type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsDictionary(this Type type) => typeof(IDictionary).IsAssignableFrom(type) || type.FindGenericType(typeof(IDictionary<,>)) is not null;
+
+        /// <summary>
+        /// Determine if the type is a generic dictionary type (see <see cref="IDictionary{TKey, TValue}"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a generic dictionary type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsGenericDictionary(this Type type) => type.FindGenericType(typeof(IDictionary<,>)) is not null;
+
+        /// <summary>
+        /// Find the generic type of a generic type definition
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="genericTypeDef">Generic type definition</param>
+        /// <returns>Generic type</returns>
+        /// <exception cref="ArgumentException">Not a generic type definition</exception>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Type? FindGenericType(this Type type, in Type genericTypeDef) => type.FindGenericTypes(genericTypeDef).FirstOrDefault();
+
+        /// <summary>
+        /// Find the generic types of a generic type definition
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="genericTypeDef">Generic type definition</param>
+        /// <returns>Generic types</returns>
+        /// <exception cref="ArgumentException">Not a generic type definition</exception>
+        public static IEnumerable<Type> FindGenericTypes(this Type type, Type genericTypeDef)
+        {
+            if (!genericTypeDef.IsGenericTypeDefinition) throw new ArgumentException("Generic type definition expected", nameof(genericTypeDef));
+            TypeInfoExt typeInfo;
+            ImmutableArray<Type> interfaces;
+            HashSet<Type>? seen = null;
+            Type? interfaceType;
+            int i,
+                len;
+            bool isInterface = genericTypeDef.IsInterface;
+            foreach (Type currentType in new List<Type>([type, .. type.GetBaseTypes()]))
+            {
+                // Check the current type
+                typeInfo = TypeInfoExt.From(currentType);
+                if (isInterface == currentType.IsInterface && typeInfo.GetGenericTypeDefinition() is TypeInfoExt genericType && genericType.Type == genericTypeDef)
+                    yield return typeInfo.Type;
+                if (!isInterface) continue;
+                // Check its interfaces
+                interfaces = typeInfo.GetInterfaces().Items;
+                seen ??= [];
+                for (i = 0, len = interfaces.Length; i < len; i++)
+                {
+                    interfaceType = interfaces[i];
+                    if (!seen.Add(interfaceType)) continue;
+                    typeInfo = TypeInfoExt.From(interfaceType);
+                    if (typeInfo.GetGenericTypeDefinition() is TypeInfoExt genericInterface && genericInterface.Type == genericTypeDef)
+                        yield return typeInfo.Type;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determine if a type is a final type, which can't be extended
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the type is a final type</returns>
+        [TargetedPatchingOptOut("Tiny method")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static bool IsFinalType(this Type type) => type.IsSealed || type.IsValueType;
     }
 }

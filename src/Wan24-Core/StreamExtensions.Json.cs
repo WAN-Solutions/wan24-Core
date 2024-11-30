@@ -11,7 +11,7 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        public static void WriteJson<T>(this Stream stream, in T value) => stream.Write(JsonHelper.Encode(value));
+        public static void WriteJson<T>(this Stream stream, T value) => stream.Write(JsonHelper.Encode(value));
 
         /// <summary>
         /// Write a value JSON serialized
@@ -19,7 +19,7 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        public static void WriteJsonNullable<T>(this Stream stream, in T? value)
+        public static void WriteJsonNullable<T>(this Stream stream, T? value)
         {
             if (value is null)
             {

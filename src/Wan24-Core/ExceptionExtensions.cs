@@ -1,4 +1,5 @@
-﻿using System.Runtime;
+﻿using Microsoft.Extensions.Logging;
+using System.Runtime;
 
 namespace wan24.Core
 {
@@ -32,6 +33,20 @@ namespace wan24.Core
             }
             ex.AsSpan().CopyTo(innerExceptions.AsSpan(index));
             return new(innerExceptions);
+        }
+
+        /// <summary>
+        /// Write an exception to a logger
+        /// </summary>
+        /// <typeparam name="T">Exception type</typeparam>
+        /// <param name="exception">Exception</param>
+        /// <param name="logger">Logger</param>
+        /// <param name="level">Level</param>
+        /// <returns>Exception</returns>
+        public static T Log<T>(this T exception, ILogger? logger = null, in LogLevel level = LogLevel.Error) where T : Exception
+        {
+            (logger ?? Logging.Logger)?.Log(level, "Exception {type} \"{message}\" at {stack}", exception.GetType(), exception.Message, exception.StackTrace);
+            return exception;
         }
     }
 }

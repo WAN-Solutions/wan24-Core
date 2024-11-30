@@ -106,7 +106,7 @@ namespace wan24.Core
             string[] temp;
             if(ca is null)
             {
-                temp = ENV.CliArguments;
+                temp = [..ENV.CliArguments];
                 if (temp.Length > 0) temp = [.. temp.AsSpan(1)];
                 ca = new(temp);
             }

@@ -6,7 +6,7 @@ There are multiple ways for string or binary serialization of objects:
 | ---- | ------ | ----------- |
 | `JsonHelper` | String | JSON string serialization |
 | `StringValueConverter` | String | String serialization by using `IStringValueConverter` or a converter delegate (factory implemented for .NET standard types which export a static `Parse` method) |
-| `ISerialize(String/Binary)` | String or binary | String or binary serialization of types which implement the interface; all binary using `SerializeExtensions`; all string using `StringValueConverter` |
+| `ISerialize(String/Binary)` | String or binary | String or binary serialization using `SerializeExtensions` of types which implement the interface |
 | `ObjectSerializer` | Binary | Binary serialization by serializing to JSON or XML (UTF-8) or using a serializer delegate |
 | `StreamExtensions` | Binary | Binary serialization of many basic types and complex types which implement `ISerializeStream` |
 

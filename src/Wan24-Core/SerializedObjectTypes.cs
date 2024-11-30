@@ -64,6 +64,16 @@ namespace wan24.Core
         [DisplayText("Enumerable")]
         Enumerable = 10,
         /// <summary>
+        /// <see cref="ISerializeBinary"/> value
+        /// </summary>
+        [DisplayText("Binary serializable")]
+        SerializeBinary = 11,
+        /// <summary>
+        /// <see cref="ISerializeString"/> value
+        /// </summary>
+        [DisplayText("String serializable")]
+        SerializeString = 12,
+        /// <summary>
         /// Empty flag (empty or the default value of a value type)
         /// </summary>
         [DisplayText("Empty")]

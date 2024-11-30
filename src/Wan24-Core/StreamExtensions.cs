@@ -9,6 +9,11 @@ namespace wan24.Core
     public static partial class StreamExtensions
     {
         /// <summary>
+        /// If to allow dangerous binary (de)serialization of anonymous types
+        /// </summary>
+        public static bool AllowDangerousBinarySerialization { get; set; }
+
+        /// <summary>
         /// Get the number of remaining bytes until the streams end
         /// </summary>
         /// <param name="stream">Stream</param>

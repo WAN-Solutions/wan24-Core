@@ -12,6 +12,10 @@ namespace wan24.Core
         /// </summary>
         public abstract static int? MaxStructureSize { get; }
         /// <summary>
+        /// If the <see cref="MaxStructureSize"/> is a fixed structure size
+        /// </summary>
+        public abstract static bool IsFixedStructureSize { get; }
+        /// <summary>
         /// Binary serialized structure size in bytes (or <see langword="null"/>, if the size is variable)
         /// </summary>
         int? StructureSize { get; }
@@ -61,6 +65,12 @@ namespace wan24.Core
         /// <typeparam name="T">Interface implementing type</typeparam>
         /// <returns>Size or <see langword="null"/>, if the size is too variable</returns>
         public static int? GetMaxStructureSize<T>() where T : ISerializeBinary => T.MaxStructureSize;
+        /// <summary>
+        /// Get if the <see cref="MaxStructureSize"/> is a fixed structure size
+        /// </summary>
+        /// <typeparam name="T">Interface implementing type</typeparam>
+        /// <returns>If the maximum structure size is fixed</returns>
+        public static bool GetIsFixedStringSize<T>() where T : ISerializeBinary => T.IsFixedStructureSize;
     }
 
     /// <summary>

@@ -12,6 +12,9 @@ namespace wan24.Core
         public static int? MaxStringSize => null;
 
         /// <inheritdoc/>
+        public static bool IsFixedStringSize => false;
+
+        /// <inheritdoc/>
         int? ISerializeString.StringSize => null;
 
         /// <inheritdoc/>

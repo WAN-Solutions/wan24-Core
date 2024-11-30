@@ -119,6 +119,25 @@ namespace wan24.Core
             => ISerializeBinary<T>.TryDeserializeTypeFrom<T>(buffer, out result);
 
         /// <summary>
+        /// Get the maximum structure size in bytes (see <see cref="ISerializeBinary.MaxStructureSize"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Maximum structure size in bytes</returns>
+        public static int? GetMaxStructureSize(this Type type)
+            => typeof(ISerializeBinary).IsAssignableFrom(type)
+                ? (int?)(type.GetPropertyCached(nameof(ISerializeBinary.MaxStructureSize)) ?? throw new InvalidProgramException()).Getter!(null)
+                : null;
+
+        /// <summary>
+        /// Get if the maximum structure size is fixed (see <see cref="ISerializeBinary.IsFixedStructureSize"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the maximum structure size is fixed</returns>
+        public static bool GetIsFixedStructureSize(this Type type)
+            => typeof(ISerializeBinary).IsAssignableFrom(type)
+&& (bool)(type.GetPropertyCached(nameof(ISerializeBinary.IsFixedStructureSize)) ?? throw new InvalidProgramException()).Getter!(null)!;
+
+        /// <summary>
         /// Deserialize an instance from string serialized data (see <see cref="ISerializeString"/>)
         /// </summary>
         /// <param name="type">Type</param>
@@ -201,6 +220,25 @@ namespace wan24.Core
 #endif
         public static bool TryParse<T>(this ReadOnlySpan<char> str, [NotNullWhen(returnValue: true)] out T? result) where T : ISerializeString<T>
             => ISerializeString<T>.TryParse<T>(str, out result);
+
+        /// <summary>
+        /// Get the maximum string size in characters (see <see cref="ISerializeString.MaxStringSize"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Maximum string size in characters</returns>
+        public static int? GetMaxStringSize(this Type type)
+            => typeof(ISerializeString).IsAssignableFrom(type)
+                ? (int?)(type.GetPropertyCached(nameof(ISerializeString.MaxStringSize)) ?? throw new InvalidProgramException()).Getter!(null)
+                : null;
+
+        /// <summary>
+        /// Get if the maximum string size is fixed (see <see cref="ISerializeString.IsFixedStringSize"/>)
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>If the maximum string size is fixed</returns>
+        public static bool GetIsFixedStringSize(this Type type)
+            => typeof(ISerializeString).IsAssignableFrom(type)
+                && (bool)(type.GetPropertyCached(nameof(ISerializeString.IsFixedStringSize)) ?? throw new InvalidProgramException()).Getter!(null)!;
 
         /// <summary>
         /// Deserialize an instance from a stream (see <see cref="ISerializeStream"/>)

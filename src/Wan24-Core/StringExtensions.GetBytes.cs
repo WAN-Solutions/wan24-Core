@@ -12,11 +12,11 @@ namespace wan24.Core
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes(this string str) => Encoding.UTF8.GetBytes(str);
+        public static byte[] GetBytes(this string str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF8);
 
         /// <summary>
         /// Get UTF-8 bytes
@@ -24,11 +24,11 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes(this string str, in byte[] buffer) => Encoding.UTF8.GetBytes(str, buffer);
+        public static int GetBytes(this string str, in byte[] buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF8, buffer);
 
         /// <summary>
         /// Get UTF-8 bytes
@@ -36,22 +36,22 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes(this string str, in Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
+        public static int GetBytes(this string str, in Span<byte> buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF8, buffer);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes16(this string str) => Encoding.Unicode.GetBytes(str);
+        public static byte[] GetBytes16(this string str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.Unicode);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
@@ -59,11 +59,11 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes16(this string str, in byte[] buffer) => Encoding.Unicode.GetBytes(str, buffer);
+        public static int GetBytes16(this string str, in byte[] buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.Unicode, buffer);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
@@ -71,22 +71,22 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes16(this string str, in Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
+        public static int GetBytes16(this string str, in Span<byte> buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.Unicode, buffer);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes32(this string str) => Encoding.UTF32.GetBytes(str);
+        public static byte[] GetBytes32(this string str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF32);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
@@ -94,11 +94,11 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes32(this string str, in byte[] buffer) => Encoding.UTF32.GetBytes(str, buffer);
+        public static int GetBytes32(this string str, in byte[] buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF32, buffer);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
@@ -106,34 +106,22 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes32(this string str, in Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
+        public static int GetBytes32(this string str, in Span<byte> buffer) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF32, buffer);
 
         /// <summary>
         /// Get UTF-8 bytes
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes(this char[] str) => Encoding.UTF8.GetBytes(str);
-
-        /// <summary>
-        /// Get UTF-8 bytes
-        /// </summary>
-        /// <param name="str">String</param>
-        /// <param name="buffer">Buffer</param>
-        /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
-#if !NO_INLINE
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public static int GetBytes(this ReadOnlySpan<char> str, in byte[] buffer) => Encoding.UTF8.GetBytes(str, buffer);
+        public static byte[] GetBytes(this char[] str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF8);
 
         /// <summary>
         /// Get UTF-8 bytes
@@ -141,22 +129,34 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes(this ReadOnlySpan<char> str, in Span<byte> buffer) => Encoding.UTF8.GetBytes(str, buffer);
+        public static int GetBytes(this ReadOnlySpan<char> str, in byte[] buffer) => str.GetBytes(StringEncodings.UTF8, buffer);
+
+        /// <summary>
+        /// Get UTF-8 bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this ReadOnlySpan<char> str, in Span<byte> buffer) => str.GetBytes(StringEncodings.UTF8, buffer);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes16(this char[] str) => Encoding.Unicode.GetBytes(str);
+        public static byte[] GetBytes16(this char[] str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.Unicode);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
@@ -164,11 +164,11 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes16(this ReadOnlySpan<char> str, in byte[] buffer) => Encoding.Unicode.GetBytes(str, buffer);
+        public static int GetBytes16(this ReadOnlySpan<char> str, in byte[] buffer) => str.GetBytes(StringEncodings.Unicode, buffer);
 
         /// <summary>
         /// Get UTF-16 bytes (little endian)
@@ -176,22 +176,22 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes16(this ReadOnlySpan<char> str, in Span<byte> buffer) => Encoding.Unicode.GetBytes(str, buffer);
+        public static int GetBytes16(this ReadOnlySpan<char> str, in Span<byte> buffer) => str.GetBytes(StringEncodings.Unicode, buffer);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
         /// </summary>
         /// <param name="str">String</param>
         /// <returns>Bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte[] GetBytes32(this char[] str) => Encoding.UTF32.GetBytes(str);
+        public static byte[] GetBytes32(this char[] str) => ((ReadOnlySpan<char>)str).GetBytes(StringEncodings.UTF32);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
@@ -199,11 +199,11 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
-        [TargetedPatchingOptOut("Tiny method")]
+        [TargetedPatchingOptOut("Just a method adapter")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes32(this ReadOnlySpan<char> str, in byte[] buffer) => Encoding.UTF32.GetBytes(str, buffer);
+        public static int GetBytes32(this ReadOnlySpan<char> str, in byte[] buffer) => str.GetBytes(StringEncodings.UTF32, buffer);
 
         /// <summary>
         /// Get UTF-32 bytes (little endian)
@@ -211,11 +211,141 @@ namespace wan24.Core
         /// <param name="str">String</param>
         /// <param name="buffer">Buffer</param>
         /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes32(this ReadOnlySpan<char> str, in Span<byte> buffer) => str.GetBytes(StringEncodings.UTF32, buffer);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this ReadOnlySpan<char> str, in Encoding encoding, in Span<byte> buffer) => encoding.GetBytes(str, buffer);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this ReadOnlyMemory<char> str, in Encoding encoding, in Span<byte> buffer) => str.Span.GetBytes(encoding, buffer);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this Span<char> str, in Encoding encoding, in Span<byte> buffer) => ((ReadOnlySpan<char>)str).GetBytes(encoding, buffer);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this Memory<char> str, in Encoding encoding, in Span<byte> buffer) => ((ReadOnlyMemory<char>)str).Span.GetBytes(encoding, buffer);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <param name="buffer">Buffer</param>
+        /// <returns>Used buffer length in bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static int GetBytes(this string str, in Encoding encoding, in Span<byte> buffer) => ((ReadOnlySpan<char>)str).GetBytes(encoding, buffer);
+
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns>Bytes</returns>
         [TargetedPatchingOptOut("Tiny method")]
 #if !NO_INLINE
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static int GetBytes32(this ReadOnlySpan<char> str, in Span<byte> buffer) => Encoding.UTF32.GetBytes(str, buffer);
+        public static byte[] GetBytes(this ReadOnlySpan<char> str, in Encoding encoding)
+        {
+            using RentedMemoryRef<byte> buffer = new(encoding.GetMaxByteCount(str.Length), clean: false);
+            return buffer.Memory[..str.GetBytes(encoding, buffer.Span)].ToArray();
+        }
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this ReadOnlyMemory<char> str, in Encoding encoding) => str.Span.GetBytes(encoding);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this Span<char> str, in Encoding encoding) => ((ReadOnlySpan<char>)str).GetBytes(encoding);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this Memory<char> str, in Encoding encoding) => ((ReadOnlyMemory<char>)str).Span.GetBytes(encoding);
+
+        /// <summary>
+        /// Get bytes
+        /// </summary>
+        /// <param name="str">String</param>
+        /// <param name="encoding">Encoding</param>
+        /// <returns>Bytes</returns>
+        [TargetedPatchingOptOut("Just a method adapter")]
+#if !NO_INLINE
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static byte[] GetBytes(this string str, in Encoding encoding) => ((ReadOnlySpan<char>)str).GetBytes(encoding);
 
         /// <summary>
         /// Get a byte from bits

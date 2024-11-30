@@ -181,6 +181,9 @@ namespace wan24.Core
         public static int? MaxStructureSize => STRUCTURE_SIZE;
 
         /// <inheritdoc/>
+        public static bool IsFixedStructureSize => true;
+
+        /// <inheritdoc/>
         public int? StructureSize => STRUCTURE_SIZE;
 
         /// <inheritdoc/>

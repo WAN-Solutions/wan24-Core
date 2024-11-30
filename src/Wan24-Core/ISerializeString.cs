@@ -12,6 +12,10 @@ namespace wan24.Core
         /// </summary>
         public abstract static int? MaxStringSize { get; }
         /// <summary>
+        /// If the <see cref="MaxStringSize"/> is a fixed string size
+        /// </summary>
+        public abstract static bool IsFixedStringSize { get; }
+        /// <summary>
         /// Serialized string size (length; or <see langword="null"/>, if not predictable)
         /// </summary>
         int? StringSize { get; }
@@ -50,6 +54,12 @@ namespace wan24.Core
         /// <typeparam name="T">Interface implementing type</typeparam>
         /// <returns>Length or <see langword="null"/>, if not predictable</returns>
         public static int? GetMaxStringSize<T>() where T : ISerializeString => T.MaxStringSize;
+        /// <summary>
+        /// Get if the <see cref="MaxStringSize"/> is a fixed string size
+        /// </summary>
+        /// <typeparam name="T">Interface implementing type</typeparam>
+        /// <returns>If the maximum string size is fixed</returns>
+        public static bool GetIsFixedStringSize<T>() where T : ISerializeString => T.IsFixedStringSize;
     }
 
     /// <summary>

@@ -71,7 +71,13 @@ namespace wan24.Core
         public static int? MaxStructureSize => MAX_BUFFER_LEN;
 
         /// <inheritdoc/>
+        public static bool IsFixedStructureSize => false;
+
+        /// <inheritdoc/>
         public static int? MaxStringSize => MAX_STR_LEN;
+
+        /// <inheritdoc/>
+        public static bool IsFixedStringSize => false;
 
         /// <inheritdoc/>
         int? ISerializeBinary.StructureSize => StructureSize;

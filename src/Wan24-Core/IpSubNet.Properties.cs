@@ -14,7 +14,13 @@ namespace wan24.Core
         public static int? MaxStructureSize => IPV6_STRUCTURE_SIZE;
 
         /// <inheritdoc/>
+        public static bool IsFixedStructureSize => false;
+
+        /// <inheritdoc/>
         public static int? MaxStringSize => byte.MaxValue;
+
+        /// <inheritdoc/>
+        public static bool IsFixedStringSize => false;
 
         /// <inheritdoc/>
         int? ISerializeBinary.StructureSize => StructureSize;

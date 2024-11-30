@@ -65,3 +65,21 @@ There are some extenion methods which can make your life with collections more e
 | ------ | ----------- |
 | `AddRange(Async)` | Add a list of items |
 | `Move(Index/Item)(Up/Down)` | Move an item at an index up (decrease its index) or down (increase its index) |
+
+## Generic/Non-generic list/dictionary wrapper
+
+If you need to work with an `IList<T>` or `IDictionary<tKey, tValue>` type, but you don't know the generic type arguments for the interfaces, and the object doesn't implement `IList` or `IDictionary`, you can use the `Generic(List|Dictionary)Wrapper`:
+
+```cs
+IList wrappedGenericList = new GenericListWrapper(anyGenericList);
+// ((GenericListWrapper)wrappedGenericList).ItemType serves the generic interface argument
+
+IDictionary wrappedGenericDictionary = new GenericDictionaryWrapper(anyGenericDictionary);
+// ((GenericDictionaryWrapper)wrappedGenericDictionary).Key/ValueType serves the generic interface arguments
+```
+
+**NOTE**: The non-generic list/dictionary interface allows working with the `object` type - but because a generic interface is being wrapped, the given arguments type must match their generic arguments.
+
+The opposite logic is implemented using the `NonGeneric(List|Dictionary)Wrapper`, which wraps an `IList` or `IDictionary` with the `IList<T>` or `IDictionary<tKey, tValue>` interface, which does type casts for you.
+
+**NOTE**: The generic list/dictionary interface requires working with a string key/value type - but because a non-generic interface is being wrapped, and the underlaying collection uses `object`, all items must match the used generic type arguments.
