@@ -30,7 +30,7 @@ namespace wan24.Core
             switch (objType)
             {
                 case SerializedObjectTypes.Numeric:
-                    return static (stream, value) => StreamExtensions.WriteNumeric(stream, (dynamic)value!);
+                    return static (stream, value) => StreamExtensions.WriteNumeric(stream, value!);
                 case SerializedObjectTypes.String:
                     return static (stream, value) => stream.Write(value!.CastType<string>());
                 case SerializedObjectTypes.Boolean:
@@ -66,13 +66,13 @@ namespace wan24.Core
                                 ((ISerializeBinary)value!).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
-                    : (stream, value) =>
-                    {
-                        // Final type with a dynamic length
-                        Span<byte> bufferSpan = buffer.Value.Memory.Span;
-                        stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value!).GetBytes(bufferSpan)]); ;
-                    }
-                    : type.GetIsFixedStructureSize() && type.CanConstruct()
+                            : (stream, value) =>
+                            {
+                                // Final type with a dynamic length
+                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value!).GetBytes(bufferSpan)]); ;
+                            }
+                        : type.GetIsFixedStructureSize() && type.CanConstruct()
                             ? (stream, value) =>
                             {
                                 // Constructable type with a fixed length
@@ -81,13 +81,13 @@ namespace wan24.Core
                                 ((ISerializeBinary)value).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
-                    : (stream, value) =>
-                    {
-                        // Type with a dynamic length
-                        Span<byte> bufferSpan = buffer.Value.Memory.Span;
-                        stream.Write(value!.GetType());
-                        stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
-                    };
+                        : (stream, value) =>
+                        {
+                            // Type with a dynamic length
+                            Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                            stream.Write(value!.GetType());
+                            stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
+                        };
                 case SerializedObjectTypes.SerializeString:
                     return type.IsFinalType()
                         ? static (stream, value) => stream.Write(value!.ToString() ?? string.Empty)
@@ -97,6 +97,8 @@ namespace wan24.Core
                             stream.Write(value.ToString() ?? string.Empty);
                         };
                 case SerializedObjectTypes.Enumerable:
+                    return static (stream, item) => { };//TODO Write enumerable
+                case SerializedObjectTypes.Enum:
                     {
                         Type numericType = type.GetEnumUnderlyingType();
                         return (stream, value) => StreamExtensions.WriteNumeric(stream, (dynamic)Convert.ChangeType(value!, numericType));
@@ -139,7 +141,7 @@ namespace wan24.Core
             switch (objType)
             {
                 case SerializedObjectTypes.Numeric:
-                    return static (stream, value) => StreamExtensions.WriteNumericNullable(stream, (dynamic)value!);
+                    return static (stream, value) => StreamExtensions.WriteNumericNullable(stream, value!);
                 case SerializedObjectTypes.String:
                     return static (stream, value) => stream.Write(value?.CastType<string>());
                 case SerializedObjectTypes.Boolean:
@@ -163,11 +165,11 @@ namespace wan24.Core
                             stream.Write(value is not null);
                             ((ISerializeStream?)value)?.SerializeTo(stream);
                         }
-                    : static (stream, value) =>
-                    {
-                        stream.WriteNullable(value?.GetType());
-                        ((ISerializeStream?)value)?.SerializeTo(stream);
-                    };
+                        : static (stream, value) =>
+                        {
+                            stream.WriteNullable(value?.GetType());
+                            ((ISerializeStream?)value)?.SerializeTo(stream);
+                        };
                 case SerializedObjectTypes.SerializeBinary:
                     if (!buffer.HasValue) throw new ArgumentNullException(nameof(buffer));
                     return type.IsFinalType()
@@ -181,13 +183,13 @@ namespace wan24.Core
                                 ((ISerializeBinary)value!).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
-                    : (stream, value) =>
-                    {
-                        // Final type with a dynamic length
-                        Memory<byte> bufferMem = buffer.Value.Memory;
-                        stream.WriteNullableWithLengthInfo(value is null ? null : bufferMem[..((ISerializeBinary)value).GetBytes(bufferMem.Span)]);
-                    }
-                    : type.GetIsFixedStructureSize() && type.CanConstruct()
+                            : (stream, value) =>
+                            {
+                                // Final type with a dynamic length
+                                Memory<byte> bufferMem = buffer.Value.Memory;
+                                stream.WriteNullableWithLengthInfo(value is null ? null : bufferMem[..((ISerializeBinary)value).GetBytes(bufferMem.Span)]);
+                            }
+                        : type.GetIsFixedStructureSize() && type.CanConstruct()
                             ? (stream, value) =>
                             {
                                 // Constructable type with a fixed length
@@ -197,14 +199,14 @@ namespace wan24.Core
                                 ((ISerializeBinary)value).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
-                    : (stream, value) =>
-                    {
-                        // Type with a dynamic length
-                        stream.WriteNullable(value?.GetType());
-                        if (value is null) return;
-                        Span<byte> bufferSpan = buffer.Value.Memory.Span;
-                        stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
-                    };
+                        : (stream, value) =>
+                        {
+                            // Type with a dynamic length
+                            stream.WriteNullable(value?.GetType());
+                            if (value is null) return;
+                            Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                            stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
+                        };
                 case SerializedObjectTypes.SerializeString:
                     return type.IsFinalType()
                         ? static (stream, value) => stream.Write(value?.ToString())
@@ -215,6 +217,8 @@ namespace wan24.Core
                             stream.Write(value.ToString() ?? string.Empty);
                         };
                 case SerializedObjectTypes.Enumerable:
+                    return static (stream, item) => { };//TODO Write enumerable
+                case SerializedObjectTypes.Enum:
                     {
                         Type numericType = type.GetEnumUnderlyingType();
                         return (stream, value) =>

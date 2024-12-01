@@ -1,4 +1,6 @@
-﻿using System.Runtime;
+﻿using System.Collections.Concurrent;
+using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace wan24.Core
 {
@@ -7,6 +9,11 @@ namespace wan24.Core
     /// </summary>
     public static class GenericHelper
     {
+        /// <summary>
+        /// Default values
+        /// </summary>
+        private static readonly ConcurrentDictionary<Type, dynamic> DefaultValues = [];
+
         /// <summary>
         /// Determine if two values are equal
         /// </summary>
@@ -27,7 +34,7 @@ namespace wan24.Core
         /// <param name="hashCodeB">Hash code of B</param>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool AreEqual<T>(in T? a, in int hashCodeA, in T? b, in int hashCodeB)
-            => hashCodeA == hashCodeB && (a is null && b is null) || (a is not null && b is not null && a.Equals(b));
+            => hashCodeA == hashCodeB && ((a is null && b is null) || (a is not null && b is not null && a.Equals(b)));
 
         /// <summary>
         /// Determine if a value is <see langword="null"/>
@@ -55,5 +62,17 @@ namespace wan24.Core
         /// <returns>Is <see langword="null"/> or the default?</returns>
         [TargetedPatchingOptOut("Tiny method")]
         public static bool IsNullOrDefault<T>(in T? value) => IsNull(value) || IsDefault(value);
+
+        /// <summary>
+        /// Get the <see langword="default"/> of a type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <param name="useCache">If to cache the returned default value for the given <c>type</c>, and if to use the cache for a fast lookup</param>
+        /// <returns><see langword="default"/></returns>
+        [TargetedPatchingOptOut("Tiny method")]
+        public static dynamic GetDefault(in Type type, in bool useCache = true)
+            => useCache
+                ? DefaultValues.GetOrAdd(type, type => RuntimeHelpers.GetUninitializedObject(type))
+                : RuntimeHelpers.GetUninitializedObject(type);
     }
 }

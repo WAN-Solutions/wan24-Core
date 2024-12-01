@@ -161,7 +161,7 @@ namespace Wan24_Core_Tests
                 new(typeof(string),stream=>stream.Write(typeof(string)),stream=>stream.ReadType(VERSION),null),
                 new(null,stream=>stream.WriteNullable((Type?)null),stream=>stream.ReadTypeNullable(VERSION),1),
                 // JSON
-                new("test",stream=>stream.WriteJson("test"),stream=>stream.ReadJson<string>(VERSION, new byte[16]),null),
+                new("test",stream=>stream.WriteJson("test"),stream=>stream.ReadJson<string>(VERSION, new byte[7]),7),
                 new(null,stream=>stream.WriteJsonNullable<string>(null),stream=>stream.ReadJsonNullable<string>(VERSION, new byte[1]),1),
                 // Enum
                 new(OptInOut.OptOut,stream=>stream.Write(OptInOut.OptOut),stream=>stream.ReadEnum<OptInOut>(VERSION),1),

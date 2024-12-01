@@ -8,11 +8,10 @@ namespace wan24.Core
         /// <summary>
         /// Write a number
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <returns>Numeric type</returns>
-        public static NumericTypes WriteNumeric<T>(this Stream stream, T value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+        public static NumericTypes WriteNumeric(this Stream stream, object value)
         {
             NumericTypes type = value.GetNumericType();
             if (type == NumericTypes.None) throw new ArgumentException("Not a number", nameof(value));
@@ -43,39 +42,36 @@ namespace wan24.Core
         /// <summary>
         /// Write a number
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <returns>Numeric type</returns>
-        public static NumericTypes WriteNumericNullable<T>(this Stream stream, T? value) where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+        public static NumericTypes WriteNumericNullable(this Stream stream, object? value)
         {
-            if (!value.HasValue)
+            if (value is null)
             {
                 stream.Write((byte)NumericTypes.None);
                 return NumericTypes.None;
             }
             else
             {
-                return stream.WriteNumeric(value.Value);
+                return stream.WriteNumeric(value);
             }
         }
 
         /// <summary>
         /// Write a number
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Numeric type</returns>
-        public static async Task<NumericTypes> WriteNumericAsync<T>(
+        public static async Task<NumericTypes> WriteNumericAsync(
             this Stream stream,
-            T value,
+            object value,
             Memory<byte>? buffer = null,
             CancellationToken cancellationToken = default
             )
-            where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
             NumericTypes type = value.GetNumericType();
             if (type == NumericTypes.None) throw new ArgumentException("Not a number", nameof(value));
@@ -106,28 +102,26 @@ namespace wan24.Core
         /// <summary>
         /// Write a number
         /// </summary>
-        /// <typeparam name="T">Number type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
         /// <param name="buffer">Buffer</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Numeric type</returns>
-        public static async Task<NumericTypes> WriteNumericNullableAsync<T>(
+        public static async Task<NumericTypes> WriteNumericNullableAsync(
             this Stream stream,
-            T? value,
+            object? value,
             Memory<byte>? buffer = null,
             CancellationToken cancellationToken = default
             )
-            where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
         {
-            if (!value.HasValue)
+            if (value is null)
             {
                 await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
                 return NumericTypes.None;
             }
             else
             {
-                return await stream.WriteNumericAsync(value.Value, buffer, cancellationToken).DynamicContext();
+                return await stream.WriteNumericAsync(value, buffer, cancellationToken).DynamicContext();
             }
         }
 
@@ -141,29 +135,39 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static T ReadNumeric<T>(this Stream stream, in int version, in Memory<byte>? buffer = null)
             where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => (T)stream.ReadNumeric(version, typeof(T), buffer);
+
+        /// <summary>
+        /// Read a number
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="numericType">Number type</param>
+        /// <param name="buffer">Buffer (required for reading a big integer only)</param>
+        /// <returns>Value</returns>
+        public static object ReadNumeric(this Stream stream, in int version, in Type numericType, in Memory<byte>? buffer = null)
         {
-            NumericTypes requestedType = typeof(T).GetNumericType();
-            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {typeof(T)}", nameof(T));
+            NumericTypes requestedType = numericType.GetNumericType();
+            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {numericType}", nameof(numericType));
             NumericTypes type = (NumericTypes)stream.ReadOneByte(version);
-            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType).CastType<T>();
+            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType);
             return type switch
             {
-                NumericTypes.SByte => stream.ReadByte().CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Byte => stream.ReadByte().CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Short => stream.ReadShort(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UShort => stream.ReadUShort(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int => stream.ReadInteger(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt => stream.ReadUInteger(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Long => stream.ReadLong(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.ULong => stream.ReadULong(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int128 => stream.ReadInt128(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt128 => stream.ReadUInt128(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Half => stream.ReadHalf(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Float => stream.ReadFloat(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Double => stream.ReadDouble(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Decimal => stream.ReadDecimal(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.BigInteger => stream.ReadBigInteger(version, buffer ?? throw new ArgumentNullException(nameof(buffer))).CastNumericValue(requestedType)
-                    .CastType<T>(),
+                NumericTypes.SByte => stream.ReadByte().CastNumericValue(requestedType),
+                NumericTypes.Byte => stream.ReadByte().CastNumericValue(requestedType),
+                NumericTypes.Short => stream.ReadShort(version).CastNumericValue(requestedType),
+                NumericTypes.UShort => stream.ReadUShort(version).CastNumericValue(requestedType),
+                NumericTypes.Int => stream.ReadInteger(version).CastNumericValue(requestedType),
+                NumericTypes.UInt => stream.ReadUInteger(version).CastNumericValue(requestedType),
+                NumericTypes.Long => stream.ReadLong(version).CastNumericValue(requestedType),
+                NumericTypes.ULong => stream.ReadULong(version).CastNumericValue(requestedType),
+                NumericTypes.Int128 => stream.ReadInt128(version).CastNumericValue(requestedType),
+                NumericTypes.UInt128 => stream.ReadUInt128(version).CastNumericValue(requestedType),
+                NumericTypes.Half => stream.ReadHalf(version).CastNumericValue(requestedType),
+                NumericTypes.Float => stream.ReadFloat(version).CastNumericValue(requestedType),
+                NumericTypes.Double => stream.ReadDouble(version).CastNumericValue(requestedType),
+                NumericTypes.Decimal => stream.ReadDecimal(version).CastNumericValue(requestedType),
+                NumericTypes.BigInteger => stream.ReadBigInteger(version, buffer ?? throw new ArgumentNullException(nameof(buffer))).CastNumericValue(requestedType),
                 _ => throw new InvalidDataException($"Unsupported numeric type #{(byte)type}")
             };
         }
@@ -178,30 +182,40 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static T? ReadNumericNullable<T>(this Stream stream, in int version, in Memory<byte>? buffer = null)
             where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => (T?)stream.ReadNumericNullable(version, typeof(T), buffer);
+
+        /// <summary>
+        /// Read a number
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="numericType">Number type</param>
+        /// <param name="buffer">Buffer (required for reading a big integer only)</param>
+        /// <returns>Value</returns>
+        public static object? ReadNumericNullable(this Stream stream, in int version, in Type numericType, in Memory<byte>? buffer = null)
         {
-            NumericTypes requestedType = typeof(T).GetNumericType();
-            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {typeof(T)}", nameof(T));
+            NumericTypes requestedType = numericType.GetNumericType();
+            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {numericType}", nameof(numericType));
             NumericTypes type = (NumericTypes)stream.ReadOneByte(version);
-            if (type == NumericTypes.None) return new Nullable<T>();
-            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType).CastType<T>();
+            if (type == NumericTypes.None) return null;
+            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType);
             return type switch
             {
-                NumericTypes.SByte => stream.ReadByte().CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Byte => stream.ReadByte().CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Short => stream.ReadShort(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UShort => stream.ReadUShort(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int => stream.ReadInteger(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt => stream.ReadUInteger(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Long => stream.ReadLong(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.ULong => stream.ReadULong(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int128 => stream.ReadInt128(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt128 => stream.ReadUInt128(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Half => stream.ReadHalf(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Float => stream.ReadFloat(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Double => stream.ReadDouble(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Decimal => stream.ReadDecimal(version).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.BigInteger => stream.ReadBigInteger(version, buffer ?? throw new ArgumentNullException(nameof(buffer))).CastNumericValue(requestedType)
-                    .CastType<T>(),
+                NumericTypes.SByte => stream.ReadByte().CastNumericValue(requestedType),
+                NumericTypes.Byte => stream.ReadByte().CastNumericValue(requestedType),
+                NumericTypes.Short => stream.ReadShort(version).CastNumericValue(requestedType),
+                NumericTypes.UShort => stream.ReadUShort(version).CastNumericValue(requestedType),
+                NumericTypes.Int => stream.ReadInteger(version).CastNumericValue(requestedType),
+                NumericTypes.UInt => stream.ReadUInteger(version).CastNumericValue(requestedType),
+                NumericTypes.Long => stream.ReadLong(version).CastNumericValue(requestedType),
+                NumericTypes.ULong => stream.ReadULong(version).CastNumericValue(requestedType),
+                NumericTypes.Int128 => stream.ReadInt128(version).CastNumericValue(requestedType),
+                NumericTypes.UInt128 => stream.ReadUInt128(version).CastNumericValue(requestedType),
+                NumericTypes.Half => stream.ReadHalf(version).CastNumericValue(requestedType),
+                NumericTypes.Float => stream.ReadFloat(version).CastNumericValue(requestedType),
+                NumericTypes.Double => stream.ReadDouble(version).CastNumericValue(requestedType),
+                NumericTypes.Decimal => stream.ReadDecimal(version).CastNumericValue(requestedType),
+                NumericTypes.BigInteger => stream.ReadBigInteger(version, buffer ?? throw new ArgumentNullException(nameof(buffer))).CastNumericValue(requestedType),
                 _ => throw new InvalidDataException($"Unsupported numeric type #{(byte)type}")
             };
         }
@@ -217,29 +231,47 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static async Task<T> ReadNumericAsync<T>(this Stream stream, int version, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
             where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => (T)await stream.ReadNumericAsync(version, typeof(T), buffer, cancellationToken).DynamicContext();
+
+        /// <summary>
+        /// Read a number
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="numericType">Number type</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Value</returns>
+        public static async Task<object> ReadNumericAsync(
+            this Stream stream, 
+            int version, 
+            Type numericType, 
+            Memory<byte>? buffer = null, 
+            CancellationToken cancellationToken = default
+            )
         {
-            NumericTypes requestedType = typeof(T).GetNumericType();
-            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {typeof(T)}", nameof(T));
+            NumericTypes requestedType = numericType.GetNumericType();
+            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {numericType}", nameof(numericType));
             NumericTypes type = (NumericTypes)await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext();
-            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType).CastType<T>();
+            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType);
             return type switch
             {
-                NumericTypes.SByte => (await stream.ReadOneSByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Byte => (await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Short => (await stream.ReadShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UShort => (await stream.ReadUShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int => (await stream.ReadIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Decimal => (await stream.ReadDecimalAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
+                NumericTypes.SByte => (await stream.ReadOneSByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Byte => (await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Short => (await stream.ReadShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UShort => (await stream.ReadUShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Int => (await stream.ReadIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Decimal => (await stream.ReadDecimalAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
                 NumericTypes.BigInteger => (await stream.ReadBigIntegerAsync(version, buffer ?? throw new ArgumentNullException(nameof(buffer)), cancellationToken)
-                    .DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
+                    .DynamicContext()).CastNumericValue(requestedType),
                 _ => throw new InvalidDataException($"Unsupported numeric type #{(byte)type}")
             };
         }
@@ -255,30 +287,42 @@ namespace wan24.Core
         /// <returns>Value</returns>
         public static async Task<T?> ReadNumericNullableAsync<T>(this Stream stream, int version, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
             where T : struct, IComparable, ISpanFormattable, IComparable<T>, IEquatable<T>
+            => (T?)await stream.ReadNumericNullableAsync(version, typeof(T), buffer, cancellationToken).DynamicContext();
+
+        /// <summary>
+        /// Read a number
+        /// </summary>
+        /// <param name="stream">Stream</param>
+        /// <param name="version">Data structure version</param>
+        /// <param name="numericType">Number type</param>
+        /// <param name="buffer">Buffer</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Value</returns>
+        public static async Task<object?> ReadNumericNullableAsync(this Stream stream, int version, Type numericType, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
         {
-            NumericTypes requestedType = typeof(T).GetNumericType();
-            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {typeof(T)}", nameof(T));
+            NumericTypes requestedType = numericType.GetNumericType();
+            if (requestedType == NumericTypes.None) throw new ArgumentException($"Unsupported type {numericType}", nameof(numericType));
             NumericTypes type = (NumericTypes)await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext();
-            if (type == NumericTypes.None) return new Nullable<T>();
-            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType).CastType<T>();
+            if (type == NumericTypes.None) return null;
+            if (type.HasValue()) return type.GetValue().CastNumericValue(requestedType);
             return type switch
             {
-                NumericTypes.SByte => (await stream.ReadOneSByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Byte => (await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Short => (await stream.ReadShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UShort => (await stream.ReadUShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int => (await stream.ReadIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
-                NumericTypes.Decimal => (await stream.ReadDecimalAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
+                NumericTypes.SByte => (await stream.ReadOneSByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Byte => (await stream.ReadOneByteAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Short => (await stream.ReadShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UShort => (await stream.ReadUShortAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Int => (await stream.ReadIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UInt => (await stream.ReadUIntegerAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Long => (await stream.ReadLongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.ULong => (await stream.ReadULongAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Int128 => (await stream.ReadInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.UInt128 => (await stream.ReadUInt128Async(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Half => (await stream.ReadHalfAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Float => (await stream.ReadFloatAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Double => (await stream.ReadDoubleAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
+                NumericTypes.Decimal => (await stream.ReadDecimalAsync(version, buffer, cancellationToken).DynamicContext()).CastNumericValue(requestedType),
                 NumericTypes.BigInteger => (await stream.ReadBigIntegerAsync(version, buffer ?? throw new ArgumentNullException(nameof(buffer)), cancellationToken)
-                    .DynamicContext()).CastNumericValue(requestedType).CastType<T>(),
+                    .DynamicContext()).CastNumericValue(requestedType),
                 _ => throw new InvalidDataException($"Unsupported numeric type #{(byte)type}")
             };
         }

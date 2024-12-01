@@ -50,9 +50,19 @@ namespace Wan24_Core_Tests
             Assert.IsTrue(GenericHelper.IsNullOrDefault(value));
         }
 
+        [TestMethod]
+        public void GetDefault_Tests()
+        {
+            dynamic defaultValue = GenericHelper.GetDefault(typeof(bool));
+            Assert.AreEqual(new TestObject<bool>().Value, defaultValue);
+            Assert.AreEqual(typeof(bool), Test(defaultValue));
+        }
+
         public class TestObject<T>
         {
             public T? Value = default;
         }
+
+        public static Type Test<T>(T value) where T : struct => typeof(T);
     }
 }

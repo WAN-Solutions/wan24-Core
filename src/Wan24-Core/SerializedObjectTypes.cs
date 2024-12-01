@@ -74,6 +74,11 @@ namespace wan24.Core
         [DisplayText("String serializable")]
         SerializeString = 12,
         /// <summary>
+        /// <see cref="Enum"/> value
+        /// </summary>
+        [DisplayText("Enumeration")]
+        Enum = 13,
+        /// <summary>
         /// Empty flag (empty or the default value of a value type)
         /// </summary>
         [DisplayText("Empty")]
