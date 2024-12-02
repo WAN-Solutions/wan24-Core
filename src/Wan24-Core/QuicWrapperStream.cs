@@ -1,9 +1,9 @@
-﻿#if !RELEASE || PREVIEW
+﻿#if !RELEASE || PREVIEW || NET9_0_OR_GREATER
 using System.Net.Quic;
 using System.Runtime.Versioning;
 using static wan24.Core.TranslationHelper;
 
-//TODO Enable for release builds as soon as QUIC is not in .NET preview anymore
+//TODO Remove pre-compiler directives with .NET 9
 
 #pragma warning disable CA1416 // Not available on all platforms
 namespace wan24.Core
@@ -11,7 +11,9 @@ namespace wan24.Core
     /// <summary>
     /// QUIC wrapper stream
     /// </summary>
+#if !NET9_0_OR_GREATER
     [RequiresPreviewFeatures]
+#endif
     public partial class QuicWrapperStream : WrapperStream<QuicStream>
     {
         /// <summary>

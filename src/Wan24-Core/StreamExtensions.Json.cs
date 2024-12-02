@@ -11,7 +11,8 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        public static void WriteJson<T>(this Stream stream, T value) => stream.Write(JsonHelper.Encode(value));
+        /// <param name="options">Options</param>
+        public static void WriteJson<T>(this Stream stream, T value, JsonWritingOptions? options = null) => stream.Write(JsonHelper.Encode(value));
 
         /// <summary>
         /// Write a value JSON serialized
@@ -19,7 +20,8 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        public static void WriteJsonNullable<T>(this Stream stream, T? value)
+        /// <param name="options">Options</param>
+        public static void WriteJsonNullable<T>(this Stream stream, T? value, JsonWritingOptions? options = null)
         {
             if (value is null)
             {
@@ -27,7 +29,7 @@ namespace wan24.Core
             }
             else
             {
-                stream.Write(JsonHelper.Encode(value));
+                stream.WriteJson(value, options);
             }
         }
         /// <summary>
@@ -36,10 +38,10 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        /// <param name="buffer">Buffer</param>
+        /// <param name="options">Options</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task WriteJsonAsync<T>(this Stream stream, T value, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
-            => await stream.WriteAsync(JsonHelper.Encode(value), buffer, cancellationToken).DynamicContext();
+        public static async Task WriteJsonAsync<T>(this Stream stream, T value, JsonWritingOptions? options = null, CancellationToken cancellationToken = default)
+            => await stream.WriteAsync(JsonHelper.Encode(value), options?.Buffer, cancellationToken).DynamicContext();
 
         /// <summary>
         /// Write a value JSON serialized
@@ -47,17 +49,17 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="value">Value</param>
-        /// <param name="buffer">Buffer</param>
+        /// <param name="options">Options</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        public static async Task WriteJsonNullableAsync<T>(this Stream stream, T? value, Memory<byte>? buffer = null, CancellationToken cancellationToken = default)
+        public static async Task WriteJsonNullableAsync<T>(this Stream stream, T? value, JsonWritingOptions? options = null, CancellationToken cancellationToken = default)
         {
             if (value is null)
             {
-                await stream.WriteAsync((byte)NumericTypes.None, buffer, cancellationToken).DynamicContext();
+                await stream.WriteAsync((byte)NumericTypes.None, options?.Buffer, cancellationToken).DynamicContext();
             }
             else
             {
-                await stream.WriteAsync(JsonHelper.Encode(value), buffer, cancellationToken).DynamicContext();
+                await stream.WriteJsonAsync(value, options, cancellationToken).DynamicContext();
             }
         }
 
@@ -67,11 +69,11 @@ namespace wan24.Core
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="stream">Stream</param>
         /// <param name="version">Data structure version</param>
-        /// <param name="buffer">Buffer</param>
+        /// <param name="options">JSON reading options</param>
         /// <returns>Value</returns>
-        public static T ReadJson<T>(this Stream stream, in int version, in Span<byte> buffer)
+        public static T ReadJson<T>(this Stream stream, in int version, JsonReadingOptions options)
         {
-            int jsonLen = Encoding.UTF8.GetMaxByteCount(buffer.Length);
+            int jsonLen = Encoding.UTF8.GetMaxByteCount(options.Buffer!.Value.Length);
             using RentedMemoryRef<char> jsonBuffer = new(jsonLen, clean: false);
             Span<char> jsonBufferSpan = jsonBuffer.Span;
             int len = stream.ReadString(version, jsonBufferSpan, minLen: 1);

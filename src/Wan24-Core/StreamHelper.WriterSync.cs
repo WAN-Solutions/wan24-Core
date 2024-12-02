@@ -10,21 +10,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="objType">Serialized object type (if <see cref="SerializedObjectTypes.None"/>, it'll be determined from the given object type <c>T</c>)</param>
-        /// <param name="useInterfaces">If to use supported interfaces (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
-        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
-        /// <param name="useItemInterfaces">If to use supported interfaces for items (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
-        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
-        /// <param name="buffer">Buffer (required, if <c>objType</c> is (going to be) <see cref="SerializedObjectTypes.SerializeBinary"/>)</param>
+        /// <param name="options">Options</param>
         /// <returns>Writer</returns>
         public static Action<Stream, T> GetWriter<T>(
             SerializedObjectTypes objType = SerializedObjectTypes.None,
-            in bool? useInterfaces = null,
-            bool? useItemInterfaces = null,
-            RentedMemory<byte>? buffer = null
+            StreamExtensions.WritingOptions? options = null
             )
         {
+            options = StreamExtensions.WritingOptions.DefaultOptions;
             Type type = typeof(T);
-            if (objType == SerializedObjectTypes.None) objType = type.GetSerializedType(useInterfaces ?? type.IsInterface);
+            if (objType == SerializedObjectTypes.None) objType = type.GetSerializedType(options.UseInterfaces ?? type.IsInterface);
             if ((objType == SerializedObjectTypes.Json && type.IsInterface) || type == typeof(object))
                 return static (stream, item) => { };//TODO Write any object
             switch (objType)
@@ -39,8 +34,8 @@ namespace wan24.Core
                     return static (stream, value) => stream.Write(value!.CastType<Type>());
                 case SerializedObjectTypes.Array:
                     return type.FindGenericType(typeof(IList<>)) is null
-                        ? (stream, value) => stream.Write(value!.CastType<IList>(), useItemInterfaces)
-                        : (stream, value) => StreamExtensions.WriteList(stream, (dynamic)value!, useItemInterfaces);
+                        ? (stream, value) => stream.Write(value!.CastType<IList>(), options.ListItemOptions)
+                        : (stream, value) => StreamExtensions.WriteList(stream, (dynamic)value!, options.ListItemOptions);
                 case SerializedObjectTypes.Dictionary:
                     return type.FindGenericType(typeof(IDictionary<,>)) is null
                         ? static (stream, value) => { }
@@ -56,27 +51,27 @@ namespace wan24.Core
                             ((ISerializeStream)value).SerializeTo(stream);
                         };
                 case SerializedObjectTypes.SerializeBinary:
-                    if (!buffer.HasValue) throw new ArgumentNullException(nameof(buffer));
+                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
                     return type.IsFinalType()
                         ? type.GetIsFixedStructureSize()
                             ? (stream, value) =>
                             {
                                 // Final type with a fixed length
-                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                Span<byte> bufferSpan = options.Buffer.Value.Span;
                                 ((ISerializeBinary)value!).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
                             : (stream, value) =>
                             {
                                 // Final type with a dynamic length
-                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                Span<byte> bufferSpan = options.Buffer.Value.Span;
                                 stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value!).GetBytes(bufferSpan)]); ;
                             }
                         : type.GetIsFixedStructureSize() && type.CanConstruct()
                             ? (stream, value) =>
                             {
                                 // Constructable type with a fixed length
-                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                Span<byte> bufferSpan = options.Buffer.Value.Span;
                                 stream.Write(value!.GetType());
                                 ((ISerializeBinary)value).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
@@ -84,7 +79,7 @@ namespace wan24.Core
                         : (stream, value) =>
                         {
                             // Type with a dynamic length
-                            Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                            Span<byte> bufferSpan = options.Buffer.Value.Span;
                             stream.Write(value!.GetType());
                             stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
                         };
@@ -121,21 +116,16 @@ namespace wan24.Core
         /// </summary>
         /// <typeparam name="T">Object type</typeparam>
         /// <param name="objType">Serialized object type (if <see cref="SerializedObjectTypes.None"/>, it'll be determined from the given object type <c>T</c>)</param>
-        /// <param name="useInterfaces">If to use supported interfaces (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
-        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
-        /// <param name="useItemInterfaces">If to use supported interfaces for items (<see cref="IList"/>, <see cref="IList{T}"/>, <see cref="IDictionary"/>, 
-        /// <see cref="IDictionary{TKey, TValue}"/>, <see cref="IEnumerable"/>, <see cref="IEnumerable{T}"/> before JSON)</param>
-        /// <param name="buffer">Buffer (required, if <c>objType</c> is (going to be) <see cref="SerializedObjectTypes.SerializeBinary"/>)</param>
+        /// <param name="options">Options</param>
         /// <returns>Writer</returns>
         public static Action<Stream, T?> GetNullableWriter<T>(
             SerializedObjectTypes objType = SerializedObjectTypes.None,
-            in bool? useInterfaces = null,
-            bool? useItemInterfaces = null,
-            RentedMemory<byte>? buffer = null
+            StreamExtensions.WritingOptions? options = null
             )
         {
+            options ??= StreamExtensions.WritingOptions.DefaultOptions;
             Type type = typeof(T);
-            if (objType == SerializedObjectTypes.None) objType = type.GetSerializedType(useInterfaces ?? type.IsInterface);
+            if (objType == SerializedObjectTypes.None) objType = type.GetSerializedType(options.UseInterfaces ?? type.IsInterface);
             if ((objType == SerializedObjectTypes.Json && type.IsInterface) || type == typeof(object))
                 return static (stream, item) => { };//TODO Write any object
             switch (objType)
@@ -150,8 +140,8 @@ namespace wan24.Core
                     return static (stream, value) => stream.WriteNullable(value?.CastType<Type>());
                 case SerializedObjectTypes.Array:
                     return type.FindGenericType(typeof(IList<>)) is null
-                        ? (stream, value) => stream.WriteNullable(value?.CastType<IList>(), useItemInterfaces)
-                        : (stream, value) => StreamExtensions.WriteListNullable(stream, (dynamic?)value, useItemInterfaces);
+                        ? (stream, value) => stream.WriteNullable(value?.CastType<IList>(), options.ListItemOptions)
+                        : (stream, value) => StreamExtensions.WriteListNullable(stream, (dynamic?)value, options.ListItemOptions);
                 case SerializedObjectTypes.Dictionary:
                     return type.FindGenericType(typeof(IDictionary<,>)) is null
                         ? static (stream, value) => { }
@@ -171,7 +161,7 @@ namespace wan24.Core
                             ((ISerializeStream?)value)?.SerializeTo(stream);
                         };
                 case SerializedObjectTypes.SerializeBinary:
-                    if (!buffer.HasValue) throw new ArgumentNullException(nameof(buffer));
+                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
                     return type.IsFinalType()
                         ? type.GetIsFixedStructureSize()
                             ? (stream, value) =>
@@ -179,14 +169,14 @@ namespace wan24.Core
                                 // Final type with a fixed length
                                 stream.Write(value is not null);
                                 if (value is null) return;
-                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                Span<byte> bufferSpan = options.Buffer.Value.Span;
                                 ((ISerializeBinary)value!).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
                             : (stream, value) =>
                             {
                                 // Final type with a dynamic length
-                                Memory<byte> bufferMem = buffer.Value.Memory;
+                                Memory<byte> bufferMem = options.Buffer.Value;
                                 stream.WriteNullableWithLengthInfo(value is null ? null : bufferMem[..((ISerializeBinary)value).GetBytes(bufferMem.Span)]);
                             }
                         : type.GetIsFixedStructureSize() && type.CanConstruct()
@@ -195,7 +185,7 @@ namespace wan24.Core
                                 // Constructable type with a fixed length
                                 stream.WriteNullable(value?.GetType());
                                 if (value is null) return;
-                                Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                                Span<byte> bufferSpan = options.Buffer.Value.Span;
                                 ((ISerializeBinary)value).GetBytes(bufferSpan);
                                 stream.Write(bufferSpan);
                             }
@@ -204,7 +194,7 @@ namespace wan24.Core
                             // Type with a dynamic length
                             stream.WriteNullable(value?.GetType());
                             if (value is null) return;
-                            Span<byte> bufferSpan = buffer.Value.Memory.Span;
+                            Span<byte> bufferSpan = options.Buffer.Value.Span;
                             stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
                         };
                 case SerializedObjectTypes.SerializeString:
