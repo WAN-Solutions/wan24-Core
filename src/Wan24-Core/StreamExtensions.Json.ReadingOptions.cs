@@ -7,13 +7,16 @@ namespace wan24.Core
         /// <summary>
         /// JSON reading options
         /// </summary>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
         public record class JsonReadingOptions() : ReadingOptions()
         {
             /// <inheritdoc/>
-            public override required Memory<byte>? Buffer
+            public override required Memory<char>? StringBuffer
             {
-                get => base.Buffer;
-                init => base.Buffer = value ?? throw new ArgumentNullException(nameof(value), "Buffer required for JSON reading");
+                get => base.StringBuffer;
+                init => base.StringBuffer = value ?? throw new ArgumentNullException(nameof(value), "Buffer required for JSON reading");
             }
         }
     }

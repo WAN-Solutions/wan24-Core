@@ -10,7 +10,7 @@ namespace wan24.Core
     public static partial class StreamExtensions
     {
         /// <summary>
-        /// If to allow dangerous binary (de)serialization of anonymous types
+        /// If to allow dangerous binary (de)serialization of anonymous/abstract types and without limitations (length etc.)
         /// </summary>
         public static bool AllowDangerousBinarySerialization { get; set; }
 

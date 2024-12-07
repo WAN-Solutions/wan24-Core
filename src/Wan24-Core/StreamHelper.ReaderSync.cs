@@ -28,24 +28,27 @@
             switch (objType)
             {
                 case SerializedObjectTypes.Numeric:
-                    return (stream) => stream.ReadNumeric(version, type).CastType<T>();
+                    return (stream) => stream.ReadNumeric(version, type, options.Buffer).CastType<T>();
                 case SerializedObjectTypes.String:
-                    if (!options.StringBuffer.HasValue) throw new ArgumentNullException(nameof(options), "String buffer required for reading string");
-                    return (stream) =>
                     {
-                        Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                        return new string(bufferSpan[..stream.ReadString(version, bufferSpan, options.MinItemLength ?? 0)]).CastType<T>();
-                    };
+                        StreamExtensions.StringReadingOptions stringOptions = options as StreamExtensions.StringReadingOptions ?? options.StringItemOptions;
+                        return (stream) => new string(stringOptions.StringBuffer!.Value.Span[..stream.ReadString(version, stringOptions.StringEncoding, stringOptions)])
+                            .CastType<T>();
+                    }
                 case SerializedObjectTypes.Boolean:
                     return (stream) => stream.ReadBoolean(version).CastType<T>();
                 case SerializedObjectTypes.Type:
-                    return (stream) => stream.ReadType(version).CastType<T>();
+                    {
+                        StreamExtensions.TypeReadingOptions typeOptions = options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return (stream) => stream.ReadType(version, typeOptions).CastType<T>();
+                    }
                 case SerializedObjectTypes.Array:
                     if (!options.MaxItemCount.HasValue) throw new ArgumentNullException(nameof(options), "Max. item count required for reading array");
                     if (type.FindGenericType(typeof(IList<>)) is Type genericListType)
                     {
                         dynamic dummy = GenericHelper.GetDefault(TypeInfoExt.From(genericListType).FirstGenericArgument ?? throw new InvalidProgramException());
-                        return (stream) => StreamExtensions.ReadGenericList(stream, version, options.ListItemOptions, dummy: dummy);
+                        StreamExtensions.ListReadingOptions itemOptions = options.ListItemOptions;
+                        return (stream) => StreamExtensions.ReadGenericList(stream, version, itemOptions, dummy: dummy);
                     }
                     else
                     {
@@ -58,14 +61,24 @@
                 case SerializedObjectTypes.Stream:
                     return (stream) => stream.ReadStream(version).CastType<T>();
                 case SerializedObjectTypes.Serializable:
-                    return type.IsFinalType()
-                        ? (stream) => type.DeserializeFrom(stream, version).CastType<T>()
-                        : (stream) => stream.ReadType(version).DeserializeFrom(stream, version).CastType<T>();
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? (stream) => type.DeserializeFrom(stream, version).CastType<T>()
+                            : (stream) => stream.ReadType(version, typeOptions!).DeserializeFrom(stream, version).CastType<T>();
+                    }
                 case SerializedObjectTypes.SerializeBinary:
                     if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for reading binary serialized");
                     {
                         int? fixedStructureSize = type.GetMaxStructureSize();
-                        return type.IsFinalType()
+                        bool isFInalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFInalType
+                            ? null
+                            : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFInalType
                             ? fixedStructureSize.HasValue
                                 ? (stream) =>
                                 {
@@ -85,7 +98,7 @@
                                 ? (stream) =>
                                 {
                                     // Constructable type with a fixed length
-                                    Type valueType = stream.ReadType(version);
+                                    Type valueType = stream.ReadType(version, typeOptions!);
                                     Span<byte> bufferSpan = options.Buffer.Value.Span[..fixedStructureSize.Value];
                                     stream.ReadExactly(bufferSpan);
                                     return valueType.DeserializeFrom(bufferSpan).CastType<T>();
@@ -93,35 +106,37 @@
                                 : (stream) =>
                                 {
                                     // Type with a dynamic length
-                                    Type valueType = stream.ReadType(version);
+                                    Type valueType = stream.ReadType(version, typeOptions!);
                                     Span<byte> bufferSpan = options.Buffer.Value.Span;
                                     int len = stream.ReadDataWithLengthInfo(version, bufferSpan);
                                     return valueType.DeserializeFrom(bufferSpan[..len]).CastType<T>();
                                 };
                     }
                 case SerializedObjectTypes.SerializeString:
-                    if (!options.StringBuffer.HasValue) throw new ArgumentNullException(nameof(options), "String buffer required for reading string serialized");
-                    return type.IsFinalType()
-                        ? (stream) =>
-                        {
-                            Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                            int len = stream.ReadString(version, bufferSpan, options.MinItemLength ?? 0);
-                            return type.ParseObject(bufferSpan).CastType<T>();
-                        }
-                        : (stream) =>
-                        {
-                            Type valueType = stream.ReadType(version);
-                            Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                            int len = stream.ReadString(version, bufferSpan, options.MinItemLength ?? 0);
-                            return valueType.ParseObject(bufferSpan).CastType<T>();
-                        };
+                    {
+                        StreamExtensions.StringReadingOptions stringOptions = options as StreamExtensions.StringReadingOptions ?? options.StringItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFinalType ? null : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? (stream) =>
+                            {
+                                int len = stream.ReadString(version, stringOptions);
+                                return type.ParseObject(stringOptions.StringBuffer!.Value.Span[..len]).CastType<T>();
+                            }
+                            : (stream) =>
+                            {
+                                Type valueType = stream.ReadType(version, typeOptions!);
+                                int len = stream.ReadString(version, stringOptions);
+                                return valueType.ParseObject(stringOptions.StringBuffer!.Value.Span[..len]).CastType<T>();
+                            };
+                    }
                 case SerializedObjectTypes.Enum:
                     {
                         IEnumInfo enumInfo = type.GetEnumInfo();
                         Type numericType = enumInfo.NumericType;
                         return (stream) =>
                         {
-                            T res = stream.ReadNumeric(version, numericType).CastType<T>();
+                            T res = stream.ReadNumeric(version, numericType, options.Buffer).CastType<T>();
                             if (!enumInfo.IsValidValue(res)) throw new InvalidDataException($"Deserialized invalid {type} value of \"{res}\"");
                             return res;
                         };
@@ -129,10 +144,14 @@
                 case SerializedObjectTypes.Enumerable:
                     return static (stream) => default;//TODO Read enumerable
                 case SerializedObjectTypes.Json:
-                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for reading JSON serialized");
-                    return type.IsFinalType()
-                        ? (stream) => stream.ReadJson<T>(version, options.Buffer.Value.Span)
-                        : (stream) => stream.ReadJson(version, stream.ReadType(version), options.Buffer.Value.Span).CastType<T>();
+                    {
+                        StreamExtensions.JsonReadingOptions jsonOptions = options as StreamExtensions.JsonReadingOptions ?? options.JsonItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions typeOptions = options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream) => stream.ReadJson<T>(version, jsonOptions)
+                            : (stream) => stream.ReadJson(version, stream.ReadType(version, typeOptions!), jsonOptions).CastType<T>();
+                    }
                 default:
                     throw new InvalidProgramException($"Failed to determine a valid serialized object type for {typeof(T)} (got {objType})");
             }
@@ -163,25 +182,34 @@
             switch (objType)
             {
                 case SerializedObjectTypes.Numeric:
-                    return (stream) => stream.ReadNumericNullable(version, type) is T res ? res : default(T?);
+                    return (stream) => stream.ReadNumericNullable(version, type, options.Buffer) is T res ? res : default(T?);
                 case SerializedObjectTypes.String:
-                    if (!options.StringBuffer.HasValue) throw new ArgumentNullException(nameof(options), "String buffer required for reading string");
-                    return (stream) =>
                     {
-                        Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                        int len = stream.ReadStringNullable(version, bufferSpan, options.MinItemLength ?? 0);
-                        return len < 0 ? default(T?) : new string(bufferSpan[..len]).CastType<T>();
-                    };
+                        StreamExtensions.StringReadingOptions stringOptions = options as StreamExtensions.StringReadingOptions ?? options.StringItemOptions;
+                        return (stream) =>
+                        {
+                            int len = stream.ReadString(version, stringOptions.StringEncoding, stringOptions);
+                            return len < 0
+                                ? default(T?)
+                                : len == 0
+                                    ? string.Empty.CastType<T>()
+                                    : new string(stringOptions.StringBuffer!.Value.Span[..len]).CastType<T>();
+                        };
+                    }
                 case SerializedObjectTypes.Boolean:
                     return (stream) => stream.ReadBooleanNullable(version) is T res ? res : default(T?);
                 case SerializedObjectTypes.Type:
-                    return (stream) => stream.ReadTypeNullable(version) is T res ? res : default(T?);
+                    {
+                        StreamExtensions.TypeReadingOptions typeOptions = options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return (stream) => stream.ReadTypeNullable(version, typeOptions) is T res ? res : default(T?);
+                    }
                 case SerializedObjectTypes.Array:
                     if (!options.MaxItemCount.HasValue) throw new ArgumentNullException(nameof(options), "Max. item count required for reading array");
                     if (type.FindGenericType(typeof(IList<>)) is Type genericListType)
                     {
                         dynamic dummy = GenericHelper.GetDefault(TypeInfoExt.From(genericListType).FirstGenericArgument ?? throw new InvalidProgramException());
-                        return (stream) => StreamExtensions.ReadGenericListNullable(stream, version, options.ListItemOptions, dummy: dummy) is T res ? res : default(T?);
+                        StreamExtensions.ListReadingOptions itemOptions = options.ListItemOptions;
+                        return (stream) => StreamExtensions.ReadGenericListNullable(stream, version, itemOptions, dummy: dummy);
                     }
                     else
                     {
@@ -194,14 +222,26 @@
                 case SerializedObjectTypes.Stream:
                     return (stream) => stream.ReadStreamNullable(version) is T res ? res : default(T?);
                 case SerializedObjectTypes.Serializable:
-                    return type.IsFinalType()
-                        ? (stream) => stream.ReadBoolean(version) ? type.DeserializeFrom(stream, version).CastType<T>() : default(T?)
-                        : (stream) => stream.ReadTypeNullable(version)?.DeserializeFrom(stream, version) is T res ? res : default(T?);
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? (stream) => stream.ReadBoolean(version) ? type.DeserializeFrom(stream, version).CastType<T>() : default(T?)
+                            : (stream) => stream.ReadTypeNullable(version, typeOptions!) is Type valueType 
+                                ? valueType.DeserializeFrom(stream, version).CastType<T>() 
+                                : default(T?);
+                    }
                 case SerializedObjectTypes.SerializeBinary:
                     if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for reading binary serialized");
                     {
                         int? fixedStructureSize = type.GetMaxStructureSize();
-                        return type.IsFinalType()
+                        bool isFInalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFInalType
+                            ? null
+                            : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFInalType
                             ? fixedStructureSize.HasValue
                                 ? (stream) =>
                                 {
@@ -214,15 +254,16 @@
                                 : (stream) =>
                                 {
                                     // Final type with a dynamic length
+                                    if (!stream.ReadBoolean(version)) return default(T?);
                                     Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                    int len = stream.ReadDataNullableWithLengthInfo(version, bufferSpan);
-                                    return len < 0 ? default(T?) : type.DeserializeFrom(bufferSpan[..len]).CastType<T>();
+                                    int len = stream.ReadDataWithLengthInfo(version, bufferSpan);
+                                    return type.DeserializeFrom(bufferSpan[..len]).CastType<T>();
                                 }
                             : fixedStructureSize.HasValue && type.CanConstruct()
                                 ? (stream) =>
                                 {
                                     // Constructable type with a fixed length
-                                    Type? valueType = stream.ReadTypeNullable(version);
+                                    Type? valueType = stream.ReadTypeNullable(version, typeOptions!);
                                     if (valueType is null) return default(T?);
                                     Span<byte> bufferSpan = options.Buffer.Value.Span[..fixedStructureSize.Value];
                                     stream.ReadExactly(bufferSpan);
@@ -231,7 +272,7 @@
                                 : (stream) =>
                                 {
                                     // Type with a dynamic length
-                                    Type? valueType = stream.ReadTypeNullable(version);
+                                    Type? valueType = stream.ReadTypeNullable(version, typeOptions!);
                                     if (valueType is null) return default(T?);
                                     Span<byte> bufferSpan = options.Buffer.Value.Span;
                                     int len = stream.ReadDataWithLengthInfo(version, bufferSpan);
@@ -239,44 +280,49 @@
                                 };
                     }
                 case SerializedObjectTypes.SerializeString:
-                    if (!options.StringBuffer.HasValue) throw new ArgumentNullException(nameof(options), "String buffer required for reading string serialized");
-                    return type.IsFinalType()
-                        ? (stream) =>
-                        {
-                            Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                            int len = stream.ReadStringNullable(version, bufferSpan, options.MinItemLength ?? 0);
-                            return len < 0 ? default(T?) : type.ParseObject(bufferSpan).CastType<T>();
-                        }
+                    {
+                        StreamExtensions.StringReadingOptions stringOptions = options as StreamExtensions.StringReadingOptions ?? options.StringItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions? typeOptions = isFinalType ? null : options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? (stream) =>
+                            {
+                                int len = stream.ReadStringNullable(version, stringOptions);
+                                return len < 0 ? default(T?) : type.ParseObject(stringOptions.StringBuffer!.Value.Span[..len]).CastType<T>();
+                            }
                         : (stream) =>
                         {
-                            Type? valueType = stream.ReadTypeNullable(version);
-                            if (valueType is null) return default(T?);
-                            Span<char> bufferSpan = options.StringBuffer.Value.Span;
-                            int len = stream.ReadString(version, bufferSpan, options.MinItemLength ?? 0);
-                            return valueType.ParseObject(bufferSpan).CastType<T>();
-                    };
+                            Type? valueType = stream.ReadTypeNullable(version, typeOptions!);
+                            if(valueType is null) return default(T?);
+                            int len = stream.ReadString(version, stringOptions);
+                            return valueType.ParseObject(stringOptions.StringBuffer!.Value.Span[..len]).CastType<T>();
+                        };
+                    }
                 case SerializedObjectTypes.Enum:
                     {
                         IEnumInfo enumInfo = type.GetEnumInfo();
                         Type numericType = enumInfo.NumericType;
                         return (stream) =>
                         {
-                            dynamic? numericValue = stream.ReadNumericNullable(version, numericType);
-                            if (numericValue is null) return default(T?);
-                            T res = numericValue.CastType<T>();
-                            if (!enumInfo.IsValidValue(res)) throw new InvalidDataException($"Deserialized invalid {type} value of \"{res}\"");
+                            T? res = stream.ReadNumericNullable(version, numericType, options.Buffer) is T value ? value : default(T?);
+                            if (res is not null && !enumInfo.IsValidValue(res))
+                                throw new InvalidDataException($"Deserialized invalid {type} value of \"{res}\"");
                             return res;
                         };
                     }
                 case SerializedObjectTypes.Enumerable:
                     return static (stream) => default;//TODO Read enumerable
                 case SerializedObjectTypes.Json:
-                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for reading JSON serialized");
-                    return type.IsFinalType()
-                        ? (stream) => stream.ReadJsonNullable<T>(version, options.Buffer.Value.Span)
-                        : (stream) => stream.ReadTypeNullable(version) is Type valueType
-                            ? stream.ReadJson(version, valueType, options.Buffer.Value.Span).CastType<T>()
-                            : default(T?);
+                    {
+                        StreamExtensions.JsonReadingOptions jsonOptions = options as StreamExtensions.JsonReadingOptions ?? options.JsonItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeReadingOptions typeOptions = options as StreamExtensions.TypeReadingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream) => stream.ReadBoolean(version) ? stream.ReadJson<T>(version, jsonOptions) : default(T?)
+                            : (stream) => stream.ReadTypeNullable(version, typeOptions) is Type valueType
+                                ? stream.ReadJson(version, valueType, jsonOptions).CastType<T>()
+                                : default(T?);
+                    }
                 default:
                     throw new InvalidProgramException($"Failed to determine a valid serialized object type for {typeof(T)} (got {objType})");
             }

@@ -1,4 +1,5 @@
-﻿namespace wan24.Core
+﻿
+namespace wan24.Core
 {
     // List reading options
     public static partial class StreamExtensions
@@ -12,14 +13,6 @@
         public record class ListReadingOptions() : ReadingOptions()
         {
             /// <summary>
-            /// Default list options
-            /// </summary>
-            public static ListReadingOptions DefaultListOptions { get; set; } = new()
-            {
-                MaxCount = -1
-            };
-
-            /// <summary>
             /// Maximum item count (<c>-1</c> for no limit)
             /// </summary>
             public required int MaxCount { get; init; }
@@ -28,6 +21,13 @@
             /// If the item type is included
             /// </summary>
             public bool IncludesType { get; init; } = true;
+
+            /// <inheritdoc/>
+            public override required TypeReadingOptions TypeItemOptions
+            {
+                get => base.TypeItemOptions;
+                init => base.TypeItemOptions = value ?? throw new ArgumentNullException(nameof(value), "Buffer required for list reading");
+            }
         }
     }
 }

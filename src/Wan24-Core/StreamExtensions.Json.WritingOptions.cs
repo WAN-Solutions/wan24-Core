@@ -6,6 +6,9 @@
         /// <summary>
         /// JSON writing options
         /// </summary>
+        /// <remarks>
+        /// Constructor
+        /// </remarks>
         public record class JsonWritingOptions() : WritingOptions()
         {
             /// <summary>

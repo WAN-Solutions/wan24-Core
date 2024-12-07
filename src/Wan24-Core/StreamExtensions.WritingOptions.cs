@@ -18,6 +18,14 @@ namespace wan24.Core
             /// JSON item writing options
             /// </summary>
             protected JsonWritingOptions? _JsonItemOptions = null;
+            /// <summary>
+            /// String item writing options
+            /// </summary>
+            protected StringWritingOptions? _StringItemOptions = null;
+            /// <summary>
+            /// Type item writing options
+            /// </summary>
+            protected TypeWritingOptions? _TypeItemOptions = null;
 
             /// <summary>
             /// Default options
@@ -65,6 +73,24 @@ namespace wan24.Core
             {
                 get => _JsonItemOptions ??= JsonWritingOptions.DefaultJsonOptions;
                 init => _JsonItemOptions = value;
+            }
+
+            /// <summary>
+            /// String item writing options
+            /// </summary>
+            public virtual StringWritingOptions StringItemOptions
+            {
+                get => _StringItemOptions ??= StringWritingOptions.DefaultStringOptions;
+                init => _StringItemOptions = value;
+            }
+
+            /// <summary>
+            /// Type item writing options
+            /// </summary>
+            public TypeWritingOptions TypeItemOptions
+            {
+                get => _TypeItemOptions ??= TypeWritingOptions.DefaultTypeOptions;
+                init => _TypeItemOptions = value;
             }
         }
     }

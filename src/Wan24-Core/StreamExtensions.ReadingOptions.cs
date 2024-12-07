@@ -17,6 +17,18 @@ namespace wan24.Core
             /// List item reading options
             /// </summary>
             protected ListReadingOptions? _ListItemOptions = null;
+            /// <summary>
+            /// JSON item reading options
+            /// </summary>
+            protected JsonReadingOptions? _JsonItemOptions = null;
+            /// <summary>
+            /// String item reading options
+            /// </summary>
+            protected StringReadingOptions? _StringItemOptions = null;
+            /// <summary>
+            /// Type item reading options
+            /// </summary>
+            protected TypeReadingOptions? _TypeItemOptions = null;
 
             /// <summary>
             /// Default options
@@ -56,22 +68,74 @@ namespace wan24.Core
             public int? MaxItemCount { get; init; }
 
             /// <summary>
+            /// If <see cref="ListItemOptions"/> are available
+            /// </summary>
+            public bool HasListItemOptions => _ListItemOptions is not null || HasTypeItemOptions || HasStringItemOptions;
+
+            /// <summary>
             /// List item reading options
             /// </summary>
             public ListReadingOptions ListItemOptions
             {
-                get => _ListItemOptions ??= ListReadingOptions.DefaultListOptions with
+                get => _ListItemOptions ??= new()
                 {
                     MaxCount = MaxItemCount ?? -1,
-                    UseInterfaces = UseItemInterfaces
+                    UseInterfaces = UseItemInterfaces,
+                    TypeItemOptions = TypeItemOptions
                 };
                 init => _ListItemOptions = value;
             }
 
             /// <summary>
+            /// If <see cref="JsonItemOptions"/> are available
+            /// </summary>
+            public bool HasJsonItemOptions => _JsonItemOptions is not null || StringBuffer.HasValue;
+
+            /// <summary>
             /// JSON item reading options
             /// </summary>
-            public JsonReadingOptions? JsonItemOptions { get; init; }
+            public JsonReadingOptions JsonItemOptions
+            {
+                get => _JsonItemOptions ??= new()
+                {
+                    StringBuffer = StringBuffer
+                };
+                init => _JsonItemOptions = value;
+            }
+
+            /// <summary>
+            /// If <see cref="StringItemOptions"/> are available
+            /// </summary>
+            public bool HasStringItemOptions => _StringItemOptions is not null || StringBuffer.HasValue;
+
+            /// <summary>
+            /// String item reading options
+            /// </summary>
+            public virtual StringReadingOptions StringItemOptions
+            {
+                get => _StringItemOptions ??= new()
+                {
+                    StringBuffer = StringBuffer
+                };
+                init => _StringItemOptions = value;
+            }
+
+            /// <summary>
+            /// If <see cref="TypeItemOptions"/> are available
+            /// </summary>
+            public bool HasTypeItemOptions => _TypeItemOptions is not null || StringBuffer.HasValue;
+
+            /// <summary>
+            /// Type item reading options
+            /// </summary>
+            public virtual TypeReadingOptions TypeItemOptions
+            {
+                get => _TypeItemOptions ??= new()
+                {
+                    StringBuffer = StringBuffer
+                };
+                init => _TypeItemOptions = value;
+            }
         }
     }
 }

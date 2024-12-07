@@ -174,7 +174,6 @@ namespace wan24.Core
             if (!AllowDangerousBinarySerialization) throw new InvalidOperationException("Abstract types are not allowed");
             ArgumentOutOfRangeException.ThrowIfLessThan(count, other: 0, nameof(count));
             if (count < 1) return;
-            options ??= ListReadingOptions.DefaultListOptions;
             stream.ReadListItems(list, StreamHelper.GetReader<object>(version, SerializedObjectTypes.NullableValue, options), count);
         }
 
@@ -191,7 +190,6 @@ namespace wan24.Core
             if (!AllowDangerousBinarySerialization) throw new InvalidOperationException("Abstract types are not allowed");
             ArgumentOutOfRangeException.ThrowIfLessThan(count, other: 0, nameof(count));
             if (count < 1) return;
-            options ??= ListReadingOptions.DefaultListOptions;
             stream.ReadListItemsNullableValues(list, StreamHelper.GetNullableReader<object>(version, SerializedObjectTypes.NullableValue, options), count);
         }
 
@@ -316,7 +314,7 @@ namespace wan24.Core
         {
             Type type = typeof(T),
                 serializedType = options.IncludesType
-                    ? stream.ReadType(version)
+                    ? stream.ReadType(version, options.TypeItemOptions)
                     : type;
             if (type != serializedType && !type.IsAssignableFrom(serializedType))
                 throw new InvalidDataException($"Serialized item type {serializedType} is incompatible with requested type {type}");
@@ -342,7 +340,7 @@ namespace wan24.Core
         {
             Type type = typeof(T),
                 serializedType = options.IncludesType
-                    ? stream.ReadType(version)
+                    ? stream.ReadType(version, options.TypeItemOptions)
                     : type;
             if (type != serializedType && !type.IsAssignableFrom(serializedType))
                 throw new InvalidDataException($"Serialized item type {serializedType} is incompatible with requested type {type}");
@@ -368,7 +366,7 @@ namespace wan24.Core
         {
             Type type = typeof(T),
                 serializedType = options.IncludesType
-                    ? stream.ReadType(version)
+                    ? stream.ReadType(version, options.TypeItemOptions)
                     : type;
             if (type != serializedType && !type.IsAssignableFrom(serializedType))
                 throw new InvalidDataException($"Serialized item type {serializedType} is incompatible with requested type {type}");
@@ -395,7 +393,7 @@ namespace wan24.Core
         {
             Type type = typeof(T),
                 serializedType = options.IncludesType
-                    ? stream.ReadType(version)
+                    ? stream.ReadType(version, options.TypeItemOptions)
                     : type;
             if (type != serializedType && !type.IsAssignableFrom(serializedType))
                 throw new InvalidDataException($"Serialized item type {serializedType} is incompatible with requested type {type}");
@@ -423,7 +421,6 @@ namespace wan24.Core
             ArgumentOutOfRangeException.ThrowIfLessThan(count, other: 0, nameof(count));
             if (count < 1) return;
             Type type = typeof(T);
-            options ??= ListReadingOptions.DefaultListOptions;
             stream.ReadGenericListItems(list, StreamHelper.GetReader<T>(version, options: options), count);
         }
 
@@ -441,7 +438,6 @@ namespace wan24.Core
             ArgumentOutOfRangeException.ThrowIfLessThan(count, other: 0, nameof(count));
             if (count < 1) return;
             Type type = typeof(T);
-            options ??= ListReadingOptions.DefaultListOptions;
             stream.ReadGenericListItemsNullableValues(list, StreamHelper.GetNullableReader<T>(version, options: options), count);
         }
 

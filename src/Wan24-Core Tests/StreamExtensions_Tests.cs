@@ -135,34 +135,49 @@ namespace Wan24_Core_Tests
                 new("test",stream=>stream.Write("test"),stream=>{
                     using RentedMemoryRef<char> buffer = new(len: 4, clean: false);
                     Span<char> bufferSpan=buffer.Span;
-                    int len = stream.ReadString(VERSION, bufferSpan);
+                    int len = stream.ReadString(VERSION, new()
+                    {
+                        StringBuffer = buffer.Memory
+                    });
                     return new string(bufferSpan[..len]);
                 },5),
                 new("test",stream=>stream.Write16("test"),stream=>{
                     using RentedMemoryRef<char> buffer = new(len: 8, clean: false);
                     Span<char> bufferSpan=buffer.Span;
-                    int len = stream.ReadString16(VERSION, bufferSpan);
+                    int len = stream.ReadString16(VERSION, new()
+                    {
+                        StringBuffer = buffer.Memory
+                    });
                     return new string(bufferSpan[..len]);
                 },9),
                 new("test",stream=>stream.Write32("test"),stream=>{
                     using RentedMemoryRef<char> buffer = new(len: 16, clean: false);
                     Span<char> bufferSpan=buffer.Span;
-                    int len = stream.ReadString32(VERSION, bufferSpan);
+                    int len = stream.ReadString32(VERSION, new()
+                    {
+                        StringBuffer= buffer.Memory
+                    });
                     return new string(bufferSpan[..len]);
                 },17),
-                new(-1,stream=>stream.Write((string?)null),stream=>stream.ReadStringNullable(VERSION,new char[1]),1),
-                new(-1,stream=>stream.Write16(null),stream=>stream.ReadString16Nullable(VERSION,new char[1]),1),
-                new(-1,stream=>stream.Write32(null),stream=>stream.ReadString32Nullable(VERSION,new char[1]),1),
+                new(-1,stream=>stream.Write((string?)null),stream=>stream.ReadStringNullable(VERSION,new(){StringBuffer=Array.Empty<char>()}),1),
+                new(-1,stream=>stream.Write16(null),stream=>stream.ReadString16Nullable(VERSION,new(){StringBuffer=Array.Empty<char>()}),1),
+                new(-1,stream=>stream.Write32(null),stream=>stream.ReadString32Nullable(VERSION,new(){StringBuffer=Array.Empty<char>()}),1),
                 // Bool
                 new(true,stream=>stream.Write(true),stream=>stream.ReadBoolean(VERSION),1),
                 new(false,stream=>stream.Write(false),stream=>stream.ReadBoolean(VERSION),1),
                 new(null,stream=>stream.Write((bool?)null),stream=>stream.ReadBooleanNullable(VERSION),1),
                 // Type
-                new(typeof(string),stream=>stream.Write(typeof(string)),stream=>stream.ReadType(VERSION),null),
-                new(null,stream=>stream.WriteNullable((Type?)null),stream=>stream.ReadTypeNullable(VERSION),1),
+                new(typeof(string),stream=>{
+                    using RentedMemoryRef<char> buffer = new(len: byte.MaxValue, clean: false);
+                    stream.Write(typeof(string), new(){StringBuffer = buffer.Memory});
+                },stream=>{
+                    using RentedMemoryRef<char> buffer = new(len: byte.MaxValue, clean: false);
+                    return stream.ReadType(VERSION, new(){StringBuffer=buffer.Memory});
+                },null),
+                new(null,stream=>stream.WriteNullable((Type?)null),stream=>stream.ReadTypeNullable(VERSION,new(){StringBuffer=Array.Empty<char>()}),1),
                 // JSON
-                new("test",stream=>stream.WriteJson("test"),stream=>stream.ReadJson<string>(VERSION, new byte[7]),7),
-                new(null,stream=>stream.WriteJsonNullable<string>(null),stream=>stream.ReadJsonNullable<string>(VERSION, new byte[1]),1),
+                new("test",stream=>stream.WriteJson("test"),stream=>stream.ReadJson<string>(VERSION, new(){StringBuffer = new char[7] }),7),
+                new(null,stream=>stream.WriteJsonNullable<string>(null),stream=>stream.ReadJsonNullable<string>(VERSION, new(){StringBuffer=Array.Empty<char>() }),1),
                 // Enum
                 new(OptInOut.OptOut,stream=>stream.Write(OptInOut.OptOut),stream=>stream.ReadEnum<OptInOut>(VERSION),1),
                 new(null,stream=>stream.WriteNullable((OptInOut?)null),stream=>stream.ReadEnumNullable<OptInOut>(VERSION),1),

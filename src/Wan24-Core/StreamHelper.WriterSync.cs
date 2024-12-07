@@ -27,70 +27,98 @@ namespace wan24.Core
                 case SerializedObjectTypes.Numeric:
                     return static (stream, value) => StreamExtensions.WriteNumeric(stream, value!);
                 case SerializedObjectTypes.String:
-                    return static (stream, value) => stream.Write(value!.CastType<string>());
+                    {
+                        StreamExtensions.StringWritingOptions stringOptions = options as StreamExtensions.StringWritingOptions ?? options.StringItemOptions;
+                        return (stream, value) => stream.Write(value!.CastType<string>(), stringOptions);
+                    }
                 case SerializedObjectTypes.Boolean:
                     return static (stream, value) => stream.Write(value!.CastType<bool>());
                 case SerializedObjectTypes.Type:
-                    return static (stream, value) => stream.Write(value!.CastType<Type>());
+                    {
+                        StreamExtensions.TypeWritingOptions typeOptions = options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return (stream, value) => stream.Write(value!.CastType<Type>(), typeOptions);
+                    }
                 case SerializedObjectTypes.Array:
-                    return type.FindGenericType(typeof(IList<>)) is null
-                        ? (stream, value) => stream.Write(value!.CastType<IList>(), options.ListItemOptions)
-                        : (stream, value) => StreamExtensions.WriteList(stream, (dynamic)value!, options.ListItemOptions);
+                    {
+                        StreamExtensions.ListWritingOptions itemOptions = options as StreamExtensions.ListWritingOptions ?? options.ListItemOptions;
+                        return type.FindGenericType(typeof(IList<>)) is null
+                            ? (stream, value) => stream.Write(value!.CastType<IList>(), itemOptions)
+                            : (stream, value) => StreamExtensions.WriteList(stream, (dynamic)value!, itemOptions);
+                    }
                 case SerializedObjectTypes.Dictionary:
                     return type.FindGenericType(typeof(IDictionary<,>)) is null
                         ? static (stream, value) => { }
-                    : static (stream, value) => { };//TODO Write dictionary value
+                        : static (stream, value) => { };//TODO Write dictionary value
                 case SerializedObjectTypes.Stream:
                     return static (stream, value) => stream.Write(value!.CastType<Stream>());
                 case SerializedObjectTypes.Serializable:
-                    return type.IsFinalType()
-                        ? static (stream, value) => ((ISerializeStream)value!).SerializeTo(stream)
-                        : static (stream, value) =>
-                        {
-                            stream.Write(value!.GetType());
-                            ((ISerializeStream)value).SerializeTo(stream);
-                        };
-                case SerializedObjectTypes.SerializeBinary:
-                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
-                    return type.IsFinalType()
-                        ? type.GetIsFixedStructureSize()
-                            ? (stream, value) =>
-                            {
-                                // Final type with a fixed length
-                                Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                ((ISerializeBinary)value!).GetBytes(bufferSpan);
-                                stream.Write(bufferSpan);
-                            }
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? static (stream, value) => ((ISerializeStream)value!).SerializeTo(stream)
                             : (stream, value) =>
                             {
-                                // Final type with a dynamic length
-                                Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value!).GetBytes(bufferSpan)]); ;
-                            }
-                        : type.GetIsFixedStructureSize() && type.CanConstruct()
-                            ? (stream, value) =>
-                            {
-                                // Constructable type with a fixed length
-                                Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                stream.Write(value!.GetType());
-                                ((ISerializeBinary)value).GetBytes(bufferSpan);
-                                stream.Write(bufferSpan);
-                            }
-                        : (stream, value) =>
-                        {
-                            // Type with a dynamic length
-                            Span<byte> bufferSpan = options.Buffer.Value.Span;
-                            stream.Write(value!.GetType());
-                            stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
-                        };
+                                stream.Write(value!.GetType(), typeOptions);
+                                ((ISerializeStream)value).SerializeTo(stream);
+                            };
+                    }
+                case SerializedObjectTypes.SerializeBinary:
+                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? type.GetIsFixedStructureSize()
+                                ? (stream, value) =>
+                                {
+                                    // Final type with a fixed length
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    ((ISerializeBinary)value!).GetBytes(bufferSpan);
+                                    stream.Write(bufferSpan);
+                                }
+                                : (stream, value) =>
+                                {
+                                    // Final type with a dynamic length
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value!).GetBytes(bufferSpan)]); ;
+                                }
+                            : type.GetIsFixedStructureSize() && type.CanConstruct()
+                                ? (stream, value) =>
+                                {
+                                    // Constructable type with a fixed length
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    stream.Write(value!.GetType(), typeOptions);
+                                    ((ISerializeBinary)value).GetBytes(bufferSpan);
+                                    stream.Write(bufferSpan);
+                                }
+                                : (stream, value) =>
+                                {
+                                    // Type with a dynamic length
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    stream.Write(value!.GetType(), typeOptions);
+                                    stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
+                                };
+                    }
                 case SerializedObjectTypes.SerializeString:
-                    return type.IsFinalType()
-                        ? static (stream, value) => stream.Write(value!.ToString() ?? string.Empty)
-                        : static (stream, value) =>
-                        {
-                            stream.Write(value!.GetType());
-                            stream.Write(value.ToString() ?? string.Empty);
-                        };
+                    {
+                        StreamExtensions.StringWritingOptions stringOptions = options as StreamExtensions.StringWritingOptions ?? options.StringItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream, value) => stream.Write(value!.ToString() ?? string.Empty, stringOptions)
+                            : (stream, value) =>
+                            {
+                                stream.Write(value!.GetType(), typeOptions);
+                                stream.Write(value.ToString() ?? string.Empty, stringOptions);
+                            };
+                    }
                 case SerializedObjectTypes.Enumerable:
                     return static (stream, item) => { };//TODO Write enumerable
                 case SerializedObjectTypes.Enum:
@@ -99,13 +127,20 @@ namespace wan24.Core
                         return (stream, value) => StreamExtensions.WriteNumeric(stream, (dynamic)Convert.ChangeType(value!, numericType));
                     }
                 case SerializedObjectTypes.Json:
-                    return type.IsFinalType()
-                        ? static (stream, value) => stream.WriteJson(value)
-                        : static (stream, value) =>
-                        {
-                            stream.Write(value!.GetType());
-                            stream.WriteJson(value);
-                        };
+                    {
+                        StreamExtensions.JsonWritingOptions jsonOptions = options as StreamExtensions.JsonWritingOptions ?? options.JsonItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream, value) => stream.WriteJson(value, jsonOptions)
+                            : (stream, value) =>
+                            {
+                                stream.Write(value!.GetType(), typeOptions);
+                                stream.WriteJson(value, jsonOptions);
+                            };
+                    }
                 default:
                     throw new InvalidProgramException($"Failed to determine a valid serialized object type for {typeof(T)} (got {objType})");
             }
@@ -133,105 +168,144 @@ namespace wan24.Core
                 case SerializedObjectTypes.Numeric:
                     return static (stream, value) => StreamExtensions.WriteNumericNullable(stream, value!);
                 case SerializedObjectTypes.String:
-                    return static (stream, value) => stream.Write(value?.CastType<string>());
+                    {
+                        StreamExtensions.StringWritingOptions stringOptions = options as StreamExtensions.StringWritingOptions ?? options.StringItemOptions;
+                        return (stream, value) => stream.Write(value is string v ? v : null, stringOptions);
+                    }
                 case SerializedObjectTypes.Boolean:
-                    return static (stream, value) => stream.Write(value?.CastType<bool>());
+                    return static (stream, value) => stream.Write(value is bool v ? v : null);
                 case SerializedObjectTypes.Type:
-                    return static (stream, value) => stream.WriteNullable(value?.CastType<Type>());
+                    {
+                        StreamExtensions.TypeWritingOptions typeOptions = options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return (stream, value) => stream.WriteNullable(value is Type v ? v : null, typeOptions);
+                    }
                 case SerializedObjectTypes.Array:
-                    return type.FindGenericType(typeof(IList<>)) is null
-                        ? (stream, value) => stream.WriteNullable(value?.CastType<IList>(), options.ListItemOptions)
-                        : (stream, value) => StreamExtensions.WriteListNullable(stream, (dynamic?)value, options.ListItemOptions);
+                    {
+                        StreamExtensions.ListWritingOptions itemOptions = options as StreamExtensions.ListWritingOptions ?? options.ListItemOptions;
+                        return type.FindGenericType(typeof(IList<>)) is null
+                            ? (stream, value) => stream.WriteNullable(value is IList v ? v : null, itemOptions)
+                            : (stream, value) => StreamExtensions.WriteListNullable(stream, (dynamic?)value, itemOptions);
+                    }
                 case SerializedObjectTypes.Dictionary:
                     return type.FindGenericType(typeof(IDictionary<,>)) is null
                         ? static (stream, value) => { }
-                    : static (stream, value) => { };//TODO Write dictionary value
+                        : static (stream, value) => { };//TODO Write dictionary value
                 case SerializedObjectTypes.Stream:
-                    return static (stream, value) => stream.WriteNullable(value?.CastType<Stream>());
+                    return static (stream, value) => stream.WriteNullable(value is Stream v ? v : null);
                 case SerializedObjectTypes.Serializable:
-                    return type.IsFinalType()
-                        ? static (stream, value) =>
-                        {
-                            stream.Write(value is not null);
-                            ((ISerializeStream?)value)?.SerializeTo(stream);
-                        }
-                        : static (stream, value) =>
-                        {
-                            stream.WriteNullable(value?.GetType());
-                            ((ISerializeStream?)value)?.SerializeTo(stream);
-                        };
-                case SerializedObjectTypes.SerializeBinary:
-                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
-                    return type.IsFinalType()
-                        ? type.GetIsFixedStructureSize()
-                            ? (stream, value) =>
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? static (stream, value) =>
                             {
-                                // Final type with a fixed length
                                 stream.Write(value is not null);
                                 if (value is null) return;
-                                Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                ((ISerializeBinary)value!).GetBytes(bufferSpan);
-                                stream.Write(bufferSpan);
+                                ((ISerializeStream)value!).SerializeTo(stream);
                             }
                             : (stream, value) =>
                             {
-                                // Final type with a dynamic length
-                                Memory<byte> bufferMem = options.Buffer.Value;
-                                stream.WriteNullableWithLengthInfo(value is null ? null : bufferMem[..((ISerializeBinary)value).GetBytes(bufferMem.Span)]);
-                            }
-                        : type.GetIsFixedStructureSize() && type.CanConstruct()
-                            ? (stream, value) =>
-                            {
-                                // Constructable type with a fixed length
-                                stream.WriteNullable(value?.GetType());
+                                stream.WriteNullable(value?.GetType(), typeOptions);
                                 if (value is null) return;
-                                Span<byte> bufferSpan = options.Buffer.Value.Span;
-                                ((ISerializeBinary)value).GetBytes(bufferSpan);
-                                stream.Write(bufferSpan);
-                            }
-                        : (stream, value) =>
-                        {
-                            // Type with a dynamic length
-                            stream.WriteNullable(value?.GetType());
-                            if (value is null) return;
-                            Span<byte> bufferSpan = options.Buffer.Value.Span;
-                            stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
-                        };
+                                ((ISerializeStream)value).SerializeTo(stream);
+                            };
+                    }
+                case SerializedObjectTypes.SerializeBinary:
+                    if (!options.Buffer.HasValue) throw new ArgumentNullException(nameof(options), "Buffer required for writing binary serialized");
+                    {
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return isFinalType
+                            ? type.GetIsFixedStructureSize()
+                                ? (stream, value) =>
+                                {
+                                    // Final type with a fixed length
+                                    stream.Write(value is not null);
+                                    if (value is null) return;
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    ((ISerializeBinary)value).GetBytes(bufferSpan);
+                                    stream.Write(bufferSpan);
+                                }
+                                : (stream, value) =>
+                                {
+                                    // Final type with a dynamic length
+                                    if(value is null)
+                                    {
+                                        stream.WriteNullableWithLengthInfo(data: default(ReadOnlyMemory<byte>?));
+                                        return;
+                                    }
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]); ;
+                                }
+                            : type.GetIsFixedStructureSize() && type.CanConstruct()
+                                ? (stream, value) =>
+                                {
+                                    // Constructable type with a fixed length
+                                    stream.WriteNullable(value?.GetType(), typeOptions);
+                                    if (value is null) return;
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    ((ISerializeBinary)value).GetBytes(bufferSpan);
+                                    stream.Write(bufferSpan);
+                                }
+                                : (stream, value) =>
+                                {
+                                    // Type with a dynamic length
+                                    stream.WriteNullable(value?.GetType(), typeOptions);
+                                    if (value is null) return;
+                                    Span<byte> bufferSpan = options.Buffer.Value.Span;
+                                    stream.WriteWithLengthInfo(bufferSpan[..((ISerializeBinary)value).GetBytes(bufferSpan)]);
+                                };
+                    }
                 case SerializedObjectTypes.SerializeString:
-                    return type.IsFinalType()
-                        ? static (stream, value) => stream.Write(value?.ToString())
-                        : static (stream, value) =>
-                        {
-                            stream.WriteNullable(value?.GetType());
-                            if (value is null) return;
-                            stream.Write(value.ToString() ?? string.Empty);
-                        };
+                    {
+                        StreamExtensions.StringWritingOptions stringOptions = options as StreamExtensions.StringWritingOptions ?? options.StringItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream, value) => stream.Write(value is null ? null : value.ToString() ?? string.Empty, stringOptions)
+                            : (stream, value) =>
+                            {
+                                stream.WriteNullable(value?.GetType(), typeOptions);
+                                if (value is null) return;
+                                stream.Write(value.ToString() ?? string.Empty, stringOptions);
+                            };
+                    }
                 case SerializedObjectTypes.Enumerable:
                     return static (stream, item) => { };//TODO Write enumerable
                 case SerializedObjectTypes.Enum:
                     {
                         Type numericType = type.GetEnumUnderlyingType();
-                        return (stream, value) =>
-                        {
-                            if (value is null)
-                            {
-                                stream.Write((byte)NumericTypes.None);
-                            }
-                            else
-                            {
-                                StreamExtensions.WriteNumericNullable(stream, (dynamic)Convert.ChangeType(value, numericType));
-                            }
-                        };
+                        return (stream, value) => StreamExtensions.WriteNumericNullable(
+                            stream, 
+                            (dynamic?)(value is null ? default(int?) : Convert.ChangeType(value, numericType))
+                            );
                     }
                 case SerializedObjectTypes.Json:
-                    return type.IsFinalType()
-                        ? static (stream, value) => stream.WriteJsonNullable(value)
-                        : static (stream, value) =>
-                        {
-                            stream.WriteNullable(value?.GetType());
-                            if (value is null) return;
-                            stream.WriteJson(value);
-                        };
+                    {
+                        StreamExtensions.JsonWritingOptions jsonOptions = options as StreamExtensions.JsonWritingOptions ?? options.JsonItemOptions;
+                        bool isFinalType = type.IsFinalType();
+                        StreamExtensions.TypeWritingOptions? typeOptions = isFinalType
+                            ? null
+                            : options as StreamExtensions.TypeWritingOptions ?? options.TypeItemOptions;
+                        return type.IsFinalType()
+                            ? (stream, value) =>
+                            {
+                                stream.Write(value is not null);
+                                if (value is null) return;
+                                stream.WriteJson(value, jsonOptions);
+                            }
+                            : (stream, value) =>
+                            {
+                                stream.WriteNullable(value?.GetType(), typeOptions);
+                                stream.WriteJson(value, jsonOptions);
+                            };
+                    }
                 default:
                     throw new InvalidProgramException($"Failed to determine a valid serialized object type for {typeof(T)} (got {objType})");
             }
